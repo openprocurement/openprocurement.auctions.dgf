@@ -32,6 +32,7 @@ setup(name='openprocurement.auctions.dgf',
           'setuptools',
           'openprocurement.api',
           'openprocurement.auctions.core',
+          'openprocurement.auctions.flash',
       ],
       entry_points=entry_points,
       )
