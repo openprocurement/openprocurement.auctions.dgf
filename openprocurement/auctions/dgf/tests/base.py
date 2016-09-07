@@ -8,6 +8,8 @@ from uuid import uuid4
 
 from openprocurement.api.models import SANDBOX_MODE
 from openprocurement.api.utils import VERSION, apply_data_patch
+from openprocurement.api.design import sync_design
+from openprocurement.auctions.core.tests.base import BaseWebTest as CoreBaseWebTest
 
 
 now = datetime.now()
@@ -204,24 +206,14 @@ class PrefixedRequestClass(webtest.app.TestRequest):
         return webtest.app.TestRequest.blank(path, *args, **kwargs)
 
 
-class BaseWebTest(unittest.TestCase):
+class BaseWebTest(CoreBaseWebTest):
 
     """Base Web Test to test openprocurement.auctions.dgf.
 
     It setups the database before each test and delete it after.
     """
 
-    def setUp(self):
-        self.app = webtest.TestApp(
-            "config:tests.ini", relative_to=os.path.dirname(__file__))
-        self.app.RequestClass = PrefixedRequestClass
-        self.app.authorization = ('Basic', ('token', ''))
-        #self.app.authorization = ('Basic', ('broker', ''))
-        self.couchdb_server = self.app.app.registry.couchdb_server
-        self.db = self.app.app.registry.db
-
-    def tearDown(self):
-        del self.couchdb_server[self.db.name]
+    relative_to = os.path.dirname(__file__)
 
 
 class BaseAuctionWebTest(BaseWebTest):
