@@ -19,6 +19,7 @@ from openprocurement.auctions.core.validation import (
 @opresource(name='Auction Auction',
             collection_path='/auctions/{auction_id}/auction',
             path='/auctions/{auction_id}/auction/{auction_lot_id}',
+            auctionsprocurementMethodType="dgfOtherAssets",
             description="Auction auction data")
 class AuctionAuctionResource(APIResource):
 

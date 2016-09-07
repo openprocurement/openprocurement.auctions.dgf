@@ -34,6 +34,7 @@ STATUS4ROLE = {
 @opresource(name='Auction Complaint Documents',
             collection_path='/auctions/{auction_id}/complaints/{complaint_id}/documents',
             path='/auctions/{auction_id}/complaints/{complaint_id}/documents/{document_id}',
+            auctionsprocurementMethodType="dgfOtherAssets",
             description="Auction complaint documents")
 class AuctionComplaintDocumentResource(APIResource):
 

@@ -21,6 +21,7 @@ from openprocurement.auctions.core.validation import (
 @opresource(name='Auction Cancellations',
             collection_path='/auctions/{auction_id}/cancellations',
             path='/auctions/{auction_id}/cancellations/{cancellation_id}',
+            auctionsprocurementMethodType="dgfOtherAssets",
             description="Auction cancellations")
 class AuctionCancellationResource(APIResource):
 

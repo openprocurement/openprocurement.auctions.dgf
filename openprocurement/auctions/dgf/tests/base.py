@@ -84,7 +84,7 @@ test_auction_data = {
     "tenderPeriod": {
         "endDate": (now + timedelta(days=14)).isoformat()
     },
-    "procurementMethodType": "belowThreshold",
+    "procurementMethodType": "dgfOtherAssets",
 }
 if SANDBOX_MODE:
     test_auction_data['procurementMethodDetails'] = 'quick, accelerator=1440'

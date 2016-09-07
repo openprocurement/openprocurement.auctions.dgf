@@ -24,6 +24,7 @@ from openprocurement.auctions.core.validation import (
 @opresource(name='Auction Contract Documents',
             collection_path='/auctions/{auction_id}/contracts/{contract_id}/documents',
             path='/auctions/{auction_id}/contracts/{contract_id}/documents/{document_id}',
+            auctionsprocurementMethodType="dgfOtherAssets",
             description="Auction contract documents")
 class AuctionAwardContractDocumentResource(APIResource):
 

@@ -26,6 +26,7 @@ from openprocurement.api.views.complaint_document import STATUS4ROLE
 @opresource(name='Auction Award Complaint Documents',
             collection_path='/auctions/{auction_id}/awards/{award_id}/complaints/{complaint_id}/documents',
             path='/auctions/{auction_id}/awards/{award_id}/complaints/{complaint_id}/documents/{document_id}',
+            auctionsprocurementMethodType="dgfOtherAssets",
             description="Auction award complaint documents")
 class AuctionAwardComplaintDocumentResource(APIResource):
 

@@ -17,7 +17,7 @@ from openprocurement.auctions.core.validation import (
 
 @opresource(name='Auction',
             path='/auctions/{auction_id}',
-   #        procurementMethodType='belowThreshold',
+            auctionsprocurementMethodType="dgfOtherAssets",
             description="Open Contracting compatible data exchange format. See http://ocds.open-contracting.org/standard/r/master/#auction for more info")
 class AuctionResource(APIResource):
 

@@ -1,6 +1,5 @@
-from openprocurement.auctions.dgf.utils import auction_from_data
-
+from openprocurement.auctions.dgf.models import Auction
 
 def includeme(config):
-    config.add_request_method(auction_from_data)
+    config.add_auction_procurementMethodType(Auction)
     config.scan("openprocurement.auctions.dgf.views")

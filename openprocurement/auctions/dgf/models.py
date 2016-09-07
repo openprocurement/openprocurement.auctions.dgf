@@ -542,7 +542,7 @@ class Auction(SchematicsDocument, Model):
     owner_token = StringType()
     owner = StringType()
 
-    procurementMethodType = StringType(default="belowThreshold")
+    procurementMethodType = StringType(default="dgfOtherAssets")
 
     create_accreditation = 1
     edit_accreditation = 2

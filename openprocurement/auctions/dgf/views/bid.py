@@ -21,8 +21,8 @@ from openprocurement.auctions.core.validation import (
 @opresource(name='Auction Bids',
             collection_path='/auctions/{auction_id}/bids',
             path='/auctions/{auction_id}/bids/{bid_id}',
+            auctionsprocurementMethodType="dgfOtherAssets",
             description="Auction bids")
-
 class AuctionBidResource(APIResource):
 
     @json_view(content_type="application/json", permission='create_bid', validators=(validate_bid_data,))

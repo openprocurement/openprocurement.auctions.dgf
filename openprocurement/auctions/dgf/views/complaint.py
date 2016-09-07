@@ -22,6 +22,7 @@ from openprocurement.auctions.core.validation import (
 @opresource(name='Auction Complaints',
             collection_path='/auctions/{auction_id}/complaints',
             path='/auctions/{auction_id}/complaints/{complaint_id}',
+            auctionsprocurementMethodType="dgfOtherAssets",
             description="Auction complaints")
 class AuctionComplaintResource(APIResource):
 

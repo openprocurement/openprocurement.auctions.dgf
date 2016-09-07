@@ -21,6 +21,7 @@ from openprocurement.auctions.core.validation import (
 @opresource(name='Auction Awards',
             collection_path='/auctions/{auction_id}/awards',
             path='/auctions/{auction_id}/awards/{award_id}',
+            auctionsprocurementMethodType="dgfOtherAssets",
             description="Auction awards")
 class AuctionAwardResource(APIResource):
 

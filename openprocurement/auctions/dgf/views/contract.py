@@ -20,6 +20,7 @@ from openprocurement.auctions.core.validation import (
 @opresource(name='Auction Contracts',
             collection_path='/auctions/{auction_id}/contracts',
             path='/auctions/{auction_id}/contracts/{contract_id}',
+            auctionsprocurementMethodType="dgfOtherAssets",
             description="Auction contracts")
 class AuctionAwardContractResource(APIResource):
 
