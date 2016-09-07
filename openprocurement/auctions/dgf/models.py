@@ -14,27 +14,22 @@ from schematics.types.serializable import serializable
 from uuid import uuid4
 from barbecue import vnmax
 from zope.interface import implementer, Interface
-from openprocurement.api.models import IsoDateTimeType, ListType, Model, Value, PeriodEndRequired, \
-                                       Classification, validate_dkpp, Item, Document, Organization, Parameter, validate_parameters_uniq,\
-                                       LotValue, Bid, Revision, Question,  Cancellation, Contract, Award, Feature, \
-                                       Lot, schematics_embedded_role, schematics_default_role, ORA_CODES, WORKING_DAYS, \
-                                       validate_features_uniq, validate_items_uniq, validate_lots_uniq
-from openprocurement.api.models import Complaint as BaseComplaint
+from openprocurement.api.models import (
+    IsoDateTimeType, ListType, Model, Value, PeriodEndRequired, SANDBOX_MODE,
+    Classification, validate_dkpp, Item, Document, Organization, Parameter, validate_parameters_uniq,
+    LotValue, Bid, Revision, Question,  Cancellation, Contract, Award, Feature,
+    Lot, schematics_embedded_role, schematics_default_role, ORA_CODES, WORKING_DAYS,
+    validate_features_uniq, validate_items_uniq, validate_lots_uniq, Period,
+    Complaint as BaseComplaint, TZ, get_now, set_parent, ComplaintModelType,
+)
+from openprocurement.auctions.core.models import IAuction, get_auction
 
 STAND_STILL_TIME = timedelta(days=2)
 COMPLAINT_STAND_STILL_TIME = timedelta(days=3)
 BIDDER_TIME = timedelta(minutes=6)
 SERVICE_TIME = timedelta(minutes=9)
 AUCTION_STAND_STILL_TIME = timedelta(minutes=15)
-SANDBOX_MODE = os.environ.get('SANDBOX_MODE', False)
 
-
-
-TZ = timezone(os.environ['TZ'] if 'TZ' in os.environ else 'Europe/Kiev')
-
-
-def get_now():
-    return datetime.now(TZ)
 
 def read_json(name):
     import os.path
@@ -45,10 +40,8 @@ def read_json(name):
         data = lang_file.read()
     return loads(data)
 
-CAV_CODES = read_json('cav.json')
 
-class IAuction(Interface):
-    """ Base auction marker interface """
+CAV_CODES = read_json('cav.json')
 
 
 class CAVClassification(Classification):
@@ -56,54 +49,9 @@ class CAVClassification(Classification):
     id = StringType(required=True, choices=CAV_CODES)
 
 
-def set_parent(item, parent):
-    if hasattr(item, '__parent__') and item.__parent__ is None:
-        item.__parent__ = parent
-
-
-def get_auction(model):
-    while not IAuction.providedBy(model):
-        model = model.__parent__
-    return model
-
-
-class ComplaintModelType(ModelType):
-    view_claim_statuses = ['active.enquiries', 'active.tendering', 'active.auction']
-
-    def export_loop(self, model_instance, field_converter,
-                    role=None, print_none=False):
-        """
-        Calls the main `export_loop` implementation because they are both
-        supposed to operate on models.
-        """
-        if isinstance(model_instance, self.model_class):
-            model_class = model_instance.__class__
-        else:
-            model_class = self.model_class
-
-        if role in self.view_claim_statuses and getattr(model_instance, 'type') == 'claim':
-            role = 'view_claim'
-
-        shaped = export_loop(model_class, model_instance,
-                             field_converter,
-                             role=role, print_none=print_none)
-
-        if shaped and len(shaped) == 0 and self.allow_none():
-            return shaped
-        elif shaped:
-            return shaped
-        elif print_none:
-            return shaped
-
-
-
-
-
-
 class Guarantee(Model):
     amount = FloatType(required=True, min_value=0)  # Amount as a number.
     currency = StringType(required=True, default=u'UAH', max_length=3, min_length=3)  # The currency in 3-letter ISO 4217 format.
-
 
 
 def calc_auction_end_time(bids, start):
@@ -117,20 +65,9 @@ def rounding_shouldStartAfter(start_after, auction, use_from=datetime(2016, 6, 1
             start_after = midnigth + timedelta(1)
     return start_after
 
-class Period(Model):
-    """The period when the tender is open for submissions. The end date is the closing date for tender submissions."""
-
-    startDate = IsoDateTimeType()  # The state date for the period.
-    endDate = IsoDateTimeType()  # The end date for the period.
-    def validate_startDate(self, data, value):
-        if value and data.get('endDate') and data.get('endDate') < value:
-            raise ValidationError(u"period should begin before its end")
-
-
 
 class AuctionAuctionPeriod(Period):
     """The auction period."""
-
 
     @serializable(serialize_when_none=False)
     def shouldStartAfter(self):
@@ -165,6 +102,7 @@ class LotAuctionPeriod(Period):
             start_after = auction.tenderPeriod.endDate
         return rounding_shouldStartAfter(start_after, auction).isoformat()
 
+
 class Unit(Model):
     """Description of the unit which the good comes in e.g. hours, kilograms. Made up of a unit name, and the value of a single unit."""
 
@@ -191,9 +129,6 @@ class Location(Model):
     latitude = BaseType(required=True)
     longitude = BaseType(required=True)
     elevation = BaseType()
-
-
-ADDITIONAL_CLASSIFICATIONS_SCHEMES = [u'ДКПП', u'NONE', u'ДК003', u'ДК015', u'ДК018']
 
 
 class Item(Item):
@@ -278,14 +213,12 @@ class LotValue(LotValue):
         if isinstance(data['__parent__'], Model) and relatedLot not in [i.id for i in get_auction(data['__parent__']).lots]:
             raise ValidationError(u"relatedLot should be one of lots")
 
+
 view_bid_role = (blacklist('owner_token', 'owner') + schematics_default_role)
 Administrator_bid_role = whitelist('tenderers')
 
 
 class Bid(Bid):
-
-    def __local_roles__(self):
-        return dict([('{}_{}'.format(self.owner, self.owner_token), 'bid_owner')])
 
     tenderers = ListType(ModelType(Organization), required=True, min_size=1, max_size=1)
     parameters = ListType(ModelType(Parameter), default=list(), validators=[validate_parameters_uniq])
@@ -473,14 +406,6 @@ class FeatureValue(Model):
     description = StringType()
     description_en = StringType()
     description_ru = StringType()
-
-
-def validate_values_uniq(values, *args):
-    codes = [i.value for i in values]
-    if any([codes.count(i) > 1 for i in set(codes)]):
-        raise ValidationError(u"Feature value should be uniq for feature")
-
-
 
 
 default_lot_role = (blacklist('numberOfBids') + schematics_default_role)
