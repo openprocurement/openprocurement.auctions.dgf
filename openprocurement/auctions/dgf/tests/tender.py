@@ -507,6 +507,17 @@ class AuctionResourceTest(BaseWebTest):
             {u'description': [u'currency should be identical to currency of value of auction'], u'location': u'body', u'name': u'minimalStep'}
         ])
 
+        auction_data = deepcopy(test_auction_data)
+        auction_data['value'] = {'amount': '100.0', 'currency': "USD"}
+        auction_data['minimalStep'] = {'amount': '5.0', 'currency': "USD"}
+        response = self.app.post_json(request_path, {'data': auction_data}, status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertEqual(response.json['errors'], [
+            {u'description': [u'currency should be only UAH'], u'location': u'body', u'name': u'value'}
+        ])
+
         data = test_auction_data["items"][0]["additionalClassifications"][0]["scheme"]
         test_auction_data["items"][0]["additionalClassifications"][0]["scheme"] = 'Не ДКПП'
         response = self.app.post_json(request_path, {'data': test_auction_data}, status=422)

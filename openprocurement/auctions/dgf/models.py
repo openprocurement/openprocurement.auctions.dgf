@@ -99,3 +99,7 @@ class Auction(BaseAuction):
 
     def validate_tenderPeriod(self, data, period):
         pass
+
+    def validate_value(self, data, value):
+        if value.currency != u'UAH':
+            raise ValidationError(u"currency should be only UAH")
