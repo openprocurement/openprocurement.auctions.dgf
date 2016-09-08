@@ -29,7 +29,7 @@ class AuctionQuestionResource(APIResource):
         """Post a question
         """
         auction = self.request.validated['auction']
-        if auction.status != 'active.enquiries' or get_now() < auction.enquiryPeriod.startDate or get_now() > auction.enquiryPeriod.endDate:
+        if auction.status != 'active.tendering' or get_now() < auction.enquiryPeriod.startDate or get_now() > auction.enquiryPeriod.endDate:
             self.request.errors.add('body', 'data', 'Can add question only in enquiryPeriod')
             self.request.errors.status = 403
             return
@@ -63,7 +63,7 @@ class AuctionQuestionResource(APIResource):
         """Post an Answer
         """
         auction = self.request.validated['auction']
-        if auction.status != 'active.enquiries':
+        if auction.status != 'active.tendering':
             self.request.errors.add('body', 'data', 'Can\'t update question in current ({}) auction status'.format(auction.status))
             self.request.errors.status = 403
             return

@@ -43,7 +43,7 @@ class AuctionDocumentResource(APIResource):
     @json_view(permission='upload_auction_documents', validators=(validate_file_upload,))
     def collection_post(self):
         """Auction Document Upload"""
-        if self.request.authenticated_role != 'auction' and self.request.validated['auction_status'] != 'active.enquiries' or \
+        if self.request.authenticated_role != 'auction' and self.request.validated['auction_status'] != 'active.tendering' or \
            self.request.authenticated_role == 'auction' and self.request.validated['auction_status'] not in ['active.auction', 'active.qualification']:
             self.request.errors.add('body', 'data', 'Can\'t add document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
@@ -75,7 +75,7 @@ class AuctionDocumentResource(APIResource):
     @json_view(permission='upload_auction_documents', validators=(validate_file_update,))
     def put(self):
         """Auction Document Update"""
-        if self.request.authenticated_role != 'auction' and self.request.validated['auction_status'] != 'active.enquiries' or \
+        if self.request.authenticated_role != 'auction' and self.request.validated['auction_status'] != 'active.tendering' or \
            self.request.authenticated_role == 'auction' and self.request.validated['auction_status'] not in ['active.auction', 'active.qualification']:
             self.request.errors.add('body', 'data', 'Can\'t update document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
@@ -90,7 +90,7 @@ class AuctionDocumentResource(APIResource):
     @json_view(content_type="application/json", permission='upload_auction_documents', validators=(validate_patch_document_data,))
     def patch(self):
         """Auction Document Update"""
-        if self.request.authenticated_role != 'auction' and self.request.validated['auction_status'] != 'active.enquiries' or \
+        if self.request.authenticated_role != 'auction' and self.request.validated['auction_status'] != 'active.tendering' or \
            self.request.authenticated_role == 'auction' and self.request.validated['auction_status'] not in ['active.auction', 'active.qualification']:
             self.request.errors.add('body', 'data', 'Can\'t update document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403

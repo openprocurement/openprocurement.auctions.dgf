@@ -361,6 +361,7 @@ class AuctionAwardResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['data']['complaintPeriod']["endDate"], complaintPeriod)
 
 
+@unittest.skip("option not available")
 class AuctionLotAwardResourceTest(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_lots = test_lots
@@ -547,6 +548,7 @@ class AuctionLotAwardResourceTest(BaseAuctionWebTest):
         self.assertEqual(len(response.json['data']), 4)
 
 
+@unittest.skip("option not available")
 class Auction2LotAwardResourceTest(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_lots = 2 * test_lots
@@ -1036,6 +1038,7 @@ class AuctionAwardComplaintResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can add complaint only in complaintPeriod")
 
 
+@unittest.skip("option not available")
 class AuctionLotAwardComplaintResourceTest(BaseAuctionWebTest):
     #initial_data = auction_data
     initial_status = 'active.qualification'
@@ -1251,6 +1254,7 @@ class AuctionLotAwardComplaintResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can add complaint only in complaintPeriod")
 
 
+@unittest.skip("option not available")
 class Auction2LotAwardComplaintResourceTest(AuctionLotAwardComplaintResourceTest):
     initial_lots = 2 * test_lots
 
@@ -1682,6 +1686,7 @@ class AuctionAwardComplaintDocumentResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (complete) auction status")
 
 
+@unittest.skip("option not available")
 class Auction2LotAwardComplaintDocumentResourceTest(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids
@@ -2161,6 +2166,7 @@ class AuctionAwardDocumentResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (complete) auction status")
 
 
+@unittest.skip("option not available")
 class Auction2LotAwardDocumentResourceTest(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids

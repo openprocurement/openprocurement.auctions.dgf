@@ -5,42 +5,7 @@ from openprocurement.api.models import get_now
 from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest, test_lots, test_bids, test_organization
 
 
-class AuctionSwitchtenderingResourceTest(BaseAuctionWebTest):
-
-    def test_switch_to_tendering_by_enquiryPeriod_endDate(self):
-        self.app.authorization = ('Basic', ('chronograph', ''))
-        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
-        self.assertEqual(response.status, '200 OK')
-        date_1 = response.json['data']['date']
-        self.assertNotEqual(response.json['data']["status"], "active.tendering")
-        self.set_status('active.tendering', {'status': 'active.enquiries', "tenderPeriod": {"startDate": None}})
-        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.json['data']["status"], "active.tendering")
-        self.assertNotEqual(date_1, response.json['data']['date'])
-
-    def test_switch_to_tendering_by_auctionPeriod_startDate(self):
-        self.set_status('active.tendering', {'status': 'active.enquiries', "tenderPeriod": {}})
-        self.app.authorization = ('Basic', ('chronograph', ''))
-        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
-        self.assertEqual(response.status, '200 OK')
-        self.assertNotEqual(response.json['data']["status"], "active.tendering")
-        self.set_status('active.tendering', {'status': self.initial_status, "enquiryPeriod": {}})
-        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.json['data']["status"], "active.tendering")
-
-    def test_switch_to_tendering_auctionPeriod(self):
-        self.set_status('active.tendering', {'status': 'active.enquiries', "tenderPeriod": {"startDate": None}})
-        self.app.authorization = ('Basic', ('chronograph', ''))
-        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.json['data']["status"], "active.tendering")
-        self.assertIn('auctionPeriod', response.json['data'])
-
-
 class AuctionSwitchQualificationResourceTest(BaseAuctionWebTest):
-    initial_status = 'active.tendering'
     initial_bids = test_bids[:1]
 
     def test_switch_to_qualification(self):
@@ -54,7 +19,6 @@ class AuctionSwitchQualificationResourceTest(BaseAuctionWebTest):
 
 
 class AuctionSwitchAuctionResourceTest(BaseAuctionWebTest):
-    initial_status = 'active.tendering'
     initial_bids = test_bids
 
     def test_switch_to_auction(self):
@@ -67,7 +31,6 @@ class AuctionSwitchAuctionResourceTest(BaseAuctionWebTest):
 
 
 class AuctionSwitchUnsuccessfulResourceTest(BaseAuctionWebTest):
-    initial_status = 'active.tendering'
 
     def test_switch_to_unsuccessful(self):
         response = self.set_status('active.auction', {'status': self.initial_status})
@@ -80,14 +43,17 @@ class AuctionSwitchUnsuccessfulResourceTest(BaseAuctionWebTest):
             self.assertEqual(set([i['status'] for i in response.json['data']["lots"]]), set(["unsuccessful"]))
 
 
+@unittest.skip("option not available")
 class AuctionLotSwitchQualificationResourceTest(AuctionSwitchQualificationResourceTest):
     initial_lots = test_lots
 
 
+@unittest.skip("option not available")
 class AuctionLotSwitchAuctionResourceTest(AuctionSwitchAuctionResourceTest):
     initial_lots = test_lots
 
 
+@unittest.skip("option not available")
 class AuctionLotSwitchUnsuccessfulResourceTest(AuctionSwitchUnsuccessfulResourceTest):
     initial_lots = test_lots
 
@@ -96,7 +62,6 @@ class AuctionAuctionPeriodResourceTest(BaseAuctionWebTest):
     initial_bids = test_bids
 
     def test_set_auction_period(self):
-        self.set_status('active.tendering', {'status': 'active.enquiries'})
         self.app.authorization = ('Basic', ('chronograph', ''))
         response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
         self.assertEqual(response.status, '200 OK')
@@ -131,7 +96,6 @@ class AuctionAuctionPeriodResourceTest(BaseAuctionWebTest):
         self.assertNotIn('startDate', item['auctionPeriod'])
 
     def test_reset_auction_period(self):
-        self.set_status('active.tendering', {'status': 'active.enquiries'})
         self.app.authorization = ('Basic', ('chronograph', ''))
         response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
         self.assertEqual(response.status, '200 OK')
@@ -243,6 +207,7 @@ class AuctionAuctionPeriodResourceTest(BaseAuctionWebTest):
         self.assertIn('9999-01-01T00:00:00', response.json['data']['next_check'])
 
 
+@unittest.skip("option not available")
 class AuctionLotAuctionPeriodResourceTest(AuctionAuctionPeriodResourceTest):
     initial_lots = test_lots
 
@@ -301,6 +266,7 @@ class AuctionComplaintSwitchResourceTest(BaseAuctionWebTest):
             self.assertEqual(response.json['data']["complaints"][-1]['status'], status)
 
 
+@unittest.skip("option not available")
 class AuctionLotComplaintSwitchResourceTest(AuctionComplaintSwitchResourceTest):
     initial_lots = test_lots
 
@@ -379,6 +345,7 @@ class AuctionAwardComplaintSwitchResourceTest(BaseAuctionWebTest):
             self.assertEqual(response.json['data']['awards'][0]["complaints"][-1]['status'], status)
 
 
+@unittest.skip("option not available")
 class AuctionLotAwardComplaintSwitchResourceTest(AuctionAwardComplaintSwitchResourceTest):
     initial_lots = test_lots
 

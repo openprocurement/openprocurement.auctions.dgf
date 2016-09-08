@@ -78,9 +78,6 @@ test_auction_data = {
             }
         }
     ],
-    "enquiryPeriod": {
-        "endDate": (now + timedelta(days=7)).isoformat()
-    },
     "tenderPeriod": {
         "endDate": (now + timedelta(days=14)).isoformat()
     },
@@ -224,22 +221,11 @@ class BaseAuctionWebTest(BaseWebTest):
 
     def set_status(self, status, extra=None):
         data = {'status': status}
-        if status == 'active.enquiries':
+        if status == 'active.tendering':
             data.update({
                 "enquiryPeriod": {
                     "startDate": (now).isoformat(),
                     "endDate": (now + timedelta(days=7)).isoformat()
-                },
-                "tenderPeriod": {
-                    "startDate": (now + timedelta(days=7)).isoformat(),
-                    "endDate": (now + timedelta(days=14)).isoformat()
-                }
-            })
-        elif status == 'active.tendering':
-            data.update({
-                "enquiryPeriod": {
-                    "startDate": (now - timedelta(days=10)).isoformat(),
-                    "endDate": (now).isoformat()
                 },
                 "tenderPeriod": {
                     "startDate": (now).isoformat(),
@@ -249,8 +235,8 @@ class BaseAuctionWebTest(BaseWebTest):
         elif status == 'active.auction':
             data.update({
                 "enquiryPeriod": {
-                    "startDate": (now - timedelta(days=14)).isoformat(),
-                    "endDate": (now - timedelta(days=7)).isoformat()
+                    "startDate": (now - timedelta(days=7)).isoformat(),
+                    "endDate": (now).isoformat()
                 },
                 "tenderPeriod": {
                     "startDate": (now - timedelta(days=7)).isoformat(),
@@ -274,8 +260,8 @@ class BaseAuctionWebTest(BaseWebTest):
         elif status == 'active.qualification':
             data.update({
                 "enquiryPeriod": {
-                    "startDate": (now - timedelta(days=15)).isoformat(),
-                    "endDate": (now - timedelta(days=8)).isoformat()
+                    "startDate": (now - timedelta(days=8)).isoformat(),
+                    "endDate": (now - timedelta(days=1)).isoformat()
                 },
                 "tenderPeriod": {
                     "startDate": (now - timedelta(days=8)).isoformat(),
@@ -304,8 +290,8 @@ class BaseAuctionWebTest(BaseWebTest):
         elif status == 'active.awarded':
             data.update({
                 "enquiryPeriod": {
-                    "startDate": (now - timedelta(days=15)).isoformat(),
-                    "endDate": (now - timedelta(days=8)).isoformat()
+                    "startDate": (now - timedelta(days=8)).isoformat(),
+                    "endDate": (now - timedelta(days=1)).isoformat()
                 },
                 "tenderPeriod": {
                     "startDate": (now - timedelta(days=8)).isoformat(),
@@ -335,8 +321,8 @@ class BaseAuctionWebTest(BaseWebTest):
         elif status == 'complete':
             data.update({
                 "enquiryPeriod": {
-                    "startDate": (now - timedelta(days=25)).isoformat(),
-                    "endDate": (now - timedelta(days=18)).isoformat()
+                    "startDate": (now - timedelta(days=18)).isoformat(),
+                    "endDate": (now - timedelta(days=11)).isoformat()
                 },
                 "tenderPeriod": {
                     "startDate": (now - timedelta(days=18)).isoformat(),

@@ -337,6 +337,7 @@ class AuctionContractResourceTest(BaseAuctionWebTest):
         ])
 
 
+@unittest.skip("option not available")
 class Auction2LotContractResourceTest(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids
@@ -676,6 +677,7 @@ class AuctionContractDocumentResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (unsuccessful) auction status")
 
 
+@unittest.skip("option not available")
 class Auction2LotContractDocumentResourceTest(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids

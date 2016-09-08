@@ -353,6 +353,7 @@ class AuctionBidderResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['data']["tenderers"][0]["identifier"]["id"], "00000000")
 
 
+@unittest.skip("option not available")
 class AuctionBidderFeaturesResourceTest(BaseAuctionWebTest):
     initial_data = test_features_auction_data
     initial_status = 'active.tendering'

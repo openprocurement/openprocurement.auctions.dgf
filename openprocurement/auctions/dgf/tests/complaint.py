@@ -408,6 +408,7 @@ class AuctionComplaintResourceTest(BaseAuctionWebTest):
         ])
 
 
+@unittest.skip("option not available")
 class AuctionLotAwardComplaintResourceTest(BaseAuctionWebTest):
     initial_lots = test_lots
 

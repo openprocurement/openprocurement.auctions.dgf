@@ -153,7 +153,7 @@ class AuctionQuestionResourceTest(BaseAuctionWebTest):
         self.assertIn('id', question)
         self.assertIn(question['id'], response.headers['Location'])
 
-        self.set_status('active.tendering')
+        self.set_status('active.auction')
 
         response = self.app.post_json('/auctions/{}/questions'.format(
             self.auction_id), {'data': {'title': 'question title', 'description': 'question description', 'author': test_organization}}, status=403)
@@ -196,12 +196,12 @@ class AuctionQuestionResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data']["answer"], "answer")
 
-        self.set_status('active.tendering')
+        self.set_status('active.auction')
 
         response = self.app.patch_json('/auctions/{}/questions/{}'.format(self.auction_id, question['id']), {"data": {"answer": "answer"}}, status=403)
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(response.json['errors'][0]["description"], "Can't update question in current (active.tendering) auction status")
+        self.assertEqual(response.json['errors'][0]["description"], "Can't update question in current (active.auction) auction status")
 
     def test_get_auction_question(self):
         response = self.app.post_json('/auctions/{}/questions'.format(
@@ -269,6 +269,7 @@ class AuctionQuestionResourceTest(BaseAuctionWebTest):
         ])
 
 
+@unittest.skip("option not available")
 class AuctionLotQuestionResourceTest(BaseAuctionWebTest):
     initial_lots = 2 * test_lots
 

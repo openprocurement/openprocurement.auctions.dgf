@@ -133,13 +133,13 @@ class AuctionDocumentResourceTest(BaseAuctionWebTest):
         self.assertIn(doc_id, response.headers['Location'])
         self.assertNotIn('acc_token', response.headers['Location'])
 
-        self.set_status('active.tendering')
+        self.set_status('active.auction')
 
         response = self.app.post('/auctions/{}/documents'.format(
             self.auction_id), upload_files=[('file', u'укр.doc', 'content')], status=403)
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(response.json['errors'][0]["description"], "Can't add document in current (active.tendering) auction status")
+        self.assertEqual(response.json['errors'][0]["description"], "Can't add document in current (active.auction) auction status")
 
     def test_put_auction_document(self):
         from six import BytesIO
@@ -253,13 +253,13 @@ class AuctionDocumentResourceTest(BaseAuctionWebTest):
             self.assertEqual(response.content_length, 8)
             self.assertEqual(response.body, 'content3')
 
-        self.set_status('active.tendering')
+        self.set_status('active.auction')
 
         response = self.app.put('/auctions/{}/documents/{}'.format(
             self.auction_id, doc_id), upload_files=[('file', 'name.doc', 'content3')], status=403)
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.tendering) auction status")
+        self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.auction) auction status")
 
     def test_patch_auction_document(self):
         response = self.app.post('/auctions/{}/documents'.format(
@@ -329,12 +329,12 @@ class AuctionDocumentResourceTest(BaseAuctionWebTest):
         self.assertEqual('document description', response.json["data"]["description"])
         #self.assertTrue(dateModified < response.json["data"]["dateModified"])
 
-        self.set_status('active.tendering')
+        self.set_status('active.auction')
 
         response = self.app.patch_json('/auctions/{}/documents/{}'.format(self.auction_id, doc_id), {"data": {"description": "document description"}}, status=403)
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.tendering) auction status")
+        self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.auction) auction status")
 
 
 import boto

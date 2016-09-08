@@ -7,6 +7,7 @@ from openprocurement.api.models import get_now
 from openprocurement.auctions.dgf.tests.base import BaseWebTest, BaseAuctionWebTest, test_auction_data, test_lots, test_organization
 
 
+@unittest.skip("option not available")
 class AuctionLotResourceTest(BaseAuctionWebTest):
 
     def test_create_auction_lot_invalid(self):
@@ -590,6 +591,7 @@ class AuctionLotResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['data']['guarantee']['currency'], "GBP")
 
 
+@unittest.skip("option not available")
 class AuctionLotFeatureResourceTest(BaseAuctionWebTest):
     initial_lots = 2 * test_lots
 
@@ -649,6 +651,7 @@ class AuctionLotFeatureResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.status, '200 OK')
 
 
+@unittest.skip("option not available")
 class AuctionLotBidderResourceTest(BaseAuctionWebTest):
     initial_status = 'active.tendering'
     initial_lots = test_lots
@@ -758,6 +761,7 @@ class AuctionLotBidderResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't update bid in current (complete) auction status")
 
 
+@unittest.skip("option not available")
 class AuctionLotFeatureBidderResourceTest(BaseAuctionWebTest):
     initial_lots = test_lots
 
@@ -947,6 +951,7 @@ class AuctionLotFeatureBidderResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't add bid in current (complete) auction status")
 
 
+@unittest.skip("option not available")
 class AuctionLotProcessTest(BaseAuctionWebTest):
     setUp = BaseWebTest.setUp
 

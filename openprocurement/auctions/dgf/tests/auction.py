@@ -326,6 +326,7 @@ class AuctionSameValueAuctionResourceTest(BaseAuctionWebTest):
         self.assertEqual(auction["awards"][0]['suppliers'], self.initial_bids[2]['tenderers'])
 
 
+@unittest.skip("option not available")
 class AuctionLotAuctionResourceTest(AuctionAuctionResourceTest):
     initial_lots = test_lots
 
@@ -620,6 +621,7 @@ class AuctionLotAuctionResourceTest(AuctionAuctionResourceTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't add document in current (complete) auction status")
 
 
+@unittest.skip("option not available")
 class AuctionMultipleLotAuctionResourceTest(AuctionAuctionResourceTest):
     initial_lots = 2 * test_lots
 
@@ -977,6 +979,7 @@ class AuctionMultipleLotAuctionResourceTest(AuctionAuctionResourceTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't add document in current (complete) auction status")
 
 
+@unittest.skip("option not available")
 class AuctionFeaturesAuctionResourceTest(BaseAuctionWebTest):
     initial_data = test_features_auction_data
     initial_status = 'active.auction'

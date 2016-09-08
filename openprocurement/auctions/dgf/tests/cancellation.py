@@ -235,6 +235,7 @@ class AuctionCancellationResourceTest(BaseAuctionWebTest):
         ])
 
 
+@unittest.skip("option not available")
 class AuctionLotCancellationResourceTest(BaseAuctionWebTest):
     initial_status = 'active.tendering'
     initial_lots = test_lots
@@ -320,6 +321,7 @@ class AuctionLotCancellationResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['data']["reason"], "cancellation reason")
 
 
+@unittest.skip("option not available")
 class AuctionLotsCancellationResourceTest(BaseAuctionWebTest):
     initial_status = 'active.tendering'
     initial_lots = 2 * test_lots
