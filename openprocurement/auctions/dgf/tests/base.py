@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
-import unittest
-import webtest
 import os
-from copy import deepcopy
 from datetime import datetime, timedelta
-from uuid import uuid4
 
 from openprocurement.api.models import SANDBOX_MODE
-from openprocurement.api.utils import VERSION, apply_data_patch
-from openprocurement.api.design import sync_design
-from openprocurement.auctions.core.tests.base import BaseWebTest as CoreBaseWebTest
+from openprocurement.api.utils import apply_data_patch
+from openprocurement.auctions.flash.tests.base import (
+    BaseWebTest as FlashBaseWebTest,
+    BaseAuctionWebTest as FlashBaseAuctionWebTest,
+)
 
 
 now = datetime.now()
@@ -195,15 +193,7 @@ test_features = [
 ]
 
 
-class PrefixedRequestClass(webtest.app.TestRequest):
-
-    @classmethod
-    def blank(cls, path, *args, **kwargs):
-        path = '/api/%s%s' % (VERSION, path)
-        return webtest.app.TestRequest.blank(path, *args, **kwargs)
-
-
-class BaseWebTest(CoreBaseWebTest):
+class BaseWebTest(FlashBaseWebTest):
 
     """Base Web Test to test openprocurement.auctions.dgf.
 
@@ -213,11 +203,9 @@ class BaseWebTest(CoreBaseWebTest):
     relative_to = os.path.dirname(__file__)
 
 
-class BaseAuctionWebTest(BaseWebTest):
+class BaseAuctionWebTest(FlashBaseAuctionWebTest):
+    relative_to = os.path.dirname(__file__)
     initial_data = test_auction_data
-    initial_status = None
-    initial_bids = None
-    initial_lots = None
 
     def set_status(self, status, extra=None):
         data = {'status': status}
@@ -362,51 +350,3 @@ class BaseAuctionWebTest(BaseWebTest):
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         return response
-
-    def setUp(self):
-        super(BaseAuctionWebTest, self).setUp()
-        self.create_auction()
-
-    def create_auction(self):
-        data = deepcopy(self.initial_data)
-        if self.initial_lots:
-            lots = []
-            for i in self.initial_lots:
-                lot = deepcopy(i)
-                lot['id'] = uuid4().hex
-                lots.append(lot)
-            data['lots'] = self.initial_lots = lots
-            for i, item in enumerate(data['items']):
-                item['relatedLot'] = lots[i % len(lots)]['id']
-        response = self.app.post_json('/auctions', {'data': data})
-        auction = response.json['data']
-        self.auction_token = response.json['access']['token']
-        self.auction_id = auction['id']
-        status = auction['status']
-        if self.initial_bids:
-            self.initial_bids_tokens = {}
-            response = self.set_status('active.tendering')
-            status = response.json['data']['status']
-            bids = []
-            for i in self.initial_bids:
-                if self.initial_lots:
-                    i = i.copy()
-                    value = i.pop('value')
-                    i['lotValues'] = [
-                        {
-                            'value': value,
-                            'relatedLot': l['id'],
-                        }
-                        for l in self.initial_lots
-                    ]
-                response = self.app.post_json('/auctions/{}/bids'.format(self.auction_id), {'data': i})
-                self.assertEqual(response.status, '201 Created')
-                bids.append(response.json['data'])
-                self.initial_bids_tokens[response.json['data']['id']] = response.json['access']['token']
-            self.initial_bids = bids
-        if self.initial_status != status:
-            self.set_status(self.initial_status)
-
-    def tearDown(self):
-        del self.db[self.auction_id]
-        super(BaseAuctionWebTest, self).tearDown()

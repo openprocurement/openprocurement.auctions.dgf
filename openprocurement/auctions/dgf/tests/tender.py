@@ -1116,7 +1116,9 @@ class AuctionResourceTest(BaseWebTest):
 
 
 class AuctionProcessTest(BaseAuctionWebTest):
-    setUp = BaseWebTest.setUp
+    #setUp = BaseWebTest.setUp
+    def setUp(self):
+        super(AuctionProcessTest.__bases__[0], self).setUp()
 
     def test_invalid_auction_conditions(self):
         self.app.authorization = ('Basic', ('broker', ''))

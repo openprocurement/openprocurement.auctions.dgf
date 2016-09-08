@@ -307,7 +307,7 @@ class AuctionBidderResourceTest(BaseAuctionWebTest):
                 u'url', u'name': u'auction_id'}
         ])
 
-    def test_get_auction_tenderers(self):
+    def test_get_auction_auctioners(self):
         response = self.app.post_json('/auctions/{}/bids'.format(
             self.auction_id), {'data': {'tenderers': [test_organization], "value": {"amount": 500}}})
         self.assertEqual(response.status, '201 Created')
@@ -593,7 +593,7 @@ class AuctionBidderDocumentResourceTest(BaseAuctionWebTest):
         doc_id = response.json["data"]['id']
         self.assertIn(doc_id, response.headers['Location'])
         self.assertEqual('name.doc', response.json["data"]["title"])
-        key = response.json["data"]["url"].split('?')[-1]
+        key = response.json["data"]["url"].split('?')[-1].split('=')[-1]
 
         response = self.app.get('/auctions/{}/bids/{}/documents'.format(self.auction_id, self.bid_id), status=403)
         self.assertEqual(response.status, '403 Forbidden')
@@ -621,18 +621,27 @@ class AuctionBidderDocumentResourceTest(BaseAuctionWebTest):
             {u'description': u'Not Found', u'location': u'url', u'name': u'download'}
         ])
 
-        response = self.app.get('/auctions/{}/bids/{}/documents/{}?{}'.format(
+        response = self.app.get('/auctions/{}/bids/{}/documents/{}?download={}'.format(
             self.auction_id, self.bid_id, doc_id, key), status=403)
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't view bid document in current (active.tendering) auction status")
 
-        response = self.app.get('/auctions/{}/bids/{}/documents/{}?{}&acc_token={}'.format(
-            self.auction_id, self.bid_id, doc_id, key, self.bid_token))
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/msword')
-        self.assertEqual(response.content_length, 7)
-        self.assertEqual(response.body, 'content')
+        if self.docservice:
+            response = self.app.get('/auctions/{}/bids/{}/documents/{}?download={}&acc_token={}'.format(
+                self.auction_id, self.bid_id, doc_id, key, self.bid_token))
+            self.assertEqual(response.status, '302 Moved Temporarily')
+            self.assertIn('http://localhost/get/', response.location)
+            self.assertIn('Signature=', response.location)
+            self.assertIn('KeyID=', response.location)
+            self.assertIn('Expires=', response.location)
+        else:
+            response = self.app.get('/auctions/{}/bids/{}/documents/{}?download={}&acc_token={}'.format(
+                self.auction_id, self.bid_id, doc_id, key, self.bid_token))
+            self.assertEqual(response.status, '200 OK')
+            self.assertEqual(response.content_type, 'application/msword')
+            self.assertEqual(response.content_length, 7)
+            self.assertEqual(response.body, 'content')
 
         response = self.app.get('/auctions/{}/bids/{}/documents/{}'.format(
             self.auction_id, self.bid_id, doc_id), status=403)
@@ -654,6 +663,29 @@ class AuctionBidderDocumentResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't add document in current (active.awarded) auction status")
+
+        response = self.app.get('/auctions/{}/bids/{}/documents/{}'.format(self.auction_id, self.bid_id, doc_id))
+        self.assertEqual(response.status, '200 OK')
+        if self.docservice:
+            self.assertIn('http://localhost/get/', response.json['data']['url'])
+            self.assertIn('Signature=', response.json['data']['url'])
+            self.assertIn('KeyID=', response.json['data']['url'])
+            self.assertNotIn('Expires=', response.json['data']['url'])
+        else:
+            self.assertIn('download=', response.json['data']['url'])
+
+        response = self.app.get('/auctions/{}/bids/{}/documents/{}?download={}&acc_token={}'.format(
+            self.auction_id, self.bid_id, doc_id, key, self.bid_token))
+        if self.docservice:
+            self.assertIn('http://localhost/get/', response.location)
+            self.assertIn('Signature=', response.location)
+            self.assertIn('KeyID=', response.location)
+            self.assertIn('Expires=', response.location)
+        else:
+            self.assertEqual(response.status, '200 OK')
+            self.assertEqual(response.content_type, 'application/msword')
+            self.assertEqual(response.content_length, 7)
+            self.assertEqual(response.body, 'content')
 
     def test_put_auction_bidder_document(self):
         response = self.app.post('/auctions/{}/bids/{}/documents'.format(
@@ -683,10 +715,17 @@ class AuctionBidderDocumentResourceTest(BaseAuctionWebTest):
 
         response = self.app.get('/auctions/{}/bids/{}/documents/{}?{}&acc_token={}'.format(
             self.auction_id, self.bid_id, doc_id, key, self.bid_token))
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/msword')
-        self.assertEqual(response.content_length, 8)
-        self.assertEqual(response.body, 'content2')
+        if self.docservice:
+            self.assertEqual(response.status, '302 Moved Temporarily')
+            self.assertIn('http://localhost/get/', response.location)
+            self.assertIn('Signature=', response.location)
+            self.assertIn('KeyID=', response.location)
+            self.assertIn('Expires=', response.location)
+        else:
+            self.assertEqual(response.status, '200 OK')
+            self.assertEqual(response.content_type, 'application/msword')
+            self.assertEqual(response.content_length, 8)
+            self.assertEqual(response.body, 'content2')
 
         response = self.app.get('/auctions/{}/bids/{}/documents/{}?acc_token={}'.format(
             self.auction_id, self.bid_id, doc_id, self.bid_token))
@@ -704,10 +743,17 @@ class AuctionBidderDocumentResourceTest(BaseAuctionWebTest):
 
         response = self.app.get('/auctions/{}/bids/{}/documents/{}?{}&acc_token={}'.format(
             self.auction_id, self.bid_id, doc_id, key, self.bid_token))
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/msword')
-        self.assertEqual(response.content_length, 8)
-        self.assertEqual(response.body, 'content3')
+        if self.docservice:
+            self.assertEqual(response.status, '302 Moved Temporarily')
+            self.assertIn('http://localhost/get/', response.location)
+            self.assertIn('Signature=', response.location)
+            self.assertIn('KeyID=', response.location)
+            self.assertIn('Expires=', response.location)
+        else:
+            self.assertEqual(response.status, '200 OK')
+            self.assertEqual(response.content_type, 'application/msword')
+            self.assertEqual(response.content_length, 8)
+            self.assertEqual(response.body, 'content3')
 
         self.set_status('active.awarded')
 
@@ -799,9 +845,194 @@ class AuctionBidderDocumentResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't add document because award of bid is not in pending state")
 
 
+class AuctionBidderDocumentWithDSResourceTest(AuctionBidderDocumentResourceTest):
+    docservice = True
+
+    def test_create_auction_bidder_document_json(self):
+        response = self.app.post_json('/auctions/{}/bids/{}/documents'.format(self.auction_id, self.bid_id),
+            {'data': {
+                'title': 'name.doc',
+                'url': self.generate_docservice_url(),
+                'hash': 'md5:' + '0' * 32,
+                'format': 'application/msword',
+            }})
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        doc_id = response.json["data"]['id']
+        self.assertIn(doc_id, response.headers['Location'])
+        self.assertEqual('name.doc', response.json["data"]["title"])
+        key = response.json["data"]["url"].split('?')[-1].split('=')[-1]
+
+        response = self.app.get('/auctions/{}/bids/{}/documents'.format(self.auction_id, self.bid_id), status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'][0]["description"], "Can't view bid documents in current (active.tendering) auction status")
+
+        response = self.app.get('/auctions/{}/bids/{}/documents?acc_token={}'.format(self.auction_id, self.bid_id, self.bid_token))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(doc_id, response.json["data"][0]["id"])
+        self.assertEqual('name.doc', response.json["data"][0]["title"])
+
+        response = self.app.get('/auctions/{}/bids/{}/documents?all=true&acc_token={}'.format(self.auction_id, self.bid_id, self.bid_token))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(doc_id, response.json["data"][0]["id"])
+        self.assertEqual('name.doc', response.json["data"][0]["title"])
+
+        response = self.app.get('/auctions/{}/bids/{}/documents/{}?download=some_id&acc_token={}'.format(
+            self.auction_id, self.bid_id, doc_id, self.bid_token), status=404)
+        self.assertEqual(response.status, '404 Not Found')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertEqual(response.json['errors'], [
+            {u'description': u'Not Found', u'location': u'url', u'name': u'download'}
+        ])
+
+        response = self.app.get('/auctions/{}/bids/{}/documents/{}?download={}'.format(
+            self.auction_id, self.bid_id, doc_id, key), status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'][0]["description"], "Can't view bid document in current (active.tendering) auction status")
+
+        response = self.app.get('/auctions/{}/bids/{}/documents/{}?download={}&acc_token={}'.format(
+            self.auction_id, self.bid_id, doc_id, key, self.bid_token))
+        self.assertEqual(response.status, '302 Moved Temporarily')
+        self.assertIn('http://localhost/get/', response.location)
+        self.assertIn('Signature=', response.location)
+        self.assertIn('KeyID=', response.location)
+        self.assertIn('Expires=', response.location)
+
+        response = self.app.get('/auctions/{}/bids/{}/documents/{}'.format(
+            self.auction_id, self.bid_id, doc_id), status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'][0]["description"], "Can't view bid document in current (active.tendering) auction status")
+
+        response = self.app.get('/auctions/{}/bids/{}/documents/{}?acc_token={}'.format(
+            self.auction_id, self.bid_id, doc_id, self.bid_token))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(doc_id, response.json["data"]["id"])
+        self.assertEqual('name.doc', response.json["data"]["title"])
+
+        response = self.app.post_json('/auctions/{}/bids/{}/documents'.format(self.auction_id, self.bid_id),
+            {'data': {
+                'title': 'name.doc',
+                'url': self.generate_docservice_url(),
+                'hash': 'md5:' + '0' * 32,
+                'format': 'application/msword',
+            }})
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertIn(response.json["data"]['id'], response.headers['Location'])
+        self.assertEqual('name.doc', response.json["data"]["title"])
+
+        self.set_status('active.awarded')
+
+        response = self.app.post_json('/auctions/{}/bids/{}/documents'.format(self.auction_id, self.bid_id),
+            {'data': {
+                'title': 'name.doc',
+                'url': self.generate_docservice_url(),
+                'hash': 'md5:' + '0' * 32,
+                'format': 'application/msword',
+            }}, status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'][0]["description"], "Can't add document in current (active.awarded) auction status")
+
+        response = self.app.get('/auctions/{}/bids/{}/documents/{}'.format(self.auction_id, self.bid_id, doc_id))
+        self.assertEqual(response.status, '200 OK')
+        self.assertIn('http://localhost/get/', response.json['data']['url'])
+        self.assertIn('Signature=', response.json['data']['url'])
+        self.assertIn('KeyID=', response.json['data']['url'])
+        self.assertNotIn('Expires=', response.json['data']['url'])
+
+        response = self.app.get('/auctions/{}/bids/{}/documents/{}?download={}&acc_token={}'.format(
+            self.auction_id, self.bid_id, doc_id, key, self.bid_token))
+        self.assertIn('http://localhost/get/', response.location)
+        self.assertIn('Signature=', response.location)
+        self.assertIn('KeyID=', response.location)
+        self.assertIn('Expires=', response.location)
+
+    def test_put_auction_bidder_document_json(self):
+        response = self.app.post_json('/auctions/{}/bids/{}/documents'.format(self.auction_id, self.bid_id),
+            {'data': {
+                'title': 'name.doc',
+                'url': self.generate_docservice_url(),
+                'hash': 'md5:' + '0' * 32,
+                'format': 'application/msword',
+            }})
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        doc_id = response.json["data"]['id']
+        self.assertIn(doc_id, response.headers['Location'])
+
+        response = self.app.put_json('/auctions/{}/bids/{}/documents/{}'.format(self.auction_id, self.bid_id, doc_id),
+            {'data': {
+                'title': 'name.doc',
+                'url': self.generate_docservice_url(),
+                'hash': 'md5:' + '0' * 32,
+                'format': 'application/msword',
+            }})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(doc_id, response.json["data"]["id"])
+        key = response.json["data"]["url"].split('?')[-1]
+
+        response = self.app.get('/auctions/{}/bids/{}/documents/{}?{}&acc_token={}'.format(
+            self.auction_id, self.bid_id, doc_id, key, self.bid_token))
+        self.assertEqual(response.status, '302 Moved Temporarily')
+        self.assertIn('http://localhost/get/', response.location)
+        self.assertIn('Signature=', response.location)
+        self.assertIn('KeyID=', response.location)
+        self.assertIn('Expires=', response.location)
+
+        response = self.app.get('/auctions/{}/bids/{}/documents/{}?acc_token={}'.format(
+            self.auction_id, self.bid_id, doc_id, self.bid_token))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(doc_id, response.json["data"]["id"])
+        self.assertEqual('name.doc', response.json["data"]["title"])
+
+        response = self.app.put_json('/auctions/{}/bids/{}/documents/{}'.format(self.auction_id, self.bid_id, doc_id),
+            {'data': {
+                'title': 'name.doc',
+                'url': self.generate_docservice_url(),
+                'hash': 'md5:' + '0' * 32,
+                'format': 'application/msword',
+            }})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(doc_id, response.json["data"]["id"])
+        key = response.json["data"]["url"].split('?')[-1]
+
+        response = self.app.get('/auctions/{}/bids/{}/documents/{}?{}&acc_token={}'.format(
+            self.auction_id, self.bid_id, doc_id, key, self.bid_token))
+        self.assertEqual(response.status, '302 Moved Temporarily')
+        self.assertIn('http://localhost/get/', response.location)
+        self.assertIn('Signature=', response.location)
+        self.assertIn('KeyID=', response.location)
+        self.assertIn('Expires=', response.location)
+
+        self.set_status('active.awarded')
+
+        response = self.app.put_json('/auctions/{}/bids/{}/documents/{}'.format(self.auction_id, self.bid_id, doc_id),
+            {'data': {
+                'title': 'name.doc',
+                'url': self.generate_docservice_url(),
+                'hash': 'md5:' + '0' * 32,
+                'format': 'application/msword',
+            }}, status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.awarded) auction status")
+
+
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionBidderDocumentResourceTest))
+    suite.addTest(unittest.makeSuite(AuctionBidderDocumentWithDSResourceTest))
     suite.addTest(unittest.makeSuite(AuctionBidderFeaturesResourceTest))
     suite.addTest(unittest.makeSuite(AuctionBidderResourceTest))
     return suite
