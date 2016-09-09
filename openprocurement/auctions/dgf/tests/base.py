@@ -128,7 +128,7 @@ test_features_auction_data["features"] = [
         ]
     }
 ]
-test_bids = [
+base_test_bids = [
     {
         "tenderers": [
             test_organization
@@ -150,6 +150,12 @@ test_bids = [
         }
     }
 ]
+
+test_bids = []
+for i in base_test_bids:
+    i.update({'selfQualified': True})
+    test_bids.append(i)
+
 test_lots = [
     {
         'title': 'lot title',

@@ -1184,7 +1184,7 @@ class AuctionProcessTest(BaseAuctionWebTest):
         # create bid
         self.app.authorization = ('Basic', ('broker', ''))
         response = self.app.post_json('/auctions/{}/bids'.format(auction_id),
-                                      {'data': {'tenderers': [test_organization], "value": {"amount": 500}}})
+                                      {'data': {'tenderers': [test_organization], "value": {"amount": 500}, 'selfQualified': True}})
         # switch to active.qualification
         self.set_status('active.auction', {'status': 'active.tendering'})
         self.app.authorization = ('Basic', ('chronograph', ''))
@@ -1234,7 +1234,7 @@ class AuctionProcessTest(BaseAuctionWebTest):
         # create bid
         self.app.authorization = ('Basic', ('broker', ''))
         response = self.app.post_json('/auctions/{}/bids'.format(auction_id),
-                                      {'data': {'tenderers': [test_organization], "value": {"amount": 500}}})
+                                      {'data': {'tenderers': [test_organization], "value": {"amount": 500}, 'selfQualified': True}})
         # switch to active.qualification
         self.set_status('active.auction', {"auctionPeriod": {"startDate": None}, 'status': 'active.tendering'})
         self.app.authorization = ('Basic', ('chronograph', ''))
@@ -1275,13 +1275,13 @@ class AuctionProcessTest(BaseAuctionWebTest):
         # create bid
         self.app.authorization = ('Basic', ('broker', ''))
         response = self.app.post_json('/auctions/{}/bids'.format(auction_id),
-                                      {'data': {'tenderers': [test_organization], "value": {"amount": 450}}})
+                                      {'data': {'tenderers': [test_organization], "value": {"amount": 450}, 'selfQualified': True}})
         bid_id = response.json['data']['id']
         bid_token = response.json['access']['token']
         # create second bid
         self.app.authorization = ('Basic', ('broker', ''))
         response = self.app.post_json('/auctions/{}/bids'.format(auction_id),
-                                      {'data': {'tenderers': [test_organization], "value": {"amount": 475}}})
+                                      {'data': {'tenderers': [test_organization], "value": {"amount": 450}, 'selfQualified': True}})
         # switch to active.auction
         self.set_status('active.auction')
 

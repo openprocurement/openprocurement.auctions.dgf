@@ -286,7 +286,8 @@ class AuctionSameValueAuctionResourceTest(BaseAuctionWebTest):
                 "amount": 469,
                 "currency": "UAH",
                 "valueAddedTaxIncluded": True
-            }
+            },
+            'selfQualified': True
         }
         for i in range(3)
     ]
@@ -999,7 +1000,8 @@ class AuctionFeaturesAuctionResourceTest(BaseAuctionWebTest):
                 "amount": 469,
                 "currency": "UAH",
                 "valueAddedTaxIncluded": True
-            }
+            },
+            'selfQualified': True
         },
         {
             "parameters": [

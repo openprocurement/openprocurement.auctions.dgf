@@ -2,10 +2,10 @@
 from schematics.types import StringType
 from schematics.types.compound import ModelType
 from schematics.exceptions import ValidationError
-from schematics.transforms import blacklist
+from schematics.transforms import blacklist, whitelist
 from zope.interface import implementer
 from openprocurement.api.models import (
-    ListType, Feature, Period, get_now,
+    BooleanType, ListType, Feature, Period, get_now,
     validate_features_uniq, validate_lots_uniq,
 )
 from openprocurement.auctions.core.models import IAuction
@@ -33,8 +33,13 @@ class Document(BaseDocument):
 
 
 class Bid(BaseBid):
+    class Options:
+        roles = {
+            'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'selfQualified'),
+        }
 
     documents = ListType(ModelType(Document), default=list())
+    selfQualified = BooleanType(required=True, choices=[True])
 
 
 class Complaint(BaseComplaint):
@@ -80,7 +85,7 @@ class Auction(BaseAuction):
     procurementMethodType = StringType(default="dgfOtherAssets")
     status = StringType(choices=['draft', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
     features = ListType(ModelType(Feature), validators=[validate_features_uniq, validate_not_available])
-    lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq , validate_not_available])
+    lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
 
     def initialize(self):
         if not self.enquiryPeriod:
