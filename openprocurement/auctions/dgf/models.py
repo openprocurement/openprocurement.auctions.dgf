@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from schematics.types import StringType
+from schematics.types import StringType, URLType
 from schematics.types.compound import ModelType
 from schematics.exceptions import ValidationError
 from schematics.transforms import blacklist, whitelist
@@ -18,6 +18,7 @@ from openprocurement.auctions.flash.models import (
 
 class Document(BaseDocument):
 
+    format = StringType(regex='^[-\w]+/[-\.\w\+]+$')
     documentType = StringType(choices=[
         'auctionNotice', 'awardNotice', 'contractNotice',
         'notice', 'biddingDocuments', 'technicalSpecifications',
@@ -30,6 +31,20 @@ class Document(BaseDocument):
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
         'illustration', 'financialLicense', 'virtualDataRoom',
     ])
+
+    def validate_hash(self, data, hash_):
+        if data.get('documentType') == 'virtualDataRoom' and hash_:
+            raise ValidationError(u'This field is not required.')
+
+    def validate_format(self, data, format_):
+        if data.get('documentType') != 'virtualDataRoom' and not format_:
+            raise ValidationError(u'This field is required.')
+        if data.get('documentType') == 'virtualDataRoom' and format_:
+            raise ValidationError(u'This field is not required.')
+
+    def validate_url(self, data, url):
+        if data.get('documentType') == 'virtualDataRoom':
+            URLType().validate(url)
 
 
 class Bid(BaseBid):

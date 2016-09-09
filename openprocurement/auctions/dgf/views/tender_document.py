@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from openprocurement.api.utils import (
-    get_file,
-    upload_file,
     update_file_content_type,
     json_view,
     context_unpack,
@@ -17,6 +15,7 @@ from openprocurement.auctions.core.utils import (
     apply_patch,
     opresource,
 )
+from openprocurement.auctions.dgf.utils import upload_file, get_file
 
 
 @opresource(name='Auction Documents',
