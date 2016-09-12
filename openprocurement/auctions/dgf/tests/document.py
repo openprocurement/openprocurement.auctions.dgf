@@ -784,6 +784,30 @@ class AuctionDocumentWithDSResourceTest(AuctionDocumentResourceTest):
         datePublished = response.json["data"]['datePublished']
         self.assertIn(doc_id, response.headers['Location'])
 
+        response = self.app.put_json('/auctions/{}/documents/{}'.format(self.auction_id, doc_id),
+            {'data': {
+                'title': u'name.doc',
+                'url': self.generate_docservice_url(),
+            }}, status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'], [
+            {u'description': [u'This field is required.'], u'location': u'body', u'name': u'format'}
+        ])
+
+        response = self.app.put_json('/auctions/{}/documents/{}'.format(self.auction_id, doc_id),
+            {'data': {
+                'title': u'name.doc',
+                'url': self.generate_docservice_url(),
+                'hash': 'md5:' + '0' * 32,
+                'format': 'application/msword',
+            }}, status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'], [
+            {u'description': [{u'url': [u'Not a well formed URL.'], u'hash': [u'This field is not required.'], u'format': [u'This field is not required.']}], u'location': u'body', u'name': u'documents'}
+        ])
+
         vdr_url = 'http://virtial-data-room.com/new_id_of_room'
         response = self.app.put_json('/auctions/{}/documents/{}'.format(self.auction_id, doc_id),
             {'data': {
