@@ -1,0 +1,51 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-12 15:36+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/upload.rst:4
+msgid "Documents Uploading"
+msgstr ""
+
+#: ../../source/upload.rst:6
+msgid ""
+"All of the document uploading API endpoints follow the same set of rules."
+msgstr ""
+
+#: ../../source/upload.rst:9
+msgid "Upload document with registration"
+msgstr ""
+
+#: ../../source/upload.rst:11
+msgid ""
+":ref:`Register document upload in document service <documentservice"
+":register-document-upload>`."
+msgstr ""
+
+#: ../../source/upload.rst:13 ../../source/upload.rst:25
+msgid "Add document in API:"
+msgstr ""
+
+#: ../../source/upload.rst:18
+msgid ""
+":ref:`Upload document in document service <documentservice:upload-"
+"document>`."
+msgstr ""
+
+#: ../../source/upload.rst:21
+msgid "Upload document w/o registration"
+msgstr ""
+
+#: ../../source/upload.rst:23
+msgid ""
+":ref:`Register document upload in document service <documentservice:upload-"
+"document-w-o-registration>`."
+msgstr ""
