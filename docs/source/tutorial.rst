@@ -60,7 +60,7 @@ Let's see what listing of auctions reveals us:
 .. include:: tutorial/initial-auction-listing.http
    :code:
 
-We do see the internal `id` of a auction (that can be used to construct full URL by prepending `http://api-sandbox.openprocurement.org/api/0/auctions/`) and its `dateModified` datestamp.
+We do see the internal `id` of a auction (that can be used to construct full URL by prepending `https://api-sandbox.ea.openprocurement.org/api/0/auctions/`) and its `dateModified` datestamp.
 
 The previous auction contained only required fields. Let's try creating auction with more data
 (auction has status `created`):

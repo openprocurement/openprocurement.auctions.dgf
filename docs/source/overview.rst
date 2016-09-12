@@ -1,27 +1,28 @@
 Overview
 ========
 
-The Open Procurement Open UA procedure is plugin to Open Procurement API software. It requires 0.12 version of openprocurement.api package to work.
+openprocurement.auctions.dgf contains documentaion for Deposit Guarantee Fund auctions.
 
 
-The Open Procurement API is the only interface to Open Procurement database
-that is core unit of `Open Procurement <http://openprocurement.org/>`_
-infrastructure.
+Features
+--------
 
-The Open Procurement API is a `REST 
-<http://en.wikipedia.org/wiki/Representational_State_Transfer>`_-ful
-interface that provides programmatic access to Tender database of Open
-Procurement system.  It provides predictable URLs for accessing resources,
-and uses built-in HTTP features to receive commands and return responses. 
-This makes it easy to communicate with.
+* No need to specify enquiries period (there is no *active.enquiries* status), since it overlaps with *active.tendering* period.
+* Procedure can be switched from *draft* status to *active.tendering*.
+* During *active.tendering* period participants can ask questions, submit proposals, and upload documents.
+* The only date you will have to provide is *tenderPeriod.endDate*, the rest will be calculated automatically.
+* Organizer can't edit procedure's significant properties (*Tender.value*, etc.).
+* There is obligatory participant qualification (*Bid.selfQualified*) via guarantee payment.
+* The only currency (*Value.currency*) for this procedure is UAH.
+
+Conventions
+-----------
 
 The API accepts `JSON <http://json.org/>`_ or form-encoded content in
 requests.  It returns JSON content in all of its responses, including
 errors.  Only the UTF-8 character encoding is supported for both requests
 and responses.
 
-Conventions
------------
 All API POST and PUT requests expect a top-level object with a single
 element in it named `data`.  Successful responses will mirror this format. 
 The data element should itself be an object, containing the parameters for
@@ -55,13 +56,6 @@ You can leave feedback by raising a new issue on the `issue tracker
 <https://github.com/openprocurement/openprocurement.auctions.dgf/issues>`_ (GitHub
 registration necessary).  
 
-For general discussion use `Open Procurement
-General <https://groups.google.com/group/open-procurement-general>`_
-maillist.
-
-General information, roadmap, and technical specifications for the 
-Open Procurement project can be found at `openprocurement.org <http://openprocurement.org/en>`_.
-
 Documentation of related packages
 ---------------------------------
 
@@ -69,6 +63,7 @@ Documentation of related packages
 
 API stability
 -------------
+
 API is highly unstable, and while API endpoints are expected to remain
 relatively stable the data exchange formats are expected to be changed a
 lot.  The changes in the API are communicated via `Open Procurement API
@@ -85,5 +80,4 @@ Released: not released
 
 Next steps
 ----------
-You might find it helpful to look at the :ref:`tutorial`, or the
-:ref:`reference`.
+You might find it helpful to look at the :ref:`tutorial`.
