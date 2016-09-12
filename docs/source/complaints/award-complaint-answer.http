@@ -1,0 +1,70 @@
+PATCH /api/2.3/auctions/0636cdb4cca4476e8d0b13be031c63e0/awards/2e41f6b9e16b47d18184af47c1ce37e3/complaints/5c6dd05ffe354dfdafd6dd01064d9203?acc_token=9f96d4481ec74a0d8d1982609d8c6e4b HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 442
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "status": "answered", 
+    "resolutionType": "resolved", 
+    "tendererAction": "Виправлено неконкурентні умови", 
+    "resolution": "Виправлено неконкурентні умови"
+  }
+}
+
+
+200 OK
+Content-Type: application/json; charset=UTF-8
+
+{
+  "data": {
+    "status": "answered", 
+    "tendererActionDate": "2016-09-09T19:51:46.868663+03:00", 
+    "description": "complaint description", 
+    "author": {
+      "contactPoint": {
+        "email": "soleksuk@gmail.com", 
+        "telephone": "+380 (432) 21-69-30", 
+        "name": "Сергій Олексюк"
+      }, 
+      "identifier": {
+        "scheme": "UA-EDR", 
+        "id": "00137256", 
+        "uri": "http://www.sc.gov.ua/"
+      }, 
+      "name": "ДКП «Школяр»", 
+      "address": {
+        "postalCode": "21100", 
+        "countryName": "Україна", 
+        "streetAddress": "вул. Островського, 33", 
+        "region": "м. Вінниця", 
+        "locality": "м. Вінниця"
+      }
+    }, 
+    "resolutionType": "resolved", 
+    "type": "claim", 
+    "title": "complaint title", 
+    "id": "5c6dd05ffe354dfdafd6dd01064d9203", 
+    "dateAnswered": "2016-09-09T19:51:46.868638+03:00", 
+    "tendererAction": "Виправлено неконкурентні умови", 
+    "dateSubmitted": "2016-09-09T19:51:46.198103+03:00", 
+    "complaintID": "UA-EA-2016-09-09-000001.5", 
+    "date": "2016-09-09T19:51:46.881044+03:00", 
+    "resolution": "Виправлено неконкурентні умови", 
+    "documents": [
+      {
+        "dateModified": "2016-09-09T19:51:45.958452+03:00", 
+        "hash": "md5:00000000000000000000000000000000", 
+        "format": "application/pdf", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/1e6e1c194cbc4f6d994bca40b5130bc4?KeyID=757edc4c&Signature=kRaJVsAitN4M26bc%252B2xTpHTqcRXHcpnzomyBOmcitG3cDxb0DcQDn2ktN5z9kBoeIUSFw5mcV%2FfS%2FgkvLrVNDg%253D%253D", 
+        "author": "complaint_owner", 
+        "documentOf": "tender", 
+        "datePublished": "2016-09-09T19:51:45.958422+03:00", 
+        "title": "Complaint_Attachement.pdf", 
+        "id": "d1e9a31eba534cc188ccdf1093babb43"
+      }
+    ]
+  }
+}
+

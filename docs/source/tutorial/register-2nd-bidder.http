@@ -1,0 +1,81 @@
+POST /api/2.3/auctions/a97b827bd54f4602bd98cbd02c47a4df/bids HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 727
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "selfQualified": true, 
+    "value": {
+      "amount": 501
+    }, 
+    "tenderers": [
+      {
+        "contactPoint": {
+          "telephone": "+380 (322) 91-69-30", 
+          "name": "Андрій Олексюк", 
+          "email": "aagt@gmail.com"
+        }, 
+        "identifier": {
+          "scheme": "UA-EDR", 
+          "id": "00137226", 
+          "uri": "http://www.sc.gov.ua/"
+        }, 
+        "name": "ДКП «Книга»", 
+        "address": {
+          "countryName": "Україна", 
+          "postalCode": "79013", 
+          "region": "м. Львів", 
+          "streetAddress": "вул. Островського, 34", 
+          "locality": "м. Львів"
+        }
+      }
+    ]
+  }
+}
+
+
+201 Created
+Content-Type: application/json; charset=UTF-8
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/a97b827bd54f4602bd98cbd02c47a4df/bids/b246f1ceb5c1471e8e72d51202c8b7e6
+
+{
+  "access": {
+    "token": "dcf28181dba744728a0dd402d13c8150"
+  }, 
+  "data": {
+    "status": "active", 
+    "value": {
+      "currency": "UAH", 
+      "amount": 501.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "id": "b246f1ceb5c1471e8e72d51202c8b7e6", 
+    "tenderers": [
+      {
+        "contactPoint": {
+          "email": "aagt@gmail.com", 
+          "telephone": "+380 (322) 91-69-30", 
+          "name": "Андрій Олексюк"
+        }, 
+        "identifier": {
+          "scheme": "UA-EDR", 
+          "id": "00137226", 
+          "uri": "http://www.sc.gov.ua/"
+        }, 
+        "name": "ДКП «Книга»", 
+        "address": {
+          "postalCode": "79013", 
+          "countryName": "Україна", 
+          "streetAddress": "вул. Островського, 34", 
+          "region": "м. Львів", 
+          "locality": "м. Львів"
+        }
+      }
+    ], 
+    "date": "2016-09-09T19:51:53.335801+03:00", 
+    "selfQualified": true
+  }
+}
+

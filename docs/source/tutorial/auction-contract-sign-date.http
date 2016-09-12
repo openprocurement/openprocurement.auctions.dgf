@@ -1,0 +1,115 @@
+PATCH /api/2.3/auctions/a97b827bd54f4602bd98cbd02c47a4df/contracts/ff0f6886187247bc8d79a1bb870cdc97?acc_token=9b341302885949b1a3980d7d96d0cd07 HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 60
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "dateSigned": "2016-09-09T19:51:54.978040+03:00"
+  }
+}
+
+
+200 OK
+Content-Type: application/json; charset=UTF-8
+
+{
+  "data": {
+    "status": "pending", 
+    "documents": [
+      {
+        "hash": "md5:00000000000000000000000000000000", 
+        "format": "application/msword", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/31d41a960af04a6b930e84ebfb80d6d9?KeyID=520d112c&Signature=HwUIIoz618ipfmjRgOWxUMhMehw8%252B4L0WKEHGRpSteCaunmo6hhZwiH%252BNlNbf4Sou0EpzMc%2FKoOk%2FlwJd6INCA%253D%253D", 
+        "title": "contract_first_document.doc", 
+        "documentOf": "tender", 
+        "datePublished": "2016-09-09T19:51:54.685877+03:00", 
+        "dateModified": "2016-09-09T19:51:54.685908+03:00", 
+        "id": "8eb68140be9e4707be7da15924387741"
+      }, 
+      {
+        "hash": "md5:00000000000000000000000000000000", 
+        "format": "application/msword", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/408f42050113414ba3b8855cae46b109?KeyID=520d112c&Signature=Y1w%2FOG9jSOCDYnNJHTB2dYnxDt8D1%252BIZTuAMz0tkK4kFtfoZc3m5rzBnTvpmW0Dj%2FWRlLhRE%2FaBdVfMQ5cSGDA%253D%253D", 
+        "title": "contract_second_document.doc", 
+        "documentOf": "tender", 
+        "datePublished": "2016-09-09T19:51:54.855865+03:00", 
+        "dateModified": "2016-09-09T19:51:54.855895+03:00", 
+        "id": "5b039609dd914552b3bb90039038e287"
+      }
+    ], 
+    "items": [
+      {
+        "description": "Земля для військовослужбовців", 
+        "classification": {
+          "scheme": "CAV", 
+          "description": "Земля", 
+          "id": "70122000-2"
+        }, 
+        "additionalClassifications": [
+          {
+            "scheme": "ДКПП", 
+            "id": "17.21.1", 
+            "description": "папір і картон гофровані, паперова й картонна тара"
+          }
+        ], 
+        "deliveryAddress": {
+          "postalCode": "79000", 
+          "countryName": "Україна", 
+          "streetAddress": "вул. Банкова 1", 
+          "region": "м. Київ", 
+          "locality": "м. Київ"
+        }, 
+        "deliveryDate": {
+          "startDate": "2016-09-11T19:51:38.606548+03:00", 
+          "endDate": "2016-09-14T19:51:38.606548+03:00"
+        }, 
+        "id": "5b01004956ed46a2990b13e602e8db0c", 
+        "unit": {
+          "code": "44617100-9", 
+          "name": "item"
+        }, 
+        "quantity": 5
+      }
+    ], 
+    "suppliers": [
+      {
+        "contactPoint": {
+          "email": "aagt@gmail.com", 
+          "telephone": "+380 (322) 91-69-30", 
+          "name": "Андрій Олексюк"
+        }, 
+        "identifier": {
+          "scheme": "UA-EDR", 
+          "id": "00137226", 
+          "uri": "http://www.sc.gov.ua/"
+        }, 
+        "name": "ДКП «Книга»", 
+        "address": {
+          "postalCode": "79013", 
+          "countryName": "Україна", 
+          "streetAddress": "вул. Островського, 34", 
+          "region": "м. Львів", 
+          "locality": "м. Львів"
+        }
+      }
+    ], 
+    "contractNumber": "contract #13111", 
+    "period": {
+      "startDate": "2016-09-09T19:51:38.607546+03:00", 
+      "endDate": "2017-09-09T19:51:38.607546+03:00"
+    }, 
+    "value": {
+      "currency": "UAH", 
+      "amount": 502.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "dateSigned": "2016-09-09T19:51:54.978040+03:00", 
+    "date": "2016-09-09T19:51:54.058982+03:00", 
+    "awardID": "1d95e1cc72b545119e894b28084ddb82", 
+    "id": "ff0f6886187247bc8d79a1bb870cdc97", 
+    "contractID": "UA-EA-2016-09-09-000001-1"
+  }
+}
+

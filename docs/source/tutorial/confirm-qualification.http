@@ -1,0 +1,56 @@
+PATCH /api/2.3/auctions/a97b827bd54f4602bd98cbd02c47a4df/awards/1d95e1cc72b545119e894b28084ddb82?acc_token=9b341302885949b1a3980d7d96d0cd07 HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 30
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "status": "active"
+  }
+}
+
+
+200 OK
+Content-Type: application/json; charset=UTF-8
+
+{
+  "data": {
+    "status": "active", 
+    "complaintPeriod": {
+      "startDate": "2016-09-09T19:51:53.900498+03:00", 
+      "endDate": "2016-09-13T19:51:54.058891+03:00"
+    }, 
+    "suppliers": [
+      {
+        "contactPoint": {
+          "email": "aagt@gmail.com", 
+          "telephone": "+380 (322) 91-69-30", 
+          "name": "Андрій Олексюк"
+        }, 
+        "identifier": {
+          "scheme": "UA-EDR", 
+          "id": "00137226", 
+          "uri": "http://www.sc.gov.ua/"
+        }, 
+        "name": "ДКП «Книга»", 
+        "address": {
+          "postalCode": "79013", 
+          "countryName": "Україна", 
+          "streetAddress": "вул. Островського, 34", 
+          "region": "м. Львів", 
+          "locality": "м. Львів"
+        }
+      }
+    ], 
+    "bid_id": "b246f1ceb5c1471e8e72d51202c8b7e6", 
+    "value": {
+      "currency": "UAH", 
+      "amount": 501.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "date": "2016-09-09T19:51:54.065903+03:00", 
+    "id": "1d95e1cc72b545119e894b28084ddb82"
+  }
+}
+

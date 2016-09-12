@@ -1,0 +1,70 @@
+POST /api/2.3/auctions/a97b827bd54f4602bd98cbd02c47a4df/questions HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 1506
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "author": {
+      "contactPoint": {
+        "telephone": "+380 (432) 21-69-30", 
+        "name": "Сергій Олексюк", 
+        "email": "soleksuk@gmail.com"
+      }, 
+      "identifier": {
+        "scheme": "UA-EDR", 
+        "legalName": "Державне комунальне підприємство громадського харчування «Школяр»", 
+        "id": "00137226", 
+        "uri": "http://sch10.edu.vn.ua/"
+      }, 
+      "name": "ДКП «Школяр»", 
+      "address": {
+        "countryName": "Україна", 
+        "postalCode": "21100", 
+        "region": "м. Вінниця", 
+        "streetAddress": "вул. Островського, 33", 
+        "locality": "м. Вінниця"
+      }
+    }, 
+    "description": "Просимо додати таблицю потрібної калорійності харчування", 
+    "title": "Калорійність"
+  }
+}
+
+
+201 Created
+Content-Type: application/json; charset=UTF-8
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/a97b827bd54f4602bd98cbd02c47a4df/questions/bfaef4647650492a96381e7f00f59477
+
+{
+  "data": {
+    "description": "Просимо додати таблицю потрібної калорійності харчування", 
+    "author": {
+      "contactPoint": {
+        "email": "soleksuk@gmail.com", 
+        "telephone": "+380 (432) 21-69-30", 
+        "name": "Сергій Олексюк"
+      }, 
+      "identifier": {
+        "scheme": "UA-EDR", 
+        "legalName": "Державне комунальне підприємство громадського харчування «Школяр»", 
+        "id": "00137226", 
+        "uri": "http://sch10.edu.vn.ua/"
+      }, 
+      "name": "ДКП «Школяр»", 
+      "address": {
+        "postalCode": "21100", 
+        "countryName": "Україна", 
+        "streetAddress": "вул. Островського, 33", 
+        "region": "м. Вінниця", 
+        "locality": "м. Вінниця"
+      }
+    }, 
+    "title": "Калорійність", 
+    "date": "2016-09-09T19:51:52.840718+03:00", 
+    "id": "bfaef4647650492a96381e7f00f59477", 
+    "questionOf": "tender"
+  }
+}
+

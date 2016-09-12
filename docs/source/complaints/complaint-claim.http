@@ -1,0 +1,42 @@
+PATCH /api/2.3/auctions/0636cdb4cca4476e8d0b13be031c63e0/complaints/24a0ba3c412c47d4ab5d50845cd03853?acc_token=ef9d1506e7c0443dbc881550a569e33b HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 29
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "status": "claim"
+  }
+}
+
+
+200 OK
+Content-Type: application/json; charset=UTF-8
+
+{
+  "data": {
+    "status": "claim", 
+    "documents": [
+      {
+        "dateModified": "2016-09-09T19:51:41.004903+03:00", 
+        "hash": "md5:00000000000000000000000000000000", 
+        "format": "application/pdf", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/111350ee30b444dca99955b6d46216e4?KeyID=757edc4c&Signature=g1cCCFAv3tX9mVEAmgL%2FanegPyL0BaxqoteYoo1SZVt78XkqhToVOTeUAcCYmAcPasA9cjcakp3OEoT%2FNHrRAQ%253D%253D", 
+        "author": "complaint_owner", 
+        "documentOf": "tender", 
+        "datePublished": "2016-09-09T19:51:41.004861+03:00", 
+        "title": "Complaint_Attachement.pdf", 
+        "id": "a6617145d348429fba0f8aa6d4ab4ade"
+      }
+    ], 
+    "description": "complaint description", 
+    "title": "complaint title", 
+    "dateSubmitted": "2016-09-09T19:51:41.116872+03:00", 
+    "complaintID": "UA-EA-2016-09-09-000001.1", 
+    "date": "2016-09-09T19:51:41.121646+03:00", 
+    "type": "claim", 
+    "id": "24a0ba3c412c47d4ab5d50845cd03853"
+  }
+}
+

@@ -1,0 +1,108 @@
+PATCH /api/2.3/auctions/e840da627c6f465bb52d97f4e044c7a4?acc_token=730377ae4f094cba81632128e7e35453 HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 40
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "status": "active.tendering"
+  }
+}
+
+
+200 OK
+Content-Type: application/json; charset=UTF-8
+
+{
+  "data": {
+    "procurementMethod": "open", 
+    "auctionID": "UA-EA-2016-09-09-000001", 
+    "auctionPeriod": {
+      "shouldStartAfter": "2016-09-24T00:00:00+03:00"
+    }, 
+    "tenderPeriod": {
+      "startDate": "2016-09-09T19:51:39.972277+03:00", 
+      "endDate": "2016-09-23T19:51:38.606548+03:00"
+    }, 
+    "title": "футляри до державних нагород", 
+    "minimalStep": {
+      "currency": "UAH", 
+      "amount": 35.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "items": [
+      {
+        "description": "Земля для військовослужбовців", 
+        "classification": {
+          "scheme": "CAV", 
+          "description": "Земля", 
+          "id": "70122000-2"
+        }, 
+        "additionalClassifications": [
+          {
+            "scheme": "ДКПП", 
+            "id": "17.21.1", 
+            "description": "папір і картон гофровані, паперова й картонна тара"
+          }
+        ], 
+        "deliveryAddress": {
+          "postalCode": "79000", 
+          "countryName": "Україна", 
+          "streetAddress": "вул. Банкова 1", 
+          "region": "м. Київ", 
+          "locality": "м. Київ"
+        }, 
+        "deliveryDate": {
+          "startDate": "2016-09-11T19:51:38.606548+03:00", 
+          "endDate": "2016-09-14T19:51:38.606548+03:00"
+        }, 
+        "id": "ea613bc170864752800762c36088a249", 
+        "unit": {
+          "code": "44617100-9", 
+          "name": "item"
+        }, 
+        "quantity": 5
+      }
+    ], 
+    "procurementMethodType": "dgfOtherAssets", 
+    "value": {
+      "currency": "UAH", 
+      "amount": 100.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "submissionMethod": "electronicAuction", 
+    "date": "2016-09-09T19:51:40.025091+03:00", 
+    "dateModified": "2016-09-09T19:51:40.025091+03:00", 
+    "status": "active.tendering", 
+    "awardCriteria": "lowestCost", 
+    "enquiryPeriod": {
+      "startDate": "2016-09-09T19:51:39.972277+03:00", 
+      "endDate": "2016-09-23T19:51:38.606548+03:00"
+    }, 
+    "owner": "broker", 
+    "next_check": "2016-09-23T19:51:38.606548+03:00", 
+    "id": "e840da627c6f465bb52d97f4e044c7a4", 
+    "procuringEntity": {
+      "contactPoint": {
+        "name": "Державне управління справами", 
+        "telephone": "0440000000"
+      }, 
+      "identifier": {
+        "scheme": "UA-EDR", 
+        "id": "00037256", 
+        "uri": "http://www.dus.gov.ua/"
+      }, 
+      "name": "Державне управління справами", 
+      "kind": "general", 
+      "address": {
+        "postalCode": "01220", 
+        "countryName": "Україна", 
+        "streetAddress": "вул. Банкова, 11, корпус 1", 
+        "region": "м. Київ", 
+        "locality": "м. Київ"
+      }
+    }
+  }
+}
+

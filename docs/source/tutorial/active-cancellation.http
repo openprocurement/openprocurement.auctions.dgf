@@ -1,0 +1,50 @@
+PATCH /api/2.3/auctions/a97b827bd54f4602bd98cbd02c47a4df/cancellations/51d19d8340aa4ba98dd973380ffab3a3?acc_token=9b341302885949b1a3980d7d96d0cd07 HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 30
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "status": "active"
+  }
+}
+
+
+200 OK
+Content-Type: application/json; charset=UTF-8
+
+{
+  "data": {
+    "status": "active", 
+    "documents": [
+      {
+        "hash": "md5:00000000000000000000000000000000", 
+        "description": "Changed description", 
+        "format": "application/pdf", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/ad039be92f3c4f85bce7c9c75157e71c?KeyID=520d112c&Signature=w0FGF%252BhYRiGGxLrdKYPL39xvxmSfa7HT8i9WzycmIARqLLI%2F0U79aMImis2BD1ZlcwLm0FTY7Z1NM0vBXjwACQ%253D%253D", 
+        "title": "Notice.pdf", 
+        "documentOf": "tender", 
+        "datePublished": "2016-09-09T19:51:55.598667+03:00", 
+        "id": "762400065ed04becb88aa3ad8c89270e", 
+        "dateModified": "2016-09-09T19:51:55.598697+03:00"
+      }, 
+      {
+        "hash": "md5:00000000000000000000000000000000", 
+        "description": "Changed description", 
+        "format": "application/pdf", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/7808600ad84d448ab6a791ab782c88cc?KeyID=520d112c&Signature=ACUO6vDMaHsYkZGCzId2DaWMuKbZdb4Dc51drvVI3NHfoMGfikqAKriVhTiNbdEGRXnZu48Wj5fiyOuD2hgdAg%253D%253D", 
+        "title": "Notice-2.pdf", 
+        "documentOf": "tender", 
+        "datePublished": "2016-09-09T19:51:55.598667+03:00", 
+        "id": "762400065ed04becb88aa3ad8c89270e", 
+        "dateModified": "2016-09-09T19:51:55.876391+03:00"
+      }
+    ], 
+    "reason": "cancellation reason", 
+    "date": "2016-09-09T19:51:56.037103+03:00", 
+    "cancellationOf": "tender", 
+    "id": "51d19d8340aa4ba98dd973380ffab3a3"
+  }
+}
+

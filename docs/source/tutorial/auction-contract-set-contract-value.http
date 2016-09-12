@@ -1,0 +1,91 @@
+PATCH /api/2.3/auctions/a97b827bd54f4602bd98cbd02c47a4df/contracts/ff0f6886187247bc8d79a1bb870cdc97?acc_token=9b341302885949b1a3980d7d96d0cd07 HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 73
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "contractNumber": "contract #13111", 
+    "value": {
+      "amount": 502
+    }
+  }
+}
+
+
+200 OK
+Content-Type: application/json; charset=UTF-8
+
+{
+  "data": {
+    "status": "pending", 
+    "items": [
+      {
+        "description": "Земля для військовослужбовців", 
+        "classification": {
+          "scheme": "CAV", 
+          "description": "Земля", 
+          "id": "70122000-2"
+        }, 
+        "additionalClassifications": [
+          {
+            "scheme": "ДКПП", 
+            "id": "17.21.1", 
+            "description": "папір і картон гофровані, паперова й картонна тара"
+          }
+        ], 
+        "deliveryAddress": {
+          "postalCode": "79000", 
+          "countryName": "Україна", 
+          "streetAddress": "вул. Банкова 1", 
+          "region": "м. Київ", 
+          "locality": "м. Київ"
+        }, 
+        "deliveryDate": {
+          "startDate": "2016-09-11T19:51:38.606548+03:00", 
+          "endDate": "2016-09-14T19:51:38.606548+03:00"
+        }, 
+        "id": "5b01004956ed46a2990b13e602e8db0c", 
+        "unit": {
+          "code": "44617100-9", 
+          "name": "item"
+        }, 
+        "quantity": 5
+      }
+    ], 
+    "suppliers": [
+      {
+        "contactPoint": {
+          "email": "aagt@gmail.com", 
+          "telephone": "+380 (322) 91-69-30", 
+          "name": "Андрій Олексюк"
+        }, 
+        "identifier": {
+          "scheme": "UA-EDR", 
+          "id": "00137226", 
+          "uri": "http://www.sc.gov.ua/"
+        }, 
+        "name": "ДКП «Книга»", 
+        "address": {
+          "postalCode": "79013", 
+          "countryName": "Україна", 
+          "streetAddress": "вул. Островського, 34", 
+          "region": "м. Львів", 
+          "locality": "м. Львів"
+        }
+      }
+    ], 
+    "contractNumber": "contract #13111", 
+    "value": {
+      "currency": "UAH", 
+      "amount": 502.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "date": "2016-09-09T19:51:54.058982+03:00", 
+    "awardID": "1d95e1cc72b545119e894b28084ddb82", 
+    "id": "ff0f6886187247bc8d79a1bb870cdc97", 
+    "contractID": "UA-EA-2016-09-09-000001-1"
+  }
+}
+
