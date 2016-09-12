@@ -9,6 +9,17 @@ entry_points = {
     ]
 }
 
+requires = [
+    'setuptools',
+    'openprocurement.api',
+    'openprocurement.auctions.core',
+    'openprocurement.auctions.flash',
+]
+
+docs_requires = requires + [
+    'sphinxcontrib-httpdomain',
+]
+
 setup(name='openprocurement.auctions.dgf',
       version=version,
       description="",
@@ -28,11 +39,7 @@ setup(name='openprocurement.auctions.dgf',
       namespace_packages=['openprocurement', 'openprocurement.auctions'],
       include_package_data=True,
       zip_safe=False,
-      install_requires=[
-          'setuptools',
-          'openprocurement.api',
-          'openprocurement.auctions.core',
-          'openprocurement.auctions.flash',
-      ],
+      extras_require={'docs': docs_requires},
+      install_requires=requires,
       entry_points=entry_points,
       )
