@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/a97b827bd54f4602bd98cbd02c47a4df/cancellations/51d19d8340aa4ba98dd973380ffab3a3?acc_token=9b341302885949b1a3980d7d96d0cd07 HTTP/1.0
+PATCH /api/2.3/auctions/76824176310f4436a4abe3a16007ec14/cancellations/d1b3881c08b441cb9b18f35c3567f077?acc_token=321b272f9a3842f59918ebcc118c8f17 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 30
 Content-Type: application/json
@@ -22,29 +22,29 @@ Content-Type: application/json; charset=UTF-8
         "hash": "md5:00000000000000000000000000000000", 
         "description": "Changed description", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/ad039be92f3c4f85bce7c9c75157e71c?KeyID=520d112c&Signature=w0FGF%252BhYRiGGxLrdKYPL39xvxmSfa7HT8i9WzycmIARqLLI%2F0U79aMImis2BD1ZlcwLm0FTY7Z1NM0vBXjwACQ%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/6a65015f73d5467ead7888331258af7d?KeyID=677d21a1&Signature=RJ1LDgQySgprlWKhF9Qdm2VKiQ7WNW4BZkqIG5rgv1%252Bo4hvukLtFITpYpjdoRRfqNO0I%2FMrT4j%2F2izZf3%252BlzDg%253D%253D", 
         "title": "Notice.pdf", 
         "documentOf": "tender", 
-        "datePublished": "2016-09-09T19:51:55.598667+03:00", 
-        "id": "762400065ed04becb88aa3ad8c89270e", 
-        "dateModified": "2016-09-09T19:51:55.598697+03:00"
+        "datePublished": "2016-09-13T14:12:37.598285+03:00", 
+        "id": "a0756c6cb1034ffd8d586f1c9861d9b4", 
+        "dateModified": "2016-09-13T14:12:37.598312+03:00"
       }, 
       {
         "hash": "md5:00000000000000000000000000000000", 
         "description": "Changed description", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/7808600ad84d448ab6a791ab782c88cc?KeyID=520d112c&Signature=ACUO6vDMaHsYkZGCzId2DaWMuKbZdb4Dc51drvVI3NHfoMGfikqAKriVhTiNbdEGRXnZu48Wj5fiyOuD2hgdAg%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/3caf3858c5e04accab325c92647857ad?KeyID=677d21a1&Signature=Sl%252Bh2AqlU6IIDEE3h5IJLDuwomsmy%2F5TL9YA41akGA58upcyX%252Buqsv4%252BhQMt6yTyhV9eKZi0NbbElHq5D%252BAdAQ%253D%253D", 
         "title": "Notice-2.pdf", 
         "documentOf": "tender", 
-        "datePublished": "2016-09-09T19:51:55.598667+03:00", 
-        "id": "762400065ed04becb88aa3ad8c89270e", 
-        "dateModified": "2016-09-09T19:51:55.876391+03:00"
+        "datePublished": "2016-09-13T14:12:37.598285+03:00", 
+        "id": "a0756c6cb1034ffd8d586f1c9861d9b4", 
+        "dateModified": "2016-09-13T14:12:37.852778+03:00"
       }
     ], 
     "reason": "cancellation reason", 
-    "date": "2016-09-09T19:51:56.037103+03:00", 
+    "date": "2016-09-13T14:12:38.000444+03:00", 
     "cancellationOf": "tender", 
-    "id": "51d19d8340aa4ba98dd973380ffab3a3"
+    "id": "d1b3881c08b441cb9b18f35c3567f077"
   }
 }
 

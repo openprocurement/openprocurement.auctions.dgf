@@ -1,12 +1,12 @@
-POST /api/2.3/auctions/0636cdb4cca4476e8d0b13be031c63e0/complaints/24a0ba3c412c47d4ab5d50845cd03853/documents?acc_token=ef9d1506e7c0443dbc881550a569e33b HTTP/1.0
+POST /api/2.3/auctions/2107e0c1269c4c8b8ab508c9c48bb4c2/complaints/dc3aac65873a45df87a59d33a50ade9b/documents?acc_token=ff4825e4b05849638e305b1de48d4bb1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 350
+Content-Length: 342
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/111350ee30b444dca99955b6d46216e4?KeyID=757edc4c&Signature=NOS7P2biwBTyvw15lCon8YrK3Gxu9%2F7z0kvR7m%2B%2FOSPEPd%2BlhoHwXyFjloIRjGYy7ZNMvrOKHsrxq1%2FrEOrzAA%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/01d2bbf8bfe14578a9278a9a79d4c286?KeyID=3d7a7dcd&Signature=Ny1mOCbr3VPTfCctVxCXM0mu0Fw0IgK9vV0WkHHiT3P%2FJnxVRNFtrXnNdDq4k3Ucqv1oj8l38FT685Beg0o5DA%3D%3D", 
     "title": "Complaint_Attachement.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -16,19 +16,19 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/0636cdb4cca4476e8d0b13be031c63e0/complaints/24a0ba3c412c47d4ab5d50845cd03853/documents/a6617145d348429fba0f8aa6d4ab4ade
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2107e0c1269c4c8b8ab508c9c48bb4c2/complaints/dc3aac65873a45df87a59d33a50ade9b/documents/f4bee228b6064a218fe1222e3635f1cc
 
 {
   "data": {
-    "dateModified": "2016-09-09T19:51:41.004903+03:00", 
+    "dateModified": "2016-09-13T14:12:24.987697+03:00", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/111350ee30b444dca99955b6d46216e4?KeyID=757edc4c&Signature=g1cCCFAv3tX9mVEAmgL%2FanegPyL0BaxqoteYoo1SZVt78XkqhToVOTeUAcCYmAcPasA9cjcakp3OEoT%2FNHrRAQ%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/01d2bbf8bfe14578a9278a9a79d4c286?KeyID=3d7a7dcd&Signature=0TnbJVZrSQtnqGy6FT45sBCiE7mVGNuoyTBIrd2HKJ6gesYDQKkLdNE6C0VXrgPy0fzr1GkdiUJmmwokZsMPBg%253D%253D", 
     "author": "complaint_owner", 
     "documentOf": "tender", 
-    "datePublished": "2016-09-09T19:51:41.004861+03:00", 
+    "datePublished": "2016-09-13T14:12:24.987670+03:00", 
     "title": "Complaint_Attachement.pdf", 
-    "id": "a6617145d348429fba0f8aa6d4ab4ade"
+    "id": "f4bee228b6064a218fe1222e3635f1cc"
   }
 }
 

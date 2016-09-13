@@ -8,12 +8,15 @@ from uuid import uuid4
 from openprocurement.api.models import get_now
 import openprocurement.auctions.dgf.tests.base as base_test
 from openprocurement.auctions.flash.tests.base import PrefixedRequestClass
-from openprocurement.auctions.dgf.tests.base import test_auction_data, test_bids
+from openprocurement.auctions.dgf.tests.base import test_auction_data as base_test_auction_data, test_bids
 from openprocurement.auctions.dgf.tests.tender import BaseAuctionWebTest
 from webtest import TestApp
 
 now = datetime.now()
 
+test_auction_data = base_test_auction_data.copy()
+tenderPeriod = test_auction_data.pop('tenderPeriod')
+test_auction_data["auctionPeriod"] = {"startDate": tenderPeriod['endDate']}
 
 bid = {
     "data": {
@@ -175,8 +178,8 @@ test_auction_maximum_data = {
             "quantity": 5
         }
     ],
-    "tenderPeriod": {
-        "endDate": (now + timedelta(days=14)).isoformat()
+    "auctionPeriod": {
+        "startDate": (now + timedelta(days=14)).isoformat()
     },
     "procurementMethodType": "dgfOtherAssets",
     "mode": u"test"

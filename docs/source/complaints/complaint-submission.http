@@ -1,4 +1,4 @@
-POST /api/2.3/auctions/0636cdb4cca4476e8d0b13be031c63e0/complaints HTTP/1.0
+POST /api/2.3/auctions/2107e0c1269c4c8b8ab508c9c48bb4c2/complaints HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 775
 Content-Type: application/json
@@ -34,11 +34,11 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/0636cdb4cca4476e8d0b13be031c63e0/complaints/24a0ba3c412c47d4ab5d50845cd03853
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2107e0c1269c4c8b8ab508c9c48bb4c2/complaints/dc3aac65873a45df87a59d33a50ade9b
 
 {
   "access": {
-    "token": "ef9d1506e7c0443dbc881550a569e33b"
+    "token": "ff4825e4b05849638e305b1de48d4bb1"
   }, 
   "data": {
     "status": "draft", 
@@ -64,10 +64,10 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/0636cdb4cca
         "locality": "м. Вінниця"
       }
     }, 
-    "complaintID": "UA-EA-2016-09-09-000001.1", 
-    "date": "2016-09-09T19:51:40.922986+03:00", 
+    "complaintID": "UA-EA-2016-09-13-000001.1", 
+    "date": "2016-09-13T14:12:24.923922+03:00", 
     "type": "claim", 
-    "id": "24a0ba3c412c47d4ab5d50845cd03853"
+    "id": "dc3aac65873a45df87a59d33a50ade9b"
   }
 }
 

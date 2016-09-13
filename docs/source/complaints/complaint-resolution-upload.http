@@ -1,4 +1,4 @@
-POST /api/2.3/auctions/0636cdb4cca4476e8d0b13be031c63e0/complaints/66b9b4c48cb140b3a4b584e8c9c060f1/documents HTTP/1.0
+POST /api/2.3/auctions/2107e0c1269c4c8b8ab508c9c48bb4c2/complaints/aca9e03b79f64d2faa4f7d03b2f51afa/documents HTTP/1.0
 Authorization: Basic cmV2aWV3ZXI6
 Content-Length: 342
 Content-Type: application/json
@@ -6,7 +6,7 @@ Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/eee64d1cea164b3f8f359621d1c2b160?KeyID=757edc4c&Signature=SvnmV3GmMrhyvvlA8%2F8CJoWWcc1k91NJUftcJ188IeAL7QHDgBgKAAr4fCxI5IlZav13vF4TCjs5SuBF5V%2FEAg%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/654121e48c2745ecb249827220ec2849?KeyID=3d7a7dcd&Signature=0kvYQBbY6MHVwBY53O613LSI0grRdhg%2FAQpGQ9MFjDlSEmBlSpBYFNrKHLRlJLXB8vEU8%2BsYCD7mwS6L8V0qBw%3D%3D", 
     "title": "ComplaintResolution.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -16,19 +16,19 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/0636cdb4cca4476e8d0b13be031c63e0/complaints/66b9b4c48cb140b3a4b584e8c9c060f1/documents/e3ecee004b374e7888c2135e8191701f
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2107e0c1269c4c8b8ab508c9c48bb4c2/complaints/aca9e03b79f64d2faa4f7d03b2f51afa/documents/96ead26ae8e546fa975ff6aa79d7d20f
 
 {
   "data": {
-    "dateModified": "2016-09-09T19:51:42.710377+03:00", 
+    "dateModified": "2016-09-13T14:12:26.326426+03:00", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/eee64d1cea164b3f8f359621d1c2b160?KeyID=757edc4c&Signature=Wfv1plXGAXiaWjT20ogIelhJD1dr1FeYd4YE2I0b6yhVuGMMezUEwCXWHqBF5rzxw%2FF1raYvuN3yJdEzYgfZCg%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/654121e48c2745ecb249827220ec2849?KeyID=3d7a7dcd&Signature=8O232a1%2F6YQI9YZ1Pxxc9%252BphX%2FOcE8o2LLwHsUtDvjzPm59pca5VnhcA8hsCiLS7qGWYssBDa0m%2F4gtDnH1TAw%253D%253D", 
     "author": "reviewers", 
     "documentOf": "tender", 
-    "datePublished": "2016-09-09T19:51:42.710338+03:00", 
+    "datePublished": "2016-09-13T14:12:26.326396+03:00", 
     "title": "ComplaintResolution.pdf", 
-    "id": "e3ecee004b374e7888c2135e8191701f"
+    "id": "96ead26ae8e546fa975ff6aa79d7d20f"
   }
 }
 

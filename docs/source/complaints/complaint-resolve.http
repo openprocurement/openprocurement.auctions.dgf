@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/0636cdb4cca4476e8d0b13be031c63e0/complaints/66b9b4c48cb140b3a4b584e8c9c060f1 HTTP/1.0
+PATCH /api/2.3/auctions/2107e0c1269c4c8b8ab508c9c48bb4c2/complaints/aca9e03b79f64d2faa4f7d03b2f51afa HTTP/1.0
 Authorization: Basic cmV2aWV3ZXI6
 Content-Length: 32
 Content-Type: application/json
@@ -17,18 +17,18 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "status": "resolved", 
-    "dateDecision": "2016-09-09T19:51:42.859934+03:00", 
+    "dateDecision": "2016-09-13T14:12:26.447095+03:00", 
     "documents": [
       {
-        "dateModified": "2016-09-09T19:51:42.710377+03:00", 
+        "dateModified": "2016-09-13T14:12:26.326426+03:00", 
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/eee64d1cea164b3f8f359621d1c2b160?KeyID=757edc4c&Signature=Wfv1plXGAXiaWjT20ogIelhJD1dr1FeYd4YE2I0b6yhVuGMMezUEwCXWHqBF5rzxw%2FF1raYvuN3yJdEzYgfZCg%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/654121e48c2745ecb249827220ec2849?KeyID=3d7a7dcd&Signature=8O232a1%2F6YQI9YZ1Pxxc9%252BphX%2FOcE8o2LLwHsUtDvjzPm59pca5VnhcA8hsCiLS7qGWYssBDa0m%2F4gtDnH1TAw%253D%253D", 
         "author": "reviewers", 
         "documentOf": "tender", 
-        "datePublished": "2016-09-09T19:51:42.710338+03:00", 
+        "datePublished": "2016-09-13T14:12:26.326396+03:00", 
         "title": "ComplaintResolution.pdf", 
-        "id": "e3ecee004b374e7888c2135e8191701f"
+        "id": "96ead26ae8e546fa975ff6aa79d7d20f"
       }
     ], 
     "description": "complaint description", 
@@ -56,13 +56,13 @@ Content-Type: application/json; charset=UTF-8
     "type": "complaint", 
     "title": "complaint title", 
     "satisfied": false, 
-    "dateEscalated": "2016-09-09T19:51:42.128561+03:00", 
-    "dateAnswered": "2016-09-09T19:51:42.022019+03:00", 
-    "dateSubmitted": "2016-09-09T19:51:41.913339+03:00", 
-    "complaintID": "UA-EA-2016-09-09-000001.3", 
-    "date": "2016-09-09T19:51:42.867005+03:00", 
+    "dateEscalated": "2016-09-13T14:12:25.907210+03:00", 
+    "dateAnswered": "2016-09-13T14:12:25.810716+03:00", 
+    "dateSubmitted": "2016-09-13T14:12:25.713750+03:00", 
+    "complaintID": "UA-EA-2016-09-13-000001.3", 
+    "date": "2016-09-13T14:12:26.452504+03:00", 
     "resolution": "Виправлено неконкурентні умови", 
-    "id": "66b9b4c48cb140b3a4b584e8c9c060f1"
+    "id": "aca9e03b79f64d2faa4f7d03b2f51afa"
   }
 }
 

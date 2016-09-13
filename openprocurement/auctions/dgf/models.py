@@ -117,13 +117,9 @@ class Auction(BaseAuction):
     def initialize(self):
         if not self.enquiryPeriod:
             self.enquiryPeriod = type(self).enquiryPeriod.model_class()
-        if not self.enquiryPeriod.startDate:
-            self.enquiryPeriod.startDate = self.tenderPeriod and self.tenderPeriod.startDate or get_now()
-        if not self.enquiryPeriod.endDate:
-            self.enquiryPeriod.endDate = self.tenderPeriod.endDate
-        if not self.tenderPeriod.startDate:
-            self.tenderPeriod.startDate = self.enquiryPeriod.startDate
         now = get_now()
+        self.tenderPeriod.startDate = self.enquiryPeriod.startDate = now
+        self.enquiryPeriod.endDate = self.tenderPeriod.endDate
         self.date = now
         if self.lots:
             for lot in self.lots:
@@ -182,14 +178,14 @@ class Auction(BaseAuction):
                     continue
                 lot_awards = [i for i in self.awards if i.lotID == lot.id]
                 pending_complaints = any([
-                                             i['status'] in self.block_complaint_status and i.relatedLot == lot.id
-                                             for i in self.complaints
-                                             ])
+                    i['status'] in self.block_complaint_status and i.relatedLot == lot.id
+                    for i in self.complaints
+                ])
                 pending_awards_complaints = any([
-                                                    i.status in self.block_complaint_status
-                                                    for a in lot_awards
-                                                    for i in a.complaints
-                                                    ])
+                    i.status in self.block_complaint_status
+                    for a in lot_awards
+                    for i in a.complaints
+                ])
                 standStillEnds = [
                     a.complaintPeriod.endDate.astimezone(TZ)
                     for a in lot_awards

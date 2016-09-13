@@ -1,12 +1,12 @@
-POST /api/2.3/auctions/0636cdb4cca4476e8d0b13be031c63e0/awards/2e41f6b9e16b47d18184af47c1ce37e3/complaints/82d665ed408f45958d8aded09cec6bc3/documents HTTP/1.0
+POST /api/2.3/auctions/2107e0c1269c4c8b8ab508c9c48bb4c2/awards/2c1639d846c74bff94ae0e140ff97b3c/complaints/bd8870b6bb504875893322c0a042b158/documents HTTP/1.0
 Authorization: Basic cmV2aWV3ZXI6
-Content-Length: 346
+Content-Length: 348
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/139a636f34464e97933d04d5e78f20ba?KeyID=757edc4c&Signature=905Bg52387U6aYJ17eyGi144yJlZdi8xRDjEa0%2F4Uf%2FTGIED%2FihNju4WdOCuXmKPYvUaCWan4Vvfu4u5Xcg%2FBQ%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/fec176fc0782488195f13adb856b3d8a?KeyID=3d7a7dcd&Signature=UmWMlbb4Orsz%2FAU2Gvxh5squZWPhb%2Fz5Iu2dDE5NjI%2BBhg96kCQL6mS27Bxt%2BrIqfQS8aAH%2BgvJgomvWZlDYBg%3D%3D", 
     "title": "ComplaintResolution.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -16,19 +16,19 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/0636cdb4cca4476e8d0b13be031c63e0/awards/2e41f6b9e16b47d18184af47c1ce37e3/complaints/82d665ed408f45958d8aded09cec6bc3/documents/fc1f78b280414d7fa9a9cafb61cf7ed5
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2107e0c1269c4c8b8ab508c9c48bb4c2/awards/2c1639d846c74bff94ae0e140ff97b3c/complaints/bd8870b6bb504875893322c0a042b158/documents/e9e55f740cac4bb3baa5ed6e51dc50a6
 
 {
   "data": {
-    "dateModified": "2016-09-09T19:51:49.952406+03:00", 
+    "dateModified": "2016-09-13T14:12:32.531384+03:00", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/139a636f34464e97933d04d5e78f20ba?KeyID=757edc4c&Signature=udcZxGt1BZefDeL8IP4tZQCXrcWXLo3dTVojGfYustnV4Xm1AT2xftHqNFCjngKFs5AeoXJjawdPsWpE954XCw%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/fec176fc0782488195f13adb856b3d8a?KeyID=3d7a7dcd&Signature=q%252B9POsA%2FPuEL%252BnJYxopI8RCWoLcnCMmx6h3jbHnzFgGOZ4iRwK2buPuNwPXXwt2%2FkCeicVUdMnDl%2Fv6GiPquAg%253D%253D", 
     "author": "reviewers", 
     "documentOf": "tender", 
-    "datePublished": "2016-09-09T19:51:49.952377+03:00", 
+    "datePublished": "2016-09-13T14:12:32.531353+03:00", 
     "title": "ComplaintResolution.pdf", 
-    "id": "fc1f78b280414d7fa9a9cafb61cf7ed5"
+    "id": "e9e55f740cac4bb3baa5ed6e51dc50a6"
   }
 }
 
