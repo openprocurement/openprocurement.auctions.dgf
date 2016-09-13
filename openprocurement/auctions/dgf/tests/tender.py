@@ -406,7 +406,7 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['status'], 'error')
         self.assertIn({u'description': [u"Value must be one of ['open', 'selective', 'limited']."], u'location': u'body', u'name': u'procurementMethod'}, response.json['errors'])
-        self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'tenderPeriod'}, response.json['errors'])
+        #self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'tenderPeriod'}, response.json['errors'])
         self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'minimalStep'}, response.json['errors'])
         self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'items'}, response.json['errors'])
         #self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'enquiryPeriod'}, response.json['errors'])
@@ -427,6 +427,16 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.json['status'], 'error')
         self.assertEqual(response.json['errors'], [
             {u'description': {u'endDate': [u'date value out of range']}, u'location': u'body', u'name': u'enquiryPeriod'}
+        ])
+
+        data = test_auction_data.pop('tenderPeriod')
+        response = self.app.post_json(request_path, {'data': test_auction_data}, status=422)
+        test_auction_data['tenderPeriod'] = data
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertEqual(response.json['errors'], [
+            {u'description': [u'This field is required.'], u'location': u'body', u'name': u'tenderPeriod'}
         ])
 
         data = test_auction_data['tenderPeriod']
@@ -563,6 +573,17 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
 
+    def test_create_auction_auctionPeriod(self):
+        data = test_auction_data.copy()
+        tenderPeriod = data.pop('tenderPeriod')
+        data['auctionPeriod'] = {'startDate': tenderPeriod['endDate']}
+        response = self.app.post_json('/auctions', {'data': data})
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        auction = response.json['data']
+        self.assertIn('tenderPeriod', auction)
+        self.assertIn('auctionPeriod', auction)
+        self.assertNotIn('startDate', auction['auctionPeriod'])
 
     def test_create_auction_generated(self):
         data = test_auction_data.copy()
