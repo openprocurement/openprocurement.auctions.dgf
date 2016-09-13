@@ -26,7 +26,7 @@ Schema
     
     * `biddingDocuments` - **Bidding Documents**
       
-      Information for potential suppliers, describing the goals of the contract (e.g. goods and services to be procured), and the bidding process.
+      Information for potential participants, describing the goals of the contract (e.g. goods and services to be sold), and the bidding process.
 
     * `technicalSpecifications` - **Technical Specifications**
     

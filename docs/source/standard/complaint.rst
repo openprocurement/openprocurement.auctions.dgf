@@ -40,7 +40,7 @@ Schema
 :dateAnswered:
     string, :ref:`date`, auto-generated
 
-    Date when Procuring entity answered the claim.
+    Date when Organizer answered the claim.
 
 :dateEscalated:
     string, :ref:`date`, auto-generated
@@ -82,7 +82,7 @@ Schema
 :resolution:
     string
 
-    Resolution of Procuring entity.
+    Organizer's resolution.
 
 :resolutionType:
     string
@@ -119,9 +119,9 @@ Schema
 :auctionerAction:
     string
 
-    Auctioner action.
+    Participants's action.
 
 :auctionerActionDate:
     string, :ref:`date`, auto-generated
 
-    Date of auctioner action.
+    Date of participant's action.

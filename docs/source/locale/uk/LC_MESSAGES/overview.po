@@ -4,16 +4,20 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2016-09-13 16:59+0200\n"
+"Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
+"Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 2.0\n"
 
 #: ../../source/overview.rst:2
 msgid "Overview"
-msgstr ""
+msgstr "Огляд"
 
 #: ../../source/overview.rst:21
 msgid ""
@@ -22,27 +26,13 @@ msgid ""
 "errors.  Only the UTF-8 character encoding is supported for both requests "
 "and responses."
 msgstr ""
+"API приймає `JSON <http://json.org/>`_ або form-encoded вміст у запитах. Він"
+" повертає JSON вміст у всіх свої відповідях, включно з помилками. "
+"Підтримується лише UTF-8 кодування і для запитів, і для відповідей."
 
 #: ../../source/overview.rst:19
 msgid "Conventions"
-msgstr ""
-
-#: ../../source/overview.rst:26
-msgid ""
-"All API POST and PUT requests expect a top-level object with a single "
-"element in it named `data`.  Successful responses will mirror this format. "
-"The data element should itself be an object, containing the parameters for "
-"the request.  In the case of creating a new tender, these are the fields we "
-"want to set on the tender itself."
-msgstr ""
-
-#: ../../source/overview.rst:32
-msgid ""
-"If the request was successful, we will get a response code of `201` "
-"indicating the object was created.  That response will have a data field at "
-"its top level, which will contain complete information on the new tender, "
-"including its ID."
-msgstr ""
+msgstr "Домовленості"
 
 #: ../../source/overview.rst:37
 msgid ""
@@ -51,28 +41,33 @@ msgid ""
 "containing a list of problems.  We look at the first one and print out its "
 "message."
 msgstr ""
+"Якщо під час запиту виникли труднощі, ми отримаємо інший код стану та JSON, "
+"який при поверненні міститиме `errors` поле на верхньому рівні зі списком "
+"проблем. Ми дивимось на першу з них і видруковуємо її повідомлення."
 
 #: ../../source/overview.rst:43
 msgid "Main responsibilities"
-msgstr ""
+msgstr "Основні задачі"
 
 #: ../../source/overview.rst:46
 msgid "Business logic"
-msgstr ""
+msgstr "Бізнес логіка"
 
 #: ../../source/overview.rst:49
 msgid "Project status"
-msgstr ""
+msgstr "Стан проекту"
 
 #: ../../source/overview.rst:51
 msgid "The project has pre alpha status."
-msgstr ""
+msgstr "Статус цього проекту - перед-альфа"
 
 #: ../../source/overview.rst:53
 msgid ""
 "The source repository for this project is on GitHub: "
 "https://github.com/openprocurement/openprocurement.auctions.dgf"
 msgstr ""
+"Репозиторій джерельних текстів цього проекту є на `GitHub "
+"<https://github.com/openprocurement/openprocurement.auctions.dgf>`_."
 
 #: ../../source/overview.rst:55
 msgid ""
@@ -80,19 +75,22 @@ msgid ""
 "<https://github.com/openprocurement/openprocurement.auctions.dgf/issues>`_ "
 "(GitHub registration necessary)."
 msgstr ""
+"Повідомляйте про всі проблеми та поради через `issue tracker "
+"<https://github.com/openprocurement/openprocurement.auctions.dgf/issues>`_ "
+"(реєстрація на GitHub обов’язкова)."
 
 #: ../../source/overview.rst:60
 msgid "Documentation of related packages"
-msgstr ""
+msgstr "Документація пов’язаних пакетів"
 
 #: ../../source/overview.rst:62
-msgid ""
-"`OpenProcurement API <http://api-docs.openprocurement.org/en/latest/>`_"
+msgid "`OpenProcurement API <http://api-docs.openprocurement.org/en/latest/>`_"
 msgstr ""
+"`OpenProcurement API <http://api-docs.openprocurement.org/en/latest/>`_"
 
 #: ../../source/overview.rst:65
 msgid "API stability"
-msgstr ""
+msgstr "Стабільність API"
 
 #: ../../source/overview.rst:67
 msgid ""
@@ -101,107 +99,115 @@ msgid ""
 "lot.  The changes in the API are communicated via `Open Procurement API "
 "<https://groups.google.com/group/open-procurement-api>`_ maillist."
 msgstr ""
+"API є дуже нестабільним. Хоча точки входу API будуть відносно стабільними, "
+"формати обміну даними будуть часно змінюватись. Зміни в API обговорюються "
+"через `Open Procurement API <https://groups.google.com/group/open-"
+"procurement-api>`_ розсилку."
 
 #: ../../source/overview.rst:73
 msgid "Change log"
-msgstr ""
+msgstr "Звіт про зміни"
 
 #: ../../source/overview.rst:76
 msgid "0.1"
-msgstr ""
+msgstr "0.1"
 
 #: ../../source/overview.rst:78
 msgid "Released: not released"
-msgstr ""
+msgstr "Випущено: не випущено"
 
 #: ../../source/overview.rst:82
 msgid "Next steps"
-msgstr ""
+msgstr "Наступні кроки"
 
 #: ../../source/overview.rst:4
 msgid ""
 "openprocurement.auctions.dgf contains documentaion for Deposit Guarantee "
 "Fund auctions."
 msgstr ""
+"openprocurement.auctions.dgf містить документацію по аукціонах Фонду"
+" гарантування вкладів."
 
 #: ../../source/overview.rst:8
 msgid "Features"
-msgstr ""
+msgstr "Особливості"
 
 #: ../../source/overview.rst:10
 msgid ""
 "No need to specify enquiries period (there is no *active.enquiries* status),"
 " since it overlaps with *active.tendering* period."
 msgstr ""
+"Відсутність необхідності вказання періоду уточнень (тут немає окремого"
+" статусу *active.enquiries*), оскільки він накладається на період прийому"
+" пропозицій *active.tendering*."
 
 #: ../../source/overview.rst:11
 msgid "Procedure can be switched from *draft* status to *active.tendering*."
-msgstr ""
+msgstr "Процедура переходить зі статусу *draft* до *active.tendering*."
 
 #: ../../source/overview.rst:12
 msgid ""
 "During *active.tendering* period participants can ask questions, submit "
 "proposals, and upload documents."
 msgstr ""
-
-#: ../../source/overview.rst:13
-msgid ""
-"The only date you will have to provide is *tenderPeriod.endDate*, the rest "
-"will be calculated automatically."
-msgstr ""
-
-#: ../../source/overview.rst:14
-msgid ""
-"Organizer can't edit procedure's significant properties (*Tender.value*, "
-"etc.)."
-msgstr ""
+"Протягом періоду *active.tendering* учасники можуть задавати питання,"
+" подавати пропозиції, завантажувати документи."
 
 #: ../../source/overview.rst:15
 msgid ""
 "There is obligatory participant qualification (*Bid.selfQualified*) via "
 "guarantee payment."
 msgstr ""
+"Обов’язкова кваліфікація учасника (*Bid.selfQualified*) через гарантійний"
+" платіж."
 
 #: ../../source/overview.rst:16
 msgid "The only currency (*Value.currency*) for this procedure is UAH."
-msgstr ""
+msgstr "Єдина валюта (*Value.currency*) цієї процедури - гривня UAH."
 
 #: ../../source/overview.rst:83
 msgid "You might find it helpful to look at the :ref:`tutorial`."
+msgstr "Можливо вам буде цікаво прочитати :ref:`tutorial`."
+
+#: ../../source/overview.rst:26
+msgid ""
+"All API POST and PUT requests expect a top-level object with a single "
+"element in it named `data`.  Successful responses will mirror this format. "
+"The data element should itself be an object, containing the parameters for "
+"the request.  In the case of creating a new auction, these are the fields we"
+" want to set on the auction itself."
 msgstr ""
+"Всі API POST та PUT запити очікують об'єкт верхнього рівня з єдиним "
+"елементом з назвою `data`. Відповіді з повідомленням про успіх будуть "
+"віддзеркалювати цей формат. Елемент data повинен сам бути об’єктом, що "
+"містить параметри запиту. Якщо створюється новий аукціон, то це ті поля, "
+"які ми хочемо встановити на самому аукціоні."
 
-#~ msgid ""
-#~ "The Open Procurement Open UA procedure is plugin to Open Procurement API "
-#~ "software. It requires 0.12 version of openprocurement.api package to work."
-#~ msgstr ""
+#: ../../source/overview.rst:32
+msgid ""
+"If the request was successful, we will get a response code of `201` "
+"indicating the object was created.  That response will have a data field at "
+"its top level, which will contain complete information on the new auction, "
+"including its ID."
+msgstr ""
+"Якщо запит був успішним, ми отримаємо код відповіді `201`, який вказує, що "
+"об’єкт був створений. Ця відповідь буде мати data поле на верхньому рівні, "
+"яке вміщуватиме повну інформацію про новий аукціон, включно з ID."
 
-#~ msgid ""
-#~ "The Open Procurement API is the only interface to Open Procurement database "
-#~ "that is core unit of `Open Procurement <http://openprocurement.org/>`_ "
-#~ "infrastructure."
-#~ msgstr ""
+#: ../../source/overview.rst:13
+msgid ""
+"The only date you will have to provide is *Tender.auctionPeriod.startDate*, "
+"the rest will be calculated automatically."
+msgstr ""
+"Єдина дата, яку потрібно надати, це дата початку аукціону"
+" *Tender.auctionPeriod.startDate*. Всі решта дати будуть обраховані на її"
+" основі."
 
-#~ msgid ""
-#~ "The Open Procurement API is a `REST "
-#~ "<http://en.wikipedia.org/wiki/Representational_State_Transfer>`_-ful "
-#~ "interface that provides programmatic access to Tender database of Open "
-#~ "Procurement system.  It provides predictable URLs for accessing resources, "
-#~ "and uses built-in HTTP features to receive commands and return responses. "
-#~ "This makes it easy to communicate with."
-#~ msgstr ""
+#: ../../source/overview.rst:14
+msgid ""
+"Organizer can't edit procedure's significant properties (*Auction.value*, "
+"etc.)."
+msgstr ""
+"Організатор не може редагувати суттєвих властивостей процедури, наприклад,"
+" *Auction.value*."
 
-#~ msgid ""
-#~ "For general discussion use `Open Procurement General "
-#~ "<https://groups.google.com/group/open-procurement-general>`_ maillist."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "General information, roadmap, and technical specifications for the Open "
-#~ "Procurement project can be found at `openprocurement.org "
-#~ "<http://openprocurement.org/en>`_."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "You might find it helpful to look at the :ref:`tutorial`, or the "
-#~ ":ref:`reference`."
-#~ msgstr ""
