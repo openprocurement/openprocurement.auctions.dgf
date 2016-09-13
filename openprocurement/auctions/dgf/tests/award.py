@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest, test_auction_data, test_bids, test_lots, test_organization
+from openprocurement.auctions.dgf.tests.base import (
+    BaseAuctionWebTest, test_auction_data, test_bids, test_lots, test_organization,
+    test_financial_auction_data, test_financial_bids, test_financial_organization
+)
 
 
 class AuctionAwardResourceTest(BaseAuctionWebTest):
@@ -2340,6 +2343,61 @@ class Auction2LotAwardDocumentResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can update document only in active lot status")
+
+
+class FinancialAuctionAwardResourceTest(AuctionAwardResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+
+
+@unittest.skip("option not available")
+class FinancialAuctionLotAwardResourceTest(AuctionLotAwardResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+
+
+@unittest.skip("option not available")
+class FinancialAuction2LotAwardResourceTest(Auction2LotAwardResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+
+
+class FinancialAuctionAwardComplaintResourceTest(AuctionAwardComplaintResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+
+
+@unittest.skip("option not available")
+class FinancialAuctionLotAwardComplaintResourceTest(AuctionLotAwardComplaintResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+
+
+@unittest.skip("option not available")
+class FinancialAuction2LotAwardComplaintResourceTest(Auction2LotAwardComplaintResourceTest):
+    initial_data = test_financial_auction_data
+
+
+class FinancialAuctionAwardComplaintDocumentResourceTest(AuctionAwardComplaintDocumentResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+
+
+@unittest.skip("option not available")
+class FinancialAuction2LotAwardComplaintDocumentResourceTest(Auction2LotAwardComplaintDocumentResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+
+
+class FinancialAuctionAwardDocumentResourceTest(AuctionAwardDocumentResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+
+
+@unittest.skip("option not available")
+class FinancialAuction2LotAwardDocumentResourceTest(Auction2LotAwardDocumentResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
 
 
 def suite():

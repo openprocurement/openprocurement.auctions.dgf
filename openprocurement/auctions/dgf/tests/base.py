@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from datetime import datetime, timedelta
+from copy import deepcopy
 
 from openprocurement.api.models import SANDBOX_MODE
 from openprocurement.api.utils import apply_data_patch
@@ -198,6 +199,22 @@ test_features = [
     }
 ]
 
+test_financial_auction_data = deepcopy(test_auction_data)
+test_financial_auction_data["procurementMethodType"] = "dgfFinancialAssets"
+
+test_financial_organization = deepcopy(test_organization)
+test_financial_organization['additionalIdentifiers'] = [{
+    "scheme": u"UA-FIN",
+    "id": u"А01 457213"
+}]
+
+test_financial_bids = []
+for i in test_bids:
+    bid = deepcopy(i)
+    bid.update({'selfEligible': True})
+    bid['tenderers'] = [test_financial_organization]
+    test_financial_bids.append(bid)
+
 
 class BaseWebTest(FlashBaseWebTest):
 
@@ -356,3 +373,8 @@ class BaseAuctionWebTest(FlashBaseAuctionWebTest):
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         return response
+
+
+class BaseFinancialAuctionWebTest(BaseAuctionWebTest):
+    relative_to = os.path.dirname(__file__)
+    initial_data = test_financial_auction_data

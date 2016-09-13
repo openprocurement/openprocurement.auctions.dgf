@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 import unittest
 from datetime import timedelta
+from copy import deepcopy
 
 from openprocurement.api.models import get_now
-from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest, test_auction_data, test_features_auction_data, test_bids, test_lots, test_organization
+from openprocurement.auctions.dgf.tests.base import (
+    BaseAuctionWebTest, test_bids, test_lots, test_organization, test_features_auction_data,
+    test_financial_auction_data, test_financial_bids, test_financial_organization
+)
 
 
 class AuctionAuctionResourceTest(BaseAuctionWebTest):
@@ -1038,11 +1042,97 @@ class AuctionFeaturesAuctionResourceTest(BaseAuctionWebTest):
         self.assertIn('parameters', auction["bids"][0])
 
 
+class FinancialAuctionAuctionResourceTest(AuctionAuctionResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+
+
+class FinancialAuctionSameValueAuctionResourceTest(AuctionSameValueAuctionResourceTest):
+    initial_data = test_financial_auction_data
+    initial_bids = [
+        {
+            "tenderers": [
+                test_financial_organization
+            ],
+            "value": {
+                "amount": 469,
+                "currency": "UAH",
+                "valueAddedTaxIncluded": True
+            },
+            'selfQualified': True,
+            'selfEligible': True
+        }
+        for i in range(3)
+    ]
+
+
+@unittest.skip("option not available")
+class FinancialAuctionLotAuctionResourceTest(AuctionLotAuctionResourceTest):
+    initial_data = test_financial_auction_data
+    initial_bids = test_financial_bids
+
+
+@unittest.skip("option not available")
+class FinancialAuctionMultipleLotAuctionResourceTest(AuctionMultipleLotAuctionResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+
+
+@unittest.skip("option not available")
+class FinancialAuctionFeaturesAuctionResourceTest(AuctionFeaturesAuctionResourceTest):
+    initial_data = deepcopy(test_features_auction_data)
+    initial_data["procurementMethodType"] = "dgfFinancialAssets"
+    initial_bids = [
+        {
+            "parameters": [
+                {
+                    "code": i["code"],
+                    "value": 0.1,
+                }
+                for i in test_features_auction_data['features']
+            ],
+            "tenderers": [
+                test_financial_organization
+            ],
+            "value": {
+                "amount": 469,
+                "currency": "UAH",
+                "valueAddedTaxIncluded": True
+            },
+            'selfQualified': True,
+            'selfEligible': True
+        },
+        {
+            "parameters": [
+                {
+                    "code": i["code"],
+                    "value": 0.15,
+                }
+                for i in test_features_auction_data['features']
+            ],
+            "tenderers": [
+                test_financial_organization
+            ],
+            "value": {
+                "amount": 479,
+                "currency": "UAH",
+                "valueAddedTaxIncluded": True
+            },
+            'selfQualified': True,
+            'selfEligible': True
+        }
+    ]
+
+
+
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionAuctionResourceTest))
     suite.addTest(unittest.makeSuite(AuctionSameValueAuctionResourceTest))
     suite.addTest(unittest.makeSuite(AuctionFeaturesAuctionResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionAuctionResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionSameValueAuctionResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionFeaturesAuctionResourceTest))
     return suite
 
 
