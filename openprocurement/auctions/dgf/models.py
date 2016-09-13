@@ -7,8 +7,8 @@ from schematics.transforms import blacklist, whitelist
 from schematics.types.serializable import serializable
 from zope.interface import implementer
 from openprocurement.api.models import (
-    BooleanType, ListType, Feature, Period, PeriodEndRequired, get_now, TZ,
-    validate_features_uniq, validate_lots_uniq,
+    BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
+    validate_features_uniq, validate_lots_uniq, Identifier as BaseIdentifier
 )
 from openprocurement.api.utils import calculate_business_date
 from openprocurement.auctions.core.models import IAuction
@@ -17,6 +17,7 @@ from openprocurement.auctions.flash.models import (
     Complaint as BaseComplaint, Cancellation as BaseCancellation,
     Contract as BaseContract, Award as BaseAward, Lot, edit_role,
     calc_auction_end_time, COMPLAINT_STAND_STILL_TIME,
+    Organization as BaseOrganization,
 )
 
 
@@ -208,3 +209,69 @@ class Auction(BaseAuction):
                     elif complaint.status == 'answered' and complaint.dateAnswered:
                         checks.append(calculate_business_date(complaint.dateAnswered, COMPLAINT_STAND_STILL_TIME, self))
         return min(checks).isoformat() if checks else None
+
+
+DGFOtherAssets = Auction
+
+# DGF Financial Assets models
+
+
+def validate_ua_fin(items, *args):
+    if items and not any([i.scheme == u"UA-FIN" for i in items]):
+        raise ValidationError(u"One of additional classifications should be UA-FIN.")
+
+
+class Identifier(BaseIdentifier):
+
+    scheme = StringType(required=True)
+
+
+class Organization(BaseOrganization):
+
+    additionalIdentifiers = ListType(ModelType(Identifier), required=True)
+
+
+class FinantialOrganization(BaseOrganization):
+
+    additionalIdentifiers = ListType(ModelType(Identifier), required=True, validators=[validate_ua_fin])
+
+
+class Bid(Bid):
+
+    class Options:
+        roles = {
+            'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'selfQualified', 'selfEligible'),
+        }
+
+    tenderers = ListType(ModelType(FinantialOrganization), required=True, min_size=1, max_size=1)
+    selfEligible = BooleanType(required=True, choices=[True])
+
+
+class Complaint(Complaint):
+
+    author = ModelType(Organization, required=True)
+
+
+class Award(Award):
+
+    suppliers = ListType(ModelType(FinantialOrganization), required=True, min_size=1, max_size=1)
+    complaints = ListType(ModelType(Complaint), default=list())
+
+
+class Contract(Contract):
+
+    suppliers = ListType(ModelType(FinantialOrganization), min_size=1, max_size=1)
+
+
+@implementer(IAuction)
+class Auction(DGFOtherAssets):
+    """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
+
+    bids = ListType(ModelType(Bid), default=list())
+    procurementMethodType = StringType(default="dgfFinancialAssets")
+    complaints = ListType(ComplaintModelType(Complaint), default=list())
+    awards = ListType(ModelType(Award), default=list())
+    contracts = ListType(ModelType(Contract), default=list())
+
+
+DGFFinancialAssets = Auction

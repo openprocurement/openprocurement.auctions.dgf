@@ -3,7 +3,6 @@
 import unittest
 
 from openprocurement.auctions.dgf.tests import auction, award, bidder, document, tender, question, complaint
-#from openprocurement.auctions.dgf.tests import migration
 
 
 def suite():
