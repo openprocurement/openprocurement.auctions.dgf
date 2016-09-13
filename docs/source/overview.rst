@@ -10,8 +10,8 @@ Features
 * No need to specify enquiries period (there is no *active.enquiries* status), since it overlaps with *active.tendering* period.
 * Procedure can be switched from *draft* status to *active.tendering*.
 * During *active.tendering* period participants can ask questions, submit proposals, and upload documents.
-* The only date you will have to provide is *tenderPeriod.endDate*, the rest will be calculated automatically.
-* Organizer can't edit procedure's significant properties (*Tender.value*, etc.).
+* The only date you will have to provide is *Tender.auctionPeriod.startDate*, the rest will be calculated automatically.
+* Organizer can't edit procedure's significant properties (*Auction.value*, etc.).
 * There is obligatory participant qualification (*Bid.selfQualified*) via guarantee payment.
 * The only currency (*Value.currency*) for this procedure is UAH.
 
@@ -26,12 +26,12 @@ and responses.
 All API POST and PUT requests expect a top-level object with a single
 element in it named `data`.  Successful responses will mirror this format. 
 The data element should itself be an object, containing the parameters for
-the request.  In the case of creating a new tender, these are the fields we
-want to set on the tender itself.
+the request.  In the case of creating a new auction, these are the fields we
+want to set on the auction itself.
 
 If the request was successful, we will get a response code of `201`
 indicating the object was created.  That response will have a data field at
-its top level, which will contain complete information on the new tender,
+its top level, which will contain complete information on the new auction,
 including its ID.
 
 If something went wrong during the request, we'll get a different status

@@ -1,0 +1,349 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-13 15:36+0300\n"
+"PO-Revision-Date: 2016-09-13 17:48+0200\n"
+"Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
+"Language-Team: Ukrainian <support@quintagroup.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: ../../source/standard/auction.rst:8
+msgid "Auction"
+msgstr "Auction"
+
+#: ../../source/standard/auction.rst:11
+msgid "Schema"
+msgstr "Схема"
+
+#: ../../source/standard/auction.rst:14 ../../source/standard/auction.rst:24
+msgid "string, multilingual"
+msgstr "рядок, багатомовний"
+
+#: ../../source/standard/auction.rst:16
+msgid ""
+"The name of the auction, displayed in listings. You can include the "
+"following items:"
+msgstr ""
+"Назва аукціону, яка відображається у списках. Можна включити такі елементи:"
+
+#: ../../source/standard/auction.rst:19
+msgid "periodicity of the auction (annual, quarterly, etc.)"
+msgstr "періодичність аукціону (щороку, щокварталу, і т.д.)"
+
+#: ../../source/standard/auction.rst:21
+msgid "some other info"
+msgstr "інша інформація"
+
+#: ../../source/standard/auction.rst:26
+msgid "Detailed description of auction."
+msgstr "Детальний опис аукціону."
+
+#: ../../source/standard/auction.rst:29
+msgid "string, auto-generated, read-only"
+msgstr "рядок, генерується автоматично, лише для читання"
+
+#: ../../source/standard/auction.rst:31
+msgid "The auction identifier to refer auction to in \"paper\" documentation."
+msgstr "Дати аукціону повинні бути послідовними:"
+
+#: ../../source/standard/auction.rst:33
+msgid ""
+"|ocdsDescription| AuctionID should always be the same as the OCID. It is "
+"included to make the flattened data structure more convenient."
+msgstr ""
+"|ocdsDescription| Ідентифікатор аукціону `AuctionID` повинен завжди "
+"співпадати з OCID. Його включають, щоб зробити структуру даних більш "
+"зручною."
+
+#: ../../source/standard/auction.rst:37
+msgid ":ref:`ProcuringEntity`, required"
+msgstr ":ref:`ProcuringEntity`, обов'язково"
+
+#: ../../source/standard/auction.rst:39
+msgid "Organization conducting the auction."
+msgstr "Організатор (організація, що проводить аукціон)."
+
+#: ../../source/standard/auction.rst:41
+msgid ""
+"|ocdsDescription| The entity managing the procurement, which may be "
+"different from the buyer who is paying / using the items being procured."
+msgstr ""
+"|ocdsDescription| Об’єкт, що управляє закупівлею. Він не обов’язково є "
+"покупцем, який платить / використовує закуплені елементи."
+
+#: ../../source/standard/auction.rst:45 ../../source/standard/auction.rst:95
+msgid ":ref:`value`, required"
+msgstr ":ref:`value`, обов'язково"
+
+#: ../../source/standard/auction.rst:49
+msgid "|ocdsDescription| The total estimated value of the procurement."
+msgstr "|ocdsDescription| Загальна кошторисна вартість закупівлі."
+
+#: ../../source/standard/auction.rst:53
+msgid ":ref:`Guarantee`"
+msgstr ":ref:`Guarantee`"
+
+#: ../../source/standard/auction.rst:55
+msgid "Bid guarantee"
+msgstr "Забезпечення тендерної пропозиції"
+
+#: ../../source/standard/auction.rst:58
+msgid "list of :ref:`item` objects, required"
+msgstr "список об’єктів :ref:`item`, обов’язково"
+
+#: ../../source/standard/auction.rst:62
+msgid ""
+"|ocdsDescription| The goods and services to be purchased, broken into line "
+"items wherever possible. Items should not be duplicated, but a quantity of 2"
+" specified instead."
+msgstr ""
+"|ocdsDescription| Товари та послуги, що будуть закуплені, поділені на "
+"спискові елементи, де це можливо. Елементи не повинні дублюватись, замість "
+"цього вкажіть кількість 2."
+
+#: ../../source/standard/auction.rst:66
+msgid "list of :ref:`Feature` objects"
+msgstr "список об’єктів :ref:`Feature`"
+
+#: ../../source/standard/auction.rst:68
+msgid "Features of auction."
+msgstr "Властивості аукціону."
+
+#: ../../source/standard/auction.rst:71
+msgid "List of :ref:`document` objects"
+msgstr "Список об’єктів :ref:`document`"
+
+#: ../../source/standard/auction.rst:73
+msgid "|ocdsDescription| All documents and attachments related to the auction."
+msgstr "|ocdsDescription| Всі документи та додатки пов’язані із аукціоном."
+
+#: ../../source/standard/auction.rst:77
+msgid "List of :ref:`question` objects"
+msgstr "Список об’єктів :ref:`question`"
+
+#: ../../source/standard/auction.rst:79
+msgid "Questions to ``procuringEntity`` and answers to them."
+msgstr "Питання до органіщатора ``procuringEntity`` і відповіді на них."
+
+#: ../../source/standard/auction.rst:82
+msgid "List of :ref:`complaint` objects"
+msgstr "Список об’єктів :ref:`complaint`"
+
+#: ../../source/standard/auction.rst:84
+msgid "Complaints to auction conditions and their resolutions."
+msgstr "Скарги на умови аукціону та їх вирішення."
+
+#: ../../source/standard/auction.rst:87
+msgid "List of :ref:`bid` objects"
+msgstr "Список об’єктів :ref:`bid`"
+
+#: ../../source/standard/auction.rst:91
+msgid ""
+"|ocdsDescription| A list of all the companies who entered submissions for "
+"the auction."
+msgstr ""
+"|ocdsDescription| Список усіх компаній, які подали заявки для участі у "
+"аукціоні."
+
+#: ../../source/standard/auction.rst:97
+msgid "The minimal step of auction (reduction). Validation rules:"
+msgstr "Мінімальний крок аукціону (редукціону). Правила валідації:"
+
+#: ../../source/standard/auction.rst:100
+msgid "`currency` should either be absent or match `Auction.value.currency`"
+msgstr ""
+"Значення `currency` повинно бути або відсутнім, або співпадати з "
+"`Auction.value.currency`"
+
+#: ../../source/standard/auction.rst:101
+msgid ""
+"`valueAddedTaxIncluded` should either be absent or match "
+"`Auction.value.valueAddedTaxIncluded`"
+msgstr ""
+"Значення `valueAddedTaxIncluded` повинно бути або відсутнім, або співпадати "
+"з `Auction.value.valueAddedTaxIncluded`"
+
+#: ../../source/standard/auction.rst:104
+msgid "List of :ref:`award` objects"
+msgstr "Список об’єктів :ref:`award`"
+
+#: ../../source/standard/auction.rst:106
+msgid "All qualifications (disqualifications and awards)."
+msgstr "Всі кваліфікації (дискваліфікації та визначення переможця)."
+
+#: ../../source/standard/auction.rst:109
+msgid "List of :ref:`Contract` objects"
+msgstr "Список об’єктів :ref:`Contract`"
+
+#: ../../source/standard/auction.rst:112 ../../source/standard/auction.rst:120
+msgid ":ref:`period`, required"
+msgstr ":ref:`period`, обов'язково"
+
+#: ../../source/standard/auction.rst:114
+msgid ""
+"Period when questions are allowed. At least `endDate` has to be provided."
+msgstr ""
+"Період, коли дозволено задавати питання. Повинна бути вказана хоча б "
+"`endDate` дата."
+
+#: ../../source/standard/auction.rst:116
+msgid ""
+"|ocdsDescription| The period during which enquiries may be made and will be "
+"answered."
+msgstr ""
+"|ocdsDescription| Період, коли можна зробити уточнення та отримати відповіді"
+" на них."
+
+#: ../../source/standard/auction.rst:122
+msgid ""
+"Period when bids can be submitted. At least `endDate` has to be provided."
+msgstr ""
+"Період, коли подаються пропозиції. Повинна бути вказана хоча б `endDate` "
+"дата."
+
+#: ../../source/standard/auction.rst:124
+msgid ""
+"|ocdsDescription| The period when the auction is open for submissions. The "
+"end date is the closing date for auction submissions."
+msgstr ""
+"|ocdsDescription| Період, коли аукціон відкритий для подачі пропозицій. "
+"Кінцева дата - це дата, коли перестають прийматись пропозиції."
+
+#: ../../source/standard/auction.rst:128 ../../source/standard/auction.rst:138
+msgid ":ref:`period`, read-only"
+msgstr ":ref:`period`, лише для читання"
+
+#: ../../source/standard/auction.rst:130
+msgid "Period when Auction is conducted."
+msgstr "Період, коли проводиться аукціон."
+
+#: ../../source/standard/auction.rst:133
+msgid "url"
+msgstr "URL-адреса"
+
+#: ../../source/standard/auction.rst:135
+msgid "A web address for view auction."
+msgstr "Веб-адреса для перегляду аукціону."
+
+#: ../../source/standard/auction.rst:140
+msgid "Awarding process period."
+msgstr "Період, коли відбувається визначення переможця."
+
+#: ../../source/standard/auction.rst:142
+msgid ""
+"|ocdsDescription| The date or period on which an award is anticipated to be "
+"made."
+msgstr ""
+"|ocdsDescription| Дата або період, коли очікується визначення переможця."
+
+#: ../../source/standard/auction.rst:146
+msgid "string"
+msgstr "рядок"
+
+#: ../../source/standard/auction.rst:149
+msgid "Tendering period (tendering)"
+msgstr "Очікування пропозицій (пропозиції)"
+
+#: ../../source/standard/auction.rst:151
+msgid "Auction period (auction)"
+msgstr "Період аукціону (аукціон)"
+
+#: ../../source/standard/auction.rst:153
+msgid "Winner qualification (qualification)"
+msgstr "Кваліфікація переможця (кваліфікація)"
+
+#: ../../source/standard/auction.rst:155
+msgid "Standstill period (standstill)"
+msgstr "Пропозиції розглянуто (розглянуто)"
+
+#: ../../source/standard/auction.rst:157
+msgid "Unsuccessful auction (unsuccessful)"
+msgstr "Аукціон не відбувся (не відбувся)"
+
+#: ../../source/standard/auction.rst:159
+msgid "Complete auction (complete)"
+msgstr "Завершений аукціон (завершений)"
+
+#: ../../source/standard/auction.rst:161
+msgid "Cancelled auction (cancelled)"
+msgstr "Відмінений аукціон (відмінений)"
+
+#: ../../source/standard/auction.rst:163
+msgid "Status of the Auction."
+msgstr "Статус аукціону."
+
+#: ../../source/standard/auction.rst:166
+msgid "List of :ref:`lot` objects."
+msgstr "Список об’єктів :ref:`lot`."
+
+#: ../../source/standard/auction.rst:168
+msgid "Contains all auction lots."
+msgstr "Містить всі лоти аукціону."
+
+#: ../../source/standard/auction.rst:171
+msgid "List of :ref:`cancellation` objects."
+msgstr "Список об’єктів :ref:`cancellation`."
+
+#: ../../source/standard/auction.rst:173
+msgid "Contains 1 object with `active` status in case of cancelled Auction."
+msgstr ""
+"Містить 1 об’єкт зі статусом `active` на випадок, якщо аукціон буде "
+"відмінено."
+
+#: ../../source/standard/auction.rst:175
+msgid ""
+"The :ref:`cancellation` object describes the reason of auction cancellation "
+"contains accompanying documents  if any."
+msgstr ""
+"Об’єкт :ref:`cancellation` описує причину скасування аукціону та надає "
+"відповідні документи, якщо такі є."
+
+#: ../../source/standard/auction.rst:179
+msgid "List of :ref:`revision` objects, auto-generated"
+msgstr ""
+"Список об’єктів :ref:`revision`, генерується автоматично, лише для читання"
+
+#: ../../source/standard/auction.rst:181
+msgid "Historical changes to Auction object properties."
+msgstr "Зміни властивостей об’єктів Аукціону"
+
+#: ../../source/standard/auction.rst:47
+msgid ""
+"Total available auction budget. Bids lower than ``value`` will be rejected."
+msgstr ""
+"Повний доступний бюджет аукціону. Пропозиції, що нижчі за ``value`` будуть"
+" відхилені."
+
+#: ../../source/standard/auction.rst:99
+msgid "`amount` should be greater than `Auction.value.amount`"
+msgstr "`amount` повинна бути  більша за `Auction.value.amount`"
+
+#: ../../source/standard/auction.rst:89
+msgid ""
+"A list of all bids placed in the auction with information about "
+"participants, their proposal and other qualification documentation."
+msgstr ""
+"Список усіх пропозицій поданих до аукціону разом із інформацією "
+"про учасників аукціону, їхні пропозиції та інша кваліфікаційна "
+"документація."
+
+#: ../../source/standard/auction.rst:20
+msgid "item being sold"
+msgstr "елемент, що продається"
+
+#: ../../source/standard/auction.rst:60
+msgid "List that contains single item being sold."
+msgstr "Список містить елементи, що продаються."
+
+#: ../../source/standard/auction.rst:18
+msgid "auction code (unique identifier)"
+msgstr "код аукціону (унікальний ідентифікатор)"
+

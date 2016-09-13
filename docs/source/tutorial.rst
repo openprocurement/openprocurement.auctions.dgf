@@ -60,7 +60,7 @@ Let's see what listing of auctions reveals us:
 .. include:: tutorial/initial-auction-listing.http
    :code:
 
-We do see the internal `id` of a auction (that can be used to construct full URL by prepending `https://api-sandbox.ea.openprocurement.org/api/0/auctions/`) and its `dateModified` datestamp.
+We do see the auction's internal `id` (that can be used to construct full URL by prepending `https://api-sandbox.ea.openprocurement.org/api/0/auctions/`) and its `dateModified` datestamp.
 
 The previous auction contained only required fields. Let's try creating auction with more data
 (auction has status `created`):
@@ -95,7 +95,7 @@ Checking the listing again reflects the new modification date:
 .. include:: tutorial/auction-listing-after-patch.http
    :code:
 
-Procuring entity can set bid guarantee:
+Organizer can set bid guarantee:
 
 .. include:: tutorial/set-bid-guarantee.http
    :code:
@@ -106,7 +106,7 @@ Procuring entity can set bid guarantee:
 Uploading documentation
 -----------------------
 
-Procuring entity can upload PDF files into the created auction. Uploading should
+Organizer can upload PDF files into the created auction. Uploading should
 follow the :ref:`upload` rules.
 
 .. include:: tutorial/upload-auction-notice.http
@@ -164,7 +164,7 @@ When auction is in `active.tendering` status, interested parties can ask questio
 .. include:: tutorial/ask-question.http
    :code:
 
-Procuring entity can answer them:
+Organizer can answer them:
 
 .. include:: tutorial/answer-question.http
    :code:
@@ -185,7 +185,7 @@ And individual answer:
 Registering bid
 ---------------
 
-When ``Auction.auctioningPeriod.startDate`` comes, Auction switches to `active.auctioning` status that allows registration of bids.
+When ``Auction.tenderingPeriod.startDate`` comes, Auction switches to `active.tendering` status that allows registration of bids.
 
 Bidder can register a bid in `draft` status:
 
@@ -207,7 +207,7 @@ It is possible to check the uploaded documents:
 .. include:: tutorial/bidder-documents.http
    :code:
 
-For best effect (biggest economy) Auction should have multiple bidders registered:
+For the best effect (biggest economy) Auction should have multiple bidders registered:
 
 .. include:: tutorial/register-2nd-bidder.http
    :code:

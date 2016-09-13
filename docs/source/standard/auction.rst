@@ -15,9 +15,9 @@ Schema
 
    The name of the auction, displayed in listings. You can include the following items:
 
-   * auction code (in procuring organization management system)
+   * auction code (unique identifier)
    * periodicity of the auction (annual, quarterly, etc.)
-   * item being procured
+   * item being sold
    * some other info
 
 :description:
@@ -44,7 +44,7 @@ Schema
 :value:
    :ref:`value`, required
 
-   Total available auction budget. Bids greater then ``value`` will be rejected.
+   Total available auction budget. Bids lower than ``value`` will be rejected.
 
    |ocdsDescription|
    The total estimated value of the procurement.
@@ -57,7 +57,7 @@ Schema
 :items:
    list of :ref:`item` objects, required
 
-   List that contains single item being procured. 
+   List that contains single item being sold. 
 
    |ocdsDescription|
    The goods and services to be purchased, broken into line items wherever possible. Items should not be duplicated, but a quantity of 2 specified instead.
@@ -86,7 +86,7 @@ Schema
 :bids:
    List of :ref:`bid` objects
 
-   A list of all bids placed in the auction with information about auctioners, their proposal and other qualification documentation.
+   A list of all bids placed in the auction with information about participants, their proposal and other qualification documentation.
 
    |ocdsDescription|
    A list of all the companies who entered submissions for the auction.
@@ -96,7 +96,7 @@ Schema
 
    The minimal step of auction (reduction). Validation rules:
 
-   * `amount` should be less then `Auction.value.amount`
+   * `amount` should be greater than `Auction.value.amount`
    * `currency` should either be absent or match `Auction.value.currency`
    * `valueAddedTaxIncluded` should either be absent or match `Auction.value.valueAddedTaxIncluded`
 

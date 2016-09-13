@@ -4,53 +4,58 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2016-09-13 16:19+0200\n"
+"Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
+"Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 2.0\n"
 
 #: ../../source/tutorial.rst:4
 msgid "Tutorial"
-msgstr ""
+msgstr "Туторіал"
 
 #: ../../source/tutorial.rst:7
 msgid "Exploring basic rules"
-msgstr ""
+msgstr "Базові правила"
 
 #: ../../source/tutorial.rst:9
 msgid "Let's try exploring the `/auctions` endpoint:"
-msgstr ""
+msgstr "Подивимось як працює точка входу `/auctions`:"
 
 #: ../../source/tutorial.rst:14
 msgid "Just invoking it reveals empty set."
-msgstr ""
+msgstr "При виклику видає пустий набір."
 
 #: ../../source/tutorial.rst:16
 msgid "Now let's attempt creating some auction:"
-msgstr ""
+msgstr "Спробуймо створити новий аукціон:"
 
 #: ../../source/tutorial.rst:21
-msgid ""
-"Error states that the only accepted Content-Type is `application/json`."
-msgstr ""
+msgid "Error states that the only accepted Content-Type is `application/json`."
+msgstr "Помилка вказує, що єдиний прийнятний тип вмісту це `application/json`."
 
 #: ../../source/tutorial.rst:23
 msgid "Let's satisfy the Content-type requirement:"
-msgstr ""
+msgstr "Задовільнимо вимогу типу вмісту:"
 
 #: ../../source/tutorial.rst:28
 msgid "Error states that no `data` has been found in JSON body."
-msgstr ""
+msgstr "Помилка вказує, що `data` не знайдено у тілі JSON."
 
 #: ../../source/tutorial.rst:34
 msgid "Creating auction"
-msgstr ""
+msgstr "Створення аукціону"
 
 #: ../../source/tutorial.rst:36
 msgid "Let's create auction with the minimal (only required) data set:"
 msgstr ""
+"Створимо аукціон з мінімально допустимим (обовязковим для заповнення) "
+"набором даних:"
 
 #: ../../source/tutorial.rst:41
 msgid ""
@@ -62,50 +67,62 @@ msgid ""
 "auction was last modified. Pay attention to the `procurementMethodType`. "
 "Note that auction is created with `active.tendering` status."
 msgstr ""
+"Успіх! Тепер ми бачимо, що новий об’єкт було створено. Код відповіді `201` "
+"та заголовок відповіді `Location` вказує місцерозташування створеного "
+"об’єкта. Тіло відповіді показує інформацію про створений аукціон, його "
+"внутрішнє `id` (яке співпадає з сегментом `Location`), його офіційне "
+"`auctionID` та `dateModified` дату, що показує час, коли аукціон востаннє "
+"модифікувався. Зверніть увагу на `procurementMethodType`, а також на те, що "
+"аукціон створюється зі статусом `active.tendering`."
 
 #: ../../source/tutorial.rst:49
 msgid ""
 "Let's access the URL of the created object (the `Location` header of the "
 "response):"
-msgstr ""
+msgstr "Використаємо URL створеного об’єкта (заголовок відповіді `Location`):"
 
 #: ../../source/tutorial.rst:56
 msgid "We can see the same response we got after creating auction."
-msgstr ""
+msgstr "Ми бачимо ту ж відповідь, що і після створення аукціону."
 
 #: ../../source/tutorial.rst:58
 msgid "Let's see what listing of auctions reveals us:"
-msgstr ""
+msgstr "Подивимось, що показує список аукціонів:"
 
 #: ../../source/tutorial.rst:65
 msgid ""
 "The previous auction contained only required fields. Let's try creating "
 "auction with more data (auction has status `created`):"
 msgstr ""
+"Попередній аукціон був створений лише з обов’язковими полями. Тепер додамо "
+"аукціон з максимально допустимим набором даних при створенні (аукціон "
+"повинен бути у статусі `created`)."
 
 #: ../../source/tutorial.rst:71
 msgid ""
 "And again we have `201 Created` response code, `Location` header and body "
 "with extra `id`, `auctionID`, and `dateModified` properties."
 msgstr ""
+"І знову код відповіді `201 Created`,  заголовок `Location` і тіло з "
+"додатковим `id`, `auctionID`, та властивість `dateModified`."
 
 #: ../../source/tutorial.rst:73
 msgid "Let's check what auction registry contains:"
-msgstr ""
+msgstr "Перевіримо, що містить реєстр аукціонів:"
 
 #: ../../source/tutorial.rst:78
 msgid "And indeed we have 2 auctions now."
-msgstr ""
+msgstr "Дійсно, в нас зараз є дві аукціони."
 
 #: ../../source/tutorial.rst:82
 msgid "Modifying auction"
-msgstr ""
+msgstr "Модифікація аукціону"
 
 #: ../../source/tutorial.rst:84
 msgid ""
 "Let's update auction by supplementing it with all other essential "
 "properties:"
-msgstr ""
+msgstr "Оновимо аукціон шляхом надання йому усіх інших важливих властивостей:"
 
 #: ../../source/tutorial.rst:91
 msgid ""
@@ -113,24 +130,17 @@ msgid ""
 "Additionally, the `dateModified` property was updated to reflect the last "
 "modification datestamp."
 msgstr ""
+"Ми бачимо, що додаткові властивості об’єднані з існуючими даними аукціону. "
+"Додатково оновлена властивість `dateModified`, щоб відображати останню дату "
+"модифікації."
 
 #: ../../source/tutorial.rst:93
 msgid "Checking the listing again reflects the new modification date:"
-msgstr ""
-
-#: ../../source/tutorial.rst:98
-msgid "Procuring entity can set bid guarantee:"
-msgstr ""
+msgstr "Ще одна перевірка списку відображає нову дату модифікації:"
 
 #: ../../source/tutorial.rst:107
 msgid "Uploading documentation"
-msgstr ""
-
-#: ../../source/tutorial.rst:109
-msgid ""
-"Procuring entity can upload PDF files into the created auction. Uploading "
-"should follow the :ref:`upload` rules."
-msgstr ""
+msgstr "Завантаження документації"
 
 #: ../../source/tutorial.rst:115
 msgid ""
@@ -138,249 +148,271 @@ msgid ""
 " We can additionally query the `documents` collection API endpoint to "
 "confirm the action:"
 msgstr ""
+"Код відповіді `201 Created` та заголовок `Location` підтверджують, що "
+"документ було створено. Додатково можна зробити запит точки входу API "
+"колекції `документів`, щоб підтвердити дію:"
 
 #: ../../source/tutorial.rst:122
 msgid ""
 "The single array element describes the uploaded document. We can upload more"
 " documents:"
 msgstr ""
+"Один елемент масиву описує завантажений документ. Ми можемо завантажити "
+"більше документів:"
 
 #: ../../source/tutorial.rst:127
 msgid "And again we can confirm that there are two documents uploaded."
-msgstr ""
+msgstr "І знову можна перевірити, що є два завантажених документа."
 
 #: ../../source/tutorial.rst:132
 msgid ""
 "Let’s add new `documentType` field with `technicalSpecifications` parameter "
 "to the previously uploaded document:"
 msgstr ""
+"Додамо нове поле `documentType` з параметром `technicalSpecifications` до "
+"вже завантаженого документа."
 
 #: ../../source/tutorial.rst:137
 msgid ""
 "Success! Response code is `200 OK` and it confirms that `documentType` field"
 " with `technicalSpecifications` parameter was added ."
 msgstr ""
+"Успіх! Код відповіді `200 OK` підтверджує, що поле `documentType` з "
+"параметром `technicalSpecifications` було додано."
 
 #: ../../source/tutorial.rst:139
 msgid ""
 "Now let’s try to modify any field in our document. For example, "
 "`description`:"
 msgstr ""
+"Можна змінити будь-яке поле в документі. Наприклад, `description` (опис):"
 
 #: ../../source/tutorial.rst:144
 msgid ""
 "`200 OK` response was returned. The description was modified successfully."
-msgstr ""
+msgstr "Повернено код `200 OK`, тобто опис було успішно відредаговано."
 
 #: ../../source/tutorial.rst:146
 msgid ""
 "In case we made an error, we can reupload the document over the older "
 "version:"
 msgstr ""
+"Якщо сталась помилка, ми можемо ще раз завантажити документ поверх старої "
+"версії:"
 
 #: ../../source/tutorial.rst:151
 msgid "And we can see that it is overriding the original version:"
-msgstr ""
+msgstr "І ми бачимо, що вона перекриває оригінальну версію:"
 
 #: ../../source/tutorial.rst:160
 msgid "Enquiries"
-msgstr ""
+msgstr "Уточнення (питання)"
 
 #: ../../source/tutorial.rst:162
 msgid ""
 "When auction is in `active.tendering` status, interested parties can ask "
 "questions:"
 msgstr ""
-
-#: ../../source/tutorial.rst:167
-msgid "Procuring entity can answer them:"
-msgstr ""
+"Коли закупівля має статус `active.tendering`, зацікавлені сторони можуть "
+"задавати питання:"
 
 #: ../../source/tutorial.rst:172
 msgid "And one can retrieve the questions list:"
-msgstr ""
+msgstr "Можна отримати список запитань:"
 
 #: ../../source/tutorial.rst:177
 msgid "And individual answer:"
-msgstr ""
+msgstr "та окрему відповідь:"
 
 #: ../../source/tutorial.rst:186
 msgid "Registering bid"
-msgstr ""
-
-#: ../../source/tutorial.rst:188
-msgid ""
-"When ``Auction.auctioningPeriod.startDate`` comes, Auction switches to "
-"`active.auctioning` status that allows registration of bids."
-msgstr ""
+msgstr "Реєстрація пропозиції"
 
 #: ../../source/tutorial.rst:190
 msgid "Bidder can register a bid in `draft` status:"
-msgstr ""
+msgstr "Учасник може зареєструвати пропозицію у статусі `draft` (чернетка):"
 
 #: ../../source/tutorial.rst:195
 msgid "And activate a bid:"
-msgstr ""
+msgstr "І активувати пропозицію:"
 
 #: ../../source/tutorial.rst:200
 msgid "And upload proposal document:"
-msgstr ""
+msgstr "І завантажити документ пропозиції:"
 
 #: ../../source/tutorial.rst:205
 msgid "It is possible to check the uploaded documents:"
-msgstr ""
-
-#: ../../source/tutorial.rst:210
-msgid ""
-"For best effect (biggest economy) Auction should have multiple bidders "
-"registered:"
-msgstr ""
+msgstr "Можна перевірити завантажені документи:"
 
 #: ../../source/tutorial.rst:219
 msgid "Auction"
-msgstr ""
+msgstr "Аукціон"
 
 #: ../../source/tutorial.rst:221
 msgid ""
 "After auction is scheduled anybody can visit it to watch. The auction can be"
 " reached at `Auction.auctionUrl`:"
 msgstr ""
+"Після того, як аукціон заплановано, будь-хто може його відвідати для "
+"перегляду. Аукціон можна подивитись за допомогою `Auction.auctionUrl`:"
 
 #: ../../source/tutorial.rst:226
 msgid "And bidders can find out their participation URLs via their bids:"
 msgstr ""
+"Учасники можуть дізнатись свої URL-адреси для участі через свої пропозиції:"
 
 #: ../../source/tutorial.rst:231
 msgid ""
 "See the `Bid.participationUrl` in the response. Similar, but different, URL "
 "can be retrieved for other participants:"
 msgstr ""
+"Дивіться на `Bid.participationUrl` у відповіді. Схожу, але іншу, URL-адресу "
+"можна отримати для інших учасників."
 
 #: ../../source/tutorial.rst:237
 msgid "Confirming qualification"
-msgstr ""
+msgstr "Підтвердження кваліфікації"
 
 #: ../../source/tutorial.rst:239
 msgid "Qualification comission registers its decision via the following call:"
-msgstr ""
+msgstr "Кваліфікаційна комісія реєструє своє рішення через такий виклик:"
 
 #: ../../source/tutorial.rst:245
 msgid "Setting  contract value"
-msgstr ""
+msgstr "Встановлення вартості угоди"
 
 #: ../../source/tutorial.rst:247
 msgid ""
 "By default contract value is set based on the award, but there is a "
 "possibility to set custom contract value."
 msgstr ""
+"За замовчуванням вартість угоди встановлюється на основі рішення про "
+"визначення переможця, але є можливість змінити це значення."
 
 #: ../../source/tutorial.rst:249
 msgid ""
 "If you want to **lower contract value**, you can insert new one into the "
 "`amount` field."
 msgstr ""
+"Якщо ви хочете **знизити вартість угоди**, ви можете встановити нове "
+"значення для поля `amount`."
 
 #: ../../source/tutorial.rst:254
 msgid "`200 OK` response was returned. The value was modified successfully."
-msgstr ""
+msgstr "Було повернуто код відповіді `200 OK`. Значення змінено успішно."
 
 #: ../../source/tutorial.rst:257
 msgid "Setting contract signature date"
-msgstr ""
+msgstr "Встановлення дати підписання угоди"
 
 #: ../../source/tutorial.rst:259
 msgid ""
 "There is a possibility to set custom contract signature date. You can insert"
 " appropriate date into the `dateSigned` field."
 msgstr ""
+"Є можливість встановити дату підписання угоди. Для цього вставте відповідну "
+"дату в поле `dateSigned`."
 
 #: ../../source/tutorial.rst:261
 msgid ""
 "If this date is not set, it will be auto-generated on the date of contract "
 "registration."
 msgstr ""
+"Якщо ви не встановите дату підписання, то вона буде згенерована автоматично "
+"під час реєстрації угоди."
 
 #: ../../source/tutorial.rst:267
 msgid "Setting contract validity period"
-msgstr ""
+msgstr "Встановлення терміну дії угоди"
 
 #: ../../source/tutorial.rst:269
 msgid ""
 "Setting contract validity period is optional, but if it is needed, you can "
 "set appropriate `startDate` and `endDate`."
 msgstr ""
+"Встановлення терміну дії угоди необов’язкове, але, якщо є необхідність, ви "
+"можете встановити відповідну дату початку `startDate` та кінця `endDate` "
+"терміну дії."
 
 #: ../../source/tutorial.rst:275
 msgid "Uploading contract documentation"
-msgstr ""
+msgstr "Завантаження документів щодо укладання угоди"
 
 #: ../../source/tutorial.rst:277
 msgid "You can upload contract documents. Let's upload contract document:"
-msgstr ""
+msgstr "Спробуємо завантажити документ пов’язаний з угодою:"
 
 #: ../../source/tutorial.rst:282
 msgid ""
 "`201 Created` response code and `Location` header confirm document was "
 "added."
 msgstr ""
+"Код відповіді `201 Created` та заголовок `Location` підтверджують, що "
+"документ додано."
 
 #: ../../source/tutorial.rst:284
 msgid "Let's see the list of contract documents:"
-msgstr ""
+msgstr "Переглянемо список завантажених документів:"
 
 #: ../../source/tutorial.rst:289
 msgid "We can add another contract document:"
-msgstr ""
+msgstr "Тепер спробуємо додати ще один документ щодо укладанням угоди:"
 
 #: ../../source/tutorial.rst:294
 msgid ""
 "`201 Created` response code and `Location` header confirm second document "
 "was uploaded."
 msgstr ""
+"Код відповіді `201 Created`та заголовок `Location` підтверджують, що ще один"
+" документ було додано."
 
 #: ../../source/tutorial.rst:296
 msgid "Let's see the list of all added contract documents:"
-msgstr ""
+msgstr "Тепер переглянемо знову усі документи пов’язані із укладанням угоди:"
 
 #: ../../source/tutorial.rst:302
 msgid "Set contract signature date"
-msgstr ""
+msgstr "Встановити дату підписання договору"
 
 #: ../../source/tutorial.rst:304
 msgid ""
 "There is a possibility to set custom contract signature date. If the date is"
 " not set it will be generated on contract registration."
 msgstr ""
+"Є можливість встановити дату підписання договору. Якщо дата не встановлена, "
+"то вона буде згенерована під час реєстрації договору."
 
 #: ../../source/tutorial.rst:311
 msgid "Contract registration"
-msgstr ""
+msgstr "Реєстрація угоди"
 
 #: ../../source/tutorial.rst:317
 msgid "Cancelling auction"
-msgstr ""
+msgstr "Скасування закупівлі"
 
 #: ../../source/tutorial.rst:319
 msgid ""
 "Auction creator can cancel auction anytime (except when auction has terminal"
 " status e.g. `usuccesfull`, `canceled`, `complete`)."
 msgstr ""
+"Організатор може скасувати аукціон у будь-який момент (крім аукціонів у "
+"кінцевому стані, наприклад, `usuccesfull`, `canceled`, `complete`)."
 
 #: ../../source/tutorial.rst:321
 msgid "The following steps should be applied:"
-msgstr ""
+msgstr "Для цього потрібно виконати наступні кроки:"
 
 #: ../../source/tutorial.rst:323
 msgid "Prepare cancellation request"
-msgstr ""
+msgstr "Приготуйте запит на скасування"
 
 #: ../../source/tutorial.rst:324
 msgid "Fill it with the protocol describing the cancellation reasons"
-msgstr ""
+msgstr "Наповніть його протоколом про причини скасування"
 
 #: ../../source/tutorial.rst:325
 msgid "Cancel the auction with the reasons prepared."
-msgstr ""
+msgstr "Скасуйте закупівлю через подані причини"
 
 #: ../../source/tutorial.rst:327
 msgid ""
@@ -388,51 +420,88 @@ msgid ""
 "cancel auction.  I.e.  you have to not only prepare cancellation request but"
 " to activate it as well."
 msgstr ""
+"Запит на скасування, який не пройшов активації (3-й крок), не матиме сили, "
+"тобто, для скасування закупівлі буде обов’язковим не тільки створити заявку,"
+" але і активувати її."
 
 #: ../../source/tutorial.rst:331
 msgid "See :ref:`cancellation` data structure for details."
 msgstr ""
+"Див. структуру запиту :ref:`cancellation` для більш детальної інформації."
 
 #: ../../source/tutorial.rst:334
 msgid "Preparing the cancellation request"
-msgstr ""
+msgstr "Формування запиту на скасування"
 
 #: ../../source/tutorial.rst:336
 msgid ""
 "You should pass `reason`, `status` defaults to `pending`. `id` is "
 "autogenerated and passed in the `Location` header of response."
 msgstr ""
+"Ви повинні передати змінні `reason`, `status` у стані `pending`. `id` "
+"генерується автоматично і повертається у додатковому заголовку відповіді "
+"`Location`:"
 
 #: ../../source/tutorial.rst:344
 msgid "Filling cancellation with protocol and supplementary documentation"
-msgstr ""
+msgstr "Наповнення протоколом та іншою супровідною документацією"
 
 #: ../../source/tutorial.rst:346
 msgid "Upload the file contents"
-msgstr ""
+msgstr "Завантаження вмісту файлу"
 
 #: ../../source/tutorial.rst:351
 msgid "Change the document description and other properties"
-msgstr ""
+msgstr "Зміна опису документа та інших властивостей"
 
 #: ../../source/tutorial.rst:356
 msgid "Upload new version of the document"
-msgstr ""
+msgstr "Завантаження нової версії документа"
 
 #: ../../source/tutorial.rst:362
 msgid "Activating the request and cancelling auction"
+msgstr "Активація запиту та скасування аукціону"
+
+#: ../../source/tutorial.rst:98
+msgid "Organizer can set bid guarantee:"
+msgstr "Організатор може встановити забезпечення пропозиції:"
+
+#: ../../source/tutorial.rst:109
+msgid ""
+"Organizer can upload PDF files into the created auction. Uploading should "
+"follow the :ref:`upload` rules."
 msgstr ""
+"Замовник може завантажити PDF файл у створений аукціон. Завантаження повинно"
+" відбуватись згідно правил :ref:`upload`."
+
+#: ../../source/tutorial.rst:167
+msgid "Organizer can answer them:"
+msgstr "Організатор може на них відповісти:"
 
 #: ../../source/tutorial.rst:63
 msgid ""
-"We do see the internal `id` of a auction (that can be used to construct full"
-" URL by prepending `https://api-"
+"We do see the auction's internal `id` (that can be used to construct full "
+"URL by prepending `https://api-"
 "sandbox.ea.openprocurement.org/api/0/auctions/`) and its `dateModified` "
 "datestamp."
 msgstr ""
+"Ми бачимо внутрішнє `id` аукціону (що може бути використано для побудови "
+"повної URL-адреси, якщо додати `http://api-"
+"sandbox.openprocurement.org/api/0/auctions/`) та його `dateModified` дату."
 
-#~ msgid ""
-#~ "We do see the internal `id` of a auction (that can be used to construct full"
-#~ " URL by prepending `http://api-sandbox.openprocurement.org/api/0/auctions/`)"
-#~ " and its `dateModified` datestamp."
-#~ msgstr ""
+#: ../../source/tutorial.rst:188
+msgid ""
+"When ``Auction.tenderingPeriod.startDate`` comes, Auction switches to "
+"`active.tendering` status that allows registration of bids."
+msgstr ""
+"Коли приходить ``Auction.tenderingPeriod.startDate``, аукціон отримує "
+"статус `active.tendering`, що дозволяє реєстрацію пропозицій."
+
+#: ../../source/tutorial.rst:210
+msgid ""
+"For the best effect (biggest economy) Auction should have multiple bidders "
+"registered:"
+msgstr ""
+"Для найкращого результату (найбільшої економії) аукціон повинен мати "
+"багато зареєстрованих учасників."
+

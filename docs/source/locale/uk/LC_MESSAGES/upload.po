@@ -4,48 +4,61 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2016-09-13 17:01+0200\n"
+"Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
+"Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 2.0\n"
 
 #: ../../source/upload.rst:4
 msgid "Documents Uploading"
-msgstr ""
+msgstr "Завантаження документа"
 
 #: ../../source/upload.rst:6
 msgid ""
 "All of the document uploading API endpoints follow the same set of rules."
 msgstr ""
+"Всі точки входу API для завантаження документів застосовують однакові "
+"правила."
 
 #: ../../source/upload.rst:9
 msgid "Upload document with registration"
-msgstr ""
+msgstr "Зареєструвати завантаження документа"
 
 #: ../../source/upload.rst:11
 msgid ""
 ":ref:`Register document upload in document service <documentservice"
 ":register-document-upload>`."
 msgstr ""
+":ref:`Зареєструвати завантаження документа <documentservice:register-"
+"document-upload>`."
 
 #: ../../source/upload.rst:13 ../../source/upload.rst:25
 msgid "Add document in API:"
-msgstr ""
+msgstr "Додати документ в API:"
 
 #: ../../source/upload.rst:18
 msgid ""
 ":ref:`Upload document in document service <documentservice:upload-"
 "document>`."
 msgstr ""
+":ref:`Завантажити документ в document service <documentservice:upload-"
+"document>`."
 
 #: ../../source/upload.rst:21
 msgid "Upload document w/o registration"
-msgstr ""
+msgstr "Завантажити документ без реєстрації"
 
 #: ../../source/upload.rst:23
 msgid ""
-":ref:`Register document upload in document service <documentservice:upload-"
+":ref:`Upload document w/o registration <documentservice:upload-"
 "document-w-o-registration>`."
 msgstr ""
+":ref:`Завантажити документ без реєстрації <documentservice:upload-"
+"document-w-o-registration>`."
+
