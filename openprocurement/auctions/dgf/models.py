@@ -8,7 +8,8 @@ from schematics.types.serializable import serializable
 from zope.interface import implementer
 from openprocurement.api.models import (
     BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
-    validate_features_uniq, validate_lots_uniq, Identifier as BaseIdentifier
+    validate_features_uniq, validate_lots_uniq, Identifier as BaseIdentifier,
+    Classification, validate_items_uniq,
 )
 from openprocurement.api.utils import calculate_business_date
 from openprocurement.auctions.core.models import IAuction
@@ -16,9 +17,33 @@ from openprocurement.auctions.flash.models import (
     Auction as BaseAuction, Document as BaseDocument, Bid as BaseBid,
     Complaint as BaseComplaint, Cancellation as BaseCancellation,
     Contract as BaseContract, Award as BaseAward, Lot, edit_role,
-    calc_auction_end_time, COMPLAINT_STAND_STILL_TIME,
-    Organization as BaseOrganization,
+    calc_auction_end_time, COMPLAINT_STAND_STILL_TIME, validate_cav_group,
+    Organization as BaseOrganization, Item as BaseItem,
 )
+
+
+def read_json(name):
+    import os.path
+    from json import loads
+    curr_dir = os.path.dirname(os.path.realpath(__file__))
+    file_path = os.path.join(curr_dir, name)
+    with open(file_path) as lang_file:
+        data = lang_file.read()
+    return loads(data)
+
+
+CAV_CODES = read_json('cav.json')
+
+
+class CAVClassification(Classification):
+    scheme = StringType(required=True, default=u'CAV', choices=[u'CAV'])
+    id = StringType(required=True, choices=CAV_CODES)
+
+
+class Item(BaseItem):
+    """A good, service, or work to be contracted."""
+    classification = ModelType(CAVClassification, required=True)
+    additionalClassifications = ListType(ModelType(Classification), default=list())
 
 
 class Document(BaseDocument):
@@ -74,12 +99,15 @@ class Cancellation(BaseCancellation):
 
 class Contract(BaseContract):
 
+    items = ListType(ModelType(Item))
     documents = ListType(ModelType(Document), default=list())
 
 
 class Award(BaseAward):
+
     complaints = ListType(ModelType(Complaint), default=list())
     documents = ListType(ModelType(Document), default=list())
+    items = ListType(ModelType(Item))
 
 
 def validate_not_available(items, *args):
@@ -107,6 +135,7 @@ class Auction(BaseAuction):
     status = StringType(choices=['draft', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
     features = ListType(ModelType(Feature), validators=[validate_features_uniq, validate_not_available])
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
+    items = ListType(ModelType(Item), required=True, min_size=1, validators=[validate_cav_group, validate_items_uniq])
 
     @serializable(serialized_name="tenderPeriod", type=ModelType(Period))
     def auction_tenderPeriod(self):

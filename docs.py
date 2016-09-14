@@ -161,16 +161,9 @@ test_auction_maximum_data = {
             "description": u"Земля для військовослужбовців",
             "classification": {
                 "scheme": u"CAV",
-                "id": u"70122000-2",
-                "description": u"Земля"
+                "id": u"06000000-2",
+                "description": u"Земельні ділянки"
             },
-            "additionalClassifications": [
-                {
-                    "scheme": u"ДКПП",
-                    "id": u"17.21.1",
-                    "description": u"папір і картон гофровані, паперова й картонна тара"
-                }
-            ],
             "unit": {
                 "name": u"item",
                 "code": u"44617100-9"

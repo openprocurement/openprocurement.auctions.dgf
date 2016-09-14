@@ -528,17 +528,6 @@ class AuctionResourceTest(BaseWebTest):
             {u'description': [u'currency should be only UAH'], u'location': u'body', u'name': u'value'}
         ])
 
-        data = test_auction_data["items"][0]["additionalClassifications"][0]["scheme"]
-        test_auction_data["items"][0]["additionalClassifications"][0]["scheme"] = 'Не ДКПП'
-        response = self.app.post_json(request_path, {'data': test_auction_data}, status=422)
-        test_auction_data["items"][0]["additionalClassifications"][0]["scheme"] = data
-        self.assertEqual(response.status, '422 Unprocessable Entity')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(response.json['status'], 'error')
-        self.assertEqual(response.json['errors'], [
-            {u'description': [{u'additionalClassifications': [u"One of additional classifications should be one of [ДКПП, NONE, ДК003, ДК015, ДК018]."]}], u'location': u'body', u'name': u'items'}
-        ])
-
         data = test_organization["contactPoint"]["telephone"]
         del test_organization["contactPoint"]["telephone"]
         response = self.app.post_json(request_path, {'data': test_auction_data}, status=422)
@@ -552,7 +541,7 @@ class AuctionResourceTest(BaseWebTest):
 
         data = test_auction_data["items"][0].copy()
         classification = data['classification'].copy()
-        classification["id"] = u'66113000-5'
+        classification["id"] = u'04000000-8'
         data['classification'] = classification
         test_auction_data["items"] = [test_auction_data["items"][0], data]
         response = self.app.post_json(request_path, {'data': test_auction_data}, status=422)
@@ -991,13 +980,13 @@ class AuctionResourceTest(BaseWebTest):
 
         response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'items': [{"classification": {
             "scheme": u"CAV",
-            "id": u"70123000-9",
-            "description": u"Нерухомість"
+            "id": u"04000000-8",
+            "description": u"Нерухоме майно"
         }}]}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
 
-        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'items': [{"additionalClassifications": auction['items'][0]["additionalClassifications"]}]}})
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'items': [{"additionalClassifications": [auction['items'][0]["classification"]]}]}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
 
