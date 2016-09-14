@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest, test_auction_data, test_lots, test_organization
+from openprocurement.auctions.dgf.tests.base import (
+    BaseAuctionWebTest, test_auction_data, test_lots,
+    test_financial_auction_data, test_financial_organization
+)
 
 
 class AuctionComplaintResourceTest(BaseAuctionWebTest):
 
     def test_create_auction_complaint_invalid(self):
         response = self.app.post_json('/auctions/some_id/complaints', {
-                                      'data': {'title': 'complaint title', 'description': 'complaint description', 'author': test_organization}}, status=404)
+                                      'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization}}, status=404)
         self.assertEqual(response.status, '404 Not Found')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['status'], 'error')
@@ -61,8 +64,8 @@ class AuctionComplaintResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['status'], 'error')
         self.assertEqual(response.json['errors'], [
-            {u'description': [u'This field is required.'], u'location': u'body', u'name': u'author'},
             {u'description': [u'This field is required.'], u'location': u'body', u'name': u'title'},
+            {u'description': [u'This field is required.'], u'location': u'body', u'name': u'author'},
         ])
 
         response = self.app.post_json(request_path, {'data': {
@@ -103,7 +106,7 @@ class AuctionComplaintResourceTest(BaseAuctionWebTest):
             {u'description': {u'contactPoint': [u'This field is required.'], u'identifier': {u'scheme': [u'This field is required.'], u'id': [u'This field is required.'], u'uri': [u'Not a well formed URL.']}, u'address': [u'This field is required.']}, u'location': u'body', u'name': u'author'}
         ])
 
-        response = self.app.post_json(request_path, {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': test_organization, 'relatedLot': '0' * 32}}, status=422)
+        response = self.app.post_json(request_path, {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization, 'relatedLot': '0' * 32}}, status=422)
         self.assertEqual(response.status, '422 Unprocessable Entity')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['status'], 'error')
@@ -113,13 +116,13 @@ class AuctionComplaintResourceTest(BaseAuctionWebTest):
 
     def test_create_auction_complaint(self):
         response = self.app.post_json('/auctions/{}/complaints'.format(
-            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': test_organization, 'status': 'claim'}})
+            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization, 'status': 'claim'}})
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         complaint = response.json['data']
         status_date = response.json['data']['date']
         owner_token = response.json['access']['token']
-        self.assertEqual(complaint['author']['name'], test_organization['name'])
+        self.assertEqual(complaint['author']['name'], self.initial_organization['name'])
         self.assertIn('id', complaint)
         self.assertIn(complaint['id'], response.headers['Location'])
 
@@ -172,14 +175,14 @@ class AuctionComplaintResourceTest(BaseAuctionWebTest):
         self.set_status('unsuccessful')
 
         response = self.app.post_json('/auctions/{}/complaints'.format(
-            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': test_organization}}, status=403)
+            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization}}, status=403)
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't add complaint in current (unsuccessful) auction status")
 
     def test_patch_auction_complaint(self):
         response = self.app.post_json('/auctions/{}/complaints'.format(
-            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': test_organization}})
+            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization}})
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         complaint = response.json['data']
@@ -289,7 +292,7 @@ class AuctionComplaintResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['data']["resolution"], "resolution text " * 2)
 
         response = self.app.post_json('/auctions/{}/complaints'.format(
-            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': test_organization}})
+            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization}})
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         complaint = response.json['data']
@@ -310,7 +313,7 @@ class AuctionComplaintResourceTest(BaseAuctionWebTest):
             response = self.app.post_json('/auctions/{}/complaints'.format(self.auction_id), {'data': {
                 'title': 'complaint title',
                 'description': 'complaint description',
-                'author': test_organization,
+                'author': self.initial_organization,
                 'status': 'claim'
             }})
             self.assertEqual(response.status, '201 Created')
@@ -356,7 +359,7 @@ class AuctionComplaintResourceTest(BaseAuctionWebTest):
 
     def test_get_auction_complaint(self):
         response = self.app.post_json('/auctions/{}/complaints'.format(
-            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': test_organization}})
+            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization}})
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         complaint = response.json['data']
@@ -387,7 +390,7 @@ class AuctionComplaintResourceTest(BaseAuctionWebTest):
 
     def test_get_auction_complaints(self):
         response = self.app.post_json('/auctions/{}/complaints'.format(
-            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': test_organization}})
+            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization}})
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         complaint = response.json['data']
@@ -416,7 +419,7 @@ class AuctionLotAwardComplaintResourceTest(BaseAuctionWebTest):
         response = self.app.post_json('/auctions/{}/complaints'.format(self.auction_id), {'data': {
             'title': 'complaint title',
             'description': 'complaint description',
-            'author': test_organization,
+            'author': self.initial_organization,
             'relatedLot': self.initial_lots[0]['id'],
             'status': 'claim'
         }})
@@ -424,7 +427,7 @@ class AuctionLotAwardComplaintResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.content_type, 'application/json')
         complaint = response.json['data']
         owner_token = response.json['access']['token']
-        self.assertEqual(complaint['author']['name'], test_organization['name'])
+        self.assertEqual(complaint['author']['name'], self.initial_organization['name'])
         self.assertIn('id', complaint)
         self.assertIn(complaint['id'], response.headers['Location'])
 
@@ -474,7 +477,7 @@ class AuctionLotAwardComplaintResourceTest(BaseAuctionWebTest):
         self.set_status('unsuccessful')
 
         response = self.app.post_json('/auctions/{}/complaints'.format(
-            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': test_organization}}, status=403)
+            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization}}, status=403)
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't add complaint in current (unsuccessful) auction status")
@@ -486,7 +489,7 @@ class AuctionComplaintDocumentResourceTest(BaseAuctionWebTest):
         super(AuctionComplaintDocumentResourceTest, self).setUp()
         # Create complaint
         response = self.app.post_json('/auctions/{}/complaints'.format(
-            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': test_organization}})
+            self.auction_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization}})
         complaint = response.json['data']
         self.complaint_id = complaint['id']
         self.complaint_owner_token = response.json['access']['token']
@@ -775,6 +778,21 @@ class AuctionComplaintDocumentResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (complete) auction status")
+
+
+class FinancialAuctionComplaintResourceTest(BaseAuctionWebTest):
+    initial_data = test_financial_auction_data
+    initial_organization = test_financial_organization
+
+@unittest.skip("option not available")
+class FinancialAuctionLotAwardComplaint(BaseAuctionWebTest):
+    initial_data = test_financial_auction_data
+    initial_organization = test_financial_organization
+
+
+class FinancialAuctionComplaintDocumentResourceTest(BaseAuctionWebTest):
+    initial_data = test_financial_auction_data
+    initial_organization = test_financial_organization
 
 
 def suite():
