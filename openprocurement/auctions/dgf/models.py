@@ -9,7 +9,7 @@ from zope.interface import implementer
 from openprocurement.api.models import (
     BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
     validate_features_uniq, validate_lots_uniq, Identifier as BaseIdentifier,
-    Classification, validate_items_uniq,
+    Classification, validate_items_uniq, ORA_CODES
 )
 from openprocurement.api.utils import calculate_business_date
 from openprocurement.auctions.core.models import IAuction
@@ -19,6 +19,7 @@ from openprocurement.auctions.flash.models import (
     Contract as BaseContract, Award as BaseAward, Lot, edit_role,
     calc_auction_end_time, COMPLAINT_STAND_STILL_TIME, validate_cav_group,
     Organization as BaseOrganization, Item as BaseItem,
+    ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion
 )
 
 
@@ -33,6 +34,8 @@ def read_json(name):
 
 
 CAV_CODES = read_json('cav.json')
+ORA_CODES = ORA_CODES[:]
+ORA_CODES[0:0] = ["UA-IPN", "UA-FIN"]
 
 
 class CAVClassification(Classification):
@@ -46,8 +49,21 @@ class Item(BaseItem):
     additionalClassifications = ListType(ModelType(Classification), default=list())
 
 
-class Document(BaseDocument):
+class Identifier(BaseIdentifier):
+    scheme = StringType(required=True, choices=ORA_CODES)
 
+
+class Organization(BaseOrganization):
+    identifier = ModelType(Identifier, required=True)
+    additionalIdentifiers = ListType(ModelType(Identifier))
+
+
+class ProcuringEntity(BaseProcuringEntity):
+    identifier = ModelType(Identifier, required=True)
+    additionalIdentifiers = ListType(ModelType(Identifier))
+
+
+class Document(BaseDocument):
     format = StringType(regex='^[-\w]+/[-\.\w\+]+$')
     documentType = StringType(choices=[
         'auctionNotice', 'awardNotice', 'contractNotice',
@@ -83,28 +99,33 @@ class Bid(BaseBid):
             'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'selfQualified'),
         }
 
+    tenderers = ListType(ModelType(Organization), required=True, min_size=1, max_size=1)
     documents = ListType(ModelType(Document), default=list())
     selfQualified = BooleanType(required=True, choices=[True])
 
 
-class Complaint(BaseComplaint):
+class Question(BaseQuestion):
+    author = ModelType(Organization, required=True)
 
+
+class Complaint(BaseComplaint):
+    author = ModelType(Organization, required=True)
     documents = ListType(ModelType(Document), default=list())
 
 
 class Cancellation(BaseCancellation):
-
     documents = ListType(ModelType(Document), default=list())
 
 
 class Contract(BaseContract):
-
     items = ListType(ModelType(Item))
+    suppliers = ListType(ModelType(Organization), min_size=1, max_size=1)
+    complaints = ListType(ModelType(Complaint), default=list())
     documents = ListType(ModelType(Document), default=list())
 
 
 class Award(BaseAward):
-
+    suppliers = ListType(ModelType(Organization), min_size=1, max_size=1)
     complaints = ListType(ModelType(Complaint), default=list())
     documents = ListType(ModelType(Document), default=list())
     items = ListType(ModelType(Item))
@@ -132,7 +153,9 @@ class Auction(BaseAuction):
     enquiryPeriod = ModelType(Period)  # The period during which enquiries may be made and will be answered.
     tenderPeriod = ModelType(Period)  # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
     procurementMethodType = StringType(default="dgfOtherAssets")
+    procuringEntity = ModelType(ProcuringEntity, required=True)
     status = StringType(choices=['draft', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
+    questions = ListType(ModelType(Question), default=list())
     features = ListType(ModelType(Feature), validators=[validate_features_uniq, validate_not_available])
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
     items = ListType(ModelType(Item), required=True, min_size=1, validators=[validate_cav_group, validate_items_uniq])
@@ -250,23 +273,12 @@ def validate_ua_fin(items, *args):
         raise ValidationError(u"One of additional classifications should be UA-FIN.")
 
 
-class Identifier(BaseIdentifier):
-
-    scheme = StringType(required=True)
-
-
-class Organization(BaseOrganization):
-
-    additionalIdentifiers = ListType(ModelType(Identifier), required=True)
-
-
 class FinantialOrganization(BaseOrganization):
-
+    identifier = ModelType(Identifier, required=True)
     additionalIdentifiers = ListType(ModelType(Identifier), required=True, validators=[validate_ua_fin])
 
 
 class Bid(Bid):
-
     class Options:
         roles = {
             'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'selfQualified', 'selfEligible'),
@@ -276,31 +288,11 @@ class Bid(Bid):
     selfEligible = BooleanType(required=True, choices=[True])
 
 
-class Complaint(Complaint):
-
-    author = ModelType(Organization, required=True)
-
-
-class Award(Award):
-
-    suppliers = ListType(ModelType(FinantialOrganization), required=True, min_size=1, max_size=1)
-    complaints = ListType(ModelType(Complaint), default=list())
-
-
-class Contract(Contract):
-
-    suppliers = ListType(ModelType(FinantialOrganization), min_size=1, max_size=1)
-
-
 @implementer(IAuction)
 class Auction(DGFOtherAssets):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
-
     bids = ListType(ModelType(Bid), default=list())
     procurementMethodType = StringType(default="dgfFinancialAssets")
-    complaints = ListType(ComplaintModelType(Complaint), default=list())
-    awards = ListType(ModelType(Award), default=list())
-    contracts = ListType(ModelType(Contract), default=list())
 
 
 DGFFinancialAssets = Auction
