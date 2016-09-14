@@ -6,7 +6,7 @@ from datetime import timedelta
 from uuid import uuid4
 
 from openprocurement.api.utils import ROUTE_PREFIX
-from openprocurement.api.models import get_now
+from openprocurement.api.models import get_now, SANDBOX_MODE
 from openprocurement.auctions.dgf.models import Auction
 from openprocurement.auctions.dgf.tests.base import test_auction_data, test_organization, BaseWebTest, BaseAuctionWebTest
 
@@ -32,6 +32,36 @@ class AuctionTest(BaseWebTest):
         assert u.doc_type == "Auction"
 
         u.delete_instance(self.db)
+
+    def test_create_role(self):
+        fields = set([
+            'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru',
+            'description', 'description_en', 'description_ru',
+            'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru',
+            'enquiryPeriod', 'features', 'guarantee', 'hasEnquiries', 'items', 'lots', 'minimalStep', 'mode',
+            'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru',
+            'procurementMethodType', 'procuringEntity',
+            'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru',
+            'tenderPeriod', 'title', 'title_en', 'title_ru', 'value',
+        ])
+        if SANDBOX_MODE:
+            fields.add('procurementMethodDetails')
+        self.assertEqual(set(Auction._fields) - Auction._options.roles['create'].fields, fields)
+
+    def test_edit_role(self):
+        fields = set([
+            'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru',
+            'description', 'description_en', 'description_ru',
+            'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru',
+            'features', 'hasEnquiries', 'items',
+            'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru',
+            'procuringEntity',
+            'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru',
+            'title', 'title_en', 'title_ru',
+        ])
+        if SANDBOX_MODE:
+            fields.add('procurementMethodDetails')
+        self.assertEqual(set(Auction._fields) - Auction._options.roles['edit_active.tendering'].fields, fields)
 
 
 class AuctionResourceTest(BaseWebTest):
