@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from email.header import Header
-from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest
+from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest,  test_financial_auction_data
 
 
 class AuctionDocumentResourceTest(BaseAuctionWebTest):
@@ -912,10 +912,20 @@ class AuctionDocumentWithDSResourceTest(AuctionDocumentResourceTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.auction) auction status")
 
 
+class FinancialAuctionDocumentResourceTest(AuctionDocumentResourceTest):
+    initial_data = test_financial_auction_data
+
+
+class FinancialAuctionDocumentWithDSResourceTest(AuctionDocumentWithDSResourceTest):
+    initial_data = test_financial_auction_data
+
+
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionDocumentResourceTest))
     suite.addTest(unittest.makeSuite(AuctionDocumentWithDSResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionDocumentResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionDocumentWithDSResourceTest))
     return suite
 
 
