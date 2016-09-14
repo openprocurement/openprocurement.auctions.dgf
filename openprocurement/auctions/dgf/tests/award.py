@@ -78,32 +78,20 @@ class AuctionAwardResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.status, '422 Unprocessable Entity')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['status'], 'error')
-        if self.initial_organization == test_financial_organization:
-            self.assertEqual(response.json['errors'], [
-                {u'description': [{u'additionalIdentifiers': [u'This field is required.'], u'contactPoint': [u'This field is required.'], u'identifier': {u'scheme': [u'This field is required.']}, u'name': [u'This field is required.'], u'address': [u'This field is required.']}], u'location': u'body', u'name': u'suppliers'},
-                {u'description': [u'This field is required.'], u'location': u'body', u'name': u'bid_id'}
-            ])
-        else:
-            self.assertEqual(response.json['errors'], [
-                {u'description': [{u'contactPoint': [u'This field is required.'], u'identifier': {u'scheme': [u'This field is required.']}, u'name': [u'This field is required.'], u'address': [u'This field is required.']}], u'location': u'body', u'name': u'suppliers'},
-                {u'description': [u'This field is required.'], u'location': u'body', u'name': u'bid_id'}
-            ])
+        self.assertEqual(response.json['errors'], [
+            {u'description': [{u'contactPoint': [u'This field is required.'], u'identifier': {u'scheme': [u'This field is required.']}, u'name': [u'This field is required.'], u'address': [u'This field is required.']}], u'location': u'body', u'name': u'suppliers'},
+            {u'description': [u'This field is required.'], u'location': u'body', u'name': u'bid_id'}
+        ])
 
         response = self.app.post_json(request_path, {'data': {'suppliers': [
                                       {'name': 'name', 'identifier': {'uri': 'invalid_value'}}]}}, status=422)
         self.assertEqual(response.status, '422 Unprocessable Entity')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['status'], 'error')
-        if self.initial_organization == test_financial_organization:
-            self.assertEqual(response.json['errors'], [
-                {u'description': [{u'additionalIdentifiers': [u'This field is required.'], u'contactPoint': [u'This field is required.'], u'identifier': {u'scheme': [u'This field is required.'], u'id': [u'This field is required.'], u'uri': [u'Not a well formed URL.']}, u'address': [u'This field is required.']}], u'location': u'body', u'name': u'suppliers'},
-                {u'description': [u'This field is required.'], u'location': u'body', u'name': u'bid_id'}
-            ])
-        else:
-            self.assertEqual(response.json['errors'], [
-                {u'description': [{u'contactPoint': [u'This field is required.'], u'identifier': {u'scheme': [u'This field is required.'], u'id': [u'This field is required.'], u'uri': [u'Not a well formed URL.']}, u'address': [u'This field is required.']}], u'location': u'body', u'name': u'suppliers'},
-                {u'description': [u'This field is required.'], u'location': u'body', u'name': u'bid_id'}
-            ])
+        self.assertEqual(response.json['errors'], [
+            {u'description': [{u'contactPoint': [u'This field is required.'], u'identifier': {u'scheme': [u'This field is required.'], u'id': [u'This field is required.'], u'uri': [u'Not a well formed URL.']}, u'address': [u'This field is required.']}], u'location': u'body', u'name': u'suppliers'},
+            {u'description': [u'This field is required.'], u'location': u'body', u'name': u'bid_id'}
+        ])
 
         response = self.app.post_json(request_path, {'data': {
             'suppliers': [self.initial_organization],
@@ -750,28 +738,18 @@ class AuctionAwardComplaintResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.status, '422 Unprocessable Entity')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['status'], 'error')
-        if self.initial_organization == test_financial_organization:
-            self.assertEqual(response.json['errors'], [
-                {u'description': {u'additionalIdentifiers': [u'This field is required.'], u'contactPoint': [u'This field is required.'], u'identifier': {u'scheme': [u'This field is required.']}, u'name': [u'This field is required.'], u'address': [u'This field is required.']}, u'location': u'body', u'name': u'author'}
-            ])
-        else:
-            self.assertEqual(response.json['errors'], [
-                {u'description': {u'contactPoint': [u'This field is required.'], u'identifier': {u'scheme': [u'This field is required.']}, u'name': [u'This field is required.'], u'address': [u'This field is required.']}, u'location': u'body', u'name': u'author'}
-            ])
+        self.assertEqual(response.json['errors'], [
+            {u'description': {u'contactPoint': [u'This field is required.'], u'identifier': {u'scheme': [u'This field is required.']}, u'name': [u'This field is required.'], u'address': [u'This field is required.']}, u'location': u'body', u'name': u'author'}
+        ])
 
         response = self.app.post_json(request_path, {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': {
             'name': 'name', 'identifier': {'uri': 'invalid_value'}}}}, status=422)
         self.assertEqual(response.status, '422 Unprocessable Entity')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['status'], 'error')
-        if self.initial_organization == test_financial_organization:
-            self.assertEqual(response.json['errors'], [
-                {u'description': {u'additionalIdentifiers': [u'This field is required.'], u'contactPoint': [u'This field is required.'], u'identifier': {u'scheme': [u'This field is required.'], u'id': [u'This field is required.'], u'uri': [u'Not a well formed URL.']}, u'address': [u'This field is required.']}, u'location': u'body', u'name': u'author'}
-            ])
-        else:
-            self.assertEqual(response.json['errors'], [
-                {u'description': {u'contactPoint': [u'This field is required.'], u'identifier': {u'scheme': [u'This field is required.'], u'id': [u'This field is required.'], u'uri': [u'Not a well formed URL.']}, u'address': [u'This field is required.']}, u'location': u'body', u'name': u'author'}
-            ])
+        self.assertEqual(response.json['errors'], [
+            {u'description': {u'contactPoint': [u'This field is required.'], u'identifier': {u'scheme': [u'This field is required.'], u'id': [u'This field is required.'], u'uri': [u'Not a well formed URL.']}, u'address': [u'This field is required.']}, u'location': u'body', u'name': u'author'}
+        ])
 
     def test_create_auction_award_complaint(self):
         response = self.app.post_json('/auctions/{}/awards/{}/complaints'.format(
@@ -2441,6 +2419,15 @@ def suite():
     suite.addTest(unittest.makeSuite(AuctionAwardDocumentResourceTest))
     suite.addTest(unittest.makeSuite(AuctionAwardResourceTest))
     suite.addTest(unittest.makeSuite(AuctionLotAwardResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuction2LotAwardComplaintDocumentResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuction2LotAwardComplaintResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuction2LotAwardDocumentResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuction2LotAwardResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionAwardComplaintDocumentResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionAwardComplaintResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionAwardDocumentResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionAwardResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionLotAwardResourceTest))
     return suite
 
 
