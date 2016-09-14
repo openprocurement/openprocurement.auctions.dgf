@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/2107e0c1269c4c8b8ab508c9c48bb4c2/complaints/dc3aac65873a45df87a59d33a50ade9b?acc_token=ff4825e4b05849638e305b1de48d4bb1 HTTP/1.0
+PATCH /api/2.3/auctions/c77d552d67b44bbbb0bc871e43058fa5/complaints/7fe8ada700024e5e98c9ccab8456861c?acc_token=8c643bae8b6a4a9eb9b464f931361d5c HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 51
 Content-Type: application/json
@@ -18,30 +18,30 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "status": "resolved", 
-    "tendererActionDate": "2016-09-13T14:12:25.275853+03:00", 
+    "tendererActionDate": "2016-09-14T15:36:36.151331+03:00", 
     "description": "complaint description", 
     "title": "complaint title", 
     "resolutionType": "resolved", 
     "type": "claim", 
     "satisfied": true, 
-    "id": "dc3aac65873a45df87a59d33a50ade9b", 
-    "dateAnswered": "2016-09-13T14:12:25.275827+03:00", 
+    "id": "7fe8ada700024e5e98c9ccab8456861c", 
+    "dateAnswered": "2016-09-14T15:36:36.151307+03:00", 
     "tendererAction": "Виправлено неконкурентні умови", 
-    "dateSubmitted": "2016-09-13T14:12:25.067440+03:00", 
-    "complaintID": "UA-EA-2016-09-13-000001.1", 
-    "date": "2016-09-13T14:12:25.369795+03:00", 
+    "dateSubmitted": "2016-09-14T15:36:35.925821+03:00", 
+    "complaintID": "UA-EA-2016-09-14-000001.1", 
+    "date": "2016-09-14T15:36:36.250831+03:00", 
     "resolution": "Виправлено неконкурентні умови", 
     "documents": [
       {
-        "dateModified": "2016-09-13T14:12:24.987697+03:00", 
+        "dateModified": "2016-09-14T15:36:35.844251+03:00", 
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/01d2bbf8bfe14578a9278a9a79d4c286?KeyID=3d7a7dcd&Signature=0TnbJVZrSQtnqGy6FT45sBCiE7mVGNuoyTBIrd2HKJ6gesYDQKkLdNE6C0VXrgPy0fzr1GkdiUJmmwokZsMPBg%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/23048ec4566b4488a2741ea4287ccafe?KeyID=d1402da7&Signature=PGyzRPP4oSlIDyYSPoYnJE5pPw1yZ0nDnCBiG4w6M1tcPq1ey1Zyn05HV%2FVqBfl%252BpVzKLzcvUVaCFoGmRMitDA%253D%253D", 
         "author": "complaint_owner", 
         "documentOf": "tender", 
-        "datePublished": "2016-09-13T14:12:24.987670+03:00", 
+        "datePublished": "2016-09-14T15:36:35.844221+03:00", 
         "title": "Complaint_Attachement.pdf", 
-        "id": "f4bee228b6064a218fe1222e3635f1cc"
+        "id": "17d413e8396349a789e40006c408a4e0"
       }
     ]
   }

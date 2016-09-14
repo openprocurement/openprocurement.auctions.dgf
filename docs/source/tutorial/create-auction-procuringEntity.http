@@ -1,6 +1,6 @@
 POST /api/2.3/auctions?opt_pretty=1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 2240
+Content-Length: 1934
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
@@ -12,7 +12,7 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2016-09-27T14:12:22.793113"
+      "startDate": "2016-09-28T15:36:32.586037"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "value": {
@@ -42,20 +42,13 @@ Host: api-sandbox.ea.openprocurement.org
     "title_ru": "футляры к государственным наградам", 
     "items": [
       {
-        "description": "Земля для військовослужбовців", 
         "classification": {
           "scheme": "CAV", 
-          "id": "70122000-2", 
-          "description": "Земля"
+          "id": "06000000-2", 
+          "description": "Земельні ділянки"
         }, 
-        "additionalClassifications": [
-          {
-            "scheme": "ДКПП", 
-            "id": "17.21.1", 
-            "description": "папір і картон гофровані, паперова й картонна тара"
-          }
-        ], 
-        "id": "fa64237c36624a8b82db7eb31dcd485d", 
+        "description": "Земля для військовослужбовців", 
+        "id": "067623a655524901ab14f89d9ef7b458", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -71,21 +64,21 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/9693a4dfaa5b489a99989f74f885c45c
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/716a1f15df0d40dbb26736f757e65fa3
 
 {
   "access": {
-    "token": "4cb1e0c56a194ddd8a6dc5f2be79881d"
+    "token": "59d498cd837f45eba8c96a4ec2d9986d"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-09-13-000002", 
+    "auctionID": "UA-EA-2016-09-14-000002", 
     "enquiryPeriod": {
-      "startDate": "2016-09-13T14:12:34.464711+03:00", 
-      "endDate": "2016-09-26T14:12:22.793113+03:00"
+      "startDate": "2016-09-14T15:36:47.616609+03:00", 
+      "endDate": "2016-09-27T15:36:32.586037+03:00"
     }, 
     "submissionMethod": "electronicAuction", 
-    "next_check": "2016-09-26T14:12:22.793113+03:00", 
+    "next_check": "2016-09-27T15:36:32.586037+03:00", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 
@@ -108,19 +101,19 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/9693a4dfaa5
     }, 
     "owner": "broker", 
     "title_en": "[TESTING] Cases with state awards", 
-    "id": "9693a4dfaa5b489a99989f74f885c45c", 
+    "id": "716a1f15df0d40dbb26736f757e65fa3", 
     "title": "[ТЕСТУВАННЯ] футляри до державних нагород", 
-    "dateModified": "2016-09-13T14:12:34.468622+03:00", 
+    "dateModified": "2016-09-14T15:36:47.619850+03:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2016-09-13T14:12:34.464711+03:00", 
-      "endDate": "2016-09-26T14:12:22.793113+03:00"
+      "startDate": "2016-09-14T15:36:47.616609+03:00", 
+      "endDate": "2016-09-27T15:36:32.586037+03:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2016-09-27T00:00:00+03:00"
+      "shouldStartAfter": "2016-09-28T00:00:00+03:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
-    "date": "2016-09-13T14:12:34.464711+03:00", 
+    "date": "2016-09-14T15:36:47.616609+03:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -128,23 +121,16 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/9693a4dfaa5
     }, 
     "items": [
       {
-        "description": "Земля для військовослужбовців", 
-        "classification": {
-          "scheme": "CAV", 
-          "description": "Земля", 
-          "id": "70122000-2"
-        }, 
-        "additionalClassifications": [
-          {
-            "scheme": "ДКПП", 
-            "id": "17.21.1", 
-            "description": "папір і картон гофровані, паперова й картонна тара"
-          }
-        ], 
-        "id": "fa64237c36624a8b82db7eb31dcd485d", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
+        }, 
+        "description": "Земля для військовослужбовців", 
+        "id": "067623a655524901ab14f89d9ef7b458", 
+        "classification": {
+          "scheme": "CAV", 
+          "description": "Земельні ділянки", 
+          "id": "06000000-2"
         }, 
         "quantity": 5
       }

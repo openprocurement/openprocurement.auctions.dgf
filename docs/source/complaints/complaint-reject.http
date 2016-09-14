@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/2107e0c1269c4c8b8ab508c9c48bb4c2/complaints/7ef5abf1a0444d3095a8bcb47e42f325 HTTP/1.0
+PATCH /api/2.3/auctions/c77d552d67b44bbbb0bc871e43058fa5/complaints/51f23fcd5f5d4617b055a6d246f11956 HTTP/1.0
 Authorization: Basic cmV2aWV3ZXI6
 Content-Length: 31
 Content-Type: application/json
@@ -17,7 +17,7 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "status": "invalid", 
-    "dateDecision": "2016-09-13T14:12:25.631333+03:00", 
+    "dateDecision": "2016-09-14T15:36:36.532049+03:00", 
     "description": "complaint description", 
     "author": {
       "contactPoint": {
@@ -43,13 +43,13 @@ Content-Type: application/json; charset=UTF-8
     "type": "complaint", 
     "title": "complaint title", 
     "satisfied": false, 
-    "dateEscalated": "2016-09-13T14:12:25.531507+03:00", 
-    "dateAnswered": "2016-09-13T14:12:25.446965+03:00", 
-    "dateSubmitted": "2016-09-13T14:12:25.137123+03:00", 
-    "complaintID": "UA-EA-2016-09-13-000001.2", 
-    "date": "2016-09-13T14:12:25.635670+03:00", 
+    "dateEscalated": "2016-09-14T15:36:36.436113+03:00", 
+    "dateAnswered": "2016-09-14T15:36:36.344001+03:00", 
+    "dateSubmitted": "2016-09-14T15:36:36.010322+03:00", 
+    "complaintID": "UA-EA-2016-09-14-000001.2", 
+    "date": "2016-09-14T15:36:36.536791+03:00", 
     "resolution": "Виправлено неконкурентні умови", 
-    "id": "7ef5abf1a0444d3095a8bcb47e42f325"
+    "id": "51f23fcd5f5d4617b055a6d246f11956"
   }
 }
 

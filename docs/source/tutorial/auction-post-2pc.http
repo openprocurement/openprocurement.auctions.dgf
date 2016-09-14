@@ -1,6 +1,6 @@
 POST /api/2.3/auctions?opt_pretty=1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 2343
+Content-Length: 2037
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
@@ -13,7 +13,7 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2016-09-27T14:12:22.792154"
+      "startDate": "2016-09-28T15:36:32.584199"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "value": {
@@ -45,16 +45,9 @@ Host: api-sandbox.ea.openprocurement.org
         "description": "Земля для військовослужбовців", 
         "classification": {
           "scheme": "CAV", 
-          "id": "70122000-2", 
-          "description": "Земля"
+          "id": "06000000-2", 
+          "description": "Земельні ділянки"
         }, 
-        "additionalClassifications": [
-          {
-            "scheme": "ДКПП", 
-            "id": "17.21.1", 
-            "description": "папір і картон гофровані, паперова й картонна тара"
-          }
-        ], 
         "deliveryAddress": {
           "countryName": "Україна", 
           "postalCode": "79000", 
@@ -63,8 +56,8 @@ Host: api-sandbox.ea.openprocurement.org
           "locality": "м. Київ"
         }, 
         "deliveryDate": {
-          "startDate": "2016-09-15T14:12:22.792154", 
-          "endDate": "2016-09-18T14:12:22.792154"
+          "startDate": "2016-09-16T15:36:32.584199", 
+          "endDate": "2016-09-19T15:36:32.584199"
         }, 
         "unit": {
           "code": "44617100-9", 
@@ -79,18 +72,18 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/1c153da459b14757bd8c9eb207cd7e17
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/03a67bc711284465ae95e735736a0af2
 
 {
   "access": {
-    "token": "cfeac79672ba464caf95ca8a3069899b"
+    "token": "f8f3f9bf70834fbebcc666c18ab58759"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-09-13-000001", 
+    "auctionID": "UA-EA-2016-09-14-000001", 
     "tenderPeriod": {
-      "startDate": "2016-09-13T14:12:24.027268+03:00", 
-      "endDate": "2016-09-26T14:12:22.792154+03:00"
+      "startDate": "2016-09-14T15:36:34.645836+03:00", 
+      "endDate": "2016-09-27T15:36:32.584199+03:00"
     }, 
     "title": "футляри до державних нагород", 
     "minimalStep": {
@@ -98,21 +91,28 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/1c153da459b
       "amount": 35.0, 
       "valueAddedTaxIncluded": true
     }, 
+    "enquiryPeriod": {
+      "startDate": "2016-09-14T15:36:34.645836+03:00", 
+      "endDate": "2016-09-27T15:36:32.584199+03:00"
+    }, 
+    "procurementMethodType": "dgfOtherAssets", 
+    "value": {
+      "currency": "UAH", 
+      "amount": 100.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "submissionMethod": "electronicAuction", 
+    "date": "2016-09-14T15:36:34.645836+03:00", 
+    "status": "draft", 
+    "awardCriteria": "lowestCost", 
     "items": [
       {
         "description": "Земля для військовослужбовців", 
         "classification": {
           "scheme": "CAV", 
-          "description": "Земля", 
-          "id": "70122000-2"
+          "description": "Земельні ділянки", 
+          "id": "06000000-2"
         }, 
-        "additionalClassifications": [
-          {
-            "scheme": "ДКПП", 
-            "id": "17.21.1", 
-            "description": "папір і картон гофровані, паперова й картонна тара"
-          }
-        ], 
         "deliveryAddress": {
           "postalCode": "79000", 
           "countryName": "Україна", 
@@ -121,10 +121,10 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/1c153da459b
           "locality": "м. Київ"
         }, 
         "deliveryDate": {
-          "startDate": "2016-09-15T14:12:22.792154+03:00", 
-          "endDate": "2016-09-18T14:12:22.792154+03:00"
+          "startDate": "2016-09-16T15:36:32.584199+03:00", 
+          "endDate": "2016-09-19T15:36:32.584199+03:00"
         }, 
-        "id": "a50a3592112148eabb7dbcbf3d805e0a", 
+        "id": "6ce50f9e6f27443bbd57e911c334871d", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -132,23 +132,9 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/1c153da459b
         "quantity": 5
       }
     ], 
-    "procurementMethodType": "dgfOtherAssets", 
-    "value": {
-      "currency": "UAH", 
-      "amount": 100.0, 
-      "valueAddedTaxIncluded": true
-    }, 
-    "submissionMethod": "electronicAuction", 
-    "date": "2016-09-13T14:12:24.027268+03:00", 
-    "status": "draft", 
-    "awardCriteria": "lowestCost", 
-    "enquiryPeriod": {
-      "startDate": "2016-09-13T14:12:24.027268+03:00", 
-      "endDate": "2016-09-26T14:12:22.792154+03:00"
-    }, 
     "owner": "broker", 
-    "dateModified": "2016-09-13T14:12:24.031067+03:00", 
-    "id": "1c153da459b14757bd8c9eb207cd7e17", 
+    "dateModified": "2016-09-14T15:36:34.649114+03:00", 
+    "id": "03a67bc711284465ae95e735736a0af2", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 

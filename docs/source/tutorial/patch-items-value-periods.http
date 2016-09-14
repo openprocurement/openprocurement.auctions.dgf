@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/76824176310f4436a4abe3a16007ec14?acc_token=321b272f9a3842f59918ebcc118c8f17 HTTP/1.0
+PATCH /api/2.3/auctions/d2c7b6fb8a074928820d365c09c5c0b1?acc_token=aa7d6019a2c1429fb7d3efa2431e2162 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 75
 Content-Type: application/json
@@ -7,7 +7,7 @@ Host: api-sandbox.ea.openprocurement.org
 {
   "data": {
     "tenderPeriod": {
-      "endDate": "2016-09-28T14:12:44.594767+03:00"
+      "endDate": "2016-09-29T15:36:57.740460+03:00"
     }
   }
 }
@@ -19,13 +19,10 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-09-13-000001", 
-    "auctionPeriod": {
-      "shouldStartAfter": "2016-09-29T00:00:00+03:00"
-    }, 
+    "auctionID": "UA-EA-2016-09-14-000001", 
     "tenderPeriod": {
-      "startDate": "2016-09-13T14:12:34.338296+03:00", 
-      "endDate": "2016-09-28T14:12:44.594767+03:00"
+      "startDate": "2016-09-14T15:36:47.492102+03:00", 
+      "endDate": "2016-09-29T15:36:57.740460+03:00"
     }, 
     "title": "футляри до державних нагород", 
     "minimalStep": {
@@ -33,21 +30,34 @@ Content-Type: application/json; charset=UTF-8
       "amount": 35.0, 
       "valueAddedTaxIncluded": true
     }, 
+    "auctionPeriod": {
+      "shouldStartAfter": "2016-09-30T00:00:00+03:00"
+    }, 
+    "procurementMethodType": "dgfOtherAssets", 
+    "value": {
+      "currency": "UAH", 
+      "amount": 100.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "submissionMethod": "electronicAuction", 
+    "date": "2016-09-14T15:36:47.492102+03:00", 
+    "dateModified": "2016-09-14T15:36:47.799337+03:00", 
+    "status": "active.tendering", 
+    "awardCriteria": "lowestCost", 
+    "enquiryPeriod": {
+      "startDate": "2016-09-14T15:36:47.492102+03:00", 
+      "endDate": "2016-09-27T15:36:32.584199+03:00"
+    }, 
+    "owner": "broker", 
+    "next_check": "2016-09-29T15:36:57.740460+03:00", 
     "items": [
       {
         "description": "Земля для військовослужбовців", 
         "classification": {
           "scheme": "CAV", 
-          "description": "Земля", 
-          "id": "70122000-2"
+          "description": "Земельні ділянки", 
+          "id": "06000000-2"
         }, 
-        "additionalClassifications": [
-          {
-            "scheme": "ДКПП", 
-            "id": "17.21.1", 
-            "description": "папір і картон гофровані, паперова й картонна тара"
-          }
-        ], 
         "deliveryAddress": {
           "postalCode": "79000", 
           "countryName": "Україна", 
@@ -56,10 +66,10 @@ Content-Type: application/json; charset=UTF-8
           "locality": "м. Київ"
         }, 
         "deliveryDate": {
-          "startDate": "2016-09-15T14:12:22.792154+03:00", 
-          "endDate": "2016-09-18T14:12:22.792154+03:00"
+          "startDate": "2016-09-16T15:36:32.584199+03:00", 
+          "endDate": "2016-09-19T15:36:32.584199+03:00"
         }, 
-        "id": "f01de1e6791d45fa9f6f5d09766263f2", 
+        "id": "86b904b3957345c2a95e321a4e07b4be", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -67,24 +77,7 @@ Content-Type: application/json; charset=UTF-8
         "quantity": 5
       }
     ], 
-    "procurementMethodType": "dgfOtherAssets", 
-    "value": {
-      "currency": "UAH", 
-      "amount": 100.0, 
-      "valueAddedTaxIncluded": true
-    }, 
-    "submissionMethod": "electronicAuction", 
-    "date": "2016-09-13T14:12:34.338296+03:00", 
-    "dateModified": "2016-09-13T14:12:34.653635+03:00", 
-    "status": "active.tendering", 
-    "awardCriteria": "lowestCost", 
-    "enquiryPeriod": {
-      "startDate": "2016-09-13T14:12:34.338296+03:00", 
-      "endDate": "2016-09-26T14:12:22.792154+03:00"
-    }, 
-    "owner": "broker", 
-    "next_check": "2016-09-28T14:12:44.594767+03:00", 
-    "id": "76824176310f4436a4abe3a16007ec14", 
+    "id": "d2c7b6fb8a074928820d365c09c5c0b1", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 

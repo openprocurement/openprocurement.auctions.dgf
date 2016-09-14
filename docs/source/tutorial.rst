@@ -95,11 +95,6 @@ Checking the listing again reflects the new modification date:
 .. include:: tutorial/auction-listing-after-patch.http
    :code:
 
-Organizer can set bid guarantee:
-
-.. include:: tutorial/set-bid-guarantee.http
-   :code:
-
 
 .. index:: Document
 

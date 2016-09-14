@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/76824176310f4436a4abe3a16007ec14/bids/9cc7d9856dce4622a6e9434145814a19?acc_token=54bddbd4076c4c1fbcc533789821d35e HTTP/1.0
+PATCH /api/2.3/auctions/d2c7b6fb8a074928820d365c09c5c0b1/bids/924f8b850e66448b857c961607460381?acc_token=3d03bd01889e420283a236936a7426fa HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 30
 Content-Type: application/json
@@ -22,7 +22,7 @@ Content-Type: application/json; charset=UTF-8
       "amount": 500.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "id": "9cc7d9856dce4622a6e9434145814a19", 
+    "id": "924f8b850e66448b857c961607460381", 
     "tenderers": [
       {
         "contactPoint": {
@@ -45,7 +45,7 @@ Content-Type: application/json; charset=UTF-8
         }
       }
     ], 
-    "date": "2016-09-13T14:12:35.359945+03:00", 
+    "date": "2016-09-14T15:36:48.552503+03:00", 
     "selfQualified": true
   }
 }

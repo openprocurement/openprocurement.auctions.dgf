@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/2107e0c1269c4c8b8ab508c9c48bb4c2/awards/2c1639d846c74bff94ae0e140ff97b3c/complaints/6b2e541b811b4dff89a77f154522fcf4?acc_token=4156a98bd4c74c0a94699dd24fdce191 HTTP/1.0
+PATCH /api/2.3/auctions/c77d552d67b44bbbb0bc871e43058fa5/awards/bd0bd4d123b544659dbb97f1e317709e/complaints/72ed6a40ef8c431c98b0c13aa860f032?acc_token=55583fe6411d43e9bbaf16b24fe2e104 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 29
 Content-Type: application/json
@@ -19,15 +19,15 @@ Content-Type: application/json; charset=UTF-8
     "status": "claim", 
     "documents": [
       {
-        "dateModified": "2016-09-13T14:12:29.127832+03:00", 
+        "dateModified": "2016-09-14T15:36:40.672347+03:00", 
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/84d6346df8444253a3a8ad3d71cb904a?KeyID=3d7a7dcd&Signature=LMrQGmzKEn59n7PX6Vw6M6tfRjqS2CzrTqMi7d20i2Ma%2Fg7jAtS%252BTqz824Xbf1omelWo9LOKV7JFchNWAYRjDQ%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/c48a1c3cb8434c569ebaa592ef2287d9?KeyID=d1402da7&Signature=4pzORGsvIemMqXRu0l9WFleTU%2FOaGS5oOvT%2FlUgvF%252Bq7lZCjlPVxUeuk%2FoFc4hAzaJqEJ2iVPT9geJhGQ52zCw%253D%253D", 
         "author": "complaint_owner", 
         "documentOf": "tender", 
-        "datePublished": "2016-09-13T14:12:29.127806+03:00", 
+        "datePublished": "2016-09-14T15:36:40.672317+03:00", 
         "title": "Complaint_Attachement.pdf", 
-        "id": "46a6661a92814b93b8b75c1396ca8627"
+        "id": "a08e1b2f307d4079ab876cf0c994d257"
       }
     ], 
     "description": "complaint description", 
@@ -52,11 +52,11 @@ Content-Type: application/json; charset=UTF-8
         "locality": "м. Вінниця"
       }
     }, 
-    "dateSubmitted": "2016-09-13T14:12:29.354756+03:00", 
-    "complaintID": "UA-EA-2016-09-13-000001.5", 
-    "date": "2016-09-13T14:12:29.365241+03:00", 
+    "dateSubmitted": "2016-09-14T15:36:40.946297+03:00", 
+    "complaintID": "UA-EA-2016-09-14-000001.5", 
+    "date": "2016-09-14T15:36:40.958354+03:00", 
     "type": "claim", 
-    "id": "6b2e541b811b4dff89a77f154522fcf4"
+    "id": "72ed6a40ef8c431c98b0c13aa860f032"
   }
 }
 
