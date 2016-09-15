@@ -588,62 +588,6 @@ class AuctionDocumentWithDSResourceTest(AuctionDocumentResourceTest):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't add document in current (active.auction) auction status")
 
-
-    def test_create_auction_document_vdr(self):
-        vdr_url = 'http://virtial-data-room.com/id_of_room'
-        response = self.app.post_json('/auctions/{}/documents'.format(self.auction_id),
-            {'data': {
-                'title': u'VDR for auction lot',
-                'url': vdr_url,
-                'documentType': 'virtualDataRoom',
-            }})
-        self.assertEqual(response.status, '201 Created')
-        self.assertEqual(response.content_type, 'application/json')
-        doc_id = response.json["data"]['id']
-        self.assertIn(doc_id, response.headers['Location'])
-        self.assertEqual('VDR for auction lot', response.json["data"]["title"])
-        self.assertEqual(vdr_url, response.json["data"]["url"])
-        self.assertEqual('virtualDataRoom', response.json["data"]["documentType"])
-
-        auction = self.db.get(self.auction_id)
-        self.assertEqual('VDR for auction lot', auction['documents'][-1]["title"])
-        self.assertEqual(vdr_url, auction['documents'][-1]["url"])
-        self.assertEqual('virtualDataRoom', auction['documents'][-1]["documentType"])
-
-        response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(doc_id, response.json["data"][-1]["id"])
-        self.assertEqual('VDR for auction lot', response.json["data"][-1]["title"])
-        self.assertEqual(vdr_url, response.json["data"][-1]["url"])
-        self.assertEqual('virtualDataRoom', response.json["data"][-1]["documentType"])
-
-        response = self.app.get('/auctions/{}/documents/{}?download=1'.format(
-            self.auction_id, doc_id))
-        self.assertEqual(response.status, '302 Moved Temporarily')
-        self.assertEqual(vdr_url, response.location)
-
-        response = self.app.get('/auctions/{}/documents/{}'.format(
-            self.auction_id, doc_id))
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(doc_id, response.json["data"]["id"])
-        self.assertEqual('VDR for auction lot', response.json["data"]["title"])
-        self.assertEqual(vdr_url, response.json["data"]["url"])
-        self.assertEqual('virtualDataRoom', response.json["data"]["documentType"])
-
-        self.set_status('active.auction')
-
-        response = self.app.post_json('/auctions/{}/documents'.format(self.auction_id),
-            {'data': {
-                'title': u'VDR for auction lot',
-                'url': vdr_url,
-                'documentType': 'virtualDataRoom',
-            }}, status=403)
-        self.assertEqual(response.status, '403 Forbidden')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(response.json['errors'][0]["description"], "Can't add document in current (active.auction) auction status")
-
     def test_put_auction_document_json(self):
         response = self.app.post_json('/auctions/{}/documents'.format(self.auction_id),
             {'data': {
@@ -764,6 +708,69 @@ class AuctionDocumentWithDSResourceTest(AuctionDocumentResourceTest):
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.auction) auction status")
+
+
+class FinancialAuctionDocumentResourceTest(AuctionDocumentResourceTest):
+    initial_data = test_financial_auction_data
+
+
+class FinancialAuctionDocumentWithDSResourceTest(AuctionDocumentWithDSResourceTest):
+    initial_data = test_financial_auction_data
+
+    def test_create_auction_document_vdr(self):
+        vdr_url = 'http://virtial-data-room.com/id_of_room'
+        response = self.app.post_json('/auctions/{}/documents'.format(self.auction_id),
+            {'data': {
+                'title': u'VDR for auction lot',
+                'url': vdr_url,
+                'documentType': 'virtualDataRoom',
+            }})
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        doc_id = response.json["data"]['id']
+        self.assertIn(doc_id, response.headers['Location'])
+        self.assertEqual('VDR for auction lot', response.json["data"]["title"])
+        self.assertEqual(vdr_url, response.json["data"]["url"])
+        self.assertEqual('virtualDataRoom', response.json["data"]["documentType"])
+
+        auction = self.db.get(self.auction_id)
+        self.assertEqual('VDR for auction lot', auction['documents'][-1]["title"])
+        self.assertEqual(vdr_url, auction['documents'][-1]["url"])
+        self.assertEqual('virtualDataRoom', auction['documents'][-1]["documentType"])
+
+        response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(doc_id, response.json["data"][-1]["id"])
+        self.assertEqual('VDR for auction lot', response.json["data"][-1]["title"])
+        self.assertEqual(vdr_url, response.json["data"][-1]["url"])
+        self.assertEqual('virtualDataRoom', response.json["data"][-1]["documentType"])
+
+        response = self.app.get('/auctions/{}/documents/{}?download=1'.format(
+            self.auction_id, doc_id))
+        self.assertEqual(response.status, '302 Moved Temporarily')
+        self.assertEqual(vdr_url, response.location)
+
+        response = self.app.get('/auctions/{}/documents/{}'.format(
+            self.auction_id, doc_id))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(doc_id, response.json["data"]["id"])
+        self.assertEqual('VDR for auction lot', response.json["data"]["title"])
+        self.assertEqual(vdr_url, response.json["data"]["url"])
+        self.assertEqual('virtualDataRoom', response.json["data"]["documentType"])
+
+        self.set_status('active.auction')
+
+        response = self.app.post_json('/auctions/{}/documents'.format(self.auction_id),
+            {'data': {
+                'title': u'VDR for auction lot',
+                'url': vdr_url,
+                'documentType': 'virtualDataRoom',
+            }}, status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'][0]["description"], "Can't add document in current (active.auction) auction status")
 
     def test_put_auction_document_vdr(self):
         vdr_url = 'http://virtial-data-room.com/id_of_room'
@@ -910,14 +917,6 @@ class AuctionDocumentWithDSResourceTest(AuctionDocumentResourceTest):
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.auction) auction status")
-
-
-class FinancialAuctionDocumentResourceTest(AuctionDocumentResourceTest):
-    initial_data = test_financial_auction_data
-
-
-class FinancialAuctionDocumentWithDSResourceTest(AuctionDocumentWithDSResourceTest):
-    initial_data = test_financial_auction_data
 
 
 def suite():
