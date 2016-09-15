@@ -17,7 +17,7 @@ Schema
     string, :ref:`date`, auto-generated
 
 :id:
-    uid, auto-generated
+    UID, auto-generated
 
 :status:
     string
@@ -46,7 +46,7 @@ Schema
     List of :ref:`LotValue` objects
 
 :participationUrl:
-    url
+    URL
 
     A web address for participation in auction.
 
@@ -61,12 +61,12 @@ Schema
 :code:
     string, required
 
-    Code of the feature.
+    Feature code.
 
 :value:
     float, required
 
-    Value of the feature.
+    Feature value.
 
 .. _LotValue:
 
@@ -88,12 +88,12 @@ Schema
 :relatedLot:
     string
 
-    Id of related :ref:`lot`.
+    ID of related :ref:`lot`.
 
 :date:
     string, :ref:`date`, auto-generated
 
 :participationUrl:
-    url
+    URL
 
     A web address for participation in auction.

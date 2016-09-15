@@ -25,10 +25,10 @@ Schema
 
     |ocdsDescription|
     The primary classification for the item. See the
-    itemClassificationScheme to identify preferred classification lists,
+    `itemClassificationScheme` to identify preferred classification lists,
     including CPV and GSIN.
 
-    It is mandatory for `classification.scheme` to be `CPV`. The
+    It is required for `classification.scheme` to be `CPV`. The
     `classification.id` should be valid CPV code.
 
 :additionalClassifications:
@@ -36,11 +36,11 @@ Schema
 
     |ocdsDescription|
     An array of additional classifications for the item. See the
-    itemClassificationScheme codelist for common options to use in OCDS. 
+    `itemClassificationScheme` codelist for common options to use in OCDS. 
     This may also be used to present codes from an internal classification
     scheme.
 
-    It is mandatory to have at least one item with `ДКПП` as `scheme`.
+    It is required to have at least one item with `ДКПП` as `scheme`.
 
 :unit:
     :ref:`Unit`
@@ -68,7 +68,7 @@ Schema
 :deliveryLocation:
     dictionary
 
-    Geographical coordinates of delivery location. Element consist of the following items:
+    Geographical coordinates of the delivery location. Element consists of the following items:
 
     :latitude:
         string, required
@@ -82,7 +82,7 @@ Schema
 :relatedLot:
     string
 
-    Id of related :ref:`lot`.
+    ID of related :ref:`lot`.
 
 
 .. _Classification:

@@ -14,13 +14,11 @@ Schema
 :name:
     string, multilingual
     
-    |ocdsDescription|
-    The common name of the organization.
+    Name of the organization.
     
 :identifier:
     :ref:`Identifier`
     
-    |ocdsDescription|
     The primary identifier for this organization. 
     
 :additionalIdentifiers:
@@ -154,7 +152,7 @@ Schema
     The fax number of the contact point/person. This should include the international dialling code.
     
 :url:
-    url
+    URL
     
     |ocdsDescription|
     A web address for the contact point/person.

@@ -13,40 +13,38 @@ Schema
 :title:
    string, multilingual
 
-   The name of the auction, displayed in listings. You can include the following items:
-
-   * auction code (unique identifier)
-   * periodicity of the auction (annual, quarterly, etc.)
-   * item being sold
-   * some other info
+   The name of the auction, displayed in listings. 
 
 :description:
    string, multilingual
 
-   Detailed description of auction.
+   Detailed auction description.
 
 :auctionID:
    string, auto-generated, read-only
 
    The auction identifier to refer auction to in "paper" documentation. 
 
-   |ocdsDescription|
+..   |ocdsDescription|
    AuctionID should always be the same as the OCID. It is included to make the flattened data structure more convenient.
 
+   
 :procuringEntity:
    :ref:`ProcuringEntity`, required
 
    Organization conducting the auction.
+   
 
-   |ocdsDescription|
+..   |ocdsDescription|
    The entity managing the procurement, which may be different from the buyer who is paying / using the items being procured.
 
+   
 :value:
-   :ref:`value`, required
+     :ref:`value`, required
 
-   Total available auction budget. Bids lower than ``value`` will be rejected.
+     Total available auction budget. Bids lower than ``value`` will be rejected.
 
-   |ocdsDescription|
+..   |ocdsDescription|
    The total estimated value of the procurement.
 
 :guarantee:
@@ -86,7 +84,7 @@ Schema
 :bids:
    List of :ref:`bid` objects
 
-   A list of all bids placed in the auction with information about participants, their proposal and other qualification documentation.
+   A list of all bids placed in the auction with information about participants, their proposals and other qualification documentation.
 
    |ocdsDescription|
    A list of all the companies who entered submissions for the auction.
@@ -94,7 +92,7 @@ Schema
 :minimalStep:
    :ref:`value`, required
 
-   The minimal step of auction (reduction). Validation rules:
+   The minimal step of auction. Validation rules:
 
    * `amount` should be greater than `Auction.value.amount`
    * `currency` should either be absent or match `Auction.value.currency`
@@ -132,7 +130,7 @@ Schema
 :auctionUrl:
     url
 
-    A web address for view auction.
+    A web address where auction is accessible for view.
 
 :awardPeriod:
    :ref:`period`, read-only
@@ -160,7 +158,7 @@ Schema
    :`cancelled`:
        Cancelled auction (cancelled)
 
-   Status of the Auction.
+   Auction status.
 
 :lots:
    List of :ref:`lot` objects.
@@ -172,10 +170,10 @@ Schema
 
    Contains 1 object with `active` status in case of cancelled Auction.
 
-   The :ref:`cancellation` object describes the reason of auction cancellation contains accompanying
-   documents  if any.
+   The :ref:`cancellation` object describes the reason of auction cancellation and contains accompanying
+   documents  if there are any.
 
 :revisions:
    List of :ref:`revision` objects, auto-generated
 
-   Historical changes to Auction object properties.
+   Historical changes to `Auction` object properties.

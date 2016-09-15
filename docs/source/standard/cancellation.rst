@@ -11,12 +11,12 @@ Schema
 ------
 
 :id:
-    uid, auto-generated
+    UID, auto-generated
 
 :reason:
     string, multilingual, required
 
-    The reason, why Auction is being cancelled.
+    The reason, why auction is being cancelled.
 
 :status:
     string
@@ -49,4 +49,4 @@ Schema
 :relatedLot:
     string
 
-    Id of related :ref:`lot`.
+    ID of related :ref:`lot`.

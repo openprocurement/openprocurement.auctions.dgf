@@ -10,7 +10,7 @@ Schema
 ------
 
 :id:
-    uid, auto-generated
+    UID, auto-generated
 
 :author:
     :ref:`Organization`, required
@@ -35,7 +35,7 @@ Schema
 :answer:
     string
 
-    Answer for the question asked.
+    Answer for the question.
 
 :questionOf:
     string
@@ -49,4 +49,4 @@ Schema
 :relatedItem:
     string
 
-    Id of related :ref:`lot` or :ref:`item`.
+    ID of related :ref:`lot` or :ref:`item`.

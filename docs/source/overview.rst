@@ -10,15 +10,15 @@ Features
 * No need to specify enquiries period (there is no *active.enquiries* status), since it overlaps with *active.tendering* period.
 * Procedure can be switched from *draft* status to *active.tendering*.
 * During *active.tendering* period participants can ask questions, submit proposals, and upload documents.
-* The only date you will have to provide is *Tender.auctionPeriod.startDate*, the rest will be calculated automatically.
+* The only date Organizer has to provide is *Tender.auctionPeriod.startDate*, the rest will be calculated automatically.
 * Organizer can't edit procedure's significant properties (*Auction.value*, etc.).
 * There is obligatory participant qualification (*Bid.selfQualified*) via guarantee payment.
-* The only currency (*Value.currency*) for this procedure is UAH.
+* The only currency (*Value.currency*) for this procedure is hryvnia (UAH).
 
 Conventions
 -----------
 
-The API accepts `JSON <http://json.org/>`_ or form-encoded content in
+API accepts `JSON <http://json.org/>`_ or form-encoded content in
 requests.  It returns JSON content in all of its responses, including
 errors.  Only the UTF-8 character encoding is supported for both requests
 and responses.

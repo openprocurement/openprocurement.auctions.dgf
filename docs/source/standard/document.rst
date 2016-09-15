@@ -22,7 +22,7 @@ Schema
 
     * `notice` - **Auction notice**
       
-      The formal notice that gives details of a auction. This may be a link to a downloadable document, to a web page, or to an official gazette in which the notice is contained.
+      The formal notice that gives details of an auction. This may be a link to a downloadable document, to a web page, or to an official gazette in which the notice is contained.
     
     * `biddingDocuments` - **Bidding Documents**
       
@@ -161,5 +161,5 @@ Schema
 :relatedItem:
     string
 
-    Id of related :ref:`lot` or :ref:`item`.
+    ID of related :ref:`lot` or :ref:`item`.
     

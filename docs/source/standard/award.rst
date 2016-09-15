@@ -14,12 +14,12 @@ Schema
     string, auto-generated, read-only
     
     |ocdsDescription|
-    The identifier for this award.
+    Identifier for this award.
     
 :bid_id:
     string, auto-generated, read-only
 
-    The Id of a bid that the award relates to.
+    The ID of a bid that the award relates to.
     
 :title:
     string, multilingual
@@ -68,7 +68,7 @@ Schema
     List of :ref:`Item` objects, auto-generated, read-only
     
     |ocdsDescription|
-    The goods and services awarded in this award, broken into line items wherever possible. Items should not be duplicated, but the quantity specified instead. 
+    The goods and services awarded in this award, broken into line items wherever possible. Items should not be duplicated, but the quantity should be specified instead. 
     
 :documents:
     List of :ref:`Document` objects
@@ -82,9 +82,9 @@ Schema
 :complaintPeriod:
     :ref:`period`
 
-    The timeframe when complaints can be submitted.
+    The time frame when complaints can be submitted.
 
 :lotID:
     string
 
-    Id of related :ref:`lot`.
+    ID of related :ref:`lot`.

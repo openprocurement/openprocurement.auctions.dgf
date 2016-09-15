@@ -17,10 +17,10 @@ Upload document with registration
 
 #. :ref:`Upload document in document service <documentservice:upload-document>`.
 
-Upload document w/o registration
+Upload document without registration
 --------------------------------
 
-#. :ref:`Upload document w/o registration <documentservice:upload-document-w-o-registration>`.
+#. :ref:`Upload document without registration <documentservice:upload-document-w-o-registration>`.
 
 #. Add document in API:
 

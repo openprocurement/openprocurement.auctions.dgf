@@ -8,12 +8,12 @@
 Creating auction with 2 Phase Commit
 ------------------------------------
 
-Let's create auction in draft status:
+Let's create auction in `draft` status:
 
 .. include:: tutorial/auction-post-2pc.http
    :code:
 
-And now switch to `active.tendering` status:
+And now let's switch to `active.tendering` status:
 
 .. include:: tutorial/auction-patch-2pc.http
    :code:

@@ -12,7 +12,7 @@ Schema
 ------
 
 :id:
-    uid, auto-generated
+    UID, auto-generated
 
 :author:
     :ref:`Organization`, required
@@ -101,7 +101,7 @@ Schema
 :decision:
     string
 
-    Reviewer decision.
+    Reviewer's decision.
 
 :cancellationReason:
     string
@@ -114,7 +114,7 @@ Schema
 :relatedLot:
     string
 
-    Id of related :ref:`lot`.
+    ID of related :ref:`lot`.
 
 :auctionerAction:
     string

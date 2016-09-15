@@ -11,7 +11,7 @@ Schema
 ------
 
 :id:
-    uid, auto-generated
+    UID, auto-generated
 
     |ocdsDescription|
     The identifier for this contract.
@@ -50,7 +50,7 @@ Schema
     List of :ref:`Item` objects, auto-generated, read-only
 
     |ocdsDescription|
-    The goods, services, and any intangible outcomes in this contract. Note: If the items are the same as the award do not repeat.
+    The goods, services, and any intangible outcomes in this contract. Note: If the items are the same as the award, do not repeat.
 
 :suppliers:
     List of :ref:`Organization` objects, auto-generated, read-only
