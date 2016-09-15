@@ -3,7 +3,7 @@ import unittest
 from datetime import timedelta
 
 from openprocurement.api.models import get_now
-from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest, test_auction_data, test_bids, test_lots, test_organization
+from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest, test_auction_data, test_bids, test_lots, test_financial_auction_data, test_financial_bids, test_financial_organization
 
 
 class AuctionContractResourceTest(BaseAuctionWebTest):
@@ -15,7 +15,7 @@ class AuctionContractResourceTest(BaseAuctionWebTest):
         super(AuctionContractResourceTest, self).setUp()
         # Create award
         response = self.app.post_json('/auctions/{}/awards'.format(
-            self.auction_id), {'data': {'suppliers': [test_organization], 'status': 'pending', 'bid_id': self.initial_bids[0]['id'], 'value': test_auction_data["value"], 'items': test_auction_data["items"]}})
+            self.auction_id), {'data': {'suppliers': [self.initial_organization], 'status': 'pending', 'bid_id': self.initial_bids[0]['id'], 'value': test_auction_data["value"], 'items': test_auction_data["items"]}})
         award = response.json['data']
         self.award_id = award['id']
         self.award_value = award['value']
@@ -159,7 +159,7 @@ class AuctionContractResourceTest(BaseAuctionWebTest):
         response = self.app.post_json('/auctions/{}/awards/{}/complaints'.format(self.auction_id, self.award_id), {'data': {
             'title': 'complaint title',
             'description': 'complaint description',
-            'author': test_organization,
+            'author': self.initial_organization,
             'status': 'claim'
         }})
         self.assertEqual(response.status, '201 Created')
@@ -347,7 +347,7 @@ class Auction2LotContractResourceTest(BaseAuctionWebTest):
         super(Auction2LotContractResourceTest, self).setUp()
         # Create award
         response = self.app.post_json('/auctions/{}/awards'.format(self.auction_id), {'data': {
-            'suppliers': [test_organization],
+            'suppliers': [self.initial_organization],
             'status': 'pending',
             'bid_id': self.initial_bids[0]['id'],
             'lotID': self.initial_lots[0]['id']
@@ -392,7 +392,7 @@ class AuctionContractDocumentResourceTest(BaseAuctionWebTest):
         super(AuctionContractDocumentResourceTest, self).setUp()
         # Create award
         response = self.app.post_json('/auctions/{}/awards'.format(
-            self.auction_id), {'data': {'suppliers': [test_organization], 'status': 'pending', 'bid_id': self.initial_bids[0]['id']}})
+            self.auction_id), {'data': {'suppliers': [self.initial_organization], 'status': 'pending', 'bid_id': self.initial_bids[0]['id']}})
         award = response.json['data']
         self.award_id = award['id']
         response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "active"}})
@@ -687,7 +687,7 @@ class Auction2LotContractDocumentResourceTest(BaseAuctionWebTest):
         super(Auction2LotContractDocumentResourceTest, self).setUp()
         # Create award
         response = self.app.post_json('/auctions/{}/awards'.format(self.auction_id), {'data': {
-            'suppliers': [test_organization],
+            'suppliers': [self.initial_organization],
             'status': 'pending',
             'bid_id': self.initial_bids[0]['id'],
             'lotID': self.initial_lots[0]['id']
@@ -788,11 +788,38 @@ class Auction2LotContractDocumentResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can update document only in active lot status")
 
 
+class FinancialAuctionContractResourceTest(AuctionContractResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+    initial_organization = test_financial_organization
+
+
+@unittest.skip("option not available")
+class FinancialAuction2LotContractResourceTest(Auction2LotContractResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+    initial_organization = test_financial_organization
+
+
+@unittest.skip("option not available")
+class FinancialAuction2LotContractDocumentResourceTest(Auction2LotContractDocumentResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+    initial_organization = test_financial_organization
+
+
+class FinancialAuctionContractDocumentResourceTest(AuctionContractDocumentResourceTest):
+    initial_bids = test_financial_bids
+    initial_data = test_financial_auction_data
+    initial_organization = test_financial_organization
+
 
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionContractResourceTest))
     suite.addTest(unittest.makeSuite(AuctionContractDocumentResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionContractResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionContractDocumentResourceTest))
     return suite
 
 
