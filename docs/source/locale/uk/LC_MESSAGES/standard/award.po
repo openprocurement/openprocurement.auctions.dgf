@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-13 13:17+0200\n"
+"PO-Revision-Date: 2016-09-15 13:26+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -26,14 +26,6 @@ msgstr "Схема"
 #: ../../source/standard/award.rst:14 ../../source/standard/award.rst:20
 msgid "string, auto-generated, read-only"
 msgstr "рядок, генерується автоматично, лише для читання"
-
-#: ../../source/standard/award.rst:16
-msgid "|ocdsDescription| The identifier for this award."
-msgstr "|ocdsDescription| Ідентифікатор цього рішення."
-
-#: ../../source/standard/award.rst:22
-msgid "The Id of a bid that the award relates to."
-msgstr "ID пропозиції, що виграла закупівлю"
 
 #: ../../source/standard/award.rst:25 ../../source/standard/award.rst:31
 msgid "string, multilingual"
@@ -112,16 +104,6 @@ msgstr ""
 msgid "List of :ref:`Item` objects, auto-generated, read-only"
 msgstr "Список об’єктів :ref:`Item`, генерується автоматично, лише для читання"
 
-#: ../../source/standard/award.rst:70
-msgid ""
-"|ocdsDescription| The goods and services awarded in this award, broken into "
-"line items wherever possible. Items should not be duplicated, but the "
-"quantity specified instead."
-msgstr ""
-"|ocdsDescription| Товари та послуги, що розглядались цим рішенням, поділені "
-"на окремі рядки, де це можливо. Елементи не повинні бути продубльовані, а "
-"повинні мати вказану кількість."
-
 #: ../../source/standard/award.rst:74
 msgid "List of :ref:`Document` objects"
 msgstr "Список об’єктів :ref:`Document`"
@@ -142,11 +124,29 @@ msgstr "Список об’єктів :ref:`Complaint`"
 msgid ":ref:`period`"
 msgstr ":ref:`period`"
 
+#: ../../source/standard/award.rst:16
+msgid "|ocdsDescription| Identifier for this award."
+msgstr "|ocdsDescription| Ідентифікатор цього рішення."
+
+#: ../../source/standard/award.rst:22
+msgid "The ID of a bid that the award relates to."
+msgstr "ID пропозиції, що виграла закупівлю"
+
+#: ../../source/standard/award.rst:70
+msgid ""
+"|ocdsDescription| The goods and services awarded in this award, broken into "
+"line items wherever possible. Items should not be duplicated, but the "
+"quantity should be specified instead."
+msgstr ""
+"|ocdsDescription| Товари та послуги, що розглядались цим рішенням, поділені "
+"на окремі рядки, де це можливо. Елементи не повинні бути продубльовані, а "
+"повинні мати вказану кількість."
+
 #: ../../source/standard/award.rst:85
-msgid "The timeframe when complaints can be submitted."
+msgid "The time frame when complaints can be submitted."
 msgstr "Період часу, під час якого можна подавати скарги."
 
 #: ../../source/standard/award.rst:90
-msgid "Id of related :ref:`lot`."
+msgid "ID of related :ref:`lot`."
 msgstr "ID пов’язаного :ref:`lot`."
 

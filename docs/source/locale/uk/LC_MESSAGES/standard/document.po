@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-13 17:27+0200\n"
+"PO-Revision-Date: 2016-09-15 13:29+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -43,16 +43,6 @@ msgstr "Можливі значення для :ref:`auction`"
 #: ../../source/standard/document.rst:23
 msgid "`notice` - **Auction notice**"
 msgstr "`notice` - **Повідомлення про аукціон**"
-
-#: ../../source/standard/document.rst:25
-msgid ""
-"The formal notice that gives details of a auction. This may be a link to a "
-"downloadable document, to a web page, or to an official gazette in which the"
-" notice is contained."
-msgstr ""
-"Офіційне повідомлення, що містить деталі аукціону. Це може бути посилання на"
-" документ, веб-сторінку, чи на офіційний бюлетень, де розміщено "
-"повідомлення."
 
 #: ../../source/standard/document.rst:27
 msgid "`biddingDocuments` - **Bidding Documents**"
@@ -305,15 +295,25 @@ msgstr "`item`"
 msgid "`lot`"
 msgstr "`lot`"
 
-#: ../../source/standard/document.rst:164
-msgid "Id of related :ref:`lot` or :ref:`item`."
-msgstr "ID пов’язаних :ref:`lot` або :ref:`item`."
-
 #: ../../source/standard/document.rst:29
 msgid ""
 "Information for potential participants, describing the goals of the contract"
 " (e.g. goods and services to be sold), and the bidding process."
 msgstr ""
-"Інформація для потенційних учасників, що описує цілі договору "
-"(наприклад, товари та послуги, які будуть продані) і процес торгів."
+"Інформація для потенційних учасників, що описує цілі договору (наприклад, "
+"товари та послуги, які будуть продані) і процес торгів."
+
+#: ../../source/standard/document.rst:25
+msgid ""
+"The formal notice that gives details of an auction. This may be a link to a "
+"downloadable document, to a web page, or to an official gazette in which the"
+" notice is contained."
+msgstr ""
+"Офіційне повідомлення, що містить деталі аукціону. Це може бути посилання "
+"на документ, веб-сторінку, чи на офіційний бюлетень, де розміщено "
+"повідомлення."
+
+#: ../../source/standard/document.rst:164
+msgid "ID of related :ref:`lot` or :ref:`item`."
+msgstr "Ідентифікатор пов'язаних об'єктів :ref:`lot` або :ref:`item`."
 

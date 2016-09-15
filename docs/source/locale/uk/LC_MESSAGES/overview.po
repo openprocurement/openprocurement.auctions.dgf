@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-13 16:59+0200\n"
+"PO-Revision-Date: 2016-09-15 13:19+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,17 +18,6 @@ msgstr ""
 #: ../../source/overview.rst:2
 msgid "Overview"
 msgstr "Огляд"
-
-#: ../../source/overview.rst:21
-msgid ""
-"The API accepts `JSON <http://json.org/>`_ or form-encoded content in "
-"requests.  It returns JSON content in all of its responses, including "
-"errors.  Only the UTF-8 character encoding is supported for both requests "
-"and responses."
-msgstr ""
-"API приймає `JSON <http://json.org/>`_ або form-encoded вміст у запитах. Він"
-" повертає JSON вміст у всіх свої відповідях, включно з помилками. "
-"Підтримується лише UTF-8 кодування і для запитів, і для відповідей."
 
 #: ../../source/overview.rst:19
 msgid "Conventions"
@@ -125,8 +114,8 @@ msgid ""
 "openprocurement.auctions.dgf contains documentaion for Deposit Guarantee "
 "Fund auctions."
 msgstr ""
-"openprocurement.auctions.dgf містить документацію по аукціонах Фонду"
-" гарантування вкладів."
+"openprocurement.auctions.dgf містить документацію по аукціонах Фонду "
+"гарантування вкладів."
 
 #: ../../source/overview.rst:8
 msgid "Features"
@@ -137,9 +126,9 @@ msgid ""
 "No need to specify enquiries period (there is no *active.enquiries* status),"
 " since it overlaps with *active.tendering* period."
 msgstr ""
-"Відсутність необхідності вказання періоду уточнень (тут немає окремого"
-" статусу *active.enquiries*), оскільки він накладається на період прийому"
-" пропозицій *active.tendering*."
+"Відсутність необхідності вказання періоду уточнень (тут немає окремого "
+"статусу *active.enquiries*), оскільки він накладається на період прийому "
+"пропозицій *active.tendering*."
 
 #: ../../source/overview.rst:11
 msgid "Procedure can be switched from *draft* status to *active.tendering*."
@@ -150,20 +139,16 @@ msgid ""
 "During *active.tendering* period participants can ask questions, submit "
 "proposals, and upload documents."
 msgstr ""
-"Протягом періоду *active.tendering* учасники можуть задавати питання,"
-" подавати пропозиції, завантажувати документи."
+"Протягом періоду *active.tendering* учасники можуть задавати питання, "
+"подавати пропозиції, завантажувати документи."
 
 #: ../../source/overview.rst:15
 msgid ""
 "There is obligatory participant qualification (*Bid.selfQualified*) via "
 "guarantee payment."
 msgstr ""
-"Обов’язкова кваліфікація учасника (*Bid.selfQualified*) через гарантійний"
-" платіж."
-
-#: ../../source/overview.rst:16
-msgid "The only currency (*Value.currency*) for this procedure is UAH."
-msgstr "Єдина валюта (*Value.currency*) цієї процедури - гривня UAH."
+"Обов’язкова кваліфікація учасника (*Bid.selfQualified*) через гарантійний "
+"платіж."
 
 #: ../../source/overview.rst:83
 msgid "You might find it helpful to look at the :ref:`tutorial`."
@@ -180,8 +165,8 @@ msgstr ""
 "Всі API POST та PUT запити очікують об'єкт верхнього рівня з єдиним "
 "елементом з назвою `data`. Відповіді з повідомленням про успіх будуть "
 "віддзеркалювати цей формат. Елемент data повинен сам бути об’єктом, що "
-"містить параметри запиту. Якщо створюється новий аукціон, то це ті поля, "
-"які ми хочемо встановити на самому аукціоні."
+"містить параметри запиту. Якщо створюється новий аукціон, то це ті поля, які"
+" ми хочемо встановити на самому аукціоні."
 
 #: ../../source/overview.rst:32
 msgid ""
@@ -194,20 +179,35 @@ msgstr ""
 "об’єкт був створений. Ця відповідь буде мати data поле на верхньому рівні, "
 "яке вміщуватиме повну інформацію про новий аукціон, включно з ID."
 
+#: ../../source/overview.rst:14
+msgid ""
+"Organizer can't edit procedure's significant properties (*Auction.value*, "
+"etc.)."
+msgstr ""
+"Організатор не може редагувати суттєвих властивостей процедури, наприклад, "
+"*Auction.value*."
+
 #: ../../source/overview.rst:13
 msgid ""
-"The only date you will have to provide is *Tender.auctionPeriod.startDate*, "
+"The only date Organizer has to provide is *Tender.auctionPeriod.startDate*, "
 "the rest will be calculated automatically."
 msgstr ""
 "Єдина дата, яку потрібно надати, це дата початку аукціону"
 " *Tender.auctionPeriod.startDate*. Всі решта дати будуть обраховані на її"
 " основі."
 
-#: ../../source/overview.rst:14
+#: ../../source/overview.rst:16
 msgid ""
-"Organizer can't edit procedure's significant properties (*Auction.value*, "
-"etc.)."
+"The only currency (*Value.currency*) for this procedure is hryvnia (UAH)."
+msgstr "Єдина валюта (*Value.currency*) цієї процедури - гривня UAH."
+
+#: ../../source/overview.rst:21
+msgid ""
+"API accepts `JSON <http://json.org/>`_ or form-encoded content in requests."
+"  It returns JSON content in all of its responses, including errors.  Only "
+"the UTF-8 character encoding is supported for both requests and responses."
 msgstr ""
-"Організатор не може редагувати суттєвих властивостей процедури, наприклад,"
-" *Auction.value*."
+"API приймає `JSON <http://json.org/>`_ або form-encoded вміст у запитах. Він"
+" повертає JSON вміст у всіх свої відповідях, включно з помилками. "
+"Підтримується лише UTF-8 кодування і для запитів, і для відповідей."
 

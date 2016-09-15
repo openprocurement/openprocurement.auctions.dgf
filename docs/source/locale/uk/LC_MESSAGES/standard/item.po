@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-13 14:55+0200\n"
+"PO-Revision-Date: 2016-09-15 14:14+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -40,43 +40,9 @@ msgstr "|ocdsDescription| Опис товарів та послуг, які по
 msgid ":ref:`Classification`"
 msgstr ":ref:`Classification`"
 
-#: ../../source/standard/item.rst:26
-msgid ""
-"|ocdsDescription| The primary classification for the item. See the "
-"itemClassificationScheme to identify preferred classification lists, "
-"including CPV and GSIN."
-msgstr ""
-"|ocdsDescription| Початкова класифікація елемента. Дивіться у "
-"itemClassificationScheme, щоб визначити бажані списки класифікації, включно "
-"з CPV та GSIN."
-
-#: ../../source/standard/item.rst:31
-msgid ""
-"It is mandatory for `classification.scheme` to be `CPV`. The "
-"`classification.id` should be valid CPV code."
-msgstr ""
-"Класифікація `classification.scheme` обов’язково повинна бути `CPV`.  "
-"`classification.id` повинно бути дійсним CPV кодом."
-
 #: ../../source/standard/item.rst:35
 msgid "List of :ref:`Classification` objects"
 msgstr "Список об’єктів :ref:`Classification`"
-
-#: ../../source/standard/item.rst:37
-msgid ""
-"|ocdsDescription| An array of additional classifications for the item. See "
-"the itemClassificationScheme codelist for common options to use in OCDS. "
-"This may also be used to present codes from an internal classification "
-"scheme."
-msgstr ""
-"|ocdsDescription| Масив додаткових класифікацій для елемента. Дивіться у "
-"список кодів itemClassificationScheme, щоб використати поширені варіанти в "
-"OCDS. Також можна використовувати для представлення кодів з внутрішньої "
-"схеми класифікації."
-
-#: ../../source/standard/item.rst:43
-msgid "It is mandatory to have at least one item with `ДКПП` as `scheme`."
-msgstr "Обов’язково мати хоча б один елемент з `ДКПП` у стрічці `scheme`."
 
 #: ../../source/standard/item.rst:46
 msgid ":ref:`Unit`"
@@ -118,13 +84,6 @@ msgstr "Адреса місця, куди елемент повинен бути
 msgid "dictionary"
 msgstr "словник"
 
-#: ../../source/standard/item.rst:71
-msgid ""
-"Geographical coordinates of delivery location. Element consist of the "
-"following items:"
-msgstr ""
-"Географічні координати місця доставки. Складається з таких компонентів:"
-
 #: ../../source/standard/item.rst:74 ../../source/standard/item.rst:76
 #: ../../source/standard/item.rst:134
 msgid "string, required"
@@ -147,10 +106,6 @@ msgstr ""
 #: ../../source/standard/item.rst:139
 msgid "string"
 msgstr "рядок"
-
-#: ../../source/standard/item.rst:85
-msgid "Id of related :ref:`lot`."
-msgstr "ID пов’язаного :ref:`lot`."
 
 #: ../../source/standard/item.rst:91
 msgid "Classification"
@@ -189,7 +144,7 @@ msgid ""
 "left blank."
 msgstr ""
 "|ocdsDescription| URI для ідентифікації коду. Якщо індивідуальні URI не "
-"доступні для елементів у схемі ідентифікації це значення треба залишити "
+"доступні для елементів у схемі ідентифікації, це значення треба залишити "
 "пустим."
 
 #: ../../source/standard/item.rst:128
@@ -203,4 +158,50 @@ msgstr "Код одиниці в UN/CEFACT Recommendation 20."
 #: ../../source/standard/item.rst:141
 msgid "|ocdsDescription| Name of the unit"
 msgstr "|ocdsDescription| Назва одиниці"
+
+#: ../../source/standard/item.rst:26
+msgid ""
+"|ocdsDescription| The primary classification for the item. See the "
+"`itemClassificationScheme` to identify preferred classification lists, "
+"including CPV and GSIN."
+msgstr ""
+"|ocdsDescription| Початкова класифікація елемента. Дивіться у "
+"`itemClassificationScheme`, щоб визначити бажані списки класифікації, включно "
+"з CPV та GSIN."
+
+#: ../../source/standard/item.rst:31
+msgid ""
+"It is required for `classification.scheme` to be `CPV`. The "
+"`classification.id` should be valid CPV code."
+msgstr ""
+"Класифікація `classification.scheme` обов’язково повинна бути `CPV`.  "
+"`classification.id` повинно бути дійсним CPV кодом."
+
+#: ../../source/standard/item.rst:37
+msgid ""
+"|ocdsDescription| An array of additional classifications for the item. See "
+"the `itemClassificationScheme` codelist for common options to use in OCDS. "
+"This may also be used to present codes from an internal classification "
+"scheme."
+msgstr ""
+"|ocdsDescription| Масив додаткових класифікацій для елемента. Дивіться у "
+"список кодів `itemClassificationScheme`, щоб використати поширені варіанти в "
+"OCDS. Також можна використовувати для представлення кодів з внутрішньої "
+"схеми класифікації."
+
+#: ../../source/standard/item.rst:43
+msgid "It is required to have at least one item with `ДКПП` as `scheme`."
+msgstr "Обов’язково мати хоча б один елемент з `ДКПП` у стрічці `scheme`."
+
+#: ../../source/standard/item.rst:71
+msgid ""
+"Geographical coordinates of the delivery location. Element consists of the "
+"following items:"
+msgstr ""
+"Географічні координати місця доставки. Складається з таких компонентів:"
+
+#: ../../source/standard/item.rst:85
+msgid "ID of related :ref:`lot`."
+msgstr "ID пов’язаного :ref:`lot`."
+
 

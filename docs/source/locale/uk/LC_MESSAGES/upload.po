@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-13 17:01+0200\n"
+"PO-Revision-Date: 2016-09-15 13:24+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -51,12 +51,12 @@ msgstr ""
 "document>`."
 
 #: ../../source/upload.rst:21
-msgid "Upload document w/o registration"
+msgid "Upload document without registration"
 msgstr "Завантажити документ без реєстрації"
 
 #: ../../source/upload.rst:23
 msgid ""
-":ref:`Upload document w/o registration <documentservice:upload-"
+":ref:`Upload document without registration <documentservice:upload-"
 "document-w-o-registration>`."
 msgstr ""
 ":ref:`Завантажити документ без реєстрації <documentservice:upload-"

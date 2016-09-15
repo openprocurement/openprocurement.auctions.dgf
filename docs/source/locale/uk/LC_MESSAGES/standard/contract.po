@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-13 14:15+0200\n"
+"PO-Revision-Date: 2016-09-15 13:28+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -22,10 +22,6 @@ msgstr "Contract"
 #: ../../source/standard/contract.rst:11
 msgid "Schema"
 msgstr "Схема"
-
-#: ../../source/standard/contract.rst:14
-msgid "uid, auto-generated"
-msgstr "UID, генерується автоматично"
 
 #: ../../source/standard/contract.rst:16
 msgid "|ocdsDescription| The identifier for this contract."
@@ -71,15 +67,6 @@ msgstr "|ocdsDescription| Загальна вартість договору."
 #: ../../source/standard/contract.rst:50
 msgid "List of :ref:`Item` objects, auto-generated, read-only"
 msgstr "Список об’єктів :ref:`Item`, генерується автоматично, лише для читання"
-
-#: ../../source/standard/contract.rst:52
-msgid ""
-"|ocdsDescription| The goods, services, and any intangible outcomes in this "
-"contract. Note: If the items are the same as the award do not repeat."
-msgstr ""
-"|ocdsDescription| Товари, послуги та інші нематеріальні результати у цій "
-"угоді. Зверніть увагу: Якщо список співпадає з визначенням переможця "
-"`award`, то його не потрібно повторювати."
 
 #: ../../source/standard/contract.rst:56
 msgid "List of :ref:`Organization` objects, auto-generated, read-only"
@@ -160,4 +147,17 @@ msgid ""
 msgstr ""
 "|ocdsDescription| Усі документи та додатки пов’язані з договором, включно з "
 "будь-якими повідомленнями."
+
+#: ../../source/standard/contract.rst:14
+msgid "UID, auto-generated"
+msgstr "UID, генерується автоматично"
+
+#: ../../source/standard/contract.rst:52
+msgid ""
+"|ocdsDescription| The goods, services, and any intangible outcomes in this "
+"contract. Note: If the items are the same as the award, do not repeat."
+msgstr ""
+"|ocdsDescription| Товари, послуги та інші нематеріальні результати у цій "
+"угоді. Зверніть увагу: Якщо список співпадає з визначенням переможця "
+"`award`, то його не потрібно повторювати."
 

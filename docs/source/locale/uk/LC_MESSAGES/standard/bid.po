@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-13 13:28+0200\n"
+"PO-Revision-Date: 2016-09-15 13:27+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -31,10 +31,6 @@ msgstr "Список об’єктів :ref:`Organization` "
 #: ../../source/standard/bid.rst:17 ../../source/standard/bid.rst:94
 msgid "string, :ref:`date`, auto-generated"
 msgstr "рядок, :ref:`date`, генерується автоматично"
-
-#: ../../source/standard/bid.rst:20
-msgid "uid, auto-generated"
-msgstr "UID, генерується автоматично"
 
 #: ../../source/standard/bid.rst:23 ../../source/standard/bid.rst:89
 msgid "string"
@@ -67,8 +63,8 @@ msgstr "`amount` повинно бути меншим, ніж `Auction.value.amo
 #: ../../source/standard/bid.rst:36
 msgid "`currency` should either be absent or match `Auction.value.currency`"
 msgstr ""
-"`currency` повинно або бути відсутнім, або відповідати"
-" `Auction.value.currency`"
+"`currency` повинно або бути відсутнім, або відповідати "
+"`Auction.value.currency`"
 
 #: ../../source/standard/bid.rst:37
 msgid ""
@@ -90,10 +86,6 @@ msgstr "Список об’єктів :ref:`Parameter`"
 msgid "List of :ref:`LotValue` objects"
 msgstr "Список об’єктів :ref:`LotValue`"
 
-#: ../../source/standard/bid.rst:49 ../../source/standard/bid.rst:97
-msgid "url"
-msgstr "URL-адреса"
-
 #: ../../source/standard/bid.rst:51 ../../source/standard/bid.rst:99
 msgid "A web address for participation in auction."
 msgstr "Веб-адреса для участі в аукціоні."
@@ -106,17 +98,9 @@ msgstr "Parameter"
 msgid "string, required"
 msgstr "рядок, обов’язковий"
 
-#: ../../source/standard/bid.rst:64
-msgid "Code of the feature."
-msgstr "Код критерію."
-
 #: ../../source/standard/bid.rst:67
 msgid "float, required"
 msgstr "float, обов’язково"
-
-#: ../../source/standard/bid.rst:69
-msgid "Value of the feature."
-msgstr "Значення критерію."
 
 #: ../../source/standard/bid.rst:74
 msgid "LotValue"
@@ -140,7 +124,23 @@ msgstr ""
 "`valueAddedTaxIncluded` повинно або бути відсутнім, або відповідати "
 "`Lot.value.valueAddedTaxIncluded`"
 
+#: ../../source/standard/bid.rst:20
+msgid "UID, auto-generated"
+msgstr "UID, генерується автоматично"
+
+#: ../../source/standard/bid.rst:49 ../../source/standard/bid.rst:97
+msgid "URL"
+msgstr "URL-адреса"
+
+#: ../../source/standard/bid.rst:64
+msgid "Feature code."
+msgstr "Код критерію."
+
+#: ../../source/standard/bid.rst:69
+msgid "Feature value."
+msgstr "Значення критерію."
+
 #: ../../source/standard/bid.rst:91
-msgid "Id of related :ref:`lot`."
+msgid "ID of related :ref:`lot`."
 msgstr "ID пов’язаного :ref:`lot`."
 
