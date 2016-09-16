@@ -243,6 +243,22 @@ class AuctionResourceTest(BaseAuctionWebTest):
     def generate_docservice_url(self):
         return super(AuctionResourceTest, self).generate_docservice_url().replace('/localhost/', '/public.docs-sandbox.ea.openprocurement.org/')
 
+    def test_docs_acceleration(self):
+        # SANDBOX_MODE=TRUE 
+        data = test_auction_data.copy()
+        data['procurementMethodDetails'] = 'quick, accelerator=1440'
+        data['submissionMethodDetails'] = 'quick'
+        data["auctionPeriod"] = {
+            "startDate": (now + timedelta(minutes=5)).isoformat()
+        }
+        with open('docs/source/tutorial/auction-post-acceleration.http', 'w') as self.app.file_obj:
+            response = self.app.post_json(
+                '/auctions?opt_pretty=1', {"data": data})
+            self.assertEqual(response.status, '201 Created')
+        auction = response.json['data']
+        self.auction_id = auction['id']
+        owner_token = response.json['access']['token']
+
     def test_docs_2pc(self):
         # Creating auction in draft status
         #
