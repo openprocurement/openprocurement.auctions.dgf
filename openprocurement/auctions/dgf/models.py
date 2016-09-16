@@ -9,7 +9,7 @@ from zope.interface import implementer
 from openprocurement.api.models import (
     BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
     validate_features_uniq, validate_lots_uniq, Identifier as BaseIdentifier,
-    Classification, validate_items_uniq, ORA_CODES
+    Classification, validate_items_uniq, ORA_CODES, Model
 )
 from openprocurement.api.utils import calculate_business_date
 from openprocurement.auctions.core.models import IAuction
@@ -123,6 +123,12 @@ class Contract(BaseContract):
     complaints = ListType(ModelType(Complaint), default=list())
     documents = ListType(ModelType(Document), default=list())
 
+    def validate_dateSigned(self, data, value):
+        if value and isinstance(data['__parent__'], Model):
+            award = [i for i in data['__parent__'].awards if i.id == data['awardID']][0]
+            if value > get_now():
+                raise ValidationError(u"Contract signature date can't be in the future")
+
 
 class Award(BaseAward):
     suppliers = ListType(ModelType(Organization), min_size=1, max_size=1)
@@ -214,9 +220,9 @@ class Auction(BaseAuction):
                 for i in a.complaints
             ]):
             standStillEnds = [
-                a.complaintPeriod.endDate.astimezone(TZ)
-                for a in self.awards
-                if a.complaintPeriod.endDate
+                # a.complaintPeriod.endDate.astimezone(TZ)
+                # for a in self.awards
+                # if a.complaintPeriod.endDate
             ]
 
             last_award_status = self.awards[-1].status if self.awards else ''
@@ -240,9 +246,9 @@ class Auction(BaseAuction):
                     for i in a.complaints
                 ])
                 standStillEnds = [
-                    a.complaintPeriod.endDate.astimezone(TZ)
-                    for a in lot_awards
-                    if a.complaintPeriod.endDate
+                    # a.complaintPeriod.endDate.astimezone(TZ)
+                    # for a in lot_awards
+                    # if a.complaintPeriod.endDate
                 ]
                 last_award_status = lot_awards[-1].status if lot_awards else ''
                 if not pending_complaints and not pending_awards_complaints and standStillEnds and last_award_status == 'unsuccessful':
