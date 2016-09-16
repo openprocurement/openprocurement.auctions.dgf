@@ -248,6 +248,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
         data = test_auction_data.copy()
         data['procurementMethodDetails'] = 'quick, accelerator=1440'
         data['submissionMethodDetails'] = 'quick'
+        data['mode'] = 'test'
         data["auctionPeriod"] = {
             "startDate": (now + timedelta(minutes=5)).isoformat()
         }
