@@ -18,7 +18,7 @@ Upload document with registration
 #. :ref:`Upload document in document service <documentservice:upload-document>`.
 
 Upload document without registration
---------------------------------
+------------------------------------
 
 #. :ref:`Upload document without registration <documentservice:upload-document-w-o-registration>`.
 

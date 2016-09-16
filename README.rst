@@ -11,4 +11,7 @@
 Introduction
 ============
 
-openprocurement.auctions.dgf
+openprocurement.auctions.dgf repository contains code for Deposit Guarantee Fund auctions.
+
+Documentation can be found here http://dgf.api-docs.openprocurement.org/uk/latest/
+

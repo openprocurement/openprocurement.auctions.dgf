@@ -228,46 +228,41 @@ See the `Bid.participationUrl` in the response. Similar, but different, URL can 
 .. include:: tutorial/bidder2-participation-url.http
    :code:
 
-Confirming qualification
-------------------------
+.. _Qualification:
 
-Qualification comission registers its decision via the following call:
+Qualification
+-------------
+
+Confirming qualification
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Candidate (participant that has submitted the highest bid at the auction) must sign the auction protocol and add it to the bid within **3 business days after becoming candidate**.
+
+.. include:: 
+   :code:
+
+Within **10 business days after becoming candidate** this candidate must provide payment and organizer must confirm this payment:
 
 .. include:: tutorial/confirm-qualification.http
    :code:
 
-Setting  contract value
------------------------
+Signing contract
+----------------
 
-By default contract value is set based on the award, but there is possibility to set custom contract value. 
+The candidate has **15 business days after becoming candidate** to conclude a contract with the bank based on the results of electronic auction.
 
-If you want to **increase contract value**, you can insert new one into the `amount` field.
+If the candidate refuses to sign the auction protocol or doesn't conclude contract based on the electronic auction results within **15 business days** since becoming candidate, then organizer disqualifies the first candidate and awards participant with the next largest bid. Within 15 days a new candidate must confirm qualification with steps described above (:ref:`Qualification`).
 
-.. include:: tutorial/auction-contract-set-contract-value.http
+.. include:: 
    :code:
 
-`200 OK` response was returned. The value was modified successfully.
+If the second candidate refuses to sign the auction protocol or doesn't conclude contract based on the electronic auction results within **15 business days since becoming candidate**, organizer has to disqualify all participants.
 
-Setting contract signature date
--------------------------------
-
-There is a possibility to set custom contract signature date. You can insert appropriate date into the `dateSigned` field.
-
-If this date is not set, it will be auto-generated on the date of contract registration.
-
-.. include:: tutorial/auction-contract-sign-date.http
-   :code:
-
-Setting contract validity period
---------------------------------
-
-Setting contract validity period is optional, but if it is needed, you can set appropriate `startDate` and `endDate`.
-
-.. include:: tutorial/auction-contract-period.http
+.. include:: 
    :code:
 
 Uploading contract documentation
---------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can upload contract documents. Let's upload contract document:
 
@@ -293,21 +288,20 @@ Let's see the list of all added contract documents:
 .. include:: tutorial/auction-contract-get-documents-again.http
    :code:
 
-Set contract signature date
----------------------------
+Contract registration
+~~~~~~~~~~~~~~~~~~~~~
 
-There is a possibility to set custom contract signature date.
+There is a possibility to set custom contract signature date. 
 If the date is not set it will be generated on contract registration.
 
 .. include:: tutorial/auction-contract-sign-date.http
    :code:
 
-Contract registration
----------------------
+You can register contract:
 
 .. include:: tutorial/auction-contract-sign.http
    :code:
-
+   
 Cancelling auction
 ------------------
 
