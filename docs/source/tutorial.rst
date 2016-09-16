@@ -239,7 +239,7 @@ If the candidate didn't sign the auction protocol in 3 business days after becom
 .. include:: qualification/award-active-cancel-disqualify.http
    :code:
 
-Within 15 days a new candidate must confirm qualification with steps described above (Qualification).
+Within 15 business days since becoming candidate a new candidate must confirm qualification with steps described above (:ref:`Qualification`).
 
 Signing contract
 ----------------
