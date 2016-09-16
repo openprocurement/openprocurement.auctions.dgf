@@ -171,7 +171,7 @@ class AuctionAwardResource(APIResource):
             self.request.errors.add('body', 'data', 'Can create award only in active lot status')
             self.request.errors.status = 403
             return
-        award.complaintPeriod = {'startDate': get_now().isoformat()}
+        # award.complaintPeriod = {'startDate': get_now().isoformat()}
         auction.awards.append(award)
         if save_auction(self.request):
             self.LOGGER.info('Created auction award {}'.format(award.id),
@@ -303,7 +303,7 @@ class AuctionAwardResource(APIResource):
         award_status = award.status
         apply_patch(self.request, save=False, src=self.request.context.serialize())
         if award_status == 'pending' and award.status == 'active':
-            award.complaintPeriod.endDate = calculate_business_date(get_now(), STAND_STILL_TIME, auction, True)
+            # award.complaintPeriod.endDate = calculate_business_date(get_now(), STAND_STILL_TIME, auction, True)
             auction.contracts.append(type(auction).contracts.model_class({
                 'awardID': award.id,
                 'suppliers': award.suppliers,
@@ -314,8 +314,8 @@ class AuctionAwardResource(APIResource):
             add_next_award(self.request)
         elif award_status == 'active' and award.status == 'cancelled':
             now = get_now()
-            if award.complaintPeriod.endDate > now:
-                award.complaintPeriod.endDate = now
+            # if award.complaintPeriod.endDate > now:
+            #     award.complaintPeriod.endDate = now
             for j in award.complaints:
                 if j.status not in ['invalid', 'resolved', 'declined']:
                     j.status = 'cancelled'
@@ -326,19 +326,19 @@ class AuctionAwardResource(APIResource):
                     i.status = 'cancelled'
             add_next_award(self.request)
         elif award_status == 'pending' and award.status == 'unsuccessful':
-            award.complaintPeriod.endDate = calculate_business_date(get_now(), STAND_STILL_TIME, auction, True)
+            # award.complaintPeriod.endDate = calculate_business_date(get_now(), STAND_STILL_TIME, auction, True)
             add_next_award(self.request)
         elif award_status == 'unsuccessful' and award.status == 'cancelled' and any([i.status in ['claim', 'answered', 'pending', 'resolved'] for i in award.complaints]):
             if auction.status == 'active.awarded':
                 auction.status = 'active.qualification'
                 auction.awardPeriod.endDate = None
             now = get_now()
-            award.complaintPeriod.endDate = now
+            # award.complaintPeriod.endDate = now
             cancelled_awards = []
             for i in auction.awards[auction.awards.index(award):]:
                 if i.lotID != award.lotID:
                     continue
-                i.complaintPeriod.endDate = now
+                # i.complaintPeriod.endDate = now
                 i.status = 'cancelled'
                 for j in i.complaints:
                     if j.status not in ['invalid', 'resolved', 'declined']:

@@ -271,6 +271,7 @@ class AuctionLotComplaintSwitchResourceTest(AuctionComplaintSwitchResourceTest):
     initial_lots = test_lots
 
 
+@unittest.skip("option not available")
 class AuctionAwardComplaintSwitchResourceTest(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids
@@ -420,6 +421,7 @@ class FinancialAuctionLotComplaintSwitchResourceTest(AuctionLotComplaintSwitchRe
     initial_organization = test_financial_organization
 
 
+@unittest.skip("option not available")
 class FinancialAuctionAwardComplaintSwitchResourceTest(AuctionAwardComplaintSwitchResourceTest):
     initial_bids = test_financial_bids
     initial_data = test_financial_auction_data

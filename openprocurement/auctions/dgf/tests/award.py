@@ -348,6 +348,7 @@ class AuctionAwardResourceTest(BaseAuctionWebTest):
                 u'url', u'name': u'auction_id'}
         ])
 
+    @unittest.skip("option not available")
     def test_patch_auction_award_Administrator_change(self):
         response = self.app.post_json('/auctions/{}/awards'.format(
             self.auction_id), {'data': {'suppliers': [self.initial_organization], 'status': 'pending', 'bid_id': self.initial_bids[0]['id']}})
@@ -643,6 +644,7 @@ class Auction2LotAwardResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can update award only in active lot status")
 
 
+@unittest.skip("option not available")
 class AuctionAwardComplaintResourceTest(BaseAuctionWebTest):
     #initial_data = auction_data
     initial_status = 'active.qualification'
@@ -1358,6 +1360,7 @@ class Auction2LotAwardComplaintResourceTest(AuctionLotAwardComplaintResourceTest
         self.assertEqual(response.json['errors'][0]["description"], "Can update complaint only in active lot status")
 
 
+@unittest.skip("option not available")
 class AuctionAwardComplaintDocumentResourceTest(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids
@@ -2364,6 +2367,7 @@ class FinancialAuction2LotAwardResourceTest(Auction2LotAwardResourceTest):
     initial_organization = test_financial_organization
 
 
+@unittest.skip("option not available")
 class FinancialAuctionAwardComplaintResourceTest(AuctionAwardComplaintResourceTest):
     initial_bids = test_financial_bids
     initial_data = test_financial_auction_data
@@ -2382,6 +2386,7 @@ class FinancialAuction2LotAwardComplaintResourceTest(Auction2LotAwardComplaintRe
     initial_organization = test_financial_organization
 
 
+@unittest.skip("option not available")
 class FinancialAuctionAwardComplaintDocumentResourceTest(AuctionAwardComplaintDocumentResourceTest):
     initial_bids = test_financial_bids
     initial_data = test_financial_auction_data

@@ -8,9 +8,9 @@ from openprocurement.api.utils import (
 from openprocurement.auctions.core.utils import (
     apply_patch,
     save_auction,
-    check_auction_status,
     opresource,
 )
+from openprocurement.auctions.dgf.utils import check_auction_status
 from openprocurement.auctions.core.validation import (
     validate_contract_data,
     validate_patch_contract_data,
@@ -84,11 +84,11 @@ class AuctionAwardContractResource(APIResource):
 
         if self.request.context.status != 'active' and 'status' in data and data['status'] == 'active':
             award = [a for a in auction.awards if a.id == self.request.context.awardID][0]
-            stand_still_end = award.complaintPeriod.endDate
-            if stand_still_end > get_now():
-                self.request.errors.add('body', 'data', 'Can\'t sign contract before stand-still period end ({})'.format(stand_still_end.isoformat()))
-                self.request.errors.status = 403
-                return
+            # stand_still_end = award.complaintPeriod.endDate
+            # if stand_still_end > get_now():
+            #     self.request.errors.add('body', 'data', 'Can\'t sign contract before stand-still period end ({})'.format(stand_still_end.isoformat()))
+            #     self.request.errors.status = 403
+            #     return
             pending_complaints = [
                 i
                 for i in auction.complaints

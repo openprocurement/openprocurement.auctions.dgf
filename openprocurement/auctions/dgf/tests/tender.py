@@ -1255,8 +1255,8 @@ class AuctionProcessTest(BaseAuctionWebTest):
         self.set_status('complete', {'status': 'active.awarded'})
         # time travel
         auction = self.db.get(auction_id)
-        for i in auction.get('awards', []):
-            i['complaintPeriod']['endDate'] = i['complaintPeriod']['startDate']
+        # for i in auction.get('awards', []):
+        #     i['complaintPeriod']['endDate'] = i['complaintPeriod']['startDate']
         self.db.save(auction)
         # sign contract
         self.app.authorization = ('Basic', ('broker', ''))
@@ -1300,8 +1300,8 @@ class AuctionProcessTest(BaseAuctionWebTest):
                                        {"data": {"status": "unsuccessful"}})
         # time travel
         auction = self.db.get(auction_id)
-        for i in auction.get('awards', []):
-            i['complaintPeriod']['endDate'] = i['complaintPeriod']['startDate']
+        # for i in auction.get('awards', []):
+        #     i['complaintPeriod']['endDate'] = i['complaintPeriod']['startDate']
         self.db.save(auction)
         # set auction status after stand slill period
         self.app.authorization = ('Basic', ('chronograph', ''))
@@ -1386,25 +1386,25 @@ class AuctionProcessTest(BaseAuctionWebTest):
         award2_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending'][0]
         self.assertNotEqual(award_id, award2_id)
         # create first award complaint
-        self.app.authorization = ('Basic', ('broker', ''))
-        response = self.app.post_json('/auctions/{}/awards/{}/complaints?acc_token={}'.format(auction_id, award_id, bid_token),
-                                      {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization, 'status': 'claim'}})
-        complaint_id = response.json['data']['id']
-        complaint_owner_token = response.json['access']['token']
-        # create first award complaint #2
-        response = self.app.post_json('/auctions/{}/awards/{}/complaints?acc_token={}'.format(auction_id, award_id, bid_token),
-                                      {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization}})
-        # answering claim
-        self.app.patch_json('/auctions/{}/awards/{}/complaints/{}?acc_token={}'.format(auction_id, award_id, complaint_id, owner_token), {"data": {
-            "status": "answered",
-            "resolutionType": "resolved",
-            "resolution": "resolution text " * 2
-        }})
-        # satisfying resolution
-        self.app.patch_json('/auctions/{}/awards/{}/complaints/{}?acc_token={}'.format(auction_id, award_id, complaint_id, complaint_owner_token), {"data": {
-            "satisfied": True,
-            "status": "resolved"
-        }})
+        # self.app.authorization = ('Basic', ('broker', ''))
+        # response = self.app.post_json('/auctions/{}/awards/{}/complaints?acc_token={}'.format(auction_id, award_id, bid_token),
+        #                               {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization, 'status': 'claim'}})
+        # complaint_id = response.json['data']['id']
+        # complaint_owner_token = response.json['access']['token']
+        # # create first award complaint #2
+        # response = self.app.post_json('/auctions/{}/awards/{}/complaints?acc_token={}'.format(auction_id, award_id, bid_token),
+        #                               {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': self.initial_organization}})
+        # # answering claim
+        # self.app.patch_json('/auctions/{}/awards/{}/complaints/{}?acc_token={}'.format(auction_id, award_id, complaint_id, owner_token), {"data": {
+        #     "status": "answered",
+        #     "resolutionType": "resolved",
+        #     "resolution": "resolution text " * 2
+        # }})
+        # # satisfying resolution
+        # self.app.patch_json('/auctions/{}/awards/{}/complaints/{}?acc_token={}'.format(auction_id, award_id, complaint_id, complaint_owner_token), {"data": {
+        #     "satisfied": True,
+        #     "status": "resolved"
+        # }})
         # get awards
         self.app.authorization = ('Basic', ('broker', ''))
         response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
@@ -1426,8 +1426,8 @@ class AuctionProcessTest(BaseAuctionWebTest):
         self.set_status('complete', {'status': 'active.awarded'})
         # time travel
         auction = self.db.get(auction_id)
-        for i in auction.get('awards', []):
-            i['complaintPeriod']['endDate'] = i['complaintPeriod']['startDate']
+        # for i in auction.get('awards', []):
+        #     i['complaintPeriod']['endDate'] = i['complaintPeriod']['startDate']
         self.db.save(auction)
         # sign contract
         self.app.authorization = ('Basic', ('broker', ''))

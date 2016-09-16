@@ -8,11 +8,10 @@ from openprocurement.api.utils import (
 )
 from openprocurement.auctions.core.utils import (
     apply_patch,
-    check_auction_status,
     opresource,
     save_auction,
-
 )
+from openprocurement.auctions.dgf.utils import check_auction_status
 from openprocurement.auctions.core.validation import (
     validate_complaint_data,
     validate_patch_complaint_data,
@@ -26,7 +25,7 @@ from openprocurement.auctions.core.validation import (
             description="Auction award complaints")
 class AuctionAwardComplaintResource(APIResource):
 
-    @json_view(content_type="application/json", permission='create_award_complaint', validators=(validate_complaint_data,))
+    @json_view(content_type="application/json", permission='option_not_available"', validators=(validate_complaint_data,))
     def collection_post(self):
         """Post a complaint for award
         """
