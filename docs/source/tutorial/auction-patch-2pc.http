@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/eadf622f4d4d409a95a0850b02158669?acc_token=5d9ff95a78554e2292c78da0ff13bc86 HTTP/1.0
+PATCH /api/2.3/auctions/3c5d7f0c29394933a34a68f978e00aa4?acc_token=494ea4dc1aa3444c95f9b8e87fcd9262 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 40
 Content-Type: application/json
@@ -19,8 +19,8 @@ Content-Type: application/json; charset=UTF-8
     "procurementMethod": "open", 
     "auctionID": "UA-EA-2016-09-16-000001", 
     "tenderPeriod": {
-      "startDate": "2016-09-16T14:45:54.983319+03:00", 
-      "endDate": "2016-09-29T14:45:53.013479+03:00"
+      "startDate": "2016-09-16T16:17:42.560829+03:00", 
+      "endDate": "2016-09-29T16:17:40.438241+03:00"
     }, 
     "title": "футляри до державних нагород", 
     "minimalStep": {
@@ -38,16 +38,16 @@ Content-Type: application/json; charset=UTF-8
       "valueAddedTaxIncluded": true
     }, 
     "submissionMethod": "electronicAuction", 
-    "date": "2016-09-16T14:45:55.032959+03:00", 
-    "dateModified": "2016-09-16T14:45:55.032959+03:00", 
+    "date": "2016-09-16T16:17:42.613228+03:00", 
+    "dateModified": "2016-09-16T16:17:42.613228+03:00", 
     "status": "active.tendering", 
     "awardCriteria": "lowestCost", 
     "enquiryPeriod": {
-      "startDate": "2016-09-16T14:45:54.983319+03:00", 
-      "endDate": "2016-09-29T14:45:53.013479+03:00"
+      "startDate": "2016-09-16T16:17:42.560829+03:00", 
+      "endDate": "2016-09-29T16:17:40.438241+03:00"
     }, 
     "owner": "broker", 
-    "next_check": "2016-09-29T14:45:53.013479+03:00", 
+    "next_check": "2016-09-29T16:17:40.438241+03:00", 
     "items": [
       {
         "description": "Земля для військовослужбовців", 
@@ -64,10 +64,10 @@ Content-Type: application/json; charset=UTF-8
           "locality": "м. Київ"
         }, 
         "deliveryDate": {
-          "startDate": "2016-09-18T14:45:53.013479+03:00", 
-          "endDate": "2016-09-21T14:45:53.013479+03:00"
+          "startDate": "2016-09-18T16:17:40.438241+03:00", 
+          "endDate": "2016-09-21T16:17:40.438241+03:00"
         }, 
-        "id": "ae123d2ee49f4b04a47d2ff0391d38f7", 
+        "id": "ad137687cd3949b29544d0848f2201a2", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -75,7 +75,7 @@ Content-Type: application/json; charset=UTF-8
         "quantity": 5
       }
     ], 
-    "id": "eadf622f4d4d409a95a0850b02158669", 
+    "id": "3c5d7f0c29394933a34a68f978e00aa4", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 

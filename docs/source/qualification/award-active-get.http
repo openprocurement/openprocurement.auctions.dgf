@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/b5f06ad8e55448b59bb76f206d676748/awards/3ca390da62db4fc7929972a6a44b50c6 HTTP/1.0
+GET /api/2.3/auctions/6428763175bc491b9514dc7de4771281/awards/153fcdbbcfd64ab38b2279cc474787f8 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -10,8 +10,8 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "status": "active", 
     "complaintPeriod": {
-      "startDate": "2016-09-16T14:45:59.305755+03:00", 
-      "endDate": "2016-09-20T14:45:59.542693+03:00"
+      "startDate": "2016-09-16T16:17:47.102502+03:00", 
+      "endDate": "2016-09-20T16:17:47.350460+03:00"
     }, 
     "suppliers": [
       {
@@ -35,14 +35,14 @@ Content-Type: application/json; charset=UTF-8
         }
       }
     ], 
-    "bid_id": "3b18501cfdab4a528ba4169eef524bd9", 
+    "bid_id": "3025ae6f8d824e92bd539db93f8a1956", 
     "value": {
       "currency": "UAH", 
       "amount": 475.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2016-09-16T14:45:59.552697+03:00", 
-    "id": "3ca390da62db4fc7929972a6a44b50c6"
+    "date": "2016-09-16T16:17:47.360413+03:00", 
+    "id": "153fcdbbcfd64ab38b2279cc474787f8"
   }
 }
 

@@ -25,6 +25,7 @@ Contents:
    standard/index
    upload
    tutorial
+   fintutorial
    2pc
    acceleration
 

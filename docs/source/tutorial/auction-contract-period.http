@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/34a03244dd6642f2bcd612f434c6c913/contracts/34c811a27e1c45a896898f241a735078?acc_token=5516b94f9ffc499db4da6ab04ce35f90 HTTP/1.0
+PATCH /api/2.3/auctions/5573af0bada64bdbbe73e4372ae46a32/contracts/1b42e41bd47f44859f51f49eefdd9aa3?acc_token=ffdada9a59754aeca6b4fd1604b29147 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 106
 Content-Type: application/json
@@ -7,8 +7,8 @@ Host: api-sandbox.ea.openprocurement.org
 {
   "data": {
     "period": {
-      "startDate": "2016-09-16T14:45:53.015363", 
-      "endDate": "2017-09-16T14:45:53.015363"
+      "startDate": "2016-09-16T16:17:40.440370", 
+      "endDate": "2017-09-16T16:17:40.440370"
     }
   }
 }
@@ -36,10 +36,10 @@ Content-Type: application/json; charset=UTF-8
           "locality": "м. Київ"
         }, 
         "deliveryDate": {
-          "startDate": "2016-09-18T14:45:53.013479+03:00", 
-          "endDate": "2016-09-21T14:45:53.013479+03:00"
+          "startDate": "2016-09-18T16:17:40.438241+03:00", 
+          "endDate": "2016-09-21T16:17:40.438241+03:00"
         }, 
-        "id": "09bdc2c986bc4c2d9b50e2e5d080e58a", 
+        "id": "e6bbd40959494e0786509ce2903eb9f0", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -70,17 +70,17 @@ Content-Type: application/json; charset=UTF-8
       }
     ], 
     "period": {
-      "startDate": "2016-09-16T14:45:53.015363+03:00", 
-      "endDate": "2017-09-16T14:45:53.015363+03:00"
+      "startDate": "2016-09-16T16:17:40.440370+03:00", 
+      "endDate": "2017-09-16T16:17:40.440370+03:00"
     }, 
     "value": {
       "currency": "UAH", 
       "amount": 501.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2016-09-16T14:46:08.882044+03:00", 
-    "awardID": "17cba6b2b1394798bf3bda8a8cca8861", 
-    "id": "34c811a27e1c45a896898f241a735078", 
+    "date": "2016-09-16T16:17:58.743371+03:00", 
+    "awardID": "82737db4cafe4bfc978d80ecde647b72", 
+    "id": "1b42e41bd47f44859f51f49eefdd9aa3", 
     "contractID": "UA-EA-2016-09-16-000001-1"
   }
 }

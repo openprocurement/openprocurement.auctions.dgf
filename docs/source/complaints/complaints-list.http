@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/b5f06ad8e55448b59bb76f206d676748/complaints HTTP/1.0
+GET /api/2.3/auctions/6428763175bc491b9514dc7de4771281/complaints HTTP/1.0
 Host: api-sandbox.ea.openprocurement.org
 
 
@@ -11,34 +11,34 @@ Content-Type: application/json; charset=UTF-8
       "status": "claim", 
       "documents": [
         {
-          "dateModified": "2016-09-16T14:45:56.192122+03:00", 
+          "dateModified": "2016-09-16T16:17:43.827070+03:00", 
           "hash": "md5:00000000000000000000000000000000", 
           "format": "application/pdf", 
-          "url": "http://public.docs-sandbox.ea.openprocurement.org/get/d8518ab42495440abb24b1f2c3a40995?KeyID=3a39b727&Signature=J7oVUnaW%2FCe7lP9eUPtTQRKt7rD3xyKDv%252B%252B7Lm7oYnaOKtY%252B5%2FnSfDp1tlVBSYmvLyK5YmHi1GA3cnkLF0%2F1BA%253D%253D", 
+          "url": "http://public.docs-sandbox.ea.openprocurement.org/get/f6f09773f00e4ca2818ab9fbc4684b9a?KeyID=278be238&Signature=s1NEMOHGFrqM%252BoH9%252BBMl6WrkM1Hd6OpcukJw%252BL4cmc8nDP%252BP6HhmOcZPUOyS%252Bj%252Bvz38f9mlK6OThxb3k37b4CQ%253D%253D", 
           "author": "complaint_owner", 
           "documentOf": "tender", 
-          "datePublished": "2016-09-16T14:45:56.192083+03:00", 
+          "datePublished": "2016-09-16T16:17:43.827024+03:00", 
           "title": "Complaint_Attachement.pdf", 
-          "id": "589160327ae2416ea75d1a0edc21220e"
+          "id": "fd1a6c26a5c843bf8720661fc4146b31"
         }
       ], 
       "description": "complaint description", 
       "title": "complaint title", 
-      "dateSubmitted": "2016-09-16T14:45:56.289475+03:00", 
+      "dateSubmitted": "2016-09-16T16:17:43.925321+03:00", 
       "complaintID": "UA-EA-2016-09-16-000001.1", 
-      "date": "2016-09-16T14:45:56.293624+03:00", 
+      "date": "2016-09-16T16:17:43.929846+03:00", 
       "type": "claim", 
-      "id": "09acae019edd45c9924e8618231ec6d9"
+      "id": "d6c94c116e104a55b31c77e535e292f0"
     }, 
     {
       "status": "claim", 
       "description": "complaint description", 
       "title": "complaint title", 
-      "dateSubmitted": "2016-09-16T14:45:56.362751+03:00", 
+      "dateSubmitted": "2016-09-16T16:17:44.001693+03:00", 
       "complaintID": "UA-EA-2016-09-16-000001.2", 
-      "date": "2016-09-16T14:45:56.362729+03:00", 
+      "date": "2016-09-16T16:17:44.001670+03:00", 
       "type": "claim", 
-      "id": "ac47fd6af3a9411a90e9b94227aa6c90"
+      "id": "1fd393d1afab4cb69632391afa3712e9"
     }
   ]
 }

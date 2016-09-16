@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/34a03244dd6642f2bcd612f434c6c913/contracts/34c811a27e1c45a896898f241a735078/documents HTTP/1.0
+GET /api/2.3/auctions/5573af0bada64bdbbe73e4372ae46a32/contracts/1b42e41bd47f44859f51f49eefdd9aa3/documents HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -11,12 +11,12 @@ Content-Type: application/json; charset=UTF-8
     {
       "hash": "md5:00000000000000000000000000000000", 
       "format": "application/msword", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/aa35d8b5901e497584ae420c0bac18f8?KeyID=3f83c312&Signature=eGgrJ3jBYVk8Yc8%252BajIR7TRqPHNx6FJy5MHnf0qMJ1E8xPadiFI3ha3XIqICsnZPta69OyEbhNkjZAG18CbuAQ%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/5bf6c3d5fda5476da629d36b82a07d32?KeyID=838a2d27&Signature=qMnuaBCv9NCn%252BprPg2A8YMgSoSyfe%252BJVQ5Up344N4M1N4CswpIrHSR7exAfr6gzXPyX5E6Ko%2FxYgIQxV%2FDnDCw%253D%253D", 
       "title": "contract_first_document.doc", 
       "documentOf": "tender", 
-      "datePublished": "2016-09-16T14:46:09.203254+03:00", 
-      "dateModified": "2016-09-16T14:46:09.203283+03:00", 
-      "id": "b571df4163734c90b48daa3856033581"
+      "datePublished": "2016-09-16T16:17:59.095631+03:00", 
+      "dateModified": "2016-09-16T16:17:59.095685+03:00", 
+      "id": "a5953b409ef64132a7207fc306e171e8"
     }
   ]
 }

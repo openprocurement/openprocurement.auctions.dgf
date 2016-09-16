@@ -51,8 +51,6 @@ Let's access the URL of the created object (the `Location` header of the respons
 .. include:: tutorial/blank-auction-view.http
    :code:
 
-.. XXX body is empty for some reason (printf fails)
-
 We can see the same response we got after creating auction.
 
 Let's see what listing of auctions reveals us:
@@ -124,20 +122,6 @@ And again we can confirm that there are two documents uploaded.
 .. include:: tutorial/auction-documents-2.http
    :code:
 
-Let’s add new `documentType` field with `technicalSpecifications` parameter to the previously uploaded document:
-
-.. include:: tutorial/auction-document-add-documentType.http
-   :code:
-
-Success! Response code is `200 OK` and it confirms that `documentType` field with `technicalSpecifications` parameter was added .
-
-Now let’s try to modify any field in our document. For example, `description`:
-
-.. include:: tutorial/auction-document-edit-docType-desc.http
-   :code:
-
-`200 OK` response was returned. The description was modified successfully.
-
 In case we made an error, we can reupload the document over the older version:
 
 .. include:: tutorial/update-award-criteria.http
@@ -179,8 +163,6 @@ Or an individual answer:
 
 Registering bid
 ---------------
-
-When ``Auction.tenderingPeriod.startDate`` comes, auction switches to `active.tendering` status that allows registration of bids.
 
 Bidder can register a bid in `draft` status:
 

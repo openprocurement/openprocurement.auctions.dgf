@@ -1,4 +1,4 @@
-POST /api/2.3/auctions/b5f06ad8e55448b59bb76f206d676748/awards/349e0f1f79d04aa488ec9e296e6e441e/complaints?acc_token=c257b0fc39904e3d9b49b39e37b8970d HTTP/1.0
+POST /api/2.3/auctions/6428763175bc491b9514dc7de4771281/awards/0be2b9c4dc4b43a8a203b239d726a74f/complaints?acc_token=684390d5a4634e7bba129476b3262a3c HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 775
 Content-Type: application/json
@@ -34,11 +34,11 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/b5f06ad8e55448b59bb76f206d676748/awards/349e0f1f79d04aa488ec9e296e6e441e/complaints/457abc613a2147978675f09766dd3a00
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/6428763175bc491b9514dc7de4771281/awards/0be2b9c4dc4b43a8a203b239d726a74f/complaints/cf9360b712ac479ea06d6c606c9db8d1
 
 {
   "access": {
-    "token": "86772ef18d854c42bc50040fcedaddb4"
+    "token": "8b1c57a5a0b94f61af02d31184bd2d69"
   }, 
   "data": {
     "status": "draft", 
@@ -65,9 +65,9 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/b5f06ad8e55
     }, 
     "title": "complaint title", 
     "complaintID": "UA-EA-2016-09-16-000001.5", 
-    "date": "2016-09-16T14:46:00.480098+03:00", 
+    "date": "2016-09-16T16:17:48.324397+03:00", 
     "type": "claim", 
-    "id": "457abc613a2147978675f09766dd3a00"
+    "id": "cf9360b712ac479ea06d6c606c9db8d1"
   }
 }
 

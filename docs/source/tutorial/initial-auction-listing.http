@@ -8,10 +8,15 @@ Content-Type: application/json; charset=UTF-8
 
 {
   "next_page": {
-    "path": "/api/2.3/auctions?offset=", 
-    "uri": "http://api-sandbox.ea.openprocurement.org/api/2.3/auctions?offset=", 
-    "offset": ""
+    "path": "/api/2.3/auctions?offset=2016-09-16T16%3A17%3A56.604358%2B03%3A00", 
+    "uri": "http://api-sandbox.ea.openprocurement.org/api/2.3/auctions?offset=2016-09-16T16%3A17%3A56.604358%2B03%3A00", 
+    "offset": "2016-09-16T16:17:56.604358+03:00"
   }, 
-  "data": []
+  "data": [
+    {
+      "id": "5573af0bada64bdbbe73e4372ae46a32", 
+      "dateModified": "2016-09-16T16:17:56.604358+03:00"
+    }
+  ]
 }
 
