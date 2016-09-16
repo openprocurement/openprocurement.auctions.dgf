@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-15 14:38+0200\n"
+"PO-Revision-Date: 2016-09-16 18:19+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -19,23 +19,87 @@ msgstr ""
 msgid "Acceleration mode for sandbox"
 msgstr "Режим прискорення в пісочниці"
 
-#: ../../source/acceleration.rst:6
+#: ../../source/acceleration.rst:8
 msgid ""
 "Acceleration mode was developed to enable `dgfOtherAssets` procedure testing"
 " in the sandbox and to reduce time frames of this procedure."
 msgstr ""
-"Для зменшення термінів і забезпечення можливості тестування `dgfOtherAssets` "
-"процедури на пісочниці доступний режим прискорення."
+"Для зменшення термінів і забезпечення можливості тестування `dgfOtherAssets`"
+" процедури на пісочниці доступний режим прискорення."
 
-#: ../../source/acceleration.rst:8
+#: ../../source/acceleration.rst:6
 msgid ""
-"In order to use acceleration mode you should set `quick, accelerator=1440` "
-"as text value for `procurementMethodDetails` during tender creation. The "
-"number 1440 shows that restrictions and time frames will be reduced in 1440 "
-"times. **This mode will work only in the sandbox**."
+"If you want to experiment with auctions, you can use acceleration mode and "
+"start your auction name with \"TESTING\"."
 msgstr ""
-"При створенні тендера достатньо встановити для `procurementMethodDetails` "
-"текстове значення `quick, accelerator=1440`. Число 1440 показує, що часові "
-"обмеження та терміни скорочуються в 1440 раз. **Даний "
-"механізм діє лише на пісочниці**."
+"Якщо хочете почати експериментувати з аукціонами, використовуйте режим "
+"прискорення. Також рекомендуємо починати заголовок таких аукціонів з "
+"\"ТЕСТУВАННЯ\"."
+
+#: ../../source/acceleration.rst:13
+msgid "To enable acceleration mode you will need to:"
+msgstr "Щоб увімкнути режим прискорення вам потрібно:"
+
+#: ../../source/acceleration.rst:11
+msgid "add additional parameter `mode` with a value ``test``;"
+msgstr "додати додатковий параметр `mode` зі значенням ``test``;"
+
+#: ../../source/acceleration.rst:12
+msgid ""
+"set ``quick, accelerator=1440`` as text value for "
+"`procurementMethodDetails`. This parameter will accelerate auction periods. "
+"The number 1440 shows that restrictions and time frames will be reduced in "
+"1440 times."
+msgstr ""
+"встановити текстове значення  ``quick, accelerator=1440`` параметру "
+"`procurementMethodDetails`. Цей параметр пришвидшить проходження періодів "
+"аукціону. Число 1440 показує, що часові обмеження та терміни скорочуються в "
+"1440 раз. "
+
+#: ../../source/acceleration.rst:13
+msgid ""
+"set ``quick`` as a value for `submissionMethodDetails`. This parameter works"
+" only with ``mode = \"test\"`` and will speed up auction start date."
+msgstr ""
+"встановити значення ``quick`` для параметра `submissionMethodDetails`. Цей "
+"параметр працює тільки з `mode` зі значенням ``test`` і пришвидшує дату "
+"початку аукціону."
+
+#: ../../source/acceleration.rst:15
+msgid "**This mode will work only in the sandbox**."
+msgstr "**Даний механізм діє лише на пісочниці**."
+
+#: ../../source/acceleration.rst:21
+msgid "Synchronization"
+msgstr "Синхронізація"
+
+#: ../../source/acceleration.rst:23
+msgid ""
+"During normal auction synchronization via ``/auctions`` test auctions are "
+"not visible."
+msgstr ""
+"При звичайній синхронізації аукціонів через `/auctions` тестових тендерів "
+"\"не видно\"."
+
+#: ../../source/acceleration.rst:25
+msgid "To get test auctions synchronize via ``/auctions?mode=test``."
+msgstr ""
+"Щоб отримати тестові аукціони, треба робити синхронізацію наступним чином "
+"через `/auctions?mode=test`."
+
+#: ../../source/acceleration.rst:27
+msgid ""
+"If you synchronize via ``/auctions?mode=all``, then you will get all "
+"auctions."
+msgstr ""
+"Якщо синхронізуватися через `/auctions?mode=all`, то будуть віддаватися всі "
+"аукціони."
+
+#: ../../source/acceleration.rst:29
+msgid ""
+"Auction mode can be set only on auction creation, it can not be set later."
+msgstr ""
+"Режим аукціону можна встановити тільки при створенні аукціона і не можна "
+"його змінити потім."
+
 
