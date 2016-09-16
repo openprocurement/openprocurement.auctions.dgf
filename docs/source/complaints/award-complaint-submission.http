@@ -1,4 +1,4 @@
-POST /api/2.3/auctions/c77d552d67b44bbbb0bc871e43058fa5/awards/bd0bd4d123b544659dbb97f1e317709e/complaints?acc_token=603a9087f5c44865813511a299cffa7c HTTP/1.0
+POST /api/2.3/auctions/b5f06ad8e55448b59bb76f206d676748/awards/349e0f1f79d04aa488ec9e296e6e441e/complaints?acc_token=c257b0fc39904e3d9b49b39e37b8970d HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 775
 Content-Type: application/json
@@ -34,16 +34,15 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/c77d552d67b44bbbb0bc871e43058fa5/awards/bd0bd4d123b544659dbb97f1e317709e/complaints/72ed6a40ef8c431c98b0c13aa860f032
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/b5f06ad8e55448b59bb76f206d676748/awards/349e0f1f79d04aa488ec9e296e6e441e/complaints/457abc613a2147978675f09766dd3a00
 
 {
   "access": {
-    "token": "55583fe6411d43e9bbaf16b24fe2e104"
+    "token": "86772ef18d854c42bc50040fcedaddb4"
   }, 
   "data": {
     "status": "draft", 
     "description": "complaint description", 
-    "title": "complaint title", 
     "author": {
       "contactPoint": {
         "email": "soleksuk@gmail.com", 
@@ -64,10 +63,11 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/c77d552d67b
         "locality": "м. Вінниця"
       }
     }, 
-    "complaintID": "UA-EA-2016-09-14-000001.5", 
-    "date": "2016-09-14T15:36:40.431927+03:00", 
+    "title": "complaint title", 
+    "complaintID": "UA-EA-2016-09-16-000001.5", 
+    "date": "2016-09-16T14:46:00.480098+03:00", 
     "type": "claim", 
-    "id": "72ed6a40ef8c431c98b0c13aa860f032"
+    "id": "457abc613a2147978675f09766dd3a00"
   }
 }
 

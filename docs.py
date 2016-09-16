@@ -8,7 +8,7 @@ from uuid import uuid4
 from openprocurement.api.models import get_now
 import openprocurement.auctions.dgf.tests.base as base_test
 from openprocurement.auctions.flash.tests.base import PrefixedRequestClass
-from openprocurement.auctions.dgf.tests.base import test_auction_data as base_test_auction_data, test_bids
+from openprocurement.auctions.dgf.tests.base import test_auction_data as base_test_auction_data, test_bids, test_financial_bids
 from openprocurement.auctions.dgf.tests.tender import BaseAuctionWebTest
 from webtest import TestApp
 
@@ -17,6 +17,8 @@ now = datetime.now()
 test_auction_data = base_test_auction_data.copy()
 tenderPeriod = test_auction_data.pop('tenderPeriod')
 test_auction_data["auctionPeriod"] = {"startDate": tenderPeriod['endDate']}
+test_financial_auction_data = test_auction_data.copy()
+test_financial_auction_data["procurementMethodType"] = "dgfFinancialAssets"
 
 bid = {
     "data": {
@@ -521,6 +523,16 @@ class AuctionResourceTest(BaseAuctionWebTest):
 
         self.app.authorization = ('Basic', ('broker', ''))
 
+        with open('docs/source/tutorial/bidder-auction-protocol.http', 'w') as self.app.file_obj:
+            response = self.app.post_json('/auctions/{}/bids/{}/documents?acc_token={}'.format(self.auction_id, bid2_id, bids_access[bid2_id]),
+                {'data': {
+                    'title': u'SignedAuctionProtocol.pdf',
+                    'url': self.generate_docservice_url(),
+                    'hash': 'md5:' + '0' * 32,
+                    'format': 'application/pdf',
+                }})
+            self.assertEqual(response.status, '201 Created')
+
         response = self.app.get('/auctions/{}/awards'.format(self.auction_id))
         # get pending award
         award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending'][0]
@@ -538,20 +550,6 @@ class AuctionResourceTest(BaseAuctionWebTest):
         for i in auction.get('awards', []):
             i['complaintPeriod']['endDate'] = i['complaintPeriod']['startDate']
         self.db.save(auction)
-
-        with open('docs/source/tutorial/auction-contract-set-contract-value.http', 'w') as self.app.file_obj:
-            response = self.app.patch_json('/auctions/{}/contracts/{}?acc_token={}'.format(
-                self.auction_id, self.contract_id, owner_token), {"data": {"contractNumber": "contract #13111", "value": {"amount": 502}}})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.json['data']['value']['amount'], 502)
-
-        #### Setting contract signature date
-        #
-
-        with open('docs/source/tutorial/auction-contract-sign-date.http', 'w') as self.app.file_obj:
-            response = self.app.patch_json('/auctions/{}/contracts/{}?acc_token={}'.format(
-                self.auction_id, self.contract_id, owner_token), {'data': {"dateSigned": get_now().isoformat()} })
-            self.assertEqual(response.status, '200 OK')
 
         #### Setting contract period
 
@@ -594,15 +592,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
                 self.auction_id, self.contract_id))
         self.assertEqual(response.status, '200 OK')
 
-        #### Setting contract signature date
-        #
-
-        with open('docs/source/tutorial/auction-contract-sign-date.http', 'w') as self.app.file_obj:
-            response = self.app.patch_json('/auctions/{}/contracts/{}?acc_token={}'.format(
-                self.auction_id, self.contract_id, owner_token), {'data': {"dateSigned": get_now().isoformat()} })
-            self.assertEqual(response.status, '200 OK')
-
-        #### Contract signing
+        #### Setting contract signature date and Contract signing
         #
 
         auction = self.db.get(self.auction_id)
@@ -612,7 +602,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
 
         with open('docs/source/tutorial/auction-contract-sign.http', 'w') as self.app.file_obj:
             response = self.app.patch_json('/auctions/{}/contracts/{}?acc_token={}'.format(
-                    self.auction_id, self.contract_id, owner_token), {'data': {'status': 'active'}})
+                    self.auction_id, self.contract_id, owner_token), {'data': {'status': 'active', "dateSigned": get_now().isoformat()}})
             self.assertEqual(response.status, '200 OK')
 
 

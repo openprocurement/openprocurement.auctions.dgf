@@ -1,12 +1,12 @@
-POST /api/2.3/auctions/c77d552d67b44bbbb0bc871e43058fa5/awards/1f3e8a170b0342f38a7e174b658ae836/documents?acc_token=49cf29bf5bf5451688daf03617f22a6c HTTP/1.0
+POST /api/2.3/auctions/b5f06ad8e55448b59bb76f206d676748/awards/4eff8334dfc543ccbd36e94645128ce5/documents?acc_token=7f486eee90914b7db341b9285f7f3c98 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 340
+Content-Length: 344
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/22cbcc507265480c85f83580ff39a1a0?KeyID=d1402da7&Signature=OpBBzMFwn3zkuXEAqZdTlBJrPCu5vtT0b9DMGYC%2BtwK2AQCkOOvnG3QcT9YKwyJN5v8e9m5xOeMXm9Uw06lIBg%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/e189e7bc29e64fb0968f29f232705da6?KeyID=3a39b727&Signature=%2F45NLIApi9q9wtLIOgHfYEm8iS%2FEZaQcpQVj3nw%2F7ksO7OjxB1U8QtAIefgwyXLAzfu5A5JX2H9ZwYkclwoeBw%3D%3D", 
     "title": "Cancellation_Reason.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -16,18 +16,18 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/c77d552d67b44bbbb0bc871e43058fa5/awards/1f3e8a170b0342f38a7e174b658ae836/documents/5cd662a104d343559e6ab5e9967ed8a5
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/b5f06ad8e55448b59bb76f206d676748/awards/4eff8334dfc543ccbd36e94645128ce5/documents/3e87e25eb8f1490bb0bbea6313db103e
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/22cbcc507265480c85f83580ff39a1a0?KeyID=d1402da7&Signature=rJsn9MO9%2FiWjI%2F%252BG69OtWqXc7Cpso%2Fb6HlBhWPp48D7DyJhaWl0r%2F56nCmI76%252Bfd6SN6%2F7k3RChg12dNOh85Bg%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/e189e7bc29e64fb0968f29f232705da6?KeyID=3a39b727&Signature=%252BQoxpt4gzNdTqKtKJ3a5qPWa%2FrlX6mUD%252B0p%252BHHZHlHHAVvnjjMpYWk5iVtx%2FZEErJ2j%2FFz%2FC68aaMT9qlm6DAw%253D%253D", 
     "title": "Cancellation_Reason.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-09-14T15:36:39.955562+03:00", 
-    "dateModified": "2016-09-14T15:36:39.955591+03:00", 
-    "id": "5cd662a104d343559e6ab5e9967ed8a5"
+    "datePublished": "2016-09-16T14:46:00.059853+03:00", 
+    "dateModified": "2016-09-16T14:46:00.059883+03:00", 
+    "id": "3e87e25eb8f1490bb0bbea6313db103e"
   }
 }
 

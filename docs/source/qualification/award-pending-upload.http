@@ -1,12 +1,12 @@
-POST /api/2.3/auctions/c77d552d67b44bbbb0bc871e43058fa5/awards/bd0bd4d123b544659dbb97f1e317709e/documents?acc_token=49cf29bf5bf5451688daf03617f22a6c HTTP/1.0
+POST /api/2.3/auctions/b5f06ad8e55448b59bb76f206d676748/awards/349e0f1f79d04aa488ec9e296e6e441e/documents?acc_token=7f486eee90914b7db341b9285f7f3c98 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 340
+Content-Length: 338
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/353edf6a4e354fcfafc0a06296533622?KeyID=d1402da7&Signature=g0TRXJK1q78EBTAvNq3UWp4RzHTO3O2tyhlgsktngJLadntINzIl08WvuMLcD3pWe661jpPah%2FYQdFY1NQy5CA%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/a264fb59171a43ae909081830ae8063c?KeyID=3a39b727&Signature=WTV3CxmG3uSS3lxC3bLggmcGHlmwS9o4aYtIRsesWiPlb9OD488ICBLQTrjvAf5a0RZSjXvnN6MwbDHnnk8ICQ%3D%3D", 
     "title": "Unsuccessful_Reason.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -16,18 +16,18 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/c77d552d67b44bbbb0bc871e43058fa5/awards/bd0bd4d123b544659dbb97f1e317709e/documents/ee091eb13c3944deb4914a02078aa95b
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/b5f06ad8e55448b59bb76f206d676748/awards/349e0f1f79d04aa488ec9e296e6e441e/documents/a010dd89028c458bba72f97535340fab
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/353edf6a4e354fcfafc0a06296533622?KeyID=d1402da7&Signature=KYYIMm5Xjq%252Bc7HkMet%2FBjZRTqCADWv6yF8Z9Qalsugzq112LJZd8fGMy9SkDtn6USIFn7cYZ7jTnpVU6C1IgBA%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/a264fb59171a43ae909081830ae8063c?KeyID=3a39b727&Signature=YDSNL6qFGZWG6jLpnjTIFJirqKfdSFZhgweWhOhOnEf%252BL4nDiHZc6lZaOLJv0eF5sSS9zMH%2Fv45r0aTe0PIOCg%253D%253D", 
     "title": "Unsuccessful_Reason.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-09-14T15:36:38.788529+03:00", 
-    "dateModified": "2016-09-14T15:36:38.788558+03:00", 
-    "id": "ee091eb13c3944deb4914a02078aa95b"
+    "datePublished": "2016-09-16T14:45:59.135035+03:00", 
+    "dateModified": "2016-09-16T14:45:59.135065+03:00", 
+    "id": "a010dd89028c458bba72f97535340fab"
   }
 }
 

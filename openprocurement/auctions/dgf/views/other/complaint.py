@@ -31,7 +31,7 @@ class AuctionComplaintResource(APIResource):
         """Post a complaint
         """
         auction = self.context
-        if auction.status not in ['active.enquiries', 'active.tendering']:
+        if auction.status not in ['active.tendering']:
             self.request.errors.add('body', 'data', 'Can\'t add complaint in current ({}) auction status'.format(auction.status))
             self.request.errors.status = 403
             return
@@ -73,7 +73,7 @@ class AuctionComplaintResource(APIResource):
         """Post a complaint resolution
         """
         auction = self.request.validated['auction']
-        if auction.status not in ['active.enquiries', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded']:
+        if auction.status not in ['active.tendering', 'active.auction', 'active.qualification', 'active.awarded']:
             self.request.errors.add('body', 'data', 'Can\'t update complaint in current ({}) auction status'.format(auction.status))
             self.request.errors.status = 403
             return
@@ -86,9 +86,9 @@ class AuctionComplaintResource(APIResource):
         if self.request.authenticated_role == 'complaint_owner' and self.context.status in ['draft', 'claim', 'answered', 'pending'] and data.get('status', self.context.status) == 'cancelled':
             apply_patch(self.request, save=False, src=self.context.serialize())
             self.context.dateCanceled = get_now()
-        elif self.request.authenticated_role == 'complaint_owner' and auction.status in ['active.enquiries', 'active.tendering'] and self.context.status == 'draft' and data.get('status', self.context.status) == self.context.status:
+        elif self.request.authenticated_role == 'complaint_owner' and auction.status in ['active.tendering'] and self.context.status == 'draft' and data.get('status', self.context.status) == self.context.status:
             apply_patch(self.request, save=False, src=self.context.serialize())
-        elif self.request.authenticated_role == 'complaint_owner' and auction.status in ['active.enquiries', 'active.tendering'] and self.context.status == 'draft' and data.get('status', self.context.status) == 'claim':
+        elif self.request.authenticated_role == 'complaint_owner' and auction.status in ['active.tendering'] and self.context.status == 'draft' and data.get('status', self.context.status) == 'claim':
             apply_patch(self.request, save=False, src=self.context.serialize())
             self.context.dateSubmitted = get_now()
         elif self.request.authenticated_role == 'complaint_owner' and self.context.status == 'answered' and data.get('status', self.context.status) == self.context.status:

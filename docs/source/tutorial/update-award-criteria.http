@@ -1,12 +1,12 @@
-PUT /api/2.3/auctions/d2c7b6fb8a074928820d365c09c5c0b1/documents/ce9203d3b0d44bbc90ceb691818d4bfa?acc_token=aa7d6019a2c1429fb7d3efa2431e2162 HTTP/1.0
+PUT /api/2.3/auctions/34a03244dd6642f2bcd612f434c6c913/documents/26ec438ac0e640479952570e253e22b5?acc_token=5516b94f9ffc499db4da6ab04ce35f90 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 334
+Content-Length: 338
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/755cfa3191fe4bbbbb64d964bae5067e?KeyID=644e75be&Signature=r3Rm4AxI8zJp4MRKDVkQ0izL6dVOMEaKnnZ7kiaUtZbNhuTYHXaYgEGUmWjVOKplLygV78mEbha4QwLUbTaFDw%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/475412d8deb444babbd3366bd0d505fc?KeyID=3f83c312&Signature=sfFJPDIfBQCx8y%2Fd1QM6uKlwXUA29zc0OaQN0y4FuXlAXbeXzok6KGRHfCPqlz9z9%2BPwX9wQh69wLvNn9x6gDA%3D%3D", 
     "title": "AwardCriteria-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -21,12 +21,12 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/755cfa3191fe4bbbbb64d964bae5067e?KeyID=644e75be&Signature=KrOqazgJMISUJ2ytFtjfYrUGtXXAfpSJyFK06XHEXvO6Wy%252BSJTyRprp3HE44%2F3aNv8lIlya%2F7R71DWg%252BSt1nCg%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/475412d8deb444babbd3366bd0d505fc?KeyID=3f83c312&Signature=rIeZg2INOfYa6Mz%2FojAfWcTrhx3Gf8zdLHGpf6ZBh3XCSg9ybeq84pynNc0fS9tE51MgojVNvfil31NZ2cnyAA%253D%253D", 
     "title": "AwardCriteria-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-09-14T15:36:48.089261+03:00", 
-    "dateModified": "2016-09-14T15:36:48.178271+03:00", 
-    "id": "ce9203d3b0d44bbc90ceb691818d4bfa"
+    "datePublished": "2016-09-16T14:46:07.409958+03:00", 
+    "dateModified": "2016-09-16T14:46:07.475508+03:00", 
+    "id": "26ec438ac0e640479952570e253e22b5"
   }
 }
 

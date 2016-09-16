@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/c77d552d67b44bbbb0bc871e43058fa5/complaints/8c8e30059e3442f4a04ce5ec3241499f HTTP/1.0
+PATCH /api/2.3/auctions/b5f06ad8e55448b59bb76f206d676748/complaints/3c31775eb3f2422dbc1ce52c67e09697 HTTP/1.0
 Authorization: Basic cmV2aWV3ZXI6
 Content-Length: 32
 Content-Type: application/json
@@ -17,8 +17,11 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "status": "declined", 
-    "dateDecision": "2016-09-14T15:36:37.537838+03:00", 
+    "dateDecision": "2016-09-16T14:45:57.897110+03:00", 
     "description": "complaint description", 
+    "title": "complaint title", 
+    "resolutionType": "resolved", 
+    "type": "complaint", 
     "author": {
       "contactPoint": {
         "email": "soleksuk@gmail.com", 
@@ -39,17 +42,14 @@ Content-Type: application/json; charset=UTF-8
         "locality": "м. Вінниця"
       }
     }, 
-    "resolutionType": "resolved", 
-    "type": "complaint", 
-    "title": "complaint title", 
     "satisfied": false, 
-    "dateEscalated": "2016-09-14T15:36:37.161973+03:00", 
-    "dateAnswered": "2016-09-14T15:36:37.046858+03:00", 
-    "dateSubmitted": "2016-09-14T15:36:36.933653+03:00", 
-    "complaintID": "UA-EA-2016-09-14-000001.4", 
-    "date": "2016-09-14T15:36:37.544023+03:00", 
+    "dateEscalated": "2016-09-16T14:45:57.523938+03:00", 
+    "dateAnswered": "2016-09-16T14:45:57.412507+03:00", 
+    "dateSubmitted": "2016-09-16T14:45:57.300808+03:00", 
+    "complaintID": "UA-EA-2016-09-16-000001.4", 
+    "date": "2016-09-16T14:45:57.903020+03:00", 
     "resolution": "Виправлено неконкурентні умови", 
-    "id": "8c8e30059e3442f4a04ce5ec3241499f"
+    "id": "3c31775eb3f2422dbc1ce52c67e09697"
   }
 }
 

@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/d2c7b6fb8a074928820d365c09c5c0b1/contracts/f387d8a83c744b94a676f99a4d0adb30?acc_token=aa7d6019a2c1429fb7d3efa2431e2162 HTTP/1.0
+PATCH /api/2.3/auctions/34a03244dd6642f2bcd612f434c6c913/contracts/34c811a27e1c45a896898f241a735078?acc_token=5516b94f9ffc499db4da6ab04ce35f90 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 106
 Content-Type: application/json
@@ -7,8 +7,8 @@ Host: api-sandbox.ea.openprocurement.org
 {
   "data": {
     "period": {
-      "startDate": "2016-09-14T15:36:32.586037", 
-      "endDate": "2017-09-14T15:36:32.586037"
+      "startDate": "2016-09-16T14:45:53.015363", 
+      "endDate": "2017-09-16T14:45:53.015363"
     }
   }
 }
@@ -36,10 +36,10 @@ Content-Type: application/json; charset=UTF-8
           "locality": "м. Київ"
         }, 
         "deliveryDate": {
-          "startDate": "2016-09-16T15:36:32.584199+03:00", 
-          "endDate": "2016-09-19T15:36:32.584199+03:00"
+          "startDate": "2016-09-18T14:45:53.013479+03:00", 
+          "endDate": "2016-09-21T14:45:53.013479+03:00"
         }, 
-        "id": "86b904b3957345c2a95e321a4e07b4be", 
+        "id": "09bdc2c986bc4c2d9b50e2e5d080e58a", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -69,21 +69,19 @@ Content-Type: application/json; charset=UTF-8
         }
       }
     ], 
-    "contractNumber": "contract #13111", 
     "period": {
-      "startDate": "2016-09-14T15:36:32.586037+03:00", 
-      "endDate": "2017-09-14T15:36:32.586037+03:00"
+      "startDate": "2016-09-16T14:45:53.015363+03:00", 
+      "endDate": "2017-09-16T14:45:53.015363+03:00"
     }, 
     "value": {
       "currency": "UAH", 
-      "amount": 502.0, 
+      "amount": 501.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "dateSigned": "2016-09-14T15:36:49.941533+03:00", 
-    "date": "2016-09-14T15:36:49.645801+03:00", 
-    "awardID": "d8358793a8f34c33bb605245a285af94", 
-    "id": "f387d8a83c744b94a676f99a4d0adb30", 
-    "contractID": "UA-EA-2016-09-14-000001-1"
+    "date": "2016-09-16T14:46:08.882044+03:00", 
+    "awardID": "17cba6b2b1394798bf3bda8a8cca8861", 
+    "id": "34c811a27e1c45a896898f241a735078", 
+    "contractID": "UA-EA-2016-09-16-000001-1"
   }
 }
 

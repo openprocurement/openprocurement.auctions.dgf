@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/c77d552d67b44bbbb0bc871e43058fa5/awards/bd0bd4d123b544659dbb97f1e317709e?acc_token=49cf29bf5bf5451688daf03617f22a6c HTTP/1.0
+PATCH /api/2.3/auctions/b5f06ad8e55448b59bb76f206d676748/awards/349e0f1f79d04aa488ec9e296e6e441e?acc_token=7f486eee90914b7db341b9285f7f3c98 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 33
 Content-Type: application/json
@@ -13,7 +13,7 @@ Host: api-sandbox.ea.openprocurement.org
 
 200 OK
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/c77d552d67b44bbbb0bc871e43058fa5/awards/84b771f261b14ca786822cb53a7d2dc0
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/b5f06ad8e55448b59bb76f206d676748/awards/fe74f96b44a8492ca92a7ff64d4d0e05
 
 {
   "data": {
@@ -22,17 +22,17 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/c77d552d67b
       {
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/353edf6a4e354fcfafc0a06296533622?KeyID=d1402da7&Signature=KYYIMm5Xjq%252Bc7HkMet%2FBjZRTqCADWv6yF8Z9Qalsugzq112LJZd8fGMy9SkDtn6USIFn7cYZ7jTnpVU6C1IgBA%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/a264fb59171a43ae909081830ae8063c?KeyID=3a39b727&Signature=YDSNL6qFGZWG6jLpnjTIFJirqKfdSFZhgweWhOhOnEf%252BL4nDiHZc6lZaOLJv0eF5sSS9zMH%2Fv45r0aTe0PIOCg%253D%253D", 
         "title": "Unsuccessful_Reason.pdf", 
         "documentOf": "tender", 
-        "datePublished": "2016-09-14T15:36:38.788529+03:00", 
-        "dateModified": "2016-09-14T15:36:38.788558+03:00", 
-        "id": "ee091eb13c3944deb4914a02078aa95b"
+        "datePublished": "2016-09-16T14:45:59.135035+03:00", 
+        "dateModified": "2016-09-16T14:45:59.135065+03:00", 
+        "id": "a010dd89028c458bba72f97535340fab"
       }
     ], 
     "complaintPeriod": {
-      "startDate": "2016-09-14T15:36:38.564317+03:00", 
-      "endDate": "2016-09-14T15:36:46.037080+03:00"
+      "startDate": "2016-09-16T14:45:58.927011+03:00", 
+      "endDate": "2016-09-16T14:46:05.582213+03:00"
     }, 
     "suppliers": [
       {
@@ -55,18 +55,21 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/c77d552d67b
         }
       }
     ], 
-    "bid_id": "7aa283f5d6944825ba355c0ef900d087", 
+    "bid_id": "f83585defafa4d5587584462c777f11d", 
     "value": {
       "currency": "UAH", 
       "amount": 479.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2016-09-14T15:36:46.056930+03:00", 
+    "date": "2016-09-16T14:46:05.599536+03:00", 
     "complaints": [
       {
         "status": "resolved", 
-        "tendererActionDate": "2016-09-14T15:36:41.598373+03:00", 
+        "tendererActionDate": "2016-09-16T14:46:01.672361+03:00", 
         "description": "complaint description", 
+        "title": "complaint title", 
+        "resolutionType": "resolved", 
+        "type": "claim", 
         "author": {
           "contactPoint": {
             "email": "soleksuk@gmail.com", 
@@ -87,35 +90,35 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/c77d552d67b
             "locality": "м. Вінниця"
           }
         }, 
-        "resolutionType": "resolved", 
-        "type": "claim", 
-        "title": "complaint title", 
         "satisfied": true, 
-        "id": "72ed6a40ef8c431c98b0c13aa860f032", 
-        "dateAnswered": "2016-09-14T15:36:41.598345+03:00", 
+        "id": "457abc613a2147978675f09766dd3a00", 
+        "dateAnswered": "2016-09-16T14:46:01.672338+03:00", 
         "tendererAction": "Виправлено неконкурентні умови", 
-        "dateSubmitted": "2016-09-14T15:36:40.946297+03:00", 
-        "complaintID": "UA-EA-2016-09-14-000001.5", 
-        "date": "2016-09-14T15:36:41.895616+03:00", 
+        "dateSubmitted": "2016-09-16T14:46:01.032829+03:00", 
+        "complaintID": "UA-EA-2016-09-16-000001.5", 
+        "date": "2016-09-16T14:46:01.946318+03:00", 
         "resolution": "Виправлено неконкурентні умови", 
         "documents": [
           {
-            "dateModified": "2016-09-14T15:36:40.672347+03:00", 
+            "dateModified": "2016-09-16T14:46:00.795558+03:00", 
             "hash": "md5:00000000000000000000000000000000", 
             "format": "application/pdf", 
-            "url": "http://public.docs-sandbox.ea.openprocurement.org/get/c48a1c3cb8434c569ebaa592ef2287d9?KeyID=d1402da7&Signature=4pzORGsvIemMqXRu0l9WFleTU%2FOaGS5oOvT%2FlUgvF%252Bq7lZCjlPVxUeuk%2FoFc4hAzaJqEJ2iVPT9geJhGQ52zCw%253D%253D", 
+            "url": "http://public.docs-sandbox.ea.openprocurement.org/get/49d08ceb3b414ba981c16579a5953d79?KeyID=3a39b727&Signature=HHApb6KzY5V6EAghveeT5Ovy1S2GW4mXKWYJMJiiCac2whxbT%252B9kl%2Fc8Dqzweipcem%252BSHIkblCX5m%2FMK%2FY%252BsCg%253D%253D", 
             "author": "complaint_owner", 
             "documentOf": "tender", 
-            "datePublished": "2016-09-14T15:36:40.672317+03:00", 
+            "datePublished": "2016-09-16T14:46:00.795516+03:00", 
             "title": "Complaint_Attachement.pdf", 
-            "id": "a08e1b2f307d4079ab876cf0c994d257"
+            "id": "359d6544490f4303a39175b5b52d97ab"
           }
         ]
       }, 
       {
         "status": "invalid", 
-        "dateDecision": "2016-09-14T15:36:42.731281+03:00", 
+        "dateDecision": "2016-09-16T14:46:02.668315+03:00", 
         "description": "complaint description", 
+        "title": "complaint title", 
+        "resolutionType": "resolved", 
+        "type": "complaint", 
         "author": {
           "contactPoint": {
             "email": "soleksuk@gmail.com", 
@@ -136,35 +139,35 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/c77d552d67b
             "locality": "м. Вінниця"
           }
         }, 
-        "resolutionType": "resolved", 
-        "type": "complaint", 
-        "title": "complaint title", 
         "satisfied": false, 
-        "dateEscalated": "2016-09-14T15:36:42.455195+03:00", 
-        "dateAnswered": "2016-09-14T15:36:42.157381+03:00", 
-        "dateSubmitted": "2016-09-14T15:36:41.184063+03:00", 
-        "complaintID": "UA-EA-2016-09-14-000001.6", 
-        "date": "2016-09-14T15:36:42.745012+03:00", 
+        "dateEscalated": "2016-09-16T14:46:02.420860+03:00", 
+        "dateAnswered": "2016-09-16T14:46:02.174543+03:00", 
+        "dateSubmitted": "2016-09-16T14:46:01.277428+03:00", 
+        "complaintID": "UA-EA-2016-09-16-000001.6", 
+        "date": "2016-09-16T14:46:02.680508+03:00", 
         "resolution": "Виправлено неконкурентні умови", 
-        "id": "736e80e2357d40e8ac9ff068d4c0acfb"
+        "id": "2a5e5495c81c40baa62a124022109798"
       }, 
       {
         "status": "resolved", 
-        "dateDecision": "2016-09-14T15:36:45.095384+03:00", 
+        "dateDecision": "2016-09-16T14:46:04.844489+03:00", 
         "documents": [
           {
-            "dateModified": "2016-09-14T15:36:44.733631+03:00", 
+            "dateModified": "2016-09-16T14:46:04.530077+03:00", 
             "hash": "md5:00000000000000000000000000000000", 
             "format": "application/pdf", 
-            "url": "http://public.docs-sandbox.ea.openprocurement.org/get/3c7aa98cc6e741d0b72e6f55db8725a8?KeyID=d1402da7&Signature=I2k9UDIoIbCE6QGxsLD9iAMx0bEP%252BTCKvwenkyY4dnOuvSDk%2F3MivxxbnFHUGwuAt%252BX4cc6n%2FDt%252B7u%252BGLYwKCA%253D%253D", 
+            "url": "http://public.docs-sandbox.ea.openprocurement.org/get/5983d39d45f74d0aaa9e14207bfef5cc?KeyID=3a39b727&Signature=T5kSSRZGQ7irzXziZbVse5MxPRMQGHwpTLOMrVe41HfQv0NLnM3u36HFv1A%252BNIUIkaPP9Cjk2v2ejEfprxQ2Cw%253D%253D", 
             "author": "reviewers", 
             "documentOf": "tender", 
-            "datePublished": "2016-09-14T15:36:44.733600+03:00", 
+            "datePublished": "2016-09-16T14:46:04.530047+03:00", 
             "title": "ComplaintResolution.pdf", 
-            "id": "10b4428063a648f2aa4943eca553bc8e"
+            "id": "2e6cc945eef44642b28899ad369a649e"
           }
         ], 
         "description": "complaint description", 
+        "title": "complaint title", 
+        "resolutionType": "resolved", 
+        "type": "complaint", 
         "author": {
           "contactPoint": {
             "email": "soleksuk@gmail.com", 
@@ -185,22 +188,22 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/c77d552d67b
             "locality": "м. Вінниця"
           }
         }, 
-        "resolutionType": "resolved", 
-        "type": "complaint", 
-        "title": "complaint title", 
         "satisfied": false, 
-        "dateEscalated": "2016-09-14T15:36:43.596111+03:00", 
-        "dateAnswered": "2016-09-14T15:36:43.290656+03:00", 
-        "dateSubmitted": "2016-09-14T15:36:43.020801+03:00", 
-        "complaintID": "UA-EA-2016-09-14-000001.7", 
-        "date": "2016-09-14T15:36:45.114728+03:00", 
+        "dateEscalated": "2016-09-16T14:46:03.460098+03:00", 
+        "dateAnswered": "2016-09-16T14:46:03.189506+03:00", 
+        "dateSubmitted": "2016-09-16T14:46:02.936664+03:00", 
+        "complaintID": "UA-EA-2016-09-16-000001.7", 
+        "date": "2016-09-16T14:46:04.859272+03:00", 
         "resolution": "Виправлено неконкурентні умови", 
-        "id": "fbfa9ecfd4c145dd812c044c87e6e7fd"
+        "id": "6f4b49b3c01247f5af682fc1e0bd2ed3"
       }, 
       {
         "status": "declined", 
-        "dateDecision": "2016-09-14T15:36:45.462264+03:00", 
+        "dateDecision": "2016-09-16T14:46:05.130635+03:00", 
         "description": "complaint description", 
+        "title": "complaint title", 
+        "resolutionType": "resolved", 
+        "type": "complaint", 
         "author": {
           "contactPoint": {
             "email": "soleksuk@gmail.com", 
@@ -221,20 +224,17 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/c77d552d67b
             "locality": "м. Вінниця"
           }
         }, 
-        "resolutionType": "resolved", 
-        "type": "complaint", 
-        "title": "complaint title", 
         "satisfied": false, 
-        "dateEscalated": "2016-09-14T15:36:44.449028+03:00", 
-        "dateAnswered": "2016-09-14T15:36:44.157999+03:00", 
-        "dateSubmitted": "2016-09-14T15:36:43.870451+03:00", 
-        "complaintID": "UA-EA-2016-09-14-000001.8", 
-        "date": "2016-09-14T15:36:45.480330+03:00", 
+        "dateEscalated": "2016-09-16T14:46:04.264099+03:00", 
+        "dateAnswered": "2016-09-16T14:46:03.995694+03:00", 
+        "dateSubmitted": "2016-09-16T14:46:03.718449+03:00", 
+        "complaintID": "UA-EA-2016-09-16-000001.8", 
+        "date": "2016-09-16T14:46:05.144395+03:00", 
         "resolution": "Виправлено неконкурентні умови", 
-        "id": "7af6dba808dc43b7ac6ba73f16fdd72e"
+        "id": "cd09f2d38096463aa1adbdedd121b872"
       }
     ], 
-    "id": "bd0bd4d123b544659dbb97f1e317709e"
+    "id": "349e0f1f79d04aa488ec9e296e6e441e"
   }
 }
 

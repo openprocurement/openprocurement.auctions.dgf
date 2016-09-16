@@ -1,4 +1,4 @@
-POST /api/2.3/auctions/d2c7b6fb8a074928820d365c09c5c0b1/questions HTTP/1.0
+POST /api/2.3/auctions/34a03244dd6642f2bcd612f434c6c913/questions HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 1506
 Content-Type: application/json
@@ -35,11 +35,12 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/d2c7b6fb8a074928820d365c09c5c0b1/questions/d33c541692814bb881ccb2fec2356fa1
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/34a03244dd6642f2bcd612f434c6c913/questions/7de47a617e5d458e9872d9072aa391fb
 
 {
   "data": {
     "description": "Просимо додати таблицю потрібної калорійності харчування", 
+    "title": "Калорійність", 
     "author": {
       "contactPoint": {
         "email": "soleksuk@gmail.com", 
@@ -49,8 +50,8 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/d2c7b6fb8a0
       "identifier": {
         "scheme": "UA-EDR", 
         "legalName": "Державне комунальне підприємство громадського харчування «Школяр»", 
-        "id": "00137226", 
-        "uri": "http://sch10.edu.vn.ua/"
+        "uri": "http://sch10.edu.vn.ua/", 
+        "id": "00137226"
       }, 
       "name": "ДКП «Школяр»", 
       "address": {
@@ -61,9 +62,8 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/d2c7b6fb8a0
         "locality": "м. Вінниця"
       }
     }, 
-    "title": "Калорійність", 
-    "date": "2016-09-14T15:36:48.282530+03:00", 
-    "id": "d33c541692814bb881ccb2fec2356fa1", 
+    "date": "2016-09-16T14:46:07.550869+03:00", 
+    "id": "7de47a617e5d458e9872d9072aa391fb", 
     "questionOf": "tender"
   }
 }

@@ -51,7 +51,7 @@ class AuctionComplaintDocumentResource(APIResource):
     def collection_post(self):
         """Auction Complaint Document Upload
         """
-        if self.request.validated['auction_status'] not in ['active.enquiries', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded']:
+        if self.request.validated['auction_status'] not in ['active.tendering', 'active.auction', 'active.qualification', 'active.awarded']:
             self.request.errors.add('body', 'data', 'Can\'t add document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
@@ -91,7 +91,7 @@ class AuctionComplaintDocumentResource(APIResource):
             self.request.errors.add('url', 'role', 'Can update document only author')
             self.request.errors.status = 403
             return
-        if self.request.validated['auction_status'] not in ['active.enquiries', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded']:
+        if self.request.validated['auction_status'] not in ['active.tendering', 'active.auction', 'active.qualification', 'active.awarded']:
             self.request.errors.add('body', 'data', 'Can\'t update document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
@@ -114,7 +114,7 @@ class AuctionComplaintDocumentResource(APIResource):
             self.request.errors.add('url', 'role', 'Can update document only author')
             self.request.errors.status = 403
             return
-        if self.request.validated['auction_status'] not in ['active.enquiries', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded']:
+        if self.request.validated['auction_status'] not in ['active.tendering', 'active.auction', 'active.qualification', 'active.awarded']:
             self.request.errors.add('body', 'data', 'Can\'t update document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return

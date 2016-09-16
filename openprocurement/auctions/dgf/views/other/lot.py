@@ -28,7 +28,7 @@ class AuctionLotResource(APIResource):
         """Add a lot
         """
         auction = self.request.validated['auction']
-        if auction.status not in ['active.enquiries']:
+        if auction.status not in ['active.tendering']:
             self.request.errors.add('body', 'data', 'Can\'t add lot in current ({}) auction status'.format(auction.status))
             self.request.errors.status = 403
             return
@@ -59,7 +59,7 @@ class AuctionLotResource(APIResource):
         """Update of lot
         """
         auction = self.request.validated['auction']
-        if auction.status not in ['active.enquiries']:
+        if auction.status not in ['active.tendering']:
             self.request.errors.add('body', 'data', 'Can\'t update lot in current ({}) auction status'.format(auction.status))
             self.request.errors.status = 403
             return
@@ -73,7 +73,7 @@ class AuctionLotResource(APIResource):
         """Lot deleting
         """
         auction = self.request.validated['auction']
-        if auction.status not in ['active.enquiries']:
+        if auction.status not in ['active.tendering']:
             self.request.errors.add('body', 'data', 'Can\'t delete lot in current ({}) auction status'.format(auction.status))
             self.request.errors.status = 403
             return

@@ -238,7 +238,7 @@ Confirming qualification
 
 Candidate (participant that has submitted the highest bid at the auction) must sign the auction protocol and add it to the bid within **3 business days after becoming candidate**.
 
-.. include:: 
+.. include:: tutorial/bidder-auction-protocol.http
    :code:
 
 Within **10 business days after becoming candidate** this candidate must provide payment and organizer must confirm this payment:
@@ -246,20 +246,23 @@ Within **10 business days after becoming candidate** this candidate must provide
 .. include:: tutorial/confirm-qualification.http
    :code:
 
+Disqualification of candidate
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the candidate didn't sign the auction protocol in 3 business days after becoming candidate, or didn't provide payment in 10 business days since becoming candidate, or didn't conclude contract based on the electronic auction results within 15 business days since becoming candidate, then organizer disqualifies the first candidate and awards participant with the next largest bid.
+
+.. include:: qualification/award-active-cancel.http
+   :code:
+
+.. include:: qualification/award-active-cancel-disqualify.http
+   :code:
+
+Within 15 days a new candidate must confirm qualification with steps described above (Qualification).
+
 Signing contract
 ----------------
 
 The candidate has **15 business days after becoming candidate** to conclude a contract with the bank based on the results of electronic auction.
-
-If the candidate refuses to sign the auction protocol or doesn't conclude contract based on the electronic auction results within **15 business days** since becoming candidate, then organizer disqualifies the first candidate and awards participant with the next largest bid. Within 15 days a new candidate must confirm qualification with steps described above (:ref:`Qualification`).
-
-.. include:: 
-   :code:
-
-If the second candidate refuses to sign the auction protocol or doesn't conclude contract based on the electronic auction results within **15 business days since becoming candidate**, organizer has to disqualify all participants.
-
-.. include:: 
-   :code:
 
 Uploading contract documentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -293,10 +296,6 @@ Contract registration
 
 There is a possibility to set custom contract signature date. 
 If the date is not set it will be generated on contract registration.
-
-.. include:: tutorial/auction-contract-sign-date.http
-   :code:
-
 You can register contract:
 
 .. include:: tutorial/auction-contract-sign.http

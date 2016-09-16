@@ -12,7 +12,7 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2016-09-28T15:36:32.586037"
+      "startDate": "2016-09-30T14:45:53.015363"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "value": {
@@ -48,7 +48,7 @@ Host: api-sandbox.ea.openprocurement.org
           "description": "Земельні ділянки"
         }, 
         "description": "Земля для військовослужбовців", 
-        "id": "067623a655524901ab14f89d9ef7b458", 
+        "id": "2eb649d1c6c94f06a3a84cc3629f0d59", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -64,21 +64,65 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/716a1f15df0d40dbb26736f757e65fa3
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/9a94b2156df64b2c955aa3f103126f11
 
 {
   "access": {
-    "token": "59d498cd837f45eba8c96a4ec2d9986d"
+    "token": "d48508befb27413aa9e8a86f50fafe93"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-09-14-000002", 
+    "auctionID": "UA-EA-2016-09-16-000002", 
     "enquiryPeriod": {
-      "startDate": "2016-09-14T15:36:47.616609+03:00", 
-      "endDate": "2016-09-27T15:36:32.586037+03:00"
+      "startDate": "2016-09-16T14:46:06.933789+03:00", 
+      "endDate": "2016-09-29T14:45:53.015363+03:00"
     }, 
     "submissionMethod": "electronicAuction", 
-    "next_check": "2016-09-27T15:36:32.586037+03:00", 
+    "next_check": "2016-09-29T14:45:53.015363+03:00", 
+    "awardCriteria": "lowestCost", 
+    "owner": "broker", 
+    "title_en": "[TESTING] Cases with state awards", 
+    "id": "9a94b2156df64b2c955aa3f103126f11", 
+    "title": "[ТЕСТУВАННЯ] футляри до державних нагород", 
+    "dateModified": "2016-09-16T14:46:06.938269+03:00", 
+    "status": "active.tendering", 
+    "tenderPeriod": {
+      "startDate": "2016-09-16T14:46:06.933789+03:00", 
+      "endDate": "2016-09-29T14:45:53.015363+03:00"
+    }, 
+    "auctionPeriod": {
+      "shouldStartAfter": "2016-09-30T00:00:00+03:00"
+    }, 
+    "procurementMethodType": "dgfOtherAssets", 
+    "date": "2016-09-16T14:46:06.933789+03:00", 
+    "minimalStep": {
+      "currency": "UAH", 
+      "amount": 35.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "items": [
+      {
+        "unit": {
+          "code": "44617100-9", 
+          "name": "item"
+        }, 
+        "description": "Земля для військовослужбовців", 
+        "id": "2eb649d1c6c94f06a3a84cc3629f0d59", 
+        "classification": {
+          "scheme": "CAV", 
+          "description": "Земельні ділянки", 
+          "id": "06000000-2"
+        }, 
+        "quantity": 5
+      }
+    ], 
+    "value": {
+      "currency": "UAH", 
+      "amount": 500.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "mode": "test", 
+    "title_ru": "[ТЕСТИРОВАНИЕ] футляры к государственным наградам", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 
@@ -98,51 +142,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/716a1f15df0
         "region": "м. Київ", 
         "locality": "м. Київ"
       }
-    }, 
-    "owner": "broker", 
-    "title_en": "[TESTING] Cases with state awards", 
-    "id": "716a1f15df0d40dbb26736f757e65fa3", 
-    "title": "[ТЕСТУВАННЯ] футляри до державних нагород", 
-    "dateModified": "2016-09-14T15:36:47.619850+03:00", 
-    "status": "active.tendering", 
-    "tenderPeriod": {
-      "startDate": "2016-09-14T15:36:47.616609+03:00", 
-      "endDate": "2016-09-27T15:36:32.586037+03:00"
-    }, 
-    "auctionPeriod": {
-      "shouldStartAfter": "2016-09-28T00:00:00+03:00"
-    }, 
-    "procurementMethodType": "dgfOtherAssets", 
-    "date": "2016-09-14T15:36:47.616609+03:00", 
-    "minimalStep": {
-      "currency": "UAH", 
-      "amount": 35.0, 
-      "valueAddedTaxIncluded": true
-    }, 
-    "items": [
-      {
-        "unit": {
-          "code": "44617100-9", 
-          "name": "item"
-        }, 
-        "description": "Земля для військовослужбовців", 
-        "id": "067623a655524901ab14f89d9ef7b458", 
-        "classification": {
-          "scheme": "CAV", 
-          "description": "Земельні ділянки", 
-          "id": "06000000-2"
-        }, 
-        "quantity": 5
-      }
-    ], 
-    "value": {
-      "currency": "UAH", 
-      "amount": 500.0, 
-      "valueAddedTaxIncluded": true
-    }, 
-    "mode": "test", 
-    "title_ru": "[ТЕСТИРОВАНИЕ] футляры к государственным наградам", 
-    "awardCriteria": "lowestCost"
+    }
   }
 }
 

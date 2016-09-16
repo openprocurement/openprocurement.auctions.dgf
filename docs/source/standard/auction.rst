@@ -25,7 +25,7 @@ Schema
 
    The auction identifier to refer auction to in "paper" documentation. 
 
-..   |ocdsDescription|
+   |ocdsDescription|
    AuctionID should always be the same as the OCID. It is included to make the flattened data structure more convenient.
 
    
@@ -35,7 +35,7 @@ Schema
    Organization conducting the auction.
    
 
-..   |ocdsDescription|
+   |ocdsDescription|
    The entity managing the procurement, which may be different from the buyer who is paying / using the items being procured.
 
    
@@ -44,7 +44,7 @@ Schema
 
      Total available auction budget. Bids lower than ``value`` will be rejected.
 
-..   |ocdsDescription|
+   |ocdsDescription|
    The total estimated value of the procurement.
 
 :guarantee:
