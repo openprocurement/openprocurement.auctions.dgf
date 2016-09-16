@@ -74,7 +74,7 @@ And we can see that it is overriding the original version:
 Adding virtual data room
 ------------------------
 
-Organizer can add url for virtual data room:
+Organizer can add URL for virtual data room:
 
 .. include:: tutorial/finauction-adding-vdr.http
    :code:
