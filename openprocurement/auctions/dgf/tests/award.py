@@ -270,52 +270,54 @@ class AuctionAwardResourceTest(BaseAuctionWebTest):
         self.assertIn('Location', response.headers)
         new_award_location = response.headers['Location']
 
-        response = self.app.patch_json(new_award_location[-82:], {"data": {"status": "active"}})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertNotIn('Location', response.headers)
+        # response = self.app.patch_json(new_award_location[-82:], {"data": {"status": "active"}})
+        # self.assertEqual(response.status, '200 OK')
+        # self.assertEqual(response.content_type, 'application/json')
+        # self.assertNotIn('Location', response.headers)
 
         response = self.app.get(request_path)
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(len(response.json['data']), 2)
 
-        response = self.app.post_json('/auctions/{}/awards/{}/complaints'.format(self.auction_id, award['id']), {'data': {
-            'title': 'complaint title',
-            'description': 'complaint description',
-            'author': self.initial_organization,
-            'status': 'claim'
-        }})
-        self.assertEqual(response.status, '201 Created')
+        # response = self.app.post_json('/auctions/{}/awards/{}/complaints'.format(self.auction_id, award['id']), {'data': {
+        #     'title': 'complaint title',
+        #     'description': 'complaint description',
+        #     'author': self.initial_organization,
+        #     'status': 'claim'
+        # }})
+        # self.assertEqual(response.status, '201 Created')
 
-        response = self.app.post_json('{}/complaints'.format(new_award_location[-82:]), {'data': {
-            'title': 'complaint title',
-            'description': 'complaint description',
-            'author': self.initial_organization
-        }})
-        self.assertEqual(response.status, '201 Created')
+        # response = self.app.post_json('{}/complaints'.format(new_award_location[-82:]), {'data': {
+        #     'title': 'complaint title',
+        #     'description': 'complaint description',
+        #     'author': self.initial_organization
+        # }})
+        # self.assertEqual(response.status, '201 Created')
 
-        response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, award['id']), {"data": {"status": "cancelled"}})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertIn('Location', response.headers)
-        new_award_location = response.headers['Location']
-
-        response = self.app.patch_json(new_award_location[-82:], {"data": {"status": "unsuccessful"}})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertIn('Location', response.headers)
-        new_award_location = response.headers['Location']
+        # response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, award['id']), {"data": {"status": "cancelled"}})
+        # self.assertEqual(response.status, '200 OK')
+        # self.assertEqual(response.content_type, 'application/json')
+        # self.assertIn('Location', response.headers)
+        # new_award_location = response.headers['Location']
 
         response = self.app.patch_json(new_award_location[-82:], {"data": {"status": "unsuccessful"}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertNotIn('Location', response.headers)
+        # self.assertIn('Location', response.headers)
+        # new_award_location = response.headers['Location']
+
+        # response = self.app.patch_json(new_award_location[-82:], {"data": {"status": "unsuccessful"}})
+        # self.assertEqual(response.status, '200 OK')
+        # self.assertEqual(response.content_type, 'application/json')
+        # self.assertNotIn('Location', response.headers)
 
         response = self.app.get(request_path)
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(len(response.json['data']), 4)
+        self.assertEqual(len(response.json['data']), 2)
+        # self.assertEqual(len(response.json['data']), 4)
+
 
     def test_get_auction_award(self):
         response = self.app.post_json('/auctions/{}/awards'.format(
@@ -643,6 +645,7 @@ class Auction2LotAwardResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can update award only in active lot status")
 
 
+@unittest.skip("option not available")
 class AuctionAwardComplaintResourceTest(BaseAuctionWebTest):
     #initial_data = auction_data
     initial_status = 'active.qualification'
@@ -1358,6 +1361,7 @@ class Auction2LotAwardComplaintResourceTest(AuctionLotAwardComplaintResourceTest
         self.assertEqual(response.json['errors'][0]["description"], "Can update complaint only in active lot status")
 
 
+@unittest.skip("option not available")
 class AuctionAwardComplaintDocumentResourceTest(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids
@@ -2364,6 +2368,7 @@ class FinancialAuction2LotAwardResourceTest(Auction2LotAwardResourceTest):
     initial_organization = test_financial_organization
 
 
+@unittest.skip("option not available")
 class FinancialAuctionAwardComplaintResourceTest(AuctionAwardComplaintResourceTest):
     initial_bids = test_financial_bids
     initial_data = test_financial_auction_data
@@ -2382,6 +2387,7 @@ class FinancialAuction2LotAwardComplaintResourceTest(Auction2LotAwardComplaintRe
     initial_organization = test_financial_organization
 
 
+@unittest.skip("option not available")
 class FinancialAuctionAwardComplaintDocumentResourceTest(AuctionAwardComplaintDocumentResourceTest):
     initial_bids = test_financial_bids
     initial_data = test_financial_auction_data
