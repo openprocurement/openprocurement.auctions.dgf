@@ -147,7 +147,7 @@ base_test_bids = [
 
 test_bids = []
 for i in base_test_bids:
-    i.update({'selfQualified': True})
+    i.update({'qualified': True})
     test_bids.append(i)
 
 test_lots = [
@@ -204,7 +204,7 @@ test_financial_organization['additionalIdentifiers'] = [{
 test_financial_bids = []
 for i in test_bids:
     bid = deepcopy(i)
-    bid.update({'selfEligible': True})
+    bid.update({'eligible': True})
     bid['tenderers'] = [test_financial_organization]
     test_financial_bids.append(bid)
 

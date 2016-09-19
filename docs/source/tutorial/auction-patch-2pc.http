@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/3c5d7f0c29394933a34a68f978e00aa4?acc_token=494ea4dc1aa3444c95f9b8e87fcd9262 HTTP/1.0
+PATCH /api/2.3/auctions/522cc5851a8b438383650a9e6f5f5908?acc_token=715595053bbf4021b2e0af3c788e72d8 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 40
 Content-Type: application/json
@@ -17,10 +17,10 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-09-16-000001", 
+    "auctionID": "UA-EA-2016-09-19-000001", 
     "tenderPeriod": {
-      "startDate": "2016-09-16T16:17:42.560829+03:00", 
-      "endDate": "2016-09-29T16:17:40.438241+03:00"
+      "startDate": "2016-09-19T12:00:26.111175+03:00", 
+      "endDate": "2016-10-03T11:59:24.493072+03:00"
     }, 
     "title": "футляри до державних нагород", 
     "minimalStep": {
@@ -29,7 +29,7 @@ Content-Type: application/json; charset=UTF-8
       "valueAddedTaxIncluded": true
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2016-09-30T00:00:00+03:00"
+      "shouldStartAfter": "2016-10-04T00:00:00+03:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "value": {
@@ -38,16 +38,17 @@ Content-Type: application/json; charset=UTF-8
       "valueAddedTaxIncluded": true
     }, 
     "submissionMethod": "electronicAuction", 
-    "date": "2016-09-16T16:17:42.613228+03:00", 
-    "dateModified": "2016-09-16T16:17:42.613228+03:00", 
+    "date": "2016-09-19T12:00:26.159877+03:00", 
+    "procurementMethodDetails": "quick, accelerator=1440", 
+    "dateModified": "2016-09-19T12:00:26.159877+03:00", 
     "status": "active.tendering", 
-    "awardCriteria": "lowestCost", 
+    "awardCriteria": "highestCost", 
     "enquiryPeriod": {
-      "startDate": "2016-09-16T16:17:42.560829+03:00", 
-      "endDate": "2016-09-29T16:17:40.438241+03:00"
+      "startDate": "2016-09-19T12:00:26.111175+03:00", 
+      "endDate": "2016-10-03T11:59:24.493072+03:00"
     }, 
     "owner": "broker", 
-    "next_check": "2016-09-29T16:17:40.438241+03:00", 
+    "next_check": "2016-10-03T11:59:24.493072+03:00", 
     "items": [
       {
         "description": "Земля для військовослужбовців", 
@@ -64,10 +65,10 @@ Content-Type: application/json; charset=UTF-8
           "locality": "м. Київ"
         }, 
         "deliveryDate": {
-          "startDate": "2016-09-18T16:17:40.438241+03:00", 
-          "endDate": "2016-09-21T16:17:40.438241+03:00"
+          "startDate": "2016-09-21T12:00:24.493072+03:00", 
+          "endDate": "2016-09-24T12:00:24.493072+03:00"
         }, 
-        "id": "ad137687cd3949b29544d0848f2201a2", 
+        "id": "f9ce9e6da11a4b17949e9087f2d46445", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -75,7 +76,7 @@ Content-Type: application/json; charset=UTF-8
         "quantity": 5
       }
     ], 
-    "id": "3c5d7f0c29394933a34a68f978e00aa4", 
+    "id": "522cc5851a8b438383650a9e6f5f5908", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 

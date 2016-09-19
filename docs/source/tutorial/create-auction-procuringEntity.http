@@ -12,7 +12,7 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2016-09-30T16:17:40.440370"
+      "startDate": "2016-10-03T12:00:24.494765"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "value": {
@@ -48,7 +48,7 @@ Host: api-sandbox.ea.openprocurement.org
           "description": "Земельні ділянки"
         }, 
         "description": "Земля для військовослужбовців", 
-        "id": "3bb229592e6d48089d34bdb1f72ab352", 
+        "id": "85c79d97046c47ca8f7e1c2b07fbb4bd", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -64,37 +64,37 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/3eb2b627e1d84609a1882557533b19a4
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/b1fc5e470b5a4abf99061ef551610a41
 
 {
   "access": {
-    "token": "ac3607dc6e71433f91202912cff7b1ed"
+    "token": "b104f157be5f4f90a89eb0a062182ab0"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-09-16-000002", 
+    "auctionID": "UA-EA-2016-09-19-000002", 
     "enquiryPeriod": {
-      "startDate": "2016-09-16T16:17:56.782905+03:00", 
-      "endDate": "2016-09-29T16:17:40.440370+03:00"
+      "startDate": "2016-09-19T12:00:29.406886+03:00", 
+      "endDate": "2016-10-02T12:00:24.494765+03:00"
     }, 
     "submissionMethod": "electronicAuction", 
-    "next_check": "2016-09-29T16:17:40.440370+03:00", 
-    "awardCriteria": "lowestCost", 
+    "next_check": "2016-10-02T12:00:24.494765+03:00", 
+    "awardCriteria": "highestCost", 
     "owner": "broker", 
     "title_en": "[TESTING] Cases with state awards", 
-    "id": "3eb2b627e1d84609a1882557533b19a4", 
+    "id": "b1fc5e470b5a4abf99061ef551610a41", 
     "title": "[ТЕСТУВАННЯ] футляри до державних нагород", 
-    "dateModified": "2016-09-16T16:17:56.786804+03:00", 
+    "dateModified": "2016-09-19T12:00:29.409545+03:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2016-09-16T16:17:56.782905+03:00", 
-      "endDate": "2016-09-29T16:17:40.440370+03:00"
+      "startDate": "2016-09-19T12:00:29.406886+03:00", 
+      "endDate": "2016-10-02T12:00:24.494765+03:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2016-09-30T00:00:00+03:00"
+      "shouldStartAfter": "2016-10-03T00:00:00+03:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
-    "date": "2016-09-16T16:17:56.782905+03:00", 
+    "date": "2016-09-19T12:00:29.406886+03:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -107,7 +107,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/3eb2b627e1d
           "name": "item"
         }, 
         "description": "Земля для військовослужбовців", 
-        "id": "3bb229592e6d48089d34bdb1f72ab352", 
+        "id": "85c79d97046c47ca8f7e1c2b07fbb4bd", 
         "classification": {
           "scheme": "CAV", 
           "description": "Земельні ділянки", 

@@ -45,7 +45,7 @@ bid = {
             }
         ],
         "status": "draft",
-        "selfQualified": True,
+        "qualified": True,
         "value": {
             "amount": 500
         }
@@ -76,7 +76,7 @@ bid2 = {
                 "name": "ДКП «Книга»"
             }
         ],
-        "selfQualified": True,
+        "qualified": True,
         "value": {
             "amount": 501
         }
@@ -244,7 +244,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
         return super(AuctionResourceTest, self).generate_docservice_url().replace('/localhost/', '/public.docs-sandbox.ea.openprocurement.org/')
 
     def test_docs_acceleration(self):
-        # SANDBOX_MODE=TRUE 
+        # SANDBOX_MODE=TRUE
         data = test_auction_data.copy()
         data['procurementMethodDetails'] = 'quick, accelerator=1440'
         data['submissionMethodDetails'] = 'quick'
@@ -665,7 +665,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
             self.assertEqual(response.status, '200 OK')
 
 
-    def test_docs_complaints(self):
+    def _test_docs_complaints(self):
 
         ###################### Tender Conditions Claims/Complaints ##################
         #
@@ -826,12 +826,12 @@ class AuctionResourceTest(BaseAuctionWebTest):
         self.set_status('active.tendering')
         self.app.authorization = ('Basic', ('broker', ''))
         response = self.app.post_json('/auctions/{}/bids'.format(self.auction_id),
-                                      {'data': {"selfQualified": True, 'tenderers': [bid["data"]["tenderers"][0]], "value": {"amount": 450}}})
+                                      {'data': {"qualified": True, 'tenderers': [bid["data"]["tenderers"][0]], "value": {"amount": 450}}})
         bid_id = response.json['data']['id']
         bid_token = response.json['access']['token']
         self.app.authorization = ('Basic', ('broker', ''))
         response = self.app.post_json('/auctions/{}/bids'.format(self.auction_id),
-                                      {'data': {"selfQualified": True, 'tenderers': [bid["data"]["tenderers"][0]], "value": {"amount": 475}}})
+                                      {'data': {"qualified": True, 'tenderers': [bid["data"]["tenderers"][0]], "value": {"amount": 475}}})
         # get auction info
         self.set_status('active.auction')
         self.app.authorization = ('Basic', ('auction', ''))

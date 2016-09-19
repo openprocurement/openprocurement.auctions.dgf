@@ -291,7 +291,7 @@ class AuctionSameValueAuctionResourceTest(BaseAuctionWebTest):
                 "currency": "UAH",
                 "valueAddedTaxIncluded": True
             },
-            'selfQualified': True
+            'qualified': True
         }
         for i in range(3)
     ]
@@ -1005,7 +1005,7 @@ class AuctionFeaturesAuctionResourceTest(BaseAuctionWebTest):
                 "currency": "UAH",
                 "valueAddedTaxIncluded": True
             },
-            'selfQualified': True
+            'qualified': True
         },
         {
             "parameters": [
@@ -1059,8 +1059,8 @@ class FinancialAuctionSameValueAuctionResourceTest(AuctionSameValueAuctionResour
                 "currency": "UAH",
                 "valueAddedTaxIncluded": True
             },
-            'selfQualified': True,
-            'selfEligible': True
+            'qualified': True,
+            'eligible': True
         }
         for i in range(3)
     ]
@@ -1099,8 +1099,8 @@ class FinancialAuctionFeaturesAuctionResourceTest(AuctionFeaturesAuctionResource
                 "currency": "UAH",
                 "valueAddedTaxIncluded": True
             },
-            'selfQualified': True,
-            'selfEligible': True
+            'qualified': True,
+            'eligible': True
         },
         {
             "parameters": [
@@ -1118,8 +1118,8 @@ class FinancialAuctionFeaturesAuctionResourceTest(AuctionFeaturesAuctionResource
                 "currency": "UAH",
                 "valueAddedTaxIncluded": True
             },
-            'selfQualified': True,
-            'selfEligible': True
+            'qualified': True,
+            'eligible': True
         }
     ]
 

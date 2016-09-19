@@ -1228,10 +1228,10 @@ class AuctionProcessTest(BaseAuctionWebTest):
         self.app.authorization = ('Basic', ('broker', ''))
         if self.initial_organization == test_financial_organization:
             response = self.app.post_json('/auctions/{}/bids'.format(auction_id),
-                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 500}, 'selfQualified': True, 'selfEligible': True}})
+                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 500}, 'qualified': True, 'eligible': True}})
         else:
             response = self.app.post_json('/auctions/{}/bids'.format(auction_id),
-                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 500}, 'selfQualified': True}})
+                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 500}, 'qualified': True}})
         # switch to active.qualification
         self.set_status('active.auction', {'status': 'active.tendering'})
         self.app.authorization = ('Basic', ('chronograph', ''))
@@ -1282,10 +1282,10 @@ class AuctionProcessTest(BaseAuctionWebTest):
         self.app.authorization = ('Basic', ('broker', ''))
         if self.initial_organization == test_financial_organization:
             response = self.app.post_json('/auctions/{}/bids'.format(auction_id),
-                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'selfQualified': True, 'selfEligible': True}})
+                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'qualified': True, 'eligible': True}})
         else:
             response = self.app.post_json('/auctions/{}/bids'.format(auction_id),
-                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'selfQualified': True}})
+                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'qualified': True}})
         # switch to active.qualification
         self.set_status('active.auction', {"auctionPeriod": {"startDate": None}, 'status': 'active.tendering'})
         self.app.authorization = ('Basic', ('chronograph', ''))
@@ -1327,20 +1327,20 @@ class AuctionProcessTest(BaseAuctionWebTest):
         self.app.authorization = ('Basic', ('broker', ''))
         if self.initial_organization == test_financial_organization:
             response = self.app.post_json('/auctions/{}/bids'.format(auction_id),
-                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'selfQualified': True, 'selfEligible': True}})
+                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'qualified': True, 'eligible': True}})
         else:
             response = self.app.post_json('/auctions/{}/bids'.format(auction_id),
-                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'selfQualified': True}})
+                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'qualified': True}})
         bid_id = response.json['data']['id']
         bid_token = response.json['access']['token']
         # create second bid
         self.app.authorization = ('Basic', ('broker', ''))
         if self.initial_organization == test_financial_organization:
             response = self.app.post_json('/auctions/{}/bids'.format(auction_id),
-                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'selfQualified': True, 'selfEligible': True}})
+                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'qualified': True, 'eligible': True}})
         else:
             response = self.app.post_json('/auctions/{}/bids'.format(auction_id),
-                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'selfQualified': True}})
+                                          {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'qualified': True}})
         # switch to active.auction
         self.set_status('active.auction')
 
