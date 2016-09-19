@@ -97,7 +97,7 @@ And activate a bid:
 
 And upload license (with ``documentType: financialLicense``):
 
-.. include:: tutorial/upload-finbid-proposal.http
+.. include:: tutorial/upload-finbid-financial-license.http
    :code:
 
 It is possible to check the uploaded documents:
