@@ -278,15 +278,6 @@ class FinantialOrganization(BaseOrganization):
     additionalIdentifiers = ListType(ModelType(Identifier), required=True, validators=[validate_ua_fin])
 
 
-class Bid(Bid):
-    class Options:
-        roles = {
-            'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'qualified', 'eligible'),
-        }
-
-    tenderers = ListType(ModelType(FinantialOrganization), required=True, min_size=1, max_size=1)
-    eligible = BooleanType(required=True, choices=[True])
-
 class Document(Document):
     documentType = StringType(choices=[
         'auctionNotice', 'awardNotice', 'contractNotice',
@@ -300,6 +291,17 @@ class Document(Document):
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
         'illustration', 'financialLicense', 'virtualDataRoom',
     ])
+
+
+class Bid(Bid):
+    class Options:
+        roles = {
+            'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'qualified', 'eligible'),
+        }
+    documents = ListType(ModelType(Document), default=list())
+    tenderers = ListType(ModelType(FinantialOrganization), required=True, min_size=1, max_size=1)
+    eligible = BooleanType(required=True, choices=[True])
+
 
 @implementer(IAuction)
 class Auction(DGFOtherAssets):
