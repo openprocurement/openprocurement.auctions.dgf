@@ -51,7 +51,7 @@ Schema
     * `billOfQuantity` - **Bill Of Quantity**
     
     * `bidders` - **Information on bidders**
-    
+ 
       Information on bidders or participants, their validation documents and any procedural exemptions for which they qualify.
     
     * `conflictOfInterest` - **Conflicts of interest uncovered**
@@ -59,6 +59,10 @@ Schema
     * `debarments` - **Debarments issued**
     
     * `contractProforma` - **Draft contract**
+    
+    * `virtualDataRoom` - **Virtual Data Room** (available only for the Financial procedure, see :ref:`fintutorial`) 
+    
+    * `illustration` - **Illustrations**
     
     
     Possible values for :ref:`award`
@@ -105,6 +109,8 @@ Schema
     * `qualificationDocuments` - **Qualification documents**
     
     * `eligibilityDocuments` - **Eligibility documents**
+    
+    * `financialLicense` - **License** (available only for the Financial procedure, see :ref:`fintutorial`)
     
 
 :title:

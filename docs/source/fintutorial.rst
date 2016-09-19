@@ -95,7 +95,7 @@ And activate a bid:
 .. include:: tutorial/activate-finbidder.http
    :code:
 
-And upload proposal document:
+And upload license (with ``documentType: financialLicense``):
 
 .. include:: tutorial/upload-finbid-proposal.http
    :code:

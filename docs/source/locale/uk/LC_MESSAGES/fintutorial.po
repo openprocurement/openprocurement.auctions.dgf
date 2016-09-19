@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-16 16:42+0300\n"
-"PO-Revision-Date: 2016-09-16 17:44+0200\n"
+"PO-Revision-Date: 2016-09-19 11:28+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -136,10 +136,6 @@ msgstr "Учасник може зареєструвати пропозицію 
 msgid "And activate a bid:"
 msgstr "І активувати пропозицію:"
 
-#: ../../source/fintutorial.rst:98
-msgid "And upload proposal document:"
-msgstr "І завантажити документ пропозиції:"
-
 #: ../../source/fintutorial.rst:103
 msgid "It is possible to check the uploaded documents:"
 msgstr "Можна перевірити завантажені документи:"
@@ -155,7 +151,10 @@ msgstr ""
 #: ../../source/fintutorial.rst:77
 msgid "Organizer can add URL for virtual data room:"
 msgstr ""
-"Організатор може додати URL-адресу віртуальної кімнати для роботи з"
-" конфіденційними даними:"
+"Організатор може додати URL-адресу віртуальної кімнати для роботи з "
+"конфіденційними даними:"
 
+#: ../../source/fintutorial.rst:98
+msgid "And upload license (with ``documentType: financialLicense``):"
+msgstr "І завантажити ліцензію (вказавши ``documentType: financialLicense``):"
 
