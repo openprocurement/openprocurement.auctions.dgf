@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/5573af0bada64bdbbe73e4372ae46a32 HTTP/1.0
+GET /api/2.3/auctions/a94a6fc2999f45eba3faa69f0a577d2f HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -9,74 +9,75 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-09-16-000001", 
-    "auctionUrl": "http://auction-sandbox.openprocurement.org/auctions/5573af0bada64bdbbe73e4372ae46a32", 
+    "auctionID": "UA-EA-2016-09-19-000001", 
+    "auctionUrl": "http://auction-sandbox.openprocurement.org/auctions/a94a6fc2999f45eba3faa69f0a577d2f", 
     "enquiryPeriod": {
-      "startDate": "2016-09-09T16:17:40.438241+03:00", 
-      "endDate": "2016-09-16T16:17:40.438241+03:00"
+      "startDate": "2016-09-12T12:00:24.493072+03:00", 
+      "endDate": "2016-09-19T12:00:24.493072+03:00"
     }, 
     "submissionMethod": "electronicAuction", 
-    "next_check": "2016-09-16T16:53:40.438241+03:00", 
-    "awardCriteria": "lowestCost", 
+    "next_check": "2016-09-19T12:36:24.493072+03:00", 
+    "awardCriteria": "highestCost", 
     "questions": [
       {
         "description": "Просимо додати таблицю потрібної калорійності харчування", 
         "title": "Калорійність", 
-        "date": "2016-09-16T16:17:57.418934+03:00", 
+        "date": "2016-09-19T12:00:29.879928+03:00", 
         "answer": "Таблицю додано в файлі \"Kalorijnist.xslx\"", 
-        "id": "9412209e588e4fa59b3c60acf2dab925", 
+        "id": "0d437b25b8574797b0c7ce95c108962a", 
         "questionOf": "tender"
       }
     ], 
     "owner": "broker", 
-    "id": "5573af0bada64bdbbe73e4372ae46a32", 
+    "id": "a94a6fc2999f45eba3faa69f0a577d2f", 
     "documents": [
       {
         "hash": "md5:00000000000000000000000000000000", 
-        "description": "document description modified", 
+        "description": "document description", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/f85a5134d1d74e628cc5e995da6059bc?KeyID=838a2d27&Signature=5IXDYG52KHFR%252Bor5FzA2xMbAuPYIdAVMyTWgTQbFZEEUAWMxqS7ywTLd8PDumkOFqu%2FDWQEs4CH%2Fa%252Br4pU27CA%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/45bb74f9760b4d11ae893552b77f06bd?KeyID=f72c2842&Signature=ChrxhbsqiMsnsBJMr0Tk50l2EaE%252BqvLhGXU4HWDRMdRRarNWi84lOCiH6uFRQY3H3OYQxgNhS1dgCYWCYbcpDQ%253D%253D", 
         "title": "Notice.pdf", 
         "documentOf": "tender", 
-        "datePublished": "2016-09-16T16:17:57.105481+03:00", 
+        "datePublished": "2016-09-19T12:00:29.704147+03:00", 
         "documentType": "technicalSpecifications", 
-        "id": "1a8dfa8acee64f52bbe8e45b55b7b85b", 
-        "dateModified": "2016-09-16T16:17:57.105518+03:00"
+        "id": "6e9b5f4dad8044278bd4d024a1a1ff65", 
+        "dateModified": "2016-09-19T12:00:29.704176+03:00"
       }, 
       {
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/7a1191ed2879480dac96cf2c3afe6cf1?KeyID=838a2d27&Signature=ekIAzD0DGZIraeiT37N3gosa2fE%2FDFKlMoCOe2tC7g05FfsDNdx0VcK4qW8BSRQa0xsdYlHeUzQ7toCOuN%252BYCg%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/e2ee3325c89340c689f86c16f5109bae?KeyID=f72c2842&Signature=fd%2FC%2FQnja3bKT4AkDSlKdLlcJ31RONGzbe6O9%252BLpmXuSycZaDznwUU6s8dy1tADxNQRCGISAQRxq4Ii5xLaPCw%253D%253D", 
         "title": "AwardCriteria.pdf", 
         "documentOf": "tender", 
-        "datePublished": "2016-09-16T16:17:57.257203+03:00", 
-        "dateModified": "2016-09-16T16:17:57.257237+03:00", 
-        "id": "18b33a0bb4054886b6ad5ac97c239678"
+        "datePublished": "2016-09-19T12:00:29.754289+03:00", 
+        "dateModified": "2016-09-19T12:00:29.754316+03:00", 
+        "id": "aa764a7181324de792a3499f7b5ee3fb"
       }, 
       {
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/032691d37a5c46168395fa35ccb936fa?KeyID=838a2d27&Signature=Iv%252BvbMODFJDl1O249mmUbVKq8EgVVMPCMqFwZ9TPm2TGo2PR9ChYuGBlYCC3XKBeBAWyU%252BHAt52TqB9Kww9sBg%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/9f93211818db4d63af35c1bb14761e0d?KeyID=f72c2842&Signature=%2F%2FR7VBBAf22sL7UG7yJU4BzlAz2KT%252B97Pu2vbCgvsHy0r9qaJBvxsKAdgCfQdIwExTVHyIJP%252BD1M%2FiK3mXDmBg%253D%253D", 
         "title": "AwardCriteria-2.pdf", 
         "documentOf": "tender", 
-        "datePublished": "2016-09-16T16:17:57.257203+03:00", 
-        "dateModified": "2016-09-16T16:17:57.332420+03:00", 
-        "id": "18b33a0bb4054886b6ad5ac97c239678"
+        "datePublished": "2016-09-19T12:00:29.754289+03:00", 
+        "dateModified": "2016-09-19T12:00:29.808090+03:00", 
+        "id": "aa764a7181324de792a3499f7b5ee3fb"
       }
     ], 
     "title": "футляри до державних нагород", 
-    "dateModified": "2016-09-16T16:17:58.185253+03:00", 
+    "procurementMethodDetails": "quick, accelerator=1440", 
+    "dateModified": "2016-09-19T12:00:30.458525+03:00", 
     "status": "active.auction", 
     "tenderPeriod": {
-      "startDate": "2016-09-09T16:17:40.438241+03:00", 
-      "endDate": "2016-09-16T16:17:40.438241+03:00"
+      "startDate": "2016-09-12T12:00:24.493072+03:00", 
+      "endDate": "2016-09-19T12:00:24.493072+03:00"
     }, 
     "auctionPeriod": {
-      "startDate": "2016-09-16T16:17:40.438241+03:00", 
-      "shouldStartAfter": "2016-09-17T00:00:00+03:00"
+      "startDate": "2016-09-19T12:00:24.493072+03:00", 
+      "shouldStartAfter": "2016-09-20T00:00:00+03:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
-    "date": "2016-09-16T16:17:56.600382+03:00", 
+    "date": "2016-09-19T12:00:29.246758+03:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -98,10 +99,10 @@ Content-Type: application/json; charset=UTF-8
           "locality": "м. Київ"
         }, 
         "deliveryDate": {
-          "startDate": "2016-09-18T16:17:40.438241+03:00", 
-          "endDate": "2016-09-21T16:17:40.438241+03:00"
+          "startDate": "2016-09-21T12:00:24.493072+03:00", 
+          "endDate": "2016-09-24T12:00:24.493072+03:00"
         }, 
-        "id": "e6bbd40959494e0786509ce2903eb9f0", 
+        "id": "f72241d26081470bb4685f7671aa9bfc", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"

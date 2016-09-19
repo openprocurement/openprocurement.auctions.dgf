@@ -1,18 +1,12 @@
-POST /api/2.3/auctions/706c4c4a18d54e00a077064d496cb895/bids HTTP/1.0
+POST /api/2.3/auctions/aec6f83699b144ff89f095545e155f6c/bids HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 1012
+Content-Length: 1004
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "selfEligible": true, 
-    "selfQualified": true, 
-    "value": {
-      "currency": "UAH", 
-      "amount": 479, 
-      "valueAddedTaxIncluded": true
-    }, 
+    "qualified": true, 
     "tenderers": [
       {
         "additionalIdentifiers": [
@@ -39,28 +33,34 @@ Host: api-sandbox.ea.openprocurement.org
           "locality": "м. Київ"
         }
       }
-    ]
+    ], 
+    "value": {
+      "currency": "UAH", 
+      "amount": 479, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "eligible": true
   }
 }
 
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/706c4c4a18d54e00a077064d496cb895/bids/69b94089860f4748af1900fb51bc500c
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/aec6f83699b144ff89f095545e155f6c/bids/9fe1d45aae1b47be9981cbeda89c674d
 
 {
   "access": {
-    "token": "b4312350df8346ecb52567755ca6fccd"
+    "token": "493ed575706a4533a12bedc50278fd82"
   }, 
   "data": {
     "status": "active", 
-    "selfEligible": true, 
+    "eligible": true, 
     "value": {
       "currency": "UAH", 
       "amount": 479.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "id": "69b94089860f4748af1900fb51bc500c", 
+    "qualified": true, 
     "tenderers": [
       {
         "additionalIdentifiers": [
@@ -88,8 +88,8 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/706c4c4a18d
         }
       }
     ], 
-    "date": "2016-09-16T16:23:54.573715+03:00", 
-    "selfQualified": true
+    "date": "2016-09-19T12:00:28.268657+03:00", 
+    "id": "9fe1d45aae1b47be9981cbeda89c674d"
   }
 }
 

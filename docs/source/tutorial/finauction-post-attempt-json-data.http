@@ -1,6 +1,6 @@
 POST /api/2.3/auctions?opt_pretty=1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 2022
+Content-Length: 2077
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
@@ -12,7 +12,7 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2016-09-30T16:23:51.898535"
+      "startDate": "2016-10-03T12:00:24.493072"
     }, 
     "procurementMethodType": "dgfFinancialAssets", 
     "value": {
@@ -39,6 +39,7 @@ Host: api-sandbox.ea.openprocurement.org
         "locality": "м. Київ"
       }
     }, 
+    "procurementMethodDetails": "quick, accelerator=1440", 
     "items": [
       {
         "description": "Земля для військовослужбовців", 
@@ -55,8 +56,8 @@ Host: api-sandbox.ea.openprocurement.org
           "locality": "м. Київ"
         }, 
         "deliveryDate": {
-          "startDate": "2016-09-18T16:23:51.898535", 
-          "endDate": "2016-09-21T16:23:51.898535"
+          "startDate": "2016-09-21T12:00:24.493072", 
+          "endDate": "2016-09-24T12:00:24.493072"
         }, 
         "unit": {
           "code": "44617100-9", 
@@ -71,18 +72,18 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/706c4c4a18d54e00a077064d496cb895
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/aec6f83699b144ff89f095545e155f6c
 
 {
   "access": {
-    "token": "b1e80485543748f98d8de05d5e308989"
+    "token": "f5dcffce601147e79012b0a1a450a7cb"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-09-16-000001", 
+    "auctionID": "UA-EA-2016-09-19-000001", 
     "tenderPeriod": {
-      "startDate": "2016-09-16T16:23:53.936429+03:00", 
-      "endDate": "2016-09-29T16:23:51.898535+03:00"
+      "startDate": "2016-09-19T12:00:27.732518+03:00", 
+      "endDate": "2016-10-03T11:59:24.493072+03:00"
     }, 
     "title": "футляри до державних нагород", 
     "minimalStep": {
@@ -91,7 +92,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/706c4c4a18d
       "valueAddedTaxIncluded": true
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2016-09-30T00:00:00+03:00"
+      "shouldStartAfter": "2016-10-04T00:00:00+03:00"
     }, 
     "procurementMethodType": "dgfFinancialAssets", 
     "value": {
@@ -100,16 +101,17 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/706c4c4a18d
       "valueAddedTaxIncluded": true
     }, 
     "submissionMethod": "electronicAuction", 
-    "date": "2016-09-16T16:23:53.936429+03:00", 
-    "dateModified": "2016-09-16T16:23:53.940055+03:00", 
+    "date": "2016-09-19T12:00:27.732518+03:00", 
+    "procurementMethodDetails": "quick, accelerator=1440", 
+    "dateModified": "2016-09-19T12:00:27.735442+03:00", 
     "status": "active.tendering", 
-    "awardCriteria": "lowestCost", 
+    "awardCriteria": "highestCost", 
     "enquiryPeriod": {
-      "startDate": "2016-09-16T16:23:53.936429+03:00", 
-      "endDate": "2016-09-29T16:23:51.898535+03:00"
+      "startDate": "2016-09-19T12:00:27.732518+03:00", 
+      "endDate": "2016-10-03T11:59:24.493072+03:00"
     }, 
     "owner": "broker", 
-    "next_check": "2016-09-29T16:23:51.898535+03:00", 
+    "next_check": "2016-10-03T11:59:24.493072+03:00", 
     "items": [
       {
         "description": "Земля для військовослужбовців", 
@@ -126,10 +128,10 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/706c4c4a18d
           "locality": "м. Київ"
         }, 
         "deliveryDate": {
-          "startDate": "2016-09-18T16:23:51.898535+03:00", 
-          "endDate": "2016-09-21T16:23:51.898535+03:00"
+          "startDate": "2016-09-21T12:00:24.493072+03:00", 
+          "endDate": "2016-09-24T12:00:24.493072+03:00"
         }, 
-        "id": "4a526b21f1164a29a09f7af336220a5c", 
+        "id": "b39c297305b3411eae1c9e5e5c9c492f", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -137,7 +139,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/706c4c4a18d
         "quantity": 5
       }
     ], 
-    "id": "706c4c4a18d54e00a077064d496cb895", 
+    "id": "aec6f83699b144ff89f095545e155f6c", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 
