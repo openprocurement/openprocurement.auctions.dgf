@@ -50,6 +50,14 @@ Schema
 
     A web address for participation in auction.
 
+:qualified:
+    bool, required
+
+:eligible:
+    bool
+
+    required for dgfFinancialAssets procedure
+
 .. _Parameter:
 
 Parameter
