@@ -1,12 +1,12 @@
-PUT /api/2.3/auctions/aec6f83699b144ff89f095545e155f6c/documents/615e45cb6f0b42368be76e4ce9b19921?acc_token=f5dcffce601147e79012b0a1a450a7cb HTTP/1.0
+PUT /api/2.3/auctions/2062358d6dd34c3295109405de1815dc/documents/4c80797b0f27443dae0968c52af1c90a?acc_token=9b2c372d24544c80b144dcb26455e53b HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 334
+Content-Length: 340
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/9a637962c9084947bc5353a2b27f33e8?KeyID=5d03ea6b&Signature=nrUkgBykPp3JV64QmAg4RxXEu1Q2ybG7mksf1n3KXI6XrVbEZGUSOH9JQ2bzSca8aYY0T3NPTb0n32dK2USkDw%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/0bfce9d254d243b79929650b7b91d5e5?KeyID=8ab027fa&Signature=5QJ%2BYLh0y8kO9SnokdbAgGQc0Go%2FibHtOOZHvNhVKxrTkXHsu1X%2Fs1udHYRsskEwra1AiUb3Zk6TuEN8QoYyCQ%3D%3D", 
     "title": "AwardCriteria-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -21,12 +21,12 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/9a637962c9084947bc5353a2b27f33e8?KeyID=5d03ea6b&Signature=05h4U1opHsr2YqkcbkG%252Bl1VG%2FvXvlQL9Z8RkeVrBNrzavYn7TYi7nNKj2tpYiTTFJT8wXDWkePwGWkEklWTIAw%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/0bfce9d254d243b79929650b7b91d5e5?KeyID=8ab027fa&Signature=Ujumom4MY6qUcoKM2ELixAqxT2qFcDt4ZWRGwvAkQTeUcYg3K5Yvnq7GunFbSwujP6Nl3HJtMsZuv10uMAebDQ%253D%253D", 
     "title": "AwardCriteria-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-09-19T12:00:27.936248+03:00", 
-    "dateModified": "2016-09-19T12:00:27.992072+03:00", 
-    "id": "615e45cb6f0b42368be76e4ce9b19921"
+    "datePublished": "2016-09-19T15:13:48.700603+03:00", 
+    "dateModified": "2016-09-19T15:13:48.994111+03:00", 
+    "id": "4c80797b0f27443dae0968c52af1c90a"
   }
 }
 

@@ -1,4 +1,4 @@
-POST /api/2.3/auctions/a94a6fc2999f45eba3faa69f0a577d2f/questions HTTP/1.0
+POST /api/2.3/auctions/eeca007469eb4a9a8b9cd75d32289e6f/questions HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 1506
 Content-Type: application/json
@@ -35,7 +35,7 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/a94a6fc2999f45eba3faa69f0a577d2f/questions/0d437b25b8574797b0c7ce95c108962a
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/eeca007469eb4a9a8b9cd75d32289e6f/questions/7c3f5cd589694473aa6809783b35d519
 
 {
   "data": {
@@ -62,8 +62,8 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/a94a6fc2999
         "locality": "м. Вінниця"
       }
     }, 
-    "date": "2016-09-19T12:00:29.879928+03:00", 
-    "id": "0d437b25b8574797b0c7ce95c108962a", 
+    "date": "2016-09-19T15:13:52.575001+03:00", 
+    "id": "7c3f5cd589694473aa6809783b35d519", 
     "questionOf": "tender"
   }
 }

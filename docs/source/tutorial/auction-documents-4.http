@@ -29,6 +29,18 @@ Content-Type: application/json; charset=UTF-8
       "datePublished": "2016-09-19T15:13:52.167486+03:00", 
       "dateModified": "2016-09-19T15:13:52.238547+03:00", 
       "id": "f0916e9e625a486aabceb237594bd4ad"
+    }, 
+    {
+      "hash": "md5:00000000000000000000000000000000", 
+      "description": "First illustration description", 
+      "format": "image/jpeg", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/81b96a4f562b44f3af0788cc046b426a?KeyID=1d13b7f9&Signature=uWmQlhu5uileuyrNFyMm5n4%2F434jhT%252BMgIkPhCDiKnlqU7Sq2MxwVfjwJF9AkatZ8GL%2Fc4K1FHopV8JaOfX1Dw%253D%253D", 
+      "title": "first_illustration.jpeg", 
+      "documentOf": "tender", 
+      "datePublished": "2016-09-19T15:13:52.316631+03:00", 
+      "documentType": "illustration", 
+      "id": "65b483d31bb849aa942cd3397cde89b9", 
+      "dateModified": "2016-09-19T15:13:52.316688+03:00"
     }
   ]
 }

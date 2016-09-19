@@ -1,4 +1,4 @@
-POST /api/2.3/auctions/aec6f83699b144ff89f095545e155f6c/bids HTTP/1.0
+POST /api/2.3/auctions/2062358d6dd34c3295109405de1815dc/bids HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 1004
 Content-Type: application/json
@@ -46,11 +46,11 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/aec6f83699b144ff89f095545e155f6c/bids/5b1cdc740f58440fb055365a165a23e9
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2062358d6dd34c3295109405de1815dc/bids/136fba103c994bfe848b3df778d384e9
 
 {
   "access": {
-    "token": "7af7fc680ef1493598a05dbb30fa0b95"
+    "token": "4a8cc9a4c7524bdbb5c25d1dea952107"
   }, 
   "data": {
     "status": "active", 
@@ -88,8 +88,8 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/aec6f83699b
         }
       }
     ], 
-    "date": "2016-09-19T12:00:28.096078+03:00", 
-    "id": "5b1cdc740f58440fb055365a165a23e9"
+    "date": "2016-09-19T15:13:49.231304+03:00", 
+    "id": "136fba103c994bfe848b3df778d384e9"
   }
 }
 
