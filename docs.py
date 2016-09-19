@@ -953,6 +953,8 @@ class AuctionResourceTest(BaseAuctionWebTest):
                     'url': self.generate_docservice_url(),
                     'hash': 'md5:' + '0' * 32,
                     'format': 'application/pdf',
+                    "documentType": "notice",
+                    "description": "Cancellation reason"
                 }})
             self.assertEqual(response.status, '201 Created')
 

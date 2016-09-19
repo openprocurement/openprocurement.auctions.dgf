@@ -267,6 +267,13 @@ If the candidate didn't sign the auction protocol in 3 business days after becom
 .. include:: qualification/award-active-cancel.http
    :code:
 
+Upload file with cancellation reason:
+
+.. include:: qualification/award-active-cancel-upload.http
+   :code:
+
+And disqualify candidate:
+
 .. include:: qualification/award-active-cancel-disqualify.http
    :code:
 
