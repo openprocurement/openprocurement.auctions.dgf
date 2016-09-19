@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-16 16:42+0300\n"
-"PO-Revision-Date: 2016-09-19 11:28+0200\n"
+"PO-Revision-Date: 2016-09-19 16:01+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -120,27 +120,27 @@ msgstr ""
 msgid "And we can see that it is overriding the original version:"
 msgstr "І ми бачимо, що вона перекриває оригінальну версію:"
 
-#: ../../source/fintutorial.rst:75
+#: ../../source/fintutorial.rst:104
 msgid "Adding virtual data room"
 msgstr "Додавання віртуальної кімнати для роботи з конфіденційними даними"
 
-#: ../../source/fintutorial.rst:86
+#: ../../source/fintutorial.rst:115
 msgid "Registering bid"
 msgstr "Реєстрація пропозиції"
 
-#: ../../source/fintutorial.rst:88
+#: ../../source/fintutorial.rst:117
 msgid "Bidder can register a bid in `draft` status:"
 msgstr "Учасник може зареєструвати пропозицію у статусі `draft` (чернетка):"
 
-#: ../../source/fintutorial.rst:93
+#: ../../source/fintutorial.rst:122
 msgid "And activate a bid:"
 msgstr "І активувати пропозицію:"
 
-#: ../../source/fintutorial.rst:103
+#: ../../source/fintutorial.rst:132
 msgid "It is possible to check the uploaded documents:"
 msgstr "Можна перевірити завантажені документи:"
 
-#: ../../source/fintutorial.rst:108
+#: ../../source/fintutorial.rst:137
 msgid ""
 "For the best effect (biggest economy) auction should have multiple bidders "
 "registered:"
@@ -148,13 +148,41 @@ msgstr ""
 "Для найкращого результату (найбільшої економії) аукціон повинен мати багато "
 "зареєстрованих учасників."
 
-#: ../../source/fintutorial.rst:77
+#: ../../source/fintutorial.rst:106
 msgid "Organizer can add URL for virtual data room:"
 msgstr ""
 "Організатор може додати URL-адресу віртуальної кімнати для роботи з "
 "конфіденційними даними:"
 
-#: ../../source/fintutorial.rst:98
+#: ../../source/fintutorial.rst:127
 msgid "And upload license (with ``documentType: financialLicense``):"
 msgstr "І завантажити ліцензію (вказавши ``documentType: financialLicense``):"
+
+#: ../../source/fintutorial.rst:75
+msgid "Uploading illustration"
+msgstr "Завантаження ілюстрації"
+
+#: ../../source/fintutorial.rst:77
+msgid ""
+"Organizer can upload illustration files into the created auction. Uploading "
+"should follow the :ref:`upload` rules."
+msgstr ""
+"Організатор може завантажити файли з ілюстраціями у створений аукціон."
+" Завантаження повинно відповідати правилам :ref:`upload`."
+
+#: ../../source/fintutorial.rst:83
+msgid "We can check whether illustration is uploaded."
+msgstr "Ми можемо перевірити, чи завантажилась ілюстрація."
+
+#: ../../source/fintutorial.rst:88
+msgid "Organizer can upload second illustration:"
+msgstr "Організатор може завантажити ще одну ілюстрацію:"
+
+#: ../../source/fintutorial.rst:93
+msgid "And third illustration:"
+msgstr "І третю ілюстрацію:"
+
+#: ../../source/fintutorial.rst:98
+msgid "And we can see that there are three uploaded illustrations."
+msgstr "Ми бачимо, що є три завантажені ілюстрації."
 

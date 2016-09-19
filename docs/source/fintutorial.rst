@@ -71,6 +71,35 @@ And we can see that it is overriding the original version:
 .. include:: tutorial/finauction-documents-3.http
    :code:
 
+Uploading illustration
+-----------------------
+
+Organizer can upload illustration files into the created auction. Uploading should
+follow the :ref:`upload` rules.
+
+.. include:: tutorial/upload-first-auction-illustration.http
+   :code:
+
+We can check whether illustration is uploaded.
+
+.. include:: tutorial/auction-documents-4.http
+   :code:
+
+Organizer can upload second illustration:
+
+.. include:: tutorial/upload-second-auction-illustration.http
+   :code:
+
+And third illustration:
+
+.. include:: tutorial/upload-third-auction-illustration.http
+   :code:
+
+And we can see that there are three uploaded illustrations.
+
+.. include:: tutorial/auction-documents-5.http
+   :code:
+   
 Adding virtual data room
 ------------------------
 

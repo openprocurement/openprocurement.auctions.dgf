@@ -144,12 +144,12 @@ follow the :ref:`upload` rules.
 .. include:: tutorial/upload-first-auction-illustration.http
    :code:
 
-And we can see that illustration is uploaded.
+We can check whether illustration is uploaded.
 
 .. include:: tutorial/auction-documents-4.http
    :code:
 
-Now upload second illustration:
+Organizer can upload second illustration:
 
 .. include:: tutorial/upload-second-auction-illustration.http
    :code:
@@ -159,12 +159,10 @@ And third illustration:
 .. include:: tutorial/upload-third-auction-illustration.http
    :code:
 
-And we can see that there are three illustration uploaded.
+And we can see that there are three uploaded illustrations.
 
 .. include:: tutorial/auction-documents-5.http
    :code:
-
-
 
 Enquiries
 ---------
@@ -267,7 +265,7 @@ If the candidate didn't sign the auction protocol in 3 business days after becom
 .. include:: qualification/award-active-cancel.http
    :code:
 
-Upload file with cancellation reason:
+Organizer has to upload file with cancellation reason:
 
 .. include:: qualification/award-active-cancel-upload.http
    :code:
