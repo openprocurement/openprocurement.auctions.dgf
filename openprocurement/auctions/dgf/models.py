@@ -96,12 +96,12 @@ class Document(BaseDocument):
 class Bid(BaseBid):
     class Options:
         roles = {
-            'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'selfQualified'),
+            'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'qualified'),
         }
 
     tenderers = ListType(ModelType(Organization), required=True, min_size=1, max_size=1)
     documents = ListType(ModelType(Document), default=list())
-    selfQualified = BooleanType(required=True, choices=[True])
+    qualified = BooleanType(required=True, choices=[True])
 
 
 class Question(BaseQuestion):
@@ -281,11 +281,11 @@ class FinantialOrganization(BaseOrganization):
 class Bid(Bid):
     class Options:
         roles = {
-            'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'selfQualified', 'selfEligible'),
+            'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'qualified', 'eligible'),
         }
 
     tenderers = ListType(ModelType(FinantialOrganization), required=True, min_size=1, max_size=1)
-    selfEligible = BooleanType(required=True, choices=[True])
+    eligible = BooleanType(required=True, choices=[True])
 
 class Document(Document):
     documentType = StringType(choices=[
