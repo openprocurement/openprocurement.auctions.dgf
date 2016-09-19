@@ -415,6 +415,52 @@ class AuctionResourceTest(BaseAuctionWebTest):
                 self.auction_id))
             self.assertEqual(response.status, '200 OK')
 
+        with open('docs/source/tutorial/upload-first-auction-illustration.http', 'w') as self.app.file_obj:
+            response = self.app.post_json('/auctions/{}/documents?acc_token={}'.format(self.auction_id, owner_token),
+                {'data': {
+                    'title': u'first_illustration.jpeg',
+                    'url': self.generate_docservice_url(),
+                    'hash': 'md5:' + '0' * 32,
+                    'format': 'image/jpeg',
+                    "documentType": "illustration",
+                    "description": "First illustration description",
+                }})
+            self.assertEqual(response.status, '201 Created')
+
+        with open('docs/source/tutorial/auction-documents-4.http', 'w') as self.app.file_obj:
+            response = self.app.get('/auctions/{}/documents'.format(
+                self.auction_id))
+            self.assertEqual(response.status, '200 OK')
+
+        with open('docs/source/tutorial/upload-second-auction-illustration.http', 'w') as self.app.file_obj:
+            response = self.app.post_json('/auctions/{}/documents?acc_token={}'.format(self.auction_id, owner_token),
+                {'data': {
+                    'title': u'second_illustration.jpeg',
+                    'url': self.generate_docservice_url(),
+                    'hash': 'md5:' + '0' * 32,
+                    'format': 'image/jpeg',
+                    "documentType": "illustration",
+                    "description": "Second illustration description",
+                }})
+            self.assertEqual(response.status, '201 Created')
+
+        with open('docs/source/tutorial/upload-third-auction-illustration.http', 'w') as self.app.file_obj:
+            response = self.app.post_json('/auctions/{}/documents?acc_token={}'.format(self.auction_id, owner_token),
+                {'data': {
+                    'title': u'third_illustration.jpeg',
+                    'url': self.generate_docservice_url(),
+                    'hash': 'md5:' + '0' * 32,
+                    'format': 'image/jpeg',
+                    "documentType": "illustration",
+                    "description": "Third illustration description",
+                }})
+            self.assertEqual(response.status, '201 Created')
+
+        with open('docs/source/tutorial/auction-documents-5.http', 'w') as self.app.file_obj:
+            response = self.app.get('/auctions/{}/documents'.format(
+                self.auction_id))
+            self.assertEqual(response.status, '200 OK')
+
         # Enquiries
         #
 

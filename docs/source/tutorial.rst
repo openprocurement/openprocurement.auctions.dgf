@@ -135,6 +135,37 @@ And we can see that it is overriding the original version:
 
 .. index:: Enquiries, Question, Answer
 
+Uploading illustration
+-----------------------
+
+Organizer can upload illustration files into the created auction. Uploading should
+follow the :ref:`upload` rules.
+
+.. include:: tutorial/upload-first-auction-illustration.http
+   :code:
+
+And we can see that illustration is uploaded.
+
+.. include:: tutorial/auction-documents-4.http
+   :code:
+
+Now upload second illustration:
+
+.. include:: tutorial/upload-second-auction-illustration.http
+   :code:
+
+And third illustration:
+
+.. include:: tutorial/upload-third-auction-illustration.http
+   :code:
+
+And we can see that there are three illustration uploaded.
+
+.. include:: tutorial/auction-documents-5.http
+   :code:
+
+
+
 Enquiries
 ---------
 
