@@ -60,7 +60,7 @@ Schema
     
     * `contractProforma` - **Draft contract**
     
-    * `virtualDataRoom` - **Virtual Data Room** (available only for the Financial procedure, see :ref:`fintutorial`) 
+    * `virtualDataRoom` - **Virtual Data Room** (available only for the `dgfFinancialAssets` procedure, see :ref:`fintutorial`) 
     
     * `illustration` - **Illustrations**
     
@@ -110,7 +110,7 @@ Schema
     
     * `eligibilityDocuments` - **Eligibility documents**
     
-    * `financialLicense` - **License** (available only for the Financial procedure, see :ref:`fintutorial`)
+    * `financialLicense` - **License** (available only for the `dgfFinancialAssets` procedure, see :ref:`fintutorial`)
     
 
 :title:

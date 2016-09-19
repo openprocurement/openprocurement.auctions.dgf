@@ -3,6 +3,8 @@
 Fin. Tutorial
 =============
 
+Tutorial for the `dgfFinancialAssets` procedure.
+
 Creating auction
 ----------------
 

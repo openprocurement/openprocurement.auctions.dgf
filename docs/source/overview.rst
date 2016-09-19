@@ -3,6 +3,12 @@ Overview
 
 openprocurement.auctions.dgf contains documentaion for Deposit Guarantee Fund auctions.
 
+There are two procedures:
+ 
+ * dgfOtherAssets
+ 
+ * dgfFinancialAssets
+
 
 Features
 --------
