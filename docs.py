@@ -424,6 +424,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
                     'format': 'image/jpeg',
                     "documentType": "illustration",
                     "description": "First illustration description",
+                    "index": 1
                 }})
             self.assertEqual(response.status, '201 Created')
 
@@ -441,6 +442,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
                     'format': 'image/jpeg',
                     "documentType": "illustration",
                     "description": "Second illustration description",
+                    "index": 2
                 }})
             self.assertEqual(response.status, '201 Created')
 
@@ -453,6 +455,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
                     'format': 'image/jpeg',
                     "documentType": "illustration",
                     "description": "Third illustration description",
+                    "index": 2
                 }})
             self.assertEqual(response.status, '201 Created')
 

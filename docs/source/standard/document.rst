@@ -124,7 +124,10 @@ Schema
     
     |ocdsDescription|
     A short description of the document. In the event the document is not accessible online, the description field can be used to describe arrangements for obtaining a copy of the document.
-    
+
+:index:
+    integer
+
 :format:
     string
     
