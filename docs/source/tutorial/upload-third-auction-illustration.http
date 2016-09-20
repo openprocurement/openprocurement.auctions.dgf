@@ -1,4 +1,4 @@
-POST /api/2.3/auctions/eeca007469eb4a9a8b9cd75d32289e6f/documents?acc_token=6b7f670ea82344f7b86f417766d3025c HTTP/1.0
+POST /api/2.3/auctions/d929d58e6d6d432991f2dac38853e07d/documents?acc_token=56b8a994b7904c4aa88f233919d91884 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 430
 Content-Type: application/json
@@ -10,7 +10,7 @@ Host: api-sandbox.ea.openprocurement.org
     "hash": "md5:00000000000000000000000000000000", 
     "description": "Third illustration description", 
     "title": "third_illustration.jpeg", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/102b7857da984967817921a223f987ac?KeyID=1d13b7f9&Signature=vMVrnU8SLc1vTFrH8srkwWV3Xq8n%2BAj05LsYZiuQNbbmwzW%2FIrZGfHLwTOEFWEz3GkVuf7qZAP2boaOsxIT0Dw%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/b175bb993a2547f6a04cb162151917b6?KeyID=08eb86ec&Signature=St%2FtenS0%2BiDRMCF4Hpb37Ns7RHJoh1zUBsdCXzuW5IogwcBRcu2rrWSTSuZSXaIw7FdlWDM1AUPF6LqWmhqpDA%3D%3D", 
     "format": "image/jpeg", 
     "documentType": "illustration"
   }
@@ -19,7 +19,7 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/eeca007469eb4a9a8b9cd75d32289e6f/documents/c9961b8a08f04f8399f590a67224a02e
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/d929d58e6d6d432991f2dac38853e07d/documents/b79428d735cc49df99a867738772069d
 
 {
   "data": {
@@ -27,13 +27,13 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/eeca007469e
     "hash": "md5:00000000000000000000000000000000", 
     "description": "Third illustration description", 
     "format": "image/jpeg", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/102b7857da984967817921a223f987ac?KeyID=1d13b7f9&Signature=P7ju1te%2F3INWZ9h7OBBoZFyinCK6SXETXK1s0htgrt9CJ4fl8BZkxHmfsraJrBUFjdtM4n3i%2F1FuzNo5TXz8Dg%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/b175bb993a2547f6a04cb162151917b6?KeyID=08eb86ec&Signature=p7IM1il%252Bz%252B2CWPhe4zhk5X3k1GZEwTsrLFHGDX5Lm4IYtVCVNnbFKLs5uaNzbPyxYAYd5m7WUhc78sELSQGLDg%253D%253D", 
     "title": "third_illustration.jpeg", 
     "documentOf": "tender", 
-    "datePublished": "2016-09-19T15:13:52.468181+03:00", 
+    "datePublished": "2016-09-20T12:39:33.500606+03:00", 
     "documentType": "illustration", 
-    "id": "c9961b8a08f04f8399f590a67224a02e", 
-    "dateModified": "2016-09-19T15:13:52.468223+03:00"
+    "id": "b79428d735cc49df99a867738772069d", 
+    "dateModified": "2016-09-20T12:39:33.500657+03:00"
   }
 }
 

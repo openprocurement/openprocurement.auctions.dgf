@@ -1,6 +1,6 @@
 POST /api/2.3/auctions?opt_pretty=1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 2125
+Content-Length: 2015
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
@@ -12,7 +12,7 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2016-09-19T15:18:44.549422"
+      "startDate": "2016-09-20T12:44:27.781907"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "value": {
@@ -43,28 +43,24 @@ Host: api-sandbox.ea.openprocurement.org
     "procurementMethodDetails": "quick, accelerator=1440", 
     "items": [
       {
-        "description": "Земля для військовослужбовців", 
         "classification": {
           "scheme": "CAV", 
           "id": "06000000-2", 
           "description": "Земельні ділянки"
         }, 
-        "deliveryAddress": {
+        "quantity": 5, 
+        "description": "Земля для військовослужбовців", 
+        "unit": {
+          "code": "44617100-9", 
+          "name": "item"
+        }, 
+        "address": {
           "countryName": "Україна", 
           "postalCode": "79000", 
           "region": "м. Київ", 
           "streetAddress": "вул. Банкова 1", 
           "locality": "м. Київ"
-        }, 
-        "deliveryDate": {
-          "startDate": "2016-09-21T15:13:44.547333", 
-          "endDate": "2016-09-24T15:13:44.547333"
-        }, 
-        "unit": {
-          "code": "44617100-9", 
-          "name": "item"
-        }, 
-        "quantity": 5
+        }
       }
     ], 
     "mode": "test"
@@ -74,38 +70,38 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/e108e5a1dfb3406a9b883adee3617a62
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/97514bc97c394890a062e5d55c3f83c6
 
 {
   "access": {
-    "token": "ad4497a2579e45d1aa0165bcd2b91b7a"
+    "token": "fad0f2a993754384bcde92223d614d2c"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-09-19-000001", 
+    "auctionID": "UA-EA-2016-09-20-000001", 
     "enquiryPeriod": {
-      "startDate": "2016-09-19T15:13:47.114818+03:00", 
-      "endDate": "2016-09-19T15:17:44.549422+03:00"
+      "startDate": "2016-09-20T12:39:30.349731+03:00", 
+      "endDate": "2016-09-20T12:43:27.781907+03:00"
     }, 
     "submissionMethod": "electronicAuction", 
-    "next_check": "2016-09-19T15:17:44.549422+03:00", 
+    "next_check": "2016-09-20T12:43:27.781907+03:00", 
     "awardCriteria": "highestCost", 
     "owner": "broker", 
     "title_en": "[TESTING] ", 
-    "id": "e108e5a1dfb3406a9b883adee3617a62", 
+    "id": "97514bc97c394890a062e5d55c3f83c6", 
     "title": "[ТЕСТУВАННЯ] футляри до державних нагород", 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2016-09-19T15:13:47.118328+03:00", 
+    "dateModified": "2016-09-20T12:39:30.353016+03:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2016-09-19T15:13:47.114818+03:00", 
-      "endDate": "2016-09-19T15:17:44.549422+03:00"
+      "startDate": "2016-09-20T12:39:30.349731+03:00", 
+      "endDate": "2016-09-20T12:43:27.781907+03:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2016-09-19T15:17:44.549422+03:00"
+      "shouldStartAfter": "2016-09-20T12:43:27.781907+03:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
-    "date": "2016-09-19T15:13:47.114818+03:00", 
+    "date": "2016-09-20T12:39:30.349731+03:00", 
     "submissionMethodDetails": "quick", 
     "items": [
       {
@@ -115,18 +111,14 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/e108e5a1dfb
           "description": "Земельні ділянки", 
           "id": "06000000-2"
         }, 
-        "deliveryAddress": {
+        "address": {
           "postalCode": "79000", 
           "countryName": "Україна", 
           "streetAddress": "вул. Банкова 1", 
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "deliveryDate": {
-          "startDate": "2016-09-21T15:13:44.547333+03:00", 
-          "endDate": "2016-09-24T15:13:44.547333+03:00"
-        }, 
-        "id": "246ac8260bb94035af9a4c88ff95afd8", 
+        "id": "0339238794194cb3854268de89c84350", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
