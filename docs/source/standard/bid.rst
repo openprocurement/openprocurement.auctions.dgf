@@ -10,7 +10,7 @@ Bid
 Schema
 ------
 
-:auctioners:
+:suppliers:
     List of :ref:`Organization` objects
 
 :date:
