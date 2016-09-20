@@ -26,7 +26,7 @@ from openprocurement.auctions.core.validation import (
             description="Auction complaints")
 class AuctionComplaintResource(APIResource):
 
-    @json_view(content_type="application/json", validators=(validate_complaint_data,), permission='create_complaint')
+    @json_view(content_type="application/json", validators=(validate_complaint_data,), permission='nobody')
     def collection_post(self):
         """Post a complaint
         """
