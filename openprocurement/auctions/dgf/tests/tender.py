@@ -1174,6 +1174,7 @@ class AuctionProcessTest(BaseAuctionWebTest):
     def setUp(self):
         super(AuctionProcessTest.__bases__[0], self).setUp()
 
+    @unittest.skip("option not available")
     def test_invalid_auction_conditions(self):
         self.app.authorization = ('Basic', ('broker', ''))
         # empty auctions listing
