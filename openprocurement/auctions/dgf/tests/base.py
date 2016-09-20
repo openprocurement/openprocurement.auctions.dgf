@@ -57,11 +57,7 @@ test_auction_data = {
                 "code": u"44617100-9"
             },
             "quantity": 5,
-            "deliveryDate": {
-                "startDate": (now + timedelta(days=2)).isoformat(),
-                "endDate": (now + timedelta(days=5)).isoformat()
-            },
-            "deliveryAddress": {
+            "address": {
                 "countryName": u"Україна",
                 "postalCode": "79000",
                 "region": u"м. Київ",

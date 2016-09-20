@@ -9,7 +9,7 @@ from zope.interface import implementer
 from openprocurement.api.models import (
     BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
     validate_features_uniq, validate_lots_uniq, Identifier as BaseIdentifier,
-    Classification, validate_items_uniq, ORA_CODES
+    Classification, validate_items_uniq, ORA_CODES, Address, Location
 )
 from openprocurement.api.utils import calculate_business_date
 from openprocurement.auctions.core.models import IAuction
@@ -45,8 +45,15 @@ class CAVClassification(Classification):
 
 class Item(BaseItem):
     """A good, service, or work to be contracted."""
+    class Options:
+        roles = {
+            'create': blacklist('deliveryLocation', 'deliveryAddress', 'deliveryDate'),
+            'edit_active.tendering': blacklist('deliveryLocation', 'deliveryAddress', 'deliveryDate'),
+        }
     classification = ModelType(CAVClassification, required=True)
     additionalClassifications = ListType(ModelType(Classification), default=list())
+    address = ModelType(Address)
+    location = ModelType(Location)
 
 
 class Identifier(BaseIdentifier):
