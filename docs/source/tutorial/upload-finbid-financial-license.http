@@ -1,12 +1,12 @@
-POST /api/2.3/auctions/fb355202fb0045ba9367c9445be3fc75/bids/21fcd7266d6d4da7a01cab6367a05d37/documents?acc_token=44f7c6fe9ace49ccb561def377a23eaf HTTP/1.0
+POST /api/2.3/auctions/337baa20c5dc443d9a99bf1e4209a307/bids/b55a6cbce5cd47cf93469fb6f183d0b5/documents?acc_token=fa9e11333c66460f82f6d9fb0342f9d8 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 381
+Content-Length: 375
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/e87ddcd7c27342118ee7cd55233aa89e?KeyID=713517bb&Signature=0ry6nATkWYgyPT9H4w7VWNb451YpjUYPdMqRTknxCkcxlYC1ZI%2F63STLxmfLr%2Bn9A%2FM3RM2Oi2c%2B%2B312jB2XDg%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/9d5e906d1f894bb399256f059ed71617?KeyID=25ad1763&Signature=Jq%2FOl2uK2vKTj8TVqVcZ9q2gH3GbsvcOhqdGk69t5JqqR4NVoGQwFxPCzJ5QpCFVrOQ0guej%2FQeIosJIsXmoAQ%3D%3D", 
     "title": "FinancialLicense.pdf", 
     "format": "application/pdf", 
     "hash": "md5:00000000000000000000000000000000", 
@@ -17,19 +17,19 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/fb355202fb0045ba9367c9445be3fc75/bids/21fcd7266d6d4da7a01cab6367a05d37/documents/5a045b39d0de495c9d8130cc165465df
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/337baa20c5dc443d9a99bf1e4209a307/bids/b55a6cbce5cd47cf93469fb6f183d0b5/documents/fb16ca9cfdd34878aad2ad7905c5ef96
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/fb355202fb0045ba9367c9445be3fc75/bids/21fcd7266d6d4da7a01cab6367a05d37/documents/5a045b39d0de495c9d8130cc165465df?download=e87ddcd7c27342118ee7cd55233aa89e", 
+    "url": "http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/337baa20c5dc443d9a99bf1e4209a307/bids/b55a6cbce5cd47cf93469fb6f183d0b5/documents/fb16ca9cfdd34878aad2ad7905c5ef96?download=9d5e906d1f894bb399256f059ed71617", 
     "title": "FinancialLicense.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-09-20T12:39:31.621720+03:00", 
+    "datePublished": "2016-09-20T17:01:05.995863+03:00", 
     "documentType": "financialLicense", 
-    "dateModified": "2016-09-20T12:39:31.621757+03:00", 
-    "id": "5a045b39d0de495c9d8130cc165465df"
+    "dateModified": "2016-09-20T17:01:05.995893+03:00", 
+    "id": "fb16ca9cfdd34878aad2ad7905c5ef96"
   }
 }
 
