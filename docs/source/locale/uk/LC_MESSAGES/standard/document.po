@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-19 17:36+0200\n"
+"PO-Revision-Date: 2016-09-20 17:44+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -24,15 +24,15 @@ msgid "Schema"
 msgstr "Схема"
 
 #: ../../source/standard/document.rst:15
-#: ../../source/standard/document.rst:135
+#: ../../source/standard/document.rst:140
 msgid "string, auto-generated"
 msgstr "рядок, генерується автоматично"
 
 #: ../../source/standard/document.rst:18
-#: ../../source/standard/document.rst:129
-#: ../../source/standard/document.rst:153
-#: ../../source/standard/document.rst:159
-#: ../../source/standard/document.rst:168
+#: ../../source/standard/document.rst:134
+#: ../../source/standard/document.rst:158
+#: ../../source/standard/document.rst:164
+#: ../../source/standard/document.rst:173
 msgid "string"
 msgstr "рядок"
 
@@ -237,7 +237,7 @@ msgstr ""
 "онлайн, то поле опису можна використати для вказання способу отримання копії"
 " документа."
 
-#: ../../source/standard/document.rst:131
+#: ../../source/standard/document.rst:136
 msgid ""
 "|ocdsDescription| The format of the document taken from the `IANA Media "
 "Types code list <http://www.iana.org/assignments/media-types/>`_, with the "
@@ -249,24 +249,24 @@ msgstr ""
 "значенням 'offline/print', що буде використовуватись, коли запис цього "
 "документа використовується для опису офлайнової публікації документа."
 
-#: ../../source/standard/document.rst:137
+#: ../../source/standard/document.rst:142
 msgid "|ocdsDescription| Direct link to the document or attachment."
 msgstr "|ocdsDescription| Пряме посилання на документ чи додаток."
 
-#: ../../source/standard/document.rst:141
-#: ../../source/standard/document.rst:147
+#: ../../source/standard/document.rst:146
+#: ../../source/standard/document.rst:152
 msgid "string, :ref:`date`"
 msgstr "рядок, :ref:`date`"
 
-#: ../../source/standard/document.rst:143
+#: ../../source/standard/document.rst:148
 msgid "|ocdsDescription| The date on which the document was first published."
 msgstr "|ocdsDescription| Дата, коли документ був опублікований вперше."
 
-#: ../../source/standard/document.rst:149
+#: ../../source/standard/document.rst:154
 msgid "|ocdsDescription| Date that the document was last modified"
 msgstr "|ocdsDescription| Дата, коли документ був змінений востаннє."
 
-#: ../../source/standard/document.rst:155
+#: ../../source/standard/document.rst:160
 msgid ""
 "|ocdsDescription| Specifies the language of the linked document using either"
 " two-digit `ISO 639-1 "
@@ -279,19 +279,19 @@ msgstr ""
 "розширений `BCP47 language tags <http://www.w3.org/International/articles"
 "/language-tags/>`_."
 
-#: ../../source/standard/document.rst:161
+#: ../../source/standard/document.rst:166
 msgid "Possible values are:"
 msgstr "Можливі значення:"
 
-#: ../../source/standard/document.rst:163
+#: ../../source/standard/document.rst:168
 msgid "`auction`"
 msgstr "`auction`"
 
-#: ../../source/standard/document.rst:164
+#: ../../source/standard/document.rst:169
 msgid "`item`"
 msgstr "`item`"
 
-#: ../../source/standard/document.rst:165
+#: ../../source/standard/document.rst:170
 msgid "`lot`"
 msgstr "`lot`"
 
@@ -313,7 +313,7 @@ msgstr ""
 " документ, веб-сторінку, чи на офіційний бюлетень, де розміщено "
 "повідомлення."
 
-#: ../../source/standard/document.rst:170
+#: ../../source/standard/document.rst:175
 msgid "ID of related :ref:`lot` or :ref:`item`."
 msgstr "Ідентифікатор пов'язаних об'єктів :ref:`lot` або :ref:`item`."
 
@@ -326,16 +326,32 @@ msgid ""
 "`virtualDataRoom` - **Virtual Data Room** (available only for the "
 "`dgfFinancialAssets` procedure, see :ref:`fintutorial`)"
 msgstr ""
-"`virtualDataRoom` - **Віртуальна кімната для роботи з конфіденційними"
-" даними** (доступно лише для `dgfFinancialAssets` процедури, див."
-" :ref:`fintutorial`)"
+"`virtualDataRoom` - **Віртуальна кімната для роботи з конфіденційними "
+"даними** (доступно лише для `dgfFinancialAssets` процедури, див. "
+":ref:`fintutorial`)"
 
 #: ../../source/standard/document.rst:113
 msgid ""
 "`financialLicense` - **License** (available only for the "
 "`dgfFinancialAssets` procedure, see :ref:`fintutorial`)"
 msgstr ""
-"`financialLicense` - **Ліцензія**  (доступно лише для `dgfFinancialAssets`"
-" процедури, див. :ref:`fintutorial`)"
+"`financialLicense` - **Ліцензія**  (доступно лише для `dgfFinancialAssets` "
+"процедури, див. :ref:`fintutorial`)"
 
+#: ../../source/standard/document.rst:129
+msgid "integer"
+msgstr "ціле число"
+
+#: ../../source/standard/document.rst:131
+msgid ""
+"Sorting (display order) parameter used for illustrations. The smaller number"
+" is, the higher illustration is in the sorting. If index is not specified, "
+"illustration will be displayed the last. If two illustrations have the same "
+"index, they will be sorted depending on their publishing date."
+msgstr ""
+"Пареметр сортування (порядку відображення), що використовується для"
+" ілюстрацій. Чим менше число, тим вище ілюстрація буде при сортуванні. Якщо"
+" параметр не зазначений, то ілюстрація відображатиметься останньою. Якщо дві"
+" ілюстрації мають однакове значення параметру, то порядок сортування буде"
+" залежати від дати публікації."
 

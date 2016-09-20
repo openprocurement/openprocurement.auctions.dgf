@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-16 16:42+0300\n"
-"PO-Revision-Date: 2016-09-19 17:33+0200\n"
+"PO-Revision-Date: 2016-09-20 17:47+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -120,27 +120,23 @@ msgstr ""
 msgid "And we can see that it is overriding the original version:"
 msgstr "І ми бачимо, що вона перекриває оригінальну версію:"
 
-#: ../../source/fintutorial.rst:106
+#: ../../source/fintutorial.rst:110
 msgid "Adding virtual data room"
 msgstr "Додавання віртуальної кімнати для роботи з конфіденційними даними"
 
-#: ../../source/fintutorial.rst:117
+#: ../../source/fintutorial.rst:121
 msgid "Registering bid"
 msgstr "Реєстрація пропозиції"
 
-#: ../../source/fintutorial.rst:119
-msgid "Bidder can register a bid in `draft` status:"
-msgstr "Учасник може зареєструвати пропозицію у статусі `draft` (чернетка):"
-
-#: ../../source/fintutorial.rst:124
+#: ../../source/fintutorial.rst:128
 msgid "And activate a bid:"
 msgstr "І активувати пропозицію:"
 
-#: ../../source/fintutorial.rst:134
+#: ../../source/fintutorial.rst:138
 msgid "It is possible to check the uploaded documents:"
 msgstr "Можна перевірити завантажені документи:"
 
-#: ../../source/fintutorial.rst:139
+#: ../../source/fintutorial.rst:143
 msgid ""
 "For the best effect (biggest economy) auction should have multiple bidders "
 "registered:"
@@ -148,13 +144,13 @@ msgstr ""
 "Для найкращого результату (найбільшої економії) аукціон повинен мати багато "
 "зареєстрованих учасників."
 
-#: ../../source/fintutorial.rst:108
+#: ../../source/fintutorial.rst:112
 msgid "Organizer can add URL for virtual data room:"
 msgstr ""
 "Організатор може додати URL-адресу віртуальної кімнати для роботи з "
 "конфіденційними даними:"
 
-#: ../../source/fintutorial.rst:129
+#: ../../source/fintutorial.rst:133
 msgid "And upload license (with ``documentType: financialLicense``):"
 msgstr "І завантажити ліцензію (вказавши ``documentType: financialLicense``):"
 
@@ -170,25 +166,56 @@ msgstr ""
 "Організатор може завантажити файли з ілюстраціями у створений аукціон. "
 "Завантаження повинно відповідати правилам :ref:`upload`."
 
-#: ../../source/fintutorial.rst:85
+#: ../../source/fintutorial.rst:87
 msgid "We can check whether illustration is uploaded."
 msgstr "Ми можемо перевірити, чи завантажилась ілюстрація."
-
-#: ../../source/fintutorial.rst:90
-msgid "Organizer can upload second illustration:"
-msgstr "Організатор може завантажити ще одну ілюстрацію:"
-
-#: ../../source/fintutorial.rst:95
-msgid "And third illustration:"
-msgstr "І третю ілюстрацію:"
-
-#: ../../source/fintutorial.rst:100
-msgid "And we can see that there are three uploaded illustrations."
-msgstr "Ми бачимо, що є три завантажені ілюстрації."
 
 #: ../../source/fintutorial.rst:6
 msgid "Tutorial for the `dgfFinancialAssets` procedure."
 msgstr ""
-"Туторіал для процедури `dgfFinancialAssets` - продаж права вимоги за"
-" кредитними договорами."
+"Туторіал для процедури `dgfFinancialAssets` - продаж права вимоги за "
+"кредитними договорами."
 
+#: ../../source/fintutorial.rst:82
+msgid ""
+"In order to specify illustration display order, ``index`` field can be used "
+"(for details see :ref:`document`). Since this illustration should be "
+"displayed first, it has ``\"index\": 1``."
+msgstr ""
+"Для того, щоб вказати порядок відображення ілюстрацій, використовується поле"
+" `index` (див. :ref:`document`). Оскільки ця ілюстрація повинна бути"
+" відображена першою, то вказується ``\"index\": 1``"
+
+#: ../../source/fintutorial.rst:92
+msgid ""
+"Organizer can upload second illustration. This illustration should be "
+"displayed second, so it has ``\"index\": 2``."
+msgstr ""
+"Організатор може завантажити ще одну ілюстрацію. Ця ілюстрація повинна бути"
+" відображена другою, тому має параметр ``\"index\": 2``."
+
+#: ../../source/fintutorial.rst:97
+msgid "Add third illustration:"
+msgstr "Додаємо третю ілюстрацію:"
+
+#: ../../source/fintutorial.rst:102
+msgid ""
+"Note that `index` of the third illustration is the same as for the second "
+"illustration: ``\"index\": 2``. In such cases firstly will be displayed "
+"illustration that was uploaded earlier."
+msgstr ""
+"Зверніть увагу, що параметр `index` третьої ілюстрації такий же як і у"
+" другої:  ``\"index\": 2``. У таких випадках спочатку відображатиметься"
+" ілюстрація з ранішою датою публікації."
+
+#: ../../source/fintutorial.rst:104
+msgid "We can check that there are three uploaded illustrations."
+msgstr "Можемо перевірити, що є три завантажені ілюстрації."
+
+#: ../../source/fintutorial.rst:123
+msgid ""
+"Bidder can register a bid in `draft` status. Bidder must specify ``UA-FIN`` "
+"value for the `additionalIdentifiers` parameter."
+msgstr ""
+"Учасник може зареєструвати пропозицію у статусі `draft` (чернетка). Учасник"
+" повинен вказати значення ``UA-FIN`` для параметра `additionalIdentifiers`."

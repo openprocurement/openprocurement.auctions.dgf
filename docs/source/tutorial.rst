@@ -139,7 +139,9 @@ Uploading illustration
 -----------------------
 
 Organizer can upload illustration files into the created auction. Uploading should
-follow the :ref:`upload` rules.
+follow the :ref:`upload` rules. 
+
+In order to specify illustration display order, `index` field can be used (for details see :ref:`document`). Since this illustration should be displayed first, it has ``"index": 1``.
 
 .. include:: tutorial/upload-first-auction-illustration.http
    :code:
@@ -149,17 +151,19 @@ We can check whether illustration is uploaded.
 .. include:: tutorial/auction-documents-4.http
    :code:
 
-Organizer can upload second illustration:
+Organizer can upload second illustration. This illustration should be displayed second, so it has ``"index": 2``.
 
 .. include:: tutorial/upload-second-auction-illustration.http
    :code:
 
-And third illustration:
+Add third illustration:
 
 .. include:: tutorial/upload-third-auction-illustration.http
    :code:
 
-And we can see that there are three uploaded illustrations.
+Note that `index` of the third illustration is the same as for the second illustration: ``"index": 2``. In such cases firstly will be displayed illustration that was uploaded earlier.
+   
+We can check that there are three uploaded illustrations.
 
 .. include:: tutorial/auction-documents-5.http
    :code:

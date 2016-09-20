@@ -58,7 +58,7 @@ Schema
 :address:
     :ref:`Address`
 
-    Address, where the item should be delivered.
+    Address, where the item is located.
 
 :location:
     dictionary

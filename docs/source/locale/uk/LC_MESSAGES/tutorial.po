@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-19 15:59+0200\n"
+"PO-Revision-Date: 2016-09-20 17:44+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -152,11 +152,11 @@ msgstr ""
 msgid "And we can see that it is overriding the original version:"
 msgstr "І ми бачимо, що вона перекриває оригінальну версію:"
 
-#: ../../source/tutorial.rst:168
+#: ../../source/tutorial.rst:172
 msgid "Enquiries"
 msgstr "Уточнення (питання)"
 
-#: ../../source/tutorial.rst:170
+#: ../../source/tutorial.rst:174
 msgid ""
 "When auction is in `active.tendering` status, interested parties can ask "
 "questions:"
@@ -164,31 +164,31 @@ msgstr ""
 "Коли закупівля має статус `active.tendering`, зацікавлені сторони можуть "
 "задавати питання:"
 
-#: ../../source/tutorial.rst:194
+#: ../../source/tutorial.rst:198
 msgid "Registering bid"
 msgstr "Реєстрація пропозиції"
 
-#: ../../source/tutorial.rst:196
+#: ../../source/tutorial.rst:200
 msgid "Bidder can register a bid in `draft` status:"
 msgstr "Учасник може зареєструвати пропозицію у статусі `draft` (чернетка):"
 
-#: ../../source/tutorial.rst:201
+#: ../../source/tutorial.rst:205
 msgid "And activate a bid:"
 msgstr "І активувати пропозицію:"
 
-#: ../../source/tutorial.rst:206
+#: ../../source/tutorial.rst:210
 msgid "And upload proposal document:"
 msgstr "І завантажити документ пропозиції:"
 
-#: ../../source/tutorial.rst:211
+#: ../../source/tutorial.rst:215
 msgid "It is possible to check the uploaded documents:"
 msgstr "Можна перевірити завантажені документи:"
 
-#: ../../source/tutorial.rst:225
+#: ../../source/tutorial.rst:229
 msgid "Auction"
 msgstr "Аукціон"
 
-#: ../../source/tutorial.rst:227
+#: ../../source/tutorial.rst:231
 msgid ""
 "After auction is scheduled anybody can visit it to watch. The auction can be"
 " reached at `Auction.auctionUrl`:"
@@ -196,12 +196,12 @@ msgstr ""
 "Після того, як аукціон заплановано, будь-хто може його відвідати для "
 "перегляду. Аукціон можна подивитись за допомогою `Auction.auctionUrl`:"
 
-#: ../../source/tutorial.rst:232
+#: ../../source/tutorial.rst:236
 msgid "And bidders can find out their participation URLs via their bids:"
 msgstr ""
 "Учасники можуть дізнатись свої URL-адреси для участі через свої пропозиції:"
 
-#: ../../source/tutorial.rst:237
+#: ../../source/tutorial.rst:241
 msgid ""
 "See the `Bid.participationUrl` in the response. Similar, but different, URL "
 "can be retrieved for other participants:"
@@ -209,43 +209,43 @@ msgstr ""
 "Дивіться на `Bid.participationUrl` у відповіді. Схожу, але іншу, URL-адресу "
 "можна отримати для інших учасників."
 
-#: ../../source/tutorial.rst:286
+#: ../../source/tutorial.rst:290
 msgid "Uploading contract documentation"
 msgstr "Завантаження документів щодо укладання угоди"
 
-#: ../../source/tutorial.rst:288
+#: ../../source/tutorial.rst:292
 msgid "You can upload contract documents. Let's upload contract document:"
 msgstr "Спробуємо завантажити документ пов’язаний з угодою:"
 
-#: ../../source/tutorial.rst:295
+#: ../../source/tutorial.rst:299
 msgid "Let's see the list of contract documents:"
 msgstr "Переглянемо список завантажених документів:"
 
-#: ../../source/tutorial.rst:300
+#: ../../source/tutorial.rst:304
 msgid "We can add another contract document:"
 msgstr "Тепер спробуємо додати ще один документ щодо укладанням угоди:"
 
-#: ../../source/tutorial.rst:307
+#: ../../source/tutorial.rst:311
 msgid "Let's see the list of all added contract documents:"
 msgstr "Тепер переглянемо знову усі документи пов’язані із укладанням угоди:"
 
-#: ../../source/tutorial.rst:313
+#: ../../source/tutorial.rst:317
 msgid "Contract registration"
 msgstr "Реєстрація угоди"
 
-#: ../../source/tutorial.rst:323
+#: ../../source/tutorial.rst:327
 msgid "Cancelling auction"
 msgstr "Скасування закупівлі"
 
-#: ../../source/tutorial.rst:327
+#: ../../source/tutorial.rst:331
 msgid "The following steps should be applied:"
 msgstr "Для цього потрібно виконати наступні кроки:"
 
-#: ../../source/tutorial.rst:331
+#: ../../source/tutorial.rst:335
 msgid "Cancel the auction with the reasons prepared."
 msgstr "Скасуйте закупівлю через подані причини"
 
-#: ../../source/tutorial.rst:333
+#: ../../source/tutorial.rst:337
 msgid ""
 "Only the request that has been activated (3rd step above) has power to "
 "cancel auction.  I.e.  you have to not only prepare cancellation request but"
@@ -255,16 +255,16 @@ msgstr ""
 "тобто, для скасування закупівлі буде обов’язковим не тільки створити заявку,"
 " але і активувати її."
 
-#: ../../source/tutorial.rst:337
+#: ../../source/tutorial.rst:341
 msgid "See :ref:`cancellation` data structure for details."
 msgstr ""
 "Див. структуру запиту :ref:`cancellation` для більш детальної інформації."
 
-#: ../../source/tutorial.rst:340
+#: ../../source/tutorial.rst:344
 msgid "Preparing the cancellation request"
 msgstr "Формування запиту на скасування"
 
-#: ../../source/tutorial.rst:342
+#: ../../source/tutorial.rst:346
 msgid ""
 "You should pass `reason`, `status` defaults to `pending`. `id` is "
 "autogenerated and passed in the `Location` header of response."
@@ -273,11 +273,11 @@ msgstr ""
 "генерується автоматично і повертається у додатковому заголовку відповіді "
 "`Location`:"
 
-#: ../../source/tutorial.rst:350
+#: ../../source/tutorial.rst:354
 msgid "Filling cancellation with protocol and supplementary documentation"
 msgstr "Наповнення протоколом та іншою супровідною документацією"
 
-#: ../../source/tutorial.rst:368
+#: ../../source/tutorial.rst:372
 msgid "Activating the request and cancelling auction"
 msgstr "Активація запиту та скасування аукціону"
 
@@ -289,7 +289,7 @@ msgstr ""
 "Замовник може завантажити PDF файл у створений аукціон. Завантаження повинно"
 " відбуватись згідно правил :ref:`upload`."
 
-#: ../../source/tutorial.rst:175
+#: ../../source/tutorial.rst:179
 msgid "Organizer can answer them:"
 msgstr "Організатор може на них відповісти:"
 
@@ -330,15 +330,15 @@ msgstr ""
 "модифікувався. Зверніть увагу на `procurementMethodType`, а також на те, що "
 "аукціон створюється зі статусом `active.tendering`."
 
-#: ../../source/tutorial.rst:180
+#: ../../source/tutorial.rst:184
 msgid "And one can retrieve the question list:"
 msgstr "Можна отримати список запитань:"
 
-#: ../../source/tutorial.rst:185
+#: ../../source/tutorial.rst:189
 msgid "Or an individual answer:"
 msgstr "або окрему відповідь:"
 
-#: ../../source/tutorial.rst:216
+#: ../../source/tutorial.rst:220
 msgid ""
 "For the best effect (biggest economy) auction should have multiple bidders "
 "registered:"
@@ -346,7 +346,7 @@ msgstr ""
 "Для найкращого результату (найбільшої економії) аукціон повинен мати багато "
 "зареєстрованих учасників."
 
-#: ../../source/tutorial.rst:293
+#: ../../source/tutorial.rst:297
 msgid ""
 "`201 Created` response code and `Location` header confirm that document has "
 "been added."
@@ -354,7 +354,7 @@ msgstr ""
 "Код відповіді `201 Created` та заголовок `Location` підтверджують, що "
 "документ додано."
 
-#: ../../source/tutorial.rst:305
+#: ../../source/tutorial.rst:309
 msgid ""
 "`201 Created` response code and `Location` header confirm that the second "
 "document has been uploaded."
@@ -362,7 +362,7 @@ msgstr ""
 "Код відповіді `201 Created` та заголовок `Location` підтверджують, що ще "
 "один документ було додано."
 
-#: ../../source/tutorial.rst:325
+#: ../../source/tutorial.rst:329
 msgid ""
 "Organizer can cancel auction anytime (except when auction has terminal "
 "status e.g. `usuccesfull`, `canceled`, `complete`)."
@@ -370,39 +370,39 @@ msgstr ""
 "Організатор може скасувати аукціон у будь-який момент (крім аукціонів у "
 "кінцевому стані, наприклад, `usuccesfull`, `canceled`, `complete`)."
 
-#: ../../source/tutorial.rst:329
+#: ../../source/tutorial.rst:333
 msgid "Prepare cancellation request."
 msgstr "Приготуйте запит на скасування."
 
-#: ../../source/tutorial.rst:330
+#: ../../source/tutorial.rst:334
 msgid "Fill it with the protocol describing the cancellation reasons."
 msgstr "Наповніть його протоколом про причини скасування."
 
-#: ../../source/tutorial.rst:352
+#: ../../source/tutorial.rst:356
 msgid "Upload the file contents:"
 msgstr "Завантаження вмісту файлу:"
 
-#: ../../source/tutorial.rst:357
+#: ../../source/tutorial.rst:361
 msgid "Change the document description and other properties:"
 msgstr "Зміна опису документа та інших властивостей:"
 
-#: ../../source/tutorial.rst:362
+#: ../../source/tutorial.rst:366
 msgid "Upload new version of the document:"
 msgstr "Завантаження нової версії документа:"
 
-#: ../../source/tutorial.rst:245
+#: ../../source/tutorial.rst:249
 msgid "Qualification"
 msgstr "Кваліфікація"
 
-#: ../../source/tutorial.rst:248
+#: ../../source/tutorial.rst:252
 msgid "Confirming qualification"
 msgstr "Підтвердження кваліфікації"
 
-#: ../../source/tutorial.rst:281
+#: ../../source/tutorial.rst:285
 msgid "Signing contract"
 msgstr "Підписання угоди"
 
-#: ../../source/tutorial.rst:250
+#: ../../source/tutorial.rst:254
 msgid ""
 "Candidate (participant that has submitted the highest bid at the auction) "
 "must sign the auction protocol and add it to the bid within **3 business "
@@ -412,7 +412,7 @@ msgstr ""
 "протокол аукціону і додати його до цінової пропозиції протягом **3 робочих "
 "днів після того, як став кандидатом**."
 
-#: ../../source/tutorial.rst:255
+#: ../../source/tutorial.rst:259
 msgid ""
 "Within **10 business days after becoming candidate** this candidate must "
 "provide payment and organizer must confirm this payment:"
@@ -420,11 +420,11 @@ msgstr ""
 "Цей кандидат протягом **10 робочих днів після того, як став кандидатом**  "
 "повинен надати оплату, а організатор повинен підтвердити цей платіж:"
 
-#: ../../source/tutorial.rst:261
+#: ../../source/tutorial.rst:265
 msgid "Disqualification of candidate"
 msgstr "Дискваліфікація кандидата"
 
-#: ../../source/tutorial.rst:263
+#: ../../source/tutorial.rst:267
 msgid ""
 "If the candidate didn't sign the auction protocol in 3 business days after "
 "becoming candidate, or didn't provide payment in 10 business days since "
@@ -440,7 +440,7 @@ msgstr ""
 "організатор дискваліфікує першого кандидата і кандидатом стає учасник з "
 "наступною за величиною пропозицією."
 
-#: ../../source/tutorial.rst:283
+#: ../../source/tutorial.rst:287
 msgid ""
 "The candidate has **15 business days after becoming candidate** to conclude "
 "a contract with the bank based on the results of electronic auction."
@@ -448,7 +448,7 @@ msgstr ""
 "Кандидат має **15 робочих днів після того, як став кандидатом**, щоб укласти"
 " угоду на основі результатів електронного аукціону."
 
-#: ../../source/tutorial.rst:315
+#: ../../source/tutorial.rst:319
 msgid ""
 "There is a possibility to set custom contract signature date. If the date is"
 " not set it will be generated on contract registration. You can register "
@@ -458,7 +458,7 @@ msgstr ""
 "то вона буде згенерована під час реєстрації угоди. Ви можете зареєструвати "
 "угоду:"
 
-#: ../../source/tutorial.rst:278
+#: ../../source/tutorial.rst:282
 msgid ""
 "Within 15 business days since becoming candidate a new candidate must "
 "confirm qualification with steps described above (:ref:`Qualification`)."
@@ -476,30 +476,54 @@ msgid ""
 "Organizer can upload illustration files into the created auction. Uploading "
 "should follow the :ref:`upload` rules."
 msgstr ""
-"Організатор може завантажити файли з ілюстраціями у створений аукціон."
-" Завантаження повинно відповідати правилам :ref:`upload`."
+"Організатор може завантажити файли з ілюстраціями у створений аукціон. "
+"Завантаження повинно відповідати правилам :ref:`upload`."
 
-#: ../../source/tutorial.rst:147
+#: ../../source/tutorial.rst:149
 msgid "We can check whether illustration is uploaded."
 msgstr "Ми можемо перевірити, чи завантажилась ілюстрація."
 
-#: ../../source/tutorial.rst:152
-msgid "Organizer can upload second illustration:"
-msgstr "Організатор може завантажити ще одну ілюстрацію:"
-
-#: ../../source/tutorial.rst:157
-msgid "And third illustration:"
-msgstr "І третю ілюстрацію:"
-
-#: ../../source/tutorial.rst:162
-msgid "And we can see that there are three uploaded illustrations."
-msgstr "Ми бачимо, що є три завантажені ілюстрації."
-
-#: ../../source/tutorial.rst:268
+#: ../../source/tutorial.rst:272
 msgid "Organizer has to upload file with cancellation reason:"
 msgstr "Організатор повинен завантажити файл з причинами відміни:"
 
-#: ../../source/tutorial.rst:273
+#: ../../source/tutorial.rst:277
 msgid "And disqualify candidate:"
 msgstr "Та дискваліфікувати кандидата:"
+
+#: ../../source/tutorial.rst:144
+msgid ""
+"In order to specify illustration display order, `index` field can be used "
+"(for details see :ref:`document`). Since this illustration should be "
+"displayed first, it has ``\"index\": 1``."
+msgstr ""
+"Для того, щоб вказати порядок відображення ілюстрацій, використовується поле"
+" `index` (див. :ref:`document`). Оскільки ця ілюстрація повинна бути"
+" відображена першою, то вказується ``\"index\": 1``."
+
+#: ../../source/tutorial.rst:154
+msgid ""
+"Organizer can upload second illustration. This illustration should be "
+"displayed second, so it has ``\"index\": 2``."
+msgstr ""
+"Організатор може завантажити ще одну ілюстрацію. Ця ілюстрація повинна бути"
+" відображена другою, тому має параметр ``\"index\": 2``."
+
+#: ../../source/tutorial.rst:159
+msgid "Add third illustration:"
+msgstr "Додаємо третю ілюстрацію:"
+
+#: ../../source/tutorial.rst:164
+msgid ""
+"Note that `index` of the third illustration is the same as for the second "
+"illustration: ``\"index\": 2``. In such cases firstly will be displayed "
+"illustration that was uploaded earlier."
+msgstr ""
+"Зверніть увагу, що параметр `index` третьої ілюстрації такий же як і у"
+" другої:  ``\"index\": 2``. У таких випадках спочатку відображатиметься"
+" ілюстрація з ранішою датою публікації."
+
+#: ../../source/tutorial.rst:166
+msgid "We can check that there are three uploaded illustrations."
+msgstr "Можемо перевірити, що є три завантажені ілюстрації."
 

@@ -127,6 +127,8 @@ Schema
 
 :index:
     integer
+    
+    Sorting (display order) parameter used for illustrations. The smaller number is, the higher illustration is in the sorting. If index is not specified, illustration will be displayed the last. If two illustrations have the same index, they will be sorted depending on their publishing date.
 
 :format:
     string
