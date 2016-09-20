@@ -66,8 +66,8 @@ test_auction_data = {
             }
         }
     ],
-    "tenderPeriod": {
-        "endDate": (now + timedelta(days=14)).isoformat()
+    "auctionPeriod": {
+        "startDate": (now + timedelta(days=14)).isoformat()
     },
     "procurementMethodType": "dgfOtherAssets",
 }

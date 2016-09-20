@@ -9,7 +9,8 @@ from zope.interface import implementer
 from openprocurement.api.models import (
     BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
     validate_features_uniq, validate_lots_uniq, Identifier as BaseIdentifier,
-    Classification, validate_items_uniq, ORA_CODES, Address, Location
+    Classification, validate_items_uniq, ORA_CODES, Address, Location,
+    schematics_embedded_role,
 )
 from openprocurement.api.utils import calculate_business_date
 from openprocurement.auctions.core.models import IAuction
@@ -19,7 +20,8 @@ from openprocurement.auctions.flash.models import (
     Contract as BaseContract, Award as BaseAward, Lot, edit_role,
     calc_auction_end_time, COMPLAINT_STAND_STILL_TIME, validate_cav_group,
     Organization as BaseOrganization, Item as BaseItem,
-    ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion
+    ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
+    rounding_shouldStartAfter, get_auction,
 )
 
 
@@ -144,11 +146,39 @@ def validate_not_available(items, *args):
         raise ValidationError(u"Option not available in this procurementMethodType")
 
 
+class AuctionAuctionPeriod(Period):
+    """The auction period."""
+
+    @serializable(serialize_when_none=False)
+    def shouldStartAfter(self):
+        if self.endDate:
+            return
+        auction = self.__parent__
+        if auction.lots or auction.status not in ['active.tendering', 'active.auction']:
+            return
+        if self.startDate and get_now() > calc_auction_end_time(auction.numberOfBids, self.startDate):
+            start_after = calc_auction_end_time(auction.numberOfBids, self.startDate)
+        elif auction.tenderPeriod and auction.tenderPeriod.endDate:
+            start_after = auction.tenderPeriod.endDate
+        else:
+            return
+        return rounding_shouldStartAfter(start_after, auction).isoformat()
+
+    def validate_startDate(self, data, startDate):
+        auction = get_auction(data['__parent__'])
+        if not auction.revisions and not startDate:
+            raise ValidationError(u'This field is required.')
+
+
+create_role = (blacklist('owner_token', 'owner', '_attachments', 'revisions', 'date', 'dateModified', 'doc_id', 'auctionID', 'bids', 'documents', 'awards', 'questions', 'complaints', 'auctionUrl', 'status', 'enquiryPeriod', 'tenderPeriod', 'awardPeriod', 'procurementMethod', 'awardCriteria', 'submissionMethod', 'cancellations', 'numberOfBidders', 'contracts') + schematics_embedded_role)
+
+
 @implementer(IAuction)
 class Auction(BaseAuction):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
     class Options:
         roles = {
+            'create': create_role,
             'edit_active.tendering': (blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'guarantee', 'auction_guarantee') + edit_role),
         }
 
@@ -160,6 +190,7 @@ class Auction(BaseAuction):
     documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
     enquiryPeriod = ModelType(Period)  # The period during which enquiries may be made and will be answered.
     tenderPeriod = ModelType(Period)  # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
+    auctionPeriod = ModelType(AuctionAuctionPeriod, required=True, default={})
     procurementMethodType = StringType(default="dgfOtherAssets")
     procuringEntity = ModelType(ProcuringEntity, required=True)
     status = StringType(choices=['draft', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
@@ -168,27 +199,23 @@ class Auction(BaseAuction):
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
     items = ListType(ModelType(Item), required=True, min_size=1, validators=[validate_cav_group, validate_items_uniq])
 
-    @serializable(serialized_name="tenderPeriod", type=ModelType(Period))
-    def auction_tenderPeriod(self):
-        if self.tenderPeriod and self.tenderPeriod.endDate:
-            return self.tenderPeriod
-        endDate = calculate_business_date(self.auctionPeriod.startDate, -timedelta(days=1), self)
-        return Period(dict(endDate=endDate))
-
     def initialize(self):
         if not self.enquiryPeriod:
             self.enquiryPeriod = type(self).enquiryPeriod.model_class()
+        if not self.tenderPeriod:
+            self.tenderPeriod = type(self).tenderPeriod.model_class()
         now = get_now()
         self.tenderPeriod.startDate = self.enquiryPeriod.startDate = now
-        self.enquiryPeriod.endDate = self.tenderPeriod.endDate
+        self.enquiryPeriod.endDate = self.tenderPeriod.endDate = calculate_business_date(self.auctionPeriod.startDate, -timedelta(days=1), self)
+        self.auctionPeriod.startDate = None
+        self.auctionPeriod.endDate = None
         self.date = now
         if self.lots:
             for lot in self.lots:
                 lot.date = now
 
     def validate_tenderPeriod(self, data, period):
-        if not (period and period.endDate) and not ('auctionPeriod' in data and data['auctionPeriod'].startDate):
-            raise ValidationError(u'This field is required.')
+        pass
 
     def validate_value(self, data, value):
         if value.currency != u'UAH':
