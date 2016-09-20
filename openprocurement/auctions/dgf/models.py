@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta
-from schematics.types import StringType, URLType
+from schematics.types import StringType, URLType, IntType
 from schematics.types.compound import ModelType
 from schematics.exceptions import ValidationError
 from schematics.transforms import blacklist, whitelist
@@ -65,6 +65,7 @@ class ProcuringEntity(BaseProcuringEntity):
 
 class Document(BaseDocument):
     format = StringType(regex='^[-\w]+/[-\.\w\+]+$')
+    index = IntType()
     documentType = StringType(choices=[
         'auctionNotice', 'awardNotice', 'contractNotice',
         'notice', 'biddingDocuments', 'technicalSpecifications',
