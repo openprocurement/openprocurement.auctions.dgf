@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
+from datetime import datetime, timedelta, time
 from schematics.types import StringType, URLType, IntType
 from schematics.types.compound import ModelType
 from schematics.exceptions import ValidationError
@@ -10,7 +10,7 @@ from openprocurement.api.models import (
     BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
     validate_features_uniq, validate_lots_uniq, Identifier as BaseIdentifier,
     Classification, validate_items_uniq, ORA_CODES, Address, Location,
-    schematics_embedded_role,
+    schematics_embedded_role, SANDBOX_MODE
 )
 from openprocurement.api.utils import calculate_business_date
 from openprocurement.auctions.core.models import IAuction
@@ -21,7 +21,7 @@ from openprocurement.auctions.flash.models import (
     calc_auction_end_time, COMPLAINT_STAND_STILL_TIME, validate_cav_group,
     Organization as BaseOrganization, Item as BaseItem,
     ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
-    rounding_shouldStartAfter, get_auction,
+    get_auction,
 )
 
 
@@ -144,6 +144,14 @@ class Award(BaseAward):
 def validate_not_available(items, *args):
     if items:
         raise ValidationError(u"Option not available in this procurementMethodType")
+
+
+def rounding_shouldStartAfter(start_after, auction, use_from=datetime(2016, 6, 1, tzinfo=TZ)):
+    if (auction.enquiryPeriod and auction.enquiryPeriod.startDate or get_now()) > use_from and not (SANDBOX_MODE and auction.submissionMethodDetails and u'quick' in auction.submissionMethodDetails):
+        midnigth = datetime.combine(start_after.date(), time(0, tzinfo=start_after.tzinfo))
+        if start_after >= midnigth:
+            start_after = midnigth + timedelta(1)
+    return start_after
 
 
 class AuctionAuctionPeriod(Period):
