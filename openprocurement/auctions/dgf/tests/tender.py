@@ -3,9 +3,10 @@ import unittest
 from copy import deepcopy
 from datetime import timedelta
 from uuid import uuid4
+from iso8601 import parse_date
 
 from openprocurement.api.utils import ROUTE_PREFIX
-from openprocurement.api.models import get_now, SANDBOX_MODE
+from openprocurement.api.models import get_now, SANDBOX_MODE, TZ
 from openprocurement.auctions.dgf.models import DGFOtherAssets, DGFFinancialAssets
 from openprocurement.auctions.dgf.tests.base import test_auction_data, test_financial_auction_data, test_organization, test_financial_organization, BaseWebTest, BaseAuctionWebTest
 
@@ -606,6 +607,7 @@ class AuctionResourceTest(BaseWebTest):
         self.assertIn('tenderPeriod', auction)
         self.assertIn('auctionPeriod', auction)
         self.assertNotIn('startDate', auction['auctionPeriod'])
+        self.assertEqual(parse_date(data['auctionPeriod']['startDate']).date(), parse_date(auction['auctionPeriod']['shouldStartAfter'], TZ).date())
 
     def test_create_auction_generated(self):
         data = self.initial_data.copy()
