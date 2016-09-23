@@ -15,7 +15,7 @@ from openprocurement.auctions.core.validation import (
 )
 
 
-@opresource(name='Auction',
+@opresource(name='Auction Other',
             path='/auctions/{auction_id}',
             auctionsprocurementMethodType="dgfOtherAssets",
             description="Open Contracting compatible data exchange format. See http://ocds.open-contracting.org/standard/r/master/#auction for more info")

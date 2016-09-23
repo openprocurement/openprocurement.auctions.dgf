@@ -19,7 +19,7 @@ from openprocurement.auctions.core.utils import (
 )
 
 
-@opresource(name='Auction Cancellation Documents',
+@opresource(name='Auction Other Cancellation Documents',
             collection_path='/auctions/{auction_id}/cancellations/{cancellation_id}/documents',
             path='/auctions/{auction_id}/cancellations/{cancellation_id}/documents/{document_id}',
             auctionsprocurementMethodType="dgfOtherAssets",

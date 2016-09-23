@@ -18,7 +18,7 @@ from openprocurement.auctions.core.validation import (
 
 
 
-@opresource(name='Auction Bids',
+@opresource(name='Auction Other Bids',
             collection_path='/auctions/{auction_id}/bids',
             path='/auctions/{auction_id}/bids/{bid_id}',
             auctionsprocurementMethodType="dgfOtherAssets",
