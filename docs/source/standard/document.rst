@@ -63,8 +63,10 @@ Schema
     * `virtualDataRoom` - **Virtual Data Room** (available only for the `dgfFinancialAssets` procedure, see :ref:`fintutorial`) 
     
     * `illustration` - **Illustrations**
-    
-    
+
+    * `auctionProtocol` - **Auction protocol**
+
+
     Possible values for :ref:`award`
     
     

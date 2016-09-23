@@ -85,7 +85,7 @@ class Document(BaseDocument):
         'contractAnnexe', 'contractGuarantees', 'subContract',
         'eligibilityCriteria', 'contractProforma', 'commercialProposal',
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
-        'illustration',
+        'illustration', 'auctionProtocol',
     ])
 
     def validate_hash(self, data, hash_):
@@ -333,6 +333,7 @@ class Document(Document):
         'eligibilityCriteria', 'contractProforma', 'commercialProposal',
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
         'illustration', 'financialLicense', 'virtualDataRoom',
+        'auctionProtocol',
     ])
 
 
