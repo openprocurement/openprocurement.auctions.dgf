@@ -124,7 +124,8 @@ class AuctionBidResource(APIResource):
             self.LOGGER.info('Created auction bid {}'.format(bid.id),
                         extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_bid_create'}, {'bid_id': bid.id}))
             self.request.response.status = 201
-            self.request.response.headers['Location'] = self.request.route_url('Auction Bids', auction_id=auction.id, bid_id=bid['id'])
+            route = self.request.matched_route.name.replace("collection_", "")
+            self.request.response.headers['Location'] = self.request.current_route_url(_route_name=route, bid_id=bid.id, _query={})
             return {
                 'data': bid.serialize('view'),
                 'access': {

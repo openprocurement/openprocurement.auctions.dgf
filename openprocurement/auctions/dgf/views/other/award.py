@@ -177,7 +177,8 @@ class AuctionAwardResource(APIResource):
             self.LOGGER.info('Created auction award {}'.format(award.id),
                         extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_award_create'}, {'award_id': award.id}))
             self.request.response.status = 201
-            self.request.response.headers['Location'] = self.request.route_url('Auction Awards', auction_id=auction.id, award_id=award['id'])
+            route = self.request.matched_route.name.replace("collection_", "")
+            self.request.response.headers['Location'] = self.request.current_route_url(_route_name=route, award_id=award.id, _query={})
             return {'data': award.serialize("view")}
 
     @json_view(permission='view_auction')

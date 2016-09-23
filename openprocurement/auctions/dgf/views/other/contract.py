@@ -39,7 +39,8 @@ class AuctionAwardContractResource(APIResource):
             self.LOGGER.info('Created auction contract {}'.format(contract.id),
                         extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_contract_create'}, {'contract_id': contract.id}))
             self.request.response.status = 201
-            self.request.response.headers['Location'] = self.request.route_url('Auction Contracts', auction_id=auction.id, contract_id=contract['id'])
+            route = self.request.matched_route.name.replace("collection_", "")
+            self.request.response.headers['Location'] = self.request.current_route_url(_route_name=route, contract_id=contract.id, _query={})
             return {'data': contract.serialize()}
 
     @json_view(permission='view_auction')

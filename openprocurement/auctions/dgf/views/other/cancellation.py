@@ -75,7 +75,8 @@ class AuctionCancellationResource(APIResource):
             self.LOGGER.info('Created auction cancellation {}'.format(cancellation.id),
                         extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_cancellation_create'}, {'cancellation_id': cancellation.id}))
             self.request.response.status = 201
-            self.request.response.headers['Location'] = self.request.route_url('Auction Cancellations', auction_id=auction.id, cancellation_id=cancellation.id)
+            route = self.request.matched_route.name.replace("collection_", "")
+            self.request.response.headers['Location'] = self.request.current_route_url(_route_name=route, cancellation_id=cancellation.id, _query={})
             return {'data': cancellation.serialize("view")}
 
     @json_view(permission='view_auction')
