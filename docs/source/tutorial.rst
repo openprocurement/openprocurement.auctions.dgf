@@ -251,7 +251,7 @@ Qualification
 Confirming qualification
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Candidate (participant that has submitted the highest bid at the auction) must sign the auction protocol and add it to the bid within **3 business days after becoming candidate**.
+Candidate (participant that has submitted the highest bid at the auction) must sign the auction protocol `auctionProtocol` and add it to the bid within **3 business days after becoming candidate**.
 
 .. include:: tutorial/bidder-auction-protocol.http
    :code:

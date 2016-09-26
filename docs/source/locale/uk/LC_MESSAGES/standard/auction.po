@@ -1,11 +1,10 @@
 #
-# Zoriana Zaiats <sorenabell@quintagroup.com>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-13 15:36+0300\n"
-"PO-Revision-Date: 2016-09-16 16:44+0200\n"
+"PO-Revision-Date: 2016-09-26 11:26+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -140,16 +139,9 @@ msgstr "Всі кваліфікації (дискваліфікації та в�
 msgid "List of :ref:`Contract` objects"
 msgstr "Список об’єктів :ref:`Contract`"
 
-#: ../../source/standard/auction.rst:110 ../../source/standard/auction.rst:118
+#: ../../source/standard/auction.rst:126
 msgid ":ref:`period`, required"
 msgstr ":ref:`period`, обов'язково"
-
-#: ../../source/standard/auction.rst:112
-msgid ""
-"Period when questions are allowed. At least `endDate` has to be provided."
-msgstr ""
-"Період, коли дозволено задавати питання. Повинна бути вказана хоча б "
-"`endDate` дата."
 
 #: ../../source/standard/auction.rst:114
 msgid ""
@@ -159,13 +151,6 @@ msgstr ""
 "|ocdsDescription| Період, коли можна задати питання (уточнення) та отримати "
 "відповіді на них."
 
-#: ../../source/standard/auction.rst:120
-msgid ""
-"Period when bids can be submitted. At least `endDate` has to be provided."
-msgstr ""
-"Період, коли подаються пропозиції. Повинна бути вказана хоча б `endDate` "
-"дата."
-
 #: ../../source/standard/auction.rst:122
 msgid ""
 "|ocdsDescription| The period when the auction is open for submissions. The "
@@ -174,13 +159,9 @@ msgstr ""
 "|ocdsDescription| Період, коли аукціон відкритий для подачі пропозицій. "
 "Кінцева дата - це дата, коли перестають прийматись пропозиції."
 
-#: ../../source/standard/auction.rst:126 ../../source/standard/auction.rst:136
+#: ../../source/standard/auction.rst:136
 msgid ":ref:`period`, read-only"
 msgstr ":ref:`period`, лише для читання"
-
-#: ../../source/standard/auction.rst:128
-msgid "Period when Auction is conducted."
-msgstr "Період, коли проводиться аукціон."
 
 #: ../../source/standard/auction.rst:131
 msgid "url"
@@ -327,4 +308,21 @@ msgstr ""
 #: ../../source/standard/auction.rst:47
 msgid "|ocdsDescription| The total estimated value of the procurement."
 msgstr "|ocdsDescription| Загальна кошторисна вартість закупівлі."
+
+#: ../../source/standard/auction.rst:110 ../../source/standard/auction.rst:118
+msgid ":ref:`period`"
+msgstr ":ref:`period`"
+
+#: ../../source/standard/auction.rst:112
+msgid "Period when questions are allowed."
+msgstr "Період, коли дозволено задавати питання."
+
+#: ../../source/standard/auction.rst:120
+msgid "Period when bids can be submitted."
+msgstr "Період, коли подаються пропозиції."
+
+#: ../../source/standard/auction.rst:128
+msgid "Period when Auction is conducted. `startDate` should be provided."
+msgstr ""
+"Період, коли проводиться аукціон. Значення `startDate` повинно бути вказано."
 

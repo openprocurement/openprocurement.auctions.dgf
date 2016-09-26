@@ -107,25 +107,25 @@ Schema
     List of :ref:`Contract` objects
 
 :enquiryPeriod:
-   :ref:`period`, required
+   :ref:`period`
 
-   Period when questions are allowed. At least `endDate` has to be provided.
+   Period when questions are allowed.
 
    |ocdsDescription|
    The period during which enquiries may be made and will be answered.
 
 :tenderPeriod:
-   :ref:`period`, required
+   :ref:`period`
 
-   Period when bids can be submitted. At least `endDate` has to be provided.
+   Period when bids can be submitted.
 
    |ocdsDescription|
    The period when the auction is open for submissions. The end date is the closing date for auction submissions.
 
 :auctionPeriod:
-   :ref:`period`, read-only
+   :ref:`period`, required
 
-   Period when Auction is conducted.
+   Period when Auction is conducted. `startDate` should be provided.
 
 :auctionUrl:
     url

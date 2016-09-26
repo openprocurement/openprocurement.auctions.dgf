@@ -65,6 +65,8 @@ Schema
     * `illustration` - **Illustrations**
 
     * `auctionProtocol` - **Auction protocol**
+    
+        Auction protocol describes all participants and determines the candidate (participant that has submitted the highest bid proposal during the auction).
 
 
     Possible values for :ref:`award`
