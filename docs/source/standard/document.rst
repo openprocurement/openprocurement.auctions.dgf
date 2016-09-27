@@ -59,14 +59,10 @@ Schema
     * `debarments` - **Debarments issued**
     
     * `contractProforma` - **Draft contract**
-    
-    * `virtualDataRoom` - **Virtual Data Room** (available only for the `dgfFinancialAssets` procedure, see :ref:`fintutorial`) 
-    
-    * `illustration` - **Illustrations**
 
-    * `auctionProtocol` - **Auction protocol**
-    
-        Auction protocol describes all participants and determines the candidate (participant that has submitted the highest bid proposal during the auction).
+    * `virtualDataRoom` - **Virtual Data Room** (available only for the `dgfFinancialAssets` procedure, see :ref:`fintutorial`)
+
+    * `illustration` - **Illustrations**
 
 
     Possible values for :ref:`award`
@@ -115,7 +111,11 @@ Schema
     * `eligibilityDocuments` - **Eligibility documents**
     
     * `financialLicense` - **License** (available only for the `dgfFinancialAssets` procedure, see :ref:`fintutorial`)
-    
+
+    * `auctionProtocol` - **Auction protocol**
+
+        Auction protocol describes all participants and determines the candidate (participant that has submitted the highest bid proposal during the auction).
+
 
 :title:
     string, multilingual
