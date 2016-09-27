@@ -16,7 +16,7 @@ from openprocurement.auctions.core.validation import (
 )
 
 
-@opresource(name='Auction Other Lots',
+@opresource(name='dgfOtherAssets:Auction Lots',
             collection_path='/auctions/{auction_id}/lots',
             path='/auctions/{auction_id}/lots/{lot_id}',
             auctionsprocurementMethodType="dgfOtherAssets",

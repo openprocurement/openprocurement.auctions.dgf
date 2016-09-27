@@ -8,7 +8,7 @@ from openprocurement.auctions.dgf.views.other.lot import (
 )
 
 
-@opresource(name='Financial Auction Lots',
+@opresource(name='dgfFinancialAssets:Auction Lots',
             collection_path='/auctions/{auction_id}/lots',
             path='/auctions/{auction_id}/lots/{lot_id}',
             auctionsprocurementMethodType="dgfFinancialAssets",

@@ -8,7 +8,7 @@ from openprocurement.auctions.dgf.views.other.complaint_document import (
 )
 
 
-@opresource(name='Financial Auction Complaint Documents',
+@opresource(name='dgfFinancialAssets:Auction Complaint Documents',
             collection_path='/auctions/{auction_id}/complaints/{complaint_id}/documents',
             path='/auctions/{auction_id}/complaints/{complaint_id}/documents/{document_id}',
             auctionsprocurementMethodType="dgfFinancialAssets",

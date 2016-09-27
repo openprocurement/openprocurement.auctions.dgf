@@ -28,7 +28,7 @@ STATUS4ROLE = {
 }
 
 
-@opresource(name='Auction Other Complaint Documents',
+@opresource(name='dgfOtherAssets:Auction Complaint Documents',
             collection_path='/auctions/{auction_id}/complaints/{complaint_id}/documents',
             path='/auctions/{auction_id}/complaints/{complaint_id}/documents/{document_id}',
             auctionsprocurementMethodType="dgfOtherAssets",

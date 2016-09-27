@@ -8,7 +8,7 @@ from openprocurement.auctions.dgf.views.other.award_document import (
 )
 
 
-@opresource(name='Financial Auction Award Documents',
+@opresource(name='dgfFinancialAssets:Auction Award Documents',
             collection_path='/auctions/{auction_id}/awards/{award_id}/documents',
             path='/auctions/{auction_id}/awards/{award_id}/documents/{document_id}',
             auctionsprocurementMethodType="dgfFinancialAssets",

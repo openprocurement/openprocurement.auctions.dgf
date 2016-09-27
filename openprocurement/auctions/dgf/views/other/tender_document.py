@@ -18,7 +18,7 @@ from openprocurement.auctions.core.utils import (
 from openprocurement.auctions.dgf.utils import upload_file, get_file
 
 
-@opresource(name='Auction Other Documents',
+@opresource(name='dgfOtherAssets:Auction Documents',
             collection_path='/auctions/{auction_id}/documents',
             path='/auctions/{auction_id}/documents/{document_id}',
             auctionsprocurementMethodType="dgfOtherAssets",

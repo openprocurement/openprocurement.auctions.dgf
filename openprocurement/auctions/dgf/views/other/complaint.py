@@ -19,7 +19,7 @@ from openprocurement.auctions.core.validation import (
 )
 
 
-@opresource(name='Auction Other Complaints',
+@opresource(name='dgfOtherAssets:Auction Complaints',
             collection_path='/auctions/{auction_id}/complaints',
             path='/auctions/{auction_id}/complaints/{complaint_id}',
             auctionsprocurementMethodType="dgfOtherAssets",

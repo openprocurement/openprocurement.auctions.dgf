@@ -8,10 +8,10 @@ from openprocurement.auctions.dgf.views.other.question import (
 )
 
 
-@opresource(name='Financial Auction Questions',
+@opresource(name='dgfFinancialAssets:Auction Questions',
             collection_path='/auctions/{auction_id}/questions',
             path='/auctions/{auction_id}/questions/{question_id}',
             auctionsprocurementMethodType="dgfFinancialAssets",
-            description="Financial Auction questions")
+            description="dgfFinancialAssets:Auction questions")
 class FinancialAuctionQuestionResource(AuctionQuestionResource):
     pass

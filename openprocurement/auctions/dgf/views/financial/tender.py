@@ -8,7 +8,7 @@ from openprocurement.auctions.dgf.views.other.tender import (
 )
 
 
-@opresource(name='Financial Auction',
+@opresource(name='dgfFinancialAssets:Auction',
             path='/auctions/{auction_id}',
             auctionsprocurementMethodType="dgfFinancialAssets",
             description="Open Contracting compatible data exchange format. See http://ocds.open-contracting.org/standard/r/master/#auction for more info")

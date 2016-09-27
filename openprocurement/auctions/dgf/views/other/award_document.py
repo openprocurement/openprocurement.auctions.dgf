@@ -19,7 +19,7 @@ from openprocurement.auctions.core.utils import (
 )
 
 
-@opresource(name='Auction Other Award Documents',
+@opresource(name='dgfOtherAssets:Auction Award Documents',
             collection_path='/auctions/{auction_id}/awards/{award_id}/documents',
             path='/auctions/{auction_id}/awards/{award_id}/documents/{document_id}',
             auctionsprocurementMethodType="dgfOtherAssets",

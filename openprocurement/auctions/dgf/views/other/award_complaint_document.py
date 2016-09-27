@@ -20,7 +20,7 @@ from openprocurement.auctions.core.utils import (
 from openprocurement.api.views.complaint_document import STATUS4ROLE
 
 
-@opresource(name='Auction Other Award Complaint Documents',
+@opresource(name='dgfOtherAssets:Auction Award Complaint Documents',
             collection_path='/auctions/{auction_id}/awards/{award_id}/complaints/{complaint_id}/documents',
             path='/auctions/{auction_id}/awards/{award_id}/complaints/{complaint_id}/documents/{document_id}',
             auctionsprocurementMethodType="dgfOtherAssets",

@@ -8,7 +8,7 @@ from openprocurement.auctions.dgf.views.other.cancellation_document import (
 )
 
 
-@opresource(name='Financial Auction Cancellation Documents',
+@opresource(name='dgfFinancialAssets:Auction Cancellation Documents',
             collection_path='/auctions/{auction_id}/cancellations/{cancellation_id}/documents',
             path='/auctions/{auction_id}/cancellations/{cancellation_id}/documents/{document_id}',
             auctionsprocurementMethodType="dgfFinancialAssets",
