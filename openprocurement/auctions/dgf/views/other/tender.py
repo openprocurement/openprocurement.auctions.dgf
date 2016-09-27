@@ -6,12 +6,14 @@ from openprocurement.api.utils import (
 )
 from openprocurement.auctions.core.utils import (
     apply_patch,
-    check_status,
     opresource,
     save_auction,
 )
 from openprocurement.auctions.core.validation import (
     validate_patch_auction_data,
+)
+from openprocurement.auctions.dgf.utils import (
+    check_status,
 )
 
 
