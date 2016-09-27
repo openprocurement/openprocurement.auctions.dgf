@@ -1,10 +1,11 @@
 #
+# Zoriana Zaiats <sorenabell@quintagroup.com>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-20 17:43+0200\n"
+"PO-Revision-Date: 2016-09-27 17:09+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -139,24 +140,6 @@ msgstr "Код одиниці в UN/CEFACT Recommendation 20."
 msgid "|ocdsDescription| Name of the unit"
 msgstr "|ocdsDescription| Назва одиниці"
 
-#: ../../source/standard/item.rst:26
-msgid ""
-"|ocdsDescription| The primary classification for the item. See the "
-"`itemClassificationScheme` to identify preferred classification lists, "
-"including CPV and GSIN."
-msgstr ""
-"|ocdsDescription| Початкова класифікація елемента. Дивіться у "
-"`itemClassificationScheme`, щоб визначити бажані списки класифікації, "
-"включно з CPV та GSIN."
-
-#: ../../source/standard/item.rst:31
-msgid ""
-"It is required for `classification.scheme` to be `CPV`. The "
-"`classification.id` should be valid CPV code."
-msgstr ""
-"Класифікація `classification.scheme` обов’язково повинна бути `CPV`.  "
-"`classification.id` повинно бути дійсним CPV кодом."
-
 #: ../../source/standard/item.rst:37
 msgid ""
 "|ocdsDescription| An array of additional classifications for the item. See "
@@ -191,6 +174,39 @@ msgstr ""
 #: ../../source/standard/item.rst:75
 msgid "`location` usually takes precedence over `address` if both are present."
 msgstr ""
-"Параметр `location` зазвичай має вищий пріоритет ніж `address`, якщо "
-"вони обидва вказані."
+"Параметр `location` зазвичай має вищий пріоритет ніж `address`, якщо вони "
+"обидва вказані."
 
+#: ../../source/standard/item.rst:26
+msgid ""
+"|ocdsDescription| The primary classification for the item. See the "
+"`itemClassificationScheme` to identify preferred classification lists, "
+"including CAV and GSIN."
+msgstr ""
+"Початкова класифікація елемента. Дивіться у "
+"`itemClassificationScheme`, щоб визначити бажані списки класифікації, включно "
+"з CAV та GSIN."
+
+#: ../../source/standard/item.rst:31
+msgid ""
+"It is required for `classification.scheme` to be `CAV`. The "
+"`classification.id` should be valid CAV code."
+msgstr ""
+"Класифікація `classification.scheme` обов’язково повинна бути `CAV`.  "
+"`classification.id` повинно бути дійсним CAV кодом."
+
+#~ msgid ""
+#~ "|ocdsDescription| The primary classification for the item. See the "
+#~ "`itemClassificationScheme` to identify preferred classification lists, "
+#~ "including CPV and GSIN."
+#~ msgstr ""
+#~ "|ocdsDescription| Початкова класифікація елемента. Дивіться у "
+#~ "`itemClassificationScheme`, щоб визначити бажані списки класифікації, "
+#~ "включно з CPV та GSIN."
+
+#~ msgid ""
+#~ "It is required for `classification.scheme` to be `CPV`. The "
+#~ "`classification.id` should be valid CPV code."
+#~ msgstr ""
+#~ "Класифікація `classification.scheme` обов’язково повинна бути `CPV`.  "
+#~ "`classification.id` повинно бути дійсним CPV кодом."

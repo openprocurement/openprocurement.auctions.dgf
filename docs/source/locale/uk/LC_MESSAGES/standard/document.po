@@ -11,8 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
-"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
 #: ../../source/standard/document.rst:9
@@ -119,15 +118,15 @@ msgstr "`debarments` - **Відмова у допуску до закупівл�
 msgid "`contractProforma` - **Draft contract**"
 msgstr "`contractProforma` - **Проект договору**"
 
-#: ../../source/standard/document.rst:72
+#: ../../source/standard/document.rst:68
 msgid "Possible values for :ref:`award`"
 msgstr "Можливі значення для :ref:`award`"
 
-#: ../../source/standard/document.rst:75
+#: ../../source/standard/document.rst:71
 msgid "`notice` - **Award Notice**"
 msgstr "`notice` - **Повідомлення про рішення**"
 
-#: ../../source/standard/document.rst:77
+#: ../../source/standard/document.rst:73
 msgid ""
 "The formal notice that gives details of the contract award. This may be a "
 "link to a downloadable document, to a web page, or to an official gazette in"
@@ -137,11 +136,11 @@ msgstr ""
 "Це може бути посилання на документ, веб-сторінку, чи на офіційний бюлетень, "
 "де розміщено повідомлення."
 
-#: ../../source/standard/document.rst:79
+#: ../../source/standard/document.rst:75
 msgid "`evaluationReports` - **Evaluation report**"
 msgstr "`evaluationReports` - **Звіт про оцінку**"
 
-#: ../../source/standard/document.rst:81
+#: ../../source/standard/document.rst:77
 msgid ""
 "Report on the evaluation of the bids and the application of the evaluation "
 "criteria, including the justification fo the award."
@@ -149,23 +148,23 @@ msgstr ""
 "Звіт про оцінку пропозицій і застосування критеріїв оцінки, у тому числі, "
 "обґрунтування рішення про визначення переможця."
 
-#: ../../source/standard/document.rst:83
+#: ../../source/standard/document.rst:79
 msgid "`winningBid` - **Winning Bid**"
 msgstr "`winningBid` - **Пропозиція, що перемогла**"
 
-#: ../../source/standard/document.rst:85
+#: ../../source/standard/document.rst:81
 msgid "`complaints` - **Complaints and decisions**"
 msgstr "`complaints` - **Скарги та рішення**"
 
-#: ../../source/standard/document.rst:88
+#: ../../source/standard/document.rst:84
 msgid "Possible values for :ref:`contract`"
 msgstr "Можливі значення для :ref:`contract`"
 
-#: ../../source/standard/document.rst:91
+#: ../../source/standard/document.rst:87
 msgid "`notice` - **Contract notice**"
 msgstr "`notice` - **Повідомлення про договір**"
 
-#: ../../source/standard/document.rst:93
+#: ../../source/standard/document.rst:89
 msgid ""
 "The formal notice that gives details of a contract being signed and valid to"
 " start implementation. This may be a link to a downloadable document, to a "
@@ -175,44 +174,44 @@ msgstr ""
 "на документ, веб-сторінку, чи на офіційний бюлетень, де розміщено "
 "повідомлення."
 
-#: ../../source/standard/document.rst:95
+#: ../../source/standard/document.rst:91
 msgid "`contractSigned` - **Signed Contract**"
 msgstr "`contractSigned` - **Підписаний договір**"
 
-#: ../../source/standard/document.rst:97
+#: ../../source/standard/document.rst:93
 msgid "`contractArrangements` - **Arrangements for ending contract**"
 msgstr "`contractArrangements` - **Заходи для припинення договору**"
 
-#: ../../source/standard/document.rst:99
+#: ../../source/standard/document.rst:95
 msgid "`contractSchedule` - **Schedules and milestones**"
 msgstr "`contractSchedule` - **Розклад та етапи**"
 
-#: ../../source/standard/document.rst:101
+#: ../../source/standard/document.rst:97
 msgid "`contractAnnexe` - **Annexes to the Contract**"
 msgstr "`contractAnnexe` - **Додатки до договору**"
 
-#: ../../source/standard/document.rst:103
+#: ../../source/standard/document.rst:99
 msgid "`contractGuarantees` - **Guarantees**"
 msgstr "`contractGuarantees` - **Забезпечення тендерних пропозицій**"
 
-#: ../../source/standard/document.rst:105
+#: ../../source/standard/document.rst:101
 msgid "`subContract` - **Subcontracts**"
 msgstr "`subContract` - **Субпідряд**"
 
-#: ../../source/standard/document.rst:108
+#: ../../source/standard/document.rst:104
 msgid "Possible values for :ref:`bid`"
 msgstr "Можливі значення для :ref:`bid`"
 
-#: ../../source/standard/document.rst:111
+#: ../../source/standard/document.rst:107
 msgid "`commercialProposal` - **Сommercial proposal**"
 msgstr "`commercialProposal` - **Цінова пропозиція**"
 
-#: ../../source/standard/document.rst:113
+#: ../../source/standard/document.rst:109
 msgid "`qualificationDocuments` - **Qualification documents**"
 msgstr ""
 "`qualificationDocuments` - **Документи, що підтверджують кваліфікацію**"
 
-#: ../../source/standard/document.rst:115
+#: ../../source/standard/document.rst:111
 msgid "`eligibilityDocuments` - **Eligibility documents**"
 msgstr ""
 "`eligibilityDocuments` - **Документи, що підтверджують відповідність** (в "
@@ -330,7 +329,7 @@ msgstr ""
 "даними** (доступно лише для `dgfFinancialAssets` процедури, див. "
 ":ref:`fintutorial`)"
 
-#: ../../source/standard/document.rst:117
+#: ../../source/standard/document.rst:113
 msgid ""
 "`financialLicense` - **License** (available only for the "
 "`dgfFinancialAssets` procedure, see :ref:`fintutorial`)"
@@ -355,17 +354,16 @@ msgstr ""
 "ілюстрації мають однакове значення параметру, то порядок сортування буде "
 "залежати від дати публікації."
 
-#: ../../source/standard/document.rst:67
+#: ../../source/standard/document.rst:115
 msgid "`auctionProtocol` - **Auction protocol**"
 msgstr "`auctionProtocol` - **Протокол торгів**"
 
-#: ../../source/standard/document.rst:69
+#: ../../source/standard/document.rst:117
 msgid ""
 "Auction protocol describes all participants and determines the candidate "
 "(participant that has submitted the highest bid proposal during the "
 "auction)."
 msgstr ""
-"Протокол торгів описує всіх учасників та визначає переможцем того учасника,"
-" що під час аукціону подав найбільшу цінову пропозицію, а при однакових"
-" цінових пропозиціях, того, що подав пропозицію раніше."
-
+"Протокол торгів описує всіх учасників та визначає переможцем того учасника, "
+"що під час аукціону подав найбільшу цінову пропозицію, а при однакових "
+"цінових пропозиціях, того, що подав пропозицію раніше."

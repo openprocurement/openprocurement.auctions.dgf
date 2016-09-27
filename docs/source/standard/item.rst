@@ -1,7 +1,7 @@
 .. . Kicking page rebuild 2014-10-30 17:00:08
 .. include:: defs.hrst
 
-.. index:: Item, Parameter, Classification, CPV, Unit
+.. index:: Item, Parameter, Classification, CAV, Unit
 
 .. _Item:
 
@@ -26,10 +26,10 @@ Schema
     |ocdsDescription|
     The primary classification for the item. See the
     `itemClassificationScheme` to identify preferred classification lists,
-    including CPV and GSIN.
+    including CAV and GSIN.
 
-    It is required for `classification.scheme` to be `CPV`. The
-    `classification.id` should be valid CPV code.
+    It is required for `classification.scheme` to be `CAV`. The
+    `classification.id` should be valid CAV code.
 
 :additionalClassifications:
     List of :ref:`Classification` objects

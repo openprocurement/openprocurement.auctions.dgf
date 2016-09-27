@@ -78,13 +78,13 @@ Schema
 
 .. _LotValue:
 
-LotValue
-========
+.. LotValue
+   ========
 
-Schema
-------
+   Schema
+   ------
 
-:value:
+   :value:
     :ref:`Value`, required
 
     Validation rules:
@@ -93,15 +93,15 @@ Schema
     * `currency` should either be absent or match `Lot.value.currency`
     * `valueAddedTaxIncluded` should either be absent or match `Lot.value.valueAddedTaxIncluded`
 
-:relatedLot:
+   :relatedLot:
     string
 
     ID of related :ref:`lot`.
 
-:date:
+   :date:
     string, :ref:`date`, auto-generated
 
-:participationUrl:
+   :participationUrl:
     URL
 
     A web address for participation in auction.
