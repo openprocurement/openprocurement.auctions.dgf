@@ -57,7 +57,6 @@ class AuctionTest(BaseWebTest):
             'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru',
             'procuringEntity',
             'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru',
-            'title', 'title_en', 'title_ru',
         ])
         if SANDBOX_MODE:
             fields.add('procurementMethodDetails')
@@ -664,10 +663,17 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         auction = response.json['data']
-        self.assertEqual(set(auction) - set(self.initial_data), set([
-            u'id', u'dateModified', u'auctionID', u'date', u'status', u'procurementMethod',
-            u'awardCriteria', u'submissionMethod', u'next_check', u'owner', u'enquiryPeriod', u'tenderPeriod'
-        ]))
+        if self.initial_organization == test_financial_organization:
+            self.assertEqual(set(auction) - set(self.initial_data), set([
+                u'id', u'dateModified', u'auctionID', u'date', u'status', u'procurementMethod',
+                u'awardCriteria', u'submissionMethod', u'next_check', u'owner', u'enquiryPeriod', u'tenderPeriod',
+                u'eligibilityCriteria_en', u'eligibilityCriteria', u'eligibilityCriteria_ru'
+            ]))
+        else:
+            self.assertEqual(set(auction) - set(self.initial_data), set([
+                u'id', u'dateModified', u'auctionID', u'date', u'status', u'procurementMethod',
+                u'awardCriteria', u'submissionMethod', u'next_check', u'owner', u'enquiryPeriod', u'tenderPeriod',
+            ]))
         self.assertIn(auction['id'], response.headers['Location'])
 
         response = self.app.get('/auctions/{}'.format(auction['id']))

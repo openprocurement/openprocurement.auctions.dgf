@@ -11,7 +11,7 @@ Schema
 ------
 
 :title:
-   string, multilingual
+   string, multilingual, read-only
 
    The name of the auction, displayed in listings. 
 
