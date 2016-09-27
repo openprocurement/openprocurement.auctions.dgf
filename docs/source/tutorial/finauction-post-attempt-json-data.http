@@ -1,6 +1,6 @@
 POST /api/2.3/auctions?opt_pretty=1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 1912
+Content-Length: 1951
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
@@ -100,6 +100,9 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/337baa20c5d
     "date": "2016-09-20T17:01:05.487584+03:00", 
     "dateModified": "2016-09-20T17:01:05.491451+03:00", 
     "status": "active.tendering", 
+    "eligibilityCriteria": "До участі допускаються лише ліцензовані фінансові установи.", 
+    "eligibilityCriteria_en": "Only licensed financial institutions are eligible to participate.", 
+    "eligibilityCriteria_ru": "К участию допускаются только лицензированные финансовые учреждения.", 
     "awardCriteria": "lowestCost", 
     "auctionPeriod": {
       "shouldStartAfter": "2016-10-04T00:00:00+03:00"

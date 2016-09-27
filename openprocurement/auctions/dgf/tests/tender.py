@@ -39,7 +39,6 @@ class AuctionTest(BaseWebTest):
         fields = set([
             'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru',
             'description', 'description_en', 'description_ru',
-            'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru',
             'features', 'guarantee', 'hasEnquiries', 'items', 'lots', 'minimalStep', 'mode',
             'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru',
             'procurementMethodType', 'procuringEntity',
@@ -54,7 +53,6 @@ class AuctionTest(BaseWebTest):
         fields = set([
             'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru',
             'description', 'description_en', 'description_ru',
-            'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru',
             'features', 'hasEnquiries', 'items',
             'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru',
             'procuringEntity',
@@ -1463,6 +1461,30 @@ class FinancialAuctionTest(AuctionTest):
 class FinancialAuctionResourceTest(AuctionResourceTest):
     initial_data = test_financial_auction_data
     initial_organization = test_financial_organization
+
+    def test_create_auction_generated(self):
+        data = self.initial_data.copy()
+        #del data['awardPeriod']
+        data.update({'id': 'hash', 'doc_id': 'hash2', 'auctionID': 'hash3'})
+        response = self.app.post_json('/auctions', {'data': data})
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        auction = response.json['data']
+        if 'procurementMethodDetails' in auction:
+            auction.pop('procurementMethodDetails')
+        self.assertEqual(set(auction), set([
+        u'procurementMethodType', u'id', u'date', u'dateModified', u'auctionID', u'status', u'enquiryPeriod',
+        u'tenderPeriod', u'minimalStep', u'items', u'value', u'procuringEntity', u'next_check',
+        u'procurementMethod', u'awardCriteria', u'submissionMethod', u'title', u'owner', u'auctionPeriod',
+        u'eligibilityCriteria', u'eligibilityCriteria_en', u'eligibilityCriteria_ru'
+        ]))
+        self.assertNotEqual(data['id'], auction['id'])
+        self.assertNotEqual(data['doc_id'], auction['id'])
+        self.assertNotEqual(data['auctionID'], auction['auctionID'])
+
+        self.assertEqual(auction['eligibilityCriteria'], u"До участі допускаються лише ліцензовані фінансові установи.")
+        self.assertEqual(auction['eligibilityCriteria_en'], u"Only licensed financial institutions are eligible to participate.")
+        self.assertEqual(auction['eligibilityCriteria_ru'], u"К участию допускаются только лицензированные финансовые учреждения.")
 
 
 class FinancialAuctionProcessTest(AuctionProcessTest):
