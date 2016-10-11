@@ -584,15 +584,6 @@ class AuctionResourceTest(BaseWebTest):
             {u'description': [u'CAV group of items be identical'], u'location': u'body', u'name': u'items'}
         ])
 
-        procuringEntity = self.initial_data["procuringEntity"]
-        data = self.initial_data["procuringEntity"].copy()
-        del data['kind']
-        self.initial_data["procuringEntity"] = data
-        response = self.app.post_json(request_path, {'data': self.initial_data}, status=201)
-        self.initial_data["procuringEntity"] = procuringEntity
-        self.assertEqual(response.status, '201 Created')
-        self.assertEqual(response.content_type, 'application/json')
-
     def test_create_auction_auctionPeriod(self):
         data = self.initial_data.copy()
         #tenderPeriod = data.pop('tenderPeriod')
@@ -960,7 +951,7 @@ class AuctionResourceTest(BaseWebTest):
         response = self.app.patch_json('/auctions/{}?acc_token={}'.format(auction['id'], owner_token), {'data': {'procuringEntity': {'kind': 'defense'}}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertNotEqual(response.json['data']['procuringEntity']['kind'], 'defense')
+        self.assertNotIn('kind', response.json['data']['procuringEntity'])
 
         #response = self.app.patch_json('/auctions/{}'.format(
             #auction['id']), {'data': {'tenderPeriod': {'startDate': None}}})

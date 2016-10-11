@@ -32,7 +32,6 @@ test_organization = {
     }
 }
 test_procuringEntity = test_organization.copy()
-test_procuringEntity["kind"] = "general"
 test_auction_data = {
     "title": u"футляри до державних нагород",
     "procuringEntity": test_procuringEntity,
