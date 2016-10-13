@@ -44,9 +44,12 @@ Schema
 
     * `auction`
     * `item`
-    * `lot`
+..    * `lot`
 
 :relatedItem:
     string
 
-    ID of related :ref:`lot` or :ref:`item`.
+    ID of related :ref:`item`.
+
+..    ID of related :ref:`lot` or :ref:`item`.
+

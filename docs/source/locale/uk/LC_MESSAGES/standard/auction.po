@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-13 15:36+0300\n"
-"PO-Revision-Date: 2016-09-27 17:21+0200\n"
+"PO-Revision-Date: 2016-10-13 17:43+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr ":ref:`Guarantee`"
 
 #: ../../source/standard/auction.rst:53
 msgid "Bid guarantee"
-msgstr "Забезпечення тендерної пропозиції"
+msgstr "Гарантійний внесок"
 
 #: ../../source/standard/auction.rst:56
 msgid "list of :ref:`item` objects, required"
@@ -240,10 +240,6 @@ msgstr "`amount` повинна бути  більша за `Auction.value.amoun
 msgid "List that contains single item being sold."
 msgstr "Список містить елементи, що продаються."
 
-#: ../../source/standard/auction.rst:16
-msgid "The name of the auction, displayed in listings."
-msgstr "Назва аукціону, яка відображається у списках."
-
 #: ../../source/standard/auction.rst:21
 msgid "Detailed auction description."
 msgstr "Детальний опис аукціону."
@@ -316,7 +312,8 @@ msgstr "Період, коли подаються пропозиції."
 #: ../../source/standard/auction.rst:128
 msgid "Period when Auction is conducted. `startDate` should be provided."
 msgstr ""
-"Період, коли проводиться аукціон. Значення `startDate` повинно бути вказано."
+"Період, коли проводиться аукціон. Значення `startDate` (дата початку торгів)"
+" повинно бути вказано обов'язково."
 
 #: ../../source/standard/auction.rst:164
 msgid "string, read-only"
@@ -360,3 +357,9 @@ msgstr ""
 msgid "string, multilingual, read-only"
 msgstr "рядок, багатомовний, лише для читання"
 
+#: ../../source/standard/auction.rst:16
+msgid "Auction number in the Deposit Guarantee Fund."
+msgstr "Номер аукціону у Фонді Гарантування Вкладів."
+
+#~ msgid "The name of the auction, displayed in listings."
+#~ msgstr "Назва аукціону, яка відображається у списках."

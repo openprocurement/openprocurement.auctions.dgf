@@ -13,7 +13,7 @@ Schema
 :title:
    string, multilingual, read-only
 
-   The name of the auction, displayed in listings. 
+   Auction number in the Deposit Guarantee Fund.
 
 :description:
    string, multilingual

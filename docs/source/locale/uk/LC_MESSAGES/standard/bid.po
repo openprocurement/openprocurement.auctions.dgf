@@ -1,10 +1,10 @@
-#
+# Zoriana Zaiats <sorenabell@quintagroup.com>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-19 17:35+0200\n"
+"PO-Revision-Date: 2016-10-13 17:52+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Bid"
 msgstr "Bid"
 
-#: ../../source/standard/bid.rst:11 ../../source/standard/bid.rst:67
+#: ../../source/standard/bid.rst:11 ../../source/standard/bid.rst:69
 msgid "Schema"
 msgstr "Схема"
 
@@ -30,41 +30,41 @@ msgstr "Список об’єктів :ref:`Organization` "
 msgid "string, :ref:`date`, auto-generated"
 msgstr "рядок, :ref:`date`, генерується автоматично"
 
-#: ../../source/standard/bid.rst:23
+#: ../../source/standard/bid.rst:25
 msgid "string"
 msgstr "рядок"
 
-#: ../../source/standard/bid.rst:25
+#: ../../source/standard/bid.rst:27
 msgid "Possible values are:"
 msgstr "Можливі значення:"
 
-#: ../../source/standard/bid.rst:27
+#: ../../source/standard/bid.rst:29
 msgid "`draft`"
 msgstr "`draft` - чернетка"
 
-#: ../../source/standard/bid.rst:28
+#: ../../source/standard/bid.rst:30
 msgid "`active`"
 msgstr "`active` - активна ставка"
 
-#: ../../source/standard/bid.rst:31
+#: ../../source/standard/bid.rst:33
 msgid ":ref:`Value`, required"
 msgstr ":ref:`Value`, обов’язково"
 
-#: ../../source/standard/bid.rst:33
+#: ../../source/standard/bid.rst:35
 msgid "Validation rules:"
 msgstr "Правила валідації:"
 
-#: ../../source/standard/bid.rst:35
+#: ../../source/standard/bid.rst:37
 msgid "`amount` should be less than `Auction.value.amout`"
 msgstr "`amount` повинно бути меншим, ніж `Auction.value.amount`"
 
-#: ../../source/standard/bid.rst:36
+#: ../../source/standard/bid.rst:38
 msgid "`currency` should either be absent or match `Auction.value.currency`"
 msgstr ""
 "`currency` повинно або бути відсутнім, або відповідати "
 "`Auction.value.currency`"
 
-#: ../../source/standard/bid.rst:37
+#: ../../source/standard/bid.rst:39
 msgid ""
 "`valueAddedTaxIncluded` should either be absent or match "
 "`Auction.value.valueAddedTaxIncluded`"
@@ -72,63 +72,71 @@ msgstr ""
 "Значення `valueAddedTaxIncluded` повинно бути або відсутнім, або співпадати "
 "з `Auction.value.valueAddedTaxIncluded`"
 
-#: ../../source/standard/bid.rst:40
+#: ../../source/standard/bid.rst:42
 msgid "List of :ref:`Document` objects"
 msgstr "Список об’єктів :ref:`Document`"
 
-#: ../../source/standard/bid.rst:43
+#: ../../source/standard/bid.rst:45
 msgid "List of :ref:`Parameter` objects"
 msgstr "Список об’єктів :ref:`Parameter`"
 
-#: ../../source/standard/bid.rst:46
-msgid "List of :ref:`LotValue` objects"
-msgstr "Список об’єктів :ref:`LotValue`"
-
-#: ../../source/standard/bid.rst:51
+#: ../../source/standard/bid.rst:53
 msgid "A web address for participation in auction."
 msgstr "Веб-адреса для участі в аукціоні."
 
-#: ../../source/standard/bid.rst:64
+#: ../../source/standard/bid.rst:66
 msgid "Parameter"
 msgstr "Parameter"
 
-#: ../../source/standard/bid.rst:70
+#: ../../source/standard/bid.rst:72
 msgid "string, required"
 msgstr "рядок, обов’язковий"
 
-#: ../../source/standard/bid.rst:75
+#: ../../source/standard/bid.rst:77
 msgid "float, required"
 msgstr "float, обов’язково"
 
-#: ../../source/standard/bid.rst:20
+#: ../../source/standard/bid.rst:22
 msgid "UID, auto-generated"
 msgstr "UID, генерується автоматично"
 
-#: ../../source/standard/bid.rst:49
+#: ../../source/standard/bid.rst:51
 msgid "URL"
 msgstr "URL-адреса"
 
-#: ../../source/standard/bid.rst:72
+#: ../../source/standard/bid.rst:74
 msgid "Feature code."
 msgstr "Код критерію."
 
-#: ../../source/standard/bid.rst:77
+#: ../../source/standard/bid.rst:79
 msgid "Feature value."
 msgstr "Значення критерію."
 
-#: ../../source/standard/bid.rst:54
+#: ../../source/standard/bid.rst:56
 msgid "bool, required"
 msgstr "булеве значення, обов'язково"
 
-#: ../../source/standard/bid.rst:57
+#: ../../source/standard/bid.rst:59
 msgid "bool"
 msgstr "булеве значення"
 
-#: ../../source/standard/bid.rst:59
-msgid "required for dgfFinancialAssets procedure"
+#: ../../source/standard/bid.rst:19
+msgid "Date when bid has been submitted."
+msgstr "Дата подачі пропозиції."
+
+#: ../../source/standard/bid.rst:61
+msgid "Required for `dgfFinancialAssets` procedure."
 msgstr ""
-"обов'язково для dgfFinancialAssets процедури (продаж права вимоги за "
-"кредитними договорами)"
+"Необхідно для `dgfFinancialAssets` процедури (продаж права вимоги за "
+"кредитними договорами)."
+
+#~ msgid "List of :ref:`LotValue` objects"
+#~ msgstr "Список об’єктів :ref:`LotValue`"
+
+#~ msgid "required for dgfFinancialAssets procedure"
+#~ msgstr ""
+#~ "обов'язково для dgfFinancialAssets процедури (продаж права вимоги за "
+#~ "кредитними договорами)"
 
 #~ msgid "LotValue"
 #~ msgstr "LotValue"

@@ -1,10 +1,11 @@
 #
+# Zoriana Zaiats <sorenabell@quintagroup.com>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-15 13:31+0200\n"
+"PO-Revision-Date: 2016-10-13 17:23+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,8 +22,8 @@ msgstr "Organization"
 
 #: ../../source/standard/organization.rst:12
 #: ../../source/standard/organization.rst:40
-#: ../../source/standard/organization.rst:87
-#: ../../source/standard/organization.rst:128
+#: ../../source/standard/organization.rst:89
+#: ../../source/standard/organization.rst:130
 msgid "Schema"
 msgstr "Схема"
 
@@ -52,12 +53,12 @@ msgid "Identifier"
 msgstr "Identifier"
 
 #: ../../source/standard/organization.rst:43
-#: ../../source/standard/organization.rst:90
-#: ../../source/standard/organization.rst:96
-#: ../../source/standard/organization.rst:102
-#: ../../source/standard/organization.rst:108
-#: ../../source/standard/organization.rst:143
-#: ../../source/standard/organization.rst:149
+#: ../../source/standard/organization.rst:92
+#: ../../source/standard/organization.rst:98
+#: ../../source/standard/organization.rst:104
+#: ../../source/standard/organization.rst:110
+#: ../../source/standard/organization.rst:145
+#: ../../source/standard/organization.rst:151
 msgid "string"
 msgstr "рядок"
 
@@ -100,11 +101,11 @@ msgstr ""
 msgid "|ocdsDescription| The legally registered name of the organization."
 msgstr "|ocdsDescription| Легально зареєстрована назва організації."
 
-#: ../../source/standard/organization.rst:70
+#: ../../source/standard/organization.rst:72
 msgid "uri"
 msgstr "uri"
 
-#: ../../source/standard/organization.rst:72
+#: ../../source/standard/organization.rst:74
 msgid ""
 "|ocdsDescription| A URI to identify the organization, such as those provided"
 " by Open Corporates or some other relevant URI provider.  This is not for "
@@ -115,41 +116,41 @@ msgstr ""
 "надають Open Corporates або інші постачальники URI. Це не для вебсайту "
 "організації, його можна надати в полі url в ContactPoint організації."
 
-#: ../../source/standard/organization.rst:84
+#: ../../source/standard/organization.rst:86
 msgid "Address"
 msgstr "Address"
 
-#: ../../source/standard/organization.rst:92
+#: ../../source/standard/organization.rst:94
 msgid ""
 "|ocdsDescription| The street address. For example, 1600 Amphitheatre Pkwy."
 msgstr "|ocdsDescription| Вулиця. Наприклад, вул.Хрещатик, 22."
 
-#: ../../source/standard/organization.rst:98
+#: ../../source/standard/organization.rst:100
 msgid "|ocdsDescription| The locality. For example, Mountain View."
 msgstr "|ocdsDescription| Населений пункт. Наприклад, Київ."
 
-#: ../../source/standard/organization.rst:104
+#: ../../source/standard/organization.rst:106
 msgid "|ocdsDescription| The region. For example, CA."
 msgstr "|ocdsDescription| Область. Наприклад, Київська."
 
-#: ../../source/standard/organization.rst:110
+#: ../../source/standard/organization.rst:112
 msgid "|ocdsDescription| The postal code. For example, 94043."
 msgstr "|ocdsDescription| Поштовий індекс, Наприклад, 78043."
 
-#: ../../source/standard/organization.rst:114
-#: ../../source/standard/organization.rst:131
+#: ../../source/standard/organization.rst:116
+#: ../../source/standard/organization.rst:133
 msgid "string, multilingual, required"
 msgstr "рядок, багатомовний, обов’язковий"
 
-#: ../../source/standard/organization.rst:116
+#: ../../source/standard/organization.rst:118
 msgid "|ocdsDescription| The country name. For example, United States."
 msgstr "|ocdsDescription| Назва країни. Наприклад, Україна."
 
-#: ../../source/standard/organization.rst:125
+#: ../../source/standard/organization.rst:127
 msgid "ContactPoint"
 msgstr "ContactPoint"
 
-#: ../../source/standard/organization.rst:133
+#: ../../source/standard/organization.rst:135
 msgid ""
 "|ocdsDescription| The name of the contact person, department, or contact "
 "point, for correspondence relating to this contracting process."
@@ -157,15 +158,15 @@ msgstr ""
 "|ocdsDescription| Ім’я контактної особи, назва відділу чи контактного пункту"
 " для листування, що стосується цього процесу укладання договору."
 
-#: ../../source/standard/organization.rst:137
+#: ../../source/standard/organization.rst:139
 msgid "email"
 msgstr "email"
 
-#: ../../source/standard/organization.rst:139
+#: ../../source/standard/organization.rst:141
 msgid "|ocdsDescription| The e-mail address of the contact point/person."
 msgstr "|ocdsDescription| Адреса електронної пошти контактної особи/пункту."
 
-#: ../../source/standard/organization.rst:145
+#: ../../source/standard/organization.rst:147
 msgid ""
 "|ocdsDescription| The telephone number of the contact point/person. This "
 "should include the international dialling code."
@@ -173,7 +174,7 @@ msgstr ""
 "|ocdsDescription| Номер телефону контактної особи/пункту. Повинен включати "
 "міжнародний телефонний код."
 
-#: ../../source/standard/organization.rst:151
+#: ../../source/standard/organization.rst:153
 msgid ""
 "|ocdsDescription| The fax number of the contact point/person. This should "
 "include the international dialling code."
@@ -181,11 +182,11 @@ msgstr ""
 "|ocdsDescription| Номер факсу контактної особи/пункту. Повинен включати "
 "міжнародний телефонний код."
 
-#: ../../source/standard/organization.rst:157
+#: ../../source/standard/organization.rst:159
 msgid "|ocdsDescription| A web address for the contact point/person."
 msgstr "|ocdsDescription| Веб адреса контактної особи/пункту."
 
-#: ../../source/standard/organization.rst:161
+#: ../../source/standard/organization.rst:163
 msgid "Either `email` or `telephone` field has to be provided."
 msgstr ""
 "Повинне бути заповнене хоча б одне з полів: або `email`, або `telephone`."
@@ -198,7 +199,11 @@ msgstr "Назва організації."
 msgid "The primary identifier for this organization."
 msgstr "Ідентифікатор цієї організації."
 
-#: ../../source/standard/organization.rst:155
+#: ../../source/standard/organization.rst:157
 msgid "URL"
 msgstr "URL-адреса"
+
+#: ../../source/standard/organization.rst:69
+msgid "Full legal name (e.g. Nadra Bank)."
+msgstr "Повна юридична назва (наприклад - “Надра Банк”)."
 

@@ -11,8 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
-"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
 #: ../../source/standard/cancellation.rst:8
@@ -29,7 +28,6 @@ msgstr "рядок, багатомовний, обов’язковий"
 
 #: ../../source/standard/cancellation.rst:22
 #: ../../source/standard/cancellation.rst:42
-#: ../../source/standard/cancellation.rst:50
 msgid "string"
 msgstr "рядок"
 
@@ -70,10 +68,6 @@ msgstr "Дата скасування"
 msgid "`auction`"
 msgstr "`auction`"
 
-#: ../../source/standard/cancellation.rst:47
-msgid "`lot`"
-msgstr "`lot`"
-
 #: ../../source/standard/cancellation.rst:14
 msgid "UID, auto-generated"
 msgstr "UID, генерується автоматично"
@@ -82,8 +76,8 @@ msgstr "UID, генерується автоматично"
 msgid "The reason, why auction is being cancelled."
 msgstr "Причина, з якої скасовується аукціон."
 
-#: ../../source/standard/cancellation.rst:52
-msgid "ID of related :ref:`lot`."
-msgstr "ID пов’язаного :ref:`lot`."
+#~ msgid "`lot`"
+#~ msgstr "`lot`"
 
-
+#~ msgid "ID of related :ref:`lot`."
+#~ msgstr "ID пов’язаного :ref:`lot`."

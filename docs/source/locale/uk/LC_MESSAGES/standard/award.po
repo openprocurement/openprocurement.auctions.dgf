@@ -11,8 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
-"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
 #: ../../source/standard/award.rst:8
@@ -39,7 +38,7 @@ msgstr "|ocdsDescription| Назва рішення."
 msgid "|ocdsDescription| Award description."
 msgstr "|ocdsDescription| Опис рішення."
 
-#: ../../source/standard/award.rst:37 ../../source/standard/award.rst:88
+#: ../../source/standard/award.rst:37
 msgid "string"
 msgstr "рядок"
 
@@ -60,7 +59,8 @@ msgid "`pending` - the award is under review of qualification committee"
 msgstr "`pending` - переможець розглядається кваліфікаційною комісією"
 
 #: ../../source/standard/award.rst:45
-msgid "`unsuccessful` - the award has been rejected by qualification committee"
+msgid ""
+"`unsuccessful` - the award has been rejected by qualification committee"
 msgstr "`unsuccessful` - кваліфікаційна комісія відмовила переможцю"
 
 #: ../../source/standard/award.rst:46
@@ -102,7 +102,8 @@ msgstr ""
 
 #: ../../source/standard/award.rst:68
 msgid "List of :ref:`Item` objects, auto-generated, read-only"
-msgstr "Список об’єктів :ref:`Item`, генерується автоматично, лише для читання"
+msgstr ""
+"Список об’єктів :ref:`Item`, генерується автоматично, лише для читання"
 
 #: ../../source/standard/award.rst:74
 msgid "List of :ref:`Document` objects"
@@ -146,7 +147,5 @@ msgstr ""
 msgid "The time frame when complaints can be submitted."
 msgstr "Період часу, під час якого можна подавати скарги."
 
-#: ../../source/standard/award.rst:90
-msgid "ID of related :ref:`lot`."
-msgstr "ID пов’язаного :ref:`lot`."
-
+#~ msgid "ID of related :ref:`lot`."
+#~ msgstr "ID пов’язаного :ref:`lot`."

@@ -19,6 +19,8 @@ Schema
 
     |ocdsDescription|
     A description of the goods, services to be provided.
+    
+    Auction subject / asset description.
 
 :classification:
     :ref:`Classification`
@@ -74,7 +76,7 @@ Schema
 
     `location` usually takes precedence over `address` if both are present.
 
-:relatedLot:
+.. :relatedLot:
     string
 
     ID of related :ref:`lot`.

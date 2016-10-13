@@ -65,6 +65,8 @@ Schema
 
    |ocdsDescription|
    The legally registered name of the organization.
+   
+   Full legal name (e.g. Nadra Bank).
 
 :uri:
    uri

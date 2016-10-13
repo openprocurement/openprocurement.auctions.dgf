@@ -1,10 +1,11 @@
 #
+# Zoriana Zaiats <sorenabell@quintagroup.com>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-15 13:31+0200\n"
+"PO-Revision-Date: 2016-10-13 18:08+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -72,10 +73,6 @@ msgstr "`auction`"
 msgid "`item`"
 msgstr "`item`"
 
-#: ../../source/standard/question.rst:47
-msgid "`lot`"
-msgstr "`lot`"
-
 #: ../../source/standard/question.rst:13
 msgid "UID, auto-generated"
 msgstr "UID, генерується автоматично"
@@ -85,6 +82,11 @@ msgid "Answer for the question."
 msgstr "Відповідь на задане питання."
 
 #: ../../source/standard/question.rst:52
-msgid "ID of related :ref:`lot` or :ref:`item`."
-msgstr "Ідентифікатор пов'язаних об'єктів :ref:`lot` або :ref:`item`."
+msgid "ID of related :ref:`item`."
+msgstr "Ідентифікатор пов'язаних об'єктів :ref:`item`."
 
+#~ msgid "`lot`"
+#~ msgstr "`lot`"
+
+#~ msgid "ID of related :ref:`lot` or :ref:`item`."
+#~ msgstr "Ідентифікатор пов'язаних об'єктів :ref:`lot` або :ref:`item`."

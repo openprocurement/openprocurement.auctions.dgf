@@ -15,6 +15,8 @@ Schema
 
 :date:
     string, :ref:`date`, auto-generated
+    
+    Date when bid has been submitted.
 
 :id:
     UID, auto-generated
@@ -42,7 +44,7 @@ Schema
 :parameters:
     List of :ref:`Parameter` objects
 
-:lotValues:
+.. :lotValues:
     List of :ref:`LotValue` objects
 
 :participationUrl:
@@ -56,7 +58,7 @@ Schema
 :eligible:
     bool
 
-    required for dgfFinancialAssets procedure
+    Required for `dgfFinancialAssets` procedure.
 
 .. _Parameter:
 

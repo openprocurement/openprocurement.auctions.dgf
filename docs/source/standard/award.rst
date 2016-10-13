@@ -84,7 +84,7 @@ Schema
 
     The time frame when complaints can be submitted.
 
-:lotID:
+.. :lotID:
     string
 
     ID of related :ref:`lot`.

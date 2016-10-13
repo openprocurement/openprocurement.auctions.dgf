@@ -14,11 +14,9 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
-#: ../../source/index.rst:12
 msgid "Welcome to openprocurement.auctions.dgf's documentation!"
 msgstr "Вітаємо на сайті документації по openprocurement.auctions.dgf!"
 
-#: ../../source/index.rst:14
 msgid ""
 "Please report any problems or suggestions for improvement either via the "
 "`mailing list <http://groups.google.com/group/open-procurement-general>`_ or"
@@ -30,42 +28,32 @@ msgstr ""
 "через `issue tracker "
 "<https://github.com/openprocurement/openprocurement.auctions.dgf/issues>`_."
 
-#: ../../source/index.rst:19
 msgid "Contents:"
 msgstr "Зміст:"
 
-#: ../../source/index.rst:32
 msgid ":ref:`Authentication <openprocurementapi:authentication>`"
 msgstr ":ref:`Аутентифікація <openprocurementapi:authentication>`"
 
-#: ../../source/index.rst:33
 msgid ":ref:`Responses <openprocurementapi:errors>`"
 msgstr ":ref:`Відповіді <openprocurementapi:errors>`"
 
-#: ../../source/index.rst:34
 msgid ":ref:`Options <openprocurementapi:options>`"
 msgstr ":ref:`Опції <openprocurementapi:options>`"
 
-#: ../../source/index.rst:35
 msgid ":ref:`Date Format: ISO 8601 <openprocurementapi:date-format>`"
 msgstr ":ref:`Формат дати: ISO 8601 <openprocurementapi:date-format>`"
 
-#: ../../source/index.rst:36
 msgid ":ref:`Performance recommendations <openprocurementapi:performance>`"
 msgstr ":ref:`Рекомендації для роботи <openprocurementapi:performance>`"
 
-#: ../../source/index.rst:37
 msgid ":ref:`API in cluster mode <openprocurementapi:cluster>`"
 msgstr ":ref:`Робота з API в режимі кластеру <openprocurementapi:cluster>`"
 
-#: ../../source/index.rst:51
 msgid "Indices and tables"
 msgstr "Індекси та таблиці"
 
-#: ../../source/index.rst:53
 msgid ":ref:`genindex`"
 msgstr ":ref:`genindex`"
 
-#: ../../source/index.rst:54
 msgid ":ref:`search`"
 msgstr ":ref:`search`"
