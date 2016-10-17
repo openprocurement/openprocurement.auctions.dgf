@@ -40,9 +40,9 @@ Schema
 
    
 :value:
-     :ref:`value`, required
+   :ref:`value`, required
 
-     Total available auction budget. Bids lower than ``value`` will be rejected.
+   Total available auction budget. Bids lower than ``value`` will be rejected.
 
    |ocdsDescription|
    The total estimated value of the procurement.
