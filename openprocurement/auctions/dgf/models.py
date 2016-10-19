@@ -187,7 +187,7 @@ class Auction(BaseAuction):
     class Options:
         roles = {
             'create': create_role,
-            'edit_active.tendering': (blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'title', 'title_ru', 'title_en') + edit_role),
+            'edit_active.tendering': (blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'title', 'title_ru', 'title_en', 'dgfID') + edit_role),
         }
 
     awards = ListType(ModelType(Award), default=list())
@@ -195,6 +195,7 @@ class Auction(BaseAuction):
     cancellations = ListType(ModelType(Cancellation), default=list())
     complaints = ListType(ModelType(Complaint), default=list())
     contracts = ListType(ModelType(Contract), default=list())
+    dgfID = StringType()
     documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
     enquiryPeriod = ModelType(Period)  # The period during which enquiries may be made and will be answered.
     tenderPeriod = ModelType(Period)  # The period when the auction is open for submissions. The end date is the closing date for auction submissions.

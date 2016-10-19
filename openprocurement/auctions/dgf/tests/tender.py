@@ -38,7 +38,7 @@ class AuctionTest(BaseWebTest):
     def test_create_role(self):
         fields = set([
             'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru',
-            'description', 'description_en', 'description_ru',
+            'description', 'description_en', 'description_ru', 'dgfID',
             'features', 'guarantee', 'hasEnquiries', 'items', 'lots', 'minimalStep', 'mode',
             'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru',
             'procurementMethodType', 'procuringEntity',
@@ -609,7 +609,7 @@ class AuctionResourceTest(BaseWebTest):
             auction.pop('procurementMethodDetails')
         self.assertEqual(set(auction), set([
             u'procurementMethodType', u'id', u'date', u'dateModified', u'auctionID', u'status', u'enquiryPeriod',
-            u'tenderPeriod', u'minimalStep', u'items', u'value', u'procuringEntity', u'next_check',
+            u'tenderPeriod', u'minimalStep', u'items', u'value', u'procuringEntity', u'next_check', u'dgfID',
             u'procurementMethod', u'awardCriteria', u'submissionMethod', u'title', u'owner', u'auctionPeriod',
         ]))
         self.assertNotEqual(data['id'], auction['id'])
@@ -1470,10 +1470,10 @@ class FinancialAuctionResourceTest(AuctionResourceTest):
         if 'procurementMethodDetails' in auction:
             auction.pop('procurementMethodDetails')
         self.assertEqual(set(auction), set([
-        u'procurementMethodType', u'id', u'date', u'dateModified', u'auctionID', u'status', u'enquiryPeriod',
-        u'tenderPeriod', u'minimalStep', u'items', u'value', u'procuringEntity', u'next_check',
-        u'procurementMethod', u'awardCriteria', u'submissionMethod', u'title', u'owner', u'auctionPeriod',
-        u'eligibilityCriteria', u'eligibilityCriteria_en', u'eligibilityCriteria_ru'
+            u'procurementMethodType', u'id', u'date', u'dateModified', u'auctionID', u'status', u'enquiryPeriod',
+            u'tenderPeriod', u'minimalStep', u'items', u'value', u'procuringEntity', u'next_check', u'dgfID',
+            u'procurementMethod', u'awardCriteria', u'submissionMethod', u'title', u'owner', u'auctionPeriod',
+            u'eligibilityCriteria', u'eligibilityCriteria_en', u'eligibilityCriteria_ru'
         ]))
         self.assertNotEqual(data['id'], auction['id'])
         self.assertNotEqual(data['doc_id'], auction['id'])
