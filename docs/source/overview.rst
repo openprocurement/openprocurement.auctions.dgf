@@ -5,9 +5,9 @@ openprocurement.auctions.dgf contains documentaion for Deposit Guarantee Fund au
 
 There are two procedures:
  
- * dgfOtherAssets
+ * dgfOtherAssets - sale of the insolvent bank property.
  
- * dgfFinancialAssets
+ * dgfFinancialAssets - sale of the creditor claim right.
 
 
 Features
