@@ -39,6 +39,8 @@ CAV_CODES = read_json('cav.json')
 ORA_CODES = ORA_CODES[:]
 ORA_CODES[0:0] = ["UA-IPN", "UA-FIN"]
 
+DGF_ID_REQUIRED_FROM = datetime(2016, 10, 28, tzinfo=TZ)
+
 
 class CAVClassification(Classification):
     scheme = StringType(required=True, default=u'CAV', choices=[u'CAV'])
@@ -229,6 +231,11 @@ class Auction(BaseAuction):
     def validate_value(self, data, value):
         if value.currency != u'UAH':
             raise ValidationError(u"currency should be only UAH")
+
+    def validate_dgfID(self, data, dgfID):
+        if not dgfID:
+            if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_ID_REQUIRED_FROM:
+                raise ValidationError(u'This field is required.')
 
     @serializable(serialize_when_none=False)
     def next_check(self):

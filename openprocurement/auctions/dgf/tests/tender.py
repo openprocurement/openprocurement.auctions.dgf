@@ -7,7 +7,7 @@ from iso8601 import parse_date
 
 from openprocurement.api.utils import ROUTE_PREFIX
 from openprocurement.api.models import get_now, SANDBOX_MODE, TZ
-from openprocurement.auctions.dgf.models import DGFOtherAssets, DGFFinancialAssets
+from openprocurement.auctions.dgf.models import DGFOtherAssets, DGFFinancialAssets, DGF_ID_REQUIRED_FROM
 from openprocurement.auctions.dgf.tests.base import test_auction_data, test_financial_auction_data, test_organization, test_financial_organization, BaseWebTest, BaseAuctionWebTest
 
 
@@ -583,6 +583,25 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.json['errors'], [
             {u'description': [u'CAV group of items be identical'], u'location': u'body', u'name': u'items'}
         ])
+
+    @unittest.skipIf(get_now() < DGF_ID_REQUIRED_FROM, "Can`t create auction without dgfID only from {}".format(DGF_ID_REQUIRED_FROM))
+    def test_required_dgf_id(self):
+        data = self.initial_data.copy()
+        del data['dgfID']
+        response = self.app.post_json('/auctions', {'data': data}, status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertEqual(response.json['errors'], [{"location": "body", "name": "dgfID", "description": ["This field is required."]}])
+
+        data['dgfID'] = self.initial_data['dgfID']
+        response = self.app.post_json('/auctions', {'data': data})
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        auction = response.json['data']
+        self.assertIn('dgfID', auction)
+        self.assertEqual(data['dgfID'], auction['dgfID'])
+
 
     def test_create_auction_auctionPeriod(self):
         data = self.initial_data.copy()
