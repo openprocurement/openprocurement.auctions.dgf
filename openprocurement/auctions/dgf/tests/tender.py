@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from copy import deepcopy
-from datetime import timedelta
+from datetime import timedelta, time
 from uuid import uuid4
 from iso8601 import parse_date
 
@@ -615,6 +615,17 @@ class AuctionResourceTest(BaseWebTest):
         self.assertIn('auctionPeriod', auction)
         self.assertNotIn('startDate', auction['auctionPeriod'])
         self.assertEqual(parse_date(data['auctionPeriod']['startDate']).date(), parse_date(auction['auctionPeriod']['shouldStartAfter'], TZ).date())
+        if SANDBOX_MODE:
+            auction_startDate = parse_date(data['auctionPeriod']['startDate'], None)
+            if not auction_startDate.tzinfo:
+                auction_startDate = TZ.localize(auction_startDate)
+            tender_endDate = parse_date(auction['tenderPeriod']['endDate'], None)
+            if not tender_endDate.tzinfo:
+                tender_endDate = TZ.localize(tender_endDate)
+            self.assertLessEqual((auction_startDate - tender_endDate).total_seconds(), 70)
+        else:
+            self.assertEqual(parse_date(auction['tenderPeriod']['endDate']).date(), parse_date(data['auctionPeriod']['startDate'], TZ).date() - timedelta(days=1))
+            self.assertEqual(parse_date(auction['tenderPeriod']['endDate']).time(), time(20, 0))
 
     def test_create_auction_generated(self):
         data = self.initial_data.copy()
