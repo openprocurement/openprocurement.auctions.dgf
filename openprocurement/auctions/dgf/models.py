@@ -39,7 +39,7 @@ CAV_CODES = read_json('cav.json')
 ORA_CODES = ORA_CODES[:]
 ORA_CODES[0:0] = ["UA-IPN", "UA-FIN"]
 
-DGF_ID_REQUIRED_FROM = datetime(2016, 10, 28, tzinfo=TZ)
+DGF_ID_REQUIRED_FROM = datetime(2016, 11, 4, tzinfo=TZ)
 
 
 class CAVClassification(Classification):
