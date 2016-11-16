@@ -32,6 +32,15 @@ Schema
     string, required
     
     Identification number of the auction (also referred to as `lot`) in the XLS of Deposit Guarantee Fund.
+    
+:procurementMethodType:
+    string, required
+    
+    Auction announcement. 
+    Possible values:
+    
+    * ``dgfOtherAssets`` - sale of the insolvent bank property
+    * ``dgfFinancialAssets`` - sale of the creditor claim right
 
    
 :procuringEntity:
@@ -47,7 +56,7 @@ Schema
 :value:
    :ref:`value`, required
 
-   Total available auction budget. Bids lower than ``value`` will be rejected.
+   Auction starting price. Bids lower than ``value`` will be rejected.
 
    |ocdsDescription|
    The total estimated value of the procurement.
@@ -97,7 +106,7 @@ Schema
 :minimalStep:
    :ref:`value`, required
 
-   The minimal step of auction. Validation rules:
+   Auction step (increment). Validation rules:
 
    * `amount` should be greater than `Auction.value.amount`
    * `currency` should either be absent or match `Auction.value.currency`
