@@ -1,12 +1,13 @@
 #
+# greg <greg@quintagroup.com>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-13 15:36+0300\n"
-"PO-Revision-Date: 2016-11-01 16:03+0200\n"
-"Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
-"Language-Team: Ukrainian <support@quintagroup.com>\n"
+"PO-Revision-Date: 2016-11-16 10:41+0200\n"
+"Last-Translator: greg <greg@quintagroup.com>\n"
+"Language-Team: Ukrainian <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -183,7 +184,7 @@ msgstr ""
 msgid ""
 "Total available auction budget. Bids lower than ``value`` will be rejected."
 msgstr ""
-"Повний доступний бюджет аукціону. Пропозиції, що нижчі за ``value`` будуть "
+"Початкова ціна аукціону. Пропозиції, що нижчі за ``value`` будуть "
 "відхилені."
 
 msgid "`amount` should be greater than `Auction.value.amount`"
@@ -203,7 +204,7 @@ msgstr ""
 "учасників аукціону, їхні пропозиції та інша кваліфікаційна документація."
 
 msgid "The minimal step of auction. Validation rules:"
-msgstr "Мінімальний крок аукціону. Правила валідації:"
+msgstr "Крок аукціону та порядок підвищення ціни. Правила валідації:"
 
 msgid "A web address where auction is accessible for view."
 msgstr "Веб-адреса для перегляду аукціону."
@@ -250,7 +251,8 @@ msgstr "Період, коли подаються пропозиції."
 
 msgid "Period when Auction is conducted. `startDate` should be provided."
 msgstr ""
-"Період, коли проводиться аукціон. Значення `startDate` (дата початку торгів)"
+"Період, коли проводиться аукціон. Значення `startDate` (дата проведення"
+" аукціону)"
 " повинно бути вказано обов'язково."
 
 msgid "string, read-only"
@@ -298,4 +300,5 @@ msgstr "Номер аукціону (або `лота`) у XLS Фонду Гар
 
 msgid "string, required"
 msgstr "рядок, обов’язковий"
+
 
