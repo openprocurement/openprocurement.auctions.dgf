@@ -32,6 +32,14 @@ Schema
     string, required
     
     Identification number of the auction (also referred to as `lot`) in the XLS of Deposit Guarantee Fund.
+    
+:procurementMethodType:
+    string, required
+    
+    Auction announcement.
+    
+    * 'dgfOtherAssets' - sale of the insolvent bank property
+    * 'dgfFinancialAssets' - sale of the creditor claim right
 
    
 :procuringEntity:
