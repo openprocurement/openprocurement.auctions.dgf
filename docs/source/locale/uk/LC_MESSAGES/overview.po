@@ -1,5 +1,4 @@
 #
-# greg <greg@quintagroup.com>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
@@ -12,8 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
-"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
 msgid "Overview"
@@ -63,7 +61,8 @@ msgstr ""
 msgid "Documentation of related packages"
 msgstr "Документація пов’язаних пакетів"
 
-msgid "`OpenProcurement API <http://api-docs.openprocurement.org/en/latest/>`_"
+msgid ""
+"`OpenProcurement API <http://api-docs.openprocurement.org/en/latest/>`_"
 msgstr ""
 "`OpenProcurement API <http://api-docs.openprocurement.org/en/latest/>`_"
 
@@ -191,5 +190,3 @@ msgstr "dgfOtherAssets - оголошення аукціону з продажу
 msgid "dgfFinancialAssets - sale of the creditor claim right."
 msgstr ""
 "dgfFinancialAssets - оголошення аукціону з продажу прав вимоги за кредитами."
-
-

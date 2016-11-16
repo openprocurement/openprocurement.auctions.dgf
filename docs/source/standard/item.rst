@@ -20,8 +20,8 @@ Schema
     |ocdsDescription|
     A description of the goods, services to be provided.
     
-    Auction subject / asset description.
-
+    Brief description of property (for ``dgfOtherAssets``) or asset(s) (for ``dgfFinancialAssets``).
+    
 :classification:
     :ref:`Classification`
 
@@ -60,7 +60,7 @@ Schema
 :address:
     :ref:`Address`
 
-    Address, where the item is located.
+    Address, where property (for ``dgfOtherAssets``) or asset(s) (for ``dgfFinancialAssets``) is located.
 
 :location:
     dictionary
