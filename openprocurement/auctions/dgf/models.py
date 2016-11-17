@@ -10,7 +10,7 @@ from openprocurement.api.models import (
     BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
     validate_features_uniq, validate_lots_uniq, Identifier as BaseIdentifier,
     Classification, validate_items_uniq, ORA_CODES, Address, Location,
-    schematics_embedded_role, SANDBOX_MODE
+    schematics_embedded_role, SANDBOX_MODE, IsoDateTimeType,
 )
 from openprocurement.api.utils import calculate_business_date
 from openprocurement.auctions.core.models import IAuction
@@ -40,6 +40,7 @@ ORA_CODES = ORA_CODES[:]
 ORA_CODES[0:0] = ["UA-IPN", "UA-FIN"]
 
 DGF_ID_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
+DGF_DECISION_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
 
 
 class CAVClassification(Classification):
@@ -189,7 +190,7 @@ class Auction(BaseAuction):
     class Options:
         roles = {
             'create': create_role,
-            'edit_active.tendering': (blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'title', 'title_ru', 'title_en', 'dgfID') + edit_role),
+            'edit_active.tendering': (blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'title', 'title_ru', 'title_en', 'dgfID', 'dgfDecisionDate', 'dgfDecisionID') + edit_role),
         }
 
     awards = ListType(ModelType(Award), default=list())
@@ -198,6 +199,8 @@ class Auction(BaseAuction):
     complaints = ListType(ModelType(Complaint), default=list())
     contracts = ListType(ModelType(Contract), default=list())
     dgfID = StringType()
+    dgfDecisionID = StringType()
+    dgfDecisionDate = IsoDateTimeType()
     documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
     enquiryPeriod = ModelType(Period)  # The period during which enquiries may be made and will be answered.
     tenderPeriod = ModelType(Period)  # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
@@ -236,6 +239,16 @@ class Auction(BaseAuction):
     def validate_dgfID(self, data, dgfID):
         if not dgfID:
             if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_ID_REQUIRED_FROM:
+                raise ValidationError(u'This field is required.')
+
+    def validate_dgfDecisionID(self, data, dgfID):
+        if not dgfID:
+            if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_DECISION_REQUIRED_FROM:
+                raise ValidationError(u'This field is required.')
+
+    def validate_dgfDecisionDate(self, data, dgfID):
+        if not dgfID:
+            if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_DECISION_REQUIRED_FROM:
                 raise ValidationError(u'This field is required.')
 
     @serializable(serialize_when_none=False)

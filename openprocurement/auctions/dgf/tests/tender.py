@@ -44,6 +44,7 @@ class AuctionTest(BaseWebTest):
             'procurementMethodType', 'procuringEntity',
             'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru',
             'title', 'title_en', 'title_ru', 'value', 'auctionPeriod',
+            'dgfDecisionDate', 'dgfDecisionID',
         ])
         if SANDBOX_MODE:
             fields.add('procurementMethodDetails')
@@ -641,6 +642,7 @@ class AuctionResourceTest(BaseWebTest):
             u'procurementMethodType', u'id', u'date', u'dateModified', u'auctionID', u'status', u'enquiryPeriod',
             u'tenderPeriod', u'minimalStep', u'items', u'value', u'procuringEntity', u'next_check', u'dgfID',
             u'procurementMethod', u'awardCriteria', u'submissionMethod', u'title', u'owner', u'auctionPeriod',
+            u'dgfDecisionDate', u'dgfDecisionID',
         ]))
         self.assertNotEqual(data['id'], auction['id'])
         self.assertNotEqual(data['doc_id'], auction['id'])
@@ -1503,7 +1505,8 @@ class FinancialAuctionResourceTest(AuctionResourceTest):
             u'procurementMethodType', u'id', u'date', u'dateModified', u'auctionID', u'status', u'enquiryPeriod',
             u'tenderPeriod', u'minimalStep', u'items', u'value', u'procuringEntity', u'next_check', u'dgfID',
             u'procurementMethod', u'awardCriteria', u'submissionMethod', u'title', u'owner', u'auctionPeriod',
-            u'eligibilityCriteria', u'eligibilityCriteria_en', u'eligibilityCriteria_ru'
+            u'eligibilityCriteria', u'eligibilityCriteria_en', u'eligibilityCriteria_ru',
+            u'dgfDecisionDate', u'dgfDecisionID',
         ]))
         self.assertNotEqual(data['id'], auction['id'])
         self.assertNotEqual(data['doc_id'], auction['id'])
