@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta, time
-from schematics.types import StringType, URLType, IntType
+from schematics.types import StringType, URLType, IntType, DateType
 from schematics.types.compound import ModelType
 from schematics.exceptions import ValidationError
 from schematics.transforms import blacklist, whitelist
@@ -10,7 +10,7 @@ from openprocurement.api.models import (
     BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
     validate_features_uniq, validate_lots_uniq, Identifier as BaseIdentifier,
     Classification, validate_items_uniq, ORA_CODES, Address, Location,
-    schematics_embedded_role, SANDBOX_MODE, IsoDateTimeType,
+    schematics_embedded_role, SANDBOX_MODE,
 )
 from openprocurement.api.utils import calculate_business_date
 from openprocurement.auctions.core.models import IAuction
@@ -200,7 +200,7 @@ class Auction(BaseAuction):
     contracts = ListType(ModelType(Contract), default=list())
     dgfID = StringType()
     dgfDecisionID = StringType()
-    dgfDecisionDate = IsoDateTimeType()
+    dgfDecisionDate = DateType()
     documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
     enquiryPeriod = ModelType(Period)  # The period during which enquiries may be made and will be answered.
     tenderPeriod = ModelType(Period)  # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
