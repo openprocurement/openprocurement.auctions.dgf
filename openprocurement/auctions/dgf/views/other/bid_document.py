@@ -27,6 +27,22 @@ from openprocurement.auctions.core.utils import (
             description="Auction bidder documents")
 class AuctionBidDocumentResource(APIResource):
 
+    def validate_bid_document(self, operation):
+        auction = self.request.validated['auction']
+        if auction.status not in ['active.tendering', 'active.qualification']:
+            self.request.errors.add('body', 'data', 'Can\'t {} document in current ({}) auction status'.format(operation, auction.status))
+            self.request.errors.status = 403
+            return
+        if auction.status == 'active.tendering' and not (auction.tenderPeriod.startDate < get_now() < auction.tenderPeriod.endDate):
+            self.request.errors.add('body', 'data', 'Document can be {} only during the tendering period: from ({}) to ({}).'.format('added' if operation == 'add' else 'updated', auction.tenderPeriod.startDate.isoformat(), auction.tenderPeriod.endDate.isoformat()))
+            self.request.errors.status = 403
+            return
+        if auction.status == 'active.qualification' and not [i for i in auction.awards if i.status == 'pending' and i.bid_id == self.request.validated['bid_id']]:
+            self.request.errors.add('body', 'data', 'Can\'t {} document because award of bid is not in pending state'.format(operation))
+            self.request.errors.status = 403
+            return
+        return True
+
     @json_view(permission='view_auction')
     def collection_get(self):
         """Auction Bid Documents List"""
@@ -47,18 +63,7 @@ class AuctionBidDocumentResource(APIResource):
     def collection_post(self):
         """Auction Bid Document Upload
         """
-        if self.request.validated['auction_status'] not in ['active.tendering', 'active.qualification']:
-            self.request.errors.add('body', 'data', 'Can\'t add document in current ({}) auction status'.format(self.request.validated['auction_status']))
-            self.request.errors.status = 403
-            return
-        auction = self.request.validated['auction']
-        if self.request.validated['auction_status'] == 'active.tendering' and (auction.tenderPeriod.startDate and get_now() < auction.tenderPeriod.startDate or get_now() > auction.tenderPeriod.endDate):
-            self.request.errors.add('body', 'data', 'Document can be added only during the tendering period: from ({}) to ({}).'.format(auction.auctionPeriod.startDate and auction.auctionPeriod.startDate.isoformat(), auction.auctionPeriod.endDate.isoformat()))
-            self.request.errors.status = 403
-            return
-        if self.request.validated['auction_status'] == 'active.qualification' and not [i for i in self.request.validated['auction'].awards if i.status == 'pending' and i.bid_id == self.request.validated['bid_id']]:
-            self.request.errors.add('body', 'data', 'Can\'t add document because award of bid is not in pending state')
-            self.request.errors.status = 403
+        if not self.validate_bid_document('add'):
             return
         document = upload_file(self.request)
         self.context.documents.append(document)
@@ -93,18 +98,7 @@ class AuctionBidDocumentResource(APIResource):
     @json_view(validators=(validate_file_update,), permission='edit_bid')
     def put(self):
         """Auction Bid Document Update"""
-        if self.request.validated['auction_status'] not in ['active.tendering', 'active.qualification']:
-            self.request.errors.add('body', 'data', 'Can\'t update document in current ({}) auction status'.format(self.request.validated['auction_status']))
-            self.request.errors.status = 403
-            return
-        auction = self.request.validated['auction']
-        if self.request.validated['auction_status'] == 'active.tendering' and (auction.tenderPeriod.startDate and get_now() < auction.tenderPeriod.startDate or get_now() > auction.tenderPeriod.endDate):
-            self.request.errors.add('body', 'data', 'Document can be updated only during the tendering period: from ({}) to ({}).'.format(auction.auctionPeriod.startDate and auction.auctionPeriod.startDate.isoformat(), auction.auctionPeriod.endDate.isoformat()))
-            self.request.errors.status = 403
-            return
-        if self.request.validated['auction_status'] == 'active.qualification' and not [i for i in self.request.validated['auction'].awards if i.status == 'pending' and i.bid_id == self.request.validated['bid_id']]:
-            self.request.errors.add('body', 'data', 'Can\'t update document because award of bid is not in pending state')
-            self.request.errors.status = 403
+        if not self.validate_bid_document('update'):
             return
         document = upload_file(self.request)
         self.request.validated['bid'].documents.append(document)
@@ -118,18 +112,7 @@ class AuctionBidDocumentResource(APIResource):
     @json_view(content_type="application/json", validators=(validate_patch_document_data,), permission='edit_bid')
     def patch(self):
         """Auction Bid Document Update"""
-        if self.request.validated['auction_status'] not in ['active.tendering', 'active.qualification']:
-            self.request.errors.add('body', 'data', 'Can\'t update document in current ({}) auction status'.format(self.request.validated['auction_status']))
-            self.request.errors.status = 403
-            return
-        auction = self.request.validated['auction']
-        if self.request.validated['auction_status'] == 'active.tendering' and (auction.tenderPeriod.startDate and get_now() < auction.tenderPeriod.startDate or get_now() > auction.tenderPeriod.endDate):
-            self.request.errors.add('body', 'data', 'Document can be updated only during the tendering period: from ({}) to ({}).'.format(auction.auctionPeriod.startDate and auction.auctionPeriod.startDate.isoformat(), auction.auctionPeriod.endDate.isoformat()))
-            self.request.errors.status = 403
-            return
-        if self.request.validated['auction_status'] == 'active.qualification' and not [i for i in self.request.validated['auction'].awards if i.status == 'pending' and i.bid_id == self.request.validated['bid_id']]:
-            self.request.errors.add('body', 'data', 'Can\'t update document because award of bid is not in pending state')
-            self.request.errors.status = 403
+        if not self.validate_bid_document('update'):
             return
         if self.request.validated['auction_status'] == 'active.tendering':
             self.request.validated['auction'].modified = False
