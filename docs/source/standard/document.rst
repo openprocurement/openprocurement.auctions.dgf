@@ -43,6 +43,8 @@ Schema
     * `virtualDataRoom` - **Virtual Data Room** (available only for the `dgfFinancialAssets` procedure, see :ref:`fintutorial`)
 
     * `illustration` - **Illustrations**
+    
+    * `x_dgfPlatformLegalDetails` - **Platform Legal Details**
 
 
     Possible values for :ref:`award`

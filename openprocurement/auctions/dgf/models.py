@@ -38,8 +38,24 @@ def read_json(name):
 CAV_CODES = read_json('cav.json')
 ORA_CODES = ORA_CODES[:]
 ORA_CODES[0:0] = ["UA-IPN", "UA-FIN"]
+DOCUMENT_TYPE_URL_ONLY = ['virtualDataRoom', 'x_dgfPlatformLegalDetails']
+DGF_PLATFORM_LEGAL_DETAILS = {
+    'url': 'http://torgi.fg.gov.ua/prozorrosale',
+    'title': u'Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійного внесків',
+    'documentType': 'x_dgfPlatformLegalDetails',
+}
 
 DGF_ID_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
+
+
+def validate_allow_dgfPlatformLegalDetails(docs, *args):
+    if docs and docs[0].documentType != 'x_dgfPlatformLegalDetails' or any([i.documentType == 'x_dgfPlatformLegalDetails' for i in docs[1:]]):
+        raise ValidationError(u"First document should be document with x_dgfPlatformLegalDetails documentType")
+
+
+def validate_disallow_dgfPlatformLegalDetails(docs, *args):
+    if any([i.documentType == 'x_dgfPlatformLegalDetails' for i in docs]):
+        raise ValidationError(u"Disallow documents with x_dgfPlatformLegalDetails documentType")
 
 
 class CAVClassification(Classification):
@@ -88,20 +104,21 @@ class Document(BaseDocument):
         'eligibilityCriteria', 'contractProforma', 'commercialProposal',
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
         'illustration', 'auctionProtocol',
+        'x_dgfPlatformLegalDetails',
     ])
 
     def validate_hash(self, data, hash_):
-        if data.get('documentType') == 'virtualDataRoom' and hash_:
+        if data.get('documentType') in DOCUMENT_TYPE_URL_ONLY and hash_:
             raise ValidationError(u'This field is not required.')
 
     def validate_format(self, data, format_):
-        if data.get('documentType') != 'virtualDataRoom' and not format_:
+        if data.get('documentType') not in DOCUMENT_TYPE_URL_ONLY and not format_:
             raise ValidationError(u'This field is required.')
-        if data.get('documentType') == 'virtualDataRoom' and format_:
+        if data.get('documentType') in DOCUMENT_TYPE_URL_ONLY and format_:
             raise ValidationError(u'This field is not required.')
 
     def validate_url(self, data, url):
-        if data.get('documentType') == 'virtualDataRoom':
+        if data.get('documentType') in DOCUMENT_TYPE_URL_ONLY:
             URLType().validate(url)
 
 
@@ -112,7 +129,7 @@ class Bid(BaseBid):
         }
 
     tenderers = ListType(ModelType(Organization), required=True, min_size=1, max_size=1)
-    documents = ListType(ModelType(Document), default=list())
+    documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
     qualified = BooleanType(required=True, choices=[True])
 
 
@@ -122,24 +139,24 @@ class Question(BaseQuestion):
 
 class Complaint(BaseComplaint):
     author = ModelType(Organization, required=True)
-    documents = ListType(ModelType(Document), default=list())
+    documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
 
 
 class Cancellation(BaseCancellation):
-    documents = ListType(ModelType(Document), default=list())
+    documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
 
 
 class Contract(BaseContract):
     items = ListType(ModelType(Item))
     suppliers = ListType(ModelType(Organization), min_size=1, max_size=1)
     complaints = ListType(ModelType(Complaint), default=list())
-    documents = ListType(ModelType(Document), default=list())
+    documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
 
 
 class Award(BaseAward):
     suppliers = ListType(ModelType(Organization), min_size=1, max_size=1)
     complaints = ListType(ModelType(Complaint), default=list())
-    documents = ListType(ModelType(Document), default=list())
+    documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
     items = ListType(ModelType(Item))
 
 
@@ -198,7 +215,7 @@ class Auction(BaseAuction):
     complaints = ListType(ModelType(Complaint), default=list())
     contracts = ListType(ModelType(Contract), default=list())
     dgfID = StringType()
-    documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
+    documents = ListType(ModelType(Document), default=list(), validators=[validate_allow_dgfPlatformLegalDetails])  # All documents and attachments related to the auction.
     enquiryPeriod = ModelType(Period)  # The period during which enquiries may be made and will be answered.
     tenderPeriod = ModelType(Period)  # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
     auctionPeriod = ModelType(AuctionAuctionPeriod, required=True, default={})
@@ -225,6 +242,7 @@ class Auction(BaseAuction):
         if self.lots:
             for lot in self.lots:
                 lot.date = now
+        self.documents.append(type(self).documents.model_class(DGF_PLATFORM_LEGAL_DETAILS))
 
     def validate_tenderPeriod(self, data, period):
         pass
@@ -343,6 +361,7 @@ class Document(Document):
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
         'illustration', 'financialLicense', 'virtualDataRoom',
         'auctionProtocol',
+        'x_dgfPlatformLegalDetails',
     ])
 
 
@@ -351,7 +370,7 @@ class Bid(Bid):
         roles = {
             'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'qualified', 'eligible'),
         }
-    documents = ListType(ModelType(Document), default=list())
+    documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
     tenderers = ListType(ModelType(FinantialOrganization), required=True, min_size=1, max_size=1)
     eligible = BooleanType(required=True, choices=[True])
 
@@ -359,7 +378,7 @@ class Bid(Bid):
 @implementer(IAuction)
 class Auction(DGFOtherAssets):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
-    documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
+    documents = ListType(ModelType(Document), default=list(), validators=[validate_allow_dgfPlatformLegalDetails])  # All documents and attachments related to the auction.
     bids = ListType(ModelType(Bid), default=list())
     procurementMethodType = StringType(default="dgfFinancialAssets")
     eligibilityCriteria = StringType(default=u"До участі допускаються лише ліцензовані фінансові установи.")
