@@ -38,6 +38,7 @@ def read_json(name):
 CAV_CODES = read_json('cav.json')
 ORA_CODES = ORA_CODES[:]
 ORA_CODES[0:0] = ["UA-IPN", "UA-FIN"]
+DOCUMENT_TYPE_URL_ONLY = ['virtualDataRoom', 'x_dgfPublicAssetCertificate']
 
 DGF_ID_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
 
@@ -87,21 +88,21 @@ class Document(BaseDocument):
         'contractAnnexe', 'contractGuarantees', 'subContract',
         'eligibilityCriteria', 'contractProforma', 'commercialProposal',
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
-        'illustration', 'auctionProtocol',
+        'illustration', 'auctionProtocol', 'x_dgfPublicAssetCertificate',
     ])
 
     def validate_hash(self, data, hash_):
-        if data.get('documentType') == 'virtualDataRoom' and hash_:
+        if data.get('documentType') in DOCUMENT_TYPE_URL_ONLY and hash_:
             raise ValidationError(u'This field is not required.')
 
     def validate_format(self, data, format_):
-        if data.get('documentType') != 'virtualDataRoom' and not format_:
+        if data.get('documentType') not in DOCUMENT_TYPE_URL_ONLY and not format_:
             raise ValidationError(u'This field is required.')
-        if data.get('documentType') == 'virtualDataRoom' and format_:
+        if data.get('documentType') in DOCUMENT_TYPE_URL_ONLY and format_:
             raise ValidationError(u'This field is not required.')
 
     def validate_url(self, data, url):
-        if data.get('documentType') == 'virtualDataRoom':
+        if data.get('documentType') in DOCUMENT_TYPE_URL_ONLY:
             URLType().validate(url)
 
 
@@ -342,7 +343,7 @@ class Document(Document):
         'eligibilityCriteria', 'contractProforma', 'commercialProposal',
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
         'illustration', 'financialLicense', 'virtualDataRoom',
-        'auctionProtocol',
+        'auctionProtocol', 'x_dgfPublicAssetCertificate',
     ])
 
 
