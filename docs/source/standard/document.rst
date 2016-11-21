@@ -44,6 +44,7 @@ Schema
 
     * `illustration` - **Illustrations**
 
+    * `x_dgfPublicAssetCertificate` - **Public Asset Certificate**
 
     Possible values for :ref:`award`
     
