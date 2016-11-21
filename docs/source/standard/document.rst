@@ -44,6 +44,10 @@ Schema
 
     * `illustration` - **Illustrations**
 
+    * `x_presentation` - **Presentation**
+
+    * `x_nda` - **Non-disclosure Agreement (NDA)**
+
 
     Possible values for :ref:`award`
     
