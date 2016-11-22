@@ -45,9 +45,12 @@ Schema
     * `illustration` - **Illustrations**
 
     * `x_presentation` - **Presentation**
+    
+      Presentation about an asset that is being sold.
 
     * `x_nda` - **Non-disclosure Agreement (NDA)**
-
+    
+      A non-disclosure agreement between a participant and a bank/Deposit Guarantee Fund.
 
     Possible values for :ref:`award`
     
