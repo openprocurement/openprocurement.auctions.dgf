@@ -45,6 +45,8 @@ Schema
     * `illustration` - **Illustrations**
 
     * `x_dgfPublicAssetCertificate` - **Public Asset Certificate**
+    
+      Information about the auction. It is a link to the Public Asset Certificate.
 
     Possible values for :ref:`award`
     
