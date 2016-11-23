@@ -41,7 +41,7 @@ ORA_CODES[0:0] = ["UA-IPN", "UA-FIN"]
 DOCUMENT_TYPE_URL_ONLY = ['virtualDataRoom', 'x_dgfPlatformLegalDetails']
 DGF_PLATFORM_LEGAL_DETAILS = {
     'url': 'http://torgi.fg.gov.ua/prozorrosale',
-    'title': u'Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійного внесків',
+    'title': u'Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків',
     'documentType': 'x_dgfPlatformLegalDetails',
 }
 

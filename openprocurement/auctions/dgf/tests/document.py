@@ -318,7 +318,7 @@ class AuctionDocumentResourceTest(BaseAuctionWebTest):
         response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(u'Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійного внесків', response.json["data"][0]["title"])
+        self.assertEqual(u'Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків', response.json["data"][0]["title"])
         self.assertEqual('x_dgfPlatformLegalDetails', response.json["data"][0]["documentType"])
         doc_id = response.json["data"][0]['id']
 
