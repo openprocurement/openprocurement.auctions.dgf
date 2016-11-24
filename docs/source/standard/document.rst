@@ -55,6 +55,10 @@ Schema
     * `x_nda` - **Non-disclosure Agreement (NDA)**
     
       A non-disclosure agreement between a participant and a bank/Deposit Guarantee Fund.
+    
+    * `x_dgfPlatformLegalDetails` - **Platform Legal Details**
+    
+      Place and application forms for participation in the auction as well as bank details for transferring guarantee deposits.
 
     Possible values for :ref:`award`
     
