@@ -44,13 +44,9 @@ DGF_PLATFORM_LEGAL_DETAILS = {
     'title': u'Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків',
     'documentType': 'x_dgfPlatformLegalDetails',
 }
+DGF_PLATFORM_LEGAL_DETAILS_FROM = datetime(2016, 11, 25, tzinfo=TZ)
 
 DGF_ID_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
-
-
-def validate_allow_dgfPlatformLegalDetails(docs, *args):
-    if docs and docs[0].documentType != 'x_dgfPlatformLegalDetails' or any([i.documentType == 'x_dgfPlatformLegalDetails' for i in docs[1:]]):
-        raise ValidationError(u"First document should be document with x_dgfPlatformLegalDetails documentType")
 
 
 def validate_disallow_dgfPlatformLegalDetails(docs, *args):
@@ -215,7 +211,7 @@ class Auction(BaseAuction):
     complaints = ListType(ModelType(Complaint), default=list())
     contracts = ListType(ModelType(Contract), default=list())
     dgfID = StringType()
-    documents = ListType(ModelType(Document), default=list(), validators=[validate_allow_dgfPlatformLegalDetails])  # All documents and attachments related to the auction.
+    documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
     enquiryPeriod = ModelType(Period)  # The period during which enquiries may be made and will be answered.
     tenderPeriod = ModelType(Period)  # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
     auctionPeriod = ModelType(AuctionAuctionPeriod, required=True, default={})
@@ -243,6 +239,11 @@ class Auction(BaseAuction):
             for lot in self.lots:
                 lot.date = now
         self.documents.append(type(self).documents.model_class(DGF_PLATFORM_LEGAL_DETAILS))
+
+    def validate_documents(self, data, docs):
+        if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_PLATFORM_LEGAL_DETAILS_FROM and \
+                (docs and docs[0].documentType != 'x_dgfPlatformLegalDetails' or any([i.documentType == 'x_dgfPlatformLegalDetails' for i in docs[1:]])):
+            raise ValidationError(u"First document should be document with x_dgfPlatformLegalDetails documentType")
 
     def validate_tenderPeriod(self, data, period):
         pass
@@ -378,7 +379,7 @@ class Bid(Bid):
 @implementer(IAuction)
 class Auction(DGFOtherAssets):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
-    documents = ListType(ModelType(Document), default=list(), validators=[validate_allow_dgfPlatformLegalDetails])  # All documents and attachments related to the auction.
+    documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
     bids = ListType(ModelType(Bid), default=list())
     procurementMethodType = StringType(default="dgfFinancialAssets")
     eligibilityCriteria = StringType(default=u"До участі допускаються лише ліцензовані фінансові установи.")
