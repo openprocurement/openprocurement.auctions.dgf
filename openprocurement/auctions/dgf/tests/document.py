@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import unittest
 from email.header import Header
+from openprocurement.api.models import get_now
+from openprocurement.auctions.dgf.models import DGF_PLATFORM_LEGAL_DETAILS_FROM
 from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest,  test_financial_auction_data
 
 
@@ -315,23 +317,24 @@ class AuctionDocumentResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.auction) auction status")
 
     def test_patch_auction_document(self):
-        response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(u'Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків', response.json["data"][0]["title"])
-        self.assertEqual('x_dgfPlatformLegalDetails', response.json["data"][0]["documentType"])
-        doc_id = response.json["data"][0]['id']
+        if get_now() > DGF_PLATFORM_LEGAL_DETAILS_FROM:
+            response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
+            self.assertEqual(response.status, '200 OK')
+            self.assertEqual(response.content_type, 'application/json')
+            self.assertEqual(u'Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків', response.json["data"][0]["title"])
+            self.assertEqual('x_dgfPlatformLegalDetails', response.json["data"][0]["documentType"])
+            doc_id = response.json["data"][0]['id']
 
-        response = self.app.patch_json('/auctions/{}/documents/{}'.format(self.auction_id, doc_id), {"data": {
-            'format': 'application/msword',
-            "documentType": 'auctionNotice'
-        }}, status=422)
-        self.assertEqual(response.status, '422 Unprocessable Entity')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(response.json['status'], 'error')
-        self.assertEqual(response.json['errors'], [
-            {u'description': [u'First document should be document with x_dgfPlatformLegalDetails documentType'], u'location': u'body', u'name': u'documents'}
-        ])
+            response = self.app.patch_json('/auctions/{}/documents/{}'.format(self.auction_id, doc_id), {"data": {
+                'format': 'application/msword',
+                "documentType": 'auctionNotice'
+            }}, status=422)
+            self.assertEqual(response.status, '422 Unprocessable Entity')
+            self.assertEqual(response.content_type, 'application/json')
+            self.assertEqual(response.json['status'], 'error')
+            self.assertEqual(response.json['errors'], [
+                {u'description': [u'First document should be document with x_dgfPlatformLegalDetails documentType'], u'location': u'body', u'name': u'documents'}
+            ])
 
         response = self.app.post('/auctions/{}/documents'.format(
             self.auction_id), upload_files=[('file', str(Header(u'укр.doc', 'utf-8')), 'content')])
