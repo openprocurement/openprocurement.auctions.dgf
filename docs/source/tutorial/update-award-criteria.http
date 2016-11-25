@@ -1,12 +1,12 @@
-PUT /api/2.3/auctions/0d788da874814db38bc3f67ef6f57a8b/documents/420a287b16924acb84cf33e8262c58a2?acc_token=3fb0279810984ff7b463b5ef6c07f04f HTTP/1.0
+PUT /api/2.3/auctions/2077a4e50e744ab6bc3936e6a0bb77a0/documents/776400188dc643828782dae4c55d900f?acc_token=60ba6c1078974d43a97cf13b9c9488d4 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 338
+Content-Length: 340
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/d77a753ef33d4fa8b6c098edbe2adc1d?KeyID=87c9f4bd&Signature=FUaZn9nWHXi0n%2BX69amMrHqAqUk7w0O%2FbH69rbzXDS5rWIGvqAtqFA8pAmFYSUjM3gRdsQZDpY1E30ULGlUJDQ%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/e5b8c1a1179d457caed1c849066fb38a?KeyID=c414de0e&Signature=brPyUR4EJj8jIa7%2Fsz4kIuuNL7UZxuQo054qDM82cjyS5AKRPEpl2RJBzmnidZfUQc2YQANHLWolfrc%2F%2BSE2DA%3D%3D", 
     "title": "AwardCriteria-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -21,12 +21,12 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/d77a753ef33d4fa8b6c098edbe2adc1d?KeyID=87c9f4bd&Signature=NLma2M12tZJqHNhcpu7K%252BZPl9jKlWqpA3OJdQvsp7Hjb74LSs4sk3zyXdONWkK2rHRUcrzOvNstasjQKkUeOCQ%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/e5b8c1a1179d457caed1c849066fb38a?KeyID=c414de0e&Signature=8UFGovRAvp8H%252B%2FJwl6dAcSmpTghsebOIhaGuTTA248WrwH2ZMclR1dw3jUSzI8ondMcAncWpR8AkN%252BE1Bbs%252BDA%253D%253D", 
     "title": "AwardCriteria-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-09-20T17:01:07.562057+03:00", 
-    "dateModified": "2016-09-20T17:01:07.634327+03:00", 
-    "id": "420a287b16924acb84cf33e8262c58a2"
+    "datePublished": "2016-11-25T12:16:18.933210+02:00", 
+    "dateModified": "2016-11-25T12:16:19.005152+02:00", 
+    "id": "776400188dc643828782dae4c55d900f"
   }
 }
 

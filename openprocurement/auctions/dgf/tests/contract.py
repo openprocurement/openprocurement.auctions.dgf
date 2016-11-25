@@ -8,20 +8,56 @@ from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest, test_auc
 
 class AuctionContractResourceTest(BaseAuctionWebTest):
     #initial_data = auction_data
-    initial_status = 'active.qualification'
+    initial_status = 'active.auction'
     initial_bids = test_bids
 
     def setUp(self):
         super(AuctionContractResourceTest, self).setUp()
         # Create award
-        response = self.app.post_json('/auctions/{}/awards'.format(
-            self.auction_id), {'data': {'suppliers': [self.initial_organization], 'status': 'pending', 'bid_id': self.initial_bids[0]['id'], 'value': test_auction_data["value"], 'items': test_auction_data["items"]}})
-        award = response.json['data']
-        self.award_id = award['id']
-        self.award_value = award['value']
-        self.award_suppliers = award['suppliers']
-        self.award_items = award['items']
-        response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "active"}})
+        authorization = self.app.authorization
+        self.app.authorization = ('Basic', ('auction', ''))
+        now = get_now()
+        auction_result = {
+            'bids': [
+                {
+                    "id": b['id'],
+                    "date": (now - timedelta(seconds=i)).isoformat(),
+                    "value": b['value']
+                }
+                for i, b in enumerate(self.initial_bids)
+            ]
+        }
+
+        response = self.app.post_json('/auctions/{}/auction'.format(self.auction_id), {'data': auction_result})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.app.authorization = authorization
+        self.award = auction['awards'][0]
+        self.award_id = self.award['id']
+        self.award_value = self.award['value']
+        self.award_suppliers = self.award['suppliers']
+
+        self.set_status('active.qualification')
+
+        self.app.authorization = ('Basic', ('token', ''))
+        bid_token = self.initial_bids_tokens[self.award['bid_id']]
+        response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
+            self.auction_id, self.award_id, bid_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        doc_id = response.json["data"]['id']
+
+        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, self.award_id, doc_id, bid_token), {"data": {
+            "description": "auction protocol",
+            "documentType": 'auctionProtocol'
+        }})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json["data"]["documentType"], 'auctionProtocol')
+        self.assertEqual(response.json["data"]["author"], 'bid_owner')
+
+        self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "pending.payment"}})
+        self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "active"}})
 
     def test_create_auction_contract_invalid(self):
         response = self.app.post_json('/auctions/some_id/contracts', {
@@ -135,7 +171,7 @@ class AuctionContractResourceTest(BaseAuctionWebTest):
         self.set_status('complete')
 
         response = self.app.post_json('/auctions/{}/contracts'.format(
-        self.auction_id), {'data': {'title': 'contract title', 'description': 'contract description', 'awardID': self.award_id}}, status=403)
+            self.auction_id), {'data': {'title': 'contract title', 'description': 'contract description', 'awardID': self.award_id}}, status=403)
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't add contract in current (complete) auction status")
@@ -188,11 +224,11 @@ class AuctionContractResourceTest(BaseAuctionWebTest):
 
         response = self.app.patch_json('/auctions/{}/contracts/{}'.format(self.auction_id, contract['id']), {"data": {"value": {"amount": 99}}}, status=403)
         self.assertEqual(response.status, '403 Forbidden')
-        self.assertEqual(response.json['errors'][0]["description"], "Value amount should be greater or equal to awarded amount (100.0)")
+        self.assertEqual(response.json['errors'][0]["description"], "Value amount should be greater or equal to awarded amount (479.0)")
 
-        response = self.app.patch_json('/auctions/{}/contracts/{}'.format(self.auction_id, contract['id']), {"data": {"value": {"amount": 238}}})
+        response = self.app.patch_json('/auctions/{}/contracts/{}'.format(self.auction_id, contract['id']), {"data": {"value": {"amount": 500}}})
         self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.json['data']['value']['amount'], 238)
+        self.assertEqual(response.json['data']['value']['amount'], 500)
 
         # response = self.app.patch_json('/auctions/{}/contracts/{}'.format(self.auction_id, contract['id']), {"data": {"dateSigned": i['complaintPeriod']['endDate']}}, status=422)
         # self.assertEqual(response.status, '422 Unprocessable Entity')
@@ -279,7 +315,7 @@ class AuctionContractResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data']["status"], "active")
-        self.assertEqual(response.json['data']["value"]['amount'], 238)
+        self.assertEqual(response.json['data']["value"]['amount'], 500)
         self.assertEqual(response.json['data']['contractID'], contract['contractID'])
         self.assertEqual(response.json['data']['items'], contract['items'])
         self.assertEqual(response.json['data']['suppliers'], contract['suppliers'])
@@ -385,17 +421,56 @@ class Auction2LotContractResourceTest(BaseAuctionWebTest):
 
 class AuctionContractDocumentResourceTest(BaseAuctionWebTest):
     #initial_data = auction_data
-    initial_status = 'active.qualification'
+    initial_status = 'active.auction'
     initial_bids = test_bids
 
     def setUp(self):
         super(AuctionContractDocumentResourceTest, self).setUp()
         # Create award
-        response = self.app.post_json('/auctions/{}/awards'.format(
-            self.auction_id), {'data': {'suppliers': [self.initial_organization], 'status': 'pending', 'bid_id': self.initial_bids[0]['id']}})
-        award = response.json['data']
-        self.award_id = award['id']
-        response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "active"}})
+        authorization = self.app.authorization
+        self.app.authorization = ('Basic', ('auction', ''))
+        now = get_now()
+        auction_result = {
+            'bids': [
+                {
+                    "id": b['id'],
+                    "date": (now - timedelta(seconds=i)).isoformat(),
+                    "value": b['value']
+                }
+                for i, b in enumerate(self.initial_bids)
+            ]
+        }
+
+        response = self.app.post_json('/auctions/{}/auction'.format(self.auction_id), {'data': auction_result})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.app.authorization = authorization
+        self.award = auction['awards'][0]
+        self.award_id = self.award['id']
+        self.award_value = self.award['value']
+        self.award_suppliers = self.award['suppliers']
+
+        self.set_status('active.qualification')
+
+        self.app.authorization = ('Basic', ('token', ''))
+        bid_token = self.initial_bids_tokens[self.award['bid_id']]
+        response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
+            self.auction_id, self.award_id, bid_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        doc_id = response.json["data"]['id']
+
+        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, self.award_id, doc_id, bid_token), {"data": {
+            "description": "auction protocol",
+            "documentType": 'auctionProtocol'
+        }})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json["data"]["documentType"], 'auctionProtocol')
+        self.assertEqual(response.json["data"]["author"], 'bid_owner')
+
+        self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "pending.payment"}})
+        self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "active"}})
         # Create contract for award
         response = self.app.post_json('/auctions/{}/contracts'.format(self.auction_id), {'data': {'title': 'contract title', 'description': 'contract description', 'awardID': self.award_id}})
         contract = response.json['data']

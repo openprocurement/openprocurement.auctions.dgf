@@ -143,6 +143,7 @@ base_test_bids = [
 
 test_bids = []
 for i in base_test_bids:
+    i = deepcopy(i)
     i.update({'qualified': True})
     test_bids.append(i)
 

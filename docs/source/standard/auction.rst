@@ -29,7 +29,7 @@ Schema
    AuctionID should always be the same as the OCID. It is included to make the flattened data structure more convenient.
    
 :dgfID:
-    string
+    string, required
     
     Identification number of the auction (also referred to as `lot`) in the XLS of Deposit Guarantee Fund.
 

@@ -1,12 +1,12 @@
 PATCH /api/2.3/auctions/2077a4e50e744ab6bc3936e6a0bb77a0/awards/5fa78019101a4509bfbda29cb9489aaa?acc_token=60ba6c1078974d43a97cf13b9c9488d4 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 30
+Content-Length: 39
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "status": "active"
+    "status": "pending.payment"
   }
 }
 
@@ -16,10 +16,10 @@ Content-Type: application/json; charset=UTF-8
 
 {
   "data": {
-    "status": "active", 
+    "status": "pending.payment", 
     "paymentPeriod": {
       "startDate": "2016-11-25T12:16:20.645031+02:00", 
-      "endDate": "2016-11-25T12:16:20.766112+02:00"
+      "endDate": "2016-11-25T12:23:20.645031+02:00"
     }, 
     "documents": [
       {
@@ -40,8 +40,7 @@ Content-Type: application/json; charset=UTF-8
       "endDate": "2016-11-25T12:16:20.645031+02:00"
     }, 
     "complaintPeriod": {
-      "startDate": "2016-11-25T12:16:20.198316+02:00", 
-      "endDate": "2016-11-25T12:16:20.766112+02:00"
+      "startDate": "2016-11-25T12:16:20.198316+02:00"
     }, 
     "suppliers": [
       {
@@ -65,17 +64,13 @@ Content-Type: application/json; charset=UTF-8
         }
       }
     ], 
-    "signingPeriod": {
-      "startDate": "2016-11-25T12:16:20.766112+02:00", 
-      "endDate": "2016-11-25T12:21:20.766112+02:00"
-    }, 
     "bid_id": "5e31501e6d874fd192203346c2b612f8", 
     "value": {
       "currency": "UAH", 
       "amount": 501.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2016-11-25T12:16:20.778423+02:00", 
+    "date": "2016-11-25T12:16:20.655346+02:00", 
     "id": "5fa78019101a4509bfbda29cb9489aaa"
   }
 }

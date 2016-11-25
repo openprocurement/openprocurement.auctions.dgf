@@ -1,12 +1,12 @@
-PUT /api/2.3/auctions/337baa20c5dc443d9a99bf1e4209a307/documents/d18c91731ef74d919364572cd84bf8aa?acc_token=00d4705d5dce4abcbdb61ddd4bd558a4 HTTP/1.0
+PUT /api/2.3/auctions/336d6d1e259b409ebc72a19977373b79/documents/130debdfba5946c084464a6b2e82537f?acc_token=ec9ae6b0f7d947e199a5b939feaed9c2 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 336
+Content-Length: 342
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/146974db85f94e29986188bc9ae333db?KeyID=25ad1763&Signature=Ov8DtFL4v4RM1vth14sJMwAwFneKYDvNw5Wzwbd5NfAsMxWnlAqoxxMgniTWScR1oy17QLu04N%2B6KZehlSHaAg%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/59d4c263be0344ac954f8cdd8c5aa545?KeyID=4438f366&Signature=GPNaYaXeDc%2FR2Xg48ptM4PuMd2rU%2FwSVkacrOwpf4LxCixLNjqLXXYNvvcNp%2BNEkotkdDQnl%2BtieMG1lt5NEBg%3D%3D", 
     "title": "AwardCriteria-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -21,12 +21,12 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/146974db85f94e29986188bc9ae333db?KeyID=25ad1763&Signature=3FWqK3P5VTlT1iN4x69yhLC4LgG3T8URg4cV9Q%252BBAgVeLx%252BGOT0QAX%252BJGKCssI7%2FMfn5DrpXG290eUP8KNzgCA%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/59d4c263be0344ac954f8cdd8c5aa545?KeyID=4438f366&Signature=gCUFLnNHtfZ5rBrH4UdSV7m3%252BmlwRGgwLPLU%2FQLOZmjp0f%2FtEN%252B6KkeTg1HhcShorkkjdmfLDU%252BpsHaBJy7uBQ%253D%253D", 
     "title": "AwardCriteria-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-09-20T17:01:05.705251+03:00", 
-    "dateModified": "2016-09-20T17:01:05.764084+03:00", 
-    "id": "d18c91731ef74d919364572cd84bf8aa"
+    "datePublished": "2016-11-25T12:16:17.225804+02:00", 
+    "dateModified": "2016-11-25T12:16:17.284745+02:00", 
+    "id": "130debdfba5946c084464a6b2e82537f"
   }
 }
 
