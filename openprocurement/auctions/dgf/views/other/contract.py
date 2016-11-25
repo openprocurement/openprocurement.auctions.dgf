@@ -8,9 +8,9 @@ from openprocurement.api.utils import (
 from openprocurement.auctions.core.utils import (
     apply_patch,
     save_auction,
-    check_auction_status,
     opresource,
 )
+from openprocurement.auctions.dgf.utils import check_auction_status
 from openprocurement.auctions.core.validation import (
     validate_contract_data,
     validate_patch_contract_data,

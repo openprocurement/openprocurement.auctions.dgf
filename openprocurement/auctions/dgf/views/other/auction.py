@@ -8,9 +8,9 @@ from openprocurement.api.utils import (
 from openprocurement.auctions.core.utils import (
     save_auction,
     apply_patch,
-    add_next_award,
     opresource,
 )
+from openprocurement.auctions.dgf.utils import create_awards
 from openprocurement.auctions.core.validation import (
     validate_auction_auction_data,
 )
@@ -163,7 +163,7 @@ class AuctionAuctionResource(APIResource):
         """
         apply_patch(self.request, save=False, src=self.request.validated['auction_src'])
         if all([i.auctionPeriod and i.auctionPeriod.endDate for i in self.request.validated['auction'].lots if i.numberOfBids > 1 and i.status == 'active']):
-            add_next_award(self.request)
+            create_awards(self.request)
         if save_auction(self.request):
             self.LOGGER.info('Report auction results', extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_auction_post'}))
             return {'data': self.request.validated['auction'].serialize(self.request.validated['auction'].status)}
@@ -183,7 +183,7 @@ class AuctionAuctionResource(APIResource):
         apply_patch(self.request, save=False, src=self.request.validated['auction_src'])
         if all([i.auctionPeriod and i.auctionPeriod.endDate for i in self.request.validated['auction'].lots if i.numberOfBids > 1 and i.status == 'active']):
             cleanup_bids_for_cancelled_lots(self.request.validated['auction'])
-            add_next_award(self.request)
+            create_awards(self.request)
         if save_auction(self.request):
             self.LOGGER.info('Report auction results', extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_lot_auction_post'}))
             return {'data': self.request.validated['auction'].serialize(self.request.validated['auction'].status)}
