@@ -139,7 +139,7 @@ Uploading illustration
 -----------------------
 
 Organizer can upload illustration files into the created auction. Uploading should
-follow the :ref:`upload` rules. 
+follow the :ref:`upload` rules.
 
 In order to specify illustration display order, `index` field can be used (for details see :ref:`document`). Since this illustration should be displayed first, it has ``"index": 1``.
 
@@ -162,7 +162,7 @@ Add third illustration:
    :code:
 
 Note that `index` of the third illustration is the same as for the second illustration: ``"index": 2``. In such cases firstly will be displayed illustration that was uploaded earlier.
-   
+
 We can check that there are three uploaded illustrations.
 
 .. include:: tutorial/auction-documents-5.http
@@ -247,39 +247,69 @@ See the `Bid.participationUrl` in the response. Similar, but different, URL can 
 
 Qualification
 -------------
+After the competitive auction two `awards` are created:
+ * for the candidate (participant that has submitted the highest bid at the auction) has `pending.verification` status and awaits auction protocol uploading;
+ * for the second candidate (participant that has submitted the second highest bid at the auction).
+
+
+.. include:: tutorial/get-awards.http
+  :code:
+
 
 Confirming qualification
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Candidate (participant that has submitted the highest bid at the auction) must sign the auction protocol `auctionProtocol` and add it to the bid within **3 business days after becoming candidate**.
+
+The candidate (participant that has submitted the highest bid at the auction) must sign the auction protocol `auctionProtocol` and add it to the award within **3 business days after becoming candidate**. If auction protocol has not been uploaded before the end of `verificationPeriod`, then `award` is automatically transferred to the `unsuccessful` status.
+
 
 .. include:: tutorial/bidder-auction-protocol.http
-   :code:
+  :code:
+
+
+The Organizer has to verify the auction protocol, otherwise it will be verified automatically in the end of `verificationPeriod`.
+
+
+.. include:: tutorial/verify-protocol.http
+ :code:
+
 
 Within **10 business days after becoming candidate** this candidate must provide payment and organizer must confirm this payment:
 
+
 .. include:: tutorial/confirm-qualification.http
-   :code:
+  :code:
+
 
 Disqualification of candidate
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If the candidate didn't sign the auction protocol in 3 business days after becoming candidate, or didn't provide payment in 10 business days since becoming candidate, or didn't conclude contract based on the electronic auction results within 15 business days since becoming candidate, then organizer disqualifies the first candidate and awards participant with the next largest bid.
 
-.. include:: qualification/award-active-cancel.http
-   :code:
-
+If the candidate didn't sign the auction protocol in 3 business days after becoming candidate, or didn't provide payment in 10 business days since becoming candidate, or didn't conclude contract based on the electronic auction results within 15 business days since becoming candidate, then organizer disqualifies the first candidate and awards participant with the next largest bid (the second candidate).
 Organizer has to upload file with cancellation reason:
 
-.. include:: qualification/award-active-cancel-upload.http
-   :code:
+
+.. include:: qualification/award-active-unsuccessful-upload.http
+  :code:
+
 
 And disqualify candidate:
 
-.. include:: qualification/award-active-cancel-disqualify.http
-   :code:
+
+.. include:: qualification/award-active-disqualify.http
+  :code:
+
 
 Within 15 business days since becoming candidate a new candidate must confirm qualification with steps described above (:ref:`Qualification`).
+
+
+Refusal of waiting by another participant
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The second candidate (participant that has submitted the second highest bid at the auction) can refuse to wait for disqualification of the first candidate:
+
+
+.. include:: qualification/award-waiting-cancel.http
+  :code:
 
 Signing contract
 ----------------
@@ -316,13 +346,13 @@ Let's see the list of all added contract documents:
 Contract registration
 ~~~~~~~~~~~~~~~~~~~~~
 
-There is a possibility to set custom contract signature date. 
+There is a possibility to set custom contract signature date.
 If the date is not set it will be generated on contract registration.
 You can register contract:
 
 .. include:: tutorial/auction-contract-sign.http
    :code:
-   
+
 Cancelling auction
 ------------------
 

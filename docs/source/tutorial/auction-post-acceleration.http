@@ -12,14 +12,13 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2016-09-20T17:06:54.594858"
+      "startDate": "2016-11-25T12:21:11.241018"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "value": {
       "currency": "UAH", 
       "amount": 100
     }, 
-    "submissionMethodDetails": "quick", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 
@@ -31,7 +30,6 @@ Host: api-sandbox.ea.openprocurement.org
         "uri": "http://www.dus.gov.ua/"
       }, 
       "name": "Державне управління справами", 
-      "kind": "general", 
       "address": {
         "countryName": "Україна", 
         "postalCode": "01220", 
@@ -40,6 +38,8 @@ Host: api-sandbox.ea.openprocurement.org
         "locality": "м. Київ"
       }
     }, 
+    "submissionMethodDetails": "quick", 
+    "mode": "test", 
     "procurementMethodDetails": "quick, accelerator=1440", 
     "items": [
       {
@@ -63,28 +63,28 @@ Host: api-sandbox.ea.openprocurement.org
         }
       }
     ], 
-    "mode": "test"
+    "dgfID": "219560"
   }
 }
 
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/de21216b2a8948e5b667adb7100e0a79
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/e640f4175dfe454cb38d7f3187d19c59
 
 {
   "access": {
-    "token": "03c34670355d4a2ba5c4798fac9df815"
+    "token": "3d9ea1ecaafa411b95d84626dc152bfb"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-09-20-000001", 
+    "auctionID": "UA-EA-2016-11-25-000001", 
     "enquiryPeriod": {
-      "startDate": "2016-09-20T17:01:56.570754+03:00", 
-      "endDate": "2016-09-20T17:05:54.594858+03:00"
+      "startDate": "2016-11-25T12:16:13.864579+02:00", 
+      "endDate": "2016-11-25T12:20:30.358211+02:00"
     }, 
     "submissionMethod": "electronicAuction", 
-    "next_check": "2016-09-20T17:05:54.594858+03:00", 
+    "next_check": "2016-11-25T12:20:30.358211+02:00", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 
@@ -96,7 +96,6 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/de21216b2a8
         "uri": "http://www.dus.gov.ua/"
       }, 
       "name": "Державне управління справами", 
-      "kind": "general", 
       "address": {
         "postalCode": "01220", 
         "countryName": "Україна", 
@@ -107,20 +106,21 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/de21216b2a8
     }, 
     "owner": "broker", 
     "title_en": "[TESTING] ", 
-    "id": "de21216b2a8948e5b667adb7100e0a79", 
+    "id": "e640f4175dfe454cb38d7f3187d19c59", 
     "title": "[ТЕСТУВАННЯ] футляри до державних нагород", 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2016-09-20T17:01:56.574510+03:00", 
+    "dateModified": "2016-11-25T12:16:13.867316+02:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2016-09-20T17:01:56.570754+03:00", 
-      "endDate": "2016-09-20T17:05:54.594858+03:00"
+      "startDate": "2016-11-25T12:16:13.864579+02:00", 
+      "endDate": "2016-11-25T12:20:30.358211+02:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2016-09-20T17:05:54.594858+03:00"
+      "shouldStartAfter": "2016-11-25T12:20:30.358211+02:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
-    "date": "2016-09-20T17:01:56.570754+03:00", 
+    "dgfID": "219560", 
+    "date": "2016-11-25T12:16:13.864579+02:00", 
     "submissionMethodDetails": "quick", 
     "items": [
       {
@@ -137,7 +137,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/de21216b2a8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "9dba28c0c0794c59b6b202e28c9cc0e6", 
+        "id": "66b2b5b6387b469f85c065dbc561a14b", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -157,7 +157,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/de21216b2a8
     }, 
     "mode": "test", 
     "title_ru": "[ТЕСТИРОВАНИЕ] ", 
-    "awardCriteria": "lowestCost"
+    "awardCriteria": "highestCost"
   }
 }
 
