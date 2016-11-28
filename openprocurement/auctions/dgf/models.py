@@ -18,7 +18,7 @@ from openprocurement.auctions.flash.models import (
     Auction as BaseAuction, Document as BaseDocument, Bid as BaseBid,
     Complaint as BaseComplaint, Cancellation as BaseCancellation,
     Contract as BaseContract, Award as BaseAward, Lot, edit_role,
-    calc_auction_end_time, COMPLAINT_STAND_STILL_TIME, validate_cav_group,
+    calc_auction_end_time, COMPLAINT_STAND_STILL_TIME,
     Organization as BaseOrganization, Item as BaseItem,
     ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
     get_auction,
@@ -208,7 +208,7 @@ class Auction(BaseAuction):
     questions = ListType(ModelType(Question), default=list())
     features = ListType(ModelType(Feature), validators=[validate_features_uniq, validate_not_available])
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
-    items = ListType(ModelType(Item), required=True, min_size=1, validators=[validate_cav_group, validate_items_uniq])
+    items = ListType(ModelType(Item), required=True, min_size=1, validators=[validate_items_uniq])
 
     def initialize(self):
         if not self.enquiryPeriod:
