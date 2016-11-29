@@ -1,17 +1,18 @@
-#
+# greg <greg@quintagroup.com>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-12 15:36+0300\n"
-"PO-Revision-Date: 2016-09-15 13:26+0200\n"
-"Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
-"Language-Team: Ukrainian <support@quintagroup.com>\n"
+"PO-Revision-Date: 2016-11-29 15:18+0200\n"
+"Last-Translator: greg <greg@quintagroup.com>\n"
+"Language-Team: Ukrainian <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
 msgid "Award"
@@ -45,19 +46,8 @@ msgstr ""
 msgid "Possible values are:"
 msgstr "Можливі значення:"
 
-msgid "`pending` - the award is under review of qualification committee"
-msgstr "`pending` - переможець розглядається кваліфікаційною комісією"
-
-msgid ""
-"`unsuccessful` - the award has been rejected by qualification committee"
-msgstr "`unsuccessful` - кваліфікаційна комісія відмовила переможцю"
-
 msgid "`active` - the auction is awarded to the bidder from the `bid_id`"
 msgstr "`active` - аукціон виграв учасник з пропозицією `bid_id`"
-
-msgid "`cancelled` - the award has been cancelled by complaint review body"
-msgstr ""
-"`cancelled` - орган, що розглядає скарги, відмінив результати закупівлі"
 
 msgid "string, :ref:`Date`, auto-generated, read-only"
 msgstr "рядок, :ref:`Date`, генерується автоматично, лише для читання"
@@ -82,8 +72,7 @@ msgstr ""
 "рішення."
 
 msgid "List of :ref:`Item` objects, auto-generated, read-only"
-msgstr ""
-"Список об’єктів :ref:`Item`, генерується автоматично, лише для читання"
+msgstr "Список об’єктів :ref:`Item`, генерується автоматично, лише для читання"
 
 msgid "List of :ref:`Document` objects"
 msgstr "Список об’єктів :ref:`Document`"
@@ -118,6 +107,74 @@ msgstr ""
 
 msgid "The time frame when complaints can be submitted."
 msgstr "Період часу, під час якого можна подавати скарги."
+
+msgid ""
+"`pending.verification` - the procedure awaits the auction protocol to be "
+"uploaded"
+msgstr ""
+"`pending.verification`- очікується завантаження підписаного переможцем "
+"протоколу аукціону"
+
+msgid "`pending.payment` - the procedure awaits the payment to be made"
+msgstr "`pending.payment` - очікується оплата"
+
+msgid ""
+"`pending.waiting` - the second bidder awaits the first bidder to be "
+"disqualified"
+msgstr ""
+"`pending.waiting` - другий по списку учасник очікує дискваліфікації першого "
+"по списку учасника торгів"
+
+msgid ""
+"The period of uploading (for the auction winner) and verification (for the "
+"bank) of the auction protocol"
+msgstr ""
+"Період завантаження (переможцем аукціону) і верифікації (банком) протоколу "
+"аукціону"
+
+msgid "The period for the contract to be activated in the system (by the bank)"
+msgstr "Період очікування активації контракту (банком)"
+
+msgid "The period given to the winner of the auction to make a payment"
+msgstr "Період наданий переможцю аукціону для здійснення оплати"
+
+msgid ""
+"`unsuccessful` - the award has been rejected by the qualification committee "
+"(bank)"
+msgstr ""
+"`unsuccessful` - учасника дискваліфікував кваліфікаційний комітет (банк)"
+
+msgid ""
+"`cancelled` - the second bidder does not want to wait for the first bidder "
+"to be disqualified"
+msgstr ""
+"`cancelled` - другий по списку учасник вирішив не чекати на дискваліфікацію"
+" першого по списку учасника"
+
+#~ msgid "`cancelled` - the procedure has been cancelled by the organizer (bank)"
+#~ msgstr ""
+#~ "`cancelled` - другий по списку учасник відмовляється очікувати "
+#~ "дискваліфікації першого по списку учасника торгів"
+
+#~ msgid ""
+#~ "`unsuccessful` - the award has been rejected by the qualification committee"
+#~ msgstr ""
+#~ "`unsuccessful` - переможець дискваліфікований кваліфікаційним комітетом "
+#~ "(банком)"
+
+#~ msgid "The period give to the winner of the auction to make a payment"
+#~ msgstr "Період здійснення оплати переможцем аукціону"
+
+#~ msgid "`pending` - the award is under review of qualification committee"
+#~ msgstr "`pending` - переможець розглядається кваліфікаційною комісією"
+
+#~ msgid ""
+#~ "`unsuccessful` - the award has been rejected by qualification committee"
+#~ msgstr "`unsuccessful` - кваліфікаційна комісія відмовила переможцю"
+
+#~ msgid "`cancelled` - the award has been cancelled by complaint review body"
+#~ msgstr ""
+#~ "`cancelled` - орган, що розглядає скарги, відмінив результати закупівлі"
 
 #~ msgid "ID of related :ref:`lot`."
 #~ msgstr "ID пов’язаного :ref:`lot`."
