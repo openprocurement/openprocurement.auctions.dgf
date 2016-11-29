@@ -37,6 +37,7 @@ test_auction_data = {
     "dgfID": u"219560",
     "dgfDecisionDate": u"2016-11-17",
     "dgfDecisionID": u"219560",
+    "tenderAttempts": 1,
     "procuringEntity": test_procuringEntity,
     "value": {
         "amount": 100,

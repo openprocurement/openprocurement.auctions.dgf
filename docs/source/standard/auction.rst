@@ -42,7 +42,11 @@ Schema
     * ``dgfOtherAssets`` - sale of the insolvent bank property
     * ``dgfFinancialAssets`` - sale of the creditor claim right
 
-   
+:tenderAttempts:
+    integer
+
+    The number which represents whether the tender is taking place for the first, second, third, or fourth time
+
 :procuringEntity:
    :ref:`ProcuringEntity`, required
 

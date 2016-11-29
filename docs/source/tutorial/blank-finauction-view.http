@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/337baa20c5dc443d9a99bf1e4209a307 HTTP/1.0
+GET /api/2.3/auctions/5cc3dde7c79044b5abe4433a7b7f02ca HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -9,37 +9,57 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-09-20-000001", 
-    "tenderPeriod": {
-      "startDate": "2016-09-20T17:01:05.487584+03:00", 
-      "endDate": "2016-10-03T17:00:59.276088+03:00"
+    "auctionID": "UA-EA-2016-11-29-000001", 
+    "enquiryPeriod": {
+      "startDate": "2016-11-29T12:46:30.546602+02:00", 
+      "endDate": "2016-12-12T23:59:50+02:00"
     }, 
+    "submissionMethod": "electronicAuction", 
+    "next_check": "2016-12-12T23:59:50+02:00", 
+    "procuringEntity": {
+      "contactPoint": {
+        "name": "Державне управління справами", 
+        "telephone": "0440000000"
+      }, 
+      "identifier": {
+        "scheme": "UA-EDR", 
+        "id": "00037256", 
+        "uri": "http://www.dus.gov.ua/"
+      }, 
+      "name": "Державне управління справами", 
+      "address": {
+        "postalCode": "01220", 
+        "countryName": "Україна", 
+        "streetAddress": "вул. Банкова, 11, корпус 1", 
+        "region": "м. Київ", 
+        "locality": "м. Київ"
+      }
+    }, 
+    "owner": "broker", 
+    "id": "5cc3dde7c79044b5abe4433a7b7f02ca", 
+    "eligibilityCriteria_ru": "К участию допускаются только лицензированные финансовые учреждения.", 
     "title": "футляри до державних нагород", 
+    "tenderAttempts": 1, 
+    "eligibilityCriteria_en": "Only licensed financial institutions are eligible to participate.", 
+    "procurementMethodDetails": "quick, accelerator=1440", 
+    "dateModified": "2016-11-29T12:46:30.549349+02:00", 
+    "status": "active.tendering", 
+    "eligibilityCriteria": "До участі допускаються лише ліцензовані фінансові установи.", 
+    "tenderPeriod": {
+      "startDate": "2016-11-29T12:46:30.546602+02:00", 
+      "endDate": "2016-12-12T23:59:50+02:00"
+    }, 
+    "auctionPeriod": {
+      "shouldStartAfter": "2016-12-13T00:00:00+02:00"
+    }, 
+    "procurementMethodType": "dgfFinancialAssets", 
+    "dgfID": "219560", 
+    "date": "2016-11-29T12:46:30.546602+02:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "enquiryPeriod": {
-      "startDate": "2016-09-20T17:01:05.487584+03:00", 
-      "endDate": "2016-10-03T17:00:59.276088+03:00"
-    }, 
-    "procurementMethodType": "dgfFinancialAssets", 
-    "value": {
-      "currency": "UAH", 
-      "amount": 100.0, 
-      "valueAddedTaxIncluded": true
-    }, 
-    "submissionMethod": "electronicAuction", 
-    "date": "2016-09-20T17:01:05.487584+03:00", 
-    "dateModified": "2016-09-20T17:01:05.491451+03:00", 
-    "status": "active.tendering", 
-    "awardCriteria": "lowestCost", 
-    "auctionPeriod": {
-      "shouldStartAfter": "2016-10-04T00:00:00+03:00"
-    }, 
-    "owner": "broker", 
-    "next_check": "2016-10-03T17:00:59.276088+03:00", 
     "items": [
       {
         "description": "Земля для військовослужбовців", 
@@ -55,7 +75,7 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "b3a21391e909494fa63dacd23b42c565", 
+        "id": "bbebf261f31b4cf39bf62237e1efef7a", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -63,27 +83,12 @@ Content-Type: application/json; charset=UTF-8
         "quantity": 5
       }
     ], 
-    "id": "337baa20c5dc443d9a99bf1e4209a307", 
-    "procuringEntity": {
-      "contactPoint": {
-        "name": "Державне управління справами", 
-        "telephone": "0440000000"
-      }, 
-      "identifier": {
-        "scheme": "UA-EDR", 
-        "id": "00037256", 
-        "uri": "http://www.dus.gov.ua/"
-      }, 
-      "name": "Державне управління справами", 
-      "kind": "general", 
-      "address": {
-        "postalCode": "01220", 
-        "countryName": "Україна", 
-        "streetAddress": "вул. Банкова, 11, корпус 1", 
-        "region": "м. Київ", 
-        "locality": "м. Київ"
-      }
-    }
+    "value": {
+      "currency": "UAH", 
+      "amount": 100.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "awardCriteria": "highestCost"
   }
 }
 

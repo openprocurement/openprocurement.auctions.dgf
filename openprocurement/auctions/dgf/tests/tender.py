@@ -38,7 +38,7 @@ class AuctionTest(BaseWebTest):
     def test_create_role(self):
         fields = set([
             'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru',
-            'description', 'description_en', 'description_ru', 'dgfID',
+            'description', 'description_en', 'description_ru', 'dgfID', 'tenderAttempts',
             'features', 'guarantee', 'hasEnquiries', 'items', 'lots', 'minimalStep', 'mode',
             'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru',
             'procurementMethodType', 'procuringEntity',
@@ -623,7 +623,7 @@ class AuctionResourceTest(BaseWebTest):
             u'procurementMethodType', u'id', u'date', u'dateModified', u'auctionID', u'status', u'enquiryPeriod',
             u'tenderPeriod', u'minimalStep', u'items', u'value', u'procuringEntity', u'next_check', u'dgfID',
             u'procurementMethod', u'awardCriteria', u'submissionMethod', u'title', u'owner', u'auctionPeriod',
-            u'dgfDecisionDate', u'dgfDecisionID',u'documents',
+            u'dgfDecisionDate', u'dgfDecisionID', u'documents', u'tenderAttempts',
         ]))
         self.assertNotEqual(data['id'], auction['id'])
         self.assertNotEqual(data['doc_id'], auction['id'])
@@ -1487,7 +1487,7 @@ class FinancialAuctionResourceTest(AuctionResourceTest):
             u'tenderPeriod', u'minimalStep', u'items', u'value', u'procuringEntity', u'next_check', u'dgfID',
             u'procurementMethod', u'awardCriteria', u'submissionMethod', u'title', u'owner', u'auctionPeriod',
             u'eligibilityCriteria', u'eligibilityCriteria_en', u'eligibilityCriteria_ru', 'documents',
-            u'dgfDecisionDate', u'dgfDecisionID',
+            u'dgfDecisionDate', u'dgfDecisionID', u'tenderAttempts',
         ]))
         self.assertNotEqual(data['id'], auction['id'])
         self.assertNotEqual(data['doc_id'], auction['id'])
