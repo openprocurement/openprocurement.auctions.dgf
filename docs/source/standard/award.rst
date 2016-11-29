@@ -46,7 +46,7 @@ Schema
     * `unsuccessful` - the award has been rejected by the qualification committee (bank)
     * `active` - the auction is awarded to the bidder from the `bid_id`
     * `pending.waiting` - the second bidder awaits the first bidder to be disqualified
-    * `cancelled` - the procedure has been cancelled by the organizer (bank)
+    * `cancelled` - the second bidder does not want to wait for the first bidder to be disqualified
 
 :verificationPeriod:
     :ref:`period`
