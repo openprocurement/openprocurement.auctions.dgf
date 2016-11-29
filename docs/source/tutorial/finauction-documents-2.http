@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/337baa20c5dc443d9a99bf1e4209a307/documents HTTP/1.0
+GET /api/2.3/auctions/5cc3dde7c79044b5abe4433a7b7f02ca/documents HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -12,23 +12,23 @@ Content-Type: application/json; charset=UTF-8
       "hash": "md5:00000000000000000000000000000000", 
       "description": "technical specification", 
       "format": "application/pdf", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/bcf75c4df0964311b7fb4a485b5ef26c?KeyID=25ad1763&Signature=fr8QCP44L%2FfeVljTs9FNsFKu9JMwvtaOoWbwVZy%2FvIzcFvoPyjInlxqsCUU%2FS3P1XWip5oyyuvTaB%2FVRigCxBA%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/002102858edc43fbbb0f8c1ff8f88c1e?KeyID=4ae8f1b3&Signature=O0ve%252BwiAZqtrYmD4n%252BkxE1C0EFJ5A6PRNdE%252BLncEPE7sfDPBcRhcu8%2FV%252BO2%252BXyP4PtgNHqRxDZL0AcdXJ2wYBg%253D%253D", 
       "title": "Notice.pdf", 
       "documentOf": "tender", 
-      "datePublished": "2016-09-20T17:01:05.645551+03:00", 
+      "datePublished": "2016-11-29T12:46:30.702942+02:00", 
       "documentType": "technicalSpecifications", 
-      "id": "428df818137944618d139491322bafb4", 
-      "dateModified": "2016-09-20T17:01:05.645582+03:00"
+      "id": "ac7a8443931841ffaa5fa13689470563", 
+      "dateModified": "2016-11-29T12:46:30.702969+02:00"
     }, 
     {
       "hash": "md5:00000000000000000000000000000000", 
       "format": "application/pdf", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/6bb6c89285ee4e269971df633bb08294?KeyID=25ad1763&Signature=dA0lRRSxkavwYac9RSBxSUtCC5EYOoaDaLa7ks0Ju2bKQmoKpyc0a21gzZ5wyj55YkrGEY8PxyeY3IOnygq9DA%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/efc972e3617f47efb3be7cb47fccdd44?KeyID=4ae8f1b3&Signature=nsyllpwaDCY6gS7O2frcbOrbsU3Gn3ntzhh%2FcKubGtoktAzM2m%2Fi75Gt1LbISmQ%252BTLPOCmIO88fsoind0SXABA%253D%253D", 
       "title": "AwardCriteria.pdf", 
       "documentOf": "tender", 
-      "datePublished": "2016-09-20T17:01:05.705251+03:00", 
-      "dateModified": "2016-09-20T17:01:05.705280+03:00", 
-      "id": "d18c91731ef74d919364572cd84bf8aa"
+      "datePublished": "2016-11-29T12:46:30.794195+02:00", 
+      "dateModified": "2016-11-29T12:46:30.794243+02:00", 
+      "id": "d54c7c7d7721403b9616a0bf75cab384"
     }
   ]
 }

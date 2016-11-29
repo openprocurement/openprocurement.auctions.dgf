@@ -1,12 +1,12 @@
-PUT /api/2.3/auctions/0d788da874814db38bc3f67ef6f57a8b/cancellations/2ec2f276dba84be1ace73c92fafdd894/documents/1b294806614f4a479818f4df9b9a9ff4?acc_token=3fb0279810984ff7b463b5ef6c07f04f HTTP/1.0
+PUT /api/2.3/auctions/4f130ddaab1f46e69ac45a15dff6a04d/cancellations/0461773cd16e4728a1c84f41843f9593/documents/6945a5b3096e4dcb9b931d00cb6c8401?acc_token=97871eeba234475291b2a6905fa607c6 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 329
+Content-Length: 333
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/d1c35fec290848e4989906b760755131?KeyID=87c9f4bd&Signature=3ZOP1zj%2F50uWMRVbnR8YMnVeLzECaYRxg6b95wzwpnsZub0OkFRFoWZvKhLd6e4dyNfVE8qsCQDS4hJM6FRsAA%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/cf34d7bee8784caaa6cc9ca51a30f197?KeyID=54b15984&Signature=1pPYym%2F5Ckr%2BeUmpimLtwozEkwb9FPLqv4QOr8LN5i7P45LeU2Ee6e8x%2FzrmeCC0ChhUCYmg9EAirNsIBSjoAg%3D%3D", 
     "title": "Notice-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -22,12 +22,12 @@ Content-Type: application/json; charset=UTF-8
     "hash": "md5:00000000000000000000000000000000", 
     "description": "Changed description", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/d1c35fec290848e4989906b760755131?KeyID=87c9f4bd&Signature=ln4mGkCZC0wS5lBcNyCzqCry%252Bb%2FvUUtISR%252BRSxhCGR1RLhCt2mCDAyduimC0%2FuPMWmo3y3tmHDFvLDgZsUNOBw%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/cf34d7bee8784caaa6cc9ca51a30f197?KeyID=54b15984&Signature=ZlrC0LiTZk6pS8kVRsbZ15rPq%252BI6Rimtb5o24Z%2FVLvXnKb90pBqUVux08P5SQEKzpNtq1FsiIclkyhC5FDLGDQ%253D%253D", 
     "title": "Notice-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-09-20T17:01:10.513838+03:00", 
-    "id": "1b294806614f4a479818f4df9b9a9ff4", 
-    "dateModified": "2016-09-20T17:01:10.827856+03:00"
+    "datePublished": "2016-11-29T12:46:35.576714+02:00", 
+    "id": "6945a5b3096e4dcb9b931d00cb6c8401", 
+    "dateModified": "2016-11-29T12:46:35.853603+02:00"
   }
 }
 

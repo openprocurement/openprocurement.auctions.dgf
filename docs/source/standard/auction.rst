@@ -33,7 +33,11 @@ Schema
     
     Identification number of the auction (also referred to as `lot`) in the XLS of Deposit Guarantee Fund.
 
-   
+:tenderAttempts:
+    integer
+
+    The number which represents whether the tender is taking place for the first, second, third, or fourth time
+
 :procuringEntity:
    :ref:`ProcuringEntity`, required
 
