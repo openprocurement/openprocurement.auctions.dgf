@@ -132,6 +132,8 @@ def check_award_status(request, award, now):
             (award.status == 'pending.payment' and award['paymentPeriod']['endDate'] < now) or \
             (award.status == 'active' and award['signingPeriod']['endDate'] < now):
         if award.status == 'active':
+            auction.awardPeriod.endDate = None
+            auction.status = 'active.qualification'
             for contract in auction.contracts:
                 if contract.awardID == award.id:
                     contract.status = 'cancelled'

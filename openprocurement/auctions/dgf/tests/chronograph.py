@@ -246,7 +246,13 @@ class AuctionAwardSwitchResourceTest(BaseAuctionWebTest):
         self.app.authorization = ('Basic', ('chronograph', ''))
         response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
         self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.json['data']['awards'][0]['status'], 'unsuccessful')
+        auction = response.json['data']
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(auction['awards'][0]['status'], 'unsuccessful')
+        self.assertEqual(auction['awards'][1]['status'], 'pending.verification')
+        self.assertEqual(auction['status'], 'active.qualification')
+        self.assertNotIn('endDate', auction['awardPeriod'])
+
 
     def test_switch_verification_to_payment(self):
         # response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "active"}})
@@ -308,7 +314,12 @@ class AuctionAwardSwitchResourceTest(BaseAuctionWebTest):
         self.app.authorization = ('Basic', ('chronograph', ''))
         response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
         self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.json['data']['awards'][0]['status'], 'unsuccessful')
+        auction = response.json['data']
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(auction['awards'][0]['status'], 'unsuccessful')
+        self.assertEqual(auction['awards'][1]['status'], 'pending.verification')
+        self.assertEqual(auction['status'], 'active.qualification')
+        self.assertNotIn('endDate', auction['awardPeriod'])
 
     def test_switch_active_to_unsuccessful(self):
         bid_token = self.initial_bids_tokens[self.award['bid_id']]
@@ -343,8 +354,13 @@ class AuctionAwardSwitchResourceTest(BaseAuctionWebTest):
 
         self.app.authorization = ('Basic', ('chronograph', ''))
         response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
+        auction = response.json['data']
         self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.json['data']['awards'][0]['status'], 'unsuccessful')
+        self.assertEqual(auction['awards'][0]['status'], 'unsuccessful')
+        self.assertEqual(auction['contracts'][0]['status'], 'cancelled')
+        self.assertEqual(auction['awards'][1]['status'], 'pending.verification')
+        self.assertEqual(auction['status'], 'active.qualification')
+        self.assertNotIn('endDate', auction['awardPeriod'])
 
 
 @unittest.skip("option not available")
