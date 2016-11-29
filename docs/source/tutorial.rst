@@ -248,8 +248,8 @@ See the `Bid.participationUrl` in the response. Similar, but different, URL can 
 Qualification
 -------------
 After the competitive auction two `awards` are created:
- * for the candidate (participant that has submitted the highest bid at the auction) has `pending.verification` status and awaits auction protocol uploading;
- * for the second candidate (participant that has submitted the second highest bid at the auction).
+ * for the first candidate (a participant that has submitted the highest bid at the auction) - has `pending.verification` status and awaits auction protocol uploading;
+ * for the second candidate (a participant that has submitted the second highest bid at the auction).
 
 
 .. include:: tutorial/get-awards.http
