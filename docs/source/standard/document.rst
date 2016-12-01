@@ -20,7 +20,7 @@ Schema
     Possible values for :ref:`auction`
     
 
-    * `notice` - **Auction notice**
+    * `tenderNotice` - **Auction notice**
       
       The formal notice that gives details of an auction. This may be a link to a downloadable document, to a web page, or to an official gazette in which the notice is contained.        
 
