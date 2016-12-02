@@ -51,6 +51,42 @@ Content-Type: application/json; charset=UTF-8
       "documentType": "illustration", 
       "dateModified": "2016-12-02T19:52:48.409687+02:00", 
       "id": "fcb4fdfa1a4e4e9fa82f777466bb4dd4"
+    }, 
+    {
+      "index": 2, 
+      "hash": "md5:00000000000000000000000000000000", 
+      "description": "Second illustration description", 
+      "format": "image/jpeg", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/80718d2babf5470b82b6f2ed9ad9e10c?KeyID=85c206d4&Signature=Wo0xr08n78HVx0cxiGejhuyskqa2pqIKTtTcrcgxHexfZak52DhMgQqBA0cK4tHD%2FsdC7fwRRpOOeOqGq2qNDQ%253D%253D", 
+      "title": "second_illustration.jpeg", 
+      "documentOf": "tender", 
+      "datePublished": "2016-12-02T19:52:48.481565+02:00", 
+      "documentType": "illustration", 
+      "dateModified": "2016-12-02T19:52:48.481592+02:00", 
+      "id": "bebadb4356274cd08acd429ff473294d"
+    }, 
+    {
+      "index": 2, 
+      "hash": "md5:00000000000000000000000000000000", 
+      "description": "Third illustration description", 
+      "format": "image/jpeg", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/0cfae156ce6c4dae98505f1270df111a?KeyID=85c206d4&Signature=V96b25Swde86ltgSoloptiKgh4QZ4onjdyBkssnho5ymt9un%252BDpz%252BAhsh3jEBmDF0ADwfE9DYx%252Bf%252BdDcaHT5CA%253D%253D", 
+      "title": "third_illustration.jpeg", 
+      "documentOf": "tender", 
+      "datePublished": "2016-12-02T19:52:48.552760+02:00", 
+      "documentType": "illustration", 
+      "dateModified": "2016-12-02T19:52:48.552791+02:00", 
+      "id": "4ac3ab2432e84879b3db6afbe62d662e"
+    }, 
+    {
+      "title": "Familiarization with bank asset", 
+      "format": "offline/on-site-examination", 
+      "accessDetails": "Familiar with asset: days, time, address", 
+      "documentOf": "tender", 
+      "datePublished": "2016-12-02T19:52:48.641514+02:00", 
+      "documentType": "x_dgfAssetFamiliarization", 
+      "dateModified": "2016-12-02T19:52:48.641540+02:00", 
+      "id": "fda97dc21f244f6bae97251d9b8be690"
     }
   ]
 }

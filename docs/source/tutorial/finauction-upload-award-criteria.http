@@ -1,12 +1,12 @@
-POST /api/2.3/auctions/5cc3dde7c79044b5abe4433a7b7f02ca/documents?acc_token=527d1ea93e934aae99d06dbd3a2bf72b HTTP/1.0
+POST /api/2.3/auctions/bfddd8a61d1d49d19156b1e40ccb6e82/documents?acc_token=43aa4293fcda49779bcb3fdb208d87fe HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 340
+Content-Length: 334
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/efc972e3617f47efb3be7cb47fccdd44?KeyID=4ae8f1b3&Signature=6w6KlPiVESacm4xMcj2sJfIMK5vDdT%2FeS6oXzkmoWpYczR%2FWsUt7jGne%2F5ZRcfS%2ByKGQSsYKaZ5yyokjjVt4Cg%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/3c51afb38d3047ac860d92f03f0c6ba1?KeyID=dc8e6bab&Signature=P8uTgFinz54R8GUFjS0tMiTfvzPF67KERy6gNYphgiBf3RqHJAsY%2FlaulhU02U6P06SX2NQZtYX9bZoVQRGHDg%3D%3D", 
     "title": "AwardCriteria.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -16,18 +16,18 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/5cc3dde7c79044b5abe4433a7b7f02ca/documents/d54c7c7d7721403b9616a0bf75cab384
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/bfddd8a61d1d49d19156b1e40ccb6e82/documents/c5b7feda16e64b528ee7c8e0e0a51fe9
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/efc972e3617f47efb3be7cb47fccdd44?KeyID=4ae8f1b3&Signature=nsyllpwaDCY6gS7O2frcbOrbsU3Gn3ntzhh%2FcKubGtoktAzM2m%2Fi75Gt1LbISmQ%252BTLPOCmIO88fsoind0SXABA%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/3c51afb38d3047ac860d92f03f0c6ba1?KeyID=dc8e6bab&Signature=INGOCoWV33jnBjQvEq1wP5Tp1aIqvZ9T%2FONj7y99RzjweGs%252Bs8UvPoSI9%252B%2FhEH28RWYGQLnj8h2lxONVjxsDDA%253D%253D", 
     "title": "AwardCriteria.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-11-29T12:46:30.794195+02:00", 
-    "dateModified": "2016-11-29T12:46:30.794243+02:00", 
-    "id": "d54c7c7d7721403b9616a0bf75cab384"
+    "datePublished": "2016-12-02T19:52:46.270087+02:00", 
+    "dateModified": "2016-12-02T19:52:46.270115+02:00", 
+    "id": "c5b7feda16e64b528ee7c8e0e0a51fe9"
   }
 }
 

@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/4f130ddaab1f46e69ac45a15dff6a04d/documents HTTP/1.0
+GET /api/2.3/auctions/435c47dfcd164eb9806932cc6aec4056/documents HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -9,65 +9,74 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": [
     {
+      "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
+      "url": "http://torgi.fg.gov.ua/prozorrosale", 
+      "documentOf": "tender", 
+      "datePublished": "2016-12-02T19:52:47.793624+02:00", 
+      "documentType": "x_dgfPlatformLegalDetails", 
+      "dateModified": "2016-12-02T19:52:47.793649+02:00", 
+      "id": "5ffcb6d30b7a47c1b59081c72aee2433"
+    }, 
+    {
       "hash": "md5:00000000000000000000000000000000", 
       "description": "document description", 
       "format": "application/pdf", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/58501b2bc76143f3ad5dd5c378942dcb?KeyID=54b15984&Signature=g%2FUvaXzSaJA6ZlQn0exiPMyruIjbUVqNdpXrh8VIwb%2F67J22nz%252BI4mC6VkWIQ1pF9lqVS8Wm5jvvzQDzkJ5XDg%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/db494759bff949ccb54b8bb80dc33d55?KeyID=85c206d4&Signature=rdprbJNUAHw2SwEldlILjwKT0XkqEs5wYditwRlhDdlM4ufXysJL23MWQzZkgelH1jyiDt0LIpkr%2F0b1kltXCA%253D%253D", 
       "title": "Notice.pdf", 
       "documentOf": "tender", 
-      "datePublished": "2016-11-29T12:46:32.749050+02:00", 
+      "datePublished": "2016-12-02T19:52:48.221056+02:00", 
       "documentType": "technicalSpecifications", 
-      "id": "a67cd5d2aa2944cf8e297b2b521751d4", 
-      "dateModified": "2016-11-29T12:46:32.749084+02:00"
+      "dateModified": "2016-12-02T19:52:48.221087+02:00", 
+      "id": "f844191f5cd74f1198fc878c5653b259"
     }, 
     {
       "hash": "md5:00000000000000000000000000000000", 
       "format": "application/pdf", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/134b0ee245654a4eb1cd8ca429bf37b3?KeyID=54b15984&Signature=R1yToyvWIJK9wWKZukk7Jf9o6uq1hdFKXQBbGQsTm50iXYPd%252BjSc1sQNXy3yIaBdGJx1efuQIgboJ34d9HzXCg%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/e29ad8f5ce8c4c2f818cdb9ee69263d2?KeyID=85c206d4&Signature=UuJq6sfk4D%252BSPmJGyJPg7EobdikHhpoF2TmWKag0BynR9ZnvkMJwNTRl2B363rsiAzPK5IDcn5pswqB1BI8cCg%253D%253D", 
       "title": "AwardCriteria-2.pdf", 
       "documentOf": "tender", 
-      "datePublished": "2016-11-29T12:46:32.802693+02:00", 
-      "dateModified": "2016-11-29T12:46:32.859201+02:00", 
-      "id": "6ffe0a6ae5e141c58bfb097d2df3710e"
+      "datePublished": "2016-12-02T19:52:48.274998+02:00", 
+      "dateModified": "2016-12-02T19:52:48.333345+02:00", 
+      "id": "89f5f87cc3cb485298bba05aa7d80c95"
     }, 
     {
       "index": 1, 
       "hash": "md5:00000000000000000000000000000000", 
       "description": "First illustration description", 
       "format": "image/jpeg", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/dce24e1a322c4d9aa0108a1f3e7b476b?KeyID=54b15984&Signature=EtwOZ3teJqvo2gdo3Yw0hVTAKq3NZYkNG1nPoOpdWFpXA2MSwx6CasDpYVyWGvnDBr5tEZML2DlGKvqi1q7fCg%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/b514ab3c625e4f09bcb8639838af4c44?KeyID=85c206d4&Signature=5WTD8c6jFWS96IfwcaQEr5F2dnw89rrVqK%2FAdzKq%252B4XRJqvwU5vd4fbAvBR4naBkIgy1cpnlOWEjejmxTmRyDg%253D%253D", 
       "title": "first_illustration.jpeg", 
       "documentOf": "tender", 
-      "datePublished": "2016-11-29T12:46:32.925016+02:00", 
+      "datePublished": "2016-12-02T19:52:48.409659+02:00", 
       "documentType": "illustration", 
-      "id": "019153bca67c47599ff815e6e86f9df4", 
-      "dateModified": "2016-11-29T12:46:32.925054+02:00"
+      "dateModified": "2016-12-02T19:52:48.409687+02:00", 
+      "id": "fcb4fdfa1a4e4e9fa82f777466bb4dd4"
     }, 
     {
       "index": 2, 
       "hash": "md5:00000000000000000000000000000000", 
       "description": "Second illustration description", 
       "format": "image/jpeg", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/d5601d38dd4243baad7cad4d5b9a877a?KeyID=54b15984&Signature=W0EW0aYfKHFMvHh1a%2Ff3CPLRZVNXmsQtj%2FloWp28%2FEVa7Jk08cM4K%252BC8MbwHctRhOOdSM7%252BiagZkO3IzMm42Aw%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/80718d2babf5470b82b6f2ed9ad9e10c?KeyID=85c206d4&Signature=Wo0xr08n78HVx0cxiGejhuyskqa2pqIKTtTcrcgxHexfZak52DhMgQqBA0cK4tHD%2FsdC7fwRRpOOeOqGq2qNDQ%253D%253D", 
       "title": "second_illustration.jpeg", 
       "documentOf": "tender", 
-      "datePublished": "2016-11-29T12:46:32.989810+02:00", 
+      "datePublished": "2016-12-02T19:52:48.481565+02:00", 
       "documentType": "illustration", 
-      "id": "9cac5d4d8cb148bfa2c847ac01cc262f", 
-      "dateModified": "2016-11-29T12:46:32.989838+02:00"
+      "dateModified": "2016-12-02T19:52:48.481592+02:00", 
+      "id": "bebadb4356274cd08acd429ff473294d"
     }, 
     {
       "index": 2, 
       "hash": "md5:00000000000000000000000000000000", 
       "description": "Third illustration description", 
       "format": "image/jpeg", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/e57bbf5cf3d845feb6e85ce4d16661bf?KeyID=54b15984&Signature=q2WNADWDiIHa8cWEyvxpfUeSVrWoSZVtxTApaZLjRTesgNECbJQIU0z%252BuJrCrHBD2FmpJlhZbEy5rhFpymhFAQ%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/0cfae156ce6c4dae98505f1270df111a?KeyID=85c206d4&Signature=V96b25Swde86ltgSoloptiKgh4QZ4onjdyBkssnho5ymt9un%252BDpz%252BAhsh3jEBmDF0ADwfE9DYx%252Bf%252BdDcaHT5CA%253D%253D", 
       "title": "third_illustration.jpeg", 
       "documentOf": "tender", 
-      "datePublished": "2016-11-29T12:46:33.041443+02:00", 
+      "datePublished": "2016-12-02T19:52:48.552760+02:00", 
       "documentType": "illustration", 
-      "id": "100d31071e2341e98485de047668c7db", 
-      "dateModified": "2016-11-29T12:46:33.041470+02:00"
+      "dateModified": "2016-12-02T19:52:48.552791+02:00", 
+      "id": "4ac3ab2432e84879b3db6afbe62d662e"
     }
   ]
 }

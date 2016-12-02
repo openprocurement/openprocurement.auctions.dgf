@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/5cc3dde7c79044b5abe4433a7b7f02ca/documents HTTP/1.0
+GET /api/2.3/auctions/bfddd8a61d1d49d19156b1e40ccb6e82/documents HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -9,26 +9,35 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": [
     {
+      "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
+      "url": "http://torgi.fg.gov.ua/prozorrosale", 
+      "documentOf": "tender", 
+      "datePublished": "2016-12-02T19:52:46.046551+02:00", 
+      "documentType": "x_dgfPlatformLegalDetails", 
+      "dateModified": "2016-12-02T19:52:46.046577+02:00", 
+      "id": "552b341aaa62463ea1352e187191ef67"
+    }, 
+    {
       "hash": "md5:00000000000000000000000000000000", 
       "description": "technical specification", 
       "format": "application/pdf", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/002102858edc43fbbb0f8c1ff8f88c1e?KeyID=4ae8f1b3&Signature=O0ve%252BwiAZqtrYmD4n%252BkxE1C0EFJ5A6PRNdE%252BLncEPE7sfDPBcRhcu8%2FV%252BO2%252BXyP4PtgNHqRxDZL0AcdXJ2wYBg%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/addf407fa9a6497bac75e478acc0dcff?KeyID=dc8e6bab&Signature=VOw9t%252BSzdCWm2EG9PiiP4lvP5ogpZ2ioRzKemW4xV0uhFMFAozrW86f2TaQ7AZIZi6BbF928mM1UNidTBXzqCA%253D%253D", 
       "title": "Notice.pdf", 
       "documentOf": "tender", 
-      "datePublished": "2016-11-29T12:46:30.702942+02:00", 
+      "datePublished": "2016-12-02T19:52:46.213715+02:00", 
       "documentType": "technicalSpecifications", 
-      "id": "ac7a8443931841ffaa5fa13689470563", 
-      "dateModified": "2016-11-29T12:46:30.702969+02:00"
+      "dateModified": "2016-12-02T19:52:46.213743+02:00", 
+      "id": "b0d33b7113c3412f95ef09ee1adb282a"
     }, 
     {
       "hash": "md5:00000000000000000000000000000000", 
       "format": "application/pdf", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/ecfb3cccd02142b4a0cce42bd3d3abf7?KeyID=4ae8f1b3&Signature=KXwmeMIhndPPdbYAu740SDGMOJr4J8tR9sLsM0XHMHH4MJVwgAZkUtgcrjrFtd5HkSwo7y9eaLCq5buS89XUDg%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/bd825736e30c4e90a5068c0d6484ebf0?KeyID=dc8e6bab&Signature=ImzYpV2llnzUnqGrx6zGulUJ1Y83qWY9hs92dlEXppFXLVNfC7nyjUk%2FRrWa5%252BZfT0srvtyS0mYrAwpMdZxxAA%253D%253D", 
       "title": "AwardCriteria-2.pdf", 
       "documentOf": "tender", 
-      "datePublished": "2016-11-29T12:46:30.794195+02:00", 
-      "dateModified": "2016-11-29T12:46:30.881063+02:00", 
-      "id": "d54c7c7d7721403b9616a0bf75cab384"
+      "datePublished": "2016-12-02T19:52:46.270087+02:00", 
+      "dateModified": "2016-12-02T19:52:46.333053+02:00", 
+      "id": "c5b7feda16e64b528ee7c8e0e0a51fe9"
     }
   ]
 }
