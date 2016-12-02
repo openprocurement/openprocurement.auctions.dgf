@@ -26,7 +26,7 @@ Schema
 
     * `technicalSpecifications` - **Technical Specifications**
     
-      Detailed technical information about goods or services to be provided.
+      Detailed technical information about goods or services to be provided. This is where the public asset certificate is uploaded.
 
     * `evaluationCriteria` - **Evaluation Criteria**
     
