@@ -19,11 +19,13 @@ def upload_file(request, blacklisted_fields=DOCUMENT_BLACKLISTED_FIELDS):
     first_document = request.validated['documents'][0] if 'documents' in request.validated and request.validated['documents'] else None
     if 'data' in request.validated and request.validated['data']:
         document = request.validated['document']
-        if document.documentType == 'virtualDataRoom':
+        if document.documentType in ['virtualDataRoom', 'x_dgfAssetFamiliarization']:
             if first_document:
                 for attr_name in type(first_document)._fields:
                     if attr_name not in blacklisted_fields:
                         setattr(document, attr_name, getattr(first_document, attr_name))
+            if document.documentType == 'x_dgfAssetFamiliarization':
+                document.format = 'offline/on-site-examination'
             return document
     return base_upload_file(request, blacklisted_fields)
 

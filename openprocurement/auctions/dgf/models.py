@@ -5,6 +5,7 @@ from schematics.types.compound import ModelType
 from schematics.exceptions import ValidationError
 from schematics.transforms import blacklist, whitelist
 from schematics.types.serializable import serializable
+from urlparse import urlparse, parse_qs
 from zope.interface import implementer
 from openprocurement.api.models import (
     BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
@@ -76,7 +77,9 @@ class ProcuringEntity(BaseProcuringEntity):
 
 class Document(BaseDocument):
     format = StringType(regex='^[-\w]+/[-\.\w\+]+$')
+    url = StringType()
     index = IntType()
+    accessDetails = StringType()
     documentType = StringType(choices=[
         'auctionNotice', 'awardNotice', 'contractNotice',
         'notice', 'biddingDocuments', 'technicalSpecifications',
@@ -87,15 +90,46 @@ class Document(BaseDocument):
         'contractAnnexe', 'contractGuarantees', 'subContract',
         'eligibilityCriteria', 'contractProforma', 'commercialProposal',
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
-        'illustration', 'auctionProtocol',
+        'illustration', 'auctionProtocol', 'x_dgfAssetFamiliarization',
     ])
 
+    @serializable(serialized_name="url", serialize_when_none=False)
+    def download_url(self):
+        url = self.url
+        if not url or '?download=' not in url:
+            return url
+        doc_id = parse_qs(urlparse(url).query)['download'][-1]
+        root = self.__parent__
+        parents = []
+        while root.__parent__ is not None:
+            parents[0:0] = [root]
+            root = root.__parent__
+        request = root.request
+        if not request.registry.docservice_url:
+            return url
+        if 'status' in parents[0] and parents[0].status in type(parents[0])._options.roles:
+            role = parents[0].status
+            for index, obj in enumerate(parents):
+                if obj.id != url.split('/')[(index - len(parents)) * 2 - 1]:
+                    break
+                field = url.split('/')[(index - len(parents)) * 2]
+                if "_" in field:
+                    field = field[0] + field.title().replace("_", "")[1:]
+                roles = type(obj)._options.roles
+                if roles[role if role in roles else 'default'](field, []):
+                    return url
+        from openprocurement.api.utils import generate_docservice_url
+        if not self.hash:
+            path = [i for i in urlparse(url).path.split('/') if len(i) == 32 and not set(i).difference(hexdigits)]
+            return generate_docservice_url(request, doc_id, False, '{}/{}'.format(path[0], path[-1]))
+        return generate_docservice_url(request, doc_id, False)
+
     def validate_hash(self, data, hash_):
-        if data.get('documentType') == 'virtualDataRoom' and hash_:
+        if data.get('documentType') in ['virtualDataRoom', 'x_dgfAssetFamiliarization'] and hash_:
             raise ValidationError(u'This field is not required.')
 
     def validate_format(self, data, format_):
-        if data.get('documentType') != 'virtualDataRoom' and not format_:
+        if data.get('documentType') not in ['virtualDataRoom', 'x_dgfAssetFamiliarization'] and not format_:
             raise ValidationError(u'This field is required.')
         if data.get('documentType') == 'virtualDataRoom' and format_:
             raise ValidationError(u'This field is not required.')
@@ -103,6 +137,14 @@ class Document(BaseDocument):
     def validate_url(self, data, url):
         if data.get('documentType') == 'virtualDataRoom':
             URLType().validate(url)
+        if data.get('documentType') == 'x_dgfAssetFamiliarization' and url:
+            raise ValidationError(u'This field is not required.')
+        if data.get('documentType') != 'x_dgfAssetFamiliarization' and not url:
+            raise ValidationError(u'This field is required.')
+
+    def validate_accessDetails(self, data, accessDetails):
+        if data.get('documentType') == 'x_dgfAssetFamiliarization' and not accessDetails:
+            raise ValidationError(u'This field is required.')
 
 
 class Bid(BaseBid):
@@ -342,7 +384,7 @@ class Document(Document):
         'eligibilityCriteria', 'contractProforma', 'commercialProposal',
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
         'illustration', 'financialLicense', 'virtualDataRoom',
-        'auctionProtocol',
+        'auctionProtocol', 'x_dgfAssetFamiliarization',
     ])
 
 

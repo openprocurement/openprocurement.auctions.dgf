@@ -58,14 +58,16 @@ class AuctionDocumentResource(APIResource):
     @json_view(permission='view_auction')
     def get(self):
         """Auction Document Read"""
-        if self.request.params.get('download'):
-            return get_file(self.request)
         document = self.request.validated['document']
+        offline = bool(document.get('documentType') == 'x_dgfAssetFamiliarization')
+        if self.request.params.get('download') and not offline:
+            return get_file(self.request)
         document_data = document.serialize("view")
         document_data['previousVersions'] = [
             i.serialize("view")
             for i in self.request.validated['documents']
-            if i.url != document.url
+            if i.url != document.url or
+            (offline and i.dateModified != document.dateModified)
         ]
         return {'data': document_data}
 
