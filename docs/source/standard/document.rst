@@ -20,13 +20,13 @@ Schema
     Possible values for :ref:`auction`
     
 
-    * `notice` - **Auction notice**
+    * `tenderNotice` - **Auction notice**
       
       The formal notice that gives details of an auction. This may be a link to a downloadable document, to a web page, or to an official gazette in which the notice is contained.        
 
     * `technicalSpecifications` - **Technical Specifications**
     
-      Detailed technical information about goods or services to be provided.
+      Detailed technical information about goods or services to be provided. This is where the public asset certificate is uploaded.
 
     * `evaluationCriteria` - **Evaluation Criteria**
     
