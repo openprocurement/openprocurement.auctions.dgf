@@ -139,7 +139,7 @@ Uploading illustration
 -----------------------
 
 Organizer can upload illustration files into the created auction. Uploading should
-follow the :ref:`upload` rules. 
+follow the :ref:`upload` rules.
 
 In order to specify illustration display order, `index` field can be used (for details see :ref:`document`). Since this illustration should be displayed first, it has ``"index": 1``.
 
@@ -162,11 +162,24 @@ Add third illustration:
    :code:
 
 Note that `index` of the third illustration is the same as for the second illustration: ``"index": 2``. In such cases firstly will be displayed illustration that was uploaded earlier.
-   
+
 We can check that there are three uploaded illustrations.
 
 .. include:: tutorial/auction-documents-5.http
    :code:
+
+Add Asset Familiarization
+-------------------------
+
+Organizer can upload asset familiarization document into the created auction.
+
+.. include:: tutorial/add-asset-familiarization-document.http
+  :code:
+
+We can check whether asset familiarization document is added.
+
+.. include:: tutorial/auction-documents-6.http
+  :code:
 
 Enquiries
 ---------
@@ -316,13 +329,13 @@ Let's see the list of all added contract documents:
 Contract registration
 ~~~~~~~~~~~~~~~~~~~~~
 
-There is a possibility to set custom contract signature date. 
+There is a possibility to set custom contract signature date.
 If the date is not set it will be generated on contract registration.
 You can register contract:
 
 .. include:: tutorial/auction-contract-sign.http
    :code:
-   
+
 Cancelling auction
 ------------------
 

@@ -462,6 +462,20 @@ class AuctionResourceTest(BaseAuctionWebTest):
                 self.auction_id))
             self.assertEqual(response.status, '200 OK')
 
+        with open('docs/source/tutorial/add-asset-familiarization-document.http', 'w') as self.app.file_obj:
+            response = self.app.post_json('/auctions/{}/documents?acc_token={}'.format(self.auction_id, owner_token),
+                {'data': {
+                    'title': u'Familiarization with bank asset',
+                    "documentType": "x_dgfAssetFamiliarization",
+                    'accessDetails': "Familiar with asset: days, time, address",
+                }})
+            self.assertEqual(response.status, '201 Created')
+
+        with open('docs/source/tutorial/auction-documents-6.http', 'w') as self.app.file_obj:
+            response = self.app.get('/auctions/{}/documents'.format(
+                self.auction_id))
+            self.assertEqual(response.status, '200 OK')
+
         # Enquiries
         #
 

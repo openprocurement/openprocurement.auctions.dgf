@@ -68,6 +68,16 @@ Content-Type: application/json; charset=UTF-8
       "documentType": "illustration", 
       "dateModified": "2016-12-02T18:39:11.186509+02:00", 
       "id": "19fc52b12a384e8f99d9e0b7f87b3ee6"
+    }, 
+    {
+      "title": "Familiarization with bank asset", 
+      "format": "offline/on-site-examination", 
+      "accessDetails": "Familiar with asset: days, time, address", 
+      "documentOf": "tender", 
+      "datePublished": "2016-12-02T18:39:11.288105+02:00", 
+      "documentType": "x_dgfAssetFamiliarization", 
+      "dateModified": "2016-12-02T18:39:11.288130+02:00", 
+      "id": "2d3fa4ecb9f947cca6efbed026a04349"
     }
   ]
 }
