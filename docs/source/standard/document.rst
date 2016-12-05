@@ -61,6 +61,8 @@ Schema
       Place and application forms for participation in the auction as well as bank details for transferring guarantee deposits.
 
     * `x_dgfAssetFamiliarization` - **Asset Familiarization**
+      
+      Goods examination procedure rules / Asset familiarization procedure in data room. Contains information on where and when a given document can be examined offline.
 
 
     Possible values for :ref:`award`
