@@ -6,6 +6,7 @@ from schematics.exceptions import ValidationError
 from schematics.transforms import blacklist, whitelist
 from schematics.types.serializable import serializable
 from urlparse import urlparse, parse_qs
+from string import hexdigits
 from zope.interface import implementer
 from openprocurement.api.models import (
     BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
