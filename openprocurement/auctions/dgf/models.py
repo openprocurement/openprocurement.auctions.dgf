@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from datetime import datetime, timedelta, time
 from schematics.types import StringType, URLType, IntType, DateType
 from schematics.types.compound import ModelType
@@ -24,6 +25,16 @@ from openprocurement.auctions.flash.models import (
     ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
     get_auction,
 )
+from schematics_flexible.schematics_flexible import Flexible
+from schemas_store.schemas_store import SchemaStore
+
+
+def get_config():
+    ini = os.environ['PYRAMID_SETTINGS']
+    config_file, section_name = ini.split('#', 1)
+    from paste.deploy.loadwsgi import appconfig
+
+    return appconfig('config:%s' % config_file, section_name)
 
 
 def read_json(name):
@@ -73,6 +84,9 @@ class Item(BaseItem):
     additionalClassifications = ListType(ModelType(Classification), default=list())
     address = ModelType(Address)
     location = ModelType(Location)
+    schema_properties = ModelType(Flexible(
+        store_handler=SchemaStore,
+        schema_path=get_config()['schema_store_url']).get_module())
 
 
 class Identifier(BaseIdentifier):
@@ -250,7 +264,7 @@ class Auction(BaseAuction):
     class Options:
         roles = {
             'create': create_role,
-            'edit_active.tendering': (blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'title', 'title_ru', 'title_en', 'dgfID', 'dgfDecisionDate', 'dgfDecisionID', 'description', 'description_ru', 'description_en', 'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru', 'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru', 'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru', 'items', 'procuringEntity', 'tenderAttempts') + edit_role),
+            'edit_active.tendering': (blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'title', 'title_ru', 'title_en', 'dgfID', 'dgfDecisionDate', 'dgfDecisionID', 'description', 'description_ru', 'description_en', 'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru', 'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru', 'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru', 'procuringEntity', 'tenderAttempts') + edit_role),
         }
 
     awards = ListType(ModelType(Award), default=list())
