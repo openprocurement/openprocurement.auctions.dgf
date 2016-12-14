@@ -51,12 +51,7 @@ class AuctionTest(BaseWebTest):
 
     def test_edit_role(self):
         fields = set([
-            'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru',
-            'description', 'description_en', 'description_ru',
-            'features', 'hasEnquiries', 'items',
-            'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru',
-            'procuringEntity',
-            'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru',
+            'features', 'hasEnquiries',
         ])
         if SANDBOX_MODE:
             fields.add('procurementMethodDetails')
@@ -987,9 +982,9 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.content_type, 'application/json')
         new_auction = response.json['data']
         new_dateModified = new_auction.pop('dateModified')
-        auction['procurementMethodRationale'] = 'Open'
+        #auction['procurementMethodRationale'] = 'Open'
         self.assertEqual(auction, new_auction)
-        self.assertNotEqual(dateModified, new_dateModified)
+        self.assertEqual(dateModified, new_dateModified)
 
         response = self.app.patch_json('/auctions/{}'.format(
             auction['id']), {'data': {'dateModified': new_dateModified}})
@@ -1002,39 +997,39 @@ class AuctionResourceTest(BaseWebTest):
 
         revisions = self.db.get(auction['id']).get('revisions')
         self.assertEqual(revisions[-1][u'changes'][0]['op'], u'remove')
-        self.assertEqual(revisions[-1][u'changes'][0]['path'], u'/procurementMethodRationale')
+        self.assertEqual(revisions[-1][u'changes'][0]['path'], u'/procurementMethod')
 
         response = self.app.patch_json('/auctions/{}'.format(
             auction['id']), {'data': {'items': [self.initial_data['items'][0]]}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
 
-        response = self.app.patch_json('/auctions/{}'.format(
-            auction['id']), {'data': {'items': [{}, self.initial_data['items'][0]]}})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
-        item0 = response.json['data']['items'][0]
-        item1 = response.json['data']['items'][1]
-        self.assertNotEqual(item0.pop('id'), item1.pop('id'))
-        self.assertEqual(item0, item1)
+        #response = self.app.patch_json('/auctions/{}'.format(
+            #auction['id']), {'data': {'items': [{}, self.initial_data['items'][0]]}})
+        #self.assertEqual(response.status, '200 OK')
+        #self.assertEqual(response.content_type, 'application/json')
+        #item0 = response.json['data']['items'][0]
+        #item1 = response.json['data']['items'][1]
+        #self.assertNotEqual(item0.pop('id'), item1.pop('id'))
+        #self.assertEqual(item0, item1)
 
-        response = self.app.patch_json('/auctions/{}'.format(
-            auction['id']), {'data': {'items': [{}]}})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(len(response.json['data']['items']), 1)
+        #response = self.app.patch_json('/auctions/{}'.format(
+            #auction['id']), {'data': {'items': [{}]}})
+        #self.assertEqual(response.status, '200 OK')
+        #self.assertEqual(response.content_type, 'application/json')
+        #self.assertEqual(len(response.json['data']['items']), 1)
 
-        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'items': [{"classification": {
-            "scheme": u"CAV",
-            "id": u"04000000-8",
-            "description": u"Нерухоме майно"
-        }}]}})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
+        #response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'items': [{"classification": {
+            #"scheme": u"CAV",
+            #"id": u"04000000-8",
+            #"description": u"Нерухоме майно"
+        #}}]}})
+        #self.assertEqual(response.status, '200 OK')
+        #self.assertEqual(response.content_type, 'application/json')
 
-        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'items': [{"additionalClassifications": [auction['items'][0]["classification"]]}]}})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
+        #response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'items': [{"additionalClassifications": [auction['items'][0]["classification"]]}]}})
+        #self.assertEqual(response.status, '200 OK')
+        #self.assertEqual(response.content_type, 'application/json')
 
         response = self.app.patch_json('/auctions/{}'.format(
             auction['id']), {'data': {'enquiryPeriod': {'endDate': new_dateModified2}}})
@@ -1093,7 +1088,7 @@ class AuctionResourceTest(BaseWebTest):
             auction['id']), {'data': {'procurementMethodRationale': 'Open'}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertNotEqual(response.json['data']['dateModified'], dateModified)
+        self.assertEqual(response.json['data']['dateModified'], dateModified)
         auction = response.json['data']
         dateModified = auction['dateModified']
 
