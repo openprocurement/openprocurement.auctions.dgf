@@ -256,6 +256,8 @@ After the competitive auction two `awards` are created:
   :code:
 
 
+.. _Confirming_qualification:
+
 Confirming qualification
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -280,7 +282,8 @@ Within **10 business days after becoming candidate** this candidate must provide
 .. include:: tutorial/confirm-qualification.http
   :code:
 
-
+.. _Candidate_disqualification:
+  
 Disqualification of candidate
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -302,6 +305,7 @@ And disqualify candidate:
 
 Within 15 business days since becoming candidate a new candidate must confirm qualification with steps described above (:ref:`Qualification`).
 
+.. _Waiting_refusal:
 
 Refusal of waiting by another participant
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
