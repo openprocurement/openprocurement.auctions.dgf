@@ -24,6 +24,7 @@ Contents:
    overview
    standard/index
    upload
+   award_workflow
    tutorial
    fintutorial
    2pc

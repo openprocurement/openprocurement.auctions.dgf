@@ -1,0 +1,87 @@
+#
+# greg <greg@quintagroup.com>, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: openprocurement.auctions.dgf 1.0.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-16 17:10+0200\n"
+"PO-Revision-Date: 2016-12-16 17:15+0200\n"
+"Last-Translator: greg <greg@quintagroup.com>\n"
+"Language-Team: English <support@quintagroup.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 2.0\n"
+
+msgid "Award Workflow"
+msgstr "Схема роботи кваліфікації"
+
+msgid "For a more detailed information see :ref:`award`"
+msgstr "Для більш детальної інформації зверніться до секції :ref:`award`"
+
+msgid ":ref:`Qualification`"
+msgstr ""
+
+msgid ":ref:`Confirming_qualification`"
+msgstr ""
+
+msgid ":ref:`Candidate_disqualification`"
+msgstr ""
+
+msgid ":ref:`Waiting_refusal`"
+msgstr ""
+
+msgid "digraph G {"
+msgstr ""
+
+msgid "subgraph cluster_0 {"
+msgstr ""
+
+msgid "label = \"award #2\"; node [style=filled]; edge[style=dashed];"
+msgstr ""
+
+msgid "\"pending.waiting\" -> cancel;"
+msgstr ""
+
+msgid "color=blue }"
+msgstr ""
+
+msgid "subgraph cluster_1 {"
+msgstr ""
+
+msgid "node [style=filled];"
+msgstr ""
+
+msgid ""
+"edge[label=\" 3d\"]; \"pending.verification\" -> unsuccessful; "
+"edge[label=\"5d**\"]; active -> unsuccessful; edge[label=\" 3d*\"];"
+msgstr ""
+
+msgid "\"pending.verification\" -> \"pending.payment\";"
+msgstr ""
+
+msgid ""
+"edge[label=\"*\" style=dashed]; \"pending.verification\" ->"
+" \"pending.payment\""
+msgstr ""
+
+msgid "label = \"award #1\"; color=blue"
+msgstr ""
+
+msgid "} edge[style=dashed]; active -> unsuccessful; edge[label=\"***\"];"
+msgstr ""
+
+msgid "\"pending.waiting\" -> \"pending.verification\";"
+msgstr ""
+
+msgid ""
+"edge[label=\"7d\" style=solid]; \"pending.payment\" -> unsuccessful; "
+"edge[label=\"*\" style=dashed]; \"pending.verification\" -> unsuccessful; "
+"edge[style=dashed]; \"pending.payment\" -> active;"
+msgstr ""
+
+msgid "}"
+msgstr ""
+
