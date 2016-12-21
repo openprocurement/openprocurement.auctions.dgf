@@ -268,6 +268,15 @@ msgstr ""
 #~ "даних. Містить інформацію про те де і коли певний документ можна переглянути"
 #~ " вживу."
 
+msgid "`x_dgfPlatformLegalDetails` - **Platform Legal Details**"
+msgstr "`x_dgfPlatformLegalDetails` - **Юридична Інформація Майданчиків**"
+
+msgid ""
+"Place and application forms for participation in the auction as well as bank"
+" details for transferring guarantee deposits."
+msgstr ""
+"Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для"
+" зарахування гарантійних внесків."
 
 #~ msgid "`biddingDocuments` - **Bidding Documents**"
 #~ msgstr "`biddingDocuments` - **Документи закупівлі**"

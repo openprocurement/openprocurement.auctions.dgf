@@ -60,6 +60,10 @@ Schema
 
       Goods examination procedure rules / Asset familiarization procedure in data room. Contains information on where and when a given document can be examined offline.
 
+    * `x_dgfPlatformLegalDetails` - **Platform Legal Details**
+
+      Place and application forms for participation in the auction as well as bank details for transferring guarantee deposits.
+
     Possible values for :ref:`award`
 
 

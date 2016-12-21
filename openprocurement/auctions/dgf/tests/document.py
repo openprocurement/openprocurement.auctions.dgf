@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import unittest
 from email.header import Header
+from openprocurement.api.models import get_now
+from openprocurement.auctions.dgf.models import DGF_PLATFORM_LEGAL_DETAILS_FROM
 from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest,  test_financial_auction_data
 
 
@@ -78,7 +80,7 @@ class AuctionDocumentResourceTest(BaseAuctionWebTest):
         response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(response.json, {"data": []})
+        self.assertEqual(len(response.json['data']), 1)
 
         response = self.app.post('/auctions/{}/documents'.format(
             self.auction_id), upload_files=[('file', u'укр.doc', 'content')])
@@ -103,8 +105,8 @@ class AuctionDocumentResourceTest(BaseAuctionWebTest):
         response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(doc_id, response.json["data"][0]["id"])
-        self.assertEqual(u'укр.doc', response.json["data"][0]["title"])
+        self.assertEqual(doc_id, response.json["data"][-1]["id"])
+        self.assertEqual(u'укр.doc', response.json["data"][-1]["title"])
 
         response = self.app.get('/auctions/{}/documents/{}?download=some_id'.format(
             self.auction_id, doc_id), status=404)
@@ -245,8 +247,8 @@ class AuctionDocumentResourceTest(BaseAuctionWebTest):
         response = self.app.get('/auctions/{}/documents?all=true'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(dateModified, response.json["data"][0]['dateModified'])
-        self.assertEqual(dateModified2, response.json["data"][1]['dateModified'])
+        self.assertEqual(dateModified, response.json["data"][-2]['dateModified'])
+        self.assertEqual(dateModified2, response.json["data"][-1]['dateModified'])
 
         response = self.app.post('/auctions/{}/documents'.format(
             self.auction_id), upload_files=[('file', 'name.doc', 'content')])
@@ -259,8 +261,8 @@ class AuctionDocumentResourceTest(BaseAuctionWebTest):
         response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(dateModified2, response.json["data"][0]['dateModified'])
-        self.assertEqual(dateModified, response.json["data"][1]['dateModified'])
+        self.assertEqual(dateModified2, response.json["data"][-2]['dateModified'])
+        self.assertEqual(dateModified, response.json["data"][-1]['dateModified'])
 
         response = self.app.put('/auctions/{}/documents/{}'.format(self.auction_id, doc_id), status=404, upload_files=[
                                 ('invalid_name', 'name.doc', 'content')])
@@ -315,6 +317,25 @@ class AuctionDocumentResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.auction) auction status")
 
     def test_patch_auction_document(self):
+        if get_now() > DGF_PLATFORM_LEGAL_DETAILS_FROM:
+            response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
+            self.assertEqual(response.status, '200 OK')
+            self.assertEqual(response.content_type, 'application/json')
+            self.assertEqual(u'Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків', response.json["data"][0]["title"])
+            self.assertEqual('x_dgfPlatformLegalDetails', response.json["data"][0]["documentType"])
+            doc_id = response.json["data"][0]['id']
+
+            response = self.app.patch_json('/auctions/{}/documents/{}'.format(self.auction_id, doc_id), {"data": {
+                'format': 'application/msword',
+                "documentType": 'auctionNotice'
+            }}, status=422)
+            self.assertEqual(response.status, '422 Unprocessable Entity')
+            self.assertEqual(response.content_type, 'application/json')
+            self.assertEqual(response.json['status'], 'error')
+            self.assertEqual(response.json['errors'], [
+                {u'description': [u'First document should be document with x_dgfPlatformLegalDetails documentType'], u'location': u'body', u'name': u'documents'}
+            ])
+
         response = self.app.post('/auctions/{}/documents'.format(
             self.auction_id), upload_files=[('file', str(Header(u'укр.doc', 'utf-8')), 'content')])
         self.assertEqual(response.status, '201 Created')
@@ -548,8 +569,8 @@ class AuctionDocumentWithDSResourceTest(AuctionDocumentResourceTest):
         response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(doc_id, response.json["data"][0]["id"])
-        self.assertEqual(u'укр.doc', response.json["data"][0]["title"])
+        self.assertEqual(doc_id, response.json["data"][-1]["id"])
+        self.assertEqual(u'укр.doc', response.json["data"][-1]["title"])
 
         response = self.app.get('/auctions/{}/documents/{}?download=some_id'.format(
             self.auction_id, doc_id), status=404)
@@ -646,8 +667,8 @@ class AuctionDocumentWithDSResourceTest(AuctionDocumentResourceTest):
         response = self.app.get('/auctions/{}/documents?all=true'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(dateModified, response.json["data"][0]['dateModified'])
-        self.assertEqual(dateModified2, response.json["data"][1]['dateModified'])
+        self.assertEqual(dateModified, response.json["data"][-2]['dateModified'])
+        self.assertEqual(dateModified2, response.json["data"][-1]['dateModified'])
 
         response = self.app.post_json('/auctions/{}/documents'.format(self.auction_id, doc_id),
             {'data': {
@@ -665,8 +686,8 @@ class AuctionDocumentWithDSResourceTest(AuctionDocumentResourceTest):
         response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(dateModified2, response.json["data"][0]['dateModified'])
-        self.assertEqual(dateModified, response.json["data"][1]['dateModified'])
+        self.assertEqual(dateModified2, response.json["data"][-2]['dateModified'])
+        self.assertEqual(dateModified, response.json["data"][-1]['dateModified'])
 
         response = self.app.put_json('/auctions/{}/documents/{}'.format(self.auction_id, doc_id),
             {'data': {
@@ -993,8 +1014,8 @@ class AuctionDocumentWithDSResourceTest(AuctionDocumentResourceTest):
         response = self.app.get('/auctions/{}/documents?all=true'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(dateModified, response.json["data"][0]['dateModified'])
-        self.assertEqual(dateModified2, response.json["data"][1]['dateModified'])
+        self.assertEqual(dateModified, response.json["data"][1]['dateModified'])
+        self.assertEqual(dateModified2, response.json["data"][2]['dateModified'])
 
         response = self.app.post_json('/auctions/{}/documents'.format(self.auction_id),
             {'data': {
@@ -1011,8 +1032,8 @@ class AuctionDocumentWithDSResourceTest(AuctionDocumentResourceTest):
         response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(dateModified2, response.json["data"][0]['dateModified'])
-        self.assertEqual(dateModified, response.json["data"][1]['dateModified'])
+        self.assertEqual(dateModified2, response.json["data"][1]['dateModified'])
+        self.assertEqual(dateModified, response.json["data"][2]['dateModified'])
 
         response = self.app.put_json('/auctions/{}/documents/{}'.format(self.auction_id, doc_id),
             {'data': {
@@ -1193,8 +1214,8 @@ class FinancialAuctionDocumentWithDSResourceTest(AuctionDocumentWithDSResourceTe
         response = self.app.get('/auctions/{}/documents?all=true'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(dateModified, response.json["data"][0]['dateModified'])
-        self.assertEqual(dateModified2, response.json["data"][1]['dateModified'])
+        self.assertEqual(dateModified, response.json["data"][-2]['dateModified'])
+        self.assertEqual(dateModified2, response.json["data"][-1]['dateModified'])
 
         vdr_url = 'http://virtial-data-room.com/new_new_id_of_room'
         response = self.app.post_json('/auctions/{}/documents'.format(self.auction_id),
@@ -1212,8 +1233,8 @@ class FinancialAuctionDocumentWithDSResourceTest(AuctionDocumentWithDSResourceTe
         response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(dateModified2, response.json["data"][0]['dateModified'])
-        self.assertEqual(dateModified, response.json["data"][1]['dateModified'])
+        self.assertEqual(dateModified2, response.json["data"][-2]['dateModified'])
+        self.assertEqual(dateModified, response.json["data"][-1]['dateModified'])
 
         vdr_url = 'http://virtial-data-room.com/new_new_new_id_of_room'
         response = self.app.put_json('/auctions/{}/documents/{}'.format(self.auction_id, doc_id),
