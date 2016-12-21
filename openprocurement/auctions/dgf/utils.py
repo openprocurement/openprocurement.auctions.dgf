@@ -10,6 +10,7 @@ from openprocurement.auctions.core.utils import (
     cleanup_bids_for_cancelled_lots, check_complaint_status,
     check_auction_status, remove_draft_bids,
 )
+from openprocurement.auctions.dgf.models import DOCUMENT_TYPE_URL_ONLY
 
 PKG = get_distribution(__package__)
 LOGGER = getLogger(PKG.project_name)
@@ -19,7 +20,7 @@ def upload_file(request, blacklisted_fields=DOCUMENT_BLACKLISTED_FIELDS):
     first_document = request.validated['documents'][0] if 'documents' in request.validated and request.validated['documents'] else None
     if 'data' in request.validated and request.validated['data']:
         document = request.validated['document']
-        if document.documentType == 'virtualDataRoom':
+        if document.documentType in DOCUMENT_TYPE_URL_ONLY:
             if first_document:
                 for attr_name in type(first_document)._fields:
                     if attr_name not in blacklisted_fields:
@@ -30,7 +31,7 @@ def upload_file(request, blacklisted_fields=DOCUMENT_BLACKLISTED_FIELDS):
 
 def get_file(request):
     document = request.validated['document']
-    if document.documentType == 'virtualDataRoom':
+    if document.documentType in DOCUMENT_TYPE_URL_ONLY:
         request.response.status = '302 Moved Temporarily'
         request.response.location = document.url
         return document.url
