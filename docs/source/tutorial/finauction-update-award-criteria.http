@@ -1,4 +1,4 @@
-PUT /api/2.3/auctions/337baa20c5dc443d9a99bf1e4209a307/documents/d18c91731ef74d919364572cd84bf8aa?acc_token=00d4705d5dce4abcbdb61ddd4bd558a4 HTTP/1.0
+PUT /api/2.3/auctions/e863584e9dbb4c9caac9df3fddd8443e/documents/a2eb1d9cd4624f9da1a34d68b702c635?acc_token=211843d9782f45c1a63e0178c3121218 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 336
 Content-Type: application/json
@@ -6,7 +6,7 @@ Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/146974db85f94e29986188bc9ae333db?KeyID=25ad1763&Signature=Ov8DtFL4v4RM1vth14sJMwAwFneKYDvNw5Wzwbd5NfAsMxWnlAqoxxMgniTWScR1oy17QLu04N%2B6KZehlSHaAg%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/766347d8ef0a4947a769d153563d4314?KeyID=a9c86d93&Signature=CKGoerLLSYgjFT2jIEsb5MTxS8L25sPdbJ2f1k%2BhjOjrEqd0MJRIzK3iXdlDqcd9iMmjNpboDwRkrnYVuDsPAA%3D%3D", 
     "title": "AwardCriteria-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -21,12 +21,12 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/146974db85f94e29986188bc9ae333db?KeyID=25ad1763&Signature=3FWqK3P5VTlT1iN4x69yhLC4LgG3T8URg4cV9Q%252BBAgVeLx%252BGOT0QAX%252BJGKCssI7%2FMfn5DrpXG290eUP8KNzgCA%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/766347d8ef0a4947a769d153563d4314?KeyID=a9c86d93&Signature=DdI8cZviAIOhHa5tk3QXg93o8tbVDUpGXslAKaSNPTNK5i4PE%2FJwY1iBhceJz0YkxYY6YRHvBwumgbSDumwjBw%253D%253D", 
     "title": "AwardCriteria-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-09-20T17:01:05.705251+03:00", 
-    "dateModified": "2016-09-20T17:01:05.764084+03:00", 
-    "id": "d18c91731ef74d919364572cd84bf8aa"
+    "datePublished": "2016-12-02T18:39:08.551049+02:00", 
+    "dateModified": "2016-12-02T18:39:08.609393+02:00", 
+    "id": "a2eb1d9cd4624f9da1a34d68b702c635"
   }
 }
 

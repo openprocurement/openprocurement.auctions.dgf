@@ -5,6 +5,8 @@ from schematics.types.compound import ModelType
 from schematics.exceptions import ValidationError
 from schematics.transforms import blacklist, whitelist
 from schematics.types.serializable import serializable
+from urlparse import urlparse, parse_qs
+from string import hexdigits
 from zope.interface import implementer
 from openprocurement.api.models import (
     BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
@@ -39,6 +41,7 @@ CAV_CODES = read_json('cav.json')
 ORA_CODES = ORA_CODES[:]
 ORA_CODES[0:0] = ["UA-IPN", "UA-FIN"]
 DOCUMENT_TYPE_URL_ONLY = ['virtualDataRoom', 'x_dgfPublicAssetCertificate']
+DOCUMENT_TYPE_OFFLINE = ['x_dgfAssetFamiliarization']
 
 DGF_ID_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
 DGF_DECISION_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
@@ -78,7 +81,9 @@ class ProcuringEntity(BaseProcuringEntity):
 
 class Document(BaseDocument):
     format = StringType(regex='^[-\w]+/[-\.\w\+]+$')
+    url = StringType()
     index = IntType()
+    accessDetails = StringType()
     documentType = StringType(choices=[
         'auctionNotice', 'awardNotice', 'contractNotice',
         'notice', 'biddingDocuments', 'technicalSpecifications',
@@ -90,22 +95,64 @@ class Document(BaseDocument):
         'eligibilityCriteria', 'contractProforma', 'commercialProposal',
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
         'illustration', 'auctionProtocol', 'x_dgfPublicAssetCertificate',
-        'x_presentation', 'x_nda',
+        'x_presentation', 'x_nda', 'x_dgfAssetFamiliarization',
     ])
 
+    @serializable(serialized_name="url", serialize_when_none=False)
+    def download_url(self):
+        url = self.url
+        if not url or '?download=' not in url:
+            return url
+        doc_id = parse_qs(urlparse(url).query)['download'][-1]
+        root = self.__parent__
+        parents = []
+        while root.__parent__ is not None:
+            parents[0:0] = [root]
+            root = root.__parent__
+        request = root.request
+        if not request.registry.docservice_url:
+            return url
+        if 'status' in parents[0] and parents[0].status in type(parents[0])._options.roles:
+            role = parents[0].status
+            for index, obj in enumerate(parents):
+                if obj.id != url.split('/')[(index - len(parents)) * 2 - 1]:
+                    break
+                field = url.split('/')[(index - len(parents)) * 2]
+                if "_" in field:
+                    field = field[0] + field.title().replace("_", "")[1:]
+                roles = type(obj)._options.roles
+                if roles[role if role in roles else 'default'](field, []):
+                    return url
+        from openprocurement.api.utils import generate_docservice_url
+        if not self.hash:
+            path = [i for i in urlparse(url).path.split('/') if len(i) == 32 and not set(i).difference(hexdigits)]
+            return generate_docservice_url(request, doc_id, False, '{}/{}'.format(path[0], path[-1]))
+        return generate_docservice_url(request, doc_id, False)
+
     def validate_hash(self, data, hash_):
-        if data.get('documentType') in DOCUMENT_TYPE_URL_ONLY and hash_:
+        doc_type = data.get('documentType')
+        if doc_type in (DOCUMENT_TYPE_URL_ONLY + DOCUMENT_TYPE_OFFLINE) and hash_:
             raise ValidationError(u'This field is not required.')
 
     def validate_format(self, data, format_):
-        if data.get('documentType') not in DOCUMENT_TYPE_URL_ONLY and not format_:
+        doc_type = data.get('documentType')
+        if doc_type not in (DOCUMENT_TYPE_URL_ONLY + DOCUMENT_TYPE_OFFLINE) and not format_:
             raise ValidationError(u'This field is required.')
-        if data.get('documentType') in DOCUMENT_TYPE_URL_ONLY and format_:
+        if doc_type in DOCUMENT_TYPE_URL_ONLY and format_:
             raise ValidationError(u'This field is not required.')
 
     def validate_url(self, data, url):
-        if data.get('documentType') in DOCUMENT_TYPE_URL_ONLY:
+        doc_type = data.get('documentType')
+        if doc_type in DOCUMENT_TYPE_URL_ONLY:
             URLType().validate(url)
+        if doc_type in DOCUMENT_TYPE_OFFLINE and url:
+            raise ValidationError(u'This field is not required.')
+        if doc_type not in DOCUMENT_TYPE_OFFLINE and not url:
+            raise ValidationError(u'This field is required.')
+
+    def validate_accessDetails(self, data, accessDetails):
+        if data.get('documentType') in DOCUMENT_TYPE_OFFLINE and not accessDetails:
+            raise ValidationError(u'This field is required.')
 
 
 class Bid(BaseBid):
@@ -358,7 +405,7 @@ class Document(Document):
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
         'illustration', 'financialLicense', 'virtualDataRoom',
         'auctionProtocol', 'x_dgfPublicAssetCertificate',
-        'x_presentation', 'x_nda',
+        'x_presentation', 'x_nda', 'x_dgfAssetFamiliarization',
     ])
 
 

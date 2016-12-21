@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/0d788da874814db38bc3f67ef6f57a8b?acc_token=3fb0279810984ff7b463b5ef6c07f04f HTTP/1.0
+PATCH /api/2.3/auctions/fd2836042da3470fba3c7aa3edebaa94?acc_token=4d8f8ce7cb75449ca654d2f83a4471d2 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 75
 Content-Type: application/json
@@ -7,7 +7,7 @@ Host: api-sandbox.ea.openprocurement.org
 {
   "data": {
     "tenderPeriod": {
-      "endDate": "2016-10-05T17:01:17.367506+03:00"
+      "endDate": "2016-12-17T18:39:20.727418+02:00"
     }
   }
 }
@@ -19,10 +19,10 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-09-20-000001", 
+    "auctionID": "UA-EA-2016-12-02-000001", 
     "tenderPeriod": {
-      "startDate": "2016-09-20T17:01:07.050948+03:00", 
-      "endDate": "2016-10-03T17:00:59.276088+03:00"
+      "startDate": "2016-12-02T18:39:10.425688+02:00", 
+      "endDate": "2016-12-15T23:59:50+02:00"
     }, 
     "title": "футляри до державних нагород", 
     "minimalStep": {
@@ -30,9 +30,8 @@ Content-Type: application/json; charset=UTF-8
       "amount": 35.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "enquiryPeriod": {
-      "startDate": "2016-09-20T17:01:07.050948+03:00", 
-      "endDate": "2016-10-03T17:00:59.276088+03:00"
+    "auctionPeriod": {
+      "shouldStartAfter": "2016-12-16T00:00:00+02:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "value": {
@@ -41,15 +40,36 @@ Content-Type: application/json; charset=UTF-8
       "valueAddedTaxIncluded": true
     }, 
     "submissionMethod": "electronicAuction", 
-    "date": "2016-09-20T17:01:07.050948+03:00", 
-    "dateModified": "2016-09-20T17:01:07.054998+03:00", 
-    "status": "active.tendering", 
-    "awardCriteria": "lowestCost", 
-    "auctionPeriod": {
-      "shouldStartAfter": "2016-10-04T00:00:00+03:00"
+    "enquiryPeriod": {
+      "startDate": "2016-12-02T18:39:10.425688+02:00", 
+      "endDate": "2016-12-15T23:59:50+02:00"
     }, 
+    "date": "2016-12-02T18:39:10.425688+02:00", 
+    "dateModified": "2016-12-02T18:39:10.429470+02:00", 
+    "status": "active.tendering", 
+    "procuringEntity": {
+      "contactPoint": {
+        "name": "Державне управління справами", 
+        "telephone": "0440000000"
+      }, 
+      "identifier": {
+        "scheme": "UA-EDR", 
+        "id": "00037256", 
+        "uri": "http://www.dus.gov.ua/"
+      }, 
+      "name": "Державне управління справами", 
+      "address": {
+        "postalCode": "01220", 
+        "countryName": "Україна", 
+        "streetAddress": "вул. Банкова, 11, корпус 1", 
+        "region": "м. Київ", 
+        "locality": "м. Київ"
+      }
+    }, 
+    "dgfID": "219560", 
+    "procurementMethodDetails": "quick, accelerator=1440", 
     "owner": "broker", 
-    "next_check": "2016-10-03T17:00:59.276088+03:00", 
+    "next_check": "2016-12-15T23:59:50+02:00", 
     "items": [
       {
         "description": "Земля для військовослужбовців", 
@@ -65,7 +85,7 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "86f1468b3acc40409963590c772aa25e", 
+        "id": "dd4e3b63276342239cace836b94f4b3c", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -73,27 +93,8 @@ Content-Type: application/json; charset=UTF-8
         "quantity": 5
       }
     ], 
-    "id": "0d788da874814db38bc3f67ef6f57a8b", 
-    "procuringEntity": {
-      "contactPoint": {
-        "name": "Державне управління справами", 
-        "telephone": "0440000000"
-      }, 
-      "identifier": {
-        "scheme": "UA-EDR", 
-        "id": "00037256", 
-        "uri": "http://www.dus.gov.ua/"
-      }, 
-      "name": "Державне управління справами", 
-      "kind": "general", 
-      "address": {
-        "postalCode": "01220", 
-        "countryName": "Україна", 
-        "streetAddress": "вул. Банкова, 11, корпус 1", 
-        "region": "м. Київ", 
-        "locality": "м. Київ"
-      }
-    }
+    "id": "fd2836042da3470fba3c7aa3edebaa94", 
+    "awardCriteria": "highestCost"
   }
 }
 

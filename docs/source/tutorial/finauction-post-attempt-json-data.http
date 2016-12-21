@@ -12,33 +12,15 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2016-10-04T17:00:59.276088"
+      "startDate": "2016-12-16"
     }, 
     "procurementMethodType": "dgfFinancialAssets", 
     "value": {
       "currency": "UAH", 
       "amount": 100
     }, 
-    "procuringEntity": {
-      "contactPoint": {
-        "name": "Державне управління справами", 
-        "telephone": "0440000000"
-      }, 
-      "identifier": {
-        "scheme": "UA-EDR", 
-        "id": "00037256", 
-        "uri": "http://www.dus.gov.ua/"
-      }, 
-      "name": "Державне управління справами", 
-      "kind": "general", 
-      "address": {
-        "countryName": "Україна", 
-        "postalCode": "01220", 
-        "region": "м. Київ", 
-        "streetAddress": "вул. Банкова, 11, корпус 1", 
-        "locality": "м. Київ"
-      }
-    }, 
+    "dgfID": "219560", 
+    "procurementMethodDetails": "quick, accelerator=1440", 
     "items": [
       {
         "classification": {
@@ -60,55 +42,90 @@ Host: api-sandbox.ea.openprocurement.org
           "locality": "м. Київ"
         }
       }
-    ]
+    ], 
+    "procuringEntity": {
+      "contactPoint": {
+        "name": "Державне управління справами", 
+        "telephone": "0440000000"
+      }, 
+      "identifier": {
+        "scheme": "UA-EDR", 
+        "id": "00037256", 
+        "uri": "http://www.dus.gov.ua/"
+      }, 
+      "name": "Державне управління справами", 
+      "address": {
+        "countryName": "Україна", 
+        "postalCode": "01220", 
+        "region": "м. Київ", 
+        "streetAddress": "вул. Банкова, 11, корпус 1", 
+        "locality": "м. Київ"
+      }
+    }
   }
 }
 
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/337baa20c5dc443d9a99bf1e4209a307
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/e863584e9dbb4c9caac9df3fddd8443e
 
 {
   "access": {
-    "token": "00d4705d5dce4abcbdb61ddd4bd558a4"
+    "token": "211843d9782f45c1a63e0178c3121218"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-09-20-000001", 
-    "tenderPeriod": {
-      "startDate": "2016-09-20T17:01:05.487584+03:00", 
-      "endDate": "2016-10-03T17:00:59.276088+03:00"
+    "auctionID": "UA-EA-2016-12-02-000001", 
+    "enquiryPeriod": {
+      "startDate": "2016-12-02T18:39:08.293152+02:00", 
+      "endDate": "2016-12-15T23:59:50+02:00"
     }, 
+    "submissionMethod": "electronicAuction", 
+    "next_check": "2016-12-15T23:59:50+02:00", 
+    "procuringEntity": {
+      "contactPoint": {
+        "name": "Державне управління справами", 
+        "telephone": "0440000000"
+      }, 
+      "identifier": {
+        "scheme": "UA-EDR", 
+        "id": "00037256", 
+        "uri": "http://www.dus.gov.ua/"
+      }, 
+      "name": "Державне управління справами", 
+      "address": {
+        "postalCode": "01220", 
+        "countryName": "Україна", 
+        "streetAddress": "вул. Банкова, 11, корпус 1", 
+        "region": "м. Київ", 
+        "locality": "м. Київ"
+      }
+    }, 
+    "owner": "broker", 
+    "id": "e863584e9dbb4c9caac9df3fddd8443e", 
+    "eligibilityCriteria_ru": "К участию допускаются только лицензированные финансовые учреждения.", 
     "title": "футляри до державних нагород", 
+    "eligibilityCriteria_en": "Only licensed financial institutions are eligible to participate.", 
+    "procurementMethodDetails": "quick, accelerator=1440", 
+    "dateModified": "2016-12-02T18:39:08.296295+02:00", 
+    "status": "active.tendering", 
+    "eligibilityCriteria": "До участі допускаються лише ліцензовані фінансові установи.", 
+    "tenderPeriod": {
+      "startDate": "2016-12-02T18:39:08.293152+02:00", 
+      "endDate": "2016-12-15T23:59:50+02:00"
+    }, 
+    "auctionPeriod": {
+      "shouldStartAfter": "2016-12-16T00:00:00+02:00"
+    }, 
+    "procurementMethodType": "dgfFinancialAssets", 
+    "dgfID": "219560", 
+    "date": "2016-12-02T18:39:08.293152+02:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "enquiryPeriod": {
-      "startDate": "2016-09-20T17:01:05.487584+03:00", 
-      "endDate": "2016-10-03T17:00:59.276088+03:00"
-    }, 
-    "procurementMethodType": "dgfFinancialAssets", 
-    "value": {
-      "currency": "UAH", 
-      "amount": 100.0, 
-      "valueAddedTaxIncluded": true
-    }, 
-    "submissionMethod": "electronicAuction", 
-    "date": "2016-09-20T17:01:05.487584+03:00", 
-    "dateModified": "2016-09-20T17:01:05.491451+03:00", 
-    "status": "active.tendering", 
-    "eligibilityCriteria": "До участі допускаються лише ліцензовані фінансові установи.", 
-    "eligibilityCriteria_en": "Only licensed financial institutions are eligible to participate.", 
-    "eligibilityCriteria_ru": "К участию допускаются только лицензированные финансовые учреждения.", 
-    "awardCriteria": "lowestCost", 
-    "auctionPeriod": {
-      "shouldStartAfter": "2016-10-04T00:00:00+03:00"
-    }, 
-    "owner": "broker", 
-    "next_check": "2016-10-03T17:00:59.276088+03:00", 
     "items": [
       {
         "description": "Земля для військовослужбовців", 
@@ -124,7 +141,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/337baa20c5d
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "b3a21391e909494fa63dacd23b42c565", 
+        "id": "71cbede8874c41a68a17fdc8fbc8c2b5", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -132,27 +149,12 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/337baa20c5d
         "quantity": 5
       }
     ], 
-    "id": "337baa20c5dc443d9a99bf1e4209a307", 
-    "procuringEntity": {
-      "contactPoint": {
-        "name": "Державне управління справами", 
-        "telephone": "0440000000"
-      }, 
-      "identifier": {
-        "scheme": "UA-EDR", 
-        "id": "00037256", 
-        "uri": "http://www.dus.gov.ua/"
-      }, 
-      "name": "Державне управління справами", 
-      "kind": "general", 
-      "address": {
-        "postalCode": "01220", 
-        "countryName": "Україна", 
-        "streetAddress": "вул. Банкова, 11, корпус 1", 
-        "region": "м. Київ", 
-        "locality": "м. Київ"
-      }
-    }
+    "value": {
+      "currency": "UAH", 
+      "amount": 100.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "awardCriteria": "highestCost"
   }
 }
 
