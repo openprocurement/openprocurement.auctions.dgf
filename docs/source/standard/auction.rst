@@ -195,3 +195,13 @@ Schema
    List of :ref:`revision` objects, auto-generated
 
    Historical changes to `Auction` object properties.
+   
+:dgfDecisionDate:
+   :ref:`Date` 
+   
+   Date of the Decision of the executive board of Deposit Guarantee Fund, assets sales committee on terms of sale.
+   
+:dgfDecisionID:
+   string
+   
+   Number of the Decision of the executive board of Deposit Guarantee Fund, assets sales committee on terms of sale.
