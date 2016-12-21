@@ -1,12 +1,12 @@
-POST /api/2.3/auctions/fd2836042da3470fba3c7aa3edebaa94/bids/c01658c0573344a6967e21dd70afed54/documents?acc_token=414745d2544e4aa8898379bb35e6c8f1 HTTP/1.0
+POST /api/2.3/auctions/f67956e32a634f98a9ab9ad7c2b84e02/bids/4c19cb156bed4cc88ca975f03cdb9c76/documents?acc_token=88fb3579e97e45fbb66e77a42b2437a1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 383
+Content-Length: 377
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/d3da133d717b4207806a4dfb5b8ca0db?KeyID=e63adf10&Signature=5Wbo4dGf%2BRPD4IXI86VlXcD1QLWCyN7jHoWrs5lhK%2BNaeiQ59qyPZyY1W6AoQ48IFC7RCy4y6t2%2FQfvPXt%2F7Cg%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/943b2ef90e674ba1b192c5665283fe99?KeyID=7a220e8f&Signature=WmGevJeXwyqYP1MVyWR%2BURJTUehhyn0i4mthHw7xumIjo2hCLBipws5mYJTCfH3dJ2wiLd2lRYSKDYhmcWRFCg%3D%3D", 
     "title": "SignedAuctionProtocol.pdf", 
     "format": "application/pdf", 
     "hash": "md5:00000000000000000000000000000000", 
@@ -17,19 +17,19 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/fd2836042da3470fba3c7aa3edebaa94/bids/c01658c0573344a6967e21dd70afed54/documents/69b77df9a6684e0d8de7c861b4a65abe
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/f67956e32a634f98a9ab9ad7c2b84e02/bids/4c19cb156bed4cc88ca975f03cdb9c76/documents/8223d22cdda54b6c9fa080441ef9c80d
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/d3da133d717b4207806a4dfb5b8ca0db?KeyID=e63adf10&Signature=3XJwW6wmcZXCnwKSnTsFU9%252Bj%252Be2h86NxKjI4twxAycwiczpoDW7ueVyIhYZwtVzQzNI411lXuIi7%252Bc7PcubNAA%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/943b2ef90e674ba1b192c5665283fe99?KeyID=7a220e8f&Signature=8u%252Ba1jGsWZXY68ybVtcq5F2nSI0c9ddFnU7%2FFx%2F43hIgG%2Fk2ebh3kR7fcUXMelrZpndPCbKi5TplUQu4qLaICg%253D%253D", 
     "title": "SignedAuctionProtocol.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-12-02T18:39:12.727025+02:00", 
+    "datePublished": "2016-12-21T19:57:59.884464+02:00", 
     "documentType": "auctionProtocol", 
-    "dateModified": "2016-12-02T18:39:12.727535+02:00", 
-    "id": "69b77df9a6684e0d8de7c861b4a65abe"
+    "dateModified": "2016-12-21T19:57:59.884490+02:00", 
+    "id": "8223d22cdda54b6c9fa080441ef9c80d"
   }
 }
 

@@ -1,12 +1,12 @@
-PUT /api/2.3/auctions/e863584e9dbb4c9caac9df3fddd8443e/documents/a2eb1d9cd4624f9da1a34d68b702c635?acc_token=211843d9782f45c1a63e0178c3121218 HTTP/1.0
+PUT /api/2.3/auctions/e8b7de8b343844e0bb0b5d9e61256e1a/documents/82267c959ab846e0b48366460351707d?acc_token=da252edbbc9442d4b6cfb8b5e920fc50 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 336
+Content-Length: 342
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/766347d8ef0a4947a769d153563d4314?KeyID=a9c86d93&Signature=CKGoerLLSYgjFT2jIEsb5MTxS8L25sPdbJ2f1k%2BhjOjrEqd0MJRIzK3iXdlDqcd9iMmjNpboDwRkrnYVuDsPAA%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/adb46d2f579d4403b567a8ec1412734f?KeyID=58509a4a&Signature=B8huwom8IabMnfrUmtSAFxTrKTEbj0s5lwrkWUA9nU%2Fy%2B8H7r6ZI679WBmW8vPCx3HmeX4k%2Bj0dG2FK1%2Bne6Bg%3D%3D", 
     "title": "AwardCriteria-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -21,12 +21,12 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/766347d8ef0a4947a769d153563d4314?KeyID=a9c86d93&Signature=DdI8cZviAIOhHa5tk3QXg93o8tbVDUpGXslAKaSNPTNK5i4PE%2FJwY1iBhceJz0YkxYY6YRHvBwumgbSDumwjBw%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/adb46d2f579d4403b567a8ec1412734f?KeyID=58509a4a&Signature=iUJAt37Ag1sGoHyKC1xIuo4McMfl6CfWYKfswaURyFCiZB7y7bk9YnPdq7f5K7hjcWcGG7NSflQI%2FVZoHE3QBw%253D%253D", 
     "title": "AwardCriteria-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-12-02T18:39:08.551049+02:00", 
-    "dateModified": "2016-12-02T18:39:08.609393+02:00", 
-    "id": "a2eb1d9cd4624f9da1a34d68b702c635"
+    "datePublished": "2016-12-21T19:57:56.553573+02:00", 
+    "dateModified": "2016-12-21T19:57:56.612272+02:00", 
+    "id": "82267c959ab846e0b48366460351707d"
   }
 }
 

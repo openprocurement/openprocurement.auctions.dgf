@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/fd2836042da3470fba3c7aa3edebaa94/awards/b0b402b9bb16451e9d3a212717812dc0?acc_token=4d8f8ce7cb75449ca654d2f83a4471d2 HTTP/1.0
+PATCH /api/2.3/auctions/f67956e32a634f98a9ab9ad7c2b84e02/awards/35871bdc40bf46d3ae2ec090dcd9badb?acc_token=5d03fcac4be247fdb9b9db02ff5dd4e4 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 30
 Content-Type: application/json
@@ -18,8 +18,8 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "status": "active", 
     "complaintPeriod": {
-      "startDate": "2016-12-02T18:39:12.602210+02:00", 
-      "endDate": "2016-12-02T18:39:12.912974+02:00"
+      "startDate": "2016-12-21T19:57:59.778995+02:00", 
+      "endDate": "2016-12-21T19:58:00.036807+02:00"
     }, 
     "suppliers": [
       {
@@ -43,14 +43,14 @@ Content-Type: application/json; charset=UTF-8
         }
       }
     ], 
-    "bid_id": "c01658c0573344a6967e21dd70afed54", 
+    "bid_id": "4c19cb156bed4cc88ca975f03cdb9c76", 
     "value": {
       "currency": "UAH", 
       "amount": 501.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2016-12-02T18:39:12.919891+02:00", 
-    "id": "b0b402b9bb16451e9d3a212717812dc0"
+    "date": "2016-12-21T19:58:00.044779+02:00", 
+    "id": "35871bdc40bf46d3ae2ec090dcd9badb"
   }
 }
 

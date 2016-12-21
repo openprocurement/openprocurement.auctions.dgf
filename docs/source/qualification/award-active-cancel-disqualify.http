@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/2d8e78cabae043838db7d364b71533a2/awards/a0d0ead108df49058e3789d5b3e59b94?acc_token=3525886d14aa4539a905a9866eba0af8 HTTP/1.0
+PATCH /api/2.3/auctions/83cfeb7141804609a5edcc700bef1ba2/awards/38c818341580494aaea7b79a627dd876?acc_token=cbfa815b2be643988519fbfa9bae51bc HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 146
 Content-Type: application/json
@@ -15,7 +15,7 @@ Host: api-sandbox.ea.openprocurement.org
 
 200 OK
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2d8e78cabae043838db7d364b71533a2/awards/cf86c571a9a94ed085f7c27a51675de3
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/83cfeb7141804609a5edcc700bef1ba2/awards/5cff30adb0c04485b60191aa749efc42
 
 {
   "data": {
@@ -25,18 +25,18 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2d8e78cabae
         "hash": "md5:00000000000000000000000000000000", 
         "description": "Disqualification reason", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/2639ea6f1a824fa2b4bd4fecb8929cc3?KeyID=b2c8b813&Signature=vQGtJhiOMZ8vCuP0CyxIfgpIPaB7Ys2%252BVIXNrlydsZalcR%2FMNj42cEqYtWp4vMy%2FoW75fpBTypjYcwH7XYFQBg%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/7ff79c00fb9a499193dcec45f7520db5?KeyID=d6e35c6f&Signature=aU%252BOpJP3pwMCShiTepteA%252BHwhUrnYY8k1Q8uQdZn78DV8avvDIBdC3PMRJc%2F9MWOKC6D8dFexTl%252BKlsToL22CA%253D%253D", 
         "title": "Disqualified_reason.pdf", 
         "documentOf": "tender", 
-        "datePublished": "2016-12-02T18:39:06.983849+02:00", 
-        "dateModified": "2016-12-02T18:39:06.983902+02:00", 
-        "id": "b2b16b7724644e898bdd4cd10416fcda"
+        "datePublished": "2016-12-21T19:57:55.128666+02:00", 
+        "dateModified": "2016-12-21T19:57:55.128701+02:00", 
+        "id": "f18bf4b2d47d48d19cf16f6ab176033c"
       }
     ], 
     "description": "Candidate didn’t sign the auction protocol in 3 business days", 
     "complaintPeriod": {
-      "startDate": "2016-12-02T18:39:06.812726+02:00", 
-      "endDate": "2016-12-02T18:39:07.141448+02:00"
+      "startDate": "2016-12-21T19:57:54.970672+02:00", 
+      "endDate": "2016-12-21T19:57:55.259862+02:00"
     }, 
     "suppliers": [
       {
@@ -61,14 +61,14 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2d8e78cabae
       }
     ], 
     "title": "Disqualified", 
-    "bid_id": "3758c27ffcc647bfa0becb45134cae8c", 
+    "bid_id": "f42f2b9b4122448cbdc199a9c387984b", 
     "value": {
       "currency": "UAH", 
       "amount": 475.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2016-12-02T18:39:07.151615+02:00", 
-    "id": "a0d0ead108df49058e3789d5b3e59b94"
+    "date": "2016-12-21T19:57:55.270432+02:00", 
+    "id": "38c818341580494aaea7b79a627dd876"
   }
 }
 

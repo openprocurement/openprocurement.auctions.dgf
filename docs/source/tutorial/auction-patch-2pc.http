@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/d2814df6cd1f42849b53ecd86c0dcb4f?acc_token=aa8da8f30d864adc8c915ea6a56553ba HTTP/1.0
+PATCH /api/2.3/auctions/c3be05c5840b451cbf9b8a18394bd727?acc_token=65e1d8c8a85b40eca15c4573ba36eef1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 40
 Content-Type: application/json
@@ -17,34 +17,77 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-12-02-000001", 
-    "tenderPeriod": {
-      "startDate": "2016-12-02T18:39:02.903025+02:00", 
-      "endDate": "2016-12-15T23:59:50+02:00"
+    "auctionID": "UA-EA-2016-12-21-000001", 
+    "enquiryPeriod": {
+      "startDate": "2016-12-21T19:57:52.110023+02:00", 
+      "endDate": "2017-01-03T23:59:50+02:00"
     }, 
+    "submissionMethod": "electronicAuction", 
+    "dgfDecisionDate": "2016-11-17", 
+    "next_check": "2017-01-03T23:59:50+02:00", 
+    "awardCriteria": "highestCost", 
+    "dgfDecisionID": "219560", 
+    "owner": "broker", 
+    "id": "c3be05c5840b451cbf9b8a18394bd727", 
+    "documents": [
+      {
+        "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
+        "url": "http://torgi.fg.gov.ua/prozorrosale", 
+        "documentOf": "tender", 
+        "datePublished": "2016-12-21T19:57:52.110429+02:00", 
+        "documentType": "x_dgfPlatformLegalDetails", 
+        "dateModified": "2016-12-21T19:57:52.110461+02:00", 
+        "id": "9525858235b64e74a7c63ab11426ff16"
+      }
+    ], 
     "title": "футляри до державних нагород", 
+    "tenderAttempts": 1, 
+    "procurementMethodDetails": "quick, accelerator=1440", 
+    "dateModified": "2016-12-21T19:57:52.159506+02:00", 
+    "status": "active.tendering", 
+    "tenderPeriod": {
+      "startDate": "2016-12-21T19:57:52.110023+02:00", 
+      "endDate": "2017-01-03T23:59:50+02:00"
+    }, 
+    "auctionPeriod": {
+      "shouldStartAfter": "2017-01-04T00:00:00+02:00"
+    }, 
+    "procurementMethodType": "dgfOtherAssets", 
+    "dgfID": "219560", 
+    "date": "2016-12-21T19:57:52.159506+02:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "auctionPeriod": {
-      "shouldStartAfter": "2016-12-16T00:00:00+02:00"
-    }, 
-    "procurementMethodType": "dgfOtherAssets", 
+    "items": [
+      {
+        "description": "Земля для військовослужбовців", 
+        "classification": {
+          "scheme": "CAV", 
+          "description": "Земельні ділянки", 
+          "id": "06000000-2"
+        }, 
+        "address": {
+          "postalCode": "79000", 
+          "countryName": "Україна", 
+          "streetAddress": "вул. Банкова 1", 
+          "region": "м. Київ", 
+          "locality": "м. Київ"
+        }, 
+        "id": "b2d383c7486a424d96e264047c49582b", 
+        "unit": {
+          "code": "44617100-9", 
+          "name": "item"
+        }, 
+        "quantity": 5
+      }
+    ], 
     "value": {
       "currency": "UAH", 
       "amount": 100.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "submissionMethod": "electronicAuction", 
-    "enquiryPeriod": {
-      "startDate": "2016-12-02T18:39:02.903025+02:00", 
-      "endDate": "2016-12-15T23:59:50+02:00"
-    }, 
-    "date": "2016-12-02T18:39:02.958954+02:00", 
-    "dateModified": "2016-12-02T18:39:02.958954+02:00", 
-    "status": "active.tendering", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 
@@ -63,36 +106,7 @@ Content-Type: application/json; charset=UTF-8
         "region": "м. Київ", 
         "locality": "м. Київ"
       }
-    }, 
-    "dgfID": "219560", 
-    "procurementMethodDetails": "quick, accelerator=1440", 
-    "owner": "broker", 
-    "next_check": "2016-12-15T23:59:50+02:00", 
-    "items": [
-      {
-        "description": "Земля для військовослужбовців", 
-        "classification": {
-          "scheme": "CAV", 
-          "description": "Земельні ділянки", 
-          "id": "06000000-2"
-        }, 
-        "address": {
-          "postalCode": "79000", 
-          "countryName": "Україна", 
-          "streetAddress": "вул. Банкова 1", 
-          "region": "м. Київ", 
-          "locality": "м. Київ"
-        }, 
-        "id": "b6659a2847714867b5a6865641611822", 
-        "unit": {
-          "code": "44617100-9", 
-          "name": "item"
-        }, 
-        "quantity": 5
-      }
-    ], 
-    "id": "d2814df6cd1f42849b53ecd86c0dcb4f", 
-    "awardCriteria": "highestCost"
+    }
   }
 }
 

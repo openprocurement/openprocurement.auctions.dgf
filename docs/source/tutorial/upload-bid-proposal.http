@@ -1,4 +1,4 @@
-POST /api/2.3/auctions/fd2836042da3470fba3c7aa3edebaa94/bids/9ebafdca97374152ba253bfce10bcc68/documents?acc_token=3f73f005e66f41879b480a7c4b5f6095 HTTP/1.0
+POST /api/2.3/auctions/f67956e32a634f98a9ab9ad7c2b84e02/bids/30b1d1b0f0a54b5a9b27d80505aadcbf/documents?acc_token=868306c3e6f94eebaa35451365e44bc1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 331
 Content-Type: application/json
@@ -6,7 +6,7 @@ Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/403a35f2a80a418fb95b4138d4036fe2?KeyID=e63adf10&Signature=NOfDukV7KTjTUr%2BoX7Yd%2FTg4uO6ZX1kBmLyLq93RtYJsSRn9Yu8ODhQ0ddyIrDTRkzS2lgtimR5n1VxGl3tuBA%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/3a21dc8996ce4907a97a93f1bbda083c?KeyID=7a220e8f&Signature=Ivi7cau6JSS4sgWl9IEPLqg4ZptZDznzEFcgMIUAiRljMc5jF0ecb0l%2BV2Ga6VquZ9ACyodBHR06gIX%2FzuMXBQ%3D%3D", 
     "title": "Proposal.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -16,18 +16,18 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/fd2836042da3470fba3c7aa3edebaa94/bids/9ebafdca97374152ba253bfce10bcc68/documents/7dd37b223ae94dd7adf9aed49cac60a0
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/f67956e32a634f98a9ab9ad7c2b84e02/bids/30b1d1b0f0a54b5a9b27d80505aadcbf/documents/b23852b79f3f40239bd9a403141b2482
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/fd2836042da3470fba3c7aa3edebaa94/bids/9ebafdca97374152ba253bfce10bcc68/documents/7dd37b223ae94dd7adf9aed49cac60a0?download=403a35f2a80a418fb95b4138d4036fe2", 
+    "url": "http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/f67956e32a634f98a9ab9ad7c2b84e02/bids/30b1d1b0f0a54b5a9b27d80505aadcbf/documents/b23852b79f3f40239bd9a403141b2482?download=3a21dc8996ce4907a97a93f1bbda083c", 
     "title": "Proposal.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-12-02T18:39:11.842246+02:00", 
-    "dateModified": "2016-12-02T18:39:11.842281+02:00", 
-    "id": "7dd37b223ae94dd7adf9aed49cac60a0"
+    "datePublished": "2016-12-21T19:57:59.099993+02:00", 
+    "dateModified": "2016-12-21T19:57:59.100020+02:00", 
+    "id": "b23852b79f3f40239bd9a403141b2482"
   }
 }
 

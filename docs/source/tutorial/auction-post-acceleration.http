@@ -1,6 +1,6 @@
 POST /api/2.3/auctions?opt_pretty=1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 2015
+Content-Length: 2096
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
@@ -12,8 +12,9 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2016-12-02T18:44:00.612207"
+      "startDate": "2016-12-21T20:02:50.354128"
     }, 
+    "tenderAttempts": 1, 
     "procurementMethodType": "dgfOtherAssets", 
     "value": {
       "currency": "UAH", 
@@ -39,7 +40,9 @@ Host: api-sandbox.ea.openprocurement.org
       }
     }, 
     "submissionMethodDetails": "quick", 
+    "dgfDecisionDate": "2016-11-17", 
     "mode": "test", 
+    "dgfDecisionID": "219560", 
     "procurementMethodDetails": "quick, accelerator=1440", 
     "items": [
       {
@@ -70,57 +73,53 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/cc4e9d1e6b0c42f58150bf1f52de8676
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/cf7e3a9893f641bbac90c4ad7f4a9ecf
 
 {
   "access": {
-    "token": "d31d8b099a084898b753c51501adc009"
+    "token": "51703970281a4120bfe692147f45b837"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-12-02-000001", 
+    "auctionID": "UA-EA-2016-12-21-000001", 
     "enquiryPeriod": {
-      "startDate": "2016-12-02T18:39:04.131909+02:00", 
-      "endDate": "2016-12-02T18:43:03.778448+02:00"
+      "startDate": "2016-12-21T19:57:53.013664+02:00", 
+      "endDate": "2016-12-21T20:01:50.235826+02:00"
     }, 
     "submissionMethod": "electronicAuction", 
-    "next_check": "2016-12-02T18:43:03.778448+02:00", 
-    "procuringEntity": {
-      "contactPoint": {
-        "name": "Державне управління справами", 
-        "telephone": "0440000000"
-      }, 
-      "identifier": {
-        "scheme": "UA-EDR", 
-        "id": "00037256", 
-        "uri": "http://www.dus.gov.ua/"
-      }, 
-      "name": "Державне управління справами", 
-      "address": {
-        "postalCode": "01220", 
-        "countryName": "Україна", 
-        "streetAddress": "вул. Банкова, 11, корпус 1", 
-        "region": "м. Київ", 
-        "locality": "м. Київ"
-      }
-    }, 
+    "dgfDecisionDate": "2016-11-17", 
+    "next_check": "2016-12-21T20:01:50.235826+02:00", 
+    "awardCriteria": "highestCost", 
+    "dgfDecisionID": "219560", 
     "owner": "broker", 
     "title_en": "[TESTING] ", 
-    "id": "cc4e9d1e6b0c42f58150bf1f52de8676", 
+    "id": "cf7e3a9893f641bbac90c4ad7f4a9ecf", 
+    "documents": [
+      {
+        "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
+        "url": "http://torgi.fg.gov.ua/prozorrosale", 
+        "documentOf": "tender", 
+        "datePublished": "2016-12-21T19:57:53.013986+02:00", 
+        "documentType": "x_dgfPlatformLegalDetails", 
+        "dateModified": "2016-12-21T19:57:53.014011+02:00", 
+        "id": "a407312d3c1d455fa46da814dc34fb33"
+      }
+    ], 
     "title": "[ТЕСТУВАННЯ] футляри до державних нагород", 
+    "tenderAttempts": 1, 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2016-12-02T18:39:04.135578+02:00", 
+    "dateModified": "2016-12-21T19:57:53.017430+02:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2016-12-02T18:39:04.131909+02:00", 
-      "endDate": "2016-12-02T18:43:03.778448+02:00"
+      "startDate": "2016-12-21T19:57:53.013664+02:00", 
+      "endDate": "2016-12-21T20:01:50.235826+02:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2016-12-02T18:43:03.778448+02:00"
+      "shouldStartAfter": "2016-12-21T20:01:50.235826+02:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "dgfID": "219560", 
-    "date": "2016-12-02T18:39:04.131909+02:00", 
+    "date": "2016-12-21T19:57:53.013664+02:00", 
     "submissionMethodDetails": "quick", 
     "items": [
       {
@@ -137,7 +136,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/cc4e9d1e6b0
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "4e0d58433d944dd599c170c6cce6db24", 
+        "id": "4229cbec213d4c8ab6f84b7908890745", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -157,7 +156,25 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/cc4e9d1e6b0
     }, 
     "mode": "test", 
     "title_ru": "[ТЕСТИРОВАНИЕ] ", 
-    "awardCriteria": "highestCost"
+    "procuringEntity": {
+      "contactPoint": {
+        "name": "Державне управління справами", 
+        "telephone": "0440000000"
+      }, 
+      "identifier": {
+        "scheme": "UA-EDR", 
+        "id": "00037256", 
+        "uri": "http://www.dus.gov.ua/"
+      }, 
+      "name": "Державне управління справами", 
+      "address": {
+        "postalCode": "01220", 
+        "countryName": "Україна", 
+        "streetAddress": "вул. Банкова, 11, корпус 1", 
+        "region": "м. Київ", 
+        "locality": "м. Київ"
+      }
+    }
   }
 }
 
