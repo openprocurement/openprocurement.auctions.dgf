@@ -44,7 +44,7 @@ DGF_PLATFORM_LEGAL_DETAILS = {
     'title': u'Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків',
     'documentType': 'x_dgfPlatformLegalDetails',
 }
-DGF_PLATFORM_LEGAL_DETAILS_FROM = datetime(2016, 11, 25, tzinfo=TZ)
+DGF_PLATFORM_LEGAL_DETAILS_FROM = datetime(2016, 12, 23, tzinfo=TZ)
 
 DGF_ID_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
 
