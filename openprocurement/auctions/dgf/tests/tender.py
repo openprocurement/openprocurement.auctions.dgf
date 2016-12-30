@@ -52,7 +52,7 @@ class AuctionTest(BaseWebTest):
 
     def test_edit_role(self):
         fields = set([
-            'features', 'hasEnquiries',
+            'features', 'hasEnquiries', 'items'
         ])
         if SANDBOX_MODE:
             fields.add('procurementMethodDetails')
