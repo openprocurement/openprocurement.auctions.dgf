@@ -658,6 +658,104 @@ class AuctionResourceTest(BaseWebTest):
         auction = response.json['data']
         self.assertEqual(auction['status'], 'active.tendering')
 
+    def test_create_auction_schema_properties(self):
+        """ Try create auction with schema properties """
+
+        data = self.initial_data.copy()
+        data['items'][0]['schema_properties'] = {
+            "code": "04120000-2",
+            "version": "latest",
+            "properties": {"total_area": 4,
+                           "number_of_rooms": -1,
+                           "number_of_kitchen": 7}
+        }
+        # Try create auction with bad properties
+        response = self.app.post_json('/auctions', {'data': data}, status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'], [
+            {
+                "location": "body",
+                "name": "items",
+                "description": [
+                    {
+                        "schema_properties": [
+                            "-1 is less than the minimum of 0"
+                        ]
+                    }
+                ]
+            }
+        ])
+
+        # Create valid auction and check field
+        data['items'][0]['schema_properties'] = {
+            "code": "04120000-2",
+            "version": "latest",
+            "properties": {"total_area": 4,
+                           "number_of_rooms": 4,
+                           "number_of_kitchen": 7}
+        }
+        response = self.app.post_json('/auctions', {'data': data})
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+
+        auction = response.json['data']
+        self.assertEqual(auction['items'][0]['schema_properties']["properties"],
+                         {"total_area": 4,
+                          "number_of_rooms": 4,
+                          "number_of_kitchen": 7})
+
+    def test_change_schema_properties(self):
+        """ Specify schema version """
+        data = self.initial_data.copy()
+        data['items'][0]['schema_properties'] = {
+            "code": "04122",
+            "version": "001",
+            "properties": {"total_area": 4,
+                           "number_of_rooms": 4,
+                           "number_of_kitchen": 7,
+                           "living_space": 100}
+        }
+        # Try create auction with bad properties
+        response = self.app.post_json('/auctions', {'data': data})
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+
+        auction = response.json['data']
+        self.assertEqual(auction['items'][0]['schema_properties']["properties"],
+                         {"total_area": 4,
+                          "number_of_rooms": 4,
+                          "number_of_kitchen": 7,
+                          "living_space": 100})
+
+        token = response.json['access']['token']
+
+        response = self.app.patch_json(
+            '/auctions/{}?acc_token={}'.format(auction['id'], token),
+            {"data": {
+                "items": [{
+                    'schema_properties': {
+                        "code": "04122",
+                        "version": "002",
+                        "properties": {
+                            "total_area": 4,
+                            "number_of_rooms": 4,
+                            "number_of_kitchen": 7,
+                            "number_of_doors": 2}
+                    }}]
+            }})
+        self.assertEqual(response.content_type, 'application/json')
+
+        auction = response.json['data']
+        self.assertEqual(
+            auction['items'][0]['schema_properties']["properties"],
+            {
+                "total_area": 4,
+                "number_of_rooms": 4,
+                "number_of_kitchen": 7,
+                "number_of_doors": 2
+            })
+
     def test_create_auction(self):
         response = self.app.get('/auctions')
         self.assertEqual(response.status, '200 OK')
