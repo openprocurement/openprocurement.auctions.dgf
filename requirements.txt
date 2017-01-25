@@ -49,3 +49,5 @@ git+https://github.com/openprocurement/rfc6266.git
 -e git+https://github.com/openprocurement/openprocurement.api.git@master#egg=openprocurement.api
 -e git+https://github.com/openprocurement/openprocurement.auctions.core.git@master#egg=openprocurement.auctions.core
 -e git+https://github.com/openprocurement/openprocurement.auctions.flash.git@master#egg=openprocurement.auctions.flash
+-e git+https://github.com/Krokop/schematics-flexible.git@master#egg=schematics-flexible
+-e git+https://github.com/Krokop/schemas_store.git@master#egg=schemas_store

@@ -76,6 +76,17 @@ test_auction_data = {
 }
 if SANDBOX_MODE:
     test_auction_data['procurementMethodDetails'] = 'quick, accelerator=1440'
+
+test_auction_data_with_schema = test_auction_data.copy()
+test_auction_data_with_schema['items'][0]['schema_properties'] = {
+    "code": "04122",
+    "version": "001",
+    "properties": {"total_area": 4,
+                   "number_of_rooms": 4,
+                   "number_of_kitchen": 7,
+                   "living_space": 100}
+ }
+
 test_features_auction_data = test_auction_data.copy()
 test_features_item = test_features_auction_data['items'][0].copy()
 test_features_item['id'] = "1"
@@ -207,6 +218,15 @@ for i in test_bids:
     bid['tenderers'] = [test_financial_organization]
     test_financial_bids.append(bid)
 
+test_financial_auction_data_with_schema = test_financial_auction_data = deepcopy(test_financial_auction_data)
+test_financial_auction_data_with_schema['items'][0]['schema_properties'] = {
+    "code": "04122",
+    "version": "001",
+    "properties": {"total_area": 4,
+                   "number_of_rooms": 4,
+                   "number_of_kitchen": 7,
+                   "living_space": 100}
+}
 
 class BaseWebTest(FlashBaseWebTest):
 
