@@ -25,16 +25,8 @@ from openprocurement.auctions.flash.models import (
     ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
     get_auction,
 )
-from schematics_flexible.schematics_flexible import _Flexible
+from schematics_flexible.schematics_flexible import Flexible as BaseFlexible
 from schemas_store.schemas_store import SchemaStore
-
-
-def get_config():
-    ini = os.environ['PYRAMID_SETTINGS']
-    config_file, section_name = ini.split('#', 1)
-    from paste.deploy.loadwsgi import appconfig
-
-    return appconfig('config:%s' % config_file, section_name)
 
 
 def read_json(name):
@@ -73,9 +65,9 @@ class CAVClassification(Classification):
     id = StringType(required=True, choices=CAV_CODES)
 
 
-class Flexible(_Flexible):
+class Flexible(BaseFlexible):
     """ model for storing flexible fields  """
-    _schema_source = SchemaStore(get_config()['schema_store_url'])
+    _schema_source = SchemaStore()
 
 
 class Item(BaseItem):

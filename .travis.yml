@@ -11,7 +11,6 @@ services:
 env:
   global:
     - TZ=Europe/Kiev
-    - PYRAMID_SETTINGS=$TRAVIS_BUILD_DIR/openprocurement/auctions/dgf/tests/tests.ini#main
   matrix:
     - SANDBOX_MODE=
     - SANDBOX_MODE=True
