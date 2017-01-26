@@ -55,7 +55,7 @@ class AuctionTest(BaseWebTest):
 
     def test_edit_role(self):
         fields = set([
-            'features', 'hasEnquiries', 'items'
+            'features', 'hasEnquiries'
         ])
         if SANDBOX_MODE:
             fields.add('procurementMethodDetails')
@@ -1509,57 +1509,6 @@ class FinancialAuctionProcessTest(AuctionProcessTest):
 class AuctionSchemaResourceTest(AuctionResourceTest):
     initial_data = test_auction_data_with_schema
 
-    def test_change_schema_properties(self):
-        """ Specify schema version """
-        data = self.initial_data.copy()
-        data['items'][0]['schema_properties'] = {
-            "code": "04122",
-            "version": "001",
-            "properties": {"total_area": 4,
-                           "number_of_rooms": 4,
-                           "number_of_kitchen": 7,
-                           "living_space": 100}
-        }
-        # Try create auction with bad properties
-        response = self.app.post_json('/auctions', {'data': data})
-        self.assertEqual(response.status, '201 Created')
-        self.assertEqual(response.content_type, 'application/json')
-
-        auction = response.json['data']
-        self.assertEqual(auction['items'][0]['schema_properties']["properties"],
-                         {"total_area": 4,
-                          "number_of_rooms": 4,
-                          "number_of_kitchen": 7,
-                          "living_space": 100})
-
-        token = response.json['access']['token']
-
-        response = self.app.patch_json(
-            '/auctions/{}?acc_token={}'.format(auction['id'], token),
-            {"data": {
-                "items": [{
-                    'schema_properties': {
-                        "code": "04122",
-                        "version": "002",
-                        "properties": {
-                            "total_area": 4,
-                            "number_of_rooms": 4,
-                            "number_of_kitchen": 7,
-                            "number_of_doors": 2}
-                    }}]
-            }})
-        self.assertEqual(response.content_type, 'application/json')
-
-        auction = response.json['data']
-        self.assertEqual(
-            auction['items'][0]['schema_properties']["properties"],
-            {
-                "total_area": 4,
-                "number_of_rooms": 4,
-                "number_of_kitchen": 7,
-                "number_of_doors": 2
-            })
-
 
 class AuctionSchemaProcessTest(AuctionProcessTest):
     initial_data = test_auction_data_with_schema
@@ -1567,57 +1516,6 @@ class AuctionSchemaProcessTest(AuctionProcessTest):
 
 class FinancialAuctionSchemaResourceTest(FinancialAuctionResourceTest):
     initial_data = test_financial_auction_data_with_schema
-
-    def test_change_schema_properties(self):
-        """ Specify schema version """
-        data = self.initial_data.copy()
-        data['items'][0]['schema_properties'] = {
-            "code": "04122",
-            "version": "001",
-            "properties": {"total_area": 4,
-                           "number_of_rooms": 4,
-                           "number_of_kitchen": 7,
-                           "living_space": 100}
-        }
-        # Try create auction with bad properties
-        response = self.app.post_json('/auctions', {'data': data})
-        self.assertEqual(response.status, '201 Created')
-        self.assertEqual(response.content_type, 'application/json')
-
-        auction = response.json['data']
-        self.assertEqual(auction['items'][0]['schema_properties']["properties"],
-                         {"total_area": 4,
-                          "number_of_rooms": 4,
-                          "number_of_kitchen": 7,
-                          "living_space": 100})
-
-        token = response.json['access']['token']
-
-        response = self.app.patch_json(
-            '/auctions/{}?acc_token={}'.format(auction['id'], token),
-            {"data": {
-                "items": [{
-                    'schema_properties': {
-                        "code": "04122",
-                        "version": "002",
-                        "properties": {
-                            "total_area": 4,
-                            "number_of_rooms": 4,
-                            "number_of_kitchen": 7,
-                            "number_of_doors": 2}
-                    }}]
-            }})
-        self.assertEqual(response.content_type, 'application/json')
-
-        auction = response.json['data']
-        self.assertEqual(
-            auction['items'][0]['schema_properties']["properties"],
-            {
-                "total_area": 4,
-                "number_of_rooms": 4,
-                "number_of_kitchen": 7,
-                "number_of_doors": 2
-            })
 
 
 class FinancialAuctionSchemaProcessTest(FinancialAuctionProcessTest):
