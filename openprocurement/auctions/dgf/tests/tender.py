@@ -1509,6 +1509,25 @@ class FinancialAuctionProcessTest(AuctionProcessTest):
 class AuctionSchemaResourceTest(AuctionResourceTest):
     initial_data = test_auction_data_with_schema
 
+    def test_create_auction_with_bad_schemas_code(self):
+        response = self.app.get('/auctions')
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(len(response.json['data']), 0)
+        bad_initial_data = deepcopy(self.initial_data)
+        bad_initial_data['items'][0]['classification']['id'] = "42124210-6"
+        response = self.app.post_json('/auctions', {"data": bad_initial_data},
+                                      status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'],
+                         [{
+                             "location": "body",
+                             "name": "items",
+                             "description": [{
+                                 "schema_properties": ["CAV code mismatch with schema_properties code"]
+                             }]
+                         }])
+
 
 class AuctionSchemaProcessTest(AuctionProcessTest):
     initial_data = test_auction_data_with_schema
