@@ -83,6 +83,13 @@ class Item(BaseItem):
     location = ModelType(Location)
     schema_properties = ModelType(Flexible)
 
+    def validate_schema_properties(self, data, new_schema_properties):
+        """ Raise validation error if code in schema_properties mismatch
+            with classification id """
+        if new_schema_properties and not data['classification']['id'].startswith(new_schema_properties['code']):
+            raise ValidationError("CAV code {} mismatch with schema code {}".format(
+                data['classification']['id'], new_schema_properties['code']))
+
 
 class Identifier(BaseIdentifier):
     scheme = StringType(required=True, choices=ORA_CODES)
