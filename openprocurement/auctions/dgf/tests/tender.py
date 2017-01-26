@@ -1524,7 +1524,7 @@ class AuctionSchemaResourceTest(AuctionResourceTest):
                              "location": "body",
                              "name": "items",
                              "description": [{
-                                 "schema_properties": ["CAV code mismatch with schema_properties code"]
+                                 "schema_properties": ["classification id mismatch with schema_properties code"]
                              }]
                          }])
 

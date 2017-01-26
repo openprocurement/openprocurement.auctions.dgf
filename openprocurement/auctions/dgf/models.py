@@ -87,7 +87,7 @@ class Item(BaseItem):
         """ Raise validation error if code in schema_properties mismatch
             with classification id """
         if new_schema_properties and not data['classification']['id'].startswith(new_schema_properties['code']):
-            raise ValidationError("CAV code mismatch with schema_properties code")
+            raise ValidationError("classification id mismatch with schema_properties code")
 
 
 class Identifier(BaseIdentifier):
