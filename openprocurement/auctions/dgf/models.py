@@ -25,7 +25,7 @@ from openprocurement.auctions.flash.models import (
     ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
     get_auction,
 )
-from schematics_flexible.schematics_flexible import Flexible as BaseFlexible
+from schematics_flexible.schematics_flexible import FlexibleModelType
 from schemas_store.schemas_store import SchemaStore
 
 
@@ -65,11 +65,6 @@ class CAVClassification(Classification):
     id = StringType(required=True, choices=CAV_CODES)
 
 
-class Flexible(BaseFlexible):
-    """ model for storing flexible fields  """
-    _schema_source = SchemaStore()
-
-
 class Item(BaseItem):
     """A good, service, or work to be contracted."""
     class Options:
@@ -81,7 +76,7 @@ class Item(BaseItem):
     additionalClassifications = ListType(ModelType(Classification), default=list())
     address = ModelType(Address)
     location = ModelType(Location)
-    schema_properties = ModelType(Flexible)
+    schema_properties = FlexibleModelType(SchemaStore())
 
     def validate_schema_properties(self, data, new_schema_properties):
         """ Raise validation error if code in schema_properties mismatch
