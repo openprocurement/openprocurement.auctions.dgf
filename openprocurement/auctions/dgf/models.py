@@ -25,6 +25,8 @@ from openprocurement.auctions.flash.models import (
     ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
     get_auction,
 )
+from schematics_flexible.schematics_flexible import FlexibleModelType
+from openprocurement.schemas.dgf.schemas_store import SchemaStore
 
 
 def read_json(name):
@@ -74,6 +76,13 @@ class Item(BaseItem):
     additionalClassifications = ListType(ModelType(Classification), default=list())
     address = ModelType(Address)
     location = ModelType(Location)
+    schema_properties = FlexibleModelType(SchemaStore())
+
+    def validate_schema_properties(self, data, new_schema_properties):
+        """ Raise validation error if code in schema_properties mismatch
+            with classification id """
+        if new_schema_properties and not data['classification']['id'].startswith(new_schema_properties['code']):
+            raise ValidationError("classification id mismatch with schema_properties code")
 
 
 class Identifier(BaseIdentifier):
