@@ -26,7 +26,7 @@ from openprocurement.auctions.flash.models import (
     get_auction,
 )
 from schematics_flexible.schematics_flexible import FlexibleModelType
-from schemas_store.schemas_store import SchemaStore
+from openprocurement.schemas.dgf.schemas_store import SchemaStore
 
 
 def read_json(name):

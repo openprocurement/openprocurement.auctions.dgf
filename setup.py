@@ -14,7 +14,7 @@ requires = [
     'openprocurement.api',
     'openprocurement.auctions.core',
     'openprocurement.auctions.flash',
-    'schemas_store',
+    'openprocurement.schemas.dgf',
     'schematics-flexible'
 ]
 
