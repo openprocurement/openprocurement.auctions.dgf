@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-13 15:36+0300\n"
-"PO-Revision-Date: 2016-11-01 16:03+0200\n"
+"PO-Revision-Date: 2016-11-17 16:18+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -250,8 +250,8 @@ msgstr "Період, коли подаються пропозиції."
 
 msgid "Period when Auction is conducted. `startDate` should be provided."
 msgstr ""
-"Період, коли проводиться аукціон. Значення `startDate` (дата початку торгів)"
-" повинно бути вказано обов'язково."
+"Період, коли проводиться аукціон. Значення `startDate` (дата проведення "
+"аукціону) повинно бути вказано обов'язково."
 
 msgid "string, read-only"
 msgstr "рядок, лише для читання"
@@ -299,3 +299,40 @@ msgstr "Номер аукціону (або `лота`) у XLS Фонду Гар
 msgid "string, required"
 msgstr "рядок, обов’язковий"
 
+msgid "Auction announcement. Possible values:"
+msgstr "Тип процедури. Можливі значення:"
+
+msgid "``dgfOtherAssets`` - sale of the insolvent bank property"
+msgstr "``dgfOtherAssets`` - оголошення аукціону з продажу майна банків."
+
+msgid "``dgfFinancialAssets`` - sale of the creditor claim right"
+msgstr ""
+"``dgfFinancialAssets`` - оголошення аукціону з продажу прав вимоги за"
+" кредитами."
+
+msgid "Auction starting price. Bids lower than ``value`` will be rejected."
+msgstr ""
+"Початкова ціна аукціону. Пропозиції, що нижчі за ``value`` будуть відхилені."
+
+msgid "Auction step (increment). Validation rules:"
+msgstr "Крок аукціону та порядок підвищення ціни. Правила валідації:"
+
+msgid ":ref:`Date`"
+msgstr ":ref:`Date`"
+
+msgid ""
+"Date of the Decision of the executive board of Deposit Guarantee Fund, "
+"assets sales committee on terms of sale."
+msgstr ""
+"Дата рішення виконавчої дирекції ФГВФО / Комітету з питань організації"
+" продажу активів, про затвердження умов продажу."
+
+msgid ""
+"Number of the Decision of the executive board of Deposit Guarantee Fund, "
+"assets sales committee on terms of sale."
+msgstr ""
+"Номер рішення виконавчої дирекції ФГВФО / Комітету з питань організації"
+" продажу активів, про затвердження умов продажу."
+
+#~ msgid "The name of the auction, displayed in listings."
+#~ msgstr "Назва аукціону, яка відображається у списках."

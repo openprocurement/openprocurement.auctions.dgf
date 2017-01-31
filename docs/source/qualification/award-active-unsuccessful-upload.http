@@ -1,12 +1,12 @@
-POST /api/2.3/auctions/ba67fa8ce8d243b8ba69c589319dd207/awards/2ea17005ae3343ba8db0428325b62045/documents?acc_token=127c59044e9f4b1988573ebf766d9480 HTTP/1.0
+POST /api/2.3/auctions/76c8b7be53b745c8abef7a1a9a946990/awards/5c30b9bf7ee5458c9376b065856ace5b/documents?acc_token=4b311654b1d44a44916e36496e91b1f4 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 386
+Content-Length: 380
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/72328925f6bb4b5ba6a8b51d839c243e?KeyID=bbe2d506&Signature=57MKpGTrr3ON6R0nDmED%2FpTDbw09jpcsd7vm6lKUJdO58PiMnmm%2BMLvgzm21C%2B3y49vkmAuxR7dMrCMgxCexBg%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/339109c2d7c34fad9daef2cfb85295f4?KeyID=cf943a5c&Signature=zz1NfP1oVA6cz78WmjYqi2mymskqKyLeMzRFelsE4lLHNeYRTQcln1ccTtjPBavOngxb2Ao3u5c4vA8K6FmhAw%3D%3D", 
     "title": "Disqualified_reason.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "description": "Disqualification reason", 
@@ -17,20 +17,20 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/ba67fa8ce8d243b8ba69c589319dd207/awards/2ea17005ae3343ba8db0428325b62045/documents/4d6fcd89e6c64f29ac4542807dbf369b
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/76c8b7be53b745c8abef7a1a9a946990/awards/5c30b9bf7ee5458c9376b065856ace5b/documents/1936b20f82ed4dfa8ec90392065b11f3
 
 {
   "data": {
+    "dateModified": "2017-01-31T17:28:41.769505+02:00", 
     "hash": "md5:00000000000000000000000000000000", 
     "description": "Disqualification reason", 
     "author": "auction_owner", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/72328925f6bb4b5ba6a8b51d839c243e?KeyID=bbe2d506&Signature=4zFzmWK%2F%252BCmP1ZeAJHM4oF1Co%252B9Lqq%252BJ%252B%252BN%2FI1hGzW0HZE0i5DFRboz%2FVOMwm5vDiWVSJh8WibzYLsS3DIleDg%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/339109c2d7c34fad9daef2cfb85295f4?KeyID=cf943a5c&Signature=8AsJvc3WvB5krmCrVM%2FT2wp75G8jK7KDBlUM5InZgUgIRr1AGhBr17U5imqmSZ50kMFYTSUqyOaJnwgav9UGCw%253D%253D", 
     "format": "application/pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-11-25T12:16:15.870543+02:00", 
-    "id": "4d6fcd89e6c64f29ac4542807dbf369b", 
+    "datePublished": "2017-01-31T17:28:41.769456+02:00", 
     "title": "Disqualified_reason.pdf", 
-    "dateModified": "2016-11-25T12:16:15.870569+02:00"
+    "id": "1936b20f82ed4dfa8ec90392065b11f3"
   }
 }
 

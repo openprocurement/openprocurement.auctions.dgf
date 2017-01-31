@@ -123,8 +123,8 @@ cancellation = {
 
 test_max_uid = uuid4().hex
 
-test_auction_maximum_data = {
-    "title": u"футляри до державних нагород",
+test_auction_maximum_data = test_auction_data.copy()
+test_auction_maximum_data.update({
     "title_en": u"Cases with state awards",
     "title_ru": u"футляры к государственным наградам",
     "procuringEntity": {
@@ -147,14 +147,6 @@ test_auction_maximum_data = {
         },
         'kind': 'general'
     },
-    "value": {
-        "amount": 500,
-        "currency": u"UAH"
-    },
-    "minimalStep": {
-        "amount": 35,
-        "currency": u"UAH"
-    },
     "items": [
         {
             "id": test_max_uid,
@@ -171,12 +163,7 @@ test_auction_maximum_data = {
             "quantity": 5
         }
     ],
-    "auctionPeriod": {
-        "startDate": (now + timedelta(days=14)).isoformat()
-    },
-    "procurementMethodType": "dgfOtherAssets",
-    "mode": u"test"
-}
+})
 
 
 test_complaint_data = {'data':
@@ -458,6 +445,20 @@ class AuctionResourceTest(BaseAuctionWebTest):
             self.assertEqual(response.status, '201 Created')
 
         with open('docs/source/tutorial/auction-documents-5.http', 'w') as self.app.file_obj:
+            response = self.app.get('/auctions/{}/documents'.format(
+                self.auction_id))
+            self.assertEqual(response.status, '200 OK')
+
+        with open('docs/source/tutorial/add-asset-familiarization-document.http', 'w') as self.app.file_obj:
+            response = self.app.post_json('/auctions/{}/documents?acc_token={}'.format(self.auction_id, owner_token),
+                {'data': {
+                    'title': u'Familiarization with bank asset',
+                    "documentType": "x_dgfAssetFamiliarization",
+                    'accessDetails': "Familiar with asset: days, time, address",
+                }})
+            self.assertEqual(response.status, '201 Created')
+
+        with open('docs/source/tutorial/auction-documents-6.http', 'w') as self.app.file_obj:
             response = self.app.get('/auctions/{}/documents'.format(
                 self.auction_id))
             self.assertEqual(response.status, '200 OK')

@@ -1,12 +1,12 @@
-POST /api/2.3/auctions/2077a4e50e744ab6bc3936e6a0bb77a0/cancellations/6916617b6fd0449c8dc4e3693a80ee94/documents?acc_token=60ba6c1078974d43a97cf13b9c9488d4 HTTP/1.0
+POST /api/2.3/auctions/9bd320f850e64a18a397c41f1d5a8bd5/cancellations/ee909c19c55a469b896256ce36541b4c/documents?acc_token=c320f57bbe5b4dd78865a56ccafba92a HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 329
+Content-Length: 331
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/25a2fdb8af65486c9f62ab6ce6fa0290?KeyID=c414de0e&Signature=XUKBgr3kqNye97FQaokQXHDniZoLizPYhefDR%2BgnhHHs5D0DHFYbiBgwD%2F5FvDW6TOW9ER6ioJTJPCCqz5eaAg%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/5a249fa65bac41a09595efcfea30c775?KeyID=16e6e499&Signature=wp9sFlLltduqH06LeKNmOkHUAyAHassCe%2FPaxI1i9NPXRLJRoCn2KTZEJnDNX9t%2Bj7mVV3m12xbpBs8U%2FT81Bg%3D%3D", 
     "title": "Notice.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -16,18 +16,18 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2077a4e50e744ab6bc3936e6a0bb77a0/cancellations/6916617b6fd0449c8dc4e3693a80ee94/documents/b92a9fc10a814fa58a5dea35a43cff3c
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/9bd320f850e64a18a397c41f1d5a8bd5/cancellations/ee909c19c55a469b896256ce36541b4c/documents/e391ee718bcf4febbcb870277eb9c3f5
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/25a2fdb8af65486c9f62ab6ce6fa0290?KeyID=c414de0e&Signature=D50frTaYK0ahcD90Yfmla8y6MbJ%252BNsPHsHIv%252BiZHsvvLITVVNHj6w90lqJUZ%2FKVCbNcL%252BlAzBJDbvrm26ykQAQ%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/5a249fa65bac41a09595efcfea30c775?KeyID=16e6e499&Signature=eL9ZRVjt6SzBn%252BAfcISU2h%2FAVoTcIgVF5kP6LLBhdQync4VqpNrzVwxxn%252BuGSrj2fCO3NBRJAs9Gaqef9i%2FTCA%253D%253D", 
     "title": "Notice.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-11-25T12:16:21.829968+02:00", 
-    "dateModified": "2016-11-25T12:16:21.830013+02:00", 
-    "id": "b92a9fc10a814fa58a5dea35a43cff3c"
+    "datePublished": "2017-01-31T17:28:50.173113+02:00", 
+    "dateModified": "2017-01-31T17:28:50.173142+02:00", 
+    "id": "e391ee718bcf4febbcb870277eb9c3f5"
   }
 }
 

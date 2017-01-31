@@ -20,6 +20,7 @@ Features
 * Organizer can't edit procedure's significant properties (*Auction.value*, etc.).
 * There is obligatory participant qualification (*Bid.selfQualified*) via guarantee payment.
 * The only currency (*Value.currency*) for this procedure is hryvnia (UAH).
+* The items within an auction are allowed to be from different CAV groups.
 
 Conventions
 -----------

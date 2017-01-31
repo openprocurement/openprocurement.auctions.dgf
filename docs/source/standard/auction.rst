@@ -32,8 +32,21 @@ Schema
     string, required
     
     Identification number of the auction (also referred to as `lot`) in the XLS of Deposit Guarantee Fund.
+    
+:procurementMethodType:
+    string, required
+    
+    Auction announcement. 
+    Possible values:
+    
+    * ``dgfOtherAssets`` - sale of the insolvent bank property
+    * ``dgfFinancialAssets`` - sale of the creditor claim right
 
-   
+:tenderAttempts:
+    integer
+
+    The number which represents whether the tender is taking place for the first, second, third, or fourth time
+
 :procuringEntity:
    :ref:`ProcuringEntity`, required
 
@@ -47,7 +60,7 @@ Schema
 :value:
    :ref:`value`, required
 
-   Total available auction budget. Bids lower than ``value`` will be rejected.
+   Auction starting price. Bids lower than ``value`` will be rejected.
 
    |ocdsDescription|
    The total estimated value of the procurement.
@@ -97,7 +110,7 @@ Schema
 :minimalStep:
    :ref:`value`, required
 
-   The minimal step of auction. Validation rules:
+   Auction step (increment). Validation rules:
 
    * `amount` should be greater than `Auction.value.amount`
    * `currency` should either be absent or match `Auction.value.currency`
@@ -195,3 +208,13 @@ Schema
    List of :ref:`revision` objects, auto-generated
 
    Historical changes to `Auction` object properties.
+   
+:dgfDecisionDate:
+   :ref:`Date` 
+   
+   Date of the Decision of the executive board of Deposit Guarantee Fund, assets sales committee on terms of sale.
+   
+:dgfDecisionID:
+   string
+   
+   Number of the Decision of the executive board of Deposit Guarantee Fund, assets sales committee on terms of sale.

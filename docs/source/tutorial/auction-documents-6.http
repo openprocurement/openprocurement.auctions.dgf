@@ -51,6 +51,42 @@ Content-Type: application/json; charset=UTF-8
       "documentType": "illustration", 
       "dateModified": "2017-01-31T17:28:45.949453+02:00", 
       "id": "013fecd03f484cdcb9863879016000c3"
+    }, 
+    {
+      "index": 2, 
+      "hash": "md5:00000000000000000000000000000000", 
+      "description": "Second illustration description", 
+      "format": "image/jpeg", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/9e35112eade2458282bbda1adf6aaa69?KeyID=16e6e499&Signature=4zGjymdqJ1OfkMM%252BIR3LNb6em2J0zni3SVNsmpFc0S%252B4K3N0glKUMOP5%2FH2OgEjgCtc2ExjRN6BNdk2JpKnlDQ%253D%253D", 
+      "title": "second_illustration.jpeg", 
+      "documentOf": "tender", 
+      "datePublished": "2017-01-31T17:28:46.047326+02:00", 
+      "documentType": "illustration", 
+      "dateModified": "2017-01-31T17:28:46.047363+02:00", 
+      "id": "f8303f00e4fe4e6b8bd5d77890797108"
+    }, 
+    {
+      "index": 2, 
+      "hash": "md5:00000000000000000000000000000000", 
+      "description": "Third illustration description", 
+      "format": "image/jpeg", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/ef99a61c9f3149798c5b8978bb0a9284?KeyID=16e6e499&Signature=rN3ZLuxHmJyhqV1LcmRbefTGEEHypCOwSE2Qr8u2N33XhHzWFVDPdnkA1xF3RdQWTZksOqqm2jSex%2FzKkWJODQ%253D%253D", 
+      "title": "third_illustration.jpeg", 
+      "documentOf": "tender", 
+      "datePublished": "2017-01-31T17:28:46.123876+02:00", 
+      "documentType": "illustration", 
+      "dateModified": "2017-01-31T17:28:46.123904+02:00", 
+      "id": "63e1151f7f1748a2a0bc48b0b6082744"
+    }, 
+    {
+      "title": "Familiarization with bank asset", 
+      "format": "offline/on-site-examination", 
+      "accessDetails": "Familiar with asset: days, time, address", 
+      "documentOf": "tender", 
+      "datePublished": "2017-01-31T17:28:46.231774+02:00", 
+      "documentType": "x_dgfAssetFamiliarization", 
+      "dateModified": "2017-01-31T17:28:46.231799+02:00", 
+      "id": "07588ad7d6cb4e6ea0acc420a0a8ddff"
     }
   ]
 }

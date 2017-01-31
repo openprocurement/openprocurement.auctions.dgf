@@ -168,6 +168,19 @@ We can check that there are three uploaded illustrations.
 .. include:: tutorial/auction-documents-5.http
    :code:
 
+Add Asset Familiarization
+-------------------------
+
+Organizer can upload asset familiarization document into the created auction.
+
+.. include:: tutorial/add-asset-familiarization-document.http
+  :code:
+
+We can check whether asset familiarization document is added.
+
+.. include:: tutorial/auction-documents-6.http
+  :code:
+
 Enquiries
 ---------
 
