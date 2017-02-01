@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/76c8b7be53b745c8abef7a1a9a946990/awards/5c30b9bf7ee5458c9376b065856ace5b?acc_token=4b311654b1d44a44916e36496e91b1f4 HTTP/1.0
+PATCH /api/2.3/auctions/ed8ca274ce4e4fa5866ee44ef7532b1a/awards/48362ddbfe824ffa8a2120c973dba606?acc_token=6bfaf230f39946a189db2c4059cd06d0 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 146
 Content-Type: application/json
@@ -21,33 +21,33 @@ Content-Type: application/json; charset=UTF-8
     "status": "unsuccessful", 
     "documents": [
       {
-        "dateModified": "2017-01-31T17:28:41.621232+02:00", 
+        "dateModified": "2017-02-01T13:22:16.343232+02:00", 
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/af4707caadca42788b265b9e71ff8299?KeyID=cf943a5c&Signature=nmTRCsXNN39q988R%2F0RGFCb9C%2FHsSs1z8liUiwBP6N7kLA%252BJEazUpF3z%252BtX3kgQ9TRgpNgF%2F7IqiGMXUzO2GBQ%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/2d9c39c4461e46248f9a664396b69492?KeyID=bdf7219a&Signature=GoVcuaS%252BgNcVjKprg0I%252BKmDYFoMfIzim%2F7fNlZ%252BmFkduQtB6PrqRTlbYbOm66zZE5pDSOOjlOhc3VMC5%252Br7mBw%253D%253D", 
         "author": "bid_owner", 
         "documentOf": "tender", 
-        "datePublished": "2017-01-31T17:28:41.621181+02:00", 
+        "datePublished": "2017-02-01T13:22:16.343205+02:00", 
         "documentType": "auctionProtocol", 
         "title": "auction_protocol.pdf", 
-        "id": "ef60547f71a8450a85d117807be4bde5"
+        "id": "9713fd6de895463780be80a9ae3f431f"
       }, 
       {
-        "dateModified": "2017-01-31T17:28:41.769505+02:00", 
+        "dateModified": "2017-02-01T13:22:16.483255+02:00", 
         "hash": "md5:00000000000000000000000000000000", 
         "description": "Disqualification reason", 
         "author": "auction_owner", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/339109c2d7c34fad9daef2cfb85295f4?KeyID=cf943a5c&Signature=8AsJvc3WvB5krmCrVM%2FT2wp75G8jK7KDBlUM5InZgUgIRr1AGhBr17U5imqmSZ50kMFYTSUqyOaJnwgav9UGCw%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/21c823c5a0ec4697bd6a5cc3b0122d32?KeyID=bdf7219a&Signature=LLkfr6Wttje6APz8XmHc2fdF42p2me6VnudCe%252Bgmf68TAhdhbTO2re3Ynqg9H9nOr9Y7UGSXMZ3htHSg3kdnDg%253D%253D", 
         "format": "application/pdf", 
         "documentOf": "tender", 
-        "datePublished": "2017-01-31T17:28:41.769456+02:00", 
+        "datePublished": "2017-02-01T13:22:16.483227+02:00", 
         "title": "Disqualified_reason.pdf", 
-        "id": "1936b20f82ed4dfa8ec90392065b11f3"
+        "id": "c79442dc5cd647038d3f533365252eee"
       }
     ], 
     "verificationPeriod": {
-      "startDate": "2017-01-31T17:28:41.432877+02:00", 
-      "endDate": "2017-01-31T17:28:41.937089+02:00"
+      "startDate": "2017-02-01T13:22:16.205551+02:00", 
+      "endDate": "2017-02-01T13:22:16.618487+02:00"
     }, 
     "description": "Candidate didn’t sign the auction protocol in 3 business days", 
     "title": "Disqualified", 
@@ -74,17 +74,17 @@ Content-Type: application/json; charset=UTF-8
       }
     ], 
     "complaintPeriod": {
-      "startDate": "2017-01-31T17:28:40.968771+02:00", 
-      "endDate": "2017-01-31T17:28:41.937089+02:00"
+      "startDate": "2017-02-01T13:22:15.773890+02:00", 
+      "endDate": "2017-02-01T13:22:16.618487+02:00"
     }, 
-    "bid_id": "95e818c4822f4fcfa074c2a2aa697c49", 
+    "bid_id": "000e593d3fee415dacd0f41d4a94a4b9", 
     "value": {
       "currency": "UAH", 
       "amount": 475.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2017-01-31T17:28:41.956083+02:00", 
-    "id": "5c30b9bf7ee5458c9376b065856ace5b"
+    "date": "2017-02-01T13:22:16.630113+02:00", 
+    "id": "48362ddbfe824ffa8a2120c973dba606"
   }
 }
 

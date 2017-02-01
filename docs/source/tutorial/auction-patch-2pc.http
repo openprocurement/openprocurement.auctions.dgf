@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/bcfe3a478b404d9794c61ebe56357ee9?acc_token=28d99a087ef64843b8fed5a7fa5b6d51 HTTP/1.0
+PATCH /api/2.3/auctions/f7be6c0b987146118d6505733a3e438c?acc_token=ee2b8301dccc492b93769179dbcbcd37 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 40
 Content-Type: application/json
@@ -17,44 +17,44 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2017-01-31-000001", 
+    "auctionID": "UA-EA-2017-02-01-000001", 
     "enquiryPeriod": {
-      "startDate": "2017-01-31T17:28:37.534943+02:00", 
-      "endDate": "2017-02-13T23:59:50+02:00"
+      "startDate": "2017-02-01T13:22:11.463782+02:00", 
+      "endDate": "2017-02-14T23:59:50+02:00"
     }, 
     "submissionMethod": "electronicAuction", 
     "dgfDecisionDate": "2016-11-17", 
-    "next_check": "2017-02-13T23:59:50+02:00", 
+    "next_check": "2017-02-14T23:59:50+02:00", 
     "awardCriteria": "highestCost", 
     "dgfDecisionID": "219560", 
     "owner": "broker", 
-    "id": "bcfe3a478b404d9794c61ebe56357ee9", 
+    "id": "f7be6c0b987146118d6505733a3e438c", 
     "documents": [
       {
         "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
         "url": "http://torgi.fg.gov.ua/prozorrosale", 
         "documentOf": "tender", 
-        "datePublished": "2017-01-31T17:28:37.535495+02:00", 
+        "datePublished": "2017-02-01T13:22:11.464263+02:00", 
         "documentType": "x_dgfPlatformLegalDetails", 
-        "dateModified": "2017-01-31T17:28:37.535552+02:00", 
-        "id": "05283c2fe686448bbd358c02d819819e"
+        "dateModified": "2017-02-01T13:22:11.464309+02:00", 
+        "id": "db319013c1844deeb18e076568c6ba37"
       }
     ], 
     "title": "футляри до державних нагород", 
     "tenderAttempts": 1, 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2017-01-31T17:28:37.597793+02:00", 
+    "dateModified": "2017-02-01T13:22:11.611343+02:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2017-01-31T17:28:37.534943+02:00", 
-      "endDate": "2017-02-13T23:59:50+02:00"
+      "startDate": "2017-02-01T13:22:11.463782+02:00", 
+      "endDate": "2017-02-14T23:59:50+02:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2017-02-14T00:00:00+02:00"
+      "shouldStartAfter": "2017-02-15T00:00:00+02:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "dgfID": "219560", 
-    "date": "2017-01-31T17:28:37.597793+02:00", 
+    "date": "2017-02-01T13:22:11.611343+02:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -66,7 +66,7 @@ Content-Type: application/json; charset=UTF-8
         "classification": {
           "scheme": "CAV", 
           "description": "Земельні ділянки", 
-          "id": "06000000-2"
+          "id": "04114000-0"
         }, 
         "address": {
           "postalCode": "79000", 
@@ -75,7 +75,15 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "89dbd851fd514a1a93b8746701c785a7", 
+        "schema_properties": {
+          "code": "041", 
+          "version": "001", 
+          "properties": {
+            "number_of_rooms": 4, 
+            "total_area": 4
+          }
+        }, 
+        "id": "5c656e483fa043e7b16a1f53d6ce7941", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"

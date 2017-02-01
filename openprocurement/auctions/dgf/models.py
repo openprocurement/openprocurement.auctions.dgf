@@ -26,6 +26,8 @@ from openprocurement.auctions.flash.models import (
     ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
     get_auction,
 )
+from schematics_flexible.schematics_flexible import FlexibleModelType
+from openprocurement.schemas.dgf.schemas_store import SchemaStore
 
 
 def read_json(name):
@@ -48,7 +50,7 @@ DGF_PLATFORM_LEGAL_DETAILS = {
     'title': u'Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків',
     'documentType': 'x_dgfPlatformLegalDetails',
 }
-DGF_PLATFORM_LEGAL_DETAILS_FROM = datetime(2016, 11, 25, tzinfo=TZ)
+DGF_PLATFORM_LEGAL_DETAILS_FROM = datetime(2016, 12, 23, tzinfo=TZ)
 
 DGF_ID_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
 DGF_DECISION_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
@@ -79,6 +81,13 @@ class Item(BaseItem):
     additionalClassifications = ListType(ModelType(Classification), default=list())
     address = ModelType(Address)
     location = ModelType(Location)
+    schema_properties = FlexibleModelType(SchemaStore())
+
+    def validate_schema_properties(self, data, new_schema_properties):
+        """ Raise validation error if code in schema_properties mismatch
+            with classification id """
+        if new_schema_properties and not data['classification']['id'].startswith(new_schema_properties['code']):
+            raise ValidationError("classification id mismatch with schema_properties code")
 
 
 class Identifier(BaseIdentifier):

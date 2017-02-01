@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 PATCH /api/2.3/auctions/2fad508852384ef7b62fdb69b2239597/awards/2c6df40ce4904b3b831663e96064a085?acc_token=2b3771d637ee4a69bc526df9419d9346 HTTP/1.0
+=======
+PATCH /api/2.3/auctions/83cfeb7141804609a5edcc700bef1ba2/awards/6666a3343c504f20bac61045217de457?acc_token=cbfa815b2be643988519fbfa9bae51bc HTTP/1.0
+>>>>>>> a4ea63f1d9d94975bc16dd220243459e640fe56a
 Authorization: Basic YnJva2VyOg==
 Content-Length: 33
 Content-Type: application/json
@@ -13,14 +17,23 @@ Host: api-sandbox.ea.openprocurement.org
 
 200 OK
 Content-Type: application/json; charset=UTF-8
+<<<<<<< HEAD
 Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2fad508852384ef7b62fdb69b2239597/awards/27de40b4b1f34704bd129d137793f41c
+=======
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/83cfeb7141804609a5edcc700bef1ba2/awards/38c818341580494aaea7b79a627dd876
+>>>>>>> a4ea63f1d9d94975bc16dd220243459e640fe56a
 
 {
   "data": {
     "status": "cancelled", 
     "complaintPeriod": {
+<<<<<<< HEAD
       "startDate": "2016-12-02T19:52:43.761952+02:00", 
       "endDate": "2016-12-02T19:52:43.898225+02:00"
+=======
+      "startDate": "2016-12-21T19:57:54.720017+02:00", 
+      "endDate": "2016-12-21T19:57:54.857749+02:00"
+>>>>>>> a4ea63f1d9d94975bc16dd220243459e640fe56a
     }, 
     "suppliers": [
       {
@@ -44,14 +57,23 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2fad5088523
         }
       }
     ], 
+<<<<<<< HEAD
     "bid_id": "3c10053a459b48759e0f8bd371133786", 
+=======
+    "bid_id": "f42f2b9b4122448cbdc199a9c387984b", 
+>>>>>>> a4ea63f1d9d94975bc16dd220243459e640fe56a
     "value": {
       "currency": "UAH", 
       "amount": 475.0, 
       "valueAddedTaxIncluded": true
     }, 
+<<<<<<< HEAD
     "date": "2016-12-02T19:52:44.039504+02:00", 
     "id": "2c6df40ce4904b3b831663e96064a085"
+=======
+    "date": "2016-12-21T19:57:54.979744+02:00", 
+    "id": "6666a3343c504f20bac61045217de457"
+>>>>>>> a4ea63f1d9d94975bc16dd220243459e640fe56a
   }
 }
 

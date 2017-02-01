@@ -20,13 +20,13 @@ Schema
     Possible values for :ref:`auction`
 
 
-    * `tenderNotice` - **Auction notice**
+    * `notice` - **Auction notice**
 
       The formal notice that gives details of an auction. This may be a link to a downloadable document, to a web page, or to an official gazette in which the notice is contained.
 
     * `technicalSpecifications` - **Technical Specifications**
 
-      Detailed technical information about goods or services to be provided. This is where the public asset certificate is uploaded.
+      Detailed technical information about goods or services to be provided.
 
     * `evaluationCriteria` - **Evaluation Criteria**
 
@@ -56,14 +56,13 @@ Schema
 
       A non-disclosure agreement between a participant and a bank/Deposit Guarantee Fund.
 
+    * `x_dgfAssetFamiliarization` - **Asset Familiarization**
+
+      Goods examination procedure rules / Asset familiarization procedure in data room. Contains information on where and when a given document can be examined offline.
+
     * `x_dgfPlatformLegalDetails` - **Platform Legal Details**
 
       Place and application forms for participation in the auction as well as bank details for transferring guarantee deposits.
-
-    * `x_dgfAssetFamiliarization` - **Asset Familiarization**
-      
-      Goods examination procedure rules / Asset familiarization procedure in data room. Contains information on where and when a given document can be examined offline.
-
 
     Possible values for :ref:`award`
 

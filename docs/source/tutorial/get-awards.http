@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/9bd320f850e64a18a397c41f1d5a8bd5/awards HTTP/1.0
+GET /api/2.3/auctions/56c507ca68744c5f964933955043072a/awards HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -11,11 +11,11 @@ Content-Type: application/json; charset=UTF-8
     {
       "status": "pending.verification", 
       "verificationPeriod": {
-        "startDate": "2017-01-31T17:28:47.543988+02:00", 
-        "endDate": "2017-01-31T17:31:47.543988+02:00"
+        "startDate": "2017-02-01T13:22:22.921644+02:00", 
+        "endDate": "2017-02-01T13:25:22.921644+02:00"
       }, 
       "complaintPeriod": {
-        "startDate": "2017-01-31T17:28:47.543988+02:00"
+        "startDate": "2017-02-01T13:22:22.921644+02:00"
       }, 
       "suppliers": [
         {
@@ -39,19 +39,19 @@ Content-Type: application/json; charset=UTF-8
           }
         }
       ], 
-      "bid_id": "ad49744480124c458d736b2d1858ed25", 
+      "bid_id": "6c8100e4637f46a1b09e66a9ab06862d", 
       "value": {
         "currency": "UAH", 
         "amount": 501.0, 
         "valueAddedTaxIncluded": true
       }, 
-      "date": "2017-01-31T17:28:47.543988+02:00", 
-      "id": "8db1fb54a56244c28179dc6ef9ead5d2"
+      "date": "2017-02-01T13:22:22.921644+02:00", 
+      "id": "f3dbae5e702846c19b22e6dec43dd0c5"
     }, 
     {
       "status": "pending.waiting", 
       "complaintPeriod": {
-        "startDate": "2017-01-31T17:28:47.543988+02:00"
+        "startDate": "2017-02-01T13:22:22.921644+02:00"
       }, 
       "suppliers": [
         {
@@ -75,14 +75,14 @@ Content-Type: application/json; charset=UTF-8
           }
         }
       ], 
-      "bid_id": "02e731fe632c496f9160128b0891149c", 
+      "bid_id": "8af88dae2b8744f1964b33be121adceb", 
       "value": {
         "currency": "UAH", 
         "amount": 500.0, 
         "valueAddedTaxIncluded": true
       }, 
-      "date": "2017-01-31T17:28:47.543988+02:00", 
-      "id": "491d1dc4e63247b6aa72a4974930796f"
+      "date": "2017-02-01T13:22:22.921644+02:00", 
+      "id": "9fe9dd8be6dc47879ddbc9227d501ff4"
     }
   ]
 }

@@ -244,26 +244,6 @@ msgstr ""
 "Договір про нерозголошення між учасником та банком/Фондом Гарантування"
 " Вкладів."
 
-msgid "`x_dgfPlatformLegalDetails` - **Platform Legal Details**"
-msgstr "`x_dgfPlatformLegalDetails` - **Юридична Інформація Майданчиків**"
-
-msgid ""
-"Place and application forms for participation in the auction as well as bank"
-" details for transferring guarantee deposits."
-msgstr ""
-"Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для"
-" зарахування гарантійних внесків."
-
-msgid "`tenderNotice` - **Auction notice**"
-msgstr "`tenderNotice` - **Паспорт торгів**"
-
-msgid ""
-"Detailed technical information about goods or services to be provided. This "
-"is where the public asset certificate is uploaded."
-msgstr ""
-"Детальна технічна інформація про товари або послуги, що повинні бути надані."
-" Тут завантажується публічний паспорт активу."
-
 msgid "`x_dgfAssetFamiliarization` - **Asset Familiarization**"
 msgstr ""
 
@@ -287,6 +267,16 @@ msgstr ""
 #~ "Порядок ознайомлення з майном / Порядок ознайомлення з активом у кімнаті "
 #~ "даних. Містить інформацію про те де і коли певний документ можна переглянути"
 #~ " вживу."
+
+msgid "`x_dgfPlatformLegalDetails` - **Platform Legal Details**"
+msgstr "`x_dgfPlatformLegalDetails` - **Юридична Інформація Майданчиків**"
+
+msgid ""
+"Place and application forms for participation in the auction as well as bank"
+" details for transferring guarantee deposits."
+msgstr ""
+"Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для"
+" зарахування гарантійних внесків."
 
 #~ msgid "`biddingDocuments` - **Bidding Documents**"
 #~ msgstr "`biddingDocuments` - **Документи закупівлі**"

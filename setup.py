@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0.7'
+version = '1.0.9'
 
 entry_points = {
     'openprocurement.auctions.core.plugins': [
@@ -14,6 +14,8 @@ requires = [
     'openprocurement.api',
     'openprocurement.auctions.core',
     'openprocurement.auctions.flash',
+    'openprocurement.schemas.dgf',
+    'schematics-flexible'
 ]
 
 docs_requires = requires + [

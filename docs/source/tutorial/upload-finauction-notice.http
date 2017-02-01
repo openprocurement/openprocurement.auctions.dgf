@@ -1,6 +1,6 @@
-POST /api/2.3/auctions/59c1a71d8b624340985fa04bb5bc427c/documents?acc_token=bc559bc7190d4ed5bedd0894c8229f50 HTTP/1.0
+POST /api/2.3/auctions/7c4b1c5e9c624bffa4feb0d69248e311/documents?acc_token=f55e1d84bebf44d899324ea2db4fc671 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 418
+Content-Length: 412
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
@@ -9,7 +9,7 @@ Host: api-sandbox.ea.openprocurement.org
     "hash": "md5:00000000000000000000000000000000", 
     "description": "technical specification", 
     "title": "Notice.pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/41ae46967b604005a9fae58c861c3afc?KeyID=b1d2ffa5&Signature=4IXugAkcxOuJfKdFRMMJ%2BQ%2B0j0242LAgnqgQ1tdxGfvZ8r%2Bp3KCMC7AiWamxfKosI%2BS0rKwFArD55uhhZSuUBA%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/168e34b56cb646ee8450e9cdbb5cb84d?KeyID=0678eb99&Signature=vVuRrETPye43761R9aH3d292RkpPVoksqyKtCriafJqN%2BdxSJt5vPLhN8QvK15iFQRwtyMPakI8eAisG28HNBQ%3D%3D", 
     "format": "application/pdf", 
     "documentType": "technicalSpecifications"
   }
@@ -18,20 +18,20 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/59c1a71d8b624340985fa04bb5bc427c/documents/a3890eebdcf54260b86ff54468bde198
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/7c4b1c5e9c624bffa4feb0d69248e311/documents/7697dfe7bbb142dda6ce306d70e75a9b
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "description": "technical specification", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/41ae46967b604005a9fae58c861c3afc?KeyID=b1d2ffa5&Signature=hQreQoMXvDdNLDW4l5YnsqYZ9Kgbh5r75tS001m3FZCCFdkWnL1RRxnHALIGt2TGYEnyvq7rvblYyZCRxsR2Dw%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/168e34b56cb646ee8450e9cdbb5cb84d?KeyID=0678eb99&Signature=lI8kxzS7AsjFS5O2fO0gdQshCcNwUxgrWmSwD7Csyak%2Fr44YOJGgrfTwPvDJdpEhNQM8JBFJTDLcIQ%2FmIvFWCA%253D%253D", 
     "title": "Notice.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2017-01-31T17:28:43.338501+02:00", 
+    "datePublished": "2017-02-01T13:22:17.868599+02:00", 
     "documentType": "technicalSpecifications", 
-    "dateModified": "2017-01-31T17:28:43.338530+02:00", 
-    "id": "a3890eebdcf54260b86ff54468bde198"
+    "dateModified": "2017-02-01T13:22:17.868627+02:00", 
+    "id": "7697dfe7bbb142dda6ce306d70e75a9b"
   }
 }
 
