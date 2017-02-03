@@ -326,7 +326,7 @@ class AuctionAwardResource(APIResource):
                     award.complaintPeriod.endDate = now
                     switch_to_next_award(self.request)
             else:
-                    self.request.errors.add('body', 'data', 'Can\'t switch award status to ({}) before bid owner load auction protocol'.format(award.status))
+                    self.request.errors.add('body', 'data', 'Can\'t switch award status to ({}) before auction owner load auction protocol'.format(award.status))
                     self.request.errors.status = 403
                     return
         elif award_status == 'pending.payment' and award.status == 'active' and award.paymentPeriod.endDate > now:

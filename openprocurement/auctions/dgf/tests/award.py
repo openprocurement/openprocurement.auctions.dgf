@@ -171,13 +171,40 @@ class CreateAuctionAwardTest(BaseAuctionWebTest):
         self.assertIn("documentType", response.json["data"])
         self.assertEqual(response.json["data"]["documentType"], 'auctionProtocol')
 
-        response = self.app.get('/auctions/{}/awards/{}/documents'.format(self.auction_id, award['id'], doc_id))
+        response = self.app.get('/auctions/{}/awards/{}/documents/{}'.format(self.auction_id, award['id'], doc_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(doc_id, response.json["data"][0]["id"])
-        self.assertEqual('auctionProtocol', response.json["data"][0]["documentType"])
-        self.assertEqual('auction_protocol.pdf', response.json["data"][0]["title"])
-        self.assertEqual('bid_owner', response.json["data"][0]["author"])
+        self.assertEqual(doc_id, response.json["data"]["id"])
+        self.assertEqual('auctionProtocol', response.json["data"]["documentType"])
+        self.assertEqual('auction_protocol.pdf', response.json["data"]["title"])
+        self.assertEqual('bid_owner', response.json["data"]["author"])
+
+        response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
+            self.auction_id, award['id'], self.auction_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        doc_id = response.json["data"]['id']
+        self.assertIn(doc_id, response.headers['Location'])
+        self.assertEqual('auction_protocol.pdf', response.json["data"]["title"])
+        key = response.json["data"]["url"].split('?')[-1]
+
+        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, award['id'], doc_id, self.auction_token), {"data": {
+            "description": "auction protocol",
+            "documentType": 'auctionProtocol'
+        }})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(doc_id, response.json["data"]["id"])
+        self.assertIn("documentType", response.json["data"])
+        self.assertEqual(response.json["data"]["documentType"], 'auctionProtocol')
+
+        response = self.app.get('/auctions/{}/awards/{}/documents/{}'.format(self.auction_id, award['id'], doc_id))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(doc_id, response.json["data"]["id"])
+        self.assertEqual('auctionProtocol', response.json["data"]["documentType"])
+        self.assertEqual('auction_protocol.pdf', response.json["data"]["title"])
+        self.assertEqual('auction_owner', response.json["data"]["author"])
 
         response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, award['id']), {"data": {"status": "pending.payment"}})
         self.assertEqual(response.status, '200 OK')
@@ -222,13 +249,35 @@ class AuctionAwardProcessTest(BaseAuctionWebTest):
         self.assertIn("documentType", response.json["data"])
         self.assertEqual(response.json["data"]["documentType"], 'auctionProtocol')
 
+        response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
+            self.auction_id, award_id, self.auction_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        doc_id = response.json["data"]['id']
+        self.assertIn(doc_id, response.headers['Location'])
+        self.assertEqual('auction_protocol.pdf', response.json["data"]["title"])
+        key = response.json["data"]["url"].split('?')[-1]
+
+        response = self.app.patch_json(
+            '/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, award_id, doc_id, self.auction_token),
+            {"data": {
+                "description": "auction protocol",
+                "documentType": 'auctionProtocol'
+            }})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(doc_id, response.json["data"]["id"])
+        self.assertIn("documentType", response.json["data"])
+        self.assertEqual(response.json["data"]["documentType"], 'auctionProtocol')
+
         response = self.app.get('/auctions/{}/awards/{}/documents'.format(self.auction_id,award_id, doc_id))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(doc_id, response.json["data"][0]["id"])
         self.assertEqual('auctionProtocol', response.json["data"][0]["documentType"])
         self.assertEqual('auction_protocol.pdf', response.json["data"][0]["title"])
         self.assertEqual('bid_owner', response.json["data"][0]["author"])
+        self.assertEqual('auctionProtocol', response.json["data"][1]["documentType"])
+        self.assertEqual('auction_owner', response.json["data"][1]["author"])
 
     def setUp(self):
         super(AuctionAwardProcessTest, self).setUp()
@@ -262,12 +311,12 @@ class AuctionAwardProcessTest(BaseAuctionWebTest):
         response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.first_award_id), {"data": {"status": "unsuccessful"}}, status=403)
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(response.json['errors'][0]["description"], "Can't switch award status to (unsuccessful) before bid owner load auction protocol")
+        self.assertEqual(response.json['errors'][0]["description"], "Can't switch award status to (unsuccessful) before auction owner load auction protocol")
 
         response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.first_award_id), {"data": {"status": "pending.payment"}}, status=403)
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(response.json['errors'][0]["description"], "Can't switch award status to (pending.payment) before bid owner load auction protocol")
+        self.assertEqual(response.json['errors'][0]["description"], "Can't switch award status to (pending.payment) before auction owner load auction protocol")
 
         response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.first_award_id), {"data": {"status": "pending.waiting"}}, status=403)
         self.assertEqual(response.status, '403 Forbidden')

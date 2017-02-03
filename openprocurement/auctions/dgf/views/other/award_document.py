@@ -27,6 +27,10 @@ from openprocurement.auctions.core.utils import (
 class AuctionAwardDocumentResource(APIResource):
 
     def validate_award_document(self, operation):
+        if operation == 'update' and self.request.authenticated_role != self.context.author:
+            self.request.errors.add('url', 'role', 'Can update document only author')
+            self.request.errors.status = 403
+            return
         if self.request.validated['auction_status'] != 'active.qualification':
             self.request.errors.add('body', 'data', 'Can\'t {} document in current ({}) auction status'.format(operation,
                                                                                                               self.request.validated[

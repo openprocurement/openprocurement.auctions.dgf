@@ -9,7 +9,7 @@ from openprocurement.api.utils import (
 )
 from openprocurement.auctions.core.utils import (
     cleanup_bids_for_cancelled_lots, check_complaint_status,
-    check_auction_status, remove_draft_bids,
+    remove_draft_bids,
 )
 from openprocurement.auctions.dgf.models import VERIFY_AUCTION_PROTOCOL_TIME, AWARD_PAYMENT_TIME
 PKG = get_distribution(__package__)
@@ -51,6 +51,22 @@ def check_bids(request):
             if auction.auctionPeriod and auction.auctionPeriod.startDate:
                 auction.auctionPeriod.startDate = None
             auction.status = 'unsuccessful'
+
+
+def check_auction_status(request):
+    auction = request.validated['auction']
+    if auction.awards:
+        awards_statuses = set([award.status for award in auction.awards])
+    else:
+        awards_statuses = set([""])
+    if not awards_statuses.difference(set(['unsuccessful', 'cancelled'])):
+        LOGGER.info('Switched auction {} to {}'.format(auction.id, 'unsuccessful'),
+                    extra=context_unpack(request, {'MESSAGE_ID': 'switched_auction_unsuccessful'}))
+        auction.status = 'unsuccessful'
+    if auction.contracts and auction.contracts[-1].status == 'active':
+        LOGGER.info('Switched auction {} to {}'.format(auction.id, 'complete'),
+                    extra=context_unpack(request, {'MESSAGE_ID': 'switched_auction_complete'}))
+        auction.status = 'complete'
 
 
 def check_status(request):
@@ -108,22 +124,6 @@ def check_status(request):
             if standStillEnd <= now:
                 check_auction_status(request)
                 return
-
-
-def check_auction_status(request):
-    auction = request.validated['auction']
-    if auction.awards:
-        awards_statuses = set([award.status for award in auction.awards])
-    else:
-        awards_statuses = set([""])
-    if not awards_statuses.difference(set(['unsuccessful', 'cancelled'])):
-        LOGGER.info('Switched auction {} to {}'.format(auction.id, 'unsuccessful'),
-                    extra=context_unpack(request, {'MESSAGE_ID': 'switched_auction_unsuccessful'}))
-        auction.status = 'unsuccessful'
-    if auction.contracts and auction.contracts[-1].status == 'active':
-        LOGGER.info('Switched auction {} to {}'.format(auction.id, 'complete'),
-                    extra=context_unpack(request, {'MESSAGE_ID': 'switched_auction_complete'}))
-        auction.status = 'complete'
 
 
 def check_award_status(request, award, now):
@@ -190,9 +190,9 @@ def switch_to_next_award(request):
         auction.status = 'unsuccessful'
 
 
-def check_auction_protocol(obj):
-    if obj.documents:
-        for document in obj.documents:
-            if document['documentType'] == 'auctionProtocol' and document['author'] == 'bid_owner':
+def check_auction_protocol(award):
+    if award.documents:
+        for document in award.documents:
+            if document['documentType'] == 'auctionProtocol' and document['author'] == 'auction_owner':
                 return True
     return False

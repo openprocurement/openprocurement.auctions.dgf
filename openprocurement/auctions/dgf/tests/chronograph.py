@@ -262,13 +262,13 @@ class AuctionAwardSwitchResourceTest(BaseAuctionWebTest):
 
         bid_token = self.initial_bids_tokens[self.award['bid_id']]
         response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
-            self.auction_id, self.award_id, bid_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
+            self.auction_id, self.award_id, self.auction_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         doc_id = response.json["data"]['id']
         key = response.json["data"]["url"].split('?')[-1]
 
-        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, self.award_id, doc_id, bid_token), {"data": {
+        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, self.award_id, doc_id, self.auction_token), {"data": {
             "description": "auction protocol",
             "documentType": 'auctionProtocol'
         }})
@@ -288,13 +288,13 @@ class AuctionAwardSwitchResourceTest(BaseAuctionWebTest):
     def test_switch_payment_to_unsuccessful(self):
         bid_token = self.initial_bids_tokens[self.award['bid_id']]
         response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
-            self.auction_id, self.award_id, bid_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
+            self.auction_id, self.award_id, self.auction_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         doc_id = response.json["data"]['id']
         key = response.json["data"]["url"].split('?')[-1]
 
-        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, self.award_id, doc_id, bid_token), {"data": {
+        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, self.award_id, doc_id, self.auction_token), {"data": {
             "description": "auction protocol",
             "documentType": 'auctionProtocol'
         }})
@@ -324,13 +324,13 @@ class AuctionAwardSwitchResourceTest(BaseAuctionWebTest):
     def test_switch_active_to_unsuccessful(self):
         bid_token = self.initial_bids_tokens[self.award['bid_id']]
         response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
-            self.auction_id, self.award_id, bid_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
+            self.auction_id, self.award_id, self.auction_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         doc_id = response.json["data"]['id']
         key = response.json["data"]["url"].split('?')[-1]
 
-        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, self.award_id, doc_id, bid_token), {"data": {
+        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, self.award_id, doc_id, self.auction_token), {"data": {
             "description": "auction protocol",
             "documentType": 'auctionProtocol'
         }})
