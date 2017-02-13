@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/bbc1fa45fd914ed9911f8a5daf54e7d9 HTTP/1.0
+GET /api/2.3/auctions/bce8169f013c4b2d81b3b37b23a97c7d HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -11,7 +11,7 @@ Content-Type: application/json; charset=UTF-8
     "procurementMethod": "open", 
     "auctionID": "UA-EA-2017-02-13-000001", 
     "enquiryPeriod": {
-      "startDate": "2017-02-13T15:47:16.037498+02:00", 
+      "startDate": "2017-02-13T20:30:20.473101+02:00", 
       "endDate": "2017-02-26T23:59:50+02:00"
     }, 
     "submissionMethod": "electronicAuction", 
@@ -36,16 +36,16 @@ Content-Type: application/json; charset=UTF-8
       }
     }, 
     "owner": "broker", 
-    "id": "bbc1fa45fd914ed9911f8a5daf54e7d9", 
+    "id": "bce8169f013c4b2d81b3b37b23a97c7d", 
     "eligibilityCriteria_ru": "К участию допускаются только лицензированные финансовые учреждения.", 
     "title": "футляри до державних нагород", 
     "eligibilityCriteria_en": "Only licensed financial institutions are eligible to participate.", 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2017-02-13T15:47:16.040351+02:00", 
+    "dateModified": "2017-02-13T20:30:20.477777+02:00", 
     "status": "active.tendering", 
     "eligibilityCriteria": "До участі допускаються лише ліцензовані фінансові установи.", 
     "tenderPeriod": {
-      "startDate": "2017-02-13T15:47:16.037498+02:00", 
+      "startDate": "2017-02-13T20:30:20.473101+02:00", 
       "endDate": "2017-02-26T23:59:50+02:00"
     }, 
     "auctionPeriod": {
@@ -53,7 +53,7 @@ Content-Type: application/json; charset=UTF-8
     }, 
     "procurementMethodType": "dgfFinancialAssets", 
     "dgfID": "219560", 
-    "date": "2017-02-13T15:47:16.037498+02:00", 
+    "date": "2017-02-13T20:30:20.473101+02:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -74,7 +74,7 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "6674f4eba0f14af7942068f614bbae36", 
+        "id": "dae8f35f09c74e2186913e8a5a1694f1", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"

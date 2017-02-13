@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/007f509a6dbd4f67b07d33bcad157bd5/documents HTTP/1.0
+GET /api/2.3/auctions/c4dd4d72218b43df8603bf9ceffd09d9/documents HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -12,36 +12,36 @@ Content-Type: application/json; charset=UTF-8
       "hash": "md5:00000000000000000000000000000000", 
       "description": "document description", 
       "format": "application/pdf", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/f3f46b31edec415fbf0a1c414c8a313d?KeyID=58a82d14&Signature=oi3rraI7132joj6VwOgftDUzATqZUxjAqNeN9kJZtZrJLT4Dj57tYYS0S5H8JklNrI8IkSF%2F%252BPBopNsD7754BQ%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/8c00eee2c9944753bcbabf37231d1ced?KeyID=e10a37aa&Signature=iPuxzyGeWBlFIru21EtuzDaOsc1S%2FBnpkavBCvqtRogeq%2FSwW3oaAcC6g92dz9OLXi7UUynN9xDen%2FLJF4OrDw%253D%253D", 
       "title": "Notice.pdf", 
       "documentOf": "tender", 
-      "datePublished": "2017-02-13T15:47:17.955781+02:00", 
+      "datePublished": "2017-02-13T20:30:22.929303+02:00", 
       "documentType": "technicalSpecifications", 
-      "id": "8d5f588af95740a5ada614ab6c394ae3", 
-      "dateModified": "2017-02-13T15:47:17.955807+02:00"
+      "id": "d798b9c302224d5fad9594bb25b3b828", 
+      "dateModified": "2017-02-13T20:30:22.929351+02:00"
     }, 
     {
       "hash": "md5:00000000000000000000000000000000", 
       "format": "application/pdf", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/201a0f2f9918445a9ac9e5aec2d5a391?KeyID=58a82d14&Signature=B90JlkOlfPzMbbJ0EdvD4jlFfNJ6P4cbiScATi8wVxP%252Bqp40WWWww0t4fzx92%252BWcX0mmOblZuWvyN4cHtXL9CQ%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/31526e2afedd4a8bb818df6052298de7?KeyID=e10a37aa&Signature=KPxPN064oZxicN%2F6eeT6Rcf5Lx4u%252BJjwx5guvbaFmsddGl5TsR4dlyAis9RcvkzsBSI%252B2XmvHdEm8xlPh8B%252BDQ%253D%253D", 
       "title": "AwardCriteria-2.pdf", 
       "documentOf": "tender", 
-      "datePublished": "2017-02-13T15:47:18.010655+02:00", 
-      "dateModified": "2017-02-13T15:47:18.066531+02:00", 
-      "id": "bcb9e8a4bcbe4d1c9c601317f3c746df"
+      "datePublished": "2017-02-13T20:30:22.987435+02:00", 
+      "dateModified": "2017-02-13T20:30:23.046130+02:00", 
+      "id": "de4e050392ac4a5e85d44cd9d6d17d83"
     }, 
     {
       "index": 1, 
       "hash": "md5:00000000000000000000000000000000", 
       "description": "First illustration description", 
       "format": "image/jpeg", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/9154f2583cd3457cb7ed027913397e1a?KeyID=58a82d14&Signature=AUm35AcDKgRkQIdUUKX2fRPXmEaG8K2qFSDjgGBXRAYU05NcDtFR9gAzgaZrOhN5AtHkx3iI%2FhOi7dyogWasDg%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/bef91a5aaa0b4d1fb05bf744ebf8820c?KeyID=e10a37aa&Signature=aoWUj0ZPSJhNL3j9CoZffcR5mK9L108calUf2jCpNvQmuqtN6sUeIctG3Y6a75TF9pBjyhUtJ5qRJ%2FKBylEBDA%253D%253D", 
       "title": "first_illustration.jpeg", 
       "documentOf": "tender", 
-      "datePublished": "2017-02-13T15:47:18.137358+02:00", 
+      "datePublished": "2017-02-13T20:30:23.119916+02:00", 
       "documentType": "illustration", 
-      "id": "041e445e7d8d4015b62ea9babcdfee72", 
-      "dateModified": "2017-02-13T15:47:18.137385+02:00"
+      "id": "d6e7847e17734a6a866405b3244ceef3", 
+      "dateModified": "2017-02-13T20:30:23.119950+02:00"
     }
   ]
 }

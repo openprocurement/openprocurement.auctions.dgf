@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/b6667af0be3c4650b630d4f50bee97c7?acc_token=43f6c5697f2a470482505ad7ce352ae4 HTTP/1.0
+PATCH /api/2.3/auctions/235dca5502cb424aab698d6081a9f15e?acc_token=6b9661545e9e4b85b384e881cb382f71 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 40
 Content-Type: application/json
@@ -19,7 +19,7 @@ Content-Type: application/json; charset=UTF-8
     "procurementMethod": "open", 
     "auctionID": "UA-EA-2017-02-13-000001", 
     "tenderPeriod": {
-      "startDate": "2017-02-13T15:47:11.818928+02:00", 
+      "startDate": "2017-02-13T20:30:15.233334+02:00", 
       "endDate": "2017-02-26T23:59:50+02:00"
     }, 
     "title": "футляри до державних нагород", 
@@ -39,11 +39,11 @@ Content-Type: application/json; charset=UTF-8
     }, 
     "submissionMethod": "electronicAuction", 
     "enquiryPeriod": {
-      "startDate": "2017-02-13T15:47:11.818928+02:00", 
+      "startDate": "2017-02-13T20:30:15.233334+02:00", 
       "endDate": "2017-02-26T23:59:50+02:00"
     }, 
-    "date": "2017-02-13T15:47:11.864620+02:00", 
-    "dateModified": "2017-02-13T15:47:11.864620+02:00", 
+    "date": "2017-02-13T20:30:15.291154+02:00", 
+    "dateModified": "2017-02-13T20:30:15.291154+02:00", 
     "status": "active.tendering", 
     "procuringEntity": {
       "contactPoint": {
@@ -83,7 +83,7 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "6badbfe95f4b42c383f1d4aac74e477c", 
+        "id": "42854a475c1e4460921519b1a4474e23", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -91,7 +91,7 @@ Content-Type: application/json; charset=UTF-8
         "quantity": 5
       }
     ], 
-    "id": "b6667af0be3c4650b630d4f50bee97c7", 
+    "id": "235dca5502cb424aab698d6081a9f15e", 
     "awardCriteria": "highestCost"
   }
 }
