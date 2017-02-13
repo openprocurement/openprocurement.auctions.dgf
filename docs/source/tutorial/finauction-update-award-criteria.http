@@ -1,12 +1,12 @@
-PUT /api/2.3/auctions/336d6d1e259b409ebc72a19977373b79/documents/130debdfba5946c084464a6b2e82537f?acc_token=ec9ae6b0f7d947e199a5b939feaed9c2 HTTP/1.0
+PUT /api/2.3/auctions/bbc1fa45fd914ed9911f8a5daf54e7d9/documents/69105fb004174b52b0e5245ec8fc75ec?acc_token=e330b77e518e43fb8c764b7742a23eb6 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 342
+Content-Length: 344
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/59d4c263be0344ac954f8cdd8c5aa545?KeyID=4438f366&Signature=GPNaYaXeDc%2FR2Xg48ptM4PuMd2rU%2FwSVkacrOwpf4LxCixLNjqLXXYNvvcNp%2BNEkotkdDQnl%2BtieMG1lt5NEBg%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/f36d0ac4f53946e5bc9927c8f59b9a85?KeyID=79022feb&Signature=O3KU0aRpeZ%2FakSzg0e7%2FN%2Fs3sSZoYs5amoUQ36ECYHhW8bg1qH%2F8Ii8BmPQfoDHWLrqGEZsd%2Bkjp2SHWaM1uAA%3D%3D", 
     "title": "AwardCriteria-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -21,12 +21,12 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/59d4c263be0344ac954f8cdd8c5aa545?KeyID=4438f366&Signature=gCUFLnNHtfZ5rBrH4UdSV7m3%252BmlwRGgwLPLU%2FQLOZmjp0f%2FtEN%252B6KkeTg1HhcShorkkjdmfLDU%252BpsHaBJy7uBQ%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/f36d0ac4f53946e5bc9927c8f59b9a85?KeyID=79022feb&Signature=tpoybfnPlzGFp8431KmHiEBs9dEnbWdb%252BkHLc1mAhNhz3Op5vOngShdQ8Pa8RRmKiFQIk%2FITZz0adb%2FvsXffAg%253D%253D", 
     "title": "AwardCriteria-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-11-25T12:16:17.225804+02:00", 
-    "dateModified": "2016-11-25T12:16:17.284745+02:00", 
-    "id": "130debdfba5946c084464a6b2e82537f"
+    "datePublished": "2017-02-13T15:47:16.247251+02:00", 
+    "dateModified": "2017-02-13T15:47:16.302152+02:00", 
+    "id": "69105fb004174b52b0e5245ec8fc75ec"
   }
 }
 

@@ -12,7 +12,7 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2016-11-25T12:21:11.241018"
+      "startDate": "2017-02-13T15:52:10.110121"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "value": {
@@ -70,21 +70,21 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/e640f4175dfe454cb38d7f3187d19c59
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/aefff678fa2243a7b6b89b4eb97978a5
 
 {
   "access": {
-    "token": "3d9ea1ecaafa411b95d84626dc152bfb"
+    "token": "75d26a0962c54623b9f6c1efdcccae29"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-11-25-000001", 
+    "auctionID": "UA-EA-2017-02-13-000001", 
     "enquiryPeriod": {
-      "startDate": "2016-11-25T12:16:13.864579+02:00", 
-      "endDate": "2016-11-25T12:20:30.358211+02:00"
+      "startDate": "2017-02-13T15:47:12.780770+02:00", 
+      "endDate": "2017-02-13T15:51:20.436433+02:00"
     }, 
     "submissionMethod": "electronicAuction", 
-    "next_check": "2016-11-25T12:20:30.358211+02:00", 
+    "next_check": "2017-02-13T15:51:20.436433+02:00", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 
@@ -106,21 +106,21 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/e640f4175df
     }, 
     "owner": "broker", 
     "title_en": "[TESTING] ", 
-    "id": "e640f4175dfe454cb38d7f3187d19c59", 
+    "id": "aefff678fa2243a7b6b89b4eb97978a5", 
     "title": "[ТЕСТУВАННЯ] футляри до державних нагород", 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2016-11-25T12:16:13.867316+02:00", 
+    "dateModified": "2017-02-13T15:47:12.783745+02:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2016-11-25T12:16:13.864579+02:00", 
-      "endDate": "2016-11-25T12:20:30.358211+02:00"
+      "startDate": "2017-02-13T15:47:12.780770+02:00", 
+      "endDate": "2017-02-13T15:51:20.436433+02:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2016-11-25T12:20:30.358211+02:00"
+      "shouldStartAfter": "2017-02-13T15:51:20.436433+02:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "dgfID": "219560", 
-    "date": "2016-11-25T12:16:13.864579+02:00", 
+    "date": "2017-02-13T15:47:12.780770+02:00", 
     "submissionMethodDetails": "quick", 
     "items": [
       {
@@ -137,7 +137,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/e640f4175df
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "66b2b5b6387b469f85c065dbc561a14b", 
+        "id": "064c897208e34072a69835b080d45b68", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"

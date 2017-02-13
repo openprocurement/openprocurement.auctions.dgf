@@ -123,8 +123,8 @@ cancellation = {
 
 test_max_uid = uuid4().hex
 
-test_auction_maximum_data = {
-    "title": u"футляри до державних нагород",
+test_auction_maximum_data = test_auction_data.copy()
+test_auction_maximum_data.update({
     "title_en": u"Cases with state awards",
     "title_ru": u"футляры к государственным наградам",
     "procuringEntity": {
@@ -147,14 +147,6 @@ test_auction_maximum_data = {
         },
         'kind': 'general'
     },
-    "value": {
-        "amount": 500,
-        "currency": u"UAH"
-    },
-    "minimalStep": {
-        "amount": 35,
-        "currency": u"UAH"
-    },
     "items": [
         {
             "id": test_max_uid,
@@ -171,12 +163,7 @@ test_auction_maximum_data = {
             "quantity": 5
         }
     ],
-    "auctionPeriod": {
-        "startDate": (now + timedelta(days=14)).isoformat()
-    },
-    "procurementMethodType": "dgfOtherAssets",
-    "mode": u"test"
-}
+})
 
 
 test_complaint_data = {'data':
@@ -601,6 +588,17 @@ class AuctionResourceTest(BaseAuctionWebTest):
 
         with open('docs/source/tutorial/bidder-auction-protocol.http', 'w') as self.app.file_obj:
             response = self.app.post_json('/auctions/{}/awards/{}/documents?acc_token={}'.format(self.auction_id, award_id, bids_access[bid2_id]),
+                {'data': {
+                    'title': u'SignedAuctionProtocol.pdf',
+                    'url': self.generate_docservice_url(),
+                    'hash': 'md5:' + '0' * 32,
+                    'format': 'application/pdf',
+                    "documentType": "auctionProtocol",
+                }})
+            self.assertEqual(response.status, '201 Created')
+
+        with open('docs/source/tutorial/owner-auction-protocol.http', 'w') as self.app.file_obj:
+            response = self.app.post_json('/auctions/{}/awards/{}/documents?acc_token={}'.format(self.auction_id, award_id, owner_token),
                 {'data': {
                     'title': u'SignedAuctionProtocol.pdf',
                     'url': self.generate_docservice_url(),

@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/2077a4e50e744ab6bc3936e6a0bb77a0/contracts/4a46645a28034a21a01091677a008af6?acc_token=60ba6c1078974d43a97cf13b9c9488d4 HTTP/1.0
+PATCH /api/2.3/auctions/007f509a6dbd4f67b07d33bcad157bd5/contracts/bedd96f4b9764c57a520b238d4275a1c?acc_token=293b1515fb11485080bdb821d1cb3420 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 80
 Content-Type: application/json
@@ -7,7 +7,7 @@ Host: api-sandbox.ea.openprocurement.org
 {
   "data": {
     "status": "active", 
-    "dateSigned": "2016-11-25T12:16:21.413297+02:00"
+    "dateSigned": "2017-02-13T15:47:20.672067+02:00"
   }
 }
 
@@ -22,22 +22,22 @@ Content-Type: application/json; charset=UTF-8
       {
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/msword", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/3de759f4869d421c95aa82ad1e578613?KeyID=c414de0e&Signature=9XymZP6fW3SHyQSvUvLSZ4XBKIo7zXEebEpLPDNrNFt9tfy93coea0TQ3JeRYwiQ2uc7zEcKMlTJGc562aB%2FBg%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/7d4967150374445a81987c76f1b77eca?KeyID=58a82d14&Signature=8Wfx7lHyCAiODfCp3rqimg7E7XIs4jRTTl1HFl8FVPSevbVVzsCzlYPHyLBmpUof8hQESlLSBo3IKuQx1l57Cg%253D%253D", 
         "title": "contract_first_document.doc", 
         "documentOf": "tender", 
-        "datePublished": "2016-11-25T12:16:21.109889+02:00", 
-        "dateModified": "2016-11-25T12:16:21.109920+02:00", 
-        "id": "5ea80bf8042c4ff6bd7375671bc18790"
+        "datePublished": "2017-02-13T15:47:20.344087+02:00", 
+        "dateModified": "2017-02-13T15:47:20.344114+02:00", 
+        "id": "73abd29e651a4d38912ebf7326ca11fe"
       }, 
       {
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/msword", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/08be81f510ac40128b67fe25cb99620d?KeyID=c414de0e&Signature=Z5eQG%252Bg6n2VTJwfphuoglgsJI9beNMHNXEcnjSt7ChQHyFj0MdH0MvZ7JGAC%2Fo%252BDwzGVH%252BypKxhlHzZV4RLUDQ%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/eaf994ce5a2a45a1bdd887fb5c4e737a?KeyID=58a82d14&Signature=kd9senYVtEEL5g1QSpIWVFxr%2FaV5%252BgC8wn1nc%252BK2RNi2jDJpv3Vg87VRQW6vI70Sz3ysQrKcy2fRqhg0IjwHDQ%253D%253D", 
         "title": "contract_second_document.doc", 
         "documentOf": "tender", 
-        "datePublished": "2016-11-25T12:16:21.277383+02:00", 
-        "dateModified": "2016-11-25T12:16:21.277409+02:00", 
-        "id": "ceb0f09e60304a0d94b3e040ff57dd14"
+        "datePublished": "2017-02-13T15:47:20.524516+02:00", 
+        "dateModified": "2017-02-13T15:47:20.524543+02:00", 
+        "id": "fac70147e8af4a94af2e4ca07f7fc890"
       }
     ], 
     "items": [
@@ -55,7 +55,7 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "6d44ffb78a7a41228d3a9d65a76043c3", 
+        "id": "9f34c2df76d74bb387befa041c191e4b", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -86,19 +86,19 @@ Content-Type: application/json; charset=UTF-8
       }
     ], 
     "period": {
-      "startDate": "2016-11-25T12:16:11.241018+02:00", 
-      "endDate": "2017-11-25T12:16:11.241018+02:00"
+      "startDate": "2017-02-13T15:47:10.110121+02:00", 
+      "endDate": "2018-02-13T15:47:10.110121+02:00"
     }, 
     "value": {
       "currency": "UAH", 
       "amount": 501.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "dateSigned": "2016-11-25T12:16:21.413297+02:00", 
-    "date": "2016-11-25T12:16:21.498662+02:00", 
-    "awardID": "5fa78019101a4509bfbda29cb9489aaa", 
-    "id": "4a46645a28034a21a01091677a008af6", 
-    "contractID": "UA-EA-2016-11-25-000001-1"
+    "dateSigned": "2017-02-13T15:47:20.672067+02:00", 
+    "date": "2017-02-13T15:47:20.766218+02:00", 
+    "awardID": "5da46ef46a5c4af6b4b11086df9eb89c", 
+    "id": "bedd96f4b9764c57a520b238d4275a1c", 
+    "contractID": "UA-EA-2017-02-13-000001-1"
   }
 }
 

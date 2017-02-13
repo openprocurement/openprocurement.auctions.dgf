@@ -1,12 +1,12 @@
-POST /api/2.3/auctions/2077a4e50e744ab6bc3936e6a0bb77a0/awards/5fa78019101a4509bfbda29cb9489aaa/documents?acc_token=9c57ad3a685e4f03be4566393fcd327f HTTP/1.0
+POST /api/2.3/auctions/007f509a6dbd4f67b07d33bcad157bd5/awards/5da46ef46a5c4af6b4b11086df9eb89c/documents?acc_token=1beb099a5f85475992bc13302101a490 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 383
+Content-Length: 375
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/dd6d019eca434e06a4d8a95fd4d10fd0?KeyID=c414de0e&Signature=W%2FJV%2FKiEoy3hfABbWIjgD%2Fkl9hdDOnFWkO2gcSOf8eRoqUk3XiM3O6nhe2YUS9AWqQ%2BPJQcNL9iPYJnla8vNAQ%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/05a2c7e16645433cb4c99516152e085f?KeyID=58a82d14&Signature=4vFyhOwSzGBOSzdcQt9xZE6y3H1TI5rSodZsZnnKgWCKzdNxHb4hHvJF9eAAxEyjr3AQWqTb7jj82NNJIaB6CQ%3D%3D", 
     "title": "SignedAuctionProtocol.pdf", 
     "format": "application/pdf", 
     "hash": "md5:00000000000000000000000000000000", 
@@ -17,20 +17,20 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2077a4e50e744ab6bc3936e6a0bb77a0/awards/5fa78019101a4509bfbda29cb9489aaa/documents/d2762373e99c4a9d8ceb9d6f733f36c1
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/007f509a6dbd4f67b07d33bcad157bd5/awards/5da46ef46a5c4af6b4b11086df9eb89c/documents/971f3ed86d8b435795b096ec5f680d55
 
 {
   "data": {
-    "dateModified": "2016-11-25T12:16:20.533283+02:00", 
+    "dateModified": "2017-02-13T15:47:19.616351+02:00", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/dd6d019eca434e06a4d8a95fd4d10fd0?KeyID=c414de0e&Signature=CvjQYP2w8VnSyKKpKIbqOoyGYAIPTH7rT7VSV1OsbyPCqrsxytfT7%252BKJd8w1NJoNrUEdQZ7A61IOfb8e3v4oCg%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/05a2c7e16645433cb4c99516152e085f?KeyID=58a82d14&Signature=WG9U8ofRXH6onAQjHQtJ9C2TSWuPUaE1eQPmMuc80686jQVpCr7Bq9TPHB%252BxgpixS1J9NupgUHuzVvEdz3eeBw%253D%253D", 
     "author": "bid_owner", 
     "documentOf": "tender", 
-    "datePublished": "2016-11-25T12:16:20.533241+02:00", 
+    "datePublished": "2017-02-13T15:47:19.616321+02:00", 
     "documentType": "auctionProtocol", 
     "title": "SignedAuctionProtocol.pdf", 
-    "id": "d2762373e99c4a9d8ceb9d6f733f36c1"
+    "id": "971f3ed86d8b435795b096ec5f680d55"
   }
 }
 

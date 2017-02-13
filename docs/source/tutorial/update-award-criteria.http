@@ -1,12 +1,12 @@
-PUT /api/2.3/auctions/2077a4e50e744ab6bc3936e6a0bb77a0/documents/776400188dc643828782dae4c55d900f?acc_token=60ba6c1078974d43a97cf13b9c9488d4 HTTP/1.0
+PUT /api/2.3/auctions/007f509a6dbd4f67b07d33bcad157bd5/documents/bcb9e8a4bcbe4d1c9c601317f3c746df?acc_token=293b1515fb11485080bdb821d1cb3420 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 340
+Content-Length: 342
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/e5b8c1a1179d457caed1c849066fb38a?KeyID=c414de0e&Signature=brPyUR4EJj8jIa7%2Fsz4kIuuNL7UZxuQo054qDM82cjyS5AKRPEpl2RJBzmnidZfUQc2YQANHLWolfrc%2F%2BSE2DA%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/201a0f2f9918445a9ac9e5aec2d5a391?KeyID=58a82d14&Signature=rbWR7GBAKgnN%2Bmt0%2B%2F%2BL7AXBkZptZggVlze2zF9d4sbjMu0bMpHFE5fAioWAt92QXytpoBw96Ezygef2UdgoAA%3D%3D", 
     "title": "AwardCriteria-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -21,12 +21,12 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/e5b8c1a1179d457caed1c849066fb38a?KeyID=c414de0e&Signature=8UFGovRAvp8H%252B%2FJwl6dAcSmpTghsebOIhaGuTTA248WrwH2ZMclR1dw3jUSzI8ondMcAncWpR8AkN%252BE1Bbs%252BDA%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/201a0f2f9918445a9ac9e5aec2d5a391?KeyID=58a82d14&Signature=B90JlkOlfPzMbbJ0EdvD4jlFfNJ6P4cbiScATi8wVxP%252Bqp40WWWww0t4fzx92%252BWcX0mmOblZuWvyN4cHtXL9CQ%253D%253D", 
     "title": "AwardCriteria-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-11-25T12:16:18.933210+02:00", 
-    "dateModified": "2016-11-25T12:16:19.005152+02:00", 
-    "id": "776400188dc643828782dae4c55d900f"
+    "datePublished": "2017-02-13T15:47:18.010655+02:00", 
+    "dateModified": "2017-02-13T15:47:18.066531+02:00", 
+    "id": "bcb9e8a4bcbe4d1c9c601317f3c746df"
   }
 }
 

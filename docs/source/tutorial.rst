@@ -268,6 +268,10 @@ The candidate (participant that has submitted the highest bid at the auction) mu
 .. include:: tutorial/bidder-auction-protocol.http
   :code:
 
+.. include:: tutorial/owner-auction-protocol.http
+  :code:
+
+
 
 The Organizer has to verify the auction protocol, otherwise it will be verified automatically in the end of `verificationPeriod`.
 
@@ -283,7 +287,7 @@ Within **10 business days after becoming candidate** this candidate must provide
   :code:
 
 .. _Candidate_disqualification:
-  
+
 Disqualification of candidate
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
