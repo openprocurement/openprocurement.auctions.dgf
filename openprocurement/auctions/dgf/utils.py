@@ -145,6 +145,15 @@ def check_award_status(request, award, now):
         award.status = 'pending.payment'
         award.paymentPeriod = {'startDate': now}
         award.paymentPeriod.endDate = calculate_business_date(now, AWARD_PAYMENT_TIME, auction, True)
+        award.signingPeriod = award.paymentPeriod
+
+
+def invalidate_bids_under_threshold(request):
+    auction = request.validated['auction']
+    value_threshold = auction.value.amount + auction.minimalStep.amount
+    for bid in auction.bids:
+        if bid.value.amount < value_threshold:
+            bid.status = 'invalid'
 
 
 def create_awards(request):
@@ -164,11 +173,14 @@ def create_awards(request):
             'value': bid['value'],
             'suppliers': bid['tenderers'],
             'complaintPeriod': {
-                'startDate': now.isoformat()
+                'startDate': now
             }
         })
-        if status == 'pending.verification':
-            award.verificationPeriod = {'startDate': now.isoformat()}
+        if bid['status'] == 'invalid':
+            award.status = 'unsuccessful'
+            award.complaintPeriod.endDate = now
+        if award.status == 'pending.verification':
+            award.verificationPeriod = {'startDate': now}
             award.verificationPeriod.endDate = calculate_business_date(now, VERIFY_AUCTION_PROTOCOL_TIME, auction, True)
             request.response.headers['Location'] = request.route_url('{}:Auction Awards'.format(auction.procurementMethodType), auction_id=auction.id, award_id=award['id'])
         auction.awards.append(award)
@@ -181,7 +193,7 @@ def switch_to_next_award(request):
     if waiting_awards:
         award = waiting_awards[0]
         award.status = 'pending.verification'
-        award.verificationPeriod = {'startDate': now.isoformat()}
+        award.verificationPeriod = {'startDate': now}
         award.verificationPeriod.endDate = calculate_business_date(now, VERIFY_AUCTION_PROTOCOL_TIME, auction, True)
         request.response.headers['Location'] = request.route_url('{}:Auction Awards'.format(auction.procurementMethodType), auction_id=auction.id, award_id=award['id'])
 

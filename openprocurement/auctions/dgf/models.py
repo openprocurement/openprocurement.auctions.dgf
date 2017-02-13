@@ -43,8 +43,8 @@ ORA_CODES[0:0] = ["UA-IPN", "UA-FIN"]
 DGF_ID_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
 
 VERIFY_AUCTION_PROTOCOL_TIME = timedelta(days=3)
-AWARD_PAYMENT_TIME = timedelta(days=7)
-CONTRACT_SIGNING_TIME = timedelta(days=5)
+AWARD_PAYMENT_TIME = timedelta(days=11)
+CONTRACT_SIGNING_TIME = timedelta(days=11)
 
 
 class CAVClassification(Classification):
@@ -116,6 +116,7 @@ class Bid(BaseBid):
             'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'qualified'),
         }
 
+    status = StringType(choices=['active', 'draft', 'invalid'], default='active')
     tenderers = ListType(ModelType(Organization), required=True, min_size=1, max_size=1)
     documents = ListType(ModelType(Document), default=list())
     qualified = BooleanType(required=True, choices=[True])

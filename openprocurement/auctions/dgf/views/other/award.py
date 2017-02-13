@@ -173,8 +173,8 @@ class AuctionAwardResource(APIResource):
             self.request.errors.status = 403
             return
         now = get_now()
-        award.complaintPeriod = {'startDate': now.isoformat()}
-        award.verificationPeriod = {'startDate': now.isoformat()}
+        award.complaintPeriod = {'startDate': now}
+        award.verificationPeriod = {'startDate': now}
         award.verificationPeriod.endDate = calculate_business_date(now, VERIFY_AUCTION_PROTOCOL_TIME, auction, True)
         auction.awards.append(award)
         if save_auction(self.request):
@@ -315,23 +315,18 @@ class AuctionAwardResource(APIResource):
                 self.request.errors.add('body', 'data', 'Only bid owner may cancel award in current ({}) status'.format(award_status))
                 self.request.errors.status = 403
                 return
-        elif award_status == 'pending.verification' and award.status in ['pending.payment', 'unsuccessful']:
+        elif award_status == 'pending.verification' and award.status == 'pending.payment':
             if check_auction_protocol(award):
-                if award.status == 'pending.payment':
-                    award.verificationPeriod.endDate = now
-                    award.paymentPeriod = {'startDate': now}
-                    award.paymentPeriod.endDate = calculate_business_date(now, AWARD_PAYMENT_TIME, auction, True)
-                elif award.status == 'unsuccessful':
-                    award.verificationPeriod.endDate = now
-                    award.complaintPeriod.endDate = now
-                    switch_to_next_award(self.request)
+                award.verificationPeriod.endDate = now
+                award.paymentPeriod = {'startDate': now}
+                award.paymentPeriod.endDate = calculate_business_date(now, AWARD_PAYMENT_TIME, auction, True)
+                award.signingPeriod = award.paymentPeriod
             else:
-                    self.request.errors.add('body', 'data', 'Can\'t switch award status to ({}) before auction owner load auction protocol'.format(award.status))
-                    self.request.errors.status = 403
-                    return
+                self.request.errors.add('body', 'data', 'Can\'t switch award status to (pending.payment) before auction owner load auction protocol')
+                self.request.errors.status = 403
+                return
         elif award_status == 'pending.payment' and award.status == 'active' and award.paymentPeriod.endDate > now:
             award.complaintPeriod.endDate = award.paymentPeriod.endDate = now
-            award.signingPeriod = {'startDate': now}
             award.signingPeriod.endDate = calculate_business_date(now, CONTRACT_SIGNING_TIME, auction, True)
             auction.contracts.append(type(auction).contracts.model_class({
                 'awardID': award.id,
@@ -341,8 +336,10 @@ class AuctionAwardResource(APIResource):
                 'items': [i for i in auction.items if i.relatedLot == award.lotID],
                 'contractID': '{}-{}{}'.format(auction.auctionID, self.server_id, len(auction.contracts) + 1)}))
             auction.status = 'active.awarded'
-        elif award_status not in ['pending.waiting', 'cancelled'] and award.status == 'unsuccessful':
-            if award_status == 'pending.payment':
+        elif award_status != 'pending.waiting' and award.status == 'unsuccessful':
+            if award_status == 'pending.verification':
+                award.verificationPeriod.endDate = now
+            elif award_status == 'pending.payment':
                 award.paymentPeriod.endDate = now
             elif award_status == 'active':
                 award.signingPeriod.endDate = now
@@ -359,5 +356,5 @@ class AuctionAwardResource(APIResource):
             return
         if save_auction(self.request):
             self.LOGGER.info('Updated auction award {}'.format(self.request.context.id),
-                        extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_award_patch'}))
+                             extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_award_patch'}))
             return {'data': award.serialize("view")}

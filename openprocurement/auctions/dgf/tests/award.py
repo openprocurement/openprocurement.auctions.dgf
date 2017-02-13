@@ -308,11 +308,6 @@ class AuctionAwardProcessTest(BaseAuctionWebTest):
         self.app.authorization = authorization
 
     def test_invalid_patch_auction_award(self):
-        response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.first_award_id), {"data": {"status": "unsuccessful"}}, status=403)
-        self.assertEqual(response.status, '403 Forbidden')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(response.json['errors'][0]["description"], "Can't switch award status to (unsuccessful) before auction owner load auction protocol")
-
         response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.first_award_id), {"data": {"status": "pending.payment"}}, status=403)
         self.assertEqual(response.status, '403 Forbidden')
         self.assertEqual(response.content_type, 'application/json')
