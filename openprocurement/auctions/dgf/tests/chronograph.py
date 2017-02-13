@@ -253,37 +253,6 @@ class AuctionAwardSwitchResourceTest(BaseAuctionWebTest):
         self.assertEqual(auction['status'], 'active.qualification')
         self.assertNotIn('endDate', auction['awardPeriod'])
 
-    def test_switch_verification_to_payment(self):
-        # response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "active"}})
-        # self.assertEqual(response.status, '200 OK')
-        # self.assertEqual(response.content_type, 'application/json')
-        # self.assertEqual(response.json['data']["status"], "active")
-
-        bid_token = self.initial_bids_tokens[self.award['bid_id']]
-        response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
-            self.auction_id, self.award_id, self.auction_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
-        self.assertEqual(response.status, '201 Created')
-        self.assertEqual(response.content_type, 'application/json')
-        doc_id = response.json["data"]['id']
-        key = response.json["data"]["url"].split('?')[-1]
-
-        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, self.award_id, doc_id, self.auction_token), {"data": {
-            "description": "auction protocol",
-            "documentType": 'auctionProtocol'
-        }})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(response.json["data"]["documentType"], 'auctionProtocol')
-
-        auction = self.db.get(self.auction_id)
-        auction['awards'][0]['verificationPeriod']['endDate'] = auction['awards'][0]['verificationPeriod']['startDate']
-        self.db.save(auction)
-
-        self.app.authorization = ('Basic', ('chronograph', ''))
-        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.json['data']['awards'][0]['status'], 'pending.payment')
-
     def test_switch_payment_to_unsuccessful(self):
         bid_token = self.initial_bids_tokens[self.award['bid_id']]
         response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(

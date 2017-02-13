@@ -128,7 +128,7 @@ def check_status(request):
 
 def check_award_status(request, award, now):
     auction = request.validated['auction']
-    if (award.status == 'pending.verification' and award['verificationPeriod']['endDate'] < now and not check_auction_protocol(award)) or \
+    if (award.status == 'pending.verification' and award['verificationPeriod']['endDate'] < now) or \
             (award.status == 'pending.payment' and award['paymentPeriod']['endDate'] < now) or \
             (award.status == 'active' and award['signingPeriod']['endDate'] < now):
         if award.status == 'active':
@@ -140,12 +140,6 @@ def check_award_status(request, award, now):
         award.status = 'unsuccessful'
         award.complaintPeriod.endDate = now
         switch_to_next_award(request)
-    elif award.status == 'pending.verification' and award['verificationPeriod']['endDate'] < now and check_auction_protocol(award):
-        award.verificationPeriod.endDate = now
-        award.status = 'pending.payment'
-        award.paymentPeriod = {'startDate': now}
-        award.paymentPeriod.endDate = calculate_business_date(now, AWARD_PAYMENT_TIME, auction, True)
-        award.signingPeriod = award.paymentPeriod
 
 
 def invalidate_bids_under_threshold(request):
