@@ -1,4 +1,4 @@
-POST /api/2.3/auctions/bfddd8a61d1d49d19156b1e40ccb6e82/bids HTTP/1.0
+POST /api/2.3/auctions/7d809bf30a104837a5882d1472e19d5a/bids HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 1004
 Content-Type: application/json
@@ -46,11 +46,11 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/bfddd8a61d1d49d19156b1e40ccb6e82/bids/091dc69fbd29400b8989635ab2e6dfd8
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/7d809bf30a104837a5882d1472e19d5a/bids/e1bab439c70b4573a9e8d0cda786cc96
 
 {
   "access": {
-    "token": "942716e9d34f4b828ca90e82179c63d7"
+    "token": "12fcc98babaa4af2a81b54f3b48d78e7"
   }, 
   "data": {
     "status": "active", 
@@ -60,7 +60,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/bfddd8a61d1
       "amount": 479.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2016-12-02T19:52:46.775103+02:00", 
+    "date": "2017-02-15T11:48:42.824589+02:00", 
     "qualified": true, 
     "tenderers": [
       {
@@ -90,7 +90,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/bfddd8a61d1
       }
     ], 
     "owner": "broker", 
-    "id": "091dc69fbd29400b8989635ab2e6dfd8"
+    "id": "e1bab439c70b4573a9e8d0cda786cc96"
   }
 }
 

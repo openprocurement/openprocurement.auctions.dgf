@@ -1,12 +1,12 @@
 PATCH /api/2.3/auctions/f6a8d0f1fd564397b3f1fd30ce85b004/awards/9bd8a6d2f7624bcebe94c2333eb5cbc7?acc_token=b71ba50d2bc1415db843b262774e02e9 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 30
+Content-Length: 39
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "status": "active"
+    "status": "pending.payment"
   }
 }
 
@@ -16,10 +16,10 @@ Content-Type: application/json; charset=UTF-8
 
 {
   "data": {
-    "status": "active", 
+    "status": "pending.payment", 
     "paymentPeriod": {
       "startDate": "2017-02-15T11:48:46.210702+02:00", 
-      "endDate": "2017-02-15T11:48:47.074052+02:00"
+      "endDate": "2017-02-15T11:59:46.210702+02:00"
     }, 
     "documents": [
       {
@@ -53,7 +53,7 @@ Content-Type: application/json; charset=UTF-8
     }, 
     "complaintPeriod": {
       "startDate": "2017-02-15T11:48:46.210702+02:00", 
-      "endDate": "2017-02-15T11:48:47.074052+02:00"
+      "endDate": "2017-02-15T11:59:46.210702+02:00"
     }, 
     "suppliers": [
       {
@@ -87,7 +87,7 @@ Content-Type: application/json; charset=UTF-8
       "amount": 501.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2017-02-15T11:48:47.098631+02:00", 
+    "date": "2017-02-15T11:48:46.915619+02:00", 
     "id": "9bd8a6d2f7624bcebe94c2333eb5cbc7"
   }
 }

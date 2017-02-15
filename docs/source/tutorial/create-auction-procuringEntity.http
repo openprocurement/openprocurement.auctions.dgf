@@ -1,6 +1,6 @@
 POST /api/2.3/auctions?opt_pretty=1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 1934
+Content-Length: 2057
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
@@ -12,34 +12,19 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2016-12-16T19:52:38.777946"
+      "startDate": "2017-03-01"
     }, 
+    "tenderAttempts": 1, 
     "procurementMethodType": "dgfOtherAssets", 
     "value": {
       "currency": "UAH", 
-      "amount": 500
+      "amount": 100
     }, 
-    "procuringEntity": {
-      "contactPoint": {
-        "name": "Державне управління справами", 
-        "telephone": "0440000000"
-      }, 
-      "identifier": {
-        "scheme": "UA-EDR", 
-        "id": "00037256", 
-        "uri": "http://www.dus.gov.ua/"
-      }, 
-      "name": "Державне управління справами", 
-      "kind": "general", 
-      "address": {
-        "countryName": "Україна", 
-        "postalCode": "01220", 
-        "region": "м. Київ", 
-        "streetAddress": "вул. Банкова, 11, корпус 1", 
-        "locality": "м. Київ"
-      }
-    }, 
+    "dgfDecisionDate": "2016-11-17", 
+    "dgfID": "219560", 
     "title_ru": "футляры к государственным наградам", 
+    "dgfDecisionID": "219560", 
+    "procurementMethodDetails": "quick, accelerator=1440", 
     "items": [
       {
         "classification": {
@@ -48,7 +33,7 @@ Host: api-sandbox.ea.openprocurement.org
           "description": "Земельні ділянки"
         }, 
         "description": "Земля для військовослужбовців", 
-        "id": "d735043c2ba04a96a3fdf39880df003a", 
+        "id": "b57bc17ceaf748e6a2f3080d00966b71", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -57,28 +42,6 @@ Host: api-sandbox.ea.openprocurement.org
       }
     ], 
     "title_en": "Cases with state awards", 
-    "mode": "test"
-  }
-}
-
-
-201 Created
-Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2699ccb8cfd44e8eb64b4dea158f5dc9
-
-{
-  "access": {
-    "token": "5eab864cf0124c6186ce87638e8c4c2e"
-  }, 
-  "data": {
-    "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-12-02-000002", 
-    "enquiryPeriod": {
-      "startDate": "2016-12-02T19:52:47.960887+02:00", 
-      "endDate": "2016-12-15T20:00:00+02:00"
-    }, 
-    "submissionMethod": "electronicAuction", 
-    "next_check": "2016-12-15T20:00:00+02:00", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 
@@ -92,39 +55,66 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2699ccb8cfd
       "name": "Державне управління справами", 
       "kind": "general", 
       "address": {
-        "postalCode": "01220", 
         "countryName": "Україна", 
-        "streetAddress": "вул. Банкова, 11, корпус 1", 
+        "postalCode": "01220", 
         "region": "м. Київ", 
+        "streetAddress": "вул. Банкова, 11, корпус 1", 
         "locality": "м. Київ"
       }
+    }
+  }
+}
+
+
+201 Created
+Content-Type: application/json; charset=UTF-8
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2251f86efe274eddb4cf3473d06f03e1
+
+{
+  "access": {
+    "token": "bce5ab4ae8db4a8697c6b836acb95f1b"
+  }, 
+  "data": {
+    "procurementMethod": "open", 
+    "auctionID": "UA-EA-2017-02-15-000002", 
+    "enquiryPeriod": {
+      "startDate": "2017-02-15T11:48:44.072974+02:00", 
+      "endDate": "2017-02-28T23:59:50+02:00"
     }, 
+    "submissionMethod": "electronicAuction", 
+    "dgfDecisionDate": "2016-11-17", 
+    "next_check": "2017-02-28T23:59:50+02:00", 
+    "awardCriteria": "highestCost", 
+    "dgfDecisionID": "219560", 
     "owner": "broker", 
-    "title_en": "[TESTING] Cases with state awards", 
-    "id": "2699ccb8cfd44e8eb64b4dea158f5dc9", 
+    "title_en": "Cases with state awards", 
+    "id": "2251f86efe274eddb4cf3473d06f03e1", 
     "documents": [
       {
         "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
         "url": "http://torgi.fg.gov.ua/prozorrosale", 
         "documentOf": "tender", 
-        "datePublished": "2016-12-02T19:52:47.961216+02:00", 
+        "datePublished": "2017-02-15T11:48:44.073369+02:00", 
         "documentType": "x_dgfPlatformLegalDetails", 
-        "dateModified": "2016-12-02T19:52:47.961243+02:00", 
-        "id": "27843d4f643049f89e47237473465ed9"
+        "dateModified": "2017-02-15T11:48:44.073402+02:00", 
+        "id": "7c0ae7061b2c4d1187bd2cac77490352"
       }
     ], 
-    "title": "[ТЕСТУВАННЯ] футляри до державних нагород", 
-    "dateModified": "2016-12-02T19:52:47.964332+02:00", 
+    "title": "футляри до державних нагород", 
+    "tenderAttempts": 1, 
+    "procurementMethodDetails": "quick, accelerator=1440", 
+    "dateModified": "2017-02-15T11:48:44.078450+02:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2016-12-02T19:52:47.960887+02:00", 
-      "endDate": "2016-12-15T20:00:00+02:00"
+      "startDate": "2017-02-15T11:48:44.072974+02:00", 
+      "endDate": "2017-02-28T23:59:50+02:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2016-12-16T00:00:00+02:00"
+      "shouldStartAfter": "2017-03-01T00:00:00+02:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
-    "date": "2016-12-02T19:52:47.960887+02:00", 
+    "dgfID": "219560", 
+    "date": "2017-02-15T11:48:44.072974+02:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -137,7 +127,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2699ccb8cfd
           "name": "item"
         }, 
         "description": "Земля для військовослужбовців", 
-        "id": "d735043c2ba04a96a3fdf39880df003a", 
+        "id": "b57bc17ceaf748e6a2f3080d00966b71", 
         "classification": {
           "scheme": "CAV", 
           "description": "Земельні ділянки", 
@@ -148,12 +138,30 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/2699ccb8cfd
     ], 
     "value": {
       "currency": "UAH", 
-      "amount": 500.0, 
+      "amount": 100.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "mode": "test", 
-    "title_ru": "[ТЕСТИРОВАНИЕ] футляры к государственным наградам", 
-    "awardCriteria": "highestCost"
+    "title_ru": "футляры к государственным наградам", 
+    "procuringEntity": {
+      "contactPoint": {
+        "name": "Державне управління справами", 
+        "telephone": "0440000000"
+      }, 
+      "identifier": {
+        "scheme": "UA-EDR", 
+        "id": "00037256", 
+        "uri": "http://www.dus.gov.ua/"
+      }, 
+      "name": "Державне управління справами", 
+      "kind": "general", 
+      "address": {
+        "postalCode": "01220", 
+        "countryName": "Україна", 
+        "streetAddress": "вул. Банкова, 11, корпус 1", 
+        "region": "м. Київ", 
+        "locality": "м. Київ"
+      }
+    }
   }
 }
 

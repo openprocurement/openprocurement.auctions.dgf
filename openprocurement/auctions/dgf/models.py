@@ -8,6 +8,7 @@ from schematics.types.serializable import serializable
 from urlparse import urlparse, parse_qs
 from string import hexdigits
 from zope.interface import implementer
+from pyramid.security import Allow
 from openprocurement.api.models import (
     BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
     validate_features_uniq, validate_lots_uniq, Identifier as BaseIdentifier,
@@ -56,6 +57,10 @@ DGF_DECISION_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
 def validate_disallow_dgfPlatformLegalDetails(docs, *args):
     if any([i.documentType == 'x_dgfPlatformLegalDetails' for i in docs]):
         raise ValidationError(u"Disallow documents with x_dgfPlatformLegalDetails documentType")
+
+VERIFY_AUCTION_PROTOCOL_TIME = timedelta(days=3)
+AWARD_PAYMENT_TIME = timedelta(days=11)
+CONTRACT_SIGNING_TIME = timedelta(days=11)
 
 
 class CAVClassification(Classification):
@@ -173,6 +178,7 @@ class Bid(BaseBid):
             'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'qualified'),
         }
 
+    status = StringType(choices=['active', 'draft', 'invalid'], default='active')
     tenderers = ListType(ModelType(Organization), required=True, min_size=1, max_size=1)
     documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
     qualified = BooleanType(required=True, choices=[True])
@@ -199,10 +205,35 @@ class Contract(BaseContract):
 
 
 class Award(BaseAward):
+    class Options:
+        roles = {
+            'create': blacklist('id', 'status', 'date', 'documents', 'complaints', 'complaintPeriod', 'verificationPeriod', 'paymentPeriod', 'signingPeriod'),
+        }
+
+    def __local_roles__(self):
+        auction = get_auction(self)
+        for bid in auction.bids:
+            if bid.id == self.bid_id:
+                bid_owner = bid.owner
+                bid_owner_token = bid.owner_token
+        return dict([('{}_{}'.format(bid_owner, bid_owner_token), 'bid_owner')])
+
+    def __acl__(self):
+        auction = get_auction(self)
+        for bid in auction.bids:
+            if bid.id == self.bid_id:
+                bid_owner = bid.owner
+                bid_owner_token = bid.owner_token
+        return [(Allow, '{}_{}'.format(bid_owner, bid_owner_token), 'edit_auction_award')]
+
+    status = StringType(required=True, choices=['pending.waiting', 'pending.verification', 'pending.payment', 'unsuccessful', 'active', 'cancelled'], default='pending.verification')
     suppliers = ListType(ModelType(Organization), min_size=1, max_size=1)
     complaints = ListType(ModelType(Complaint), default=list())
     documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
     items = ListType(ModelType(Item))
+    verificationPeriod = ModelType(Period)
+    paymentPeriod = ModelType(Period)
+    signingPeriod = ModelType(Period)
 
 
 def validate_not_available(items, *args):
@@ -275,6 +306,13 @@ class Auction(BaseAuction):
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
     items = ListType(ModelType(Item), required=True, min_size=1, validators=[validate_items_uniq])
 
+    def __acl__(self):
+        return [
+            (Allow, '{}_{}'.format(self.owner, self.owner_token), 'edit_auction'),
+            (Allow, '{}_{}'.format(self.owner, self.owner_token), 'edit_auction_award'),
+            (Allow, '{}_{}'.format(self.owner, self.owner_token), 'upload_auction_documents'),
+        ]
+
     def initialize(self):
         if not self.enquiryPeriod:
             self.enquiryPeriod = type(self).enquiryPeriod.model_class()
@@ -338,6 +376,14 @@ class Auction(BaseAuction):
                     checks.append(lot.auctionPeriod.startDate.astimezone(TZ))
                 elif now < calc_auction_end_time(lot.numberOfBids, lot.auctionPeriod.startDate).astimezone(TZ):
                     checks.append(calc_auction_end_time(lot.numberOfBids, lot.auctionPeriod.startDate).astimezone(TZ))
+        elif not self.lots and self.status == 'active.qualification':
+            for award in self.awards:
+                if award['status'] == 'pending.verification':
+                    checks.append(award['verificationPeriod']['endDate'])
+                elif award['status'] == 'pending.payment':
+                    checks.append(award['paymentPeriod']['endDate'])
+                elif award['status'] == 'active':
+                    checks.append(award['signingPeriod']['endDate'])
         elif not self.lots and self.status == 'active.awarded' and not any([
                 i.status in self.block_complaint_status
                 for i in self.complaints

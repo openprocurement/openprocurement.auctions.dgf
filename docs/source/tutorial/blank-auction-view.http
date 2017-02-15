@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/435c47dfcd164eb9806932cc6aec4056 HTTP/1.0
+GET /api/2.3/auctions/f6a8d0f1fd564397b3f1fd30ce85b004 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -9,44 +9,44 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-12-02-000001", 
+    "auctionID": "UA-EA-2017-02-15-000001", 
     "enquiryPeriod": {
-      "startDate": "2016-12-02T19:52:47.793300+02:00", 
-      "endDate": "2016-12-15T23:59:50+02:00"
+      "startDate": "2017-02-15T11:48:43.891841+02:00", 
+      "endDate": "2017-02-28T23:59:50+02:00"
     }, 
     "submissionMethod": "electronicAuction", 
     "dgfDecisionDate": "2016-11-17", 
-    "next_check": "2016-12-15T23:59:50+02:00", 
+    "next_check": "2017-02-28T23:59:50+02:00", 
     "awardCriteria": "highestCost", 
     "dgfDecisionID": "219560", 
     "owner": "broker", 
-    "id": "435c47dfcd164eb9806932cc6aec4056", 
+    "id": "f6a8d0f1fd564397b3f1fd30ce85b004", 
     "documents": [
       {
         "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
         "url": "http://torgi.fg.gov.ua/prozorrosale", 
         "documentOf": "tender", 
-        "datePublished": "2016-12-02T19:52:47.793624+02:00", 
+        "datePublished": "2017-02-15T11:48:43.892272+02:00", 
         "documentType": "x_dgfPlatformLegalDetails", 
-        "dateModified": "2016-12-02T19:52:47.793649+02:00", 
-        "id": "5ffcb6d30b7a47c1b59081c72aee2433"
+        "dateModified": "2017-02-15T11:48:43.892313+02:00", 
+        "id": "a0aa0fc4bf9e478f8b7d302c965b6de2"
       }
     ], 
     "title": "футляри до державних нагород", 
     "tenderAttempts": 1, 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2016-12-02T19:52:47.797059+02:00", 
+    "dateModified": "2017-02-15T11:48:43.896913+02:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2016-12-02T19:52:47.793300+02:00", 
-      "endDate": "2016-12-15T23:59:50+02:00"
+      "startDate": "2017-02-15T11:48:43.891841+02:00", 
+      "endDate": "2017-02-28T23:59:50+02:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2016-12-16T00:00:00+02:00"
+      "shouldStartAfter": "2017-03-01T00:00:00+02:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "dgfID": "219560", 
-    "date": "2016-12-02T19:52:47.793300+02:00", 
+    "date": "2017-02-15T11:48:43.891841+02:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -67,7 +67,7 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "138ee59778a14c16a841db9509ba2ca0", 
+        "id": "e993c2563ee14275a891d3fbf3dd1bef", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"

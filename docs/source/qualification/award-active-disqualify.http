@@ -1,0 +1,98 @@
+PATCH /api/2.3/auctions/87cbaf905f744171bbb68247868d55cf/awards/bea26852644e4800800bedfbc0d1e1cd?acc_token=1db0c376545f47ffa3c3647df401ac95 HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 146
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "status": "unsuccessful", 
+    "description": "Candidate didn’t sign the auction protocol in 3 business days", 
+    "title": "Disqualified"
+  }
+}
+
+
+200 OK
+Content-Type: application/json; charset=UTF-8
+
+{
+  "data": {
+    "status": "unsuccessful", 
+    "paymentPeriod": {
+      "startDate": "2017-02-15T11:48:39.525031+02:00", 
+      "endDate": "2017-02-15T11:59:39.525031+02:00"
+    }, 
+    "documents": [
+      {
+        "dateModified": "2017-02-15T11:48:39.740839+02:00", 
+        "hash": "md5:00000000000000000000000000000000", 
+        "format": "application/pdf", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/1b4f2812c55d4ff9aeab47ffb333617a?KeyID=62e7abe7&Signature=V1hLnrhpQN9OkVxjOpbMcLgZK9Z8t6PEnULYOoZobVIXF2EvrbKT%2FjVh27BE7OtDejYn8aa5dhxvKKE1y4dzCw%253D%253D", 
+        "author": "bid_owner", 
+        "documentOf": "tender", 
+        "datePublished": "2017-02-15T11:48:39.740788+02:00", 
+        "documentType": "auctionProtocol", 
+        "title": "auction_protocol.pdf", 
+        "id": "a873cc9a165e4d8d875200a6a42f101e"
+      }, 
+      {
+        "dateModified": "2017-02-15T11:48:40.022583+02:00", 
+        "hash": "md5:00000000000000000000000000000000", 
+        "description": "Disqualification reason", 
+        "author": "auction_owner", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/973b2fe3b6294810a31d72de1b311e30?KeyID=62e7abe7&Signature=fJPMz1nIru00OiJzr4WxKkE8EMZ%2FaSiFP48FjlvNBXuXOQZjzbZrp0ZZv7f4Di0YxrOobNVE3tXNm%2FeAcfVsDA%253D%253D", 
+        "format": "application/pdf", 
+        "documentOf": "tender", 
+        "datePublished": "2017-02-15T11:48:40.022537+02:00", 
+        "title": "Disqualified_reason.pdf", 
+        "id": "6735edffd6504d528e1a812b72cafa07"
+      }
+    ], 
+    "verificationPeriod": {
+      "startDate": "2017-02-15T11:48:39.525031+02:00", 
+      "endDate": "2017-02-15T11:48:40.263099+02:00"
+    }, 
+    "description": "Candidate didn’t sign the auction protocol in 3 business days", 
+    "title": "Disqualified", 
+    "suppliers": [
+      {
+        "contactPoint": {
+          "email": "soleksuk@gmail.com", 
+          "telephone": "+380 (432) 21-69-30", 
+          "name": "Сергій Олексюк"
+        }, 
+        "identifier": {
+          "scheme": "UA-EDR", 
+          "id": "00137256", 
+          "uri": "http://www.sc.gov.ua/"
+        }, 
+        "name": "ДКП «Школяр»", 
+        "address": {
+          "postalCode": "21100", 
+          "countryName": "Україна", 
+          "streetAddress": "вул. Островського, 33", 
+          "region": "м. Вінниця", 
+          "locality": "м. Вінниця"
+        }
+      }
+    ], 
+    "complaintPeriod": {
+      "startDate": "2017-02-15T11:48:39.525031+02:00", 
+      "endDate": "2017-02-15T11:48:40.263099+02:00"
+    }, 
+    "bid_id": "3e5b169128cd4970b358acc2f3851fb9", 
+    "value": {
+      "currency": "UAH", 
+      "amount": 475.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "date": "2017-02-15T11:48:40.305793+02:00", 
+    "id": "bea26852644e4800800bedfbc0d1e1cd", 
+    "signingPeriod": {
+      "startDate": "2017-02-15T11:48:39.525031+02:00", 
+      "endDate": "2017-02-15T11:59:39.525031+02:00"
+    }
+  }
+}
+
