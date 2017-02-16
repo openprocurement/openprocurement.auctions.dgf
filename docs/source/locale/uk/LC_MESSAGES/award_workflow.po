@@ -5,6 +5,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-16 17:10+0200\n"
 "PO-Revision-Date: 2017-02-16 13:34+0200\n"
+
 "Last-Translator: greg <greg@quintagroup.com>\n"
 "Language-Team: English <support@quintagroup.com>\n"
 "MIME-Version: 1.0\n"
@@ -38,6 +39,7 @@ msgstr ""
 msgid ":ref:`Waiting_refusal`"
 msgstr ""
 
+
 #: ../../source/award_workflow.rst:62
 msgid "Roles"
 msgstr "Ролі"
@@ -51,6 +53,7 @@ msgid "Statuses"
 msgstr "Статуси"
 
 #: ../../source/award_workflow.rst:93
+
 msgid ""
 "The second highest valid bidder awaits for the qualification of the first "
 "highest valid bidder. The former can choose to refuse to wait and withdraw "
@@ -62,6 +65,7 @@ msgstr ""
 "дискваліфікувавшись."
 
 #: ../../source/award_workflow.rst:96
+
 msgid ""
 "Terminal status. The second highest valid bidder chose to withdraw his "
 "security deposit and not to wait for the highest valid bidder to be "
@@ -72,6 +76,7 @@ msgstr ""
 "найвищою ставкою."
 
 #: ../../source/award_workflow.rst:99
+
 msgid ""
 "Awaiting protocol upload and confirmation by the liquidator. The highest "
 "valid bidder is able to submit the protocol as well, although it is not "
@@ -81,7 +86,9 @@ msgstr ""
 "найвищою валідною ставкою може також завантажити протокол, але цього "
 "недостатньо для переходу до наступного статусу."
 
+
 #: ../../source/award_workflow.rst:102
+
 msgid ""
 "Awaiting payment. Organizer can change the status to active by confirming "
 "the payment has been received."
@@ -143,7 +150,6 @@ msgstr ""
 " отримує статус \"unsuccessful\". В протилежному випадку, організатор "
 "переключає статус аварду в \"Очікується підписання договору\" "
 "(pending.payment)."
-
 #: ../../source/award_workflow.rst:76
 msgid ""
 "The second highest qualifying bidder, immediately after the auction ending "
@@ -178,8 +184,62 @@ msgstr ""
 msgid "Notes"
 msgstr "Примітки"
 
+msgid ""
+"Awaiting for the contract to be signed (uploaded and activated in the system"
+" by the organizer)."
+msgstr ""
+"Очікується активація контракту (завантажується та активується в системі "
+"організатором)."
+
+msgid ""
+"Terminal status. The auction was unsuccessful. Can be switched to either "
+"automatically, from any of the previous statuses or by the organizer."
+msgstr ""
+"Термінальний статус. Аукціон неуспішний. Переведення в цей статус може бути "
+"здійснене ліквідатором, або автоматично по закінченню відповідно-"
+"передбачених періодів."
+
+msgid "Legend"
+msgstr "Умовні Позначення"
+
+msgid "Blue nodes represent statuses for the 2nd award ONLY"
+msgstr "Світло-сині об'єкти на рисунку відображають статуси лише для award #2"
+
+msgid "\\* no protocol"
+msgstr "\\* протокол відсутній"
+
+msgid "\\*\\* protocol required"
+msgstr "\\*\\* необхідний протокол аукціону"
+
+msgid "\\*\\*\\* payment approved by the organizer"
+msgstr "\\*\\*\\* отримання оплати підтвердженно організатором"
+
+msgid "dotted"
+msgstr "лінія з крапками"
+
+msgid "Procedure Description"
+msgstr "Опис Процедури"
+
+msgid ""
+"The award with the highest qualifying bid initially receives a "
+"\"pending.verification\" status. The procedure enters the "
+"\"verificationPeriod\" stage, which lasts 0-3 days. Unless the protocol is "
+"uploaded and confirmed by the organizer in 3 days, the award receives an "
+"\"unsuccessful\" status. Otherwise, the organizer manually switches the "
+"award status to \"pending.payment\"."
+msgstr ""
+"Учасник з найвищою валідною (стартова ціна + мінімальний крок аукціону) "
+"ставкою отримує початковий статус ''Очікується протокол'' "
+"(\"pending.verification\"). Процедура кваліфікації переходить в період "
+"верифікації (verificationPeriod), що триває 0-3 дні. Якщо організатор "
+"(ліквідатор) не завантажує та не підтверджує протокол протягом 3 днів, авард"
+" отримує статус \"unsuccessful\". В протилежному випадку, організатор "
+"переключає статус аварду в \"Очікується підписання договору\" "
+"(pending.payment)."
+
 #: ../../source/award_workflow.rst:80
 msgid ""
+
 "For the bidder to be qualified and not invalidated, his/her bid should be in"
 " the amount of more or equal to the starting price of the auction + the "
 "minimal step of the auction."
@@ -198,6 +258,45 @@ msgstr ""
 "ціни аукціону + мінімальний крок, рішення про кваліфікацію (аварди) не "
 "формуються взагалі, а процедура кваліфікації переходить в статус неуспішної "
 "(\"unsuccessful)."
+"The second highest qualifying bidder, immediately after the auction ending "
+"receives the \"pending.waiting\" status, in which by default he/she agrees "
+"to wait for the end of the qualification of the highest qualifying bidder to"
+" be eligible to go through the qualification process if the highest bidder "
+"is disqualified. The only action that he/she can make is to manually cancel "
+"the award decision - withdraw his security deposit and lose the chance to "
+"become a winner of the auction. If he/she does that and the first highest "
+"qualifying bidder becomes \"unsuccessful\" at any point in the awarding "
+"process, the procedure receives the \"unsuccessful\" status. Provided that "
+"first award gets disqualified while the second has not disqualified "
+"himself/herself, the second award automatically changes its status from "
+"\"pending.waiting\" to \"pending.verification\", after which he/she "
+"undergoes the same qualification procedure as outlined above for the first "
+"award."
+msgstr ""
+"Учасник з другою найбільшою валідною ставкою, зразу після аукціону отримує "
+"статус \"pending.waiting\", що за замовчуванням означає, що він погоджується"
+" зачекати до кінця кваліфікації аварду #1, щоб мати можливість пройти "
+"кваліфікацію у разі дискваліфікації першого. Єдина дія, яка може бути ним "
+"виконана в цей момент це ручне скасування очікування - він може забрати свій"
+" гарантійний внесок так втрачає шанс стати переможцем аукціону. Якщо він це "
+"зробить, а учасника з найбільшою ставкою відкидають на будь-якому етапі в "
+"процесі кваліфікації, процедура отримує статус неуспішної. Якщо aвард #1 "
+"дискваліфіковують, а другий не самодискваліфікувався, останній автоматично "
+"змінює статус з \"pending.waiting\" на \"pending.verification\", після чого "
+"він проходить процедуру кваліфікації по такому самому принципу як і перший "
+"авард. "
+
+msgid "Notes"
+msgstr "Примітки"
+
+msgid ""
+"For the bidder to be qualified and not invalidated, his/her bid should be in"
+" the amount of more or equal to the starting price of the auction + the "
+"minimal step of the auction."
+msgstr ""
+"Щоб ставка не була інвалідована одразу по закінченню аукціону, вона повинна "
+"дорівнювати або бути більшою ніж стартова ціна аукціону + мінімальний крок "
+"(т.зв. валідна ставка).
 
 #: ../../source/award_workflow.rst:84
 msgid ""
@@ -246,8 +345,10 @@ msgstr ""
 "\\*\\*\\*\\*\\* контракт не було активовано в системі до завершення періоду "
 "підписання контракту"
 
+
 #: ../../source/award_workflow.rst:75
 msgid ""
+
 "It is then when the qualification procedure enters the \"paymentPeriod\" "
 "stage, which lasts up to 11 days from the beginning of the highest bidder "
 "qualification process. When the organizer confirms that the payment has been"
@@ -303,6 +404,7 @@ msgstr ""
 #~ msgstr ""
 #~ "Очікується активація контракту (завантажується та активується в системі "
 #~ "організатором)."
+
 
 #~ msgid ""
 #~ "It is then when the procedure enters the \"paymentPeriod\" stage, which "

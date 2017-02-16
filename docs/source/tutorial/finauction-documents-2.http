@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/bbc1fa45fd914ed9911f8a5daf54e7d9/documents HTTP/1.0
+GET /api/2.3/auctions/bce8169f013c4b2d81b3b37b23a97c7d/documents HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -12,23 +12,23 @@ Content-Type: application/json; charset=UTF-8
       "hash": "md5:00000000000000000000000000000000", 
       "description": "technical specification", 
       "format": "application/pdf", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/c41f333e60dc43b791edcda56b85b674?KeyID=79022feb&Signature=IQuW4NOkd1VwAn21Q5k9tRMKY76FcYfc0DS5dTiiznX0NKgDnzzbjuUL20g8hzhF25ivKy2bkbL5o3qT%252B3DRAw%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/33816282b2c84022ba758ed972cd15ac?KeyID=323a351a&Signature=25Ww3tgDn5Aj%2FqKrE9fibmyrj4cOdr6ZZzF1QWkjjGUDGt2WrCnUdxoLh0xu1Z%252BH53%2Fl7nVxW2%2FIHhPzZUsPCw%253D%253D", 
       "title": "Notice.pdf", 
       "documentOf": "tender", 
-      "datePublished": "2017-02-13T15:47:16.189156+02:00", 
+      "datePublished": "2017-02-13T20:30:20.667521+02:00", 
       "documentType": "technicalSpecifications", 
-      "id": "4cc8c53ee96a47deb08093f206076573", 
-      "dateModified": "2017-02-13T15:47:16.189183+02:00"
+      "id": "346ffb9c8d3747e3a23de2a0496dc4ff", 
+      "dateModified": "2017-02-13T20:30:20.667567+02:00"
     }, 
     {
       "hash": "md5:00000000000000000000000000000000", 
       "format": "application/pdf", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/79c09cf03ca84e4183c51ee3d85520d1?KeyID=79022feb&Signature=HlzTqjiLvxdWOXfv%252BMdyXRm%252B96veDTdkPwy3HlB7NXmIj1Ju95iQzK%2FPt12PS92sGbsKNB9QXu9V37v8uVYpBQ%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/1aa86a11191d4f35b26ddce17def18f7?KeyID=323a351a&Signature=rbelI%252BY2ILUI%252BHVNir6vWw5pLQfDJbU1ic18RwU2ZHYum%2Fl8F8534LELcMscCKSALGopNY%2FWNQzTTm%252Bs1zeTBA%253D%253D", 
       "title": "AwardCriteria.pdf", 
       "documentOf": "tender", 
-      "datePublished": "2017-02-13T15:47:16.247251+02:00", 
-      "dateModified": "2017-02-13T15:47:16.247277+02:00", 
-      "id": "69105fb004174b52b0e5245ec8fc75ec"
+      "datePublished": "2017-02-13T20:30:20.778050+02:00", 
+      "dateModified": "2017-02-13T20:30:20.778093+02:00", 
+      "id": "bab88a58843246b188edcdf539521687"
     }
   ]
 }

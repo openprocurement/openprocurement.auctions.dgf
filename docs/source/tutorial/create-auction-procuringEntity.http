@@ -30,7 +30,7 @@ Host: api-sandbox.ea.openprocurement.org
           "description": "Земельні ділянки"
         }, 
         "description": "Земля для військовослужбовців", 
-        "id": "372a9fa26df8429bafb7f12cb5d91ffc", 
+        "id": "86bb18ee958b4977b6c5d15e2ec788b9", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -65,17 +65,17 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/80c790e48f7f4077828f60bd2d6e5b15
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/816dcd0bbca4407cb6b670dfc17101f6
 
 {
   "access": {
-    "token": "900e9e8b8f1f45c1937427406fe664d5"
+    "token": "8d9e83b17584447cbd1469c2b4451cee"
   }, 
   "data": {
     "procurementMethod": "open", 
     "auctionID": "UA-EA-2017-02-13-000002", 
     "enquiryPeriod": {
-      "startDate": "2017-02-13T15:47:17.716291+02:00", 
+      "startDate": "2017-02-13T20:30:22.669475+02:00", 
       "endDate": "2017-02-26T23:59:50+02:00"
     }, 
     "submissionMethod": "electronicAuction", 
@@ -102,13 +102,13 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/80c790e48f7
     }, 
     "owner": "broker", 
     "title_en": "Cases with state awards", 
-    "id": "80c790e48f7f4077828f60bd2d6e5b15", 
+    "id": "816dcd0bbca4407cb6b670dfc17101f6", 
     "title": "футляри до державних нагород", 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2017-02-13T15:47:17.719705+02:00", 
+    "dateModified": "2017-02-13T20:30:22.672812+02:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2017-02-13T15:47:17.716291+02:00", 
+      "startDate": "2017-02-13T20:30:22.669475+02:00", 
       "endDate": "2017-02-26T23:59:50+02:00"
     }, 
     "auctionPeriod": {
@@ -116,7 +116,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/80c790e48f7
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "dgfID": "219560", 
-    "date": "2017-02-13T15:47:17.716291+02:00", 
+    "date": "2017-02-13T20:30:22.669475+02:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -129,7 +129,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/80c790e48f7
           "name": "item"
         }, 
         "description": "Земля для військовослужбовців", 
-        "id": "372a9fa26df8429bafb7f12cb5d91ffc", 
+        "id": "86bb18ee958b4977b6c5d15e2ec788b9", 
         "classification": {
           "scheme": "CAV", 
           "description": "Земельні ділянки", 

@@ -11,7 +11,7 @@ from openprocurement.auctions.core.utils import (
     cleanup_bids_for_cancelled_lots, check_complaint_status,
     remove_draft_bids,
 )
-from openprocurement.auctions.dgf.models import VERIFY_AUCTION_PROTOCOL_TIME, AWARD_PAYMENT_TIME
+from openprocurement.auctions.dgf.models import VERIFY_AUCTION_PROTOCOL_TIME, AWARD_PAYMENT_TIME, CONTRACT_SIGNING_TIME
 PKG = get_distribution(__package__)
 LOGGER = getLogger(PKG.project_name)
 
@@ -128,7 +128,7 @@ def check_status(request):
 
 def check_award_status(request, award, now):
     auction = request.validated['auction']
-    if (award.status == 'pending.verification' and award['verificationPeriod']['endDate'] < now and not check_auction_protocol(award)) or \
+    if (award.status == 'pending.verification' and award['verificationPeriod']['endDate'] < now) or \
             (award.status == 'pending.payment' and award['paymentPeriod']['endDate'] < now) or \
             (award.status == 'active' and award['signingPeriod']['endDate'] < now):
         if award.status == 'active':
@@ -140,12 +140,6 @@ def check_award_status(request, award, now):
         award.status = 'unsuccessful'
         award.complaintPeriod.endDate = now
         switch_to_next_award(request)
-    elif award.status == 'pending.verification' and award['verificationPeriod']['endDate'] < now and check_auction_protocol(award):
-        award.verificationPeriod.endDate = now
-        award.status = 'pending.payment'
-        award.paymentPeriod = {'startDate': now}
-        award.paymentPeriod.endDate = calculate_business_date(now, AWARD_PAYMENT_TIME, auction, True)
-        award.signingPeriod = award.paymentPeriod
 
 
 def invalidate_bids_under_threshold(request):
@@ -172,9 +166,7 @@ def create_awards(request):
             'date': now,
             'value': bid['value'],
             'suppliers': bid['tenderers'],
-            'complaintPeriod': {
-                'startDate': now
-            }
+            'complaintPeriod': {'startDate': now}
         })
         if bid['status'] == 'invalid':
             award.status = 'unsuccessful'
@@ -182,6 +174,11 @@ def create_awards(request):
         if award.status == 'pending.verification':
             award.verificationPeriod = {'startDate': now}
             award.verificationPeriod.endDate = calculate_business_date(now, VERIFY_AUCTION_PROTOCOL_TIME, auction, True)
+            award.paymentPeriod = {'startDate': now}
+            award.paymentPeriod.endDate = calculate_business_date(now, AWARD_PAYMENT_TIME, auction, True)
+            award.signingPeriod = {'startDate': now}
+            award.signingPeriod.endDate = calculate_business_date(now, CONTRACT_SIGNING_TIME, auction, True)
+            award.complaintPeriod = award.signingPeriod
             request.response.headers['Location'] = request.route_url('{}:Auction Awards'.format(auction.procurementMethodType), auction_id=auction.id, award_id=award['id'])
         auction.awards.append(award)
 
@@ -195,6 +192,11 @@ def switch_to_next_award(request):
         award.status = 'pending.verification'
         award.verificationPeriod = {'startDate': now}
         award.verificationPeriod.endDate = calculate_business_date(now, VERIFY_AUCTION_PROTOCOL_TIME, auction, True)
+        award.paymentPeriod = {'startDate': now}
+        award.paymentPeriod.endDate = calculate_business_date(now, AWARD_PAYMENT_TIME, auction, True)
+        award.signingPeriod = {'startDate': now}
+        award.signingPeriod.endDate = calculate_business_date(now, CONTRACT_SIGNING_TIME, auction, True)
+        award.complaintPeriod = award.signingPeriod
         request.response.headers['Location'] = request.route_url('{}:Auction Awards'.format(auction.procurementMethodType), auction_id=auction.id, award_id=award['id'])
 
     elif all([award.status in ['cancelled', 'unsuccessful'] for award in auction.awards]):
