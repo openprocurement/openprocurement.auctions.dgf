@@ -18,7 +18,7 @@ For a more detailed information see :ref:`award`
         subgraph cluster_1 {
             node [style=filled, color=lightblue];
             edge[style=dotted];
-            "pending.waiting" -> cancel[label="2nd award only" fontcolor=blue];
+            "pending.waiting" -> cancelled[label="2nd award only" fontcolor=blue];
 
             node [style=filled, color=lightgrey];
             edge[label="*" style=solid];
@@ -92,7 +92,7 @@ Statuses
 :pending.waiting:
     The second highest valid bidder awaits for the qualification of the first highest valid bidder. The former can choose to refuse to wait and withdraw his security deposit.
 
-:cancel:
+:cancelled:
     Terminal status. The second highest valid bidder chose to withdraw his security deposit and not to wait for the highest valid bidder to be disqualified.
 
 :pending.verification:
