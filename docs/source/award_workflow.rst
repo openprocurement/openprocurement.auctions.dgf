@@ -102,8 +102,7 @@ Statuses
     Awaiting payment. Organizer can change the status to active by confirming the payment has been received. 
 
 :active:
-    Awaiting for the contract to be signed (uploaded and activated in the system by the organizer). 
+    Awaiting for the contract to be signed (uploaded and activated in the system by the organizer). After the end of the "signingPeriod", the status becomes terminal.
 
 :unsuccessful:
     Terminal status. The auction was unsuccessful. Can be switched to either automatically, from any of the previous statuses or by the organizer.
-
