@@ -468,7 +468,7 @@ msgstr ""
 #~ msgid "label = \"award #2\"; node [style=filled]; edge[style=dashed];"
 #~ msgstr ""
 
-#~ msgid "\"pending.waiting\" -> cancel;"
+#~ msgid "\"pending.waiting\" -> cancelled;"
 #~ msgstr ""
 
 #~ msgid "color=blue }"
