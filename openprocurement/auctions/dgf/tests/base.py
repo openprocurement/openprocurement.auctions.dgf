@@ -77,7 +77,7 @@ test_auction_data = {
 if SANDBOX_MODE:
     test_auction_data['procurementMethodDetails'] = 'quick, accelerator=1440'
 
-test_auction_data_with_schema = test_auction_data.copy()
+test_auction_data_with_schema = deepcopy(test_auction_data)
 test_auction_data_with_schema['items'][0]['classification']['id'] = "04114000-0"
 test_auction_data_with_schema['items'][0]['schema_properties'] = {
     "code": "04114000-0",
@@ -217,7 +217,8 @@ for i in test_bids:
     bid['tenderers'] = [test_financial_organization]
     test_financial_bids.append(bid)
 
-test_financial_auction_data_with_schema = test_financial_auction_data = deepcopy(test_financial_auction_data)
+test_financial_auction_data = deepcopy(test_financial_auction_data)
+test_financial_auction_data_with_schema = deepcopy(test_financial_auction_data)
 test_financial_auction_data_with_schema['items'][0]['classification']['id'] = "04114000-0"
 test_financial_auction_data_with_schema['items'][0]['schema_properties'] = {
     "code": "04114000-0",
