@@ -15,6 +15,7 @@ from openprocurement.auctions.dgf.models import (
     DOCUMENT_TYPE_URL_ONLY, DOCUMENT_TYPE_OFFLINE,
     VERIFY_AUCTION_PROTOCOL_TIME, AWARD_PAYMENT_TIME, CONTRACT_SIGNING_TIME
 )
+
 PKG = get_distribution(__package__)
 LOGGER = getLogger(PKG.project_name)
 
