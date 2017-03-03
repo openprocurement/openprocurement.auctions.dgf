@@ -23,7 +23,7 @@ from openprocurement.auctions.flash.models import (
     calc_auction_end_time, COMPLAINT_STAND_STILL_TIME,
     Organization as BaseOrganization, Item as BaseItem,
     ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
-    get_auction,
+    get_auction, Administrator_role
 )
 
 
@@ -242,7 +242,9 @@ class AuctionAuctionPeriod(Period):
             raise ValidationError(u'This field is required.')
 
 
-create_role = (blacklist('owner_token', 'owner', '_attachments', 'revisions', 'date', 'dateModified', 'doc_id', 'auctionID', 'bids', 'documents', 'awards', 'questions', 'complaints', 'auctionUrl', 'status', 'enquiryPeriod', 'tenderPeriod', 'awardPeriod', 'procurementMethod', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'awardCriteria', 'submissionMethod', 'cancellations', 'numberOfBidders', 'contracts') + schematics_embedded_role)
+create_role = (schematics_embedded_role + blacklist('owner_token', 'owner', '_attachments', 'revisions', 'date', 'dateModified', 'doc_id', 'auctionID', 'bids', 'documents', 'awards', 'questions', 'complaints', 'auctionUrl', 'status', 'enquiryPeriod', 'tenderPeriod', 'awardPeriod', 'procurementMethod', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'awardCriteria', 'submissionMethod', 'cancellations', 'numberOfBidders', 'contracts', 'suspended'))
+edit_role = (edit_role + blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'title', 'title_ru', 'title_en', 'dgfID', 'description', 'description_ru', 'description_en', 'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru', 'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru', 'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru', 'items', 'procuringEntity', 'dgfDecisionDate', 'dgfDecisionID', 'tenderAttempts', 'suspended'))
+Administrator_role = (whitelist('suspended') + Administrator_role)
 
 
 @implementer(IAuction)
@@ -251,7 +253,8 @@ class Auction(BaseAuction):
     class Options:
         roles = {
             'create': create_role,
-            'edit_active.tendering': (blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'title', 'title_ru', 'title_en', 'dgfID', 'description', 'description_ru', 'description_en', 'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru', 'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru', 'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru', 'items', 'procuringEntity', 'dgfDecisionDate', 'dgfDecisionID', 'tenderAttempts') + edit_role),
+            'edit_active.tendering': edit_role,
+            'Administrator': Administrator_role,
         }
 
     awards = ListType(ModelType(Award), default=list())
@@ -274,6 +277,7 @@ class Auction(BaseAuction):
     features = ListType(ModelType(Feature), validators=[validate_features_uniq, validate_not_available])
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
     items = ListType(ModelType(Item), required=True, min_size=1, validators=[validate_items_uniq])
+    suspended = BooleanType()
 
     def initialize(self):
         if not self.enquiryPeriod:
@@ -321,6 +325,8 @@ class Auction(BaseAuction):
 
     @serializable(serialize_when_none=False)
     def next_check(self):
+        if self.suspended:
+            return None
         now = get_now()
         checks = []
         if self.status == 'active.tendering' and self.tenderPeriod and self.tenderPeriod.endDate:
