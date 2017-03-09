@@ -713,6 +713,14 @@ class AuctionBidderDocumentResourceTest(BaseAuctionWebTest):
         self.assertEqual(doc_id, response.json["data"]["id"])
         self.assertEqual('name.doc', response.json["data"]["title"])
 
+        self.set_status('active.awarded', {'status': 'active.tendering'})
+
+        response = self.app.post('/auctions/{}/bids/{}/documents'.format(
+            self.auction_id, self.bid_id), upload_files=[('file', 'name.doc', 'content')], status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertIn("Document can be added only during the tendering period: from", response.json['errors'][0]["description"])
+
         self.set_status('active.awarded')
 
         response = self.app.post('/auctions/{}/bids/{}/documents'.format(
