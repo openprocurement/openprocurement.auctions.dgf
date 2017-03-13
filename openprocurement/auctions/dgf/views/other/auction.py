@@ -163,7 +163,7 @@ class AuctionAuctionResource(APIResource):
         """
         apply_patch(self.request, save=False, src=self.request.validated['auction_src'])
         auction = self.request.validated['auction']
-        invalidate_bids_under_threshold(self.request)
+        invalidate_bids_under_threshold(auction)
         if any([i.status == 'active' for i in auction.bids]):
             create_awards(self.request)
         else:
@@ -188,7 +188,7 @@ class AuctionAuctionResource(APIResource):
         auction = self.request.validated['auction']
         if all([i.auctionPeriod and i.auctionPeriod.endDate for i in auction.lots if i.numberOfBids > 1 and i.status == 'active']):
             cleanup_bids_for_cancelled_lots(auction)
-            invalidate_bids_under_threshold(self.request)
+            invalidate_bids_under_threshold(auction)
             if any([i.status == 'active' for i in auction.bids]):
                 create_awards(self.request)
             else:
