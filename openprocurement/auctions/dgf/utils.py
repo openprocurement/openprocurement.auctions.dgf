@@ -148,12 +148,11 @@ def check_award_status(request, award, now):
         switch_to_next_award(request)
 
 
-def invalidate_bids_under_threshold(request):
-    auction = request.validated['auction']
-    value_threshold = auction.value.amount + auction.minimalStep.amount
-    for bid in auction.bids:
-        if bid.value.amount < value_threshold:
-            bid.status = 'invalid'
+def invalidate_bids_under_threshold(auction):
+    value_threshold = auction['value']['amount'] + auction['minimalStep']['amount']
+    for bid in auction['bids']:
+        if bid['value']['amount'] < value_threshold:
+            bid['status'] = 'invalid'
 
 
 def create_awards(request):
@@ -183,8 +182,7 @@ def create_awards(request):
             award.paymentPeriod = {'startDate': now}
             award.paymentPeriod.endDate = calculate_business_date(now, AWARD_PAYMENT_TIME, auction, True)
             award.signingPeriod = {'startDate': now}
-            award.signingPeriod.endDate = calculate_business_date(now, CONTRACT_SIGNING_TIME, auction, True)
-            award.complaintPeriod = award.signingPeriod
+            award.complaintPeriod.endDate = award.signingPeriod.endDate = calculate_business_date(now, CONTRACT_SIGNING_TIME, auction, True)
             request.response.headers['Location'] = request.route_url('{}:Auction Awards'.format(auction.procurementMethodType), auction_id=auction.id, award_id=award['id'])
         auction.awards.append(award)
 
@@ -202,7 +200,7 @@ def switch_to_next_award(request):
         award.paymentPeriod.endDate = calculate_business_date(now, AWARD_PAYMENT_TIME, auction, True)
         award.signingPeriod = {'startDate': now}
         award.signingPeriod.endDate = calculate_business_date(now, CONTRACT_SIGNING_TIME, auction, True)
-        award.complaintPeriod = award.signingPeriod
+        award.complaintPeriod.endDate = award.signingPeriod.endDate = calculate_business_date(now, CONTRACT_SIGNING_TIME, auction, True)
         request.response.headers['Location'] = request.route_url('{}:Auction Awards'.format(auction.procurementMethodType), auction_id=auction.id, award_id=award['id'])
 
     elif all([award.status in ['cancelled', 'unsuccessful'] for award in auction.awards]):

@@ -1,12 +1,12 @@
-PUT /api/2.3/auctions/f6a8d0f1fd564397b3f1fd30ce85b004/documents/f734a6925da449dc89418157c1f2d50b?acc_token=b71ba50d2bc1415db843b262774e02e9 HTTP/1.0
+PUT /api/2.3/auctions/331e9ef3d78d46cfb3df35c17b0650c7/documents/16e007ddfe38495f9eb9632916bdc119?acc_token=5303e3bebff44ed3a5a9f8f7db899743 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 338
+Content-Length: 342
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/8ea3588f3b70468db9b26644d4245ebe?KeyID=91671178&Signature=iuNQ4gifrwJVEl%2B6cTkFmO5hCVxX6c1tqWbEVICk0nlOJhKJLUSxirsXcIHJjGgWD8tzg%2FFEasbaS4diQHFaDw%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/b01d0e1c43b6412a85bebafe91534ee0?KeyID=df79319d&Signature=mzNNaXcQr7LL5ddWF%2Bwqa8%2BuCXBybvyir%2BvppValKzVByvOVinO5t2B6ZRWdNLucYNP7wE7gQ1KfwOrJ%2F0BdDg%3D%3D", 
     "title": "AwardCriteria-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -21,12 +21,12 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/8ea3588f3b70468db9b26644d4245ebe?KeyID=91671178&Signature=bq3AaDHcPXWzjsp5oerKrjRALIxI4bIFYQWW%252BFAim6ao28CgScH3yYtbqCK3PLE2nrBzAyn2rqGdsavkgMN%252BBQ%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/b01d0e1c43b6412a85bebafe91534ee0?KeyID=df79319d&Signature=ZVHrYmy%2FAAY2Qq4J1Fr%2FfxqDK2P2cXFlXcNm0mlbn%252BYm0aYsDYun8R%252BrjFLgV%2FGey67oYqZxwWaAQXn53zSXCg%253D%253D", 
     "title": "AwardCriteria-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2017-02-15T11:48:44.388869+02:00", 
-    "dateModified": "2017-02-15T11:48:44.457209+02:00", 
-    "id": "f734a6925da449dc89418157c1f2d50b"
+    "datePublished": "2017-04-07T15:31:21.205404+03:00", 
+    "dateModified": "2017-04-07T15:31:21.274489+03:00", 
+    "id": "16e007ddfe38495f9eb9632916bdc119"
   }
 }
 

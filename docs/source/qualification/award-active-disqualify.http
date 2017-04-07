@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/87cbaf905f744171bbb68247868d55cf/awards/bea26852644e4800800bedfbc0d1e1cd?acc_token=1db0c376545f47ffa3c3647df401ac95 HTTP/1.0
+PATCH /api/2.3/auctions/ed4868a3494e4e7ba28ecbbbeecd2507/awards/274291aae8ee4581b2c5c376d02cf06b?acc_token=e486aa404a524647bcc38e1e66ede0d6 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 146
 Content-Type: application/json
@@ -20,38 +20,38 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "status": "unsuccessful", 
     "paymentPeriod": {
-      "startDate": "2017-02-15T11:48:39.525031+02:00", 
-      "endDate": "2017-02-15T11:59:39.525031+02:00"
+      "startDate": "2017-04-07T15:31:17.552481+03:00", 
+      "endDate": "2017-04-07T15:51:17.552481+03:00"
     }, 
     "documents": [
       {
-        "dateModified": "2017-02-15T11:48:39.740839+02:00", 
+        "dateModified": "2017-04-07T15:31:17.698094+03:00", 
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/1b4f2812c55d4ff9aeab47ffb333617a?KeyID=62e7abe7&Signature=V1hLnrhpQN9OkVxjOpbMcLgZK9Z8t6PEnULYOoZobVIXF2EvrbKT%2FjVh27BE7OtDejYn8aa5dhxvKKE1y4dzCw%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/c1d4952f5a344cb8a9c2f2019616b27f?KeyID=22856ef5&Signature=B%2FeiTmaKdeu04cLbRpCchksu0%252BCl1BagGBw2rxGLlGvLNzioUCsqqkl4IvqyrHNKH74%2FxGOF%2F8ogr%2F46tV1SCA%253D%253D", 
         "author": "bid_owner", 
         "documentOf": "tender", 
-        "datePublished": "2017-02-15T11:48:39.740788+02:00", 
+        "datePublished": "2017-04-07T15:31:17.698064+03:00", 
         "documentType": "auctionProtocol", 
         "title": "auction_protocol.pdf", 
-        "id": "a873cc9a165e4d8d875200a6a42f101e"
+        "id": "b3724f9e085b4659b4b29e9d79e7c0c0"
       }, 
       {
-        "dateModified": "2017-02-15T11:48:40.022583+02:00", 
+        "dateModified": "2017-04-07T15:31:17.817365+03:00", 
         "hash": "md5:00000000000000000000000000000000", 
         "description": "Disqualification reason", 
         "author": "auction_owner", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/973b2fe3b6294810a31d72de1b311e30?KeyID=62e7abe7&Signature=fJPMz1nIru00OiJzr4WxKkE8EMZ%2FaSiFP48FjlvNBXuXOQZjzbZrp0ZZv7f4Di0YxrOobNVE3tXNm%2FeAcfVsDA%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/9eb9de12760643dd86e2a6b42d3188fb?KeyID=22856ef5&Signature=8Bdwc%252Bso%2FpQ2Vrz6X53agRroN7vrpopcilis61DLCcmG4YsI5%252Ba%252BEnqhnw9I0HPZ2Txhwow1UYJput5kcLvsAQ%253D%253D", 
         "format": "application/pdf", 
         "documentOf": "tender", 
-        "datePublished": "2017-02-15T11:48:40.022537+02:00", 
+        "datePublished": "2017-04-07T15:31:17.817332+03:00", 
         "title": "Disqualified_reason.pdf", 
-        "id": "6735edffd6504d528e1a812b72cafa07"
+        "id": "13087ff7fdbb4596883302b59fc3aa41"
       }
     ], 
     "verificationPeriod": {
-      "startDate": "2017-02-15T11:48:39.525031+02:00", 
-      "endDate": "2017-02-15T11:48:40.263099+02:00"
+      "startDate": "2017-04-07T15:31:17.552481+03:00", 
+      "endDate": "2017-04-07T15:31:17.949791+03:00"
     }, 
     "description": "Candidate didn’t sign the auction protocol in 3 business days", 
     "title": "Disqualified", 
@@ -78,20 +78,20 @@ Content-Type: application/json; charset=UTF-8
       }
     ], 
     "complaintPeriod": {
-      "startDate": "2017-02-15T11:48:39.525031+02:00", 
-      "endDate": "2017-02-15T11:48:40.263099+02:00"
+      "startDate": "2017-04-07T15:31:17.166880+03:00", 
+      "endDate": "2017-04-07T15:31:17.949791+03:00"
     }, 
-    "bid_id": "3e5b169128cd4970b358acc2f3851fb9", 
+    "bid_id": "bfbed8a0f02344a7a01a361e9811cbcb", 
     "value": {
       "currency": "UAH", 
       "amount": 475.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2017-02-15T11:48:40.305793+02:00", 
-    "id": "bea26852644e4800800bedfbc0d1e1cd", 
+    "date": "2017-04-07T15:31:17.963144+03:00", 
+    "id": "274291aae8ee4581b2c5c376d02cf06b", 
     "signingPeriod": {
-      "startDate": "2017-02-15T11:48:39.525031+02:00", 
-      "endDate": "2017-02-15T11:59:39.525031+02:00"
+      "startDate": "2017-04-07T15:31:17.552481+03:00", 
+      "endDate": "2017-04-07T15:51:17.552481+03:00"
     }
   }
 }

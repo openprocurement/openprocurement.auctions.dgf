@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/7d809bf30a104837a5882d1472e19d5a HTTP/1.0
+GET /api/2.3/auctions/d41ac9d44ffa4b27960f6cafb28a0cab HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -9,47 +9,47 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2017-02-15-000001", 
+    "auctionID": "UA-EA-2017-04-07-000001", 
     "enquiryPeriod": {
-      "startDate": "2017-02-15T11:48:42.013810+02:00", 
-      "endDate": "2017-02-28T23:59:50+02:00"
+      "startDate": "2017-04-07T15:31:19.065750+03:00", 
+      "endDate": "2017-04-20T23:59:50+03:00"
     }, 
     "submissionMethod": "electronicAuction", 
     "dgfDecisionDate": "2016-11-17", 
-    "next_check": "2017-02-28T23:59:50+02:00", 
+    "next_check": "2017-04-20T23:59:50+03:00", 
     "awardCriteria": "highestCost", 
     "dgfDecisionID": "219560", 
     "owner": "broker", 
-    "id": "7d809bf30a104837a5882d1472e19d5a", 
+    "id": "d41ac9d44ffa4b27960f6cafb28a0cab", 
     "eligibilityCriteria_ru": "К участию допускаются только лицензированные финансовые учреждения.", 
     "documents": [
       {
         "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
         "url": "http://torgi.fg.gov.ua/prozorrosale", 
         "documentOf": "tender", 
-        "datePublished": "2017-02-15T11:48:42.014241+02:00", 
+        "datePublished": "2017-04-07T15:31:19.066097+03:00", 
         "documentType": "x_dgfPlatformLegalDetails", 
-        "dateModified": "2017-02-15T11:48:42.014286+02:00", 
-        "id": "7ad2bf126420455a8ff76a2bdcf44747"
+        "dateModified": "2017-04-07T15:31:19.066154+03:00", 
+        "id": "a29bf5d8c71c4e9d94b8c3fe2f229e51"
       }
     ], 
     "title": "футляри до державних нагород", 
     "tenderAttempts": 1, 
     "eligibilityCriteria_en": "Only licensed financial institutions are eligible to participate.", 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2017-02-15T11:48:42.019722+02:00", 
+    "dateModified": "2017-04-07T15:31:19.070221+03:00", 
     "status": "active.tendering", 
     "eligibilityCriteria": "До участі допускаються лише ліцензовані фінансові установи.", 
     "tenderPeriod": {
-      "startDate": "2017-02-15T11:48:42.013810+02:00", 
-      "endDate": "2017-02-28T23:59:50+02:00"
+      "startDate": "2017-04-07T15:31:19.065750+03:00", 
+      "endDate": "2017-04-20T23:59:50+03:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2017-03-01T00:00:00+02:00"
+      "shouldStartAfter": "2017-04-21T00:00:00+03:00"
     }, 
     "procurementMethodType": "dgfFinancialAssets", 
     "dgfID": "219560", 
-    "date": "2017-02-15T11:48:42.013810+02:00", 
+    "date": "2017-04-07T15:31:19.065750+03:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -70,7 +70,7 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "323508d02ab142d2bc60151cf3f5cdb8", 
+        "id": "3ad67c0ccb5140219f8793b156a6422d", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"

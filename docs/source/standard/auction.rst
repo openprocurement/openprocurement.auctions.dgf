@@ -42,11 +42,7 @@ Schema
     * ``dgfOtherAssets`` - sale of the insolvent bank property
     * ``dgfFinancialAssets`` - sale of the creditor claim right
 
-:tenderAttempts:
-    integer
-
-    The number which represents whether the tender is taking place for the first, second, third, or fourth time
-
+   
 :procuringEntity:
    :ref:`ProcuringEntity`, required
 
@@ -208,13 +204,3 @@ Schema
    List of :ref:`revision` objects, auto-generated
 
    Historical changes to `Auction` object properties.
-   
-:dgfDecisionDate:
-   :ref:`Date` 
-   
-   Date of the Decision of the executive board of Deposit Guarantee Fund, assets sales committee on terms of sale.
-   
-:dgfDecisionID:
-   string
-   
-   Number of the Decision of the executive board of Deposit Guarantee Fund, assets sales committee on terms of sale.

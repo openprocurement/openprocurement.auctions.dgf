@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/f6a8d0f1fd564397b3f1fd30ce85b004 HTTP/1.0
+GET /api/2.3/auctions/331e9ef3d78d46cfb3df35c17b0650c7 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -9,137 +9,137 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2017-02-15-000001", 
-    "auctionUrl": "http://auction-sandbox.openprocurement.org/auctions/f6a8d0f1fd564397b3f1fd30ce85b004", 
+    "auctionID": "UA-EA-2017-04-07-000001", 
+    "auctionUrl": "http://auction-sandbox.openprocurement.org/auctions/331e9ef3d78d46cfb3df35c17b0650c7", 
     "enquiryPeriod": {
-      "startDate": "2017-02-08T11:48:32.653313+02:00", 
-      "endDate": "2017-02-15T11:48:32.653313+02:00"
+      "startDate": "2017-03-31T15:31:12.615461+03:00", 
+      "endDate": "2017-04-07T15:31:12.615461+03:00"
     }, 
     "submissionMethod": "electronicAuction", 
     "dgfDecisionDate": "2016-11-17", 
-    "next_check": "2017-02-15T12:32:32.653313+02:00", 
+    "next_check": "2017-04-07T16:15:12.615461+03:00", 
     "awardCriteria": "highestCost", 
     "questions": [
       {
         "description": "Просимо додати таблицю потрібної калорійності харчування", 
         "title": "Калорійність", 
-        "date": "2017-02-15T11:48:44.839221+02:00", 
+        "date": "2017-04-07T15:31:21.724463+03:00", 
         "answer": "Таблицю додано в файлі \"Kalorijnist.xslx\"", 
-        "id": "884f91f1e2624fe59fa733589b03352d", 
+        "id": "78992556c97a4cbbbf386c8ce0fc7d58", 
         "questionOf": "tender"
       }
     ], 
     "dgfDecisionID": "219560", 
     "owner": "broker", 
-    "id": "f6a8d0f1fd564397b3f1fd30ce85b004", 
+    "id": "331e9ef3d78d46cfb3df35c17b0650c7", 
     "documents": [
       {
         "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
         "url": "http://torgi.fg.gov.ua/prozorrosale", 
         "documentOf": "tender", 
-        "datePublished": "2017-02-15T11:48:43.892272+02:00", 
+        "datePublished": "2017-04-07T15:31:20.714686+03:00", 
         "documentType": "x_dgfPlatformLegalDetails", 
-        "dateModified": "2017-02-15T11:48:43.892313+02:00", 
-        "id": "a0aa0fc4bf9e478f8b7d302c965b6de2"
+        "dateModified": "2017-04-07T15:31:20.714721+03:00", 
+        "id": "345103188a104e4b9cde2d28c24afb37"
       }, 
       {
         "hash": "md5:00000000000000000000000000000000", 
         "description": "document description", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/efc533babc7f40c5a5afcdb21a55d00b?KeyID=91671178&Signature=s3PH10wY%2FnelG%2Fj4fIdL1eY2aWqH5oluSr4GXnXgHC%2FMyEOdZnkTfjCEQaRBVgYgLrgAdtebi4%2F9P6sLs6HXAQ%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/0f4fa89c2d474b758b69c4519deb4669?KeyID=df79319d&Signature=NFKTdJ0NEPpLGoHhQLj5BZk%252BcMcqYYNmDSaC728CSeFbAJVf4%252B1r1DSbxnVNomhP%2FCJLp4AScSrdoKcwlI1QCg%253D%253D", 
         "title": "Notice.pdf", 
         "documentOf": "tender", 
-        "datePublished": "2017-02-15T11:48:44.331320+02:00", 
+        "datePublished": "2017-04-07T15:31:21.147289+03:00", 
         "documentType": "technicalSpecifications", 
-        "dateModified": "2017-02-15T11:48:44.331347+02:00", 
-        "id": "e0ad540e77844a1eaa8cdb60a5989af0"
+        "dateModified": "2017-04-07T15:31:21.147318+03:00", 
+        "id": "5b056653d3ba44c3a31e42b36c211250"
       }, 
       {
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/598d2980428a474eb2d1144f5f211ae9?KeyID=91671178&Signature=FiK7LZKZoHZoPpe4iBBIr%2FNLxuEn85uFH8gaCeYEFGKuQezeY4EcftXVCk%252BCRfQLs1is6Ps%252BJMcuXEAJ%2FQMCDA%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/31179efc649e4f649d58208d7bfcd62d?KeyID=df79319d&Signature=G2Derjlzj8JCHJ9mJejuKkBVfnM9mNJ9Q0sV1nqhUYyP0viarW06obUyiHZWLk9VL06pbay54qjS7cpN0YjAAQ%253D%253D", 
         "title": "AwardCriteria.pdf", 
         "documentOf": "tender", 
-        "datePublished": "2017-02-15T11:48:44.388869+02:00", 
-        "dateModified": "2017-02-15T11:48:44.388895+02:00", 
-        "id": "f734a6925da449dc89418157c1f2d50b"
+        "datePublished": "2017-04-07T15:31:21.205404+03:00", 
+        "dateModified": "2017-04-07T15:31:21.205436+03:00", 
+        "id": "16e007ddfe38495f9eb9632916bdc119"
       }, 
       {
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/8ea3588f3b70468db9b26644d4245ebe?KeyID=91671178&Signature=bq3AaDHcPXWzjsp5oerKrjRALIxI4bIFYQWW%252BFAim6ao28CgScH3yYtbqCK3PLE2nrBzAyn2rqGdsavkgMN%252BBQ%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/b01d0e1c43b6412a85bebafe91534ee0?KeyID=df79319d&Signature=ZVHrYmy%2FAAY2Qq4J1Fr%2FfxqDK2P2cXFlXcNm0mlbn%252BYm0aYsDYun8R%252BrjFLgV%2FGey67oYqZxwWaAQXn53zSXCg%253D%253D", 
         "title": "AwardCriteria-2.pdf", 
         "documentOf": "tender", 
-        "datePublished": "2017-02-15T11:48:44.388869+02:00", 
-        "dateModified": "2017-02-15T11:48:44.457209+02:00", 
-        "id": "f734a6925da449dc89418157c1f2d50b"
+        "datePublished": "2017-04-07T15:31:21.205404+03:00", 
+        "dateModified": "2017-04-07T15:31:21.274489+03:00", 
+        "id": "16e007ddfe38495f9eb9632916bdc119"
       }, 
       {
         "index": 1, 
         "hash": "md5:00000000000000000000000000000000", 
         "description": "First illustration description", 
         "format": "image/jpeg", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/22d723af7fbc4d98ae339391682f100f?KeyID=91671178&Signature=kofmdnOptllb6eqXjvalAJQ3Z7NsMve2bgeqOkqSPihFBjQMt6oKVBqq1E3bdGAnHtmMYDhrCyY6iVzHrQp%252BCg%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/746b61b2d1264604b1e98c058ac1740f?KeyID=df79319d&Signature=982LynSZlgaXIbNRD9RoN8In%252B2VO3UW7AZPg9DSooxblspu2xjGPigezf5GiMG9j1d2xE%252B9%2FZUG%2FHY3GyJ5WCw%253D%253D", 
         "title": "first_illustration.jpeg", 
         "documentOf": "tender", 
-        "datePublished": "2017-02-15T11:48:44.529271+02:00", 
+        "datePublished": "2017-04-07T15:31:21.345637+03:00", 
         "documentType": "illustration", 
-        "dateModified": "2017-02-15T11:48:44.529298+02:00", 
-        "id": "725a6cbb69c94ef1a4c099e624439ead"
+        "dateModified": "2017-04-07T15:31:21.345663+03:00", 
+        "id": "76b72b2fd48a4a61a99eef1ae5ebbb1c"
       }, 
       {
         "index": 2, 
         "hash": "md5:00000000000000000000000000000000", 
         "description": "Second illustration description", 
         "format": "image/jpeg", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/1912057e75324bb28bcee5e7874487e0?KeyID=91671178&Signature=xtJhuAQL93fR4cIsPp6Swa8Z0SU65II5bWyKrlQKtXQgpR%2F6bncpeIakyk1ZAkrsG8mUMNsBJVyQwwW9lwHCCQ%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/8b5e76acca8148d492d44fae7b821cb3?KeyID=df79319d&Signature=2bswW9s0i7HgLGfpy8lRozJ7y%252Bu17vN0AumIUYcxCPXoHygorapn36ezzuVSquGnfW66NV%252BEPS4zkV9os1AyDw%253D%253D", 
         "title": "second_illustration.jpeg", 
         "documentOf": "tender", 
-        "datePublished": "2017-02-15T11:48:44.603123+02:00", 
+        "datePublished": "2017-04-07T15:31:21.455148+03:00", 
         "documentType": "illustration", 
-        "dateModified": "2017-02-15T11:48:44.603151+02:00", 
-        "id": "12163c496da04e6bb8b182908b509306"
+        "dateModified": "2017-04-07T15:31:21.455217+03:00", 
+        "id": "55976c9629af4c019ea720089cf11433"
       }, 
       {
         "index": 2, 
         "hash": "md5:00000000000000000000000000000000", 
         "description": "Third illustration description", 
         "format": "image/jpeg", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/dcb6bd41640c4839ab48612fd20eb1b1?KeyID=91671178&Signature=By09ugOfgmG9uFzw313XwBY65GA%252BHQGmrT7yMGKgFlrXjoNUnS7uUZUaBqR9Q09Z8NutVo9nsGefUMAzJtP%2FAg%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/9326da9980b0434fb6887ffaa9cb9b43?KeyID=df79319d&Signature=tjmY%2FqWF7xtF5XwneSbWfiQ%2F0RsWQeVbeEph6SvyDoYxkCUdPrAIlZaJOtEk7x44Z4wBO4oSbUt8OAEXovzYBQ%253D%253D", 
         "title": "third_illustration.jpeg", 
         "documentOf": "tender", 
-        "datePublished": "2017-02-15T11:48:44.658168+02:00", 
+        "datePublished": "2017-04-07T15:31:21.525229+03:00", 
         "documentType": "illustration", 
-        "dateModified": "2017-02-15T11:48:44.658195+02:00", 
-        "id": "3a61fa159083439cadb989b6359a1313"
+        "dateModified": "2017-04-07T15:31:21.525267+03:00", 
+        "id": "a3f7774f77a448619ba16aa270100d21"
       }, 
       {
         "title": "Familiarization with bank asset", 
         "format": "offline/on-site-examination", 
         "accessDetails": "Familiar with asset: days, time, address", 
         "documentOf": "tender", 
-        "datePublished": "2017-02-15T11:48:44.745192+02:00", 
+        "datePublished": "2017-04-07T15:31:21.635197+03:00", 
         "documentType": "x_dgfAssetFamiliarization", 
-        "dateModified": "2017-02-15T11:48:44.745222+02:00", 
-        "id": "5c0db6abb29943be8464cd52c98dac6e"
+        "dateModified": "2017-04-07T15:31:21.635233+03:00", 
+        "id": "de8d3b83672f4924af2a8abe32e13b50"
       }
     ], 
     "title": "футляри до державних нагород", 
     "tenderAttempts": 1, 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2017-02-15T11:48:45.801070+02:00", 
+    "dateModified": "2017-04-07T15:31:22.506250+03:00", 
     "status": "active.auction", 
     "tenderPeriod": {
-      "startDate": "2017-02-08T11:48:32.653313+02:00", 
-      "endDate": "2017-02-15T11:48:32.653313+02:00"
+      "startDate": "2017-03-31T15:31:12.615461+03:00", 
+      "endDate": "2017-04-07T15:31:12.615461+03:00"
     }, 
     "auctionPeriod": {
-      "startDate": "2017-02-15T11:48:32.653313+02:00", 
-      "shouldStartAfter": "2017-02-16T00:00:00+02:00"
+      "startDate": "2017-04-07T15:31:12.615461+03:00", 
+      "shouldStartAfter": "2017-04-08T00:00:00+03:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "dgfID": "219560", 
-    "date": "2017-02-15T11:48:43.891841+02:00", 
+    "date": "2017-04-07T15:31:20.714247+03:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -160,7 +160,7 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "e993c2563ee14275a891d3fbf3dd1bef", 
+        "id": "c910adfa79164d8d83b51c4bfcec1f59", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"

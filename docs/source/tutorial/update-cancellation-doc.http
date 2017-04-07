@@ -1,12 +1,12 @@
-PUT /api/2.3/auctions/f6a8d0f1fd564397b3f1fd30ce85b004/cancellations/37137b6992c74125b414f756ce9ac6e7/documents/4353c853028e4416bfd13d7fedec11bd?acc_token=b71ba50d2bc1415db843b262774e02e9 HTTP/1.0
+PUT /api/2.3/auctions/331e9ef3d78d46cfb3df35c17b0650c7/cancellations/66bdad0c606d4bb58c5c25fcaaf5c49f/documents/ba8dccc5269447d08eeeec1a8d4359cf?acc_token=5303e3bebff44ed3a5a9f8f7db899743 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 331
+Content-Length: 327
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/0ae7c15639364e5ba3d13585006d453d?KeyID=91671178&Signature=qXjgLoybO1ifqXlmzQc%2FfRx7NABPDF2HUKGn2Kps%2BsWPg3LTyvRuM8Nq2PAoAt9ci3DUlD5Dk1tqwqFOEbxcDw%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/15058e0d737e4341b07ab2d8fbd2df6d?KeyID=df79319d&Signature=rTiI2m7KFtItqKmIQMGkB3I30GlQdJjRGAmCqRNWbcMxC6ikC2DAQY5KDqYrmwauZ7sciVAzFMKAw0Z3yIXECw%3D%3D", 
     "title": "Notice-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -22,12 +22,12 @@ Content-Type: application/json; charset=UTF-8
     "hash": "md5:00000000000000000000000000000000", 
     "description": "Changed description", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/0ae7c15639364e5ba3d13585006d453d?KeyID=91671178&Signature=RdxT4QFXIx8KqM0VKtdEe3rkEtlIQ268wcDtjbsMgv5vGJ0VGHzQJ6i0HRNMuwtLwbMZF7zm5qr26%2FTfyFpTAg%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/15058e0d737e4341b07ab2d8fbd2df6d?KeyID=df79319d&Signature=8ejAyTfQpk4NOHRxaWjIG4RDUtkMKzN9lJ7Okl%2F%2FDIpH2bgJNlsoz7x8Re6GLB6hT5YXon439b6k79E44B3MDQ%253D%253D", 
     "title": "Notice-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2017-02-15T11:48:48.342615+02:00", 
-    "dateModified": "2017-02-15T11:48:48.846937+02:00", 
-    "id": "4353c853028e4416bfd13d7fedec11bd"
+    "datePublished": "2017-04-07T15:31:24.975763+03:00", 
+    "dateModified": "2017-04-07T15:31:25.295272+03:00", 
+    "id": "ba8dccc5269447d08eeeec1a8d4359cf"
   }
 }
 

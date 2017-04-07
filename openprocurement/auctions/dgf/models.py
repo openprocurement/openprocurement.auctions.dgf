@@ -62,8 +62,8 @@ def validate_disallow_dgfPlatformLegalDetails(docs, *args):
 
 
 VERIFY_AUCTION_PROTOCOL_TIME = timedelta(days=3)
-AWARD_PAYMENT_TIME = timedelta(days=11)
-CONTRACT_SIGNING_TIME = timedelta(days=11)
+AWARD_PAYMENT_TIME = timedelta(days=20)
+CONTRACT_SIGNING_TIME = timedelta(days=20)
 
 
 class CAVClassification(Classification):
@@ -236,7 +236,8 @@ class Award(BaseAward):
                 bid_owner_token = bid.owner_token
         return [(Allow, '{}_{}'.format(bid_owner, bid_owner_token), 'edit_auction_award')]
 
-    status = StringType(required=True, choices=['pending.waiting', 'pending.verification', 'pending.payment', 'unsuccessful', 'active', 'cancelled'], default='pending.verification')
+    # pending status is deprecated. Only for backward compatibility with awarding 1.0
+    status = StringType(required=True, choices=['pending.waiting', 'pending.verification', 'pending.payment', 'unsuccessful', 'active', 'cancelled', 'pending'], default='pending.verification')
     suppliers = ListType(ModelType(Organization), min_size=1, max_size=1)
     complaints = ListType(ModelType(Complaint), default=list())
     documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])

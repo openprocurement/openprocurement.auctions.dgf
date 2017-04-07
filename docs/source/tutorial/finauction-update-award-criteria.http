@@ -1,4 +1,4 @@
-PUT /api/2.3/auctions/7d809bf30a104837a5882d1472e19d5a/documents/3b4e2e825fce407cbbbc465bddaf67a8?acc_token=16aa3b1621444b1a8f7044dfb1238aaa HTTP/1.0
+PUT /api/2.3/auctions/d41ac9d44ffa4b27960f6cafb28a0cab/documents/155a293ea2414b90a5ee1217b1ce9352?acc_token=7b6133ada5bc473caad389a3a31b5373 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 336
 Content-Type: application/json
@@ -6,7 +6,7 @@ Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/abf8844a94214c1aaf144a906a72ea0d?KeyID=d2667361&Signature=9PJllDCcYW07FFHBWNcEQK7la4P35H09M5hxNLd0GIaNqfZcjqimJXYLhJmKf6HyKTZCIl4FKBNMAznvV%2FKEDg%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/5aaeabd58992486b8bf974678c519afc?KeyID=00fc7a9f&Signature=fAjtySq6cqDlalFrCGJxqmXele50TmiBsH%2BBCBsa6WXzuYyzy4jpegScQIGHIk0adWfWtlZN25HVME53o60jDA%3D%3D", 
     "title": "AwardCriteria-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -21,12 +21,12 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/abf8844a94214c1aaf144a906a72ea0d?KeyID=d2667361&Signature=k0Z%2F0YczjIlhVa5uj9OP%2Fwe6oO3ZMhiKFNeX85SnB%2Fso0mXEyvHercIb76mfEDV4XWzPwAnXNw%252B4djAmIy4OAg%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/5aaeabd58992486b8bf974678c519afc?KeyID=00fc7a9f&Signature=i4TKp1vTlKpYZS5CoyR2KOn2GsR2RtdbG9nz6bv5NYbsxONL0GDO7f4DSAyhpmU%2FvESt1ko3c6Veo5nP9ry2CQ%253D%253D", 
     "title": "AwardCriteria-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2017-02-15T11:48:42.298261+02:00", 
-    "dateModified": "2017-02-15T11:48:42.383984+02:00", 
-    "id": "3b4e2e825fce407cbbbc465bddaf67a8"
+    "datePublished": "2017-04-07T15:31:19.290601+03:00", 
+    "dateModified": "2017-04-07T15:31:19.355254+03:00", 
+    "id": "155a293ea2414b90a5ee1217b1ce9352"
   }
 }
 

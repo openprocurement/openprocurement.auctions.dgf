@@ -12,7 +12,7 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2017-02-15T11:53:32.681534"
+      "startDate": "2017-04-07T15:36:12.650307"
     }, 
     "tenderAttempts": 1, 
     "procurementMethodType": "dgfOtherAssets", 
@@ -73,53 +73,53 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/80b29870920642e480e0f4ffb51ec8d1
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/683c820659214cc9a01cfd4f26f18908
 
 {
   "access": {
-    "token": "f555f6a9d0b34ffca7dd77273c014cee"
+    "token": "542baa2415e94c41b736cd0082e4b46f"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2017-02-15-000001", 
+    "auctionID": "UA-EA-2017-04-07-000001", 
     "enquiryPeriod": {
-      "startDate": "2017-02-15T11:48:36.149205+02:00", 
-      "endDate": "2017-02-15T11:52:52.950505+02:00"
+      "startDate": "2017-04-07T15:31:15.559678+03:00", 
+      "endDate": "2017-04-07T15:35:23.641522+03:00"
     }, 
     "submissionMethod": "electronicAuction", 
     "dgfDecisionDate": "2016-11-17", 
-    "next_check": "2017-02-15T11:52:52.950505+02:00", 
+    "next_check": "2017-04-07T15:35:23.641522+03:00", 
     "awardCriteria": "highestCost", 
     "dgfDecisionID": "219560", 
     "owner": "broker", 
     "title_en": "[TESTING] ", 
-    "id": "80b29870920642e480e0f4ffb51ec8d1", 
+    "id": "683c820659214cc9a01cfd4f26f18908", 
     "documents": [
       {
         "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
         "url": "http://torgi.fg.gov.ua/prozorrosale", 
         "documentOf": "tender", 
-        "datePublished": "2017-02-15T11:48:36.149646+02:00", 
+        "datePublished": "2017-04-07T15:31:15.560009+03:00", 
         "documentType": "x_dgfPlatformLegalDetails", 
-        "dateModified": "2017-02-15T11:48:36.149686+02:00", 
-        "id": "01ca2e5d0cd0485c855583669060a0b4"
+        "dateModified": "2017-04-07T15:31:15.560035+03:00", 
+        "id": "e294a2b99dde443b88186ffab2b08f40"
       }
     ], 
     "title": "[ТЕСТУВАННЯ] футляри до державних нагород", 
     "tenderAttempts": 1, 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2017-02-15T11:48:36.154813+02:00", 
+    "dateModified": "2017-04-07T15:31:15.563561+03:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2017-02-15T11:48:36.149205+02:00", 
-      "endDate": "2017-02-15T11:52:52.950505+02:00"
+      "startDate": "2017-04-07T15:31:15.559678+03:00", 
+      "endDate": "2017-04-07T15:35:23.641522+03:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2017-02-15T11:52:52.950505+02:00"
+      "shouldStartAfter": "2017-04-07T15:35:23.641522+03:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "dgfID": "219560", 
-    "date": "2017-02-15T11:48:36.149205+02:00", 
+    "date": "2017-04-07T15:31:15.559678+03:00", 
     "submissionMethodDetails": "quick", 
     "items": [
       {
@@ -136,7 +136,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/80b29870920
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "1856a75debe2484fad6f5717b3fd1de6", 
+        "id": "cb96472830e54c188379eb2407a0a570", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"

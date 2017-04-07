@@ -1,12 +1,12 @@
-POST /api/2.3/auctions/f6a8d0f1fd564397b3f1fd30ce85b004/contracts/81887b6893c24f98a6f5909aa71c0ebb/documents?acc_token=b71ba50d2bc1415db843b262774e02e9 HTTP/1.0
+POST /api/2.3/auctions/331e9ef3d78d46cfb3df35c17b0650c7/contracts/008bc018d2194ae5bfdcb1fee49b29ca/documents?acc_token=5303e3bebff44ed3a5a9f8f7db899743 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 349
+Content-Length: 353
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/c6990ffa51b84b228ba8164a73898c4c?KeyID=91671178&Signature=rcIbE1Y9nYeP0cCRM0uHvqcAgWTK4KDMmJswWwOn%2BC2LvAQD8kNIQYHIZHoNNDujP%2B5PqibWC3vMzKpv40jYBQ%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/7053e8cb8afa4c62a87c5c84ac055fd9?KeyID=df79319d&Signature=cpB4WuiT3ZcrwpPbF%2BsAGXGGOFA3Q46aprC96KjhI7nFO4rDgq%2FA%2FLJ7MpgjAP2e%2FIscqd0TFCM4OdIe1OgQBQ%3D%3D", 
     "title": "contract_first_document.doc", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/msword"
@@ -16,18 +16,18 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/f6a8d0f1fd564397b3f1fd30ce85b004/contracts/81887b6893c24f98a6f5909aa71c0ebb/documents/fa19ff46a4fc4c0d9f7a5cdbc84a3810
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/331e9ef3d78d46cfb3df35c17b0650c7/contracts/008bc018d2194ae5bfdcb1fee49b29ca/documents/ec3ae23e3aa64e0992d515a4a4dbeac6
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/msword", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/c6990ffa51b84b228ba8164a73898c4c?KeyID=91671178&Signature=fwi%252BQ9N8KjJumyl7IJVHDtMgR1RLaKPZr4xMtyafcMWQ76Y9HhnVfir49dIAW%252B%252B56UDQrqT50MFfQ7RTXfSQAA%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/7053e8cb8afa4c62a87c5c84ac055fd9?KeyID=df79319d&Signature=t3nd%2Fhc9%252BL9TrPBcZ0zgIizGWkEVVNFm%2FWf3IsNx4XSNu%252Bt4z1rxZWIuP9rza%252BLF6uOm0uKaEATw9kccNmajCg%253D%253D", 
     "title": "contract_first_document.doc", 
     "documentOf": "tender", 
-    "datePublished": "2017-02-15T11:48:47.468636+02:00", 
-    "dateModified": "2017-02-15T11:48:47.468662+02:00", 
-    "id": "fa19ff46a4fc4c0d9f7a5cdbc84a3810"
+    "datePublished": "2017-04-07T15:31:23.985878+03:00", 
+    "dateModified": "2017-04-07T15:31:23.985905+03:00", 
+    "id": "ec3ae23e3aa64e0992d515a4a4dbeac6"
   }
 }
 

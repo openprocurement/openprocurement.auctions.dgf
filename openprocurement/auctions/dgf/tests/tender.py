@@ -1643,19 +1643,28 @@ class AuctionProcessTest(BaseAuctionWebTest):
         response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
         # get pending award
         award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending.verification'][0]
-        # set award as active
 
-        self.app.authorization = ('Basic', ('broker', ''))
         response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
             self.auction_id, award_id, owner_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
         doc_id = response.json["data"]['id']
 
-        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, award_id, doc_id, owner_token), {"data": {
-            "description": "auction protocol",
-            "documentType": 'auctionProtocol'
-        }})
-
+        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(auction_id, award_id, doc_id, owner_token), {"data": {"documentType": 'auctionProtocol'}})
+        # set award as active
         self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(auction_id, award_id, owner_token), {"data": {"status": "pending.payment"}})
+
+        authorization = self.app.authorization
+        self.app.authorization = ('Basic', ('administrator', ''))
+
+        response = self.app.patch_json('/auctions/{}'.format(auction_id), {"data": {"suspended": True}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.json['data']['suspended'], True)
+        self.assertNotIn('next_check', response.json['data'])
+
+        response = self.app.patch_json('/auctions/{}'.format(auction_id), {"data": {"suspended": False}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.json['data']['suspended'], False)
+
+        self.app.authorization = authorization
 
         self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(auction_id, award_id, owner_token), {"data": {"status": "active"}})
         # get contract id

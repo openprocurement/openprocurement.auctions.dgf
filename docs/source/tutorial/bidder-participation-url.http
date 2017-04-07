@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/f6a8d0f1fd564397b3f1fd30ce85b004/bids/228b7e67141b464eb6fac7258ff00757?acc_token=86aae1a55f6b45779e49ca7dc8a100c1 HTTP/1.0
+GET /api/2.3/auctions/331e9ef3d78d46cfb3df35c17b0650c7/bids/a96a4681a1ef4b9fba6b598bd1d39406?acc_token=2dd2f5676d0944dca1c134c73f8456b0 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -13,12 +13,12 @@ Content-Type: application/json; charset=UTF-8
       {
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/pdf", 
-        "url": "http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/f6a8d0f1fd564397b3f1fd30ce85b004/bids/228b7e67141b464eb6fac7258ff00757/documents/d3161b8eb98047e48999f6277103ea6e?download=76db669db70b408983a47315c4c0ed6d", 
+        "url": "http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/331e9ef3d78d46cfb3df35c17b0650c7/bids/a96a4681a1ef4b9fba6b598bd1d39406/documents/b3c46d311886494887c261086517d00e?download=615ccdea0aa04f57bf9adbd61816ce29", 
         "title": "Proposal.pdf", 
         "documentOf": "tender", 
-        "datePublished": "2017-02-15T11:48:45.301345+02:00", 
-        "dateModified": "2017-02-15T11:48:45.301393+02:00", 
-        "id": "d3161b8eb98047e48999f6277103ea6e"
+        "datePublished": "2017-04-07T15:31:22.093060+03:00", 
+        "dateModified": "2017-04-07T15:31:22.093086+03:00", 
+        "id": "b3c46d311886494887c261086517d00e"
       }
     ], 
     "value": {
@@ -26,7 +26,7 @@ Content-Type: application/json; charset=UTF-8
       "amount": 500.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2017-02-15T11:48:45.059489+02:00", 
+    "date": "2017-04-07T15:31:21.919522+03:00", 
     "qualified": true, 
     "tenderers": [
       {
@@ -51,8 +51,8 @@ Content-Type: application/json; charset=UTF-8
       }
     ], 
     "owner": "broker", 
-    "id": "228b7e67141b464eb6fac7258ff00757", 
-    "participationUrl": "http://auction-sandbox.openprocurement.org/auctions/f6a8d0f1fd564397b3f1fd30ce85b004?key_for_bid=228b7e67141b464eb6fac7258ff00757"
+    "id": "a96a4681a1ef4b9fba6b598bd1d39406", 
+    "participationUrl": "http://auction-sandbox.openprocurement.org/auctions/331e9ef3d78d46cfb3df35c17b0650c7?key_for_bid=a96a4681a1ef4b9fba6b598bd1d39406"
   }
 }
 
