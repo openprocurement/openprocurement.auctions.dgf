@@ -59,8 +59,8 @@ def validate_disallow_dgfPlatformLegalDetails(docs, *args):
         raise ValidationError(u"Disallow documents with x_dgfPlatformLegalDetails documentType")
 
 VERIFY_AUCTION_PROTOCOL_TIME = timedelta(days=3)
-AWARD_PAYMENT_TIME = timedelta(days=11)
-CONTRACT_SIGNING_TIME = timedelta(days=11)
+AWARD_PAYMENT_TIME = timedelta(days=20)
+CONTRACT_SIGNING_TIME = timedelta(days=20)
 
 
 class CAVClassification(Classification):
