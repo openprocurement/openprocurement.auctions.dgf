@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/f67956e32a634f98a9ab9ad7c2b84e02/contracts/1e3ef54904d94e7296b5711c711a81a1?acc_token=5d03fcac4be247fdb9b9db02ff5dd4e4 HTTP/1.0
+PATCH /api/2.3/auctions/c4dd4d72218b43df8603bf9ceffd09d9/contracts/bff4715b4894460bb42ebc11645849c9?acc_token=aca8b1f9f9574f34a0942083cb65db8b HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 106
 Content-Type: application/json
@@ -7,8 +7,8 @@ Host: api-sandbox.ea.openprocurement.org
 {
   "data": {
     "period": {
-      "startDate": "2016-12-21T19:57:50.354128", 
-      "endDate": "2017-12-21T19:57:50.354128"
+      "startDate": "2017-02-13T20:30:13.429805", 
+      "endDate": "2018-02-13T20:30:13.429805"
     }
   }
 }
@@ -35,7 +35,7 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "5ed44f9b533641babe00f1eb58b18820", 
+        "id": "59f3595441fa4cc8ac87bc83c464368c", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -66,18 +66,18 @@ Content-Type: application/json; charset=UTF-8
       }
     ], 
     "period": {
-      "startDate": "2016-12-21T19:57:50.354128+02:00", 
-      "endDate": "2017-12-21T19:57:50.354128+02:00"
+      "startDate": "2017-02-13T20:30:13.429805+02:00", 
+      "endDate": "2018-02-13T20:30:13.429805+02:00"
     }, 
     "value": {
       "currency": "UAH", 
       "amount": 501.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2016-12-21T19:58:00.036853+02:00", 
-    "awardID": "35871bdc40bf46d3ae2ec090dcd9badb", 
-    "id": "1e3ef54904d94e7296b5711c711a81a1", 
-    "contractID": "UA-EA-2016-12-21-000001-1"
+    "date": "2017-02-13T20:30:25.151013+02:00", 
+    "awardID": "c6d77c747c554a5a974be3549584ec2e", 
+    "id": "bff4715b4894460bb42ebc11645849c9", 
+    "contractID": "UA-EA-2017-02-13-000001-1"
   }
 }
 

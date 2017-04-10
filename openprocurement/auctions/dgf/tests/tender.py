@@ -1345,6 +1345,7 @@ class AuctionProcessTest(BaseAuctionWebTest):
                                           {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'qualified': True}})
         bid_id = response.json['data']['id']
         bid_token = response.json['access']['token']
+        bids_tokens = {bid_id: bid_token}
         # create second bid
         self.app.authorization = ('Basic', ('broker', ''))
         if self.initial_organization == test_financial_organization:
@@ -1353,6 +1354,7 @@ class AuctionProcessTest(BaseAuctionWebTest):
         else:
             response = self.app.post_json('/auctions/{}/bids'.format(auction_id),
                                           {'data': {'tenderers': [self.initial_organization], "value": {"amount": 450}, 'qualified': True}})
+        bids_tokens[response.json['data']['id']] = response.json['access']['token']
         # switch to active.auction
         self.set_status('active.auction')
 
@@ -1386,8 +1388,25 @@ class AuctionProcessTest(BaseAuctionWebTest):
         # get awards
         self.app.authorization = ('Basic', ('broker', ''))
         response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
-        # get pending award
-        award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending'][0]
+        # get pending.verification award
+        award = [i for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+        award_id = award['id']
+        # Upload auction protocol
+        self.app.authorization = ('Basic', ('broker', ''))
+        response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
+            self.auction_id, award_id, owner_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        doc_id = response.json["data"]['id']
+
+        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, award_id, doc_id, owner_token), {"data": {
+            "description": "auction protocol",
+            "documentType": 'auctionProtocol'
+        }})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json["data"]["documentType"], 'auctionProtocol')
+        self.assertEqual(response.json["data"]["author"], 'auction_owner')
         # set award as unsuccessful
         response = self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(auction_id, award_id, owner_token),
                                        {"data": {"status": "unsuccessful"}})
@@ -1395,7 +1414,8 @@ class AuctionProcessTest(BaseAuctionWebTest):
         self.app.authorization = ('Basic', ('broker', ''))
         response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
         # get pending award
-        award2_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending'][0]
+        award2 = [i for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+        award2_id = award2['id']
         self.assertNotEqual(award_id, award2_id)
         # create first award complaint
         # self.app.authorization = ('Basic', ('broker', ''))
@@ -1421,7 +1441,26 @@ class AuctionProcessTest(BaseAuctionWebTest):
         self.app.authorization = ('Basic', ('broker', ''))
         response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
         # get pending award
-        award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending'][0]
+        award = [i for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+        award_id = award['id']
+        # Upload auction protocol
+        self.app.authorization = ('Basic', ('broker', ''))
+        response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
+            self.auction_id, award_id, owner_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        doc_id = response.json["data"]['id']
+
+        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, award_id, doc_id, owner_token), {"data": {
+            "description": "auction protocol",
+            "documentType": 'auctionProtocol'
+        }})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json["data"]["documentType"], 'auctionProtocol')
+        self.assertEqual(response.json["data"]["author"], 'auction_owner')
+        # set award as "pending.payment
+        self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(auction_id, award_id, owner_token), {"data": {"status": "pending.payment"}})
         # set award as active
         self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(auction_id, award_id, owner_token), {"data": {"status": "active"}})
         # get contract id
@@ -1572,7 +1611,7 @@ class AuctionProcessTest(BaseAuctionWebTest):
         response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
 
         # get pending award
-        award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending'][0]
+        award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending.verification'][0]
 
         authorization = self.app.authorization
         self.app.authorization = ('Basic', ('administrator', ''))
@@ -1594,14 +1633,36 @@ class AuctionProcessTest(BaseAuctionWebTest):
         self.app.authorization = ('Basic', ('broker', ''))
         response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
         # get pending award
-        award2_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending'][0]
+        award2_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending.verification'][0]
         self.assertNotEqual(award_id, award2_id)
 
         self.app.authorization = ('Basic', ('broker', ''))
         response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
         # get pending award
-        award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending'][0]
+        award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+
+        response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
+            self.auction_id, award_id, owner_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
+        doc_id = response.json["data"]['id']
+
+        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(auction_id, award_id, doc_id, owner_token), {"data": {"documentType": 'auctionProtocol'}})
         # set award as active
+        self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(auction_id, award_id, owner_token), {"data": {"status": "pending.payment"}})
+
+        authorization = self.app.authorization
+        self.app.authorization = ('Basic', ('administrator', ''))
+
+        response = self.app.patch_json('/auctions/{}'.format(auction_id), {"data": {"suspended": True}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.json['data']['suspended'], True)
+        self.assertNotIn('next_check', response.json['data'])
+
+        response = self.app.patch_json('/auctions/{}'.format(auction_id), {"data": {"suspended": False}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.json['data']['suspended'], False)
+
+        self.app.authorization = authorization
+
         self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(auction_id, award_id, owner_token), {"data": {"status": "active"}})
         # get contract id
         response = self.app.get('/auctions/{}'.format(auction_id))

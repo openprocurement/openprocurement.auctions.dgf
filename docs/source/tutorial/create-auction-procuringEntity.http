@@ -1,6 +1,6 @@
 POST /api/2.3/auctions?opt_pretty=1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 1934
+Content-Length: 1976
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
@@ -12,13 +12,33 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2017-01-04T19:57:50.354128"
+      "startDate": "2017-02-27"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "value": {
       "currency": "UAH", 
-      "amount": 500
+      "amount": 100
     }, 
+    "dgfID": "219560", 
+    "title_ru": "футляры к государственным наградам", 
+    "procurementMethodDetails": "quick, accelerator=1440", 
+    "items": [
+      {
+        "classification": {
+          "scheme": "CAV", 
+          "id": "06000000-2", 
+          "description": "Земельні ділянки"
+        }, 
+        "description": "Земля для військовослужбовців", 
+        "id": "86bb18ee958b4977b6c5d15e2ec788b9", 
+        "unit": {
+          "code": "44617100-9", 
+          "name": "item"
+        }, 
+        "quantity": 5
+      }
+    ], 
+    "title_en": "Cases with state awards", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 
@@ -38,47 +58,28 @@ Host: api-sandbox.ea.openprocurement.org
         "streetAddress": "вул. Банкова, 11, корпус 1", 
         "locality": "м. Київ"
       }
-    }, 
-    "title_ru": "футляры к государственным наградам", 
-    "items": [
-      {
-        "classification": {
-          "scheme": "CAV", 
-          "id": "06000000-2", 
-          "description": "Земельні ділянки"
-        }, 
-        "description": "Земля для військовослужбовців", 
-        "id": "809fbce6b09b4675819376ac6b146fbd", 
-        "unit": {
-          "code": "44617100-9", 
-          "name": "item"
-        }, 
-        "quantity": 5
-      }
-    ], 
-    "title_en": "Cases with state awards", 
-    "mode": "test"
+    }
   }
 }
 
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/907f4d2ce59d473fad3518b6a24799d3
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/816dcd0bbca4407cb6b670dfc17101f6
 
 {
   "access": {
-    "token": "0cbb5153fa0e4cc29b80d8a2103e3bd2"
+    "token": "8d9e83b17584447cbd1469c2b4451cee"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2016-12-21-000002", 
+    "auctionID": "UA-EA-2017-02-13-000002", 
     "enquiryPeriod": {
-      "startDate": "2016-12-21T19:57:58.019123+02:00", 
-      "endDate": "2017-01-03T20:00:00+02:00"
+      "startDate": "2017-02-13T20:30:22.669475+02:00", 
+      "endDate": "2017-02-26T23:59:50+02:00"
     }, 
     "submissionMethod": "electronicAuction", 
-    "next_check": "2017-01-03T20:00:00+02:00", 
+    "next_check": "2017-02-26T23:59:50+02:00", 
     "procuringEntity": {
       "contactPoint": {
         "name": "Державне управління справами", 
@@ -100,31 +101,22 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/907f4d2ce59
       }
     }, 
     "owner": "broker", 
-    "title_en": "[TESTING] Cases with state awards", 
-    "id": "907f4d2ce59d473fad3518b6a24799d3", 
-    "documents": [
-      {
-        "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
-        "url": "http://torgi.fg.gov.ua/prozorrosale", 
-        "documentOf": "tender", 
-        "datePublished": "2016-12-21T19:57:58.019481+02:00", 
-        "documentType": "x_dgfPlatformLegalDetails", 
-        "dateModified": "2016-12-21T19:57:58.019510+02:00", 
-        "id": "52e71ed6cebe4594a2e469587f5c8f32"
-      }
-    ], 
-    "title": "[ТЕСТУВАННЯ] футляри до державних нагород", 
-    "dateModified": "2016-12-21T19:57:58.022665+02:00", 
+    "title_en": "Cases with state awards", 
+    "id": "816dcd0bbca4407cb6b670dfc17101f6", 
+    "title": "футляри до державних нагород", 
+    "procurementMethodDetails": "quick, accelerator=1440", 
+    "dateModified": "2017-02-13T20:30:22.672812+02:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2016-12-21T19:57:58.019123+02:00", 
-      "endDate": "2017-01-03T20:00:00+02:00"
+      "startDate": "2017-02-13T20:30:22.669475+02:00", 
+      "endDate": "2017-02-26T23:59:50+02:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2017-01-04T00:00:00+02:00"
+      "shouldStartAfter": "2017-02-27T00:00:00+02:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
-    "date": "2016-12-21T19:57:58.019123+02:00", 
+    "dgfID": "219560", 
+    "date": "2017-02-13T20:30:22.669475+02:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -137,7 +129,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/907f4d2ce59
           "name": "item"
         }, 
         "description": "Земля для військовослужбовців", 
-        "id": "809fbce6b09b4675819376ac6b146fbd", 
+        "id": "86bb18ee958b4977b6c5d15e2ec788b9", 
         "classification": {
           "scheme": "CAV", 
           "description": "Земельні ділянки", 
@@ -148,11 +140,10 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/907f4d2ce59
     ], 
     "value": {
       "currency": "UAH", 
-      "amount": 500.0, 
+      "amount": 100.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "mode": "test", 
-    "title_ru": "[ТЕСТИРОВАНИЕ] футляры к государственным наградам", 
+    "title_ru": "футляры к государственным наградам", 
     "awardCriteria": "highestCost"
   }
 }

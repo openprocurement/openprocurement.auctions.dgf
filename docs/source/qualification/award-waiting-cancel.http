@@ -1,0 +1,56 @@
+PATCH /api/2.3/auctions/c4dd4d72218b43df8603bf9ceffd09d9/awards/36a1b7761a1d461c8005b91d8f438fe5?acc_token=36fc8e65692e4ddbad2d4f3a3317a8e5 HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 33
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "status": "cancelled"
+  }
+}
+
+
+200 OK
+Content-Type: application/json; charset=UTF-8
+
+{
+  "data": {
+    "status": "cancelled", 
+    "complaintPeriod": {
+      "startDate": "2017-02-13T20:30:24.339157+02:00", 
+      "endDate": "2017-02-13T20:30:24.547140+02:00"
+    }, 
+    "suppliers": [
+      {
+        "contactPoint": {
+          "email": "soleksuk@gmail.com", 
+          "telephone": "+380 (432) 21-69-30", 
+          "name": "Сергій Олексюк"
+        }, 
+        "identifier": {
+          "scheme": "UA-EDR", 
+          "id": "00137256", 
+          "uri": "http://www.sc.gov.ua/"
+        }, 
+        "name": "ДКП «Школяр»", 
+        "address": {
+          "postalCode": "21100", 
+          "countryName": "Україна", 
+          "streetAddress": "вул. Островського, 33", 
+          "region": "м. Вінниця", 
+          "locality": "м. Вінниця"
+        }
+      }
+    ], 
+    "bid_id": "c91b5c3197e34dcfbe8c75070d93d58a", 
+    "value": {
+      "currency": "UAH", 
+      "amount": 500.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "date": "2017-02-13T20:30:24.557929+02:00", 
+    "id": "36a1b7761a1d461c8005b91d8f438fe5"
+  }
+}
+

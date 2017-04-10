@@ -1,4 +1,4 @@
-# Zoriana Zaiats <sorenabell@quintagroup.com>, 2016.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
@@ -14,57 +14,44 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
-#: ../../source/standard/bid.rst:8
 msgid "Bid"
 msgstr "Bid"
 
-#: ../../source/standard/bid.rst:11 ../../source/standard/bid.rst:69
 msgid "Schema"
 msgstr "Схема"
 
-#: ../../source/standard/bid.rst:14
 msgid "List of :ref:`Organization` objects"
 msgstr "Список об’єктів :ref:`Organization` "
 
-#: ../../source/standard/bid.rst:17
 msgid "string, :ref:`date`, auto-generated"
 msgstr "рядок, :ref:`date`, генерується автоматично"
 
-#: ../../source/standard/bid.rst:25
 msgid "string"
 msgstr "рядок"
 
-#: ../../source/standard/bid.rst:27
 msgid "Possible values are:"
 msgstr "Можливі значення:"
 
-#: ../../source/standard/bid.rst:29
 msgid "`draft`"
 msgstr "`draft` - чернетка"
 
-#: ../../source/standard/bid.rst:30
 msgid "`active`"
 msgstr "`active` - активна ставка"
 
-#: ../../source/standard/bid.rst:33
 msgid ":ref:`Value`, required"
 msgstr ":ref:`Value`, обов’язково"
 
-#: ../../source/standard/bid.rst:35
 msgid "Validation rules:"
 msgstr "Правила валідації:"
 
-#: ../../source/standard/bid.rst:37
 msgid "`amount` should be less than `Auction.value.amout`"
 msgstr "`amount` повинно бути меншим, ніж `Auction.value.amount`"
 
-#: ../../source/standard/bid.rst:38
 msgid "`currency` should either be absent or match `Auction.value.currency`"
 msgstr ""
 "`currency` повинно або бути відсутнім, або відповідати "
 "`Auction.value.currency`"
 
-#: ../../source/standard/bid.rst:39
 msgid ""
 "`valueAddedTaxIncluded` should either be absent or match "
 "`Auction.value.valueAddedTaxIncluded`"
@@ -72,59 +59,45 @@ msgstr ""
 "Значення `valueAddedTaxIncluded` повинно бути або відсутнім, або співпадати "
 "з `Auction.value.valueAddedTaxIncluded`"
 
-#: ../../source/standard/bid.rst:42
 msgid "List of :ref:`Document` objects"
 msgstr "Список об’єктів :ref:`Document`"
 
-#: ../../source/standard/bid.rst:45
 msgid "List of :ref:`Parameter` objects"
 msgstr "Список об’єктів :ref:`Parameter`"
 
-#: ../../source/standard/bid.rst:53
 msgid "A web address for participation in auction."
 msgstr "Веб-адреса для участі в аукціоні."
 
-#: ../../source/standard/bid.rst:66
 msgid "Parameter"
 msgstr "Parameter"
 
-#: ../../source/standard/bid.rst:72
 msgid "string, required"
 msgstr "рядок, обов’язковий"
 
-#: ../../source/standard/bid.rst:77
 msgid "float, required"
 msgstr "float, обов’язково"
 
-#: ../../source/standard/bid.rst:22
 msgid "UID, auto-generated"
 msgstr "UID, генерується автоматично"
 
-#: ../../source/standard/bid.rst:51
 msgid "URL"
 msgstr "URL-адреса"
 
-#: ../../source/standard/bid.rst:74
 msgid "Feature code."
 msgstr "Код критерію."
 
-#: ../../source/standard/bid.rst:79
 msgid "Feature value."
 msgstr "Значення критерію."
 
-#: ../../source/standard/bid.rst:56
 msgid "bool, required"
 msgstr "булеве значення, обов'язково"
 
-#: ../../source/standard/bid.rst:59
 msgid "bool"
 msgstr "булеве значення"
 
-#: ../../source/standard/bid.rst:19
 msgid "Date when bid has been submitted."
 msgstr "Дата подачі пропозиції."
 
-#: ../../source/standard/bid.rst:61
 msgid "Required for `dgfFinancialAssets` procedure."
 msgstr ""
 "Необхідно для `dgfFinancialAssets` процедури (продаж права вимоги за "

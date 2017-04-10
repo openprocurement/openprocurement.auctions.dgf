@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/f67956e32a634f98a9ab9ad7c2b84e02/awards/35871bdc40bf46d3ae2ec090dcd9badb?acc_token=5d03fcac4be247fdb9b9db02ff5dd4e4 HTTP/1.0
+PATCH /api/2.3/auctions/c4dd4d72218b43df8603bf9ceffd09d9/awards/c6d77c747c554a5a974be3549584ec2e?acc_token=aca8b1f9f9574f34a0942083cb65db8b HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 30
 Content-Type: application/json
@@ -17,9 +17,43 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "status": "active", 
+    "paymentPeriod": {
+      "startDate": "2017-02-13T20:30:24.339157+02:00", 
+      "endDate": "2017-02-13T20:30:25.141319+02:00"
+    }, 
+    "documents": [
+      {
+        "dateModified": "2017-02-13T20:30:24.712057+02:00", 
+        "hash": "md5:00000000000000000000000000000000", 
+        "format": "application/pdf", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/f86c59488d1f4e4c94003e6172ea2699?KeyID=e10a37aa&Signature=GJg5PHCE838%252BJmQrGuHNxRbpSDmWOf1hWzTZ39WCmal3zqYGKRwxlMIo37OKmi19t1AUEPE0idD5DfaBp6yKDQ%253D%253D", 
+        "author": "bid_owner", 
+        "documentOf": "tender", 
+        "datePublished": "2017-02-13T20:30:24.712008+02:00", 
+        "documentType": "auctionProtocol", 
+        "title": "SignedAuctionProtocol.pdf", 
+        "id": "9ac2310ad1364077a502b7090ac0fc23"
+      }, 
+      {
+        "dateModified": "2017-02-13T20:30:24.833473+02:00", 
+        "hash": "md5:00000000000000000000000000000000", 
+        "format": "application/pdf", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/217df3d34cca4e6f915be5be57feab4a?KeyID=e10a37aa&Signature=zvBZEWc0x%252Bg1Z%2FojIxAPW5JTxre0ViXwoD7Bf3LL2kUIC0X2%2FYosfVzvO%2Fauy51IzgLwMCnaWKk%2F%252BWE7VTxgDQ%253D%253D", 
+        "author": "auction_owner", 
+        "documentOf": "tender", 
+        "datePublished": "2017-02-13T20:30:24.833428+02:00", 
+        "documentType": "auctionProtocol", 
+        "title": "SignedAuctionProtocol.pdf", 
+        "id": "3f84976608504c6f86464fc7c137b11c"
+      }
+    ], 
+    "verificationPeriod": {
+      "startDate": "2017-02-13T20:30:24.339157+02:00", 
+      "endDate": "2017-02-13T20:30:24.984311+02:00"
+    }, 
     "complaintPeriod": {
-      "startDate": "2016-12-21T19:57:59.778995+02:00", 
-      "endDate": "2016-12-21T19:58:00.036807+02:00"
+      "startDate": "2017-02-13T20:30:24.339157+02:00", 
+      "endDate": "2017-02-13T20:30:25.141319+02:00"
     }, 
     "suppliers": [
       {
@@ -43,14 +77,18 @@ Content-Type: application/json; charset=UTF-8
         }
       }
     ], 
-    "bid_id": "4c19cb156bed4cc88ca975f03cdb9c76", 
+    "signingPeriod": {
+      "startDate": "2017-02-13T20:30:24.339157+02:00", 
+      "endDate": "2017-02-13T20:41:24.339157+02:00"
+    }, 
+    "bid_id": "b4c0e0ad1e5e42ca8ffc8517f406c16c", 
     "value": {
       "currency": "UAH", 
       "amount": 501.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2016-12-21T19:58:00.044779+02:00", 
-    "id": "35871bdc40bf46d3ae2ec090dcd9badb"
+    "date": "2017-02-13T20:30:25.164138+02:00", 
+    "id": "c6d77c747c554a5a974be3549584ec2e"
   }
 }
 

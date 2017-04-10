@@ -1,12 +1,12 @@
-PUT /api/2.3/auctions/f67956e32a634f98a9ab9ad7c2b84e02/documents/20338b390a974fb9a492bff279e4abc3?acc_token=5d03fcac4be247fdb9b9db02ff5dd4e4 HTTP/1.0
+PUT /api/2.3/auctions/c4dd4d72218b43df8603bf9ceffd09d9/documents/de4e050392ac4a5e85d44cd9d6d17d83?acc_token=aca8b1f9f9574f34a0942083cb65db8b HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 340
+Content-Length: 344
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/22e7d610dc684597854201fd917d864c?KeyID=7a220e8f&Signature=m5zA4wVfyFZLYyyWh%2BfUanFFgGF6ol6DCR%2Bq3NvyX5A%2BmXxnq0KMlFE3ptDJuvuwVluNc3CqmGsEzfihuCFBDw%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/31526e2afedd4a8bb818df6052298de7?KeyID=e10a37aa&Signature=Dy6%2FAIudKbCu139f%2FWPEZ%2F%2B5xg8W4JW%2BdGpLOwDPyy2Rzl2NrbLOY3APSjCZylO3OCCPGwIRbhpb8kWMbwzDDw%3D%3D", 
     "title": "AwardCriteria-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -21,12 +21,12 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/22e7d610dc684597854201fd917d864c?KeyID=7a220e8f&Signature=uFZx7o%2FqzMEhle%2FaK31%252BWmgKphRTPSZyNghcdS5NU0BIePdZiKDIfwT%252BJrRGtYo%252BxElGmxX39dojAeHHM%2F0LAA%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/31526e2afedd4a8bb818df6052298de7?KeyID=e10a37aa&Signature=KPxPN064oZxicN%2F6eeT6Rcf5Lx4u%252BJjwx5guvbaFmsddGl5TsR4dlyAis9RcvkzsBSI%252B2XmvHdEm8xlPh8B%252BDQ%253D%253D", 
     "title": "AwardCriteria-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2016-12-21T19:57:58.314031+02:00", 
-    "dateModified": "2016-12-21T19:57:58.370907+02:00", 
-    "id": "20338b390a974fb9a492bff279e4abc3"
+    "datePublished": "2017-02-13T20:30:22.987435+02:00", 
+    "dateModified": "2017-02-13T20:30:23.046130+02:00", 
+    "id": "de4e050392ac4a5e85d44cd9d6d17d83"
   }
 }
 
