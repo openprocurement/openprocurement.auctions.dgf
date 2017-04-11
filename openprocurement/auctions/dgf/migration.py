@@ -41,6 +41,8 @@ def migrate_data(registry, destination=None):
 
 
 def switch_auction_to_unsuccessful(auction):
+    if auction.get('suspended'):
+        return
     actual_award = [a for a in auction["awards"] if a['status'] in ['active', 'pending']][0]
     if auction['status'] == 'active.awarded':
         for i in auction['contracts']:
