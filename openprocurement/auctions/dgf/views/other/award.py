@@ -336,6 +336,7 @@ class AuctionAwardResource(APIResource):
                 'items': [i for i in auction.items if i.relatedLot == award.lotID],
                 'contractID': '{}-{}{}'.format(auction.auctionID, self.server_id, len(auction.contracts) + 1)}))
             auction.status = 'active.awarded'
+            auction.awardPeriod.endDate = now
         elif award_status != 'pending.waiting' and award.status == 'unsuccessful':
             if award_status == 'pending.verification':
                 award.verificationPeriod.endDate = now
