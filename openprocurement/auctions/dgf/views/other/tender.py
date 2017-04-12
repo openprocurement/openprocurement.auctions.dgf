@@ -181,7 +181,7 @@ class AuctionResource(APIResource):
             self.request.errors.add('body', 'data', 'Can\'t update auction in current ({}) status'.format(auction.status))
             self.request.errors.status = 403
             return
-        if self.request.authenticated_role == 'chronograph':
+        if self.request.authenticated_role == 'chronograph' and not auction.suspended:
             apply_patch(self.request, save=False, src=self.request.validated['auction_src'])
             check_status(self.request)
             save_auction(self.request)
