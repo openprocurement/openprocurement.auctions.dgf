@@ -613,6 +613,198 @@ class AuctionLotAwardComplaintSwitchResourceTest(AuctionAwardComplaintSwitchReso
         self.award_id = award['id']
 
 
+class AuctionDontSwitchSuspendedAuction2ResourceTest(BaseAuctionWebTest):
+    initial_bids = test_bids
+
+    def test_switch_suspended_auction_to_auction(self):
+        self.app.authorization = ('Basic', ('administrator', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'suspended': True}})
+        response = self.set_status('active.auction', {'status': self.initial_status})
+
+        self.app.authorization = ('Basic', ('chronograph', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertNotEqual(response.json['data']["status"], "active.auction")
+
+        self.app.authorization = ('Basic', ('administrator', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'suspended': False}})
+
+        self.app.authorization = ('Basic', ('chronograph', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data']["status"], "active.auction")
+
+class AuctionDontSwitchSuspendedAuctionResourceTest(BaseAuctionWebTest):
+    initial_status = 'active.auction'
+    initial_bids = test_bids
+
+    def setUp(self):
+        super(AuctionDontSwitchSuspendedAuctionResourceTest, self).setUp()
+        authorization = self.app.authorization
+        self.app.authorization = ('Basic', ('auction', ''))
+        now = get_now()
+        auction_result = {
+            'bids': [
+                {
+                    "id": b['id'],
+                    "date": (now - timedelta(seconds=i)).isoformat(),
+                    "value": b['value']
+                }
+                for i, b in enumerate(self.initial_bids)
+            ]
+        }
+
+        response = self.app.post_json('/auctions/{}/auction'.format(self.auction_id), {'data': auction_result})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        auction = response.json['data']
+        self.assertEqual('active.qualification', auction["status"])
+        self.award = self.first_award = auction['awards'][0]
+        self.second_award = auction['awards'][1]
+        self.award_id = self.first_award_id = self.first_award['id']
+        self.second_award_id = self.second_award['id']
+        self.app.authorization = authorization
+
+    def test_switch_suspended_verification_to_unsuccessful(self):
+        auction = self.db.get(self.auction_id)
+        auction['awards'][0]['verificationPeriod']['endDate'] = auction['awards'][0]['verificationPeriod']['startDate']
+        self.db.save(auction)
+
+        self.app.authorization = ('Basic', ('administrator', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'suspended': True}})
+
+        self.app.authorization = ('Basic', ('chronograph', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(auction['awards'][0]['status'], 'pending.verification')
+        self.assertEqual(auction['awards'][1]['status'], 'pending.waiting')
+
+        self.app.authorization = ('Basic', ('administrator', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'suspended': False}})
+
+        self.app.authorization = ('Basic', ('chronograph', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(auction['awards'][0]['status'], 'unsuccessful')
+        self.assertEqual(auction['awards'][1]['status'], 'pending.verification')
+        self.assertEqual(auction['status'], 'active.qualification')
+        self.assertNotIn('endDate', auction['awardPeriod'])
+
+    def test_switch_suspended_payment_to_unsuccessful(self):
+        bid_token = self.initial_bids_tokens[self.award['bid_id']]
+        response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
+            self.auction_id, self.award_id, self.auction_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        doc_id = response.json["data"]['id']
+        key = response.json["data"]["url"].split('?')[-1]
+
+        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, self.award_id, doc_id, self.auction_token), {"data": {
+            "description": "auction protocol",
+            "documentType": 'auctionProtocol'
+        }})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json["data"]["documentType"], 'auctionProtocol')
+
+        response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "pending.payment"}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data']["status"], "pending.payment")
+
+        auction = self.db.get(self.auction_id)
+        auction['awards'][0]['paymentPeriod']['endDate'] = auction['awards'][0]['paymentPeriod']['startDate']
+        self.db.save(auction)
+
+        self.app.authorization = ('Basic', ('administrator', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'suspended': True}})
+
+        self.app.authorization = ('Basic', ('chronograph', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(auction['awards'][0]['status'], 'pending.payment')
+        self.assertEqual(auction['awards'][1]['status'], 'pending.waiting')
+
+        self.app.authorization = ('Basic', ('administrator', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'suspended': False}})
+
+        self.app.authorization = ('Basic', ('chronograph', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(auction['awards'][0]['status'], 'unsuccessful')
+        self.assertEqual(auction['awards'][1]['status'], 'pending.verification')
+        self.assertEqual(auction['status'], 'active.qualification')
+        self.assertNotIn('endDate', auction['awardPeriod'])
+
+    def test_switch_suspended_active_to_unsuccessful(self):
+        bid_token = self.initial_bids_tokens[self.award['bid_id']]
+        response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
+            self.auction_id, self.award_id, self.auction_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        doc_id = response.json["data"]['id']
+        key = response.json["data"]["url"].split('?')[-1]
+
+        response = self.app.patch_json('/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(self.auction_id, self.award_id, doc_id, self.auction_token), {"data": {
+            "description": "auction protocol",
+            "documentType": 'auctionProtocol'
+        }})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json["data"]["documentType"], 'auctionProtocol')
+
+        response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "pending.payment"}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data']["status"], "pending.payment")
+
+        response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "active"}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data']["status"], "active")
+
+        auction = self.db.get(self.auction_id)
+        auction['awards'][0]['signingPeriod']['endDate'] = auction['awards'][0]['signingPeriod']['startDate']
+        self.db.save(auction)
+
+        self.app.authorization = ('Basic', ('administrator', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'suspended': True}})
+
+        self.app.authorization = ('Basic', ('chronograph', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(auction['awards'][0]['status'], 'active')
+        self.assertEqual(auction['contracts'][0]['status'], 'pending')
+        self.assertEqual(auction['awards'][1]['status'], 'pending.waiting')
+        self.assertEqual(auction['status'], 'active.awarded')
+        self.assertIn('endDate', auction['awardPeriod'])
+
+        self.app.authorization = ('Basic', ('administrator', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'suspended': False}})
+
+        self.app.authorization = ('Basic', ('chronograph', ''))
+        response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
+        auction = response.json['data']
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(auction['awards'][0]['status'], 'unsuccessful')
+        self.assertEqual(auction['contracts'][0]['status'], 'cancelled')
+        self.assertEqual(auction['awards'][1]['status'], 'pending.verification')
+        self.assertEqual(auction['status'], 'active.qualification')
+        self.assertNotIn('endDate', auction['awardPeriod'])
+
+
 class FinancialAuctionSwitchQualificationResourceTest(AuctionSwitchQualificationResourceTest):
     initial_bids = test_financial_bids[:1]
     initial_data = test_financial_auction_data
