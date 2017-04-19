@@ -16,7 +16,6 @@ from openprocurement.auctions.core.validation import (
     validate_patch_award_data,
 )
 from openprocurement.auctions.dgf.utils import switch_to_next_award, check_auction_protocol
-from openprocurement.auctions.dgf.models import VERIFY_AUCTION_PROTOCOL_TIME, AWARD_PAYMENT_TIME, CONTRACT_SIGNING_TIME
 
 
 @opresource(name='dgfOtherAssets:Auction Awards',
@@ -172,14 +171,7 @@ class AuctionAwardResource(APIResource):
             self.request.errors.add('body', 'data', 'Can create award only in active lot status')
             self.request.errors.status = 403
             return
-        now = get_now()
-        award.verificationPeriod = {'startDate': now}
-        award.verificationPeriod.endDate = calculate_business_date(now, VERIFY_AUCTION_PROTOCOL_TIME, auction, True)
-        award.paymentPeriod = {'startDate': now}
-        award.paymentPeriod.endDate = calculate_business_date(now, AWARD_PAYMENT_TIME, auction, True)
-        award.signingPeriod = {'startDate': now}
-        award.signingPeriod.endDate = calculate_business_date(now, CONTRACT_SIGNING_TIME, auction, True)
-        award.complaintPeriod = award.signingPeriod
+        award.complaintPeriod = award.signingPeriod = award.paymentPeriod = award.verificationPeriod = {'startDate': get_now()}
         auction.awards.append(award)
         if save_auction(self.request):
             self.LOGGER.info('Created auction award {}'.format(award.id),

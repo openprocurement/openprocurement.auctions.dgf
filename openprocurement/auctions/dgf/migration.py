@@ -7,7 +7,6 @@ from openprocurement.api.traversal import Root
 from barbecue import chef
 from uuid import uuid4
 
-from openprocurement.auctions.dgf.models import VERIFY_AUCTION_PROTOCOL_TIME, AWARD_PAYMENT_TIME, CONTRACT_SIGNING_TIME
 from openprocurement.auctions.dgf.utils import invalidate_bids_under_threshold
 
 LOGGER = logging.getLogger(__name__)
@@ -89,22 +88,18 @@ def from0to1(registry):
 
             award_create_date = award['complaintPeriod']['startDate']
 
-            periods = {
+            award.update({
                 'verificationPeriod': {
                     'startDate': award_create_date,
                     'endDate': award_create_date
                 },
                 'paymentPeriod': {
                     'startDate': award_create_date,
-                    'endDate': calculate_business_date(parse_date(award_create_date, TZ), AWARD_PAYMENT_TIME, auction, True).isoformat()
                 },
                 'signingPeriod': {
                     'startDate': award_create_date,
-                    'endDate': calculate_business_date(parse_date(award_create_date, TZ), CONTRACT_SIGNING_TIME, auction, True).isoformat()
                 }
-            }
-
-            award.update(periods)
+            })
 
             if award['status'] == 'pending':
                 award['status'] = 'pending.payment'

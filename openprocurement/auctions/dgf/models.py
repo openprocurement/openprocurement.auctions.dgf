@@ -208,6 +208,7 @@ class Award(BaseAward):
     class Options:
         roles = {
             'create': blacklist('id', 'status', 'date', 'documents', 'complaints', 'complaintPeriod', 'verificationPeriod', 'paymentPeriod', 'signingPeriod'),
+            'Administrator': whitelist('verificationPeriod', 'paymentPeriod', 'signingPeriod'),
         }
 
     def __local_roles__(self):
@@ -235,6 +236,36 @@ class Award(BaseAward):
     verificationPeriod = ModelType(Period)
     paymentPeriod = ModelType(Period)
     signingPeriod = ModelType(Period)
+
+    @serializable(serialized_name="verificationPeriod", serialize_when_none=False)
+    def award_verificationPeriod(self):
+        period = self.verificationPeriod
+        if not period:
+            return
+        if not period.endDate:
+            auction = get_auction(self)
+            period.endDate = calculate_business_date(period.startDate, VERIFY_AUCTION_PROTOCOL_TIME, auction, True)
+        return period.to_primitive()
+
+    @serializable(serialized_name="paymentPeriod", serialize_when_none=False)
+    def award_paymentPeriod(self):
+        period = self.paymentPeriod
+        if not period:
+            return
+        if not period.endDate:
+            auction = get_auction(self)
+            period.endDate = calculate_business_date(period.startDate, AWARD_PAYMENT_TIME, auction, True)
+        return period.to_primitive()
+
+    @serializable(serialized_name="signingPeriod", serialize_when_none=False)
+    def award_signingPeriod(self):
+        period = self.signingPeriod
+        if not period:
+            return
+        if not period.endDate:
+            auction = get_auction(self)
+            period.endDate = calculate_business_date(period.startDate, CONTRACT_SIGNING_TIME, auction, True)
+        return period.to_primitive()
 
 
 def validate_not_available(items, *args):
@@ -276,7 +307,7 @@ class AuctionAuctionPeriod(Period):
 
 create_role = (schematics_embedded_role + blacklist('owner_token', 'owner', '_attachments', 'revisions', 'date', 'dateModified', 'doc_id', 'auctionID', 'bids', 'documents', 'awards', 'questions', 'complaints', 'auctionUrl', 'status', 'enquiryPeriod', 'tenderPeriod', 'awardPeriod', 'procurementMethod', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'awardCriteria', 'submissionMethod', 'cancellations', 'numberOfBidders', 'contracts', 'suspended'))
 edit_role = (edit_role + blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru', 'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru', 'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru', 'items', 'procuringEntity', 'suspended'))
-Administrator_role = (whitelist('suspended') + Administrator_role)
+Administrator_role = (whitelist('suspended', 'awards') + Administrator_role)
 
 
 @implementer(IAuction)
