@@ -7,7 +7,6 @@ from openprocurement.api.traversal import Root
 from barbecue import chef
 from uuid import uuid4
 
-from openprocurement.auctions.dgf.models import VERIFY_AUCTION_PROTOCOL_TIME, AWARD_PAYMENT_TIME, CONTRACT_SIGNING_TIME
 from openprocurement.auctions.dgf.utils import invalidate_bids_under_threshold
 
 LOGGER = logging.getLogger(__name__)
@@ -27,7 +26,7 @@ def set_db_schema_version(db, version):
 
 
 def migrate_data(registry, destination=None):
-    if registry.settings.get('plugins') and 'auctions.dgf' not in registry.settings['plugins'].split(','):
+    if registry.settings.get('plugins') and 'auctions.dgf' not in registry.settings['plugins'].split(','): # pragma: no cover
         return
     cur_version = get_db_schema_version(registry.db)
     if cur_version == SCHEMA_VERSION:
@@ -41,6 +40,8 @@ def migrate_data(registry, destination=None):
 
 
 def switch_auction_to_unsuccessful(auction):
+    if auction.get('suspended'):
+        return
     actual_award = [a for a in auction["awards"] if a['status'] in ['active', 'pending']][0]
     if auction['status'] == 'active.awarded':
         for i in auction['contracts']:
@@ -77,30 +78,28 @@ def from0to1(registry):
             switch_auction_to_unsuccessful(auction)
         else:
             invalidate_bids_under_threshold(auction)
-            if all(bid['status'] == 'invalid' for bid in auction['bids']):
-                switch_auction_to_unsuccessful(auction)
+            award = [a for a in awards if a['status'] in ['active', 'pending']][0]
+            for bid in auction['bids']:
+                if bid['id'] == award['bid_id'] and bid['status'] == 'invalid':
+                    switch_auction_to_unsuccessful(auction)
 
         if auction['status'] != 'unsuccessful':
-            award = [a for a in auction["awards"] if a['status'] in ['active', 'pending']][0]
+            award = [a for a in awards if a['status'] in ['active', 'pending']][0]
 
             award_create_date = award['complaintPeriod']['startDate']
 
-            periods = {
+            award.update({
                 'verificationPeriod': {
                     'startDate': award_create_date,
                     'endDate': award_create_date
                 },
                 'paymentPeriod': {
                     'startDate': award_create_date,
-                    'endDate': calculate_business_date(parse_date(award_create_date, TZ), AWARD_PAYMENT_TIME, auction, True).isoformat()
                 },
                 'signingPeriod': {
                     'startDate': award_create_date,
-                    'endDate': calculate_business_date(parse_date(award_create_date, TZ), CONTRACT_SIGNING_TIME, auction, True).isoformat()
                 }
-            }
-
-            award.update(periods)
+            })
 
             if award['status'] == 'pending':
                 award['status'] = 'pending.payment'
@@ -123,7 +122,7 @@ def from0to1(registry):
                     }
                 }
                 if bid['status'] == 'invalid':
-                    award['status'] == 'unsuccessful'
+                    award['status'] = 'unsuccessful'
                     award['complaintPeriod']['endDate'] = now
 
                 awards.append(award)
@@ -134,12 +133,12 @@ def from0to1(registry):
                 auction = model(auction)
                 auction.__parent__ = root
                 auction = auction.to_primitive()
-            except:
+            except: # pragma: no cover
                 LOGGER.error("Failed migration of auction {} to schema 1.".format(auction.id), extra={'MESSAGE_ID': 'migrate_data_failed', 'AUCTION_ID': auction.id})
             else:
                 auction['dateModified'] = get_now().isoformat()
                 docs.append(auction)
-        if len(docs) >= 2 ** 7:
+        if len(docs) >= 2 ** 7: # pragma: no cover
             registry.db.update(docs)
             docs = []
     if docs:

@@ -580,6 +580,65 @@ class AuctionAwardProcessTest(BaseAuctionWebTest):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't update award in current (complete) auction status")
 
+    def test_patch_auction_award_admin(self):
+        request_path = '/auctions/{}/awards'.format(self.auction_id)
+
+        response = self.app.get(request_path)
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(len(response.json['data']), 2)
+
+        authorization = self.app.authorization
+
+        self.app.authorization = ('Basic', ('administrator', ''))
+        response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.first_award_id),
+            {"data":{
+                "paymentPeriod": {'endDate': self.first_award['paymentPeriod']['startDate']},
+                "verificationPeriod": {'endDate': self.first_award['verificationPeriod']['startDate']},
+                "signingPeriod": {'endDate': self.first_award['signingPeriod']['startDate']}}
+            })
+        self.assertEqual(response.status, '200 OK')
+        first_award = response.json['data']
+        self.assertEqual(first_award['verificationPeriod']['startDate'], first_award['verificationPeriod']['endDate'])
+        self.assertEqual(first_award['paymentPeriod']['startDate'], first_award['paymentPeriod']['endDate'])
+        self.assertEqual(first_award['signingPeriod']['startDate'], first_award['signingPeriod']['endDate'])
+
+        response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.first_award_id),
+            {"data":{
+                "status": 'active',
+                "paymentPeriod": {'endDate': None},
+                "verificationPeriod": {'endDate': None},
+                "signingPeriod": {'endDate': None}}
+            })
+        self.assertEqual(response.status, '200 OK')
+        first_award = response.json['data']
+        self.assertNotEqual(first_award['status'], 'active')
+        self.assertNotEqual(first_award['paymentPeriod']['startDate'], first_award['paymentPeriod']['endDate'])
+        self.assertEqual(first_award['paymentPeriod']['endDate'], self.first_award['paymentPeriod']['endDate'])
+        self.assertNotEqual(first_award['verificationPeriod']['startDate'], first_award['verificationPeriod']['endDate'])
+        self.assertEqual(first_award['verificationPeriod']['endDate'], self.first_award['verificationPeriod']['endDate'])
+        self.assertNotEqual(first_award['signingPeriod']['startDate'], first_award['signingPeriod']['endDate'])
+        self.assertEqual(first_award['signingPeriod']['endDate'], self.first_award['signingPeriod']['endDate'])
+
+        self.app.authorization = authorization
+
+        self.upload_auction_protocol(self.first_award)
+
+        response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.first_award_id), {"data": {"status": "pending.payment"}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+
+        response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.first_award_id), {"data": {"status": "active"}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+
+        self.set_status('complete')
+
+        response = self.app.get('/auctions/{}'.format(self.auction_id))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data']['status'], 'complete')
+
     def test_complate_auction_with_second_award1(self):
         self.upload_auction_protocol(self.first_award)
 
