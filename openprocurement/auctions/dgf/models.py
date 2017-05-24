@@ -245,6 +245,9 @@ class Award(BaseAward):
         if not period.endDate:
             auction = get_auction(self)
             period.endDate = calculate_business_date(period.startDate, VERIFY_AUCTION_PROTOCOL_TIME, auction, True)
+            round_to_18_hour_delta = period.endDate.replace(hour=18, minute=0, second=0) - period.endDate
+            period.endDate = calculate_business_date(period.endDate, round_to_18_hour_delta, auction, False)
+
         return period.to_primitive()
 
     @serializable(serialized_name="paymentPeriod", serialize_when_none=False)
@@ -255,6 +258,8 @@ class Award(BaseAward):
         if not period.endDate:
             auction = get_auction(self)
             period.endDate = calculate_business_date(period.startDate, AWARD_PAYMENT_TIME, auction, True)
+            round_to_18_hour_delta = period.endDate.replace(hour=18, minute=0, second=0) - period.endDate
+            period.endDate = calculate_business_date(period.endDate, round_to_18_hour_delta, auction, False)
         return period.to_primitive()
 
     @serializable(serialized_name="signingPeriod", serialize_when_none=False)
@@ -265,6 +270,8 @@ class Award(BaseAward):
         if not period.endDate:
             auction = get_auction(self)
             period.endDate = calculate_business_date(period.startDate, CONTRACT_SIGNING_TIME, auction, True)
+            round_to_18_hour_delta = period.endDate.replace(hour=18, minute=0, second=0) - period.endDate
+            period.endDate = calculate_business_date(period.endDate, round_to_18_hour_delta, auction, False)
         return period.to_primitive()
 
 
