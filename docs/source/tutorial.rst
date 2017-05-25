@@ -284,7 +284,7 @@ It is the organizer's duty to upload and confirm the protocol, although the awar
  :code:
 
 
-Within **11 business days after becoming a candidate** he/she must provide payment and organizer has the same time to confirm the payment. Otherwise, the award will automatically become "unsuccessful":
+Within **20 business days after becoming a candidate** he/she must provide payment and organizer has the same time to confirm the payment. Otherwise, the award will automatically become "unsuccessful":
 
 
 .. include:: tutorial/confirm-qualification.http
@@ -309,7 +309,7 @@ And disqualify candidate:
   :code:
 
 
-Within 11 business days since becoming candidate a new candidate must confirm qualification with steps described above (:ref:`Qualification`).
+Within 20 business days since becoming candidate a new candidate must confirm qualification with steps described above (:ref:`Qualification`).
 
 .. _Waiting_refusal:
 
@@ -324,7 +324,7 @@ The second candidate (participant that has submitted the second highest valid bi
 Signing contract
 ----------------
 
-The candidate has **11 business days after becoming a candidate** to conclude a contract with the bank based on the results of electronic auction.
+The candidate has **20 business days after becoming a candidate** to conclude a contract with the bank based on the results of electronic auction.
 
 Uploading contract documentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
