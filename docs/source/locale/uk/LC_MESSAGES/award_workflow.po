@@ -16,7 +16,7 @@ msgstr ""
 
 #: ../../source/award_workflow.rst:4
 msgid "Award Workflow"
-msgstr "Схема роботи кваліфікації 1111"
+msgstr "Схема роботи кваліфікації"
 
 #: ../../source/award_workflow.rst:6
 msgid "For a more detailed information see :ref:`award`"
@@ -116,7 +116,7 @@ msgid "dotted"
 msgstr "лінія з крапками"
 
 msgid "Procedure Description"
-msgstr "Опис Процедури 3"
+msgstr "Опис Процедури"
 
 msgid ""
 "The second highest qualifying bidder, immediately after the auction ending "
