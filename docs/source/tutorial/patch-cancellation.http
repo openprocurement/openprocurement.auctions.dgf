@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/c4dd4d72218b43df8603bf9ceffd09d9/cancellations/5e3a82d75be94e8e8cb265a5876fac73/documents/077e0b1f266f40fbbff388ea2c98844d?acc_token=aca8b1f9f9574f34a0942083cb65db8b HTTP/1.0
+PATCH /api/2.3/auctions/92b74c258aa344d2810c14e9946728d0/cancellations/d8d570bc01f84ba3b21bea8fc7c44d47/documents/6d522b8ebe2f423f99b525f8fde10538?acc_token=0be9719321be4aa699f77ec6cff48e1a HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 48
 Content-Type: application/json
@@ -19,12 +19,12 @@ Content-Type: application/json; charset=UTF-8
     "hash": "md5:00000000000000000000000000000000", 
     "description": "Changed description", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/469e406f474b467cb04a4586e67c5b2f?KeyID=e10a37aa&Signature=maQpixe%2FtNTpLsqhipO5yFKfmspHeIJZAm4nUEl3MZDAmkPcsNYmVhdUEU%2FCl02ywje1UHeEnjdlxstGPvyHDA%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/7e4a2cfef1e84510ab84f7643d4d8b87?KeyID=dd67d497&Signature=re35ZGcA%252BopvgNiPtniygaOLY08%2Fg6xkRIxJZM9kCIb5dTe3KR8eHkN%2FLrm7%2FArYldt2nZeGBTVIx1xO770iBQ%253D%253D", 
     "title": "Notice.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2017-02-13T20:30:26.923544+02:00", 
-    "id": "077e0b1f266f40fbbff388ea2c98844d", 
-    "dateModified": "2017-02-13T20:30:26.923588+02:00"
+    "datePublished": "2017-06-09T15:09:03.875350+03:00", 
+    "dateModified": "2017-06-09T15:09:03.875373+03:00", 
+    "id": "6d522b8ebe2f423f99b525f8fde10538"
   }
 }
 

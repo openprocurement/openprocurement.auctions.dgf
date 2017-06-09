@@ -58,7 +58,7 @@ def validate_disallow_dgfPlatformLegalDetails(docs, *args):
     if any([i.documentType == 'x_dgfPlatformLegalDetails' for i in docs]):
         raise ValidationError(u"Disallow documents with x_dgfPlatformLegalDetails documentType")
 
-VERIFY_AUCTION_PROTOCOL_TIME = timedelta(days=3)
+VERIFY_AUCTION_PROTOCOL_TIME = timedelta(days=4)
 AWARD_PAYMENT_TIME = timedelta(days=20)
 CONTRACT_SIGNING_TIME = timedelta(days=20)
 

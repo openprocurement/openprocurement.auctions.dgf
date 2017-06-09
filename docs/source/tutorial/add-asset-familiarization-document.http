@@ -1,0 +1,32 @@
+POST /api/2.3/auctions/92b74c258aa344d2810c14e9946728d0/documents?acc_token=0be9719321be4aa699f77ec6cff48e1a HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 160
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "title": "Familiarization with bank asset", 
+    "accessDetails": "Familiar with asset: days, time, address", 
+    "documentType": "x_dgfAssetFamiliarization"
+  }
+}
+
+
+201 Created
+Content-Type: application/json; charset=UTF-8
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/92b74c258aa344d2810c14e9946728d0/documents/44e216cf74f342e393dda60d1cbbe792
+
+{
+  "data": {
+    "title": "Familiarization with bank asset", 
+    "format": "offline/on-site-examination", 
+    "accessDetails": "Familiar with asset: days, time, address", 
+    "documentOf": "tender", 
+    "datePublished": "2017-06-09T15:09:01.244112+03:00", 
+    "documentType": "x_dgfAssetFamiliarization", 
+    "dateModified": "2017-06-09T15:09:01.244159+03:00", 
+    "id": "44e216cf74f342e393dda60d1cbbe792"
+  }
+}
+
