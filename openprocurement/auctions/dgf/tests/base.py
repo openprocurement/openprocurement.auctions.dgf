@@ -77,14 +77,24 @@ test_auction_data = {
 if SANDBOX_MODE:
     test_auction_data['procurementMethodDetails'] = 'quick, accelerator=1440'
 
-test_auction_data_with_schema = deepcopy(test_auction_data)
-test_auction_data_with_schema['items'][0]['classification']['id'] = "04114000-0"
-test_auction_data_with_schema['items'][0]['schema_properties'] = {
-    "code": "04114000-0",
+schema_properties = {
+    "code": "06000000-2",
     "version": "latest",
-    "properties": {"total_area": 4,
-                   "number_of_rooms": 4}
+    "properties": {
+        "region": "Вінницька область",
+        "district": "м.Вінниця",
+        "cadastral_number": "1",
+        "area": 1,
+        "forms_of_land_ownership": ["державна"],
+        "co_owners": False,
+        "availability_of_utilities": True,
+        "current_use": True
+   }
  }
+
+test_auction_data_with_schema = deepcopy(test_auction_data)
+test_auction_data_with_schema['items'][0]['classification']['id'] = schema_properties['code']
+test_auction_data_with_schema['items'][0]['schema_properties'] = schema_properties
 
 test_features_auction_data = test_auction_data.copy()
 test_features_item = test_features_auction_data['items'][0].copy()
@@ -219,14 +229,8 @@ for i in test_bids:
 
 test_financial_auction_data = deepcopy(test_financial_auction_data)
 test_financial_auction_data_with_schema = deepcopy(test_financial_auction_data)
-test_financial_auction_data_with_schema['items'][0]['classification']['id'] = "04114000-0"
-test_financial_auction_data_with_schema['items'][0]['schema_properties'] = {
-    "code": "04114000-0",
-    "version": "latest",
-    "properties": {"total_area": 4,
-                   "number_of_rooms": 4}
-}
-
+test_financial_auction_data_with_schema['items'][0]['classification']['id'] = schema_properties['code']
+test_financial_auction_data_with_schema['items'][0]['schema_properties'] = schema_properties
 
 class BaseWebTest(FlashBaseWebTest):
 
