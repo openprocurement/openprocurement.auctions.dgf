@@ -107,6 +107,8 @@ class AuctionAwardContractResource(APIResource):
                 return
             if not self.request.context.documents:
                 self.request.errors.add('body', 'data', 'Cant\'t sign contract without document')
+                self.request.errors.status = 403
+                return
         contract_status = self.request.context.status
         apply_patch(self.request, save=False, src=self.request.context.serialize())
         if contract_status != self.request.context.status and (contract_status != 'pending' or self.request.context.status != 'active'):
