@@ -43,7 +43,12 @@ Schema
    |ocdsDescription|
    The entity managing the procurement, which may be different from the buyer who is paying / using the items being procured.
 
-   
+:tenderAttempts:
+    integer
+
+    The number which represents whether the tender is taking place for the first, second, third, or fourth time
+
+
 :value:
    :ref:`value`, required
 
