@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/c4dd4d72218b43df8603bf9ceffd09d9/awards HTTP/1.0
+GET /api/2.3/auctions/92b74c258aa344d2810c14e9946728d0/awards HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -11,16 +11,16 @@ Content-Type: application/json; charset=UTF-8
     {
       "status": "pending.verification", 
       "paymentPeriod": {
-        "startDate": "2017-02-13T20:30:24.339157+02:00", 
-        "endDate": "2017-02-13T20:41:24.339157+02:00"
+        "startDate": "2017-06-09T15:09:02.157968+03:00", 
+        "endDate": "2017-06-09T15:29:08.448245+03:00"
       }, 
       "verificationPeriod": {
-        "startDate": "2017-02-13T20:30:24.339157+02:00", 
-        "endDate": "2017-02-13T20:33:24.339157+02:00"
+        "startDate": "2017-06-09T15:09:02.157968+03:00", 
+        "endDate": "2017-06-09T15:13:09.114912+03:00"
       }, 
       "signingPeriod": {
-        "startDate": "2017-02-13T20:30:24.339157+02:00", 
-        "endDate": "2017-02-13T20:41:24.339157+02:00"
+        "startDate": "2017-06-09T15:09:02.157968+03:00", 
+        "endDate": "2017-06-09T15:29:08.448245+03:00"
       }, 
       "suppliers": [
         {
@@ -45,22 +45,21 @@ Content-Type: application/json; charset=UTF-8
         }
       ], 
       "complaintPeriod": {
-        "startDate": "2017-02-13T20:30:24.339157+02:00", 
-        "endDate": "2017-02-13T20:41:24.339157+02:00"
+        "startDate": "2017-06-09T15:09:02.157968+03:00"
       }, 
-      "bid_id": "b4c0e0ad1e5e42ca8ffc8517f406c16c", 
+      "bid_id": "e5b9db9881b64ed8a4dabfc9e56dbc28", 
       "value": {
         "currency": "UAH", 
         "amount": 501.0, 
         "valueAddedTaxIncluded": true
       }, 
-      "date": "2017-02-13T20:30:24.339157+02:00", 
-      "id": "c6d77c747c554a5a974be3549584ec2e"
+      "date": "2017-06-09T15:09:02.157968+03:00", 
+      "id": "24e69a35e2294e8c840a9cafe9ba366f"
     }, 
     {
       "status": "pending.waiting", 
       "complaintPeriod": {
-        "startDate": "2017-02-13T20:30:24.339157+02:00"
+        "startDate": "2017-06-09T15:09:02.157968+03:00"
       }, 
       "suppliers": [
         {
@@ -84,14 +83,14 @@ Content-Type: application/json; charset=UTF-8
           }
         }
       ], 
-      "bid_id": "c91b5c3197e34dcfbe8c75070d93d58a", 
+      "bid_id": "d6474539c73d40dcb714cef7ee5946a5", 
       "value": {
         "currency": "UAH", 
         "amount": 500.0, 
         "valueAddedTaxIncluded": true
       }, 
-      "date": "2017-02-13T20:30:24.339157+02:00", 
-      "id": "36a1b7761a1d461c8005b91d8f438fe5"
+      "date": "2017-06-09T15:09:02.157968+03:00", 
+      "id": "c34a09483fdd4ddba5c934493450f303"
     }
   ]
 }

@@ -7,25 +7,29 @@ msgstr ""
 "PO-Revision-Date: 2016-09-20 17:47+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
+#: ../../source/fintutorial.rst:4
 msgid "Fin. Tutorial"
 msgstr "Фін. туторіал"
 
+#: ../../source/fintutorial.rst:9
 msgid "Creating auction"
 msgstr "Створення аукціону"
 
+#: ../../source/fintutorial.rst:11
 msgid ""
 "Let's create auction with the minimal data set (only required properties):"
 msgstr ""
 "Створимо аукціон з мінімально допустимим (обовязковим для заповнення) "
 "набором даних:"
 
+#: ../../source/fintutorial.rst:16
 msgid ""
 "Success! Now we can see that new object has been created. Response code is "
 "`201` and `Location` response header reports the location of the created "
@@ -44,17 +48,21 @@ msgstr ""
 "модифікувався. Зверніть увагу на `procurementMethodType`, а також на те, що "
 "аукціон створюється зі статусом `active.tendering`."
 
+#: ../../source/fintutorial.rst:24
 msgid ""
 "Let's access the URL of the created object (the `Location` header of the "
 "response):"
 msgstr "Використаємо URL створеного об’єкта (заголовок відповіді `Location`):"
 
+#: ../../source/fintutorial.rst:29
 msgid "We can see the same response we got after creating auction."
 msgstr "Ми бачимо ту ж відповідь, що і після створення аукціону."
 
+#: ../../source/fintutorial.rst:31
 msgid "Let's see what listing of auctions reveals us:"
 msgstr "Подивимось, що показує список аукціонів:"
 
+#: ../../source/fintutorial.rst:36
 msgid ""
 "We do see the auction's internal `id` (that can be used to construct full "
 "URL by prepending `https://api-"
@@ -65,9 +73,11 @@ msgstr ""
 "повної URL-адреси, якщо додати `http://api-"
 "sandbox.openprocurement.org/api/0/auctions/`) та його `dateModified` дату."
 
+#: ../../source/fintutorial.rst:41
 msgid "Uploading documentation"
 msgstr "Завантаження документації"
 
+#: ../../source/fintutorial.rst:43
 msgid ""
 "Organizer can upload PDF files into the created auction. Uploading should "
 "follow the :ref:`upload` rules."
@@ -75,6 +85,7 @@ msgstr ""
 "Замовник може завантажити PDF файл у створений аукціон. Завантаження повинно"
 " відбуватись згідно правил :ref:`upload`."
 
+#: ../../source/fintutorial.rst:49
 msgid ""
 "`201 Created` response code and `Location` header confirm document creation."
 " We can additionally query the `documents` collection API endpoint to "
@@ -84,6 +95,7 @@ msgstr ""
 "документ було створено. Додатково можна зробити запит точки входу API "
 "колекції `документів`, щоб підтвердити дію:"
 
+#: ../../source/fintutorial.rst:56
 msgid ""
 "The single array element describes the uploaded document. We can upload more"
 " documents:"
@@ -91,9 +103,11 @@ msgstr ""
 "Один елемент масиву описує завантажений документ. Ми можемо завантажити "
 "більше документів:"
 
+#: ../../source/fintutorial.rst:61
 msgid "And again we can confirm that there are two documents uploaded."
 msgstr "І знову можна перевірити, що є два завантажених документа."
 
+#: ../../source/fintutorial.rst:66
 msgid ""
 "In case we made an error, we can reupload the document over the older "
 "version:"
@@ -101,21 +115,27 @@ msgstr ""
 "Якщо сталась помилка, ми можемо ще раз завантажити документ поверх старої "
 "версії:"
 
+#: ../../source/fintutorial.rst:71
 msgid "And we can see that it is overriding the original version:"
 msgstr "І ми бачимо, що вона перекриває оригінальну версію:"
 
+#: ../../source/fintutorial.rst:110
 msgid "Adding virtual data room"
 msgstr "Додавання віртуальної кімнати для роботи з конфіденційними даними"
 
+#: ../../source/fintutorial.rst:121
 msgid "Registering bid"
 msgstr "Реєстрація пропозиції"
 
+#: ../../source/fintutorial.rst:128
 msgid "And activate a bid:"
 msgstr "І активувати пропозицію:"
 
+#: ../../source/fintutorial.rst:138
 msgid "It is possible to check the uploaded documents:"
 msgstr "Можна перевірити завантажені документи:"
 
+#: ../../source/fintutorial.rst:143
 msgid ""
 "For the best effect (biggest economy) auction should have multiple bidders "
 "registered:"
@@ -123,17 +143,21 @@ msgstr ""
 "Для найкращого результату (найбільшої економії) аукціон повинен мати багато "
 "зареєстрованих учасників."
 
+#: ../../source/fintutorial.rst:112
 msgid "Organizer can add URL for virtual data room:"
 msgstr ""
 "Організатор може додати URL-адресу віртуальної кімнати для роботи з "
 "конфіденційними даними:"
 
+#: ../../source/fintutorial.rst:133
 msgid "And upload license (with ``documentType: financialLicense``):"
 msgstr "І завантажити ліцензію (вказавши ``documentType: financialLicense``):"
 
+#: ../../source/fintutorial.rst:77
 msgid "Uploading illustration"
 msgstr "Завантаження ілюстрації"
 
+#: ../../source/fintutorial.rst:79
 msgid ""
 "Organizer can upload illustration files into the created auction. Uploading "
 "should follow the :ref:`upload` rules."
@@ -141,14 +165,17 @@ msgstr ""
 "Організатор може завантажити файли з ілюстраціями у створений аукціон. "
 "Завантаження повинно відповідати правилам :ref:`upload`."
 
+#: ../../source/fintutorial.rst:87
 msgid "We can check whether illustration is uploaded."
 msgstr "Ми можемо перевірити, чи завантажилась ілюстрація."
 
+#: ../../source/fintutorial.rst:6
 msgid "Tutorial for the `dgfFinancialAssets` procedure."
 msgstr ""
 "Туторіал для процедури `dgfFinancialAssets` - продаж права вимоги за "
 "кредитними договорами."
 
+#: ../../source/fintutorial.rst:82
 msgid ""
 "In order to specify illustration display order, ``index`` field can be used "
 "(for details see :ref:`document`). Since this illustration should be "
@@ -158,6 +185,7 @@ msgstr ""
 " `index` (див. :ref:`document`). Оскільки ця ілюстрація повинна бути "
 "відображена першою, то вказується ``\"index\": 1``"
 
+#: ../../source/fintutorial.rst:92
 msgid ""
 "Organizer can upload second illustration. This illustration should be "
 "displayed second, so it has ``\"index\": 2``."
@@ -165,9 +193,11 @@ msgstr ""
 "Організатор може завантажити ще одну ілюстрацію. Ця ілюстрація повинна бути "
 "відображена другою, тому має параметр ``\"index\": 2``."
 
+#: ../../source/fintutorial.rst:97
 msgid "Add third illustration:"
 msgstr "Додаємо третю ілюстрацію:"
 
+#: ../../source/fintutorial.rst:102
 msgid ""
 "Note that `index` of the third illustration is the same as for the second "
 "illustration: ``\"index\": 2``. In such cases firstly will be displayed "
@@ -177,9 +207,11 @@ msgstr ""
 "другої:  ``\"index\": 2``. У таких випадках спочатку відображатиметься "
 "ілюстрація з ранішою датою публікації."
 
+#: ../../source/fintutorial.rst:104
 msgid "We can check that there are three uploaded illustrations."
 msgstr "Можемо перевірити, що є три завантажені ілюстрації."
 
+#: ../../source/fintutorial.rst:123
 msgid ""
 "Bidder can register a bid in `draft` status. Bidder must specify ``UA-FIN`` "
 "value for the `additionalIdentifiers` parameter."

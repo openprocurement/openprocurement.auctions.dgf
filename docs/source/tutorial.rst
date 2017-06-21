@@ -266,7 +266,7 @@ Confirming qualification
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-The organizer **must** upload and confirm the auction protocol `auctionProtocol` and add it to the award within **3 business days after the start of the qualification procedure**. The candidate still has a possibility to upload the protocol, but it is neither mandatory, nor sufficient to move to the next status. If the auction protocol has not been uploaded before the end of `verificationPeriod`, the `award` is automatically transferred to the `unsuccessful` status.
+The organizer **must** upload and confirm the auction protocol `auctionProtocol` and add it to the award within **4 business days after the start of the qualification procedure**. The candidate still has a possibility to upload the protocol, but it is neither mandatory, nor sufficient to move to the next status. If the auction protocol has not been uploaded before the end of `verificationPeriod`, the `award` is automatically transferred to the `unsuccessful` status.
 
 
 .. include:: tutorial/bidder-auction-protocol.http
@@ -293,7 +293,7 @@ Within **20 business days after becoming a candidate** he/she must provide payme
 .. _Candidate_disqualification:
 
 Disqualification of a candidate
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In case of manual disqualification, the organizer has to upload file with cancellation reason:
 
@@ -314,7 +314,7 @@ Within 20 business days since becoming candidate a new candidate must confirm qu
 .. _Waiting_refusal:
 
 Refusal of waiting by another participant
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The second candidate (participant that has submitted the second highest valid bid at the auction) can refuse to wait for the disqualification of the first candidate:
 
 
@@ -327,7 +327,7 @@ Signing contract
 The candidate has **20 business days after becoming a candidate** to conclude a contract with the bank based on the results of electronic auction.
 
 Uploading contract documentation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can upload contract documents. Let's upload contract document:
 
