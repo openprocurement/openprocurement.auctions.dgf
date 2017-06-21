@@ -576,6 +576,11 @@ class MigrateTestFrom1To2WithTwoBids(BaseAuctionWebTest):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data']['status'], u'active.awarded')
 
+        response = self.app.post('/auctions/{}/contracts/{}/documents'.format(
+            self.auction_id, contract['id']), upload_files=[('file', 'contract.doc', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+
         response = self.app.patch_json('/auctions/{}/contracts/{}'.format(self.auction_id, contract['id']), {"data": {"status": "active"}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
@@ -741,6 +746,11 @@ class MigrateTestFrom1To2WithTwoBids(BaseAuctionWebTest):
         self.assertEqual(response.json['data'][0]['status'], u'active')
         self.assertEqual(response.json['data'][1]['status'], u'pending.waiting')
 
+        response = self.app.post('/auctions/{}/contracts/{}/documents'.format(
+            self.auction_id, contract_id), upload_files=[('file', 'contract.doc', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+
         response = self.app.patch_json('/auctions/{}/contracts/{}'.format(self.auction_id, contract_id), {"data": {"status": "active"}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
@@ -834,6 +844,11 @@ class MigrateTestFrom1To2WithTwoBids(BaseAuctionWebTest):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data']['status'], u'active.awarded')
 
+        response = self.app.post('/auctions/{}/contracts/{}/documents'.format(
+            self.auction_id, contract['id']), upload_files=[('file', 'contract.doc', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+
         response = self.app.patch_json('/auctions/{}/contracts/{}'.format(self.auction_id, contract['id']), {"data": {"status": "active"}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
@@ -896,6 +911,11 @@ class MigrateTestFrom1To2WithTwoBids(BaseAuctionWebTest):
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data']['status'], u'active.awarded')
+
+        response = self.app.post('/auctions/{}/contracts/{}/documents'.format(
+            self.auction_id, contract['id']), upload_files=[('file', 'contract.doc', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
 
         response = self.app.patch_json('/auctions/{}/contracts/{}'.format(self.auction_id, contract['id']), {"data": {"status": "active"}})
         self.assertEqual(response.status, '200 OK')
@@ -986,6 +1006,11 @@ class MigrateTestFrom1To2WithTwoBids(BaseAuctionWebTest):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data']['status'], u'active.awarded')
 
+        response = self.app.post('/auctions/{}/contracts/{}/documents'.format(
+            self.auction_id, contract['id']), upload_files=[('file', 'contract.doc', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+
         response = self.app.patch_json('/auctions/{}/contracts/{}'.format(self.auction_id, contract['id']), {"data": {"status": "active"}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
@@ -1054,6 +1079,11 @@ class MigrateTestFrom1To2WithTwoBids(BaseAuctionWebTest):
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data']['status'], u'active.awarded')
+
+        response = self.app.post('/auctions/{}/contracts/{}/documents'.format(
+            self.auction_id, contract['id']), upload_files=[('file', 'contract.doc', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
 
         response = self.app.patch_json('/auctions/{}/contracts/{}'.format(self.auction_id, contract['id']), {"data": {"status": "active"}})
         self.assertEqual(response.status, '200 OK')

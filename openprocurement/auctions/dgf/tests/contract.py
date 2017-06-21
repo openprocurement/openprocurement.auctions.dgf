@@ -58,6 +58,7 @@ class AuctionContractResourceTest(BaseAuctionWebTest):
         self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "pending.payment"}})
         self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "active"}})
 
+
     def test_create_auction_contract_invalid(self):
         response = self.app.post_json('/auctions/some_id/contracts', {
                                       'data': {'title': 'contract title', 'description': 'contract description', 'awardID': self.award_id}}, status=404)
@@ -206,7 +207,15 @@ class AuctionContractResourceTest(BaseAuctionWebTest):
         #     i['complaintPeriod']['endDate'] = i['complaintPeriod']['startDate']
         # self.db.save(auction)
 
-        response = self.app.patch_json('/auctions/{}/contracts/{}'.format(self.auction_id, contract['id']), {"data": {"contractID": "myselfID", "items": [{"description": "New Description"}], "suppliers": [{"name": "New Name"}]}})
+        response = self.app.patch_json('/auctions/{}/contracts/{}'.format(self.auction_id, contract['id']),
+                                       {"data": {"status": "active"}}, status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.json['errors'][0]["description"], "Cant\'t sign contract without document")
+
+        response = self.app.post('/auctions/{}/contracts/{}/documents'.format(
+            self.auction_id, contract['id']), upload_files=[('file', 'name.doc', 'content')])
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
 
         response = self.app.get('/auctions/{}/contracts/{}'.format(self.auction_id, contract['id']))
         self.assertEqual(response.json['data']['contractID'], contract['contractID'])
