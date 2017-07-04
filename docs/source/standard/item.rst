@@ -33,6 +33,9 @@ Schema
     It is required for `classification.scheme` to be `CAV`. The
     `classification.id` should be valid CAV code.
 
+:schema_properties:
+    :ref:`SchemaProperties`
+
 :additionalClassifications:
     List of :ref:`Classification` objects
 
@@ -137,3 +140,20 @@ Schema
 
     |ocdsDescription|
     Name of the unit
+
+.. _SchemaProperties:
+
+SchemaProperties
+================
+
+Schema
+------
+
+:code:
+    string, required
+
+:version:
+    string
+
+:properties:
+    flexible fields
