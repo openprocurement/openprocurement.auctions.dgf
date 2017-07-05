@@ -7,10 +7,10 @@ msgstr ""
 "PO-Revision-Date: 2016-10-13 17:22+0200\n"
 "Last-Translator: Zoriana Zaiats <sorenabell@quintagroup.com>\n"
 "Language-Team: Ukrainian <support@quintagroup.com>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
@@ -18,8 +18,8 @@ msgstr ""
 msgid "Item"
 msgstr "Item"
 
-#: ../../source/standard/item.rst:12 ../../source/standard/item.rst:91
-#: ../../source/standard/item.rst:128
+#: ../../source/standard/item.rst:12 ../../source/standard/item.rst:97
+#: ../../source/standard/item.rst:134 ../../source/standard/item.rst:153
 msgid "Schema"
 msgstr "Схема"
 
@@ -39,15 +39,15 @@ msgstr "|ocdsDescription| Опис товарів та послуг, які по
 msgid ":ref:`Classification`"
 msgstr ":ref:`Classification`"
 
-#: ../../source/standard/item.rst:37
+#: ../../source/standard/item.rst:43
 msgid "List of :ref:`Classification` objects"
 msgstr "Список об’єктів :ref:`Classification`"
 
-#: ../../source/standard/item.rst:48
+#: ../../source/standard/item.rst:54
 msgid ":ref:`Unit`"
 msgstr ":ref:`Unit`"
 
-#: ../../source/standard/item.rst:50
+#: ../../source/standard/item.rst:56
 msgid ""
 "|ocdsDescription| Description of the unit which the good comes in e.g.  "
 "hours, kilograms. Made up of a unit name, and the value of a single unit."
@@ -55,41 +55,42 @@ msgstr ""
 "|ocdsDescription| Опис одиниці виміру товару, наприклад, години, кілограми. "
 "Складається з назви одиниці та значення однієї одиниці."
 
-#: ../../source/standard/item.rst:55
+#: ../../source/standard/item.rst:61
 msgid "integer"
 msgstr "ціле число"
 
-#: ../../source/standard/item.rst:57
+#: ../../source/standard/item.rst:63
 msgid "|ocdsDescription| The number of units required"
 msgstr "|ocdsDescription| Кількість необхідних одиниць."
 
-#: ../../source/standard/item.rst:61
+#: ../../source/standard/item.rst:67
 msgid ":ref:`Address`"
 msgstr ":ref:`Address`"
 
-#: ../../source/standard/item.rst:66
+#: ../../source/standard/item.rst:72
 msgid "dictionary"
 msgstr "словник"
 
-#: ../../source/standard/item.rst:71 ../../source/standard/item.rst:73
-#: ../../source/standard/item.rst:131
+#: ../../source/standard/item.rst:77 ../../source/standard/item.rst:79
+#: ../../source/standard/item.rst:137
 msgid "string, required"
 msgstr "рядок, обов’язковий"
 
-#: ../../source/standard/item.rst:75
+#: ../../source/standard/item.rst:81
 msgid "string, optional, usually not used"
 msgstr "рядок, не обов’язково, переважно не використовується"
 
-#: ../../source/standard/item.rst:94 ../../source/standard/item.rst:103
-#: ../../source/standard/item.rst:109 ../../source/standard/item.rst:136
+#: ../../source/standard/item.rst:100 ../../source/standard/item.rst:109
+#: ../../source/standard/item.rst:115 ../../source/standard/item.rst:142
+#: ../../source/standard/item.rst:160
 msgid "string"
 msgstr "рядок"
 
-#: ../../source/standard/item.rst:88
+#: ../../source/standard/item.rst:94
 msgid "Classification"
 msgstr "Classification"
 
-#: ../../source/standard/item.rst:96
+#: ../../source/standard/item.rst:102
 msgid ""
 "|ocdsDescription| A classification should be drawn from an existing scheme "
 "or list of codes.  This field is used to indicate the scheme/codelist from "
@@ -102,20 +103,20 @@ msgstr ""
 "значення повинно представляти відому Схему Класифікації Елементів, де це "
 "можливо."
 
-#: ../../source/standard/item.rst:105
+#: ../../source/standard/item.rst:111
 msgid ""
 "|ocdsDescription| The classification code drawn from the selected scheme."
 msgstr "|ocdsDescription| Код класифікації взятий з вибраної схеми."
 
-#: ../../source/standard/item.rst:111
+#: ../../source/standard/item.rst:117
 msgid "|ocdsDescription| A textual description or title for the code."
 msgstr "|ocdsDescription| Текстовий опис або назва коду."
 
-#: ../../source/standard/item.rst:115
+#: ../../source/standard/item.rst:121
 msgid "uri"
 msgstr "uri"
 
-#: ../../source/standard/item.rst:117
+#: ../../source/standard/item.rst:123
 msgid ""
 "|ocdsDescription| A URI to identify the code. In the event individual URIs "
 "are not available for items in the identifier scheme this value should be "
@@ -125,19 +126,19 @@ msgstr ""
 "доступні для елементів у схемі ідентифікації, це значення треба залишити "
 "пустим."
 
-#: ../../source/standard/item.rst:125
+#: ../../source/standard/item.rst:131
 msgid "Unit"
 msgstr "Unit"
 
-#: ../../source/standard/item.rst:133
+#: ../../source/standard/item.rst:139
 msgid "UN/CEFACT Recommendation 20 unit code."
 msgstr "Код одиниці виміру в UN/CEFACT Recommendation 20."
 
-#: ../../source/standard/item.rst:138
+#: ../../source/standard/item.rst:144
 msgid "|ocdsDescription| Name of the unit"
 msgstr "|ocdsDescription| Назва одиниці виміру"
 
-#: ../../source/standard/item.rst:39
+#: ../../source/standard/item.rst:45
 msgid ""
 "|ocdsDescription| An array of additional classifications for the item. See "
 "the `itemClassificationScheme` codelist for common options to use in OCDS. "
@@ -149,22 +150,22 @@ msgstr ""
 " OCDS. Також можна використовувати для представлення кодів з внутрішньої "
 "схеми класифікації."
 
-#: ../../source/standard/item.rst:45
+#: ../../source/standard/item.rst:51
 msgid "It is required to have at least one item with `ДКПП` as `scheme`."
 msgstr "Обов’язково мати хоча б один елемент з `ДКПП` у стрічці `scheme`."
 
-#: ../../source/standard/item.rst:63
+#: ../../source/standard/item.rst:69
 msgid "Address, where the item is located."
 msgstr "Адреса, де розташований елемент."
 
-#: ../../source/standard/item.rst:68
+#: ../../source/standard/item.rst:74
 msgid ""
 "Geographical coordinates of the location. Element consists of the following "
 "items:"
 msgstr ""
 "Географічні координати місця розташування. Складається з таких компонентів:"
 
-#: ../../source/standard/item.rst:77
+#: ../../source/standard/item.rst:83
 msgid ""
 "`location` usually takes precedence over `address` if both are present."
 msgstr ""
@@ -192,6 +193,46 @@ msgstr ""
 #: ../../source/standard/item.rst:23
 msgid "Auction subject / asset description."
 msgstr "Опис активу / предмету торгів"
+
+#: ../../source/standard/item.rst:37
+msgid ":ref:`SchemaProperties`"
+msgstr ":ref:`SchemaProperties`"
+
+#: ../../source/standard/item.rst:150
+msgid "SchemaProperties"
+msgstr ""
+
+#: ../../source/standard/item.rst:163
+msgid "flexible fields"
+msgstr ""
+
+#: ../../source/standard/item.rst:38
+msgid ""
+"|ocdsDescription| A detailed specification of the fields and data structures "
+"to use when publishing contracting data."
+msgstr ""
+"|ocdsDescription| Деталізація полів та структури даних "
+"для використкання."
+
+#: ../../source/standard/item.rst:156
+msgid "string, required, should match classification.id"
+msgstr "рядок, обов'язковий, повинен відповідати полю classification.id"
+
+#: ../../source/standard/item.rst:160
+msgid "string, optional, identifies the scheme version"
+msgstr "рядок, необов'язковий, визначає версію схеми"
+
+#: ../../source/standard/item.rst:162
+msgid "If not specified, the latest version will be used."
+msgstr "Використовується остання версія у разі, якщо жодну не задано."
+
+#: ../../source/standard/item.rst:165
+msgid "dictionary, match the version and code used"
+msgstr "словник, відповідає полям code та version, що задані"
+
+#: ../../source/standard/item.rst:167
+msgid "The detailed description is given here: http://schemas.api-docs.ea.openprocurement.io/en/latest/"
+msgstr "Детальний опис наведено за посиланням: http://schemas.api-docs.ea.openprocurement.io/en/latest/"
 
 #~ msgid "ID of related :ref:`lot`."
 #~ msgstr "ID пов’язаного :ref:`lot`."
