@@ -35,6 +35,10 @@ Schema
 
 :schema_properties:
     :ref:`SchemaProperties`
+    
+    |ocdsDescription| 
+    A detailed specification of the fields and data structures 
+    to use when publishing contracting data.
 
 :additionalClassifications:
     List of :ref:`Classification` objects
@@ -150,10 +154,14 @@ Schema
 ------
 
 :code:
-    string, required
-
+    string, required, should match classification.id
+    
 :version:
-    string
-
+    string, optional, identifies the scheme version 
+    
+    If not specified, the latest version will be used.
+    
 :properties:
-    flexible fields
+    dictionary, match the version and code used
+    
+    The detailed description is given here: http://schemas.api-docs.ea.openprocurement.io/en/latest/

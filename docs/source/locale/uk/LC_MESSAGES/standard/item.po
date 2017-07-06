@@ -193,6 +193,46 @@ msgstr ""
 msgid "Auction subject / asset description."
 msgstr "Опис активу / предмету торгів"
 
+#: ../../source/standard/item.rst:37
+msgid ":ref:`SchemaProperties`"
+msgstr ":ref:`SchemaProperties`"
+
+#: ../../source/standard/item.rst:150
+msgid "SchemaProperties"
+msgstr ""
+
+#: ../../source/standard/item.rst:163
+msgid "flexible fields"
+msgstr ""
+
+#: ../../source/standard/item.rst:38
+msgid ""
+"|ocdsDescription| A detailed specification of the fields and data structures "
+"to use when publishing contracting data."
+msgstr ""
+"|ocdsDescription| Деталізація полів та структури даних "
+"для використання."
+
+#: ../../source/standard/item.rst:156
+msgid "string, required, should match classification.id"
+msgstr "рядок, обов'язковий, повинен відповідати полю classification.id"
+
+#: ../../source/standard/item.rst:160
+msgid "string, optional, identifies the scheme version"
+msgstr "рядок, необов'язковий, визначає версію схеми"
+
+#: ../../source/standard/item.rst:162
+msgid "If not specified, the latest version will be used."
+msgstr "Використовується остання версія у разі, якщо жодну не задано."
+
+#: ../../source/standard/item.rst:165
+msgid "dictionary, match the version and code used"
+msgstr "словник, відповідає полям code та version, що задані"
+
+#: ../../source/standard/item.rst:167
+msgid "The detailed description is given here: http://schemas.api-docs.ea.openprocurement.io/en/latest/"
+msgstr "Детальний опис наведено за посиланням: http://schemas.api-docs.ea.openprocurement.io/en/latest/"
+
 #~ msgid "ID of related :ref:`lot`."
 #~ msgstr "ID пов’язаного :ref:`lot`."
 
