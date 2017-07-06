@@ -212,7 +212,7 @@ msgid ""
 "to use when publishing contracting data."
 msgstr ""
 "|ocdsDescription| Деталізація полів та структури даних "
-"для використкання."
+"для використання."
 
 #: ../../source/standard/item.rst:156
 msgid "string, required, should match classification.id"
