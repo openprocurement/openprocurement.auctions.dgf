@@ -347,7 +347,7 @@ class Auction(BaseAuction):
     documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
     enquiryPeriod = ModelType(Period)  # The period during which enquiries may be made and will be answered.
     tenderPeriod = ModelType(Period)  # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
-    tenderAttempts = IntType(choices=[1, 2, 3, 4])
+    tenderAttempts = IntType(choices=[1, 2, 3, 4, 5, 6, 7, 8])
     auctionPeriod = ModelType(AuctionAuctionPeriod, required=True, default={})
     procurementMethodType = StringType(default="dgfOtherAssets")
     procuringEntity = ModelType(ProcuringEntity, required=True)

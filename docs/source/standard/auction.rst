@@ -55,8 +55,7 @@ Schema
 :tenderAttempts:
     integer
 
-    The number which represents whether the tender is taking place for the first, second, third, or fourth time
-
+    The number which represents what time (from 1 up to 8) tender is taking place.
 
 :value:
    :ref:`value`, required
