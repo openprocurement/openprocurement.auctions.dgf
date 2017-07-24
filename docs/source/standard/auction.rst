@@ -48,7 +48,6 @@ Schema
 
     The number which represents what time (from 1 up to 8) tender is taking place.
 
-
 :value:
    :ref:`value`, required
 
