@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta, time
-from schematics.types import StringType, URLType, IntType, DateType
+from schematics.types import StringType, URLType, IntType, DateType, MD5Type
 from schematics.types.compound import ModelType
 from schematics.exceptions import ValidationError
 from schematics.transforms import blacklist, whitelist
@@ -24,7 +24,7 @@ from openprocurement.auctions.flash.models import (
     calc_auction_end_time, COMPLAINT_STAND_STILL_TIME,
     Organization as BaseOrganization, Item as BaseItem,
     ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
-    get_auction, Administrator_role
+    get_auction, Administrator_role, view_role
 )
 
 
@@ -325,6 +325,11 @@ class Auction(BaseAuction):
             'create': create_role,
             'edit_active.tendering': edit_role,
             'Administrator': Administrator_role,
+            'pending.verification': view_role,
+            'invalid': view_role,
+            'edit_pending.verification': whitelist(),
+            'edit_invalid': whitelist(),
+            'bot': whitelist('status', 'items', 'documents')
         }
 
     awards = ListType(ModelType(Award), default=list())
@@ -333,6 +338,7 @@ class Auction(BaseAuction):
     complaints = ListType(ModelType(Complaint), default=list())
     contracts = ListType(ModelType(Contract), default=list())
     dgfID = StringType()
+    lotID = MD5Type()
     dgfDecisionID = StringType()
     dgfDecisionDate = DateType()
     documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
@@ -342,7 +348,7 @@ class Auction(BaseAuction):
     auctionPeriod = ModelType(AuctionAuctionPeriod, required=True, default={})
     procurementMethodType = StringType(default="dgfOtherAssets")
     procuringEntity = ModelType(ProcuringEntity, required=True)
-    status = StringType(choices=['draft', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
+    status = StringType(choices=['draft', 'pending.verification', 'invalid', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
     questions = ListType(ModelType(Question), default=list())
     features = ListType(ModelType(Feature), validators=[validate_features_uniq, validate_not_available])
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
