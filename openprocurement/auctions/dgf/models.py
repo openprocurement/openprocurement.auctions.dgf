@@ -334,8 +334,10 @@ class Auction(BaseAuction):
             'create': create_role,
             'edit_active.tendering': edit_role,
             'Administrator': Administrator_role,
-            'pre.enquiries': (view_role),
-            'edit_pre.enquiries': (whitelist()),
+            'pending.verification': view_role,
+            'invalid': view_role,
+            'edit_pending.verification': (whitelist()),
+            'edit_invalid': (whitelist()),
             'bot': (whitelist('status', 'items', 'documents'))
         }
 
@@ -355,7 +357,7 @@ class Auction(BaseAuction):
     auctionPeriod = ModelType(AuctionAuctionPeriod, required=True, default={})
     procurementMethodType = StringType(default="dgfOtherAssets")
     procuringEntity = ModelType(ProcuringEntity, required=True)
-    status = StringType(choices=['draft', 'pre.enquiries', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
+    status = StringType(choices=['draft', 'pending.verification', 'invalid', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
     questions = ListType(ModelType(Question), default=list())
     features = ListType(ModelType(Feature), validators=[validate_features_uniq, validate_not_available])
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])

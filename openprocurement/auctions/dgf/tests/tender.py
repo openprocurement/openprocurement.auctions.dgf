@@ -1200,10 +1200,10 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.json['data'], auction)
 
         self.app.authorization = ('Basic', ('bot', ''))
-        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'pre.enquiries'}}, status=422)
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'pending.verification'}}, status=422)
         self.assertEqual(response.status, '422 Unprocessable Entity')
         self.assertEqual(response.json['status'], 'error')
-        self.assertEqual(response.json['errors'], [{u'description': u"Can't switch auction to status (pre.enquiries) without lotID", u'location': u'body', u'name': u'data'}])
+        self.assertEqual(response.json['errors'], [{u'description': u"Can't switch auction to status (pending.verification) without lotID", u'location': u'body', u'name': u'data'}])
 
         self.app.authorization = ('Basic', ('broker', ''))
         data.update({'lotID': uuid4().hex})
@@ -1217,16 +1217,45 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data'], auction)
 
-        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'pre.enquiries'}})
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'pending.verification'}})
         self.assertEqual(response.status, '200 OK')
         auction = response.json['data']
-        self.assertEqual(auction['status'], 'pre.enquiries')
+        self.assertEqual(auction['status'], 'pending.verification')
 
         response = self.app.get('/auctions/{}'.format(auction['id']))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data'], auction)
 
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'active.tendering'}})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.assertEqual(auction['status'], 'active.tendering')
+
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data'], auction)
+
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'invalid'}})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.assertEqual(auction['status'], 'invalid')
+
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data'], auction)
+
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'pending.verification'}})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.assertEqual(auction['status'], 'pending.verification')
+
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data'], auction)
 
 class AuctionProcessTest(BaseAuctionWebTest):
     #setUp = BaseWebTest.setUp
