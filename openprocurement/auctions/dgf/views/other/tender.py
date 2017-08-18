@@ -9,8 +9,8 @@ from openprocurement.auctions.core.utils import (
     opresource,
     save_auction,
 )
-from openprocurement.auctions.core.validation import (
-    validate_patch_auction_data,
+from openprocurement.auctions.dgf.validation import (
+    validate_patch_auction_data
 )
 from openprocurement.auctions.dgf.utils import (
     check_status,
@@ -115,17 +115,6 @@ class AuctionResource(APIResource):
         else:
             auction_data = self.context.serialize(self.context.status)
         return {'data': auction_data}
-
-    #@json_view(content_type="application/json", validators=(validate_auction_data, ), permission='edit_auction')
-    #def put(self):
-        #"""Auction Edit (full)"""
-        #auction = self.request.validated['auction']
-        #if auction.status in ['complete', 'unsuccessful', 'cancelled']:
-            #self.request.errors.add('body', 'data', 'Can\'t update auction in current ({}) status'.format(auction.status))
-            #self.request.errors.status = 403
-            #return
-        #apply_patch(self.request, src=self.request.validated['auction_src'])
-        #return {'data': auction.serialize(auction.status)}
 
     @json_view(content_type="application/json", validators=(validate_patch_auction_data, ), permission='edit_auction')
     def patch(self):

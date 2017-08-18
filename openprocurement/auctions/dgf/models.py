@@ -329,7 +329,7 @@ class Auction(BaseAuction):
             'invalid': view_role,
             'edit_pending.verification': whitelist(),
             'edit_invalid': whitelist(),
-            'bot': whitelist('status', 'items', 'documents')
+            'convoy': whitelist('status', 'items', 'documents')
         }
 
     awards = ListType(ModelType(Award), default=list())
@@ -361,6 +361,21 @@ class Auction(BaseAuction):
             (Allow, '{}_{}'.format(self.owner, self.owner_token), 'edit_auction_award'),
             (Allow, '{}_{}'.format(self.owner, self.owner_token), 'upload_auction_documents'),
         ]
+
+    def get_role(self):
+        root = self.__parent__
+        request = root.request
+        if request.authenticated_role == 'Administrator':
+            role = 'Administrator'
+        elif request.authenticated_role == 'chronograph':
+            role = 'chronograph'
+        elif request.authenticated_role == 'auction':
+            role = 'auction_{}'.format(request.method.lower())
+        elif request.authenticated_role == 'convoy':
+            role = 'convoy'
+        else:
+            role = 'edit_{}'.format(request.context.status)
+        return role
 
     def initialize(self):
         if not self.enquiryPeriod:
