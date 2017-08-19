@@ -8,7 +8,14 @@ from iso8601 import parse_date
 from openprocurement.api.utils import ROUTE_PREFIX
 from openprocurement.api.models import get_now, SANDBOX_MODE, TZ
 from openprocurement.auctions.dgf.models import DGFOtherAssets, DGFFinancialAssets, DGF_ID_REQUIRED_FROM
-from openprocurement.auctions.dgf.tests.base import test_auction_data, test_financial_auction_data, test_organization, test_financial_organization, BaseWebTest, BaseAuctionWebTest
+from openprocurement.auctions.dgf.tests.base import (
+    test_auction_data,
+    test_financial_auction_data,
+    test_organization,
+    test_financial_organization,
+    BaseWebTest,
+    BaseAuctionWebTest,
+)
 
 
 class AuctionTest(BaseWebTest):
@@ -436,10 +443,8 @@ class AuctionResourceTest(BaseWebTest):
         self.assertIn({u'description': [u"Value must be one of ['open', 'selective', 'limited']."], u'location': u'body', u'name': u'procurementMethod'}, response.json['errors'])
         #self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'tenderPeriod'}, response.json['errors'])
         self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'minimalStep'}, response.json['errors'])
-        self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'items'}, response.json['errors'])
         #self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'enquiryPeriod'}, response.json['errors'])
         self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'value'}, response.json['errors'])
-        self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'items'}, response.json['errors'])
 
         response = self.app.post_json(request_path, {'data': {'enquiryPeriod': {'endDate': 'invalid_value'}, 'procurementMethodType': self.initial_data['procurementMethodType']}}, status=422)
         self.assertEqual(response.status, '422 Unprocessable Entity')
@@ -556,16 +561,25 @@ class AuctionResourceTest(BaseWebTest):
             {u'description': [u'currency should be only UAH'], u'location': u'body', u'name': u'value'}
         ])
 
-        data = self.initial_data["procuringEntity"]["contactPoint"]["telephone"]
-        del self.initial_data["procuringEntity"]["contactPoint"]["telephone"]
-        response = self.app.post_json(request_path, {'data': self.initial_data}, status=422)
-        self.initial_data["procuringEntity"]["contactPoint"]["telephone"] = data
+        auction_data = deepcopy(self.initial_data)
+        del auction_data["procuringEntity"]["contactPoint"]["telephone"]
+        response = self.app.post_json(request_path, {'data': auction_data}, status=422)
         self.assertEqual(response.status, '422 Unprocessable Entity')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['status'], 'error')
         self.assertEqual(response.json['errors'], [
             {u'description': {u'contactPoint': {u'email': [u'telephone or email should be present']}}, u'location': u'body', u'name': u'procuringEntity'}
         ])
+
+        auction_data = deepcopy(self.initial_data)
+        del auction_data["items"]
+        response = self.app.post_json(request_path, {'data': auction_data}, status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'items'},
+                      response.json['errors'])
+
 
     @unittest.skipIf(get_now() < DGF_ID_REQUIRED_FROM, "Can`t create auction without dgfID only from {}".format(DGF_ID_REQUIRED_FROM))
     def test_required_dgf_id(self):
@@ -584,7 +598,6 @@ class AuctionResourceTest(BaseWebTest):
         auction = response.json['data']
         self.assertIn('dgfID', auction)
         self.assertEqual(data['dgfID'], auction['dgfID'])
-
 
     def test_create_auction_auctionPeriod(self):
         data = self.initial_data.copy()
@@ -682,6 +695,8 @@ class AuctionResourceTest(BaseWebTest):
         auction = response.json['data']
         self.assertEqual(auction['status'], 'pending.verification')
 
+
+        self.app.authorization = ('Basic', ('convoy', ''))
         response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'active.tendering'}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
@@ -1227,6 +1242,7 @@ class AuctionResourceTest(BaseWebTest):
         response = self.app.post_json('/auctions', {'data': data})
         self.assertEqual(response.status, '201 Created')
         auction = response.json['data']
+        owner_token = response.json['access']['token']
 
         response = self.app.get('/auctions/{}'.format(auction['id']))
         self.assertEqual(response.status, '200 OK')
@@ -1235,31 +1251,30 @@ class AuctionResourceTest(BaseWebTest):
 
         # Switch auction status 'draft' -> 'pending.verification' via convoy
         # without lotID
-        self.app.authorization = ('Basic', ('convoy', ''))
-        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'pending.verification'}}, status=422)
+        response = self.app.patch_json('/auctions/{}?acc_token={}'.format(auction['id'], owner_token), {'data': {'status': 'pending.verification'}}, status=422)
         self.assertEqual(response.status, '422 Unprocessable Entity')
         self.assertEqual(response.json['status'], 'error')
         self.assertEqual(response.json['errors'], [{u'description': u"Can't switch auction to status (pending.verification) without lotID", u'location': u'body', u'name': u'data'}])
 
         # Create auction with lotID
-        self.app.authorization = ('Basic', ('broker', ''))
         data.update({'lotID': uuid4().hex})
         response = self.app.post_json('/auctions', {'data': data})
         self.assertEqual(response.status, '201 Created')
         auction = response.json['data']
+        owner_token = response.json['access']['token']
 
-        self.app.authorization = ('Basic', ('convoy', ''))
         response = self.app.get('/auctions/{}'.format(auction['id']))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data'], auction)
 
-        # Switch auction status 'draft' -> 'pending.verification' via convoy
-        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'pending.verification'}})
+        # Switch auction status 'draft' -> 'pending.verification' via owner
+        response = self.app.patch_json('/auctions/{}?acc_token={}'.format(auction['id'], owner_token), {'data': {'status': 'pending.verification'}})
         self.assertEqual(response.status, '200 OK')
         auction = response.json['data']
         self.assertEqual(auction['status'], 'pending.verification')
 
+        self.app.authorization = ('Basic', ('convoy', ''))
         response = self.app.get('/auctions/{}'.format(auction['id']))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
@@ -1288,19 +1303,20 @@ class AuctionResourceTest(BaseWebTest):
         response = self.app.post_json('/auctions', {'data': data})
         self.assertEqual(response.status, '201 Created')
         auction = response.json['data']
+        owner_token = response.json['access']['token']
 
-        self.app.authorization = ('Basic', ('convoy', ''))
         response = self.app.get('/auctions/{}'.format(auction['id']))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data'], auction)
 
         # Switch auction status 'draft' -> 'pending.verification' via convoy
-        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'pending.verification'}})
+        response = self.app.patch_json('/auctions/{}?acc_token={}'.format(auction['id'], owner_token), {'data': {'status': 'pending.verification'}})
         self.assertEqual(response.status, '200 OK')
         auction = response.json['data']
         self.assertEqual(auction['status'], 'pending.verification')
 
+        self.app.authorization = ('Basic', ('convoy', ''))
         response = self.app.get('/auctions/{}'.format(auction['id']))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
@@ -1323,16 +1339,11 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.json['status'], 'error')
         self.assertEqual(response.json['errors'], [{u'description': u"Can't update auction in current (invalid) status", u'location': u'body', u'name': u'data'}])
 
-        # Switch auction status 'invalid' -> 'pending.verification' via convoy
-        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'pending.verification'}})
-        self.assertEqual(response.status, '200 OK')
-        auction = response.json['data']
-        self.assertEqual(auction['status'], 'pending.verification')
-
         response = self.app.get('/auctions/{}'.format(auction['id']))
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data'], auction)
+
 
 class AuctionProcessTest(BaseAuctionWebTest):
     #setUp = BaseWebTest.setUp
@@ -1859,6 +1870,10 @@ class AuctionProcessTest(BaseAuctionWebTest):
         self.assertEqual(response.json['data']['status'], 'complete')
 
 
+class AuctionProcessTestWithRegistry(AuctionProcessTest):
+    registry = True
+
+
 class FinancialAuctionTest(AuctionTest):
     auction = DGFFinancialAssets
 
@@ -1898,14 +1913,23 @@ class FinancialAuctionProcessTest(AuctionProcessTest):
     initial_organization = test_financial_organization
 
 
+class FinancialAuctionProcessTestWithRegistry(FinancialAuctionProcessTest):
+    registry = True
+
+
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionProcessTest))
     suite.addTest(unittest.makeSuite(AuctionResourceTest))
     suite.addTest(unittest.makeSuite(AuctionTest))
+
+    suite.addTest(unittest.makeSuite(AuctionProcessTestWithRegistry))
+
     suite.addTest(unittest.makeSuite(FinancialAuctionProcessTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionTest))
+
+    suite.addTest(unittest.makeSuite(FinancialAuctionProcessTestWithRegistry))
     return suite
 
 

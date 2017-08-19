@@ -352,7 +352,7 @@ class Auction(BaseAuction):
     questions = ListType(ModelType(Question), default=list())
     features = ListType(ModelType(Feature), validators=[validate_features_uniq, validate_not_available])
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
-    items = ListType(ModelType(Item), required=True, min_size=1, validators=[validate_items_uniq])
+    items = ListType(ModelType(Item), default=list(), validators=[validate_items_uniq])
     suspended = BooleanType()
 
     def __acl__(self):
@@ -411,15 +411,23 @@ class Auction(BaseAuction):
             if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_ID_REQUIRED_FROM:
                 raise ValidationError(u'This field is required.')
 
-    def validate_dgfDecisionID(self, data, dgfID):
-        if not dgfID:
+    def validate_dgfDecisionID(self, data, dgfDecisionID):
+        if not dgfDecisionID:
             if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_DECISION_REQUIRED_FROM:
                 raise ValidationError(u'This field is required.')
 
-    def validate_dgfDecisionDate(self, data, dgfID):
-        if not dgfID:
+    def validate_dgfDecisionDate(self, data, dgfDecisionDate):
+        if not dgfDecisionDate:
             if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_DECISION_REQUIRED_FROM:
                 raise ValidationError(u'This field is required.')
+
+    def validate_items(self, data, items):
+        if data['status'] not in ['draft', 'pending.verification']:
+            if not items:
+                raise ValidationError(u'This field is required.')
+            elif len(items) < 1:
+                raise ValidationError(u'Please provide at least 1 item.')
+
 
     @serializable(serialize_when_none=False)
     def next_check(self):

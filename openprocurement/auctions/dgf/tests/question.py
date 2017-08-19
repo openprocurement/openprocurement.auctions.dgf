@@ -365,12 +365,25 @@ class FinancialAuctionLotQuestionResourceTest(AuctionLotQuestionResourceTest):
     initial_organization = test_financial_organization
 
 
+class AuctionQuestionResourceTestWithRegistry(AuctionQuestionResourceTest):
+    registry = True
+
+
+class FinancialAuctionQuestionResourceTestWithRegistry(FinancialAuctionQuestionResourceTest):
+    registry = True
+
+
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionQuestionResourceTest))
     suite.addTest(unittest.makeSuite(AuctionLotQuestionResourceTest))
+
     suite.addTest(unittest.makeSuite(FinancialAuctionQuestionResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionLotQuestionResourceTest))
+
+    suite.addTest(unittest.makeSuite(AuctionQuestionResourceTestWithRegistry))
+
+    suite.addTest(unittest.makeSuite(FinancialAuctionQuestionResourceTestWithRegistry))
     return suite
 
 
