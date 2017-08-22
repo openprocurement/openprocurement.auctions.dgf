@@ -24,7 +24,7 @@ from openprocurement.auctions.flash.models import (
     calc_auction_end_time, COMPLAINT_STAND_STILL_TIME,
     Organization as BaseOrganization, Item as BaseItem,
     ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
-    get_auction, Administrator_role, view_role
+    get_auction, Administrator_role, view_role, enquiries_role
 )
 from schematics_flexible.schematics_flexible import FlexibleModelType
 from openprocurement.schemas.dgf.schemas_store import SchemaStore
@@ -334,7 +334,7 @@ class Auction(BaseAuction):
             'create': create_role,
             'edit_active.tendering': edit_role,
             'Administrator': Administrator_role,
-            'pending.verification': view_role,
+            'pending.verification': enquiries_role,
             'invalid': view_role,
             'edit_pending.verification': whitelist(),
             'edit_invalid': whitelist(),
