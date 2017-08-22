@@ -430,6 +430,10 @@ class Auction(BaseAuction):
             if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_DECISION_REQUIRED_FROM:
                 raise ValidationError(u'This field is required.')
 
+    def validate_merchandisingObject(self, data, merchandisingObject):
+        if data['status'] == 'pending.verification' and not merchandisingObject:
+            raise ValidationError(u'This field is required.')
+
     def validate_items(self, data, items):
         if data['status'] not in ['draft', 'pending.verification', 'invalid']:
             if not items:
