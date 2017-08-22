@@ -313,7 +313,7 @@ class AuctionAuctionPeriod(Period):
 
 
 create_role = (schematics_embedded_role + blacklist('owner_token', 'owner', '_attachments', 'revisions', 'date', 'dateModified', 'doc_id', 'auctionID', 'bids', 'documents', 'awards', 'questions', 'complaints', 'auctionUrl', 'status', 'enquiryPeriod', 'tenderPeriod', 'awardPeriod', 'procurementMethod', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'awardCriteria', 'submissionMethod', 'cancellations', 'numberOfBidders', 'contracts', 'suspended'))
-edit_role = (edit_role + blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru', 'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru', 'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru', 'items', 'procuringEntity', 'suspended', 'lotID'))
+edit_role = (edit_role + blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru', 'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru', 'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru', 'items', 'procuringEntity', 'suspended', 'merchandisingObject'))
 Administrator_role = (whitelist('suspended', 'awards') + Administrator_role)
 
 
@@ -338,7 +338,7 @@ class Auction(BaseAuction):
     complaints = ListType(ModelType(Complaint), default=list())
     contracts = ListType(ModelType(Contract), default=list())
     dgfID = StringType()
-    lotID = MD5Type()
+    merchandisingObject = MD5Type()
     dgfDecisionID = StringType()
     dgfDecisionDate = DateType()
     documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
@@ -422,7 +422,7 @@ class Auction(BaseAuction):
                 raise ValidationError(u'This field is required.')
 
     def validate_items(self, data, items):
-        if data['status'] not in ['draft', 'pending.verification']:
+        if data['status'] not in ['draft', 'pending.verification', 'invalid']:
             if not items:
                 raise ValidationError(u'This field is required.')
             elif len(items) < 1:

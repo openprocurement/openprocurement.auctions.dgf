@@ -239,7 +239,7 @@ class BaseAuctionWebTest(FlashBaseAuctionWebTest):
                 item['relatedLot'] = lots[i % len(lots)]['id']
         if self.registry:
             items = data.pop('items')
-            data.update({'status': "pending.verification", 'lotID': uuid4().hex})
+            data.update({'status': "pending.verification", 'merchandisingObject': uuid4().hex})
             response = self.app.post_json('/auctions', {'data': data})
             auction = response.json['data']
             self.auction_token = response.json['access']['token']
