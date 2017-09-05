@@ -11,7 +11,7 @@ from openprocurement.auctions.core.utils import (
     cleanup_bids_for_cancelled_lots, check_complaint_status,
     remove_draft_bids,
 )
-from openprocurement.auctions.dgf.models import (
+from .constants import (
     DOCUMENT_TYPE_URL_ONLY, DOCUMENT_TYPE_OFFLINE
 )
 PKG = get_distribution(__package__)
