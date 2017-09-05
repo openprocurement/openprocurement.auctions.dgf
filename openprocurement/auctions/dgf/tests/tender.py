@@ -8,6 +8,7 @@ from iso8601 import parse_date
 from openprocurement.api.utils import ROUTE_PREFIX
 from openprocurement.api.models import get_now, SANDBOX_MODE, TZ
 from openprocurement.auctions.dgf.models import DGFOtherAssets, DGFFinancialAssets, DGF_ID_REQUIRED_FROM
+from openprocurement.auctions.dgf.constants import DGF_ID_REQUIRED_FROM, ELIGIBILITY_CRITERIA
 from openprocurement.auctions.dgf.tests.base import (
     test_auction_data,
     test_financial_auction_data,
@@ -1947,9 +1948,9 @@ class FinancialAuctionResourceTest(AuctionResourceTest):
         self.assertNotEqual(data['doc_id'], auction['id'])
         self.assertNotEqual(data['auctionID'], auction['auctionID'])
 
-        self.assertEqual(auction['eligibilityCriteria'], u"До участі допускаються лише ліцензовані фінансові установи.")
-        self.assertEqual(auction['eligibilityCriteria_en'], u"Only licensed financial institutions are eligible to participate.")
-        self.assertEqual(auction['eligibilityCriteria_ru'], u"К участию допускаются только лицензированные финансовые учреждения.")
+        self.assertEqual(auction['eligibilityCriteria'], ELIGIBILITY_CRITERIA['ua'])
+        self.assertEqual(auction['eligibilityCriteria_en'], ELIGIBILITY_CRITERIA['en'])
+        self.assertEqual(auction['eligibilityCriteria_ru'], ELIGIBILITY_CRITERIA['ru'])
 
 
 class FinancialAuctionProcessTest(AuctionProcessTest):

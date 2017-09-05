@@ -29,40 +29,25 @@ from openprocurement.auctions.flash.models import (
 from schematics_flexible.schematics_flexible import FlexibleModelType
 from openprocurement.schemas.dgf.schemas_store import SchemaStore
 
-
-def read_json(name):
-    import os.path
-    from json import loads
-    curr_dir = os.path.dirname(os.path.realpath(__file__))
-    file_path = os.path.join(curr_dir, name)
-    with open(file_path) as lang_file:
-        data = lang_file.read()
-    return loads(data)
-
-
-CAV_CODES = read_json('cav.json')
-ORA_CODES = ORA_CODES[:]
-ORA_CODES[0:0] = ["UA-IPN", "UA-FIN"]
-DOCUMENT_TYPE_URL_ONLY = ['virtualDataRoom', 'x_dgfPublicAssetCertificate', 'x_dgfPlatformLegalDetails']
-DOCUMENT_TYPE_OFFLINE = ['x_dgfAssetFamiliarization']
-DGF_PLATFORM_LEGAL_DETAILS = {
-    'url': 'http://torgi.fg.gov.ua/prozorrosale',
-    'title': u'Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків',
-    'documentType': 'x_dgfPlatformLegalDetails',
-}
-DGF_PLATFORM_LEGAL_DETAILS_FROM = datetime(2016, 12, 23, tzinfo=TZ)
-
-DGF_ID_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
-DGF_DECISION_REQUIRED_FROM = datetime(2017, 1, 1, tzinfo=TZ)
+from .constants import (
+    CAV_CODES,
+    ORA_CODES,
+    DOCUMENT_TYPE_URL_ONLY,
+    DOCUMENT_TYPE_OFFLINE,
+    VERIFY_AUCTION_PROTOCOL_TIME,
+    AWARD_PAYMENT_TIME,
+    CONTRACT_SIGNING_TIME,
+    ELIGIBILITY_CRITERIA,
+    DGF_ID_REQUIRED_FROM,
+    DGF_DECISION_REQUIRED_FROM,
+    DGF_PLATFORM_LEGAL_DETAILS,
+    DGF_PLATFORM_LEGAL_DETAILS_FROM
+)
 
 
 def validate_disallow_dgfPlatformLegalDetails(docs, *args):
     if any([i.documentType == 'x_dgfPlatformLegalDetails' for i in docs]):
         raise ValidationError(u"Disallow documents with x_dgfPlatformLegalDetails documentType")
-
-VERIFY_AUCTION_PROTOCOL_TIME = timedelta(days=4)
-AWARD_PAYMENT_TIME = timedelta(days=20)
-CONTRACT_SIGNING_TIME = timedelta(days=20)
 
 
 class CAVClassification(Classification):
@@ -579,9 +564,9 @@ class Auction(DGFOtherAssets):
     documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
     bids = ListType(ModelType(Bid), default=list())
     procurementMethodType = StringType(default="dgfFinancialAssets")
-    eligibilityCriteria = StringType(default=u"До участі допускаються лише ліцензовані фінансові установи.")
-    eligibilityCriteria_en = StringType(default=u"Only licensed financial institutions are eligible to participate.")
-    eligibilityCriteria_ru = StringType(default=u"К участию допускаются только лицензированные финансовые учреждения.")
+    eligibilityCriteria = StringType(default=ELIGIBILITY_CRITERIA['ua'])
+    eligibilityCriteria_en = StringType(default=ELIGIBILITY_CRITERIA['en'])
+    eligibilityCriteria_ru = StringType(default=ELIGIBILITY_CRITERIA['ru'])
 
 
 DGFFinancialAssets = Auction
