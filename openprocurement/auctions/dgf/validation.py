@@ -31,6 +31,10 @@ def validate_patch_auction_data(request):
                 request.errors.add('body', 'items', 'This field is not required.')
                 request.errors.status = 422
                 return
+            elif request.context.dgfID:
+                request.errors.add('body', 'dgfID', 'This field is not required.')
+                request.errors.status = 422
+                return
         request.validated['data'] = {'status': new_status}
         request.context.status = new_status
         return
