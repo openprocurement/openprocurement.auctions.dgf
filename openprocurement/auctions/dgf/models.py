@@ -407,10 +407,9 @@ class Auction(BaseAuction):
             raise ValidationError(u"currency should be only UAH")
 
     def validate_dgfID(self, data, dgfID):
-        if data['status'] not in ['draft', 'pending.verification', 'invalid']:
-            if not dgfID:
-                if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_ID_REQUIRED_FROM:
-                    raise ValidationError(u'This field is required.')
+        if not dgfID and data['status'] not in ['draft', 'pending.verification', 'invalid']:
+            if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_ID_REQUIRED_FROM:
+                raise ValidationError(u'This field is required.')
 
     def validate_dgfDecisionID(self, data, dgfDecisionID):
         if not dgfDecisionID:
