@@ -675,6 +675,7 @@ class AuctionResourceTest(BaseWebTest):
     def test_create_auction_draft_with_registry(self):
         data = self.initial_data.copy()
         items = data.pop('items')
+        dgf_id = data.pop('dgfID')
         data.update({'status': 'draft', 'merchandisingObject': uuid4().hex})
         response = self.app.post_json('/auctions', {'data': data})
         self.assertEqual(response.status, '201 Created')
@@ -698,10 +699,11 @@ class AuctionResourceTest(BaseWebTest):
 
         self.app.authorization = ('Basic', ('convoy', ''))
         response = self.app.patch_json('/auctions/{}'.format(auction['id']),
-                                       {'data': {'items': items}})
+                                       {'data': {'items': items, 'dgfID': dgf_id}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(len(response.json['data']['items']), len(items))
+        self.assertEqual(response.json['data']['dgfID'], dgf_id)
 
         response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'active.tendering'}})
         self.assertEqual(response.status, '200 OK')
@@ -1285,9 +1287,11 @@ class AuctionResourceTest(BaseWebTest):
              u'location': u'body', u'name': u'items'}])
 
 
-        # Create auction with merchandisingObject and without items
-        data.update({'merchandisingObject': uuid4().hex})
+        # Create auction with merchandisingObject and without items and without dgfID
+        data = self.initial_data.copy()
+        data.update({'status': 'draft', 'merchandisingObject': uuid4().hex})
         items = data.pop('items')
+        dgf_id = data.pop('dgfID')
         response = self.app.post_json('/auctions', {'data': data})
         self.assertEqual(response.status, '201 Created')
         auction = response.json['data']
@@ -1310,18 +1314,21 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data'], auction)
 
-        # Switch auction status 'pending.verification' -> 'active.tendering' via convoy without items
+        # Switch auction status 'pending.verification' -> 'active.tendering' via convoy without items and dgfID
         response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'active.tendering'}}, status=422)
         self.assertEqual(response.status, '422 Unprocessable Entity')
         self.assertEqual(response.json['status'], 'error')
         self.assertEqual(response.json['errors'], [
             {u'description': [u"This field is required."],
-             u'location': u'body', u'name': u'items'}])
+             u'location': u'body', u'name': u'items'},
+            {u'description': [u"This field is required."],
+             u'location': u'body', u'name': u'dgfID'}])
 
-        # Add items via convoy
-        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'items': items}})
+        # Add items and dgfID via convoy
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'items': items, 'dgfID': dgf_id}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(len(response.json['data']['items']), len(items))
+        self.assertEqual(response.json['data']['dgfID'], dgf_id)
 
         # Switch auction status 'pending.verification' -> 'active.tendering' via convoy
         response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'active.tendering'}})
@@ -1385,6 +1392,30 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data'], auction)
+
+        # Create auction with merchandisingObject and without items and with dgfID
+        self.app.authorization = ('Basic', ('broker', ''))
+        data = self.initial_data.copy()
+        data.update({'status': 'draft', 'merchandisingObject': uuid4().hex})
+        data.pop('items')
+        response = self.app.post_json('/auctions', {'data': data})
+        self.assertEqual(response.status, '201 Created')
+        auction = response.json['data']
+        owner_token = response.json['access']['token']
+
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data'], auction)
+
+        # Switch auction status 'draft' -> 'pending.verification' via owner with dgfID
+        response = self.app.patch_json('/auctions/{}?acc_token={}'.format(auction['id'], owner_token), {'data': {'status': 'pending.verification'}},
+                                       status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertEqual(response.json['errors'], [
+            {u'description': u"This field is not required.",
+             u'location': u'body', u'name': u'dgfID'}])
 
 
 class AuctionProcessTest(BaseAuctionWebTest):
