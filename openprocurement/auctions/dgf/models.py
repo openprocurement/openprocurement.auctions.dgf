@@ -1,42 +1,70 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta, time
-from schematics.types import StringType, URLType, IntType, DateType, MD5Type
+from datetime import (
+    datetime,
+    timedelta,
+    time
+)
+from schematics.types import (
+    StringType,
+    IntType,
+    DateType,
+    MD5Type
+)
 from schematics.types.compound import ModelType
 from schematics.exceptions import ValidationError
-from schematics.transforms import blacklist, whitelist
+from schematics.transforms import (
+    blacklist,
+    whitelist
+)
 from schematics.types.serializable import serializable
-from urlparse import urlparse, parse_qs
-from string import hexdigits
 from zope.interface import implementer
 from pyramid.security import Allow
 from openprocurement.api.models import (
-    BooleanType, ListType, Feature, Period, get_now, TZ, ComplaintModelType,
-    validate_features_uniq, validate_lots_uniq, Identifier as BaseIdentifier,
-    Classification, validate_items_uniq, ORA_CODES, Address, Location,
-    schematics_embedded_role, SANDBOX_MODE,
+    BooleanType,
+    ListType,
+    Feature,
+    Period,
+    get_now,
+    TZ,
+    validate_features_uniq,
+    validate_lots_uniq,
+    Organization as BaseOrganization,
+    validate_items_uniq,
+    schematics_embedded_role,
+    SANDBOX_MODE
 )
 from openprocurement.api.utils import calculate_business_date
-from openprocurement.auctions.core.models import IAuction
-from openprocurement.auctions.flash.models import (
-    Auction as BaseAuction, Document as BaseDocument, Bid as BaseBid,
-    Complaint as BaseComplaint, Cancellation as BaseCancellation,
-    Contract as BaseContract, Award as BaseAward, Lot, edit_role,
-    calc_auction_end_time, COMPLAINT_STAND_STILL_TIME,
-    Organization as BaseOrganization, Item as BaseItem,
-    ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
-    get_auction, Administrator_role, view_role, enquiries_role
+from openprocurement.auctions.core.models import (
+    IAuction,
+    dgfDocument as Document,
+    dgfItem as Item,
+    dgfComplaint as Complaint,
+    Identifier,
+    dgfOrganization as Organization
 )
-from schematics_flexible.schematics_flexible import FlexibleModelType
-from openprocurement.schemas.dgf.schemas_store import SchemaStore
-
+from openprocurement.auctions.core.awarding_2_0.models import (
+    Award
+)
+from openprocurement.auctions.core.validation import (
+    validate_disallow_dgfPlatformLegalDetails
+)
+from openprocurement.auctions.flash.models import (
+    Auction as BaseAuction,
+    Bid as BaseBid,
+    Cancellation as BaseCancellation,
+    Contract as BaseContract,
+    Lot,
+    edit_role,
+    calc_auction_end_time,
+    COMPLAINT_STAND_STILL_TIME,
+    ProcuringEntity as BaseProcuringEntity,
+    Question as BaseQuestion,
+    get_auction,
+    Administrator_role,
+    view_role,
+    enquiries_role
+)
 from .constants import (
-    CAV_CODES,
-    ORA_CODES,
-    DOCUMENT_TYPE_URL_ONLY,
-    DOCUMENT_TYPE_OFFLINE,
-    VERIFY_AUCTION_PROTOCOL_TIME,
-    AWARD_PAYMENT_TIME,
-    CONTRACT_SIGNING_TIME,
     ELIGIBILITY_CRITERIA,
     DGF_ID_REQUIRED_FROM,
     DGF_DECISION_REQUIRED_FROM,
@@ -45,125 +73,9 @@ from .constants import (
 )
 
 
-def validate_disallow_dgfPlatformLegalDetails(docs, *args):
-    if any([i.documentType == 'x_dgfPlatformLegalDetails' for i in docs]):
-        raise ValidationError(u"Disallow documents with x_dgfPlatformLegalDetails documentType")
-
-
-class CAVClassification(Classification):
-    scheme = StringType(required=True, default=u'CAV', choices=[u'CAV'])
-    id = StringType(required=True, choices=CAV_CODES)
-
-
-class Item(BaseItem):
-    """A good, service, or work to be contracted."""
-    class Options:
-        roles = {
-            'create': blacklist('deliveryLocation', 'deliveryAddress', 'deliveryDate'),
-            'edit_active.tendering': blacklist('deliveryLocation', 'deliveryAddress', 'deliveryDate'),
-        }
-    classification = ModelType(CAVClassification, required=True)
-    additionalClassifications = ListType(ModelType(Classification), default=list())
-    address = ModelType(Address)
-    location = ModelType(Location)
-    schema_properties = FlexibleModelType(SchemaStore())
-
-    def validate_schema_properties(self, data, new_schema_properties):
-        """ Raise validation error if code in schema_properties mismatch
-            with classification id """
-        if new_schema_properties and not data['classification']['id'].startswith(new_schema_properties['code']):
-            raise ValidationError("classification id mismatch with schema_properties code")
-
-
-class Identifier(BaseIdentifier):
-    scheme = StringType(required=True, choices=ORA_CODES)
-
-
-class Organization(BaseOrganization):
-    identifier = ModelType(Identifier, required=True)
-    additionalIdentifiers = ListType(ModelType(Identifier))
-
-
 class ProcuringEntity(BaseProcuringEntity):
     identifier = ModelType(Identifier, required=True)
     additionalIdentifiers = ListType(ModelType(Identifier))
-
-
-class Document(BaseDocument):
-    format = StringType(regex='^[-\w]+/[-\.\w\+]+$')
-    url = StringType()
-    index = IntType()
-    accessDetails = StringType()
-    documentType = StringType(choices=[
-        'auctionNotice', 'awardNotice', 'contractNotice',
-        'notice', 'biddingDocuments', 'technicalSpecifications',
-        'evaluationCriteria', 'clarifications', 'shortlistedFirms',
-        'riskProvisions', 'billOfQuantity', 'bidders', 'conflictOfInterest',
-        'debarments', 'evaluationReports', 'winningBid', 'complaints',
-        'contractSigned', 'contractArrangements', 'contractSchedule',
-        'contractAnnexe', 'contractGuarantees', 'subContract',
-        'eligibilityCriteria', 'contractProforma', 'commercialProposal',
-        'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
-        'illustration', 'auctionProtocol', 'x_dgfPublicAssetCertificate',
-        'x_presentation', 'x_nda', 'x_dgfAssetFamiliarization',
-        'x_dgfPlatformLegalDetails',
-    ])
-
-    @serializable(serialized_name="url", serialize_when_none=False)
-    def download_url(self):
-        url = self.url
-        if not url or '?download=' not in url:
-            return url
-        doc_id = parse_qs(urlparse(url).query)['download'][-1]
-        root = self.__parent__
-        parents = []
-        while root.__parent__ is not None:
-            parents[0:0] = [root]
-            root = root.__parent__
-        request = root.request
-        if not request.registry.docservice_url:
-            return url
-        if 'status' in parents[0] and parents[0].status in type(parents[0])._options.roles:
-            role = parents[0].status
-            for index, obj in enumerate(parents):
-                if obj.id != url.split('/')[(index - len(parents)) * 2 - 1]:
-                    break
-                field = url.split('/')[(index - len(parents)) * 2]
-                if "_" in field:
-                    field = field[0] + field.title().replace("_", "")[1:]
-                roles = type(obj)._options.roles
-                if roles[role if role in roles else 'default'](field, []):
-                    return url
-        from openprocurement.api.utils import generate_docservice_url
-        if not self.hash:
-            path = [i for i in urlparse(url).path.split('/') if len(i) == 32 and not set(i).difference(hexdigits)]
-            return generate_docservice_url(request, doc_id, False, '{}/{}'.format(path[0], path[-1]))
-        return generate_docservice_url(request, doc_id, False)
-
-    def validate_hash(self, data, hash_):
-        doc_type = data.get('documentType')
-        if doc_type in (DOCUMENT_TYPE_URL_ONLY + DOCUMENT_TYPE_OFFLINE) and hash_:
-            raise ValidationError(u'This field is not required.')
-
-    def validate_format(self, data, format_):
-        doc_type = data.get('documentType')
-        if doc_type not in (DOCUMENT_TYPE_URL_ONLY + DOCUMENT_TYPE_OFFLINE) and not format_:
-            raise ValidationError(u'This field is required.')
-        if doc_type in DOCUMENT_TYPE_URL_ONLY and format_:
-            raise ValidationError(u'This field is not required.')
-
-    def validate_url(self, data, url):
-        doc_type = data.get('documentType')
-        if doc_type in DOCUMENT_TYPE_URL_ONLY:
-            URLType().validate(url)
-        if doc_type in DOCUMENT_TYPE_OFFLINE and url:
-            raise ValidationError(u'This field is not required.')
-        if doc_type not in DOCUMENT_TYPE_OFFLINE and not url:
-            raise ValidationError(u'This field is required.')
-
-    def validate_accessDetails(self, data, accessDetails):
-        if data.get('documentType') in DOCUMENT_TYPE_OFFLINE and not accessDetails:
-            raise ValidationError(u'This field is required.')
 
 
 class Bid(BaseBid):
@@ -182,11 +94,6 @@ class Question(BaseQuestion):
     author = ModelType(Organization, required=True)
 
 
-class Complaint(BaseComplaint):
-    author = ModelType(Organization, required=True)
-    documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
-
-
 class Cancellation(BaseCancellation):
     documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
 
@@ -196,77 +103,6 @@ class Contract(BaseContract):
     suppliers = ListType(ModelType(Organization), min_size=1, max_size=1)
     complaints = ListType(ModelType(Complaint), default=list())
     documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
-
-
-class Award(BaseAward):
-    class Options:
-        roles = {
-            'create': blacklist('id', 'status', 'date', 'documents', 'complaints', 'complaintPeriod', 'verificationPeriod', 'paymentPeriod', 'signingPeriod'),
-            'Administrator': whitelist('verificationPeriod', 'paymentPeriod', 'signingPeriod'),
-        }
-
-    def __local_roles__(self):
-        auction = get_auction(self)
-        for bid in auction.bids:
-            if bid.id == self.bid_id:
-                bid_owner = bid.owner
-                bid_owner_token = bid.owner_token
-        return dict([('{}_{}'.format(bid_owner, bid_owner_token), 'bid_owner')])
-
-    def __acl__(self):
-        auction = get_auction(self)
-        for bid in auction.bids:
-            if bid.id == self.bid_id:
-                bid_owner = bid.owner
-                bid_owner_token = bid.owner_token
-        return [(Allow, '{}_{}'.format(bid_owner, bid_owner_token), 'edit_auction_award')]
-
-    # pending status is deprecated. Only for backward compatibility with awarding 1.0
-    status = StringType(required=True, choices=['pending.waiting', 'pending.verification', 'pending.payment', 'unsuccessful', 'active', 'cancelled', 'pending'], default='pending.verification')
-    suppliers = ListType(ModelType(Organization), min_size=1, max_size=1)
-    complaints = ListType(ModelType(Complaint), default=list())
-    documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
-    items = ListType(ModelType(Item))
-    verificationPeriod = ModelType(Period)
-    paymentPeriod = ModelType(Period)
-    signingPeriod = ModelType(Period)
-
-    @serializable(serialized_name="verificationPeriod", serialize_when_none=False)
-    def award_verificationPeriod(self):
-        period = self.verificationPeriod
-        if not period:
-            return
-        if not period.endDate:
-            auction = get_auction(self)
-            period.endDate = calculate_business_date(period.startDate, VERIFY_AUCTION_PROTOCOL_TIME, auction, True)
-            round_to_18_hour_delta = period.endDate.replace(hour=18, minute=0, second=0) - period.endDate
-            period.endDate = calculate_business_date(period.endDate, round_to_18_hour_delta, auction, False)
-
-        return period.to_primitive()
-
-    @serializable(serialized_name="paymentPeriod", serialize_when_none=False)
-    def award_paymentPeriod(self):
-        period = self.paymentPeriod
-        if not period:
-            return
-        if not period.endDate:
-            auction = get_auction(self)
-            period.endDate = calculate_business_date(period.startDate, AWARD_PAYMENT_TIME, auction, True)
-            round_to_18_hour_delta = period.endDate.replace(hour=18, minute=0, second=0) - period.endDate
-            period.endDate = calculate_business_date(period.endDate, round_to_18_hour_delta, auction, False)
-        return period.to_primitive()
-
-    @serializable(serialized_name="signingPeriod", serialize_when_none=False)
-    def award_signingPeriod(self):
-        period = self.signingPeriod
-        if not period:
-            return
-        if not period.endDate:
-            auction = get_auction(self)
-            period.endDate = calculate_business_date(period.startDate, CONTRACT_SIGNING_TIME, auction, True)
-            round_to_18_hour_delta = period.endDate.replace(hour=18, minute=0, second=0) - period.endDate
-            period.endDate = calculate_business_date(period.endDate, round_to_18_hour_delta, auction, False)
-        return period.to_primitive()
 
 
 def validate_not_available(items, *args):
@@ -528,24 +364,6 @@ def validate_ua_fin(items, *args):
 class FinantialOrganization(BaseOrganization):
     identifier = ModelType(Identifier, required=True)
     additionalIdentifiers = ListType(ModelType(Identifier), required=True, validators=[validate_ua_fin])
-
-
-class Document(Document):
-    documentType = StringType(choices=[
-        'auctionNotice', 'awardNotice', 'contractNotice',
-        'notice', 'biddingDocuments', 'technicalSpecifications',
-        'evaluationCriteria', 'clarifications', 'shortlistedFirms',
-        'riskProvisions', 'billOfQuantity', 'bidders', 'conflictOfInterest',
-        'debarments', 'evaluationReports', 'winningBid', 'complaints',
-        'contractSigned', 'contractArrangements', 'contractSchedule',
-        'contractAnnexe', 'contractGuarantees', 'subContract',
-        'eligibilityCriteria', 'contractProforma', 'commercialProposal',
-        'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
-        'illustration', 'financialLicense', 'virtualDataRoom',
-        'auctionProtocol', 'x_dgfPublicAssetCertificate',
-        'x_presentation', 'x_nda',
-        'x_dgfPlatformLegalDetails', 'x_dgfAssetFamiliarization',
-    ])
 
 
 class Bid(Bid):
