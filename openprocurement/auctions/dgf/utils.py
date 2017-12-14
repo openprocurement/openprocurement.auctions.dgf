@@ -11,7 +11,7 @@ from openprocurement.auctions.core.utils import (
     cleanup_bids_for_cancelled_lots, check_complaint_status,
     remove_draft_bids,
 )
-from .constants import (
+from openprocurement.auctions.core.constants import (
     DOCUMENT_TYPE_URL_ONLY, DOCUMENT_TYPE_OFFLINE
 )
 
