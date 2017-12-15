@@ -3,7 +3,7 @@
 from openprocurement.auctions.core.utils import (
     opresource,
 )
-from openprocurement.auctions.dgf.views.other.award_document import (
+from openprocurement.auctions.core.awarding_2_0.views import (
     AuctionAwardDocumentResource,
 )
 

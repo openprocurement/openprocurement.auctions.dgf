@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from openprocurement.auctions.core.utils import (
-    opresource,
+    opresource
 )
-from openprocurement.auctions.dgf.views.other.award import (
-    AuctionAwardResource,
+from openprocurement.auctions.core.awarding_2_0.views import (
+    AuctionAwardResource
 )
 
 
