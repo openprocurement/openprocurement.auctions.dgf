@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 import logging
-from iso8601 import parse_date
-from openprocurement.api.models import get_now, TZ
-from openprocurement.api.utils import calculate_business_date
+from openprocurement.api.models import get_now
 from openprocurement.api.traversal import Root
-from barbecue import chef
-from uuid import uuid4
-
-from openprocurement.auctions.dgf.utils import invalidate_bids_under_threshold
+from openprocurement.auctions.core.awarding_2_0.migration import (
+    migrate_awarding_1_0_to_awarding_2_0
+)
 
 LOGGER = logging.getLogger(__name__)
 SCHEMA_VERSION = 1
@@ -39,19 +36,6 @@ def migrate_data(registry, destination=None):
         set_db_schema_version(registry.db, step + 1)
 
 
-def switch_auction_to_unsuccessful(auction):
-    if auction.get('suspended'):
-        return
-    actual_award = [a for a in auction["awards"] if a['status'] in ['active', 'pending']][0]
-    if auction['status'] == 'active.awarded':
-        for i in auction['contracts']:
-            if i['awardID'] == actual_award['id']:
-                i['status'] = 'cancelled'
-    actual_award['status'] = 'unsuccessful'
-    auction['awardPeriod']['endDate'] = actual_award['complaintPeriod']['endDate'] = get_now().isoformat()
-    auction['status'] = 'unsuccessful'
-
-
 def from0to1(registry):
     class Request(object):
         def __init__(self, registry):
@@ -65,68 +49,7 @@ def from0to1(registry):
     docs = []
     for i in results:
         auction = i.doc
-        if auction['procurementMethodType'] not in ['dgfOtherAssets', 'dgfFinancialAssets'] \
-                or auction['status'] not in ['active.qualification', 'active.awarded'] \
-                or 'awards' not in auction:
-            continue
-
-        now = get_now().isoformat()
-        awards = auction["awards"]
-        unique_awards = len(set([a['bid_id'] for a in awards]))
-
-        if unique_awards > 2:
-            switch_auction_to_unsuccessful(auction)
-        else:
-            invalidate_bids_under_threshold(auction)
-            award = [a for a in awards if a['status'] in ['active', 'pending']][0]
-            for bid in auction['bids']:
-                if bid['id'] == award['bid_id'] and bid['status'] == 'invalid':
-                    switch_auction_to_unsuccessful(auction)
-
-        if auction['status'] != 'unsuccessful':
-            award = [a for a in awards if a['status'] in ['active', 'pending']][0]
-
-            award_create_date = award['complaintPeriod']['startDate']
-
-            award.update({
-                'verificationPeriod': {
-                    'startDate': award_create_date,
-                    'endDate': award_create_date
-                },
-                'paymentPeriod': {
-                    'startDate': award_create_date,
-                },
-                'signingPeriod': {
-                    'startDate': award_create_date,
-                }
-            })
-
-            if award['status'] == 'pending':
-                award['status'] = 'pending.payment'
-
-            elif award['status'] == 'active':
-                award['verificationPeriod']['endDate'] = award['paymentPeriod']['endDate'] = now
-
-            if unique_awards == 1:
-                bid = chef(auction['bids'], auction.get('features'), [], True)[1]
-
-                award = {
-                    'id': uuid4().hex,
-                    'bid_id': bid['id'],
-                    'status': 'pending.waiting',
-                    'date': awards[0]['date'],
-                    'value': bid['value'],
-                    'suppliers': bid['tenderers'],
-                    'complaintPeriod': {
-                        'startDate': awards[0]['date']
-                    }
-                }
-                if bid['status'] == 'invalid':
-                    award['status'] = 'unsuccessful'
-                    award['complaintPeriod']['endDate'] = now
-
-                awards.append(award)
-
+        migrate_awarding_1_0_to_awarding_2_0(auction)
         model = registry.auction_procurementMethodTypes.get(auction['procurementMethodType'])
         if model:
             try:
@@ -138,7 +61,7 @@ def from0to1(registry):
             else:
                 auction['dateModified'] = get_now().isoformat()
                 docs.append(auction)
-        if len(docs) >= 2 ** 7: # pragma: no cover
+        if len(docs) >= 2 ** 7:  # pragma: no cover
             registry.db.update(docs)
             docs = []
     if docs:

@@ -45,6 +45,9 @@ from openprocurement.auctions.core.models import (
 from openprocurement.auctions.core.awarding_2_0.models import (
     Award
 )
+from openprocurement.auctions.core.awarding_2_0.utils import (
+    next_check_awarding
+)
 from openprocurement.auctions.core.validation import (
     validate_disallow_dgfPlatformLegalDetails
 )
@@ -284,57 +287,7 @@ class Auction(BaseAuction):
                     checks.append(lot.auctionPeriod.startDate.astimezone(TZ))
                 elif now < calc_auction_end_time(lot.numberOfBids, lot.auctionPeriod.startDate).astimezone(TZ):
                     checks.append(calc_auction_end_time(lot.numberOfBids, lot.auctionPeriod.startDate).astimezone(TZ))
-        elif not self.lots and self.status == 'active.qualification':
-            for award in self.awards:
-                if award.status == 'pending.verification':
-                    checks.append(award.verificationPeriod.endDate.astimezone(TZ))
-                elif award.status == 'pending.payment':
-                    checks.append(award.paymentPeriod.endDate.astimezone(TZ))
-        elif not self.lots and self.status == 'active.awarded' and not any([
-                i.status in self.block_complaint_status
-                for i in self.complaints
-            ]) and not any([
-                i.status in self.block_complaint_status
-                for a in self.awards
-                for i in a.complaints
-            ]):
-            standStillEnds = [
-                a.complaintPeriod.endDate.astimezone(TZ)
-                for a in self.awards
-                if a.complaintPeriod.endDate
-            ]
-            for award in self.awards:
-                if award.status == 'active':
-                    checks.append(award.signingPeriod.endDate.astimezone(TZ))
-
-            last_award_status = self.awards[-1].status if self.awards else ''
-            if standStillEnds and last_award_status == 'unsuccessful':
-                checks.append(max(standStillEnds))
-        elif self.lots and self.status in ['active.qualification', 'active.awarded'] and not any([
-                i.status in self.block_complaint_status and i.relatedLot is None
-                for i in self.complaints
-            ]):
-            for lot in self.lots:
-                if lot['status'] != 'active':
-                    continue
-                lot_awards = [i for i in self.awards if i.lotID == lot.id]
-                pending_complaints = any([
-                    i['status'] in self.block_complaint_status and i.relatedLot == lot.id
-                    for i in self.complaints
-                ])
-                pending_awards_complaints = any([
-                    i.status in self.block_complaint_status
-                    for a in lot_awards
-                    for i in a.complaints
-                ])
-                standStillEnds = [
-                    a.complaintPeriod.endDate.astimezone(TZ)
-                    for a in lot_awards
-                    if a.complaintPeriod.endDate
-                ]
-                last_award_status = lot_awards[-1].status if lot_awards else ''
-                if not pending_complaints and not pending_awards_complaints and standStillEnds and last_award_status == 'unsuccessful':
-                    checks.append(max(standStillEnds))
+        checks = next_check_awarding(self, checks)
         if self.status.startswith('active'):
             from openprocurement.api.utils import calculate_business_date
             for complaint in self.complaints:
