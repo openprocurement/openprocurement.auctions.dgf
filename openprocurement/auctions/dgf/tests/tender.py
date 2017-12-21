@@ -7,9 +7,17 @@ from iso8601 import parse_date
 
 from openprocurement.api.utils import ROUTE_PREFIX
 from openprocurement.api.models import get_now, SANDBOX_MODE, TZ
+from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.dgf.models import DGFOtherAssets, DGFFinancialAssets, DGF_ID_REQUIRED_FROM
 from openprocurement.auctions.dgf.constants import ELIGIBILITY_CRITERIA
-from openprocurement.auctions.dgf.tests.base import test_auction_data, test_financial_auction_data, test_organization, test_financial_organization, BaseWebTest, BaseAuctionWebTest
+from openprocurement.auctions.dgf.tests.base import (
+    test_auction_data,
+    test_financial_auction_data,
+    test_organization,
+    test_financial_organization,
+    BaseWebTest,
+    BaseAuctionWebTest,
+)
 
 
 class AuctionTest(BaseWebTest):
@@ -45,7 +53,7 @@ class AuctionTest(BaseWebTest):
             'procurementMethodType', 'procuringEntity',
             'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru',
             'title', 'title_en', 'title_ru', 'value', 'auctionPeriod',
-            'dgfDecisionDate', 'dgfDecisionID',
+            'dgfDecisionDate', 'dgfDecisionID', 'merchandisingObject',
         ])
         if SANDBOX_MODE:
             fields.add('procurementMethodDetails')
@@ -62,6 +70,15 @@ class AuctionTest(BaseWebTest):
 
 
 class AuctionResourceTest(BaseWebTest):
+
+    from openprocurement.auctions.core.tests.blanks.tender_blanks import (
+        create_auction_draft_with_registry,
+        convoy_change_status
+    )
+
+    test_01_create_auction_draft_with_registry = snitch(create_auction_draft_with_registry)
+    test_02_convoy_change_status = snitch(convoy_change_status)
+
     initial_data = test_auction_data
     initial_organization = test_organization
 
@@ -437,10 +454,8 @@ class AuctionResourceTest(BaseWebTest):
         self.assertIn({u'description': [u"Value must be one of ['open', 'selective', 'limited']."], u'location': u'body', u'name': u'procurementMethod'}, response.json['errors'])
         #self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'tenderPeriod'}, response.json['errors'])
         self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'minimalStep'}, response.json['errors'])
-        self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'items'}, response.json['errors'])
         #self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'enquiryPeriod'}, response.json['errors'])
         self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'value'}, response.json['errors'])
-        self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'items'}, response.json['errors'])
 
         response = self.app.post_json(request_path, {'data': {'enquiryPeriod': {'endDate': 'invalid_value'}, 'procurementMethodType': self.initial_data['procurementMethodType']}}, status=422)
         self.assertEqual(response.status, '422 Unprocessable Entity')
@@ -557,16 +572,25 @@ class AuctionResourceTest(BaseWebTest):
             {u'description': [u'currency should be only UAH'], u'location': u'body', u'name': u'value'}
         ])
 
-        data = self.initial_data["procuringEntity"]["contactPoint"]["telephone"]
-        del self.initial_data["procuringEntity"]["contactPoint"]["telephone"]
-        response = self.app.post_json(request_path, {'data': self.initial_data}, status=422)
-        self.initial_data["procuringEntity"]["contactPoint"]["telephone"] = data
+        auction_data = deepcopy(self.initial_data)
+        del auction_data["procuringEntity"]["contactPoint"]["telephone"]
+        response = self.app.post_json(request_path, {'data': auction_data}, status=422)
         self.assertEqual(response.status, '422 Unprocessable Entity')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['status'], 'error')
         self.assertEqual(response.json['errors'], [
             {u'description': {u'contactPoint': {u'email': [u'telephone or email should be present']}}, u'location': u'body', u'name': u'procuringEntity'}
         ])
+
+        auction_data = deepcopy(self.initial_data)
+        del auction_data["items"]
+        response = self.app.post_json(request_path, {'data': auction_data}, status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'items'},
+                      response.json['errors'])
+
 
     @unittest.skipIf(get_now() < DGF_ID_REQUIRED_FROM, "Can`t create auction without dgfID only from {}".format(DGF_ID_REQUIRED_FROM))
     def test_required_dgf_id(self):
@@ -585,7 +609,6 @@ class AuctionResourceTest(BaseWebTest):
         auction = response.json['data']
         self.assertIn('dgfID', auction)
         self.assertEqual(data['dgfID'], auction['dgfID'])
-
 
     def test_create_auction_auctionPeriod(self):
         data = self.initial_data.copy()
@@ -1706,6 +1729,10 @@ class AuctionProcessTest(BaseAuctionWebTest):
         self.assertEqual(response.json['data']['status'], 'complete')
 
 
+class AuctionProcessTestWithRegistry(AuctionProcessTest):
+    registry = True
+
+
 class FinancialAuctionTest(AuctionTest):
     auction = DGFFinancialAssets
 
@@ -1745,14 +1772,23 @@ class FinancialAuctionProcessTest(AuctionProcessTest):
     initial_organization = test_financial_organization
 
 
+class FinancialAuctionProcessTestWithRegistry(FinancialAuctionProcessTest):
+    registry = True
+
+
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionProcessTest))
     suite.addTest(unittest.makeSuite(AuctionResourceTest))
     suite.addTest(unittest.makeSuite(AuctionTest))
+
+    suite.addTest(unittest.makeSuite(AuctionProcessTestWithRegistry))
+
     suite.addTest(unittest.makeSuite(FinancialAuctionProcessTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionTest))
+
+    suite.addTest(unittest.makeSuite(FinancialAuctionProcessTestWithRegistry))
     return suite
 
 
