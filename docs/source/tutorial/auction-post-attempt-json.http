@@ -12,7 +12,7 @@ Content-Type: application/json; charset=UTF-8
   "status": "error", 
   "errors": [
     {
-      "description": "No JSON object could be decoded", 
+      "description": "Expecting value: line 1 column 1 (char 0)", 
       "location": "body", 
       "name": "data"
     }
