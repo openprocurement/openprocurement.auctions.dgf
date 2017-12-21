@@ -896,12 +896,35 @@ class FinancialAuctionContractDocumentResourceTest(AuctionContractDocumentResour
     initial_organization = test_financial_organization
 
 
+class AuctionContractResourceTestWithRegistry(AuctionContractResourceTest):
+    registry = True
+
+
+class AuctionContractDocumentResourceTestWithRegistry(AuctionContractDocumentResourceTest):
+    registry = True
+
+
+class FinancialAuctionContractResourceTestWithRegistry(FinancialAuctionContractResourceTest):
+    registry = True
+
+
+class FinancialAuctionContractDocumentResourceTestWithRegistry(FinancialAuctionContractDocumentResourceTest):
+    registry = True
+
+
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionContractResourceTest))
     suite.addTest(unittest.makeSuite(AuctionContractDocumentResourceTest))
+
     suite.addTest(unittest.makeSuite(FinancialAuctionContractResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionContractDocumentResourceTest))
+
+    suite.addTest(unittest.makeSuite(AuctionContractResourceTestWithRegistry))
+    suite.addTest(unittest.makeSuite(AuctionContractDocumentResourceTestWithRegistry))
+
+    suite.addTest(unittest.makeSuite(FinancialAuctionContractResourceTestWithRegistry))
+    suite.addTest(unittest.makeSuite(FinancialAuctionContractDocumentResourceTestWithRegistry))
     return suite
 
 

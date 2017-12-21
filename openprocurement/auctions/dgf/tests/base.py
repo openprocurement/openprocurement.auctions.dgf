@@ -2,6 +2,7 @@
 import os
 from datetime import datetime, timedelta
 from copy import deepcopy
+from uuid import uuid4
 
 from openprocurement.api.models import SANDBOX_MODE
 from openprocurement.api.utils import apply_data_patch
@@ -76,6 +77,26 @@ test_auction_data = {
 }
 if SANDBOX_MODE:
     test_auction_data['procurementMethodDetails'] = 'quick, accelerator=1440'
+
+schema_properties = {
+    "code": "06000000-2",
+    "version": "latest",
+    "properties": {
+        "region": "Вінницька область",
+        "district": "м.Вінниця",
+        "cadastral_number": "1",
+        "area": 1,
+        "forms_of_land_ownership": ["державна"],
+        "co_owners": False,
+        "availability_of_utilities": True,
+        "current_use": True
+   }
+ }
+
+test_auction_data_with_schema = deepcopy(test_auction_data)
+test_auction_data_with_schema['items'][0]['classification']['id'] = schema_properties['code']
+test_auction_data_with_schema['items'][0]['schema_properties'] = schema_properties
+
 test_features_auction_data = test_auction_data.copy()
 test_features_item = test_features_auction_data['items'][0].copy()
 test_features_item['id'] = "1"
@@ -208,6 +229,10 @@ for i in test_bids:
     bid['tenderers'] = [test_financial_organization]
     test_financial_bids.append(bid)
 
+test_financial_auction_data = deepcopy(test_financial_auction_data)
+test_financial_auction_data_with_schema = deepcopy(test_financial_auction_data)
+test_financial_auction_data_with_schema['items'][0]['classification']['id'] = schema_properties['code']
+test_financial_auction_data_with_schema['items'][0]['schema_properties'] = schema_properties
 
 class BaseWebTest(FlashBaseWebTest):
 
@@ -223,6 +248,63 @@ class BaseAuctionWebTest(FlashBaseAuctionWebTest):
     relative_to = os.path.dirname(__file__)
     initial_data = test_auction_data
     initial_organization = test_organization
+    registry = False
+
+    def create_auction(self):
+        data = deepcopy(self.initial_data)
+        if self.initial_lots:
+            lots = []
+            for i in self.initial_lots:
+                lot = deepcopy(i)
+                lot['id'] = uuid4().hex
+                lots.append(lot)
+            data['lots'] = self.initial_lots = lots
+            for i, item in enumerate(data['items']):
+                item['relatedLot'] = lots[i % len(lots)]['id']
+        if self.registry:
+            items = data.pop('items')
+            data.update({'status': "pending.verification", 'merchandisingObject': uuid4().hex})
+            response = self.app.post_json('/auctions', {'data': data})
+            auction = response.json['data']
+            self.auction_token = response.json['access']['token']
+            self.auction_id = auction['id']
+            authorization = self.app.authorization
+            self.app.authorization = ('Basic', ('convoy', ''))
+            response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'items': items, 'status': 'active.tendering'}})
+            self.assertEqual(response.status, '200 OK')
+            self.assertEqual(response.content_type, 'application/json')
+            auction = response.json['data']
+            self.assertEqual(auction['status'], 'active.tendering')
+            self.app.authorization = authorization
+        else:
+            response = self.app.post_json('/auctions', {'data': data})
+            auction = response.json['data']
+            self.auction_token = response.json['access']['token']
+            self.auction_id = auction['id']
+        status = auction['status']
+        if self.initial_bids:
+            self.initial_bids_tokens = {}
+            response = self.set_status('active.tendering')
+            status = response.json['data']['status']
+            bids = []
+            for i in self.initial_bids:
+                if self.initial_lots:
+                    i = i.copy()
+                    value = i.pop('value')
+                    i['lotValues'] = [
+                        {
+                            'value': value,
+                            'relatedLot': l['id'],
+                        }
+                        for l in self.initial_lots
+                    ]
+                response = self.app.post_json('/auctions/{}/bids'.format(self.auction_id), {'data': i})
+                self.assertEqual(response.status, '201 Created')
+                bids.append(response.json['data'])
+                self.initial_bids_tokens[response.json['data']['id']] = response.json['access']['token']
+            self.initial_bids = bids
+        if self.initial_status != status:
+            self.set_status(self.initial_status)
 
     def set_status(self, status, extra=None):
         data = {'status': status}

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta, time
-from schematics.types import StringType, URLType, IntType, DateType
+from schematics.types import StringType, URLType, IntType, DateType, MD5Type
 from schematics.types.compound import ModelType
 from schematics.exceptions import ValidationError
 from schematics.transforms import blacklist, whitelist
@@ -24,8 +24,10 @@ from openprocurement.auctions.flash.models import (
     calc_auction_end_time, COMPLAINT_STAND_STILL_TIME,
     Organization as BaseOrganization, Item as BaseItem,
     ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
-    get_auction, Administrator_role
+    get_auction, Administrator_role, view_role, enquiries_role
 )
+from schematics_flexible.schematics_flexible import FlexibleModelType
+from openprocurement.schemas.dgf.schemas_store import SchemaStore
 
 from .constants import (
     CAV_CODES,
@@ -64,6 +66,13 @@ class Item(BaseItem):
     additionalClassifications = ListType(ModelType(Classification), default=list())
     address = ModelType(Address)
     location = ModelType(Location)
+    schema_properties = FlexibleModelType(SchemaStore())
+
+    def validate_schema_properties(self, data, new_schema_properties):
+        """ Raise validation error if code in schema_properties mismatch
+            with classification id """
+        if new_schema_properties and not data['classification']['id'].startswith(new_schema_properties['code']):
+            raise ValidationError("classification id mismatch with schema_properties code")
 
 
 class Identifier(BaseIdentifier):
@@ -298,7 +307,7 @@ class AuctionAuctionPeriod(Period):
 
 
 create_role = (schematics_embedded_role + blacklist('owner_token', 'owner', '_attachments', 'revisions', 'date', 'dateModified', 'doc_id', 'auctionID', 'bids', 'documents', 'awards', 'questions', 'complaints', 'auctionUrl', 'status', 'enquiryPeriod', 'tenderPeriod', 'awardPeriod', 'procurementMethod', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'awardCriteria', 'submissionMethod', 'cancellations', 'numberOfBidders', 'contracts', 'suspended'))
-edit_role = (edit_role + blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru', 'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru', 'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru', 'items', 'procuringEntity', 'suspended'))
+edit_role = (edit_role + blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru', 'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru', 'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru', 'items', 'procuringEntity', 'suspended', 'merchandisingObject'))
 Administrator_role = (whitelist('suspended', 'awards') + Administrator_role)
 
 
@@ -310,6 +319,11 @@ class Auction(BaseAuction):
             'create': create_role,
             'edit_active.tendering': edit_role,
             'Administrator': Administrator_role,
+            'pending.verification': enquiries_role,
+            'invalid': view_role,
+            'edit_pending.verification': whitelist(),
+            'edit_invalid': whitelist(),
+            'convoy': whitelist('status', 'items', 'documents')
         }
 
     awards = ListType(ModelType(Award), default=list())
@@ -318,6 +332,7 @@ class Auction(BaseAuction):
     complaints = ListType(ModelType(Complaint), default=list())
     contracts = ListType(ModelType(Contract), default=list())
     dgfID = StringType()
+    merchandisingObject = MD5Type()
     dgfDecisionID = StringType()
     dgfDecisionDate = DateType()
     documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
@@ -327,11 +342,11 @@ class Auction(BaseAuction):
     auctionPeriod = ModelType(AuctionAuctionPeriod, required=True, default={})
     procurementMethodType = StringType(default="dgfOtherAssets")
     procuringEntity = ModelType(ProcuringEntity, required=True)
-    status = StringType(choices=['draft', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
+    status = StringType(choices=['draft', 'pending.verification', 'invalid', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
     questions = ListType(ModelType(Question), default=list())
     features = ListType(ModelType(Feature), validators=[validate_features_uniq, validate_not_available])
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
-    items = ListType(ModelType(Item), required=True, min_size=1, validators=[validate_items_uniq])
+    items = ListType(ModelType(Item), default=list(), validators=[validate_items_uniq])
     suspended = BooleanType()
 
     def __acl__(self):
@@ -340,6 +355,21 @@ class Auction(BaseAuction):
             (Allow, '{}_{}'.format(self.owner, self.owner_token), 'edit_auction_award'),
             (Allow, '{}_{}'.format(self.owner, self.owner_token), 'upload_auction_documents'),
         ]
+
+    def get_role(self):
+        root = self.__parent__
+        request = root.request
+        if request.authenticated_role == 'Administrator':
+            role = 'Administrator'
+        elif request.authenticated_role == 'chronograph':
+            role = 'chronograph'
+        elif request.authenticated_role == 'auction':
+            role = 'auction_{}'.format(request.method.lower())
+        elif request.authenticated_role == 'convoy':
+            role = 'convoy'
+        else:
+            role = 'edit_{}'.format(request.context.status)
+        return role
 
     def initialize(self):
         if not self.enquiryPeriod:
@@ -375,15 +405,27 @@ class Auction(BaseAuction):
             if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_ID_REQUIRED_FROM:
                 raise ValidationError(u'This field is required.')
 
-    def validate_dgfDecisionID(self, data, dgfID):
-        if not dgfID:
+    def validate_dgfDecisionID(self, data, dgfDecisionID):
+        if not dgfDecisionID:
             if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_DECISION_REQUIRED_FROM:
                 raise ValidationError(u'This field is required.')
 
-    def validate_dgfDecisionDate(self, data, dgfID):
-        if not dgfID:
+    def validate_dgfDecisionDate(self, data, dgfDecisionDate):
+        if not dgfDecisionDate:
             if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_DECISION_REQUIRED_FROM:
                 raise ValidationError(u'This field is required.')
+
+    def validate_merchandisingObject(self, data, merchandisingObject):
+        if data['status'] == 'pending.verification' and not merchandisingObject:
+            raise ValidationError(u'This field is required.')
+
+    def validate_items(self, data, items):
+        if data['status'] not in ['draft', 'pending.verification', 'invalid']:
+            if not items:
+                raise ValidationError(u'This field is required.')
+            elif len(items) < 1:
+                raise ValidationError(u'Please provide at least 1 item.')
+
 
     @serializable(serialize_when_none=False)
     def next_check(self):
@@ -501,8 +543,8 @@ class Document(Document):
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
         'illustration', 'financialLicense', 'virtualDataRoom',
         'auctionProtocol', 'x_dgfPublicAssetCertificate',
-        'x_presentation', 'x_nda', 'x_dgfAssetFamiliarization',
-        'x_dgfPlatformLegalDetails',
+        'x_presentation', 'x_nda',
+        'x_dgfPlatformLegalDetails', 'x_dgfAssetFamiliarization',
     ])
 
 

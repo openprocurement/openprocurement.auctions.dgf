@@ -101,7 +101,7 @@ Schema
 
     The time frame when complaints can be submitted.
 
-.. :lotID:
+.. :merchandisingObject:
     string
 
     ID of related :ref:`lot`.

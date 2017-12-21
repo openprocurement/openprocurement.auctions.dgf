@@ -1131,16 +1131,49 @@ class FinancialAuctionDocumentBidderResourceTest(AuctionBidderDocumentResourceTe
     initial_organization = test_financial_organization
 
 
+class AuctionBidderResourceTestWithRegistry(AuctionBidderResourceTest):
+    registry = True
+
+
+class AuctionBidderDocumentResourceTestWithRegistry(AuctionBidderDocumentResourceTest):
+    registry = True
+
+
+class AuctionBidderDocumentWithDSResourceTestWithRegistry(AuctionBidderDocumentWithDSResourceTest):
+    registry = True
+
+
+class FinancialAuctionBidderResourceTestWithRegistry(FinancialAuctionBidderResourceTest):
+    registry = True
+
+
+class FinancialAuctionBidderDocumentWithDSResourceTestWithRegistry(FinancialAuctionBidderDocumentWithDSResourceTest):
+    registry = True
+
+
+class FinancialAuctionDocumentBidderResourceTestWithRegistry(FinancialAuctionDocumentBidderResourceTest):
+    registry = True
+
+
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionBidderDocumentResourceTest))
     suite.addTest(unittest.makeSuite(AuctionBidderDocumentWithDSResourceTest))
     suite.addTest(unittest.makeSuite(AuctionBidderFeaturesResourceTest))
     suite.addTest(unittest.makeSuite(AuctionBidderResourceTest))
+
     suite.addTest(unittest.makeSuite(FinancialAuctionDocumentBidderResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionBidderDocumentWithDSResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionBidderFeaturesResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionBidderResourceTest))
+
+    suite.addTest(unittest.makeSuite(AuctionBidderResourceTestWithRegistry))
+    suite.addTest(unittest.makeSuite(AuctionBidderDocumentResourceTestWithRegistry))
+    suite.addTest(unittest.makeSuite(AuctionBidderDocumentWithDSResourceTestWithRegistry))
+
+    suite.addTest(unittest.makeSuite(FinancialAuctionBidderResourceTestWithRegistry))
+    suite.addTest(unittest.makeSuite(FinancialAuctionBidderDocumentWithDSResourceTestWithRegistry))
+    suite.addTest(unittest.makeSuite(FinancialAuctionDocumentBidderResourceTestWithRegistry))
     return suite
 
 

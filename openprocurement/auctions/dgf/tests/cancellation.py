@@ -682,14 +682,37 @@ class FinancialAuctionCancellationDocumentResourceTest(AuctionCancellationDocume
     initial_data = test_financial_auction_data
 
 
+class AuctionCancellationResourceTestWithRegistry(AuctionCancellationResourceTest):
+    registry = True
+
+
+class AuctionCancellationDocumentResourceTestWithRegistry(AuctionCancellationDocumentResourceTest):
+    registry = True
+
+
+class FinancialAuctionCancellationResourceTestWithRegistry(FinancialAuctionCancellationResourceTest):
+    registry = True
+
+
+class FinancialAuctionCancellationDocumentResourceTestWithRegistry(FinancialAuctionCancellationDocumentResourceTest):
+    registry = True
+
+
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionCancellationDocumentResourceTest))
     suite.addTest(unittest.makeSuite(AuctionLotsCancellationResourceTest))
     suite.addTest(unittest.makeSuite(AuctionCancellationResourceTest))
+
     suite.addTest(unittest.makeSuite(FinancialAuctionCancellationDocumentResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionLotsCancellationResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionCancellationResourceTest))
+
+    suite.addTest(unittest.makeSuite(AuctionCancellationResourceTestWithRegistry))
+    suite.addTest(unittest.makeSuite(AuctionCancellationDocumentResourceTestWithRegistry))
+
+    suite.addTest(unittest.makeSuite(FinancialAuctionCancellationResourceTestWithRegistry))
+    suite.addTest(unittest.makeSuite(FinancialAuctionCancellationDocumentResourceTestWithRegistry))
     return suite
 
 

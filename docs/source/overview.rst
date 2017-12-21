@@ -48,13 +48,10 @@ message.
 Main responsibilities
 ---------------------
 
-Business logic
---------------
-
 Project status
 --------------
 
-The project has pre alpha status.
+The project has beta status.
 
 The source repository for this project is on GitHub: https://github.com/openprocurement/openprocurement.auctions.dgf
 
@@ -70,9 +67,7 @@ Documentation of related packages
 API stability
 -------------
 
-API is highly unstable, and while API endpoints are expected to remain
-relatively stable the data exchange formats are expected to be changed a
-lot.  The changes in the API are communicated via `Open Procurement API
+API is relatively stable. The changes in the API are communicated via `Open Procurement API
 <https://groups.google.com/group/open-procurement-api>`_ maillist.
 
 Change log

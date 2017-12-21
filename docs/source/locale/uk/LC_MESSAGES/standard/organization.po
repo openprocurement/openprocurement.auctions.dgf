@@ -207,4 +207,3 @@ msgstr "URL-адреса"
 #: ../../source/standard/organization.rst:69
 msgid "Full legal name (e.g. Nadra Bank)."
 msgstr "Повна юридична назва (наприклад - “Надра Банк”)."
-
