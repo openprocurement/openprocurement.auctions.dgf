@@ -9,6 +9,7 @@ from openprocurement.api.utils import ROUTE_PREFIX
 from openprocurement.api.models import get_now, SANDBOX_MODE, TZ
 from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.dgf.models import DGFOtherAssets, DGFFinancialAssets, DGF_ID_REQUIRED_FROM
+from openprocurement.auctions.dgf.constants import ELIGIBILITY_CRITERIA
 from openprocurement.auctions.dgf.tests.base import (
     test_auction_data,
     test_financial_auction_data,
@@ -389,7 +390,7 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['status'], 'error')
         self.assertEqual(response.json['errors'], [
-            {u'description': u'No JSON object could be decoded',
+            {u'description': u'Expecting value: line 1 column 1 (char 0)',
                 u'location': u'body', u'name': u'data'}
         ])
 
@@ -1761,9 +1762,9 @@ class FinancialAuctionResourceTest(AuctionResourceTest):
         self.assertNotEqual(data['doc_id'], auction['id'])
         self.assertNotEqual(data['auctionID'], auction['auctionID'])
 
-        self.assertEqual(auction['eligibilityCriteria'], u"До участі допускаються лише ліцензовані фінансові установи.")
-        self.assertEqual(auction['eligibilityCriteria_en'], u"Only licensed financial institutions are eligible to participate.")
-        self.assertEqual(auction['eligibilityCriteria_ru'], u"К участию допускаются только лицензированные финансовые учреждения.")
+        self.assertEqual(auction['eligibilityCriteria'], ELIGIBILITY_CRITERIA['ua'])
+        self.assertEqual(auction['eligibilityCriteria_en'], ELIGIBILITY_CRITERIA['en'])
+        self.assertEqual(auction['eligibilityCriteria_ru'], ELIGIBILITY_CRITERIA['ru'])
 
 
 class FinancialAuctionProcessTest(AuctionProcessTest):
