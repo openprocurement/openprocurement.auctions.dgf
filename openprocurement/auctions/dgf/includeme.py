@@ -1,7 +1,9 @@
 from pyramid.interfaces import IRequest
 from openprocurement.auctions.dgf.models import DGFOtherAssets, DGFFinancialAssets
-from openprocurement.auctions.dgf.adapters import (AuctionDGFOtherAssetsConfigurator,
-                                                   AuctionDGFFinancialAssetsConfigurator)
+from openprocurement.auctions.dgf.adapters import (
+    AuctionDGFOtherAssetsConfigurator,
+    AuctionDGFFinancialAssetsConfigurator
+)
 from openprocurement.api.interfaces import IContentConfigurator
 from openprocurement.auctions.core.models import IAuction
 
