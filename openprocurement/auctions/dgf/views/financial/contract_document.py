@@ -3,9 +3,8 @@
 from openprocurement.auctions.core.utils import (
     opresource,
 )
-from openprocurement.auctions.dgf.views.other.contract_document import (
-    AuctionAwardContractDocumentResource,
-)
+from openprocurement.auctions.core.contracting.dgf.views.\
+    contract_document import BaseAuctionAwardContractDocumentResource
 
 
 @opresource(name='dgfFinancialAssets:Auction Contract Documents',
@@ -13,5 +12,7 @@ from openprocurement.auctions.dgf.views.other.contract_document import (
             path='/auctions/{auction_id}/contracts/{contract_id}/documents/{document_id}',
             auctionsprocurementMethodType="dgfFinancialAssets",
             description="Financial auction contract documents")
-class FinancialAuctionAwardContractDocumentResource(AuctionAwardContractDocumentResource):
+class FinancialAuctionAwardContractDocumentResource(
+    BaseAuctionAwardContractDocumentResource
+):
     pass
