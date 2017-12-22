@@ -795,35 +795,10 @@ class FinancialAuctionComplaintDocumentResourceTest(BaseAuctionWebTest):
     initial_organization = test_financial_organization
 
 
-class AuctionComplaintResourceTestWithRegistry(AuctionComplaintResourceTest):
-    registry = True
-
-
-class AuctionComplaintDocumentResourceTestWithRegistry(AuctionComplaintDocumentResourceTest):
-    registry = True
-
-
-class FinancialAuctionComplaintResourceTestWithRegistry(FinancialAuctionComplaintResourceTest):
-    registry = True
-
-
-class FinancialAuctionComplaintDocumentResourceTestWithRegistry(FinancialAuctionComplaintDocumentResourceTest):
-    registry = True
-
-
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionComplaintDocumentResourceTest))
     suite.addTest(unittest.makeSuite(AuctionComplaintResourceTest))
-
-    suite.addTest(unittest.makeSuite(FinancialAuctionComplaintResourceTest))
-    suite.addTest(unittest.makeSuite(FinancialAuctionComplaintDocumentResourceTest))
-
-    suite.addTest(unittest.makeSuite(AuctionComplaintResourceTestWithRegistry))
-    suite.addTest(unittest.makeSuite(AuctionComplaintDocumentResourceTestWithRegistry))
-
-    suite.addTest(unittest.makeSuite(FinancialAuctionComplaintResourceTestWithRegistry))
-    suite.addTest(unittest.makeSuite(FinancialAuctionComplaintDocumentResourceTestWithRegistry))
     return suite
 
 

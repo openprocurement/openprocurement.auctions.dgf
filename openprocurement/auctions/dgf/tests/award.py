@@ -3003,30 +3003,6 @@ class FinancialAuction2LotAwardDocumentResourceTest(Auction2LotAwardDocumentReso
     initial_organization = test_financial_organization
 
 
-class CreateAuctionAwardTestWithRegistry(CreateAuctionAwardTest):
-    registry = True
-
-
-class AuctionAwardProcessTestWithRegistry(AuctionAwardProcessTest):
-    registry = True
-
-
-class AuctionAwardDocumentResourceTestWithRegistry(AuctionAwardDocumentResourceTest):
-    registry = True
-
-
-class CreateFinancialAuctionAwardTestWithRegistry(CreateFinancialAuctionAwardTest):
-    registry = True
-
-
-class FinancialAuctionAwardProcessTestWithRegistry(FinancialAuctionAwardProcessTest):
-    registry = True
-
-
-class FinancialAuctionAwardDocumentResourceTestWithRegistry(FinancialAuctionAwardDocumentResourceTest):
-    registry = True
-
-
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(Auction2LotAwardComplaintDocumentResourceTest))
@@ -3036,8 +3012,8 @@ def suite():
     suite.addTest(unittest.makeSuite(AuctionAwardComplaintDocumentResourceTest))
     suite.addTest(unittest.makeSuite(AuctionAwardComplaintResourceTest))
     suite.addTest(unittest.makeSuite(AuctionAwardDocumentResourceTest))
+    suite.addTest(unittest.makeSuite(AuctionAwardResourceTest))
     suite.addTest(unittest.makeSuite(AuctionLotAwardResourceTest))
-
     suite.addTest(unittest.makeSuite(FinancialAuction2LotAwardComplaintDocumentResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuction2LotAwardComplaintResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuction2LotAwardDocumentResourceTest))
@@ -3045,14 +3021,8 @@ def suite():
     suite.addTest(unittest.makeSuite(FinancialAuctionAwardComplaintDocumentResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionAwardComplaintResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionAwardDocumentResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionAwardResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionLotAwardResourceTest))
-
-    suite.addTest(unittest.makeSuite(CreateAuctionAwardTestWithRegistry))
-    suite.addTest(unittest.makeSuite(AuctionAwardProcessTestWithRegistry))
-    suite.addTest(unittest.makeSuite(AuctionAwardDocumentResourceTestWithRegistry))
-    suite.addTest(unittest.makeSuite(CreateFinancialAuctionAwardTestWithRegistry))
-    suite.addTest(unittest.makeSuite(FinancialAuctionAwardProcessTestWithRegistry))
-    suite.addTest(unittest.makeSuite(FinancialAuctionAwardDocumentResourceTestWithRegistry))
     return suite
 
 

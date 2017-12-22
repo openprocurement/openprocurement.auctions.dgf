@@ -1273,35 +1273,12 @@ class FinancialAuctionDocumentWithDSResourceTest(AuctionDocumentWithDSResourceTe
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.auction) auction status")
 
 
-class AuctionDocumentResourceTestWithRegistry(AuctionDocumentResourceTest):
-    registry = True
-
-
-class AuctionDocumentWithDSResourceTestWithRegistry(AuctionDocumentWithDSResourceTest):
-    registry = True
-
-
-class FinancialAuctionDocumentResourceTestWithRegistry(FinancialAuctionDocumentResourceTest):
-    registry = True
-
-
-class FinancialAuctionDocumentWithDSResourceTestWithRegistry(FinancialAuctionDocumentWithDSResourceTest):
-    registry = True
-
-
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionDocumentResourceTest))
     suite.addTest(unittest.makeSuite(AuctionDocumentWithDSResourceTest))
-
     suite.addTest(unittest.makeSuite(FinancialAuctionDocumentResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionDocumentWithDSResourceTest))
-
-    suite.addTest(unittest.makeSuite(AuctionDocumentResourceTestWithRegistry))
-    suite.addTest(unittest.makeSuite(AuctionDocumentWithDSResourceTestWithRegistry))
-
-    suite.addTest(unittest.makeSuite(FinancialAuctionDocumentResourceTestWithRegistry))
-    suite.addTest(unittest.makeSuite(FinancialAuctionDocumentWithDSResourceTestWithRegistry))
     return suite
 
 

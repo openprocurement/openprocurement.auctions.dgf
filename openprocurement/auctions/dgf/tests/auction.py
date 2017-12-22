@@ -1251,42 +1251,15 @@ class FinancialAuctionFeaturesAuctionResourceTest(AuctionFeaturesAuctionResource
     ]
 
 
-class AuctionAuctionResourceTestWithRegistry(AuctionAuctionResourceTest):
-    registry = True
-
-
-class AuctionBidInvalidationAuctionResourceTestWithRegistry(AuctionBidInvalidationAuctionResourceTest):
-    registry = True
-
-
-class AuctionSameValueAuctionResourceTestWithRegistry(AuctionSameValueAuctionResourceTest):
-    registry = True
-
-
-class FinancialAuctionAuctionResourceTestWithRegistry(FinancialAuctionAuctionResourceTest):
-    registry = True
-
-
-class FinancialAuctionSameValueAuctionResourceTestWithRegistry(FinancialAuctionSameValueAuctionResourceTest,):
-    registry = True
-
 
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionAuctionResourceTest))
     suite.addTest(unittest.makeSuite(AuctionSameValueAuctionResourceTest))
     suite.addTest(unittest.makeSuite(AuctionFeaturesAuctionResourceTest))
-
     suite.addTest(unittest.makeSuite(FinancialAuctionAuctionResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionSameValueAuctionResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionFeaturesAuctionResourceTest))
-
-    suite.addTest(unittest.makeSuite(AuctionAuctionResourceTestWithRegistry))
-    suite.addTest(unittest.makeSuite(AuctionBidInvalidationAuctionResourceTestWithRegistry))
-    suite.addTest(unittest.makeSuite(AuctionSameValueAuctionResourceTestWithRegistry))
-
-    suite.addTest(unittest.makeSuite(FinancialAuctionAuctionResourceTestWithRegistry))
-    suite.addTest(unittest.makeSuite(FinancialAuctionSameValueAuctionResourceTestRegistry))
     return suite
 
 

@@ -876,62 +876,6 @@ class FinancialAuctionLotAwardComplaintSwitchResourceTest(AuctionLotAwardComplai
     initial_organization = test_financial_organization
 
 
-class AuctionSwitchQualificationResourceTestWithRegistry(AuctionSwitchQualificationResourceTest):
-    registry = True
-
-
-class AuctionSwitchAuctionResourceTestWithRegistry(AuctionSwitchAuctionResourceTest):
-    registry = True
-
-
-class AuctionSwitchUnsuccessfulResourceTestWithRegistry(AuctionSwitchUnsuccessfulResourceTest):
-    registry = True
-
-
-class AuctionAuctionPeriodResourceTestWithRegistry(AuctionAuctionPeriodResourceTest):
-    registry = True
-
-
-class AuctionAwardSwitchResourceTestWithRegistry(AuctionAwardSwitchResourceTest):
-    registry = True
-
-
-class AuctionAwardSwitch2ResourceTestWithRegistry(AuctionAwardSwitch2ResourceTest):
-    registry = True
-
-
-class AuctionComplaintSwitchResourceTestWithRegistry(AuctionComplaintSwitchResourceTest):
-    registry = True
-
-
-class AuctionDontSwitchSuspendedAuction2ResourceTestWithRegistry(AuctionDontSwitchSuspendedAuction2ResourceTest):
-    registry = True
-
-
-class AuctionDontSwitchSuspendedAuctionResourceTestWithRegistry(AuctionDontSwitchSuspendedAuctionResourceTest):
-    registry = True
-
-
-class FinancialAuctionSwitchQualificationResourceTestWithRegistry(FinancialAuctionSwitchQualificationResourceTest):
-    registry = True
-
-
-class FinancialAuctionSwitchAuctionResourceTestWithRegistry(FinancialAuctionSwitchAuctionResourceTest):
-    registry = True
-
-
-class FinancialAuctionSwitchUnsuccessfulResourceTestWithRegistry(FinancialAuctionSwitchUnsuccessfulResourceTest):
-    registry = True
-
-
-class FinancialAuctionAuctionPeriodResourceTestWithRegistry(FinancialAuctionAuctionPeriodResourceTest):
-    registry = True
-
-
-class FinancialAuctionComplaintSwitchResourceTestWithRegistry(FinancialAuctionComplaintSwitchResourceTest):
-    registry = True
-
-
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionAwardComplaintSwitchResourceTest))
@@ -944,7 +888,6 @@ def suite():
     suite.addTest(unittest.makeSuite(AuctionSwitchAuctionResourceTest))
     suite.addTest(unittest.makeSuite(AuctionSwitchQualificationResourceTest))
     suite.addTest(unittest.makeSuite(AuctionSwitchUnsuccessfulResourceTest))
-
     suite.addTest(unittest.makeSuite(FinancialAuctionAwardComplaintSwitchResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionComplaintSwitchResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionLotAwardComplaintSwitchResourceTest))
@@ -955,8 +898,6 @@ def suite():
     suite.addTest(unittest.makeSuite(FinancialAuctionSwitchAuctionResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionSwitchQualificationResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionSwitchUnsuccessfulResourceTest))
-
-
     return suite
 
 
