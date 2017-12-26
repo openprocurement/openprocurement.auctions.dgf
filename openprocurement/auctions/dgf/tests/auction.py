@@ -96,9 +96,12 @@ class AuctionSameValueAuctionResourceTest(BaseAuctionWebTest):
 
 @unittest.skip("option not available")
 class AuctionLotAuctionResourceTest(BaseAuctionWebTest):
+    initial_status = 'active.tendering'
+    initial_bids = test_bids
     initial_lots = test_lots
 
     test_get_auction_auction_not_found = snitch(get_auction_auction_not_found)
+
     test_get_auction_auction_lot = snitch(get_auction_auction_lot)
     test_post_auction_auction_lot = snitch(post_auction_auction_lot)
     test_patch_auction_auction_lot = snitch(patch_auction_auction_lot)
@@ -107,9 +110,12 @@ class AuctionLotAuctionResourceTest(BaseAuctionWebTest):
 
 @unittest.skip("option not available")
 class AuctionMultipleLotAuctionResourceTest(BaseAuctionWebTest):
+    initial_status = 'active.tendering'
+    initial_bids = test_bids
     initial_lots = 2 * test_lots
 
     test_get_auction_auction_not_found = snitch(get_auction_auction_not_found)
+
     test_get_auction_auction_2_lots = snitch(get_auction_auction_2_lots)
     test_post_auction_auction_2_lots = snitch(post_auction_auction_2_lots)
     test_patch_auction_auction_2_lots = snitch(patch_auction_auction_2_lots)

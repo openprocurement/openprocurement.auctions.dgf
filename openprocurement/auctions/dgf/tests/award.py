@@ -617,10 +617,13 @@ class AuctionLotAwardComplaintResourceTest(BaseAuctionWebTest):
 
 @unittest.skip("option not available")
 class Auction2LotAwardComplaintResourceTest(BaseAuctionWebTest):
+    initial_status = 'active.qualification'
     initial_lots = 2 * test_lots
+    initial_bids = test_bids
 
     test_create_auction_award_complaint_2_lots = snitch(create_auction_award_complaint_2_lots)
     test_patch_auction_award_complaint_2_lots = snitch(patch_auction_award_complaint_2_lots)
+
     test_get_auction_award_complaint = snitch(get_auction_award_complaint)
     test_get_auction_award_complaints = snitch(get_auction_award_complaints)
 
