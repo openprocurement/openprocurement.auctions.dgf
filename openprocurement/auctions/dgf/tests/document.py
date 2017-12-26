@@ -3,7 +3,9 @@ import unittest
 
 from openprocurement.auctions.core.tests.base import snitch
 
-from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest,  test_financial_auction_data
+from openprocurement.auctions.dgf.tests.base import (
+    BaseAuctionWebTest,  test_financial_auction_data
+)
 from openprocurement.auctions.dgf.tests.document_blanks import (
     # AuctionDocumentResourceTest
     not_found,
