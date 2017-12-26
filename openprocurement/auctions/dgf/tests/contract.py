@@ -23,8 +23,7 @@ from openprocurement.auctions.dgf.tests.contract_blanks import (
     # Auction2LotContractDocumentResourceTest
     create_auction_contract_document,
     put_auction_contract_document,
-    patch_auction_contract_document,
-
+    patch_auction_contract_document
 )
 
 

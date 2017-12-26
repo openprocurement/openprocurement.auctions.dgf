@@ -39,7 +39,7 @@ from openprocurement.auctions.dgf.tests.chronograph_blanks import (
     # AuctionDontSwitchSuspendedAuctionResourceTest
     switch_suspended_verification_to_unsuccessful,
     switch_suspended_payment_to_unsuccessful,
-    switch_suspended_active_to_unsuccessful,
+    switch_suspended_active_to_unsuccessful
 )
 
 
