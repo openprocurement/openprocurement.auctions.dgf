@@ -35,7 +35,6 @@ from openprocurement.auctions.dgf.tests.auction_blanks import (
     post_auction_auction_document_2_lots,
     # AuctionFeaturesAuctionResourceTest
     get_auction_auction_features
-
 )
 
 
