@@ -7,7 +7,7 @@ from openprocurement.auctions.dgf.tests.base import (
     BaseWebTest, BaseAuctionWebTest, test_lots,
     test_financial_auction_data, test_financial_organization
 )
-from openprocurement.auctions.dgf.tests.lot_blanks import (
+from openprocurement.auctions.dgf.tests.blanks.lot_blanks import (
     # AuctionLotResourceTest
     create_auction_lot_invalid,
     create_auction_lot,

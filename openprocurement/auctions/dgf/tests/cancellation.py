@@ -6,7 +6,7 @@ from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest, test_lots, test_bids, test_financial_auction_data, test_financial_bids
 )
-from openprocurement.auctions.dgf.tests.cancellation_blanks import (
+from openprocurement.auctions.dgf.tests.blanks.cancellation_blanks import (
     # AuctionCancellationResourceTest
     create_auction_cancellation_invalid,
     create_auction_cancellation,

@@ -10,7 +10,7 @@ from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest, test_bids, test_lots, test_financial_auction_data,
     test_financial_bids, test_financial_organization
 )
-from openprocurement.auctions.dgf.tests.contract_blanks import (
+from openprocurement.auctions.dgf.tests.blanks.contract_blanks import (
     # AuctionContractResourceTest
     create_auction_contract_invalid,
     create_auction_contract,

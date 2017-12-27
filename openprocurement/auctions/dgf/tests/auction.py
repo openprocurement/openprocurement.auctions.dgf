@@ -9,7 +9,7 @@ from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest, test_bids, test_lots, test_organization, test_features_auction_data,
     test_financial_auction_data, test_financial_bids, test_financial_organization, test_auction_data
 )
-from openprocurement.auctions.dgf.tests.auction_blanks import (
+from openprocurement.auctions.dgf.tests.blanks.auction_blanks import (
     # AuctionAuctionResourceTest
     get_auction_auction_not_found,
     get_auction_auction,

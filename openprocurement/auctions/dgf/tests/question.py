@@ -6,7 +6,7 @@ from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest, test_lots, test_financial_auction_data, test_financial_organization
 )
-from openprocurement.auctions.dgf.tests.question_blanks import (
+from openprocurement.auctions.dgf.tests.blanks.question_blanks import (
     # AuctionQuestionResourceTest
     create_auction_question_invalid,
     create_auction_question,

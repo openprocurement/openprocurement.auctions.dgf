@@ -12,7 +12,7 @@ from openprocurement.auctions.dgf.tests.base import (
     test_auction_data, test_financial_auction_data, test_organization,
     test_financial_organization, BaseWebTest, BaseAuctionWebTest
 )
-from openprocurement.auctions.dgf.tests.tender_blanks import (
+from openprocurement.auctions.dgf.tests.blanks.tender_blanks import (
     # AuctionTest
     simple_add_auction,
     create_role,
@@ -39,8 +39,6 @@ from openprocurement.auctions.dgf.tests.tender_blanks import (
     auction_Administrator_change,
     # AuctionProcessTest
     invalid_auction_conditions,
-    one_valid_bid_auction,
-    one_invalid_bid_auction,
     first_bid_auction,
     suspended_auction,
     # FinancialAuctionResourceTest

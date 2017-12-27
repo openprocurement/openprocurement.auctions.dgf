@@ -7,7 +7,7 @@ from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest, test_features_auction_data,
     test_financial_organization, test_financial_auction_data
 )
-from openprocurement.auctions.dgf.tests.bidder_blanks import (
+from openprocurement.auctions.dgf.tests.blanks.bidder_blanks import (
     # AuctionBidderResourceTest
     create_auction_bidder_invalid,
     create_auction_bidder,

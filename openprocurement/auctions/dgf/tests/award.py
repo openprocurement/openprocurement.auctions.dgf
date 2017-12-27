@@ -11,7 +11,7 @@ from openprocurement.auctions.dgf.tests.base import (
     test_financial_auction_data, test_financial_bids,
     test_financial_organization,
 )
-from openprocurement.auctions.dgf.tests.award_blanks import (
+from openprocurement.auctions.dgf.tests.blanks.award_blanks import (
     # CreateAuctionAwardTest
     create_auction_award_invalid,
     create_auction_award,

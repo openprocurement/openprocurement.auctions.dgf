@@ -10,7 +10,7 @@ from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest, test_lots, test_bids, test_financial_auction_data,
     test_financial_organization, test_financial_bids, test_organization
 )
-from openprocurement.auctions.dgf.tests.chronograph_blanks import (
+from openprocurement.auctions.dgf.tests.blanks.chronograph_blanks import (
     # AuctionSwitchQualificationResourceTest
     switch_to_qualification,
     # AuctionSwitchAuctionResourceTest

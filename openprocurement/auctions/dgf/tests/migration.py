@@ -8,7 +8,7 @@ from openprocurement.auctions.core.tests.base import snitch
 
 from openprocurement.auctions.dgf.migration import migrate_data, set_db_schema_version
 from openprocurement.auctions.dgf.tests.base import BaseWebTest, BaseAuctionWebTest, test_bids
-from openprocurement.auctions.dgf.tests.migration_blanks import (
+from openprocurement.auctions.dgf.tests.blanks.migration_blanks import (
     # MigrateTest
     migrate,
     # MigrateTestFrom1To2InvalidBids
