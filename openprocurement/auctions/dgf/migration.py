@@ -23,10 +23,9 @@ def set_db_schema_version(db, version):
 
 
 def migrate_data(registry, destination=None):
-    if registry.settings.get('plugins') and not any([dgf in registry.settings['plugins'].split(',')
-                                                     for dgf in
-                                                     ('auctions.dgf.other',
-                                                      'auctions.dgf.financial')]):
+    existing_plugins = (dgf in registry.settings['plugins'].split(',') for dgf in
+                        ('auctions.dgf.other', 'auctions.dgf.financial'))
+    if registry.settings.get('plugins') and not any(existing_plugins):
         return
     cur_version = get_db_schema_version(registry.db)
     if cur_version == SCHEMA_VERSION:
