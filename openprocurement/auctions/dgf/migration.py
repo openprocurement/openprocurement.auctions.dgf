@@ -2,7 +2,7 @@
 import logging
 from openprocurement.api.models import get_now
 from openprocurement.api.traversal import Root
-from openprocurement.auctions.core.awarding_2_0.migration import (
+from openprocurement.auctions.core.plugins.awarding_2_0.migration import (
     migrate_awarding_1_0_to_awarding_2_0
 )
 

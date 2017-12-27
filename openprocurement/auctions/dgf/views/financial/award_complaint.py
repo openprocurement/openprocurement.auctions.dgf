@@ -3,7 +3,7 @@
 from openprocurement.auctions.core.utils import (
     opresource,
 )
-from openprocurement.auctions.core.awarding_2_0.views import (
+from openprocurement.auctions.core.plugins.awarding_2_0.views.award_complaint import (
     AuctionAwardComplaintResource,
 )
 
