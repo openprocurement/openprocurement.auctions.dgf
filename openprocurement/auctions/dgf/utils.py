@@ -17,6 +17,9 @@ from openprocurement.auctions.core.constants import (
     DOCUMENT_TYPE_URL_ONLY,
     DOCUMENT_TYPE_OFFLINE
 )
+from openprocurement.auctions.core.contracting.dgf.utils import (
+    check_auction_status
+)
 PKG = get_distribution(__package__)
 LOGGER = getLogger(PKG.project_name)
 
@@ -58,22 +61,6 @@ def check_bids(request):
             if auction.auctionPeriod and auction.auctionPeriod.startDate:
                 auction.auctionPeriod.startDate = None
             auction.status = 'unsuccessful'
-
-
-def check_auction_status(request):
-    auction = request.validated['auction']
-    if auction.awards:
-        awards_statuses = set([award.status for award in auction.awards])
-    else:
-        awards_statuses = set([""])
-    if not awards_statuses.difference(set(['unsuccessful', 'cancelled'])):
-        LOGGER.info('Switched auction {} to {}'.format(auction.id, 'unsuccessful'),
-                    extra=context_unpack(request, {'MESSAGE_ID': 'switched_auction_unsuccessful'}))
-        auction.status = 'unsuccessful'
-    if auction.contracts and auction.contracts[-1].status == 'active':
-        LOGGER.info('Switched auction {} to {}'.format(auction.id, 'complete'),
-                    extra=context_unpack(request, {'MESSAGE_ID': 'switched_auction_complete'}))
-        auction.status = 'complete'
 
 
 def check_status(request):
