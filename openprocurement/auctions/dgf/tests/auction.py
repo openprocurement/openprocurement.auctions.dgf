@@ -4,6 +4,18 @@ import unittest
 from copy import deepcopy
 
 from openprocurement.auctions.core.tests.base import snitch
+from openprocurement.auctions.core.tests.auctions import (
+    AuctionAuctionResourceTestMixin,
+    AuctionLotAuctionResourceTestMixin,
+    AuctionMultipleLotAuctionResourceTestMixin
+)
+from openprocurement.auctions.core.tests.blanks.auction_blanks import (
+    # AuctionSameValueAuctionResourceTest
+    post_auction_auction_not_changed,
+    post_auction_auction_reversed,
+    # AuctionFeaturesAuctionResourceTest
+    get_auction_features_auction,
+    )
 
 from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest, test_bids, test_lots, test_organization, test_features_auction_data,
@@ -11,43 +23,23 @@ from openprocurement.auctions.dgf.tests.base import (
 )
 from openprocurement.auctions.dgf.tests.blanks.auction_blanks import (
     # AuctionAuctionResourceTest
-    get_auction_auction_not_found,
-    get_auction_auction,
     post_auction_auction,
-    patch_auction_auction,
-    post_auction_auction_document,
     # AuctionBidInvalidationAuctionResourceTest
     post_auction_all_invalid_bids,
     post_auction_one_invalid_bid,
     post_auction_one_valid_bid,
-    # AuctionSameValueAuctionResourceTest
-    post_auction_auction_not_changed,
-    post_auction_auction_reversed,
     # AuctionLotAuctionResourceTest
-    get_auction_auction_lot,
     post_auction_auction_lot,
-    patch_auction_auction_lot,
-    post_auction_auction_document_lot,
     # AuctionMultipleLotAuctionResourceTest
-    get_auction_auction_2_lots,
-    post_auction_auction_2_lots,
-    patch_auction_auction_2_lots,
-    post_auction_auction_document_2_lots,
-    # AuctionFeaturesAuctionResourceTest
-    get_auction_auction_features
+    post_auction_auction_2_lots
 )
 
 
-class AuctionAuctionResourceTest(BaseAuctionWebTest):
-    # initial_data = auction_data
+class AuctionAuctionResourceTest(BaseAuctionWebTest, AuctionAuctionResourceTestMixin):
     initial_status = 'active.tendering'
     initial_bids = test_bids
 
-    test_get_auction_auction_not_found = snitch(get_auction_auction_not_found)
-    test_get_auction_auction = snitch(get_auction_auction)
     test_post_auction_auction = snitch(post_auction_auction)
-    test_patch_auction_auction = snitch(patch_auction_auction)
-    test_post_auction_auction_document = snitch(post_auction_auction_document)
 
 
 class AuctionBidInvalidationAuctionResourceTest(BaseAuctionWebTest):
@@ -95,32 +87,22 @@ class AuctionSameValueAuctionResourceTest(BaseAuctionWebTest):
 
 
 @unittest.skip("option not available")
-class AuctionLotAuctionResourceTest(BaseAuctionWebTest):
+class AuctionLotAuctionResourceTest(BaseAuctionWebTest, AuctionLotAuctionResourceTestMixin):
     initial_status = 'active.tendering'
     initial_bids = test_bids
     initial_lots = test_lots
 
-    test_get_auction_auction_not_found = snitch(get_auction_auction_not_found)
-
-    test_get_auction_auction_lot = snitch(get_auction_auction_lot)
     test_post_auction_auction_lot = snitch(post_auction_auction_lot)
-    test_patch_auction_auction_lot = snitch(patch_auction_auction_lot)
-    test_post_auction_auction_document_lot = snitch(post_auction_auction_document_lot)
 
 
 @unittest.skip("option not available")
-class AuctionMultipleLotAuctionResourceTest(BaseAuctionWebTest):
+class AuctionMultipleLotAuctionResourceTest(BaseAuctionWebTest,
+                                            AuctionMultipleLotAuctionResourceTestMixin):
     initial_status = 'active.tendering'
     initial_bids = test_bids
     initial_lots = 2 * test_lots
 
-    test_get_auction_auction_not_found = snitch(get_auction_auction_not_found)
-
-    test_get_auction_auction_2_lots = snitch(get_auction_auction_2_lots)
     test_post_auction_auction_2_lots = snitch(post_auction_auction_2_lots)
-    test_patch_auction_auction_2_lots = snitch(patch_auction_auction_2_lots)
-    test_post_auction_auction_document_2_lots = snitch(post_auction_auction_document_2_lots)
-
 
 @unittest.skip("option not available")
 class AuctionFeaturesAuctionResourceTest(BaseAuctionWebTest):
@@ -164,7 +146,7 @@ class AuctionFeaturesAuctionResourceTest(BaseAuctionWebTest):
         }
     ]
 
-    test_get_auction_auction_features = snitch(get_auction_auction_features)
+    test_get_auction_auction_features = snitch(get_auction_features_auction)
 
 
 class FinancialAuctionAuctionResourceTest(AuctionAuctionResourceTest):
