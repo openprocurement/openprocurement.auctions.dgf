@@ -1,67 +1,33 @@
 # -*- coding: utf-8 -*-
 import unittest
+
 from datetime import timedelta
 
 from openprocurement.api.models import get_now
 
-from openprocurement.auctions.core.tests.base import snitch
-
-from openprocurement.auctions.dgf.tests.base import (
-    BaseAuctionWebTest, test_bids, test_lots,
-    test_financial_auction_data, test_financial_bids,
-    test_financial_organization,
+from openprocurement.auctions.core.tests.award import (
+    AuctionLotAwardResourceTestMixin,
+    AuctionAwardProcessTestMixin,
+    Auction2LotAwardResourceTestMixin,
+    AuctionAwardDocumentResourceTestMixin,
+    AuctionLotAwardComplaintResourceTestMixin,
+    Auction2LotAwardComplaintResourceTestMixin,
+    AuctionAwardComplaintDocumentResourceTestMixin,
+    Auction2LotAwardComplaintDocumentResourceTestMixin,
+    Auction2LotAwardDocumentResourceTestMixin
 )
-from openprocurement.auctions.dgf.tests.blanks.award_blanks import (
-    # CreateAuctionAwardTest
+from openprocurement.auctions.core.tests.base import snitch
+from openprocurement.auctions.core.tests.blanks.award_blanks import (
     create_auction_award_invalid,
     create_auction_award,
-    # AuctionAwardProcessTest
-    invalid_patch_auction_award,
-    patch_auction_award,
-    patch_auction_award_admin,
-    complate_auction_with_second_award1,
-    complate_auction_with_second_award2,
-    complate_auction_with_second_award3,
-    successful_second_auction_award,
-    unsuccessful_auction1,
-    unsuccessful_auction2,
-    unsuccessful_auction3,
-    unsuccessful_auction4,
-    unsuccessful_auction5,
-    get_auction_awards,
-    # AuctionLotAwardResourceTest
-    create_auction_award_lot,
-    patch_auction_award_lot,
-    patch_auction_award_unsuccessful_lot,
-    # Auction2LotAwardResourceTest
-    create_auction_award_2_lots,
-    patch_auction_award_2_lots,
-    # AuctionAwardComplaintResourceTest
-    create_auction_award_complaint,
-    patch_auction_award_complaint,
     get_auction_award_complaint,
-    get_auction_award_complaints,
-    # Auction2LotAwardComplaintResourceTest
-    create_auction_award_complaint_2_lots,
-    patch_auction_award_complaint_2_lots,
-    # AuctionAwardComplaintDocumentResourceTest
-    not_found_complaint_document,
-    create_auction_award_complaint_document,
-    put_auction_award_complaint_document,
-    patch_auction_award_complaint_document,
-    # Auction2LotAwardComplaintDocumentResourceTest
-    create_auction_award_complaint_document_2_lots,
-    put_auction_award_complaint_document_2_lots,
-    patch_auction_award_complaint_document_2_lots,
-    # AuctionAwardDocumentResourceTest
-    not_found_document,
-    create_auction_award_document,
-    put_auction_award_document,
-    patch_auction_award_document,
-    # Auction2LotAwardDocumentResourceTest
-    create_auction_award_document_2_lots,
-    put_auction_award_document_2_lots,
-    patch_auction_award_document_2_lots
+    get_auction_award_complaints
+)
+
+from openprocurement.auctions.dgf.tests.base import (
+    BaseAuctionWebTest, test_bids,
+    test_lots, test_financial_auction_data,
+    test_financial_bids, test_financial_organization,
 )
 
 
@@ -74,7 +40,7 @@ class CreateAuctionAwardTest(BaseAuctionWebTest):
     test_create_auction_award = snitch(create_auction_award)
 
 
-class AuctionAwardProcessTest(BaseAuctionWebTest):
+class AuctionAwardProcessTest(BaseAuctionWebTest, AuctionAwardProcessTestMixin):
     # initial_data = auction_data
     initial_status = 'active.auction'
     initial_bids = test_bids
@@ -159,40 +125,21 @@ class AuctionAwardProcessTest(BaseAuctionWebTest):
         self.second_award_id = self.second_award['id']
         self.app.authorization = authorization
 
-    test_invalid_patch_auction_award = snitch(invalid_patch_auction_award)
-    test_patch_auction_award = snitch(patch_auction_award)
-    test_patch_auction_award_admin = snitch(patch_auction_award_admin)
-    test_complate_auction_with_second_award1 = snitch(complate_auction_with_second_award1)
-    test_complate_auction_with_second_award2 = snitch(complate_auction_with_second_award2)
-    test_complate_auction_with_second_award3 = snitch(complate_auction_with_second_award3)
-    test_successful_second_auction_award = snitch(successful_second_auction_award)
-    test_unsuccessful_auction1 = snitch(unsuccessful_auction1)
-    test_unsuccessful_auction2 = snitch(unsuccessful_auction2)
-    test_unsuccessful_auction3 = snitch(unsuccessful_auction3)
-    test_unsuccessful_auction4 = snitch(unsuccessful_auction4)
-    test_unsuccessful_auction5 = snitch(unsuccessful_auction5)
-    test_get_auction_awards = snitch(get_auction_awards)
-
 
 @unittest.skip("option not available")
-class AuctionLotAwardResourceTest(BaseAuctionWebTest):
+class AuctionLotAwardResourceTest(BaseAuctionWebTest, AuctionLotAwardResourceTestMixin):
     initial_status = 'active.qualification'
     initial_lots = test_lots
     initial_bids = test_bids
 
-    test_create_auction_award_lot = snitch(create_auction_award_lot)
-    test_patch_auction_award_lot = snitch(patch_auction_award_lot)
-    test_patch_auction_award_unsuccessful_lot = snitch(patch_auction_award_unsuccessful_lot)
-
-
 @unittest.skip("option not available")
-class Auction2LotAwardResourceTest(BaseAuctionWebTest):
+class Auction2LotAwardResourceTest(BaseAuctionWebTest, Auction2LotAwardResourceTestMixin):
     initial_status = 'active.qualification'
     initial_lots = 2 * test_lots
     initial_bids = test_bids
 
-    test_create_auction_award_2_lots = snitch(create_auction_award_2_lots)
-    test_patch_auction_award_2_lots = snitch(patch_auction_award_2_lots)
+    # test_create_auction_award_2_lots = snitch(create_auction_award_2_lots)
+    # test_patch_auction_award_2_lots = snitch(patch_auction_award_2_lots)
 
 
 @unittest.skip("option not available")
@@ -594,7 +541,8 @@ class AuctionAwardComplaintResourceTest(BaseAuctionWebTest):
 
 
 @unittest.skip("option not available")
-class AuctionLotAwardComplaintResourceTest(BaseAuctionWebTest):
+class AuctionLotAwardComplaintResourceTest(BaseAuctionWebTest,
+                                           AuctionLotAwardComplaintResourceTestMixin):
     # initial_data = auction_data
     initial_status = 'active.qualification'
     initial_lots = test_lots
@@ -609,27 +557,21 @@ class AuctionLotAwardComplaintResourceTest(BaseAuctionWebTest):
         award = response.json['data']
         self.award_id = award['id']
 
-    test_create_auction_award_complaint = snitch(create_auction_award_complaint)
-    test_patch_auction_award_complaint = snitch(patch_auction_award_complaint)
-    test_get_auction_award_complaint = snitch(get_auction_award_complaint)
-    test_get_auction_award_complaints = snitch(get_auction_award_complaints)
-
 
 @unittest.skip("option not available")
-class Auction2LotAwardComplaintResourceTest(BaseAuctionWebTest):
+class Auction2LotAwardComplaintResourceTest(BaseAuctionWebTest,
+                                            Auction2LotAwardComplaintResourceTestMixin):
     initial_status = 'active.qualification'
     initial_lots = 2 * test_lots
     initial_bids = test_bids
 
-    test_create_auction_award_complaint_2_lots = snitch(create_auction_award_complaint_2_lots)
-    test_patch_auction_award_complaint_2_lots = snitch(patch_auction_award_complaint_2_lots)
-
     test_get_auction_award_complaint = snitch(get_auction_award_complaint)
     test_get_auction_award_complaints = snitch(get_auction_award_complaints)
 
 
 @unittest.skip("option not available")
-class AuctionAwardComplaintDocumentResourceTest(BaseAuctionWebTest):
+class AuctionAwardComplaintDocumentResourceTest(BaseAuctionWebTest,
+                                                AuctionAwardComplaintDocumentResourceTestMixin):
     initial_status = 'active.qualification'
     initial_bids = test_bids
 
@@ -647,14 +589,10 @@ class AuctionAwardComplaintDocumentResourceTest(BaseAuctionWebTest):
         self.complaint_id = complaint['id']
         self.complaint_owner_token = response.json['access']['token']
 
-    test_not_found_complaint_document = snitch(not_found_complaint_document)
-    test_create_auction_award_complaint_document = snitch(create_auction_award_complaint_document)
-    test_put_auction_award_complaint_document = snitch(put_auction_award_complaint_document)
-    test_patch_auction_award_complaint_document = snitch(patch_auction_award_complaint_document)
-
 
 @unittest.skip("option not available")
-class Auction2LotAwardComplaintDocumentResourceTest(BaseAuctionWebTest):
+class Auction2LotAwardComplaintDocumentResourceTest(BaseAuctionWebTest,
+                                                    Auction2LotAwardComplaintDocumentResourceTestMixin):
     initial_status = 'active.qualification'
     initial_bids = test_bids
     initial_lots = 2 * test_lots
@@ -674,12 +612,9 @@ class Auction2LotAwardComplaintDocumentResourceTest(BaseAuctionWebTest):
         self.complaint_id = complaint['id']
         self.complaint_owner_token = response.json['access']['token']
 
-    test_create_auction_award_complaint_document_2_lots = snitch(create_auction_award_complaint_document_2_lots)
-    test_put_auction_award_complaint_document_2_lots = snitch(put_auction_award_complaint_document_2_lots)
-    test_patch_auction_award_complaint_document_2_lots = snitch(patch_auction_award_complaint_document_2_lots)
 
-
-class AuctionAwardDocumentResourceTest(BaseAuctionWebTest):
+class AuctionAwardDocumentResourceTest(BaseAuctionWebTest,
+                                       AuctionAwardDocumentResourceTestMixin):
     initial_status = 'active.auction'
     initial_bids = test_bids
 
@@ -710,14 +645,15 @@ class AuctionAwardDocumentResourceTest(BaseAuctionWebTest):
         self.second_award_id = self.second_award['id']
         self.app.authorization = authorization
 
-    test_not_found_document = snitch(not_found_document)
-    test_create_auction_award_document = snitch(create_auction_award_document)
-    test_put_auction_award_document = snitch(put_auction_award_document)
-    test_patch_auction_award_document = snitch(patch_auction_award_document)
+    # test_not_found_document = snitch(not_found_document)
+    # test_create_auction_award_document = snitch(create_auction_award_document)
+    # test_put_auction_award_document = snitch(put_auction_award_document)
+    # test_patch_auction_award_document = snitch(patch_auction_award_document)
 
 
 @unittest.skip("option not available")
-class Auction2LotAwardDocumentResourceTest(BaseAuctionWebTest):
+class Auction2LotAwardDocumentResourceTest(BaseAuctionWebTest,
+                                           Auction2LotAwardDocumentResourceTestMixin):
     initial_status = 'active.qualification'
     initial_bids = test_bids
     initial_lots = 2 * test_lots
@@ -730,10 +666,6 @@ class Auction2LotAwardDocumentResourceTest(BaseAuctionWebTest):
             self.auction_id), {'data': {'suppliers': [self.initial_organization], 'status': 'pending', 'bid_id': bid['id'], 'lotID': bid['lotValues'][0]['relatedLot']}})
         award = response.json['data']
         self.award_id = award['id']
-
-    test_create_auction_award_document_2_lots = snitch(create_auction_award_document_2_lots)
-    test_put_auction_award_document_2_lots = snitch(put_auction_award_document_2_lots)
-    test_patch_auction_award_document_2_lots = snitch(patch_auction_award_document_2_lots)
 
 
 class CreateFinancialAuctionAwardTest(CreateAuctionAwardTest):
