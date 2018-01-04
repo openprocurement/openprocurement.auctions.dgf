@@ -2,30 +2,20 @@
 import unittest
 
 from openprocurement.auctions.core.tests.base import snitch
-
-from openprocurement.auctions.dgf.tests.base import (
-    BaseAuctionWebTest, test_lots, test_financial_auction_data, test_financial_organization
-)
-from openprocurement.auctions.dgf.tests.blanks.question_blanks import (
-    # AuctionQuestionResourceTest
-    create_auction_question_invalid,
-    create_auction_question,
-    patch_auction_question,
-    get_auction_question,
-    get_auction_questions,
+from openprocurement.auctions.core.tests.question import AuctionQuestionResourceTestMixin
+from openprocurement.auctions.core.tests.blanks.question_blanks import (
     # AuctionLotQuestionResourceTest
     create_auction_question_lot,
     patch_auction_question_lot
 )
 
+from openprocurement.auctions.dgf.tests.base import (
+    BaseAuctionWebTest, test_lots, test_financial_auction_data, test_financial_organization
+)
 
-class AuctionQuestionResourceTest(BaseAuctionWebTest):
 
-    test_create_auction_question_invalid = snitch(create_auction_question_invalid)
-    test_create_auction_question = snitch(create_auction_question)
-    test_patch_auction_question = snitch(patch_auction_question)
-    test_get_auction_question = snitch(get_auction_question)
-    test_get_auction_questions = snitch(get_auction_questions)
+class AuctionQuestionResourceTest(BaseAuctionWebTest, AuctionQuestionResourceTestMixin):
+    pass
 
 
 @unittest.skip("option not available")

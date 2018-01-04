@@ -5,12 +5,13 @@ from uuid import uuid4
 from copy import deepcopy
 
 from openprocurement.auctions.core.tests.base import snitch
+from openprocurement.auctions.core.tests.blanks.migration_blanks import migrate
 
-from openprocurement.auctions.dgf.migration import migrate_data, set_db_schema_version
+from openprocurement.auctions.dgf.migration import (
+    migrate_data, set_db_schema_version, SCHEMA_VERSION, get_db_schema_version
+)
 from openprocurement.auctions.dgf.tests.base import BaseWebTest, BaseAuctionWebTest, test_bids
 from openprocurement.auctions.dgf.tests.blanks.migration_blanks import (
-    # MigrateTest
-    migrate,
     # MigrateTestFrom1To2InvalidBids
     migrate_one_pending_bids,
     migrate_one_active_bids,
@@ -52,6 +53,9 @@ from openprocurement.auctions.dgf.tests.blanks.migration_blanks import (
 
 
 class MigrateTest(BaseWebTest):
+    migrate_data = staticmethod(migrate_data)
+    get_db_schema_version = staticmethod(get_db_schema_version)
+    schema_version = SCHEMA_VERSION
 
     def setUp(self):
         super(MigrateTest, self).setUp()
