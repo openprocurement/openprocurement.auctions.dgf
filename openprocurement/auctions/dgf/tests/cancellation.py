@@ -2,63 +2,45 @@
 import unittest
 
 from openprocurement.auctions.core.tests.base import snitch
-
+from openprocurement.auctions.core.tests.cancellation import (
+    AuctionCancellationResourceTestMixin,
+    AuctionCancellationDocumentResourceTestMixin,
+    AuctionLotCancellationResourceTestMixin,
+    AuctionLotsCancellationResourceTestMixin
+)
 from openprocurement.auctions.dgf.tests.base import (
-    BaseAuctionWebTest, test_lots, test_bids, test_financial_auction_data, test_financial_bids
-)
-from openprocurement.auctions.dgf.tests.blanks.cancellation_blanks import (
-    # AuctionCancellationResourceTest
-    create_auction_cancellation_invalid,
-    create_auction_cancellation,
-    patch_auction_cancellation,
-    get_auction_cancellation,
-    get_auction_cancellations,
-    # AuctionLotCancellationResourceTest
-    create_auction_cancellation_lot,
-    patch_auction_cancellation_lot,
-    # AuctionLotsCancellationResourceTest
-    create_auction_cancellation_2_lots,
-    patch_auction_cancellation_2_lots,
-    # AuctionCancellationDocumentResourceTest
-    not_found,
-    create_auction_cancellation_document,
-    put_auction_cancellation_document,
-    patch_auction_cancellation_document
+    BaseAuctionWebTest,
+    test_lots, test_bids,
+    test_financial_auction_data,
+    test_financial_bids
 )
 
 
-class AuctionCancellationResourceTest(BaseAuctionWebTest):
+
+class AuctionCancellationResourceTest(BaseAuctionWebTest,
+                                      AuctionCancellationResourceTestMixin):
     initial_status = 'active.tendering'
     initial_bids = test_bids
 
-    test_create_auction_cancellation_invalid = snitch(create_auction_cancellation_invalid)
-    test_create_auction_cancellation = snitch(create_auction_cancellation)
-    test_patch_auction_cancellation = snitch(patch_auction_cancellation)
-    test_get_auction_cancellation = snitch(get_auction_cancellation)
-    test_get_auction_cancellations = snitch(get_auction_cancellations)
-
 
 @unittest.skip("option not available")
-class AuctionLotCancellationResourceTest(BaseAuctionWebTest):
+class AuctionLotCancellationResourceTest(BaseAuctionWebTest,
+                                         AuctionLotCancellationResourceTestMixin):
     initial_status = 'active.tendering'
     initial_lots = test_lots
     initial_bids = test_bids
 
-    test_create_auction_cancellation_lot = snitch(create_auction_cancellation_lot)
-    test_patch_auction_cancellation_lot = snitch(patch_auction_cancellation_lot)
-
 
 @unittest.skip("option not available")
-class AuctionLotsCancellationResourceTest(BaseAuctionWebTest):
+class AuctionLotsCancellationResourceTest(BaseAuctionWebTest,
+                                          AuctionLotsCancellationResourceTestMixin):
     initial_status = 'active.tendering'
     initial_lots = 2 * test_lots
     initial_bids = test_bids
 
-    test_create_auction_cancellation_2_lots = snitch(create_auction_cancellation_2_lots)
-    test_patch_auction_cancellation_2_lots = snitch(patch_auction_cancellation_2_lots)
 
-
-class AuctionCancellationDocumentResourceTest(BaseAuctionWebTest):
+class AuctionCancellationDocumentResourceTest(BaseAuctionWebTest,
+                                              AuctionCancellationDocumentResourceTestMixin):
 
     def setUp(self):
         super(AuctionCancellationDocumentResourceTest, self).setUp()
@@ -67,11 +49,6 @@ class AuctionCancellationDocumentResourceTest(BaseAuctionWebTest):
             self.auction_id), {'data': {'reason': 'cancellation reason'}})
         cancellation = response.json['data']
         self.cancellation_id = cancellation['id']
-
-    test_not_found = snitch(not_found)
-    test_create_auction_cancellation_document = snitch(create_auction_cancellation_document)
-    test_put_auction_cancellation_document = snitch(put_auction_cancellation_document)
-    test_patch_auction_cancellation_document = snitch(patch_auction_cancellation_document)
 
 
 class FinancialAuctionCancellationResourceTest(AuctionCancellationResourceTest):
