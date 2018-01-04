@@ -10,24 +10,11 @@ from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest, test_lots, test_bids, test_financial_auction_data,
     test_financial_organization, test_financial_bids, test_organization
 )
-from openprocurement.auctions.dgf.tests.blanks.chronograph_blanks import (
-    # AuctionSwitchQualificationResourceTest
-    switch_to_qualification,
+from openprocurement.auctions.core.tests.blanks.chronograph_blanks import (
     # AuctionSwitchAuctionResourceTest
     switch_to_auction,
     # AuctionSwitchUnsuccessfulResourceTest
     switch_to_unsuccessful,
-    # AuctionAuctionPeriodResourceTest
-    set_auction_period,
-    reset_auction_period,
-    # AuctionAwardSwitchResourceTest
-    switch_verification_to_unsuccessful,
-    switch_payment_to_unsuccessful,
-    switch_active_to_unsuccessful,
-    # AuctionAwardSwitch2ResourceTest
-    switch_verification_to_unsuccessful_2,
-    switch_payment_to_unsuccessful_2,
-    switch_active_to_unsuccessful_2,
     # AuctionComplaintSwitchResourceTest
     switch_to_pending,
     switch_to_complaint,
@@ -36,10 +23,21 @@ from openprocurement.auctions.dgf.tests.blanks.chronograph_blanks import (
     switch_to_complaint_award,
     # AuctionDontSwitchSuspendedAuction2ResourceTest
     switch_suspended_auction_to_auction,
-    # AuctionDontSwitchSuspendedAuctionResourceTest
-    switch_suspended_verification_to_unsuccessful,
-    switch_suspended_payment_to_unsuccessful,
-    switch_suspended_active_to_unsuccessful
+)
+from openprocurement.auctions.core.tests.chronograph import (
+    AuctionAwardSwitchResourceTestMixin,
+    AuctionDontSwitchSuspendedAuctionResourceTestMixin
+)
+from openprocurement.auctions.dgf.tests.blanks.chronograph_blanks import (
+    # AuctionSwitchQualificationResourceTest
+    switch_to_qualification,
+    # AuctionAuctionPeriodResourceTest
+    set_auction_period,
+    reset_auction_period,
+    # AuctionAwardSwitch2ResourceTest
+    switch_verification_to_unsuccessful_2,
+    switch_payment_to_unsuccessful_2,
+    switch_active_to_unsuccessful_2,
 )
 
 
@@ -82,7 +80,7 @@ class AuctionAuctionPeriodResourceTest(BaseAuctionWebTest):
     test_reset_auction_period = snitch(reset_auction_period)
 
 
-class AuctionAwardSwitchResourceTest(BaseAuctionWebTest):
+class AuctionAwardSwitchResourceTest(BaseAuctionWebTest, AuctionAwardSwitchResourceTestMixin):
     initial_status = 'active.auction'
     initial_bids = test_bids
 
@@ -112,10 +110,6 @@ class AuctionAwardSwitchResourceTest(BaseAuctionWebTest):
         self.award_id = self.first_award_id = self.first_award['id']
         self.second_award_id = self.second_award['id']
         self.app.authorization = authorization
-
-    test_switch_verification_to_unsuccessful = snitch(switch_verification_to_unsuccessful)
-    test_switch_payment_to_unsuccessful = snitch(switch_payment_to_unsuccessful)
-    test_switch_active_to_unsuccessful = snitch(switch_active_to_unsuccessful)
 
 
 class AuctionAwardSwitch2ResourceTest(BaseAuctionWebTest):
@@ -212,7 +206,7 @@ class AuctionDontSwitchSuspendedAuction2ResourceTest(BaseAuctionWebTest):
     test_switch_suspended_auction_to_auction = snitch(switch_suspended_auction_to_auction)
 
 
-class AuctionDontSwitchSuspendedAuctionResourceTest(BaseAuctionWebTest):
+class AuctionDontSwitchSuspendedAuctionResourceTest(BaseAuctionWebTest, AuctionDontSwitchSuspendedAuctionResourceTestMixin):
     initial_status = 'active.auction'
     initial_bids = test_bids
 
@@ -242,10 +236,6 @@ class AuctionDontSwitchSuspendedAuctionResourceTest(BaseAuctionWebTest):
         self.award_id = self.first_award_id = self.first_award['id']
         self.second_award_id = self.second_award['id']
         self.app.authorization = authorization
-
-    test_switch_suspended_verification_to_unsuccessful = snitch(switch_suspended_verification_to_unsuccessful)
-    test_switch_suspended_payment_to_unsuccessful = snitch(switch_suspended_payment_to_unsuccessful)
-    test_switch_suspended_active_to_unsuccessful = snitch(switch_suspended_active_to_unsuccessful)
 
 
 class FinancialAuctionSwitchQualificationResourceTest(AuctionSwitchQualificationResourceTest):

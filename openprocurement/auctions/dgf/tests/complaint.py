@@ -7,32 +7,18 @@ from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest, test_lots,
     test_financial_auction_data, test_financial_organization
 )
-from openprocurement.auctions.dgf.tests.blanks.complaint_blanks import (
-    # AuctionComplaintResourceTest
-    create_auction_complaint_invalid,
-    create_auction_complaint,
-    patch_auction_complaint,
-    review_auction_complaint,
-    get_auction_complaint,
-    get_auction_complaints,
+from openprocurement.auctions.core.tests.complaint import (
+    AuctionComplaintResourceTestMixin,
+    InsiderAuctionComplaintDocumentResourceTestMixin
+)
+from openprocurement.auctions.core.tests.blanks.complaint_blanks import (
     # AuctionLotAwardComplaintResourceTest
-    create_auction_complaint_lot,
-    # AuctionComplaintDocumentResourceTest
-    not_found,
-    create_auction_complaint_document,
-    put_auction_complaint_document,
-    patch_auction_complaint_document
+    create_auction_complaint_lot
 )
 
 
-class AuctionComplaintResourceTest(BaseAuctionWebTest):
-
-    test_create_auction_complaint_invalid = snitch(create_auction_complaint_invalid)
-    test_create_auction_complaint = snitch(create_auction_complaint)
-    test_patch_auction_complaint = snitch(patch_auction_complaint)
-    test_review_auction_complaint = snitch(review_auction_complaint)
-    test_get_auction_complaint = snitch(get_auction_complaint)
-    test_get_auction_complaints = snitch(get_auction_complaints)
+class AuctionComplaintResourceTest(BaseAuctionWebTest, AuctionComplaintResourceTestMixin):
+    """Test Case for Auction Complaint resource"""
 
 
 @unittest.skip("option not available")
@@ -42,7 +28,7 @@ class AuctionLotAwardComplaintResourceTest(BaseAuctionWebTest):
     test_create_auction_complaint_lot = snitch(create_auction_complaint_lot)
 
 
-class AuctionComplaintDocumentResourceTest(BaseAuctionWebTest):
+class AuctionComplaintDocumentResourceTest(BaseAuctionWebTest, InsiderAuctionComplaintDocumentResourceTestMixin):
 
     def setUp(self):
         super(AuctionComplaintDocumentResourceTest, self).setUp()
@@ -52,11 +38,6 @@ class AuctionComplaintDocumentResourceTest(BaseAuctionWebTest):
         complaint = response.json['data']
         self.complaint_id = complaint['id']
         self.complaint_owner_token = response.json['access']['token']
-
-    test_not_found = snitch(not_found)
-    test_create_auction_complaint_document = snitch(create_auction_complaint_document)
-    test_put_auction_complaint_document = snitch(put_auction_complaint_document)
-    test_patch_auction_complaint_document = snitch(patch_auction_complaint_document)
 
 
 class FinancialAuctionComplaintResourceTest(BaseAuctionWebTest):
