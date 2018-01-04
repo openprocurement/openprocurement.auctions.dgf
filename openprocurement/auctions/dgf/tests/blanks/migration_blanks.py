@@ -5,17 +5,7 @@ from uuid import uuid4
 
 from openprocurement.api.models import get_now
 
-from openprocurement.auctions.dgf.migration import (
-    get_db_schema_version, SCHEMA_VERSION, migrate_data
-)
-
-# MigrateTest
-
-
-def migrate(self):
-    self.assertEqual(get_db_schema_version(self.db), SCHEMA_VERSION)
-    migrate_data(self.app.app.registry, 1)
-    self.assertEqual(get_db_schema_version(self.db), SCHEMA_VERSION)
+from openprocurement.auctions.dgf.migration import migrate_data
 
 # MigrateTestFrom1To2InvalidBids
 

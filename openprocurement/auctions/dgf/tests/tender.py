@@ -4,6 +4,21 @@ import unittest
 from openprocurement.api.models import get_now
 
 from openprocurement.auctions.core.tests.base import snitch
+from openprocurement.auctions.core.tests.tender import (
+    AuctionResourceTestMixin, DgfInsiderResourceTestMixin
+)
+from openprocurement.auctions.core.tests.blanks.tender_blanks import (
+    # AuctionTest
+    simple_add_auction,
+    # AuctionResourceTest
+    patch_tender_jsonpatch,
+    auction_features_invalid,
+    auction_features,
+    # AuctionProcessTest
+    invalid_auction_conditions,
+    one_valid_bid_auction,
+    one_invalid_bid_auction,
+)
 
 from openprocurement.auctions.dgf.models import (
     DGFOtherAssets, DGFFinancialAssets, DGF_ID_REQUIRED_FROM
@@ -14,31 +29,15 @@ from openprocurement.auctions.dgf.tests.base import (
 )
 from openprocurement.auctions.dgf.tests.blanks.tender_blanks import (
     # AuctionTest
-    simple_add_auction,
     create_role,
     edit_role,
     # AuctionResourceTest
-    empty_listing,
-    listing,
-    listing_changes,
-    listing_draft,
     create_auction_invalid,
     required_dgf_id,
     create_auction_auctionPeriod,
     create_auction_generated,
-    create_auction_draft,
     create_auction,
-    get_auction,
-    auction_features_invalid,
-    auction_features,
-    patch_tender_jsonpatch,
-    patch_auction,
-    dateModified_auction,
-    auction_not_found,
-    guarantee,
-    auction_Administrator_change,
     # AuctionProcessTest
-    invalid_auction_conditions,
     first_bid_auction,
     suspended_auction,
     # FinancialAuctionResourceTest
@@ -55,14 +54,11 @@ class AuctionTest(BaseWebTest):
     test_edit_role = snitch(edit_role)
 
 
-class AuctionResourceTest(BaseWebTest):
+class AuctionResourceTest(BaseWebTest, AuctionResourceTestMixin, DgfInsiderResourceTestMixin):
+    initial_status = 'active.tendering'
     initial_data = test_auction_data
     initial_organization = test_organization
 
-    test_empty_listing = snitch(empty_listing)
-    test_listing = snitch(listing)
-    test_listing_changes = snitch(listing_changes)
-    test_listing_draft = snitch(listing_draft)
     test_create_auction_invalid = snitch(create_auction_invalid)
     test_required_dgf_id = unittest.skipIf(
         get_now() < DGF_ID_REQUIRED_FROM,
@@ -70,21 +66,15 @@ class AuctionResourceTest(BaseWebTest):
     )(snitch(required_dgf_id))
     test_create_auction_auctionPeriod = snitch(create_auction_auctionPeriod)
     test_create_auction_generated = snitch(create_auction_generated)
-    test_create_auction_draft = snitch(create_auction_draft)
     test_create_auction = snitch(create_auction)
-    test_get_auction = snitch(get_auction)
     test_auction_features_invalid = unittest.skip("option not available")(snitch(auction_features_invalid))
     test_auction_features = unittest.skip("option not available")(snitch(auction_features))
-    test_patch_tender_jsonpatch = unittest.skip(
-        "this test requires fixed version of jsonpatch library")(snitch(patch_tender_jsonpatch))
-    test_patch_auction = snitch(patch_auction)
-    test_dateModified_auction = snitch(dateModified_auction)
-    test_auction_not_found = snitch(auction_not_found)
-    test_guarantee = snitch(guarantee)
-    test_auction_Administrator_change = snitch(auction_Administrator_change)
+    test_patch_tender_jsonpatch = snitch(patch_tender_jsonpatch)
 
 
 class AuctionProcessTest(BaseAuctionWebTest):
+    test_financial_organization = test_financial_organization
+
     #setUp = BaseWebTest.setUp
     def setUp(self):
         super(AuctionProcessTest.__bases__[0], self).setUp()
@@ -100,14 +90,11 @@ class FinancialAuctionTest(AuctionTest):
     auction = DGFFinancialAssets
 
 
-class FinancialAuctionResourceTest(BaseWebTest):
+class FinancialAuctionResourceTest(BaseWebTest, AuctionResourceTestMixin, DgfInsiderResourceTestMixin):
+    initial_status = 'active.tendering'
     initial_data = test_financial_auction_data
     initial_organization = test_financial_organization
 
-    test_empty_listing = snitch(empty_listing)
-    test_listing = snitch(listing)
-    test_listing_changes = snitch(listing_changes)
-    test_listing_draft = snitch(listing_draft)
     test_create_auction_invalid = snitch(create_auction_invalid)
     test_required_dgf_id = unittest.skipIf(
         get_now() < DGF_ID_REQUIRED_FROM,
@@ -115,18 +102,10 @@ class FinancialAuctionResourceTest(BaseWebTest):
     )(snitch(required_dgf_id))
     test_create_auction_auctionPeriod = snitch(create_auction_auctionPeriod)
 
-    test_create_auction_draft = snitch(create_auction_draft)
     test_create_auction = snitch(create_auction)
-    test_get_auction = snitch(get_auction)
     test_auction_features_invalid = unittest.skip("option not available")(snitch(auction_features_invalid))
     test_auction_features = unittest.skip("option not available")(snitch(auction_features))
-    test_patch_tender_jsonpatch = unittest.skip(
-        "this test requires fixed version of jsonpatch library")(snitch(patch_tender_jsonpatch))
-    test_patch_auction = snitch(patch_auction)
-    test_dateModified_auction = snitch(dateModified_auction)
-    test_auction_not_found = snitch(auction_not_found)
-    test_guarantee = snitch(guarantee)
-    test_auction_Administrator_change = snitch(auction_Administrator_change)
+    test_patch_tender_jsonpatch = snitch(patch_tender_jsonpatch)
 
     test_create_auction_generated_financial = snitch(create_auction_generated_financial)
 
