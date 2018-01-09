@@ -10,7 +10,7 @@ from openprocurement.auctions.core.utils import (
     apply_patch,
     opresource,
 )
-from openprocurement.auctions.dgf.utils import create_awards, invalidate_bids_under_threshold
+from openprocurement.auctions.dgf.utils import invalidate_bids_under_threshold
 from openprocurement.auctions.core.validation import (
     validate_auction_auction_data,
 )
@@ -165,7 +165,7 @@ class AuctionAuctionResource(APIResource):
         auction = self.request.validated['auction']
         invalidate_bids_under_threshold(auction)
         if any([i.status == 'active' for i in auction.bids]):
-            create_awards(self.request)
+            self.request.content_configurator.add_award()
         else:
             auction.status = 'unsuccessful'
         if save_auction(self.request):
@@ -190,7 +190,7 @@ class AuctionAuctionResource(APIResource):
             cleanup_bids_for_cancelled_lots(auction)
             invalidate_bids_under_threshold(auction)
             if any([i.status == 'active' for i in auction.bids]):
-                create_awards(self.request)
+                self.request.content_configurator.add_award()
             else:
                 auction.status = 'unsuccessful'
         if save_auction(self.request):
