@@ -19,6 +19,8 @@ from openprocurement.auctions.core.constants import (
 from openprocurement.auctions.core.contracting.dgf.utils import (
     check_auction_status
 )
+from openprocurement.auctions.core.plugins.awarding_2_0.utils import switch_to_next_award
+
 PKG = get_distribution(__package__)
 LOGGER = getLogger(PKG.project_name)
 
@@ -140,22 +142,6 @@ def invalidate_bids_under_threshold(auction):
     for bid in auction['bids']:
         if bid['value']['amount'] < value_threshold:
             bid['status'] = 'invalid'
-
-
-def switch_to_next_award(request):
-    auction = request.validated['auction']
-    now = get_now()
-    waiting_awards = [i for i in auction.awards if i['status'] == 'pending.waiting']
-    if waiting_awards:
-        award = waiting_awards[0]
-        award.status = 'pending.verification'
-        award.signingPeriod = award.paymentPeriod = award.verificationPeriod = {'startDate': now}
-        award = award.serialize()
-        request.response.headers['Location'] = request.route_url('{}:Auction Awards'.format(auction.procurementMethodType), auction_id=auction.id, award_id=award['id'])
-
-    elif all([award.status in ['cancelled', 'unsuccessful'] for award in auction.awards]):
-        auction.awardPeriod.endDate = now
-        auction.status = 'unsuccessful'
 
 
 def check_auction_protocol(award):
