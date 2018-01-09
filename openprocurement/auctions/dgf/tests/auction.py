@@ -18,8 +18,10 @@ from openprocurement.auctions.core.tests.blanks.auction_blanks import (
     )
 
 from openprocurement.auctions.dgf.tests.base import (
-    BaseAuctionWebTest, test_bids, test_lots, test_organization, test_features_auction_data,
-    test_financial_auction_data, test_financial_bids, test_financial_organization, test_auction_data
+    BaseAuctionWebTest, test_bids, test_lots,
+    test_organization, test_features_auction_data,
+    test_financial_auction_data, test_financial_bids,
+    test_financial_organization, test_auction_data
 )
 from openprocurement.auctions.dgf.tests.blanks.auction_blanks import (
     # AuctionAuctionResourceTest
@@ -103,6 +105,7 @@ class AuctionMultipleLotAuctionResourceTest(BaseAuctionWebTest,
     initial_lots = 2 * test_lots
 
     test_post_auction_auction_2_lots = snitch(post_auction_auction_2_lots)
+
 
 @unittest.skip("option not available")
 class AuctionFeaturesAuctionResourceTest(BaseAuctionWebTest):

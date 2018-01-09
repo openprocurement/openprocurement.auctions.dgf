@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.core.tests.cancellation import (
     AuctionCancellationResourceTestMixin,
     AuctionCancellationDocumentResourceTestMixin,
@@ -14,7 +13,6 @@ from openprocurement.auctions.dgf.tests.base import (
     test_financial_auction_data,
     test_financial_bids
 )
-
 
 
 class AuctionCancellationResourceTest(BaseAuctionWebTest,

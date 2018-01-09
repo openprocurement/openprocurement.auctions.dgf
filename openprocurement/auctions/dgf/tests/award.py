@@ -132,6 +132,7 @@ class AuctionLotAwardResourceTest(BaseAuctionWebTest, AuctionLotAwardResourceTes
     initial_lots = test_lots
     initial_bids = test_bids
 
+
 @unittest.skip("option not available")
 class Auction2LotAwardResourceTest(BaseAuctionWebTest, Auction2LotAwardResourceTestMixin):
     initial_status = 'active.qualification'
