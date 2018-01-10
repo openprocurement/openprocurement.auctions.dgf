@@ -23,7 +23,7 @@ from openprocurement.auctions.dgf.tests.blanks.bidder_blanks import (
     get_auction_bidder,
     delete_auction_bidder,
     get_auction_auctioners,
-    bid_Administrator_change,
+    bid_administrator_change,
     # AuctionBidderFeaturesResourceTest
     features_bidder,
     # AuctionBidderDocumentResourceTest
@@ -42,7 +42,7 @@ class AuctionBidderResourceTest(BaseAuctionWebTest):
     test_get_auction_bidder = snitch(get_auction_bidder)
     test_delete_auction_bidder = snitch(delete_auction_bidder)
     test_get_auction_auctioners = snitch(get_auction_auctioners)
-    test_bid_Administrator_change = snitch(bid_Administrator_change)
+    test_bid_administrator_change = snitch(bid_administrator_change)
 
 
 @unittest.skip("option not available")
@@ -97,7 +97,6 @@ class AuctionBidderDocumentWithDSResourceTest(BaseAuctionWebTest,
     test_create_auction_bidder_document_nopending = snitch(create_auction_bidder_document_nopending)
 
 
-
 class FinancialAuctionBidderResourceTest(BaseAuctionWebTest):
     initial_status = 'active.tendering'
     initial_data = test_financial_auction_data
@@ -110,7 +109,7 @@ class FinancialAuctionBidderResourceTest(BaseAuctionWebTest):
     test_get_auction_bidder = snitch(get_auction_bidder)
     test_delete_auction_bidder = snitch(delete_auction_bidder)
     test_get_auction_auctioners = snitch(get_auction_auctioners)
-    test_bid_Administrator_change = snitch(bid_Administrator_change)
+    test_bid_Administrator_change = snitch(bid_administrator_change)
 
     test_create_auction_bidder_invalid_additional_classification = snitch(create_auction_bidder_invalid_additional_classification)
 

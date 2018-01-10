@@ -2,6 +2,7 @@
 from copy import deepcopy
 
 from openprocurement.auctions.dgf.tests.base import test_financial_organization
+
 # AuctionBidderResourceTest
 
 
@@ -430,7 +431,7 @@ def get_auction_auctioners(self):
     ])
 
 
-def bid_Administrator_change(self):
+def bid_administrator_change(self):
     if self.initial_organization == test_financial_organization:
         response = self.app.post_json('/auctions/{}/bids'.format(
             self.auction_id), {
@@ -505,9 +506,6 @@ def features_bidder(self):
         bid.pop(u'id')
         self.assertEqual(bid, i)
 
-
-
-
 # AuctionBidderDocumentResourceTest
 
 
@@ -553,7 +551,6 @@ def create_auction_bidder_document_nopending(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"],
                      "Can't add document because award of bid is not in pending state")
-
 
 # FinancialAuctionBidderResourceTest
 
