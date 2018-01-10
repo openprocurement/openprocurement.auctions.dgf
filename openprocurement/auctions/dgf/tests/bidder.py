@@ -1097,6 +1097,59 @@ class AuctionBidderDocumentWithDSResourceTest(AuctionBidderDocumentResourceTest)
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.awarded) auction status")
 
+    def test_operate_bidder_document_json_invalid(self):
+        """
+            Check impossibility of operating with document where
+            documentType = auctionProtocol
+        """
+        # Test POST auctionProtocol document
+        response = self.app.post_json('/auctions/{}/bids/{}/documents'.format(self.auction_id, self.bid_id), {
+            'data': {
+                'title': 'name.doc',
+                'url': self.generate_docservice_url(),
+                'hash': 'md5:' + '0' * 32,
+                'format': 'application/msword',
+                'documentType': 'auctionProtocol'
+            }
+        }, status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'][0]["description"], "Can't add document with auctionProtocol documentType")\
+
+        # Test PUT auctionProtocol document
+        response = self.app.post_json('/auctions/{}/bids/{}/documents'.format(self.auction_id, self.bid_id), {
+            'data': {
+                'title': 'name.doc',
+                'url': self.generate_docservice_url(),
+                'hash': 'md5:' + '0' * 32,
+                'format': 'application/msword',
+            }})
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        doc_id = response.json["data"]['id']
+        self.assertIn(doc_id, response.headers['Location'])
+
+        response = self.app.put_json('/auctions/{}/bids/{}/documents/{}'.format(self.auction_id, self.bid_id, doc_id), {
+            'data': {
+                'title': 'name.doc',
+                'url': self.generate_docservice_url(),
+                'hash': 'md5:' + '0' * 32,
+                'format': 'application/msword',
+                'documentType': 'auctionProtocol'
+            }}, status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'][0]["description"], "Can't update document with auctionProtocol documentType")\
+
+        # Test PATCH auctionProtocol document
+        response = self.app.patch_json('/auctions/{}/bids/{}/documents/{}'.format(self.auction_id, self.bid_id, doc_id), {
+            'data': {
+                'documentType': 'auctionProtocol'
+            }}, status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'][0]["description"], "Can't update document with auctionProtocol documentType")
+
 
 class FinancialAuctionBidderResourceTest(AuctionBidderResourceTest):
     initial_data = test_financial_auction_data
