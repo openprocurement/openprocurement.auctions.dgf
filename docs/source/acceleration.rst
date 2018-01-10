@@ -27,3 +27,13 @@ Synchronization
 * If you synchronize via ``/auctions?mode=all``, then you will get all auctions.
 
 * Auction mode can be set only on auction creation, it can not be set later.
+
+Additional options
+~~~~~~~~~~~~~~~~~~
+* no-auction option
+To enable this option: set quick(``mode:no-auction``) as a value for `submissionMethodDetails`
+no-auction option allows conducting the whole procedure excluding auction stage. This means that active.auction stage will be completed based on the primary bid proposals; `auctionURL` will not be created, so auction can not be viewed.
+
+* fast-forward option
+To enable this option: set quick(``mode:fast-forward``) as a value for `submissionMethodDetails`.
+fast-forward option allows skipping auction stage. This means that active.auction stage will be completed based on the primary bid proposals; although `auctionURL` will be created and auction can be viewed.
