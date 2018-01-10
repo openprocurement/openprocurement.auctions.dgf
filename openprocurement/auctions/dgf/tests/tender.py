@@ -634,8 +634,9 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         auction = response.json['data']
-        if 'procurementMethodDetails' in auction:
-            auction.pop('procurementMethodDetails')
+        # Pop sandbox mode only keys
+        for key in ['procurementMethodDetails', 'submissionMethodDetails']:
+            auction.pop(key, None)
         self.assertEqual(set(auction), set([
             u'procurementMethodType', u'id', u'date', u'dateModified', u'auctionID', u'status', u'enquiryPeriod',
             u'tenderPeriod', u'minimalStep', u'items', u'value', u'procuringEntity', u'next_check', u'dgfID',
@@ -1935,8 +1936,9 @@ class FinancialAuctionResourceTest(AuctionResourceTest):
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         auction = response.json['data']
-        if 'procurementMethodDetails' in auction:
-            auction.pop('procurementMethodDetails')
+        # Pop sandbox mode only keys
+        for key in ['procurementMethodDetails', 'submissionMethodDetails']:
+            auction.pop(key, None)
         self.assertEqual(set(auction), set([
             u'procurementMethodType', u'id', u'date', u'dateModified', u'auctionID', u'status', u'enquiryPeriod',
             u'tenderPeriod', u'minimalStep', u'items', u'value', u'procuringEntity', u'next_check', u'dgfID',

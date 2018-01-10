@@ -77,6 +77,7 @@ test_auction_data = {
 }
 if SANDBOX_MODE:
     test_auction_data['procurementMethodDetails'] = 'quick, accelerator=1440'
+    test_auction_data['submissionMethodDetails'] = 'test submissionMethodDetails'
 
 schema_properties = {
     "code": "06000000-2",

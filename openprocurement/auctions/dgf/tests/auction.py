@@ -3,7 +3,12 @@ import unittest
 from datetime import timedelta
 from copy import deepcopy
 
-from openprocurement.api.models import get_now
+from openprocurement.api.models import get_now, SANDBOX_MODE
+from openprocurement.auctions.core.tests.base import snitch
+from openprocurement.auctions.core.tests.blanks.auction_blanks import (
+    submission_method_details_no_auction,
+    submission_method_details_fast_forward
+)
 from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest, test_bids, test_lots, test_organization, test_features_auction_data,
     test_financial_auction_data, test_financial_bids, test_financial_organization, test_auction_data
@@ -11,7 +16,7 @@ from openprocurement.auctions.dgf.tests.base import (
 
 
 class AuctionAuctionResourceTest(BaseAuctionWebTest):
-    #initial_data = auction_data
+    initial_data = test_auction_data
     initial_status = 'active.tendering'
     initial_bids = test_bids
 
@@ -58,6 +63,8 @@ class AuctionAuctionResourceTest(BaseAuctionWebTest):
         self.assertNotEqual(auction, self.initial_data)
         self.assertIn('dateModified', auction)
         self.assertIn('minimalStep', auction)
+        if SANDBOX_MODE:
+            self.assertIn('submissionMethodDetails', auction)
         self.assertNotIn("procuringEntity", auction)
         self.assertNotIn("tenderers", auction["bids"][0])
         self.assertEqual(auction["bids"][0]['value']['amount'], self.initial_bids[0]['value']['amount'])
@@ -448,6 +455,15 @@ class AuctionSameValueAuctionResourceTest(BaseAuctionWebTest):
         self.assertEqual(auction["awards"][0]['bid_id'], self.initial_bids[2]['id'])
         self.assertEqual(auction["awards"][0]['value']['amount'], self.initial_bids[2]['value']['amount'])
         self.assertEqual(auction["awards"][0]['suppliers'], self.initial_bids[2]['tenderers'])
+
+@unittest.skipUnless(SANDBOX_MODE, u"Only in SANDBOX_MODE")
+class AuctionSubmissionMethodDetailsTest(BaseAuctionWebTest):
+    initial_data = deepcopy(test_auction_data)
+    initial_bids = test_bids
+    initial_status = 'active.auction'
+
+    test_submission_method_details_no_auction = snitch(submission_method_details_no_auction)
+    test_submission_method_details_fast_forward = snitch(submission_method_details_fast_forward)
 
 
 @unittest.skip("option not available")
@@ -1192,6 +1208,10 @@ class FinancialAuctionSameValueAuctionResourceTest(AuctionSameValueAuctionResour
         for i in range(3)
     ]
 
+@unittest.skipUnless(SANDBOX_MODE, u"Only in SANDBOX_MODE")
+class FinancialAuctionSubmissionMethodDetailsTest(AuctionSubmissionMethodDetailsTest):
+    initial_data = deepcopy(test_financial_auction_data)
+    initial_bids = test_financial_bids
 
 @unittest.skip("option not available")
 class FinancialAuctionLotAuctionResourceTest(AuctionLotAuctionResourceTest):
@@ -1263,6 +1283,11 @@ class AuctionSameValueAuctionResourceTestWithRegistry(AuctionSameValueAuctionRes
     registry = True
 
 
+@unittest.skipUnless(SANDBOX_MODE, u"Only in SANDBOX_MODE")
+class AuctionSubmissionMethodDetailsTestWithRegistry(AuctionSubmissionMethodDetailsTest):
+    registry = True
+
+
 class FinancialAuctionAuctionResourceTestWithRegistry(FinancialAuctionAuctionResourceTest):
     registry = True
 
@@ -1271,22 +1296,35 @@ class FinancialAuctionSameValueAuctionResourceTestWithRegistry(FinancialAuctionS
     registry = True
 
 
+@unittest.skipUnless(SANDBOX_MODE, u"Only in SANDBOX_MODE")
+class FinancialAuctionSubmissionMethodDetailsTestWithRegistry(FinancialAuctionSubmissionMethodDetailsTest):
+    registry = True
+
+
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionAuctionResourceTest))
     suite.addTest(unittest.makeSuite(AuctionSameValueAuctionResourceTest))
     suite.addTest(unittest.makeSuite(AuctionFeaturesAuctionResourceTest))
+    suite.addTest(unittest.makeSuite(AuctionSubmissionMethodDetailsTest))
+    suite.addTest(unittest.makeSuite(AuctionSubmissionMethodDetailsTest))
 
     suite.addTest(unittest.makeSuite(FinancialAuctionAuctionResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionSameValueAuctionResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionFeaturesAuctionResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionSubmissionMethodDetailsTest))
 
     suite.addTest(unittest.makeSuite(AuctionAuctionResourceTestWithRegistry))
     suite.addTest(unittest.makeSuite(AuctionBidInvalidationAuctionResourceTestWithRegistry))
     suite.addTest(unittest.makeSuite(AuctionSameValueAuctionResourceTestWithRegistry))
+    suite.addTest(unittest.makeSuite(AuctionSubmissionMethodDetailsTestWithRegistry))
 
     suite.addTest(unittest.makeSuite(FinancialAuctionAuctionResourceTestWithRegistry))
     suite.addTest(unittest.makeSuite(FinancialAuctionSameValueAuctionResourceTestRegistry))
+    suite.addTest(unittest.makeSuite(FinancialAuctionSubmissionMethodDetailsTestWithRegistry))
+
+
+
     return suite
 
 
