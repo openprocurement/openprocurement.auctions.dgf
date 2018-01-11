@@ -39,6 +39,9 @@ from openprocurement.auctions.core.plugins.awarding_2_0.models import (
 from openprocurement.auctions.core.plugins.awarding_2_0.utils import (
     next_check_awarding
 )
+from openprocurement.auctions.core.plugins.contracting.dgf.models import (
+    Contract,
+)
 from openprocurement.auctions.core.validation import (
     validate_disallow_dgfPlatformLegalDetails
 )
@@ -46,7 +49,6 @@ from openprocurement.auctions.flash.models import (
     Auction as BaseAuction,
     Bid as BaseBid,
     Cancellation as BaseCancellation,
-    Contract as BaseContract,
     Lot,
     edit_role,
     calc_auction_end_time,
@@ -89,13 +91,6 @@ class Question(BaseQuestion):
 
 
 class Cancellation(BaseCancellation):
-    documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
-
-
-class Contract(BaseContract):
-    items = ListType(ModelType(Item))
-    suppliers = ListType(ModelType(Organization), min_size=1, max_size=1)
-    complaints = ListType(ModelType(Complaint), default=list())
     documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
 
 
