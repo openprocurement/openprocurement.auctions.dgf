@@ -16,10 +16,10 @@ from openprocurement.auctions.core.constants import (
     DOCUMENT_TYPE_URL_ONLY,
     DOCUMENT_TYPE_OFFLINE
 )
-from openprocurement.auctions.core.plugins.contracting.dgf.utils import (
+from openprocurement.auctions.core.plugins.contracting.v2.utils import (
     check_auction_status
 )
-from openprocurement.auctions.core.plugins.awarding_2_0.utils import switch_to_next_award
+from openprocurement.auctions.core.plugins.awarding.v2.utils import switch_to_next_award
 
 PKG = get_distribution(__package__)
 LOGGER = getLogger(PKG.project_name)
