@@ -52,7 +52,7 @@ Schema
     Made up of a unit name, and the value of a single unit.
 
 :quantity:
-    integer
+    decimal
 
     |ocdsDescription|
     The number of units required

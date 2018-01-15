@@ -211,6 +211,9 @@ msgstr ""
 "Адреса місцезнаходження майна (для процедури ``dgfOtherAssets``) АБО Адреса "
 "місцезнаходження активу (для процедури ``dgfFinancialAssets``)."
 
+msgid "decimal"
+msgstr "неціле число"
+
 #~ msgid "ID of related :ref:`lot`."
 #~ msgstr "ID пов’язаного :ref:`lot`."
 
