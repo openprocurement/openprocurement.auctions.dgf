@@ -16,10 +16,10 @@ from openprocurement.auctions.core.constants import (
     DOCUMENT_TYPE_URL_ONLY,
     DOCUMENT_TYPE_OFFLINE
 )
-from openprocurement.auctions.core.plugins.contracting.v2.utils import (
+from openprocurement.auctions.core.plugins.contracting.v3.utils import (
     check_auction_status
 )
-from openprocurement.auctions.core.plugins.awarding.v2.utils import switch_to_next_award
+from openprocurement.auctions.core.plugins.awarding.v3.utils import switch_to_next_award
 
 PKG = get_distribution(__package__)
 LOGGER = getLogger(PKG.project_name)
@@ -123,8 +123,7 @@ def check_status(request):
 
 def check_award_status(request, award, now):
     auction = request.validated['auction']
-    if (award.status == 'pending.verification' and award['verificationPeriod']['endDate'] < now) or \
-            (award.status == 'pending.payment' and award['paymentPeriod']['endDate'] < now) or \
+    if (award.status == 'pending' and award['verificationPeriod']['endDate'] < now) or \
             (award.status == 'active' and award['signingPeriod']['endDate'] < now):
         if award.status == 'active':
             auction.awardPeriod.endDate = None
