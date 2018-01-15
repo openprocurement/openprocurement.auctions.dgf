@@ -136,7 +136,11 @@ edit_role = (edit_role + blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'au
 Administrator_role = (whitelist('suspended', 'awards') + Administrator_role)
 
 
-@implementer(IAuction)
+class IDgfAuction(IAuction):
+    """Marker interface for Dgf auctions"""
+
+
+@implementer(IDgfAuction)
 class Auction(BaseAuction):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
     class Options:
