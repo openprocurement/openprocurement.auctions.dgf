@@ -29,13 +29,15 @@ from openprocurement.auctions.dgf.tests.blanks.bidder_blanks import (
     # AuctionBidderDocumentResourceTest
     create_auction_bidder_document_nopending,
     # FinancialAuctionBidderResourceTest
-    create_auction_bidder_invalid_additional_classification
+    create_auction_bidder_invalid_additional_classification,
+    # AuctionBidderDocumentWithDSResourceTest
+    operate_bidder_document_json_invalid
 )
 
 
 class AuctionBidderResourceTest(BaseAuctionWebTest):
     initial_status = 'active.tendering'
-    
+
     test_financial_organization = test_financial_organization
     test_create_auction_bidder_invalid = snitch(create_auction_bidder_invalid)
     test_create_auction_bidder = snitch(create_auction_bidder)
@@ -93,6 +95,8 @@ class AuctionBidderDocumentWithDSResourceTest(BaseAuctionWebTest,
         bid = response.json['data']
         self.bid_id = bid['id']
         self.bid_token = response.json['access']['token']
+
+        test_operate_bidder_document_json_invalid = snitch(operate_bidder_document_json_invalid)
 
 
     test_create_auction_bidder_document_nopending = snitch(create_auction_bidder_document_nopending)
