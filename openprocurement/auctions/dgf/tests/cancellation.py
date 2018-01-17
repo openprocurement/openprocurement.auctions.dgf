@@ -20,7 +20,7 @@ class AuctionCancellationResourceTest(BaseAuctionWebTest,
     initial_status = 'active.tendering'
     initial_bids = test_bids
 
-
+  
 @unittest.skip("option not available")
 class AuctionLotCancellationResourceTest(BaseAuctionWebTest,
                                          AuctionLotCancellationResourceTestMixin):

@@ -36,10 +36,11 @@ class CreateAuctionAwardTest(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids
 
+
     test_create_auction_award_invalid = snitch(create_auction_award_invalid)
     test_create_auction_award = snitch(create_auction_award)
 
-
+    
 class AuctionAwardProcessTest(BaseAuctionWebTest, AuctionAwardProcessTestMixin):
     # initial_data = auction_data
     initial_status = 'active.auction'

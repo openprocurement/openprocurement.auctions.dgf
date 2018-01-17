@@ -41,6 +41,10 @@ class AuctionBidDocumentResource(APIResource):
             self.request.errors.add('body', 'data', 'Can\'t {} document because award of bid is not in pending state'.format(operation))
             self.request.errors.status = 403
             return
+        documentType = self.request.validated.get('data', {}).get('documentType', None)
+        if documentType and documentType in ['auctionProtocol']:
+            self.request.errors.add('body', 'data', 'Can\'t {} document with {} documentType'.format(operation, documentType))
+            self.request.errors.status = 403
         return True
 
     @json_view(permission='view_auction')
