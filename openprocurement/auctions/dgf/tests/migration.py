@@ -4,6 +4,8 @@ import unittest
 from uuid import uuid4
 from copy import deepcopy
 
+from openprocurement.api.constants import AWARDING_OF_PROCUREMENT_METHOD_TYPE
+
 from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.core.tests.blanks.migration_blanks import migrate
 
@@ -63,7 +65,7 @@ class MigrateTest(BaseWebTest):
 
     test_migrate = snitch(migrate)
 
-
+@unittest.skipIf(AWARDING_OF_PROCUREMENT_METHOD_TYPE['dgfOtherAssets'] != 'awarding_2_0', "Awarding 3.0 used")
 class MigrateTestFrom1To2InvalidBids(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids
@@ -83,6 +85,7 @@ class MigrateTestFrom1To2InvalidBids(BaseAuctionWebTest):
     test_migrate_unsuccessful_active_bids = snitch(migrate_unsuccessful_active_bids)
 
 
+@unittest.skipIf(AWARDING_OF_PROCUREMENT_METHOD_TYPE['dgfOtherAssets'] != 'awarding_2_0', "Awarding 3.0 used")
 class MigrateTestFrom1To2InvalidBid(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids
@@ -101,6 +104,7 @@ class MigrateTestFrom1To2InvalidBid(BaseAuctionWebTest):
     test_migrate_unsuccessful_active_bid = snitch(migrate_unsuccessful_active_bid)
 
 
+@unittest.skipIf(AWARDING_OF_PROCUREMENT_METHOD_TYPE['dgfOtherAssets'] != 'awarding_2_0', "Awarding 3.0 used")
 class MigrateTestFrom1To2WithTwoBids(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids
@@ -122,6 +126,7 @@ class MigrateTestFrom1To2WithTwoBids(BaseAuctionWebTest):
     test_migrate_cancelled_unsuccessful_cancelled_active_to_unsuccessful = snitch(migrate_cancelled_unsuccessful_cancelled_active_to_unsuccessful)
 
 
+@unittest.skipIf(AWARDING_OF_PROCUREMENT_METHOD_TYPE['dgfOtherAssets'] != 'awarding_2_0', "Awarding 3.0 used")
 class MigrateTestFrom1To2WithThreeBids(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids
@@ -139,6 +144,7 @@ class MigrateTestFrom1To2WithThreeBids(BaseAuctionWebTest):
     test_migrate_unsuccessful_unsuccessful_active = snitch(migrate_unsuccessful_unsuccessful_active)
 
 
+@unittest.skipIf(AWARDING_OF_PROCUREMENT_METHOD_TYPE['dgfOtherAssets'] != 'awarding_2_0', "Awarding 3.0 used")
 class MigrateTestFrom1To2SuspendedAuction(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids
@@ -155,6 +161,7 @@ class MigrateTestFrom1To2SuspendedAuction(BaseAuctionWebTest):
     test_migrate_active = snitch(migrate_active)
 
 
+@unittest.skipIf(AWARDING_OF_PROCUREMENT_METHOD_TYPE['dgfOtherAssets'] != 'awarding_2_0', "Awarding 3.0 used")
 class MigrateTestFrom1To2SuspendedAuctionWithInvalidBids(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids
@@ -175,6 +182,7 @@ class MigrateTestFrom1To2SuspendedAuctionWithInvalidBids(BaseAuctionWebTest):
     test_migrate_unsuccessful_active_suspend_bids = snitch(migrate_unsuccessful_active_suspend_bids)
 
 
+@unittest.skipIf(AWARDING_OF_PROCUREMENT_METHOD_TYPE['dgfOtherAssets'] != 'awarding_2_0', "Awarding 3.0 used")
 class MigrateTestFrom1To2SuspendedAuctionWithInvalidBid(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_bids = test_bids

@@ -469,8 +469,8 @@ def first_bid_auction(self):
     # get awards
     self.app.authorization = ('Basic', ('broker', ''))
     response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
-    # get pending.verification award
-    award = [i for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+    # get pending award
+    award = [i for i in response.json['data'] if i['status'] == 'pending'][0]
     award_id = award['id']
     # Upload auction protocol
     self.app.authorization = ('Basic', ('broker', ''))
@@ -497,7 +497,7 @@ def first_bid_auction(self):
     self.app.authorization = ('Basic', ('broker', ''))
     response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
     # get pending award
-    award2 = [i for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+    award2 = [i for i in response.json['data'] if i['status'] == 'pending'][0]
     award2_id = award2['id']
     self.assertNotEqual(award_id, award2_id)
     # create first award complaint
@@ -524,7 +524,7 @@ def first_bid_auction(self):
     self.app.authorization = ('Basic', ('broker', ''))
     response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
     # get pending award
-    award = [i for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+    award = [i for i in response.json['data'] if i['status'] == 'pending'][0]
     award_id = award['id']
     # Upload auction protocol
     self.app.authorization = ('Basic', ('broker', ''))
@@ -544,9 +544,6 @@ def first_bid_auction(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json["data"]["documentType"], 'auctionProtocol')
     self.assertEqual(response.json["data"]["author"], 'auction_owner')
-    # set award as "pending.payment
-    self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(auction_id, award_id, owner_token),
-                        {"data": {"status": "pending.payment"}})
     # set award as active
     self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(auction_id, award_id, owner_token),
                         {"data": {"status": "active"}})
@@ -716,7 +713,7 @@ def suspended_auction(self):
     response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
 
     # get pending award
-    award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+    award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending'][0]
 
     authorization = self.app.authorization
     self.app.authorization = ('Basic', ('administrator', ''))
@@ -738,13 +735,13 @@ def suspended_auction(self):
     self.app.authorization = ('Basic', ('broker', ''))
     response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
     # get pending award
-    award2_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+    award2_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending'][0]
     self.assertNotEqual(award_id, award2_id)
 
     self.app.authorization = ('Basic', ('broker', ''))
     response = self.app.get('/auctions/{}/awards?acc_token={}'.format(auction_id, owner_token))
     # get pending award
-    award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+    award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending'][0]
 
     response = self.app.post('/auctions/{}/awards/{}/documents?acc_token={}'.format(
         self.auction_id, award_id, owner_token), upload_files=[('file', 'auction_protocol.pdf', 'content')])
@@ -753,9 +750,6 @@ def suspended_auction(self):
     response = self.app.patch_json(
         '/auctions/{}/awards/{}/documents/{}?acc_token={}'.format(auction_id, award_id, doc_id, owner_token),
         {"data": {"documentType": 'auctionProtocol'}})
-    # set award as active
-    self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(auction_id, award_id, owner_token),
-                        {"data": {"status": "pending.payment"}})
 
     authorization = self.app.authorization
     self.app.authorization = ('Basic', ('administrator', ''))
