@@ -33,13 +33,13 @@ from openprocurement.auctions.core.models import (
     dgfDocument as Document,
     dgfComplaint as Complaint
 )
-from openprocurement.auctions.core.plugins.awarding.v2.models import (
+from openprocurement.auctions.core.plugins.awarding.v3.models import (
     Award
 )
-from openprocurement.auctions.core.plugins.awarding.v2.utils import (
+from openprocurement.auctions.core.plugins.awarding.v3.utils import (
     next_check_awarding
 )
-from openprocurement.auctions.core.plugins.contracting.v2.models import (
+from openprocurement.auctions.core.plugins.contracting.v3.models import (
     Contract,
 )
 from openprocurement.auctions.core.validation import (
