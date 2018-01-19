@@ -1,23 +1,14 @@
 # -*- coding: utf-8 -*-
 from openprocurement.auctions.core.adapters import AuctionConfigurator
 from openprocurement.auctions.dgf.models import DGFOtherAssets, DGFFinancialAssets
-from openprocurement.auctions.core.plugins.awarding.v3.utils import create_awards_dgf
-from openprocurement.auctions.core.plugins.awarding.v3.models import Award
+from openprocurement.auctions.core.plugins.awarding.v3.adapters import AwardingV3ConfiguratorMixin
 
 
-class AuctionDGFOtherAssetsConfigurator(AuctionConfigurator):
+class AuctionDGFOtherAssetsConfigurator(AuctionConfigurator, AwardingV3ConfiguratorMixin):
     name = 'Auction Dgf Configurator'
     model = DGFOtherAssets
-    award_model = Award
-
-    def add_award(self):
-        return create_awards_dgf(self.request)
 
 
-class AuctionDGFFinancialAssetsConfigurator(AuctionConfigurator):
+class AuctionDGFFinancialAssetsConfigurator(AuctionConfigurator, AwardingV3ConfiguratorMixin):
     name = 'Auction Dgf Configurator'
     model = DGFFinancialAssets
-    award_model = Award
-
-    def add_award(self):
-        return create_awards_dgf(self.request)
