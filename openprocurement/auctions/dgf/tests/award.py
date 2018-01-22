@@ -7,7 +7,6 @@ from openprocurement.api.models import get_now
 
 from openprocurement.auctions.core.tests.award import (
     AuctionLotAwardResourceTestMixin,
-    AuctionAwardProcessTestMixin,
     Auction2LotAwardResourceTestMixin,
     AuctionAwardDocumentResourceTestMixin,
     AuctionLotAwardComplaintResourceTestMixin,
@@ -18,11 +17,14 @@ from openprocurement.auctions.core.tests.award import (
 )
 from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.core.tests.blanks.award_blanks import (
-    create_auction_award_invalid,
-    create_auction_award,
     get_auction_award_complaint,
     get_auction_award_complaints
 )
+from openprocurement.auctions.core.plugins.awarding.v3.tests.award import (
+    AuctionAwardProcessTestMixin,
+    CreateAuctionAwardTestMixin
+)
+
 
 from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest, test_bids,
@@ -31,14 +33,10 @@ from openprocurement.auctions.dgf.tests.base import (
 )
 
 
-class CreateAuctionAwardTest(BaseAuctionWebTest):
+class CreateAuctionAwardTest(BaseAuctionWebTest, CreateAuctionAwardTestMixin):
     # initial_data = auction_data
     initial_status = 'active.qualification'
     initial_bids = test_bids
-
-
-    test_create_auction_award_invalid = snitch(create_auction_award_invalid)
-    test_create_auction_award = snitch(create_auction_award)
 
     
 class AuctionAwardProcessTest(BaseAuctionWebTest, AuctionAwardProcessTestMixin):
