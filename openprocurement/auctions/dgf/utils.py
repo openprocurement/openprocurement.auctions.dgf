@@ -19,7 +19,7 @@ from openprocurement.auctions.core.constants import (
 from openprocurement.auctions.core.plugins.contracting.v3.utils import (
     check_auction_status
 )
-from openprocurement.auctions.core.plugins.awarding.v3.utils import switch_to_next_award
+
 
 PKG = get_distribution(__package__)
 LOGGER = getLogger(PKG.project_name)
@@ -133,7 +133,7 @@ def check_award_status(request, award, now):
                     contract.status = 'cancelled'
         award.status = 'unsuccessful'
         award.complaintPeriod.endDate = now
-        switch_to_next_award(request)
+        request.content_configurator.back_to_awarding()
 
 
 def invalidate_bids_under_threshold(auction):

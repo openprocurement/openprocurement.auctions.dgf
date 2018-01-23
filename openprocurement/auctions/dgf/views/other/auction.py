@@ -165,7 +165,7 @@ class AuctionAuctionResource(APIResource):
         auction = self.request.validated['auction']
         invalidate_bids_under_threshold(auction)
         if any([i.status == 'active' for i in auction.bids]):
-            self.request.content_configurator.add_award()
+            self.request.content_configurator.start_awarding()
         else:
             auction.status = 'unsuccessful'
         if save_auction(self.request):
@@ -190,7 +190,7 @@ class AuctionAuctionResource(APIResource):
             cleanup_bids_for_cancelled_lots(auction)
             invalidate_bids_under_threshold(auction)
             if any([i.status == 'active' for i in auction.bids]):
-                self.request.content_configurator.add_award()
+                self.request.content_configurator.start_awarding()
             else:
                 auction.status = 'unsuccessful'
         if save_auction(self.request):
