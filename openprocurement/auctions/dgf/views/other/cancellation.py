@@ -48,7 +48,7 @@ class AuctionCancellationResource(APIResource):
             for i in self.request.validated['auction'].lots
             if i.numberOfBids > 1 and i.status == 'active'
         ]):
-            self.request.content_configurator.add_award()
+            self.request.content_configurator.start_awarding()
 
     @json_view(content_type="application/json", validators=(validate_cancellation_data,), permission='edit_auction')
     def collection_post(self):

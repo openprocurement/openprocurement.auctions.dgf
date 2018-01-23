@@ -20,6 +20,8 @@ from openprocurement.auctions.core.tests.blanks.contract_blanks import (
     patch_auction_contract,
     # Auction2LotContractResourceTest
     patch_auction_contract_2_lots,
+    patch_signing_period,
+    patch_date_paid,
 )
 
 
@@ -76,6 +78,8 @@ class AuctionContractResourceTest(BaseAuctionWebTest, AuctionContractResourceTes
         self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "active"}})
 
     test_patch_auction_contract = snitch(patch_auction_contract)
+    test_patch_signing_period = snitch(patch_signing_period)
+    test_patch_date_paid = snitch(patch_date_paid)
 
 
 @unittest.skip("option not available")
