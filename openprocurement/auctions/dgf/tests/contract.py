@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import unittest
 from datetime import timedelta
 
@@ -23,6 +24,7 @@ from openprocurement.auctions.core.tests.blanks.contract_blanks import (
     patch_signing_period,
     patch_date_paid,
 )
+from openprocurement.auctions.dgf.tests import fixtures
 
 
 class AuctionContractResourceTest(BaseAuctionWebTest, AuctionContractResourceTestMixin):
@@ -76,6 +78,15 @@ class AuctionContractResourceTest(BaseAuctionWebTest, AuctionContractResourceTes
 
         self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "pending"}})
         self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "active"}})
+
+        # create prolongation
+        prolongation_data = json.dump(fixtures.PROLONGATION)
+        prolongation_post_response = self.app.post_json(
+            '/auctions/{0}/contracts/{1}/prolongation'.format(
+                self.auction_id,
+                self.contract_id
+            )
+        )
 
     test_patch_auction_contract = snitch(patch_auction_contract)
     test_patch_signing_period = snitch(patch_signing_period)
