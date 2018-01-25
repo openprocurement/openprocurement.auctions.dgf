@@ -1,5 +1,6 @@
 from pyramid.interfaces import IRequest
 from openprocurement.auctions.dgf.models import (
+    IDgfAuction,
     DGFOtherAssets,
     DGFFinancialAssets
 )
@@ -8,7 +9,6 @@ from openprocurement.auctions.dgf.adapters import (
     AuctionDGFFinancialAssetsConfigurator
 )
 from openprocurement.api.interfaces import IContentConfigurator
-from openprocurement.auctions.core.models import IAuction
 from openprocurement.auctions.dgf.constants import (
     FINANCIAL_VIEW_LOCATIONS,
     OTHER_VIEW_LOCATIONS,
@@ -23,7 +23,7 @@ def includeme_other(config):
 
     config.registry.registerAdapter(
         AuctionDGFOtherAssetsConfigurator,
-        (IAuction, IRequest),
+        (IDgfAuction, IRequest),
         IContentConfigurator
     )
 
@@ -36,7 +36,7 @@ def includeme_financial(config):
 
     config.registry.registerAdapter(
         AuctionDGFFinancialAssetsConfigurator,
-        (IAuction, IRequest),
+        (IDgfAuction, IRequest),
         IContentConfigurator
     )
 
