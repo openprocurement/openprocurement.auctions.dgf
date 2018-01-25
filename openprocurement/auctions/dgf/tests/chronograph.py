@@ -24,20 +24,22 @@ from openprocurement.auctions.core.tests.blanks.chronograph_blanks import (
     # AuctionDontSwitchSuspendedAuction2ResourceTest
     switch_suspended_auction_to_auction,
 )
-from openprocurement.auctions.core.tests.chronograph import (
+from openprocurement.auctions.core.plugins.awarding.v3.tests.chronograph import (
     AuctionAwardSwitchResourceTestMixin,
     AuctionDontSwitchSuspendedAuctionResourceTestMixin
 )
+from openprocurement.auctions.core.plugins.awarding.v3.tests.blanks.chronograph_blanks import (
+    # AuctionAwardSwitch2ResourceTest
+    switch_verification_to_unsuccessful_2,
+    switch_active_to_unsuccessful_2
+)
+
 from openprocurement.auctions.dgf.tests.blanks.chronograph_blanks import (
     # AuctionSwitchQualificationResourceTest
     switch_to_qualification,
     # AuctionAuctionPeriodResourceTest
     set_auction_period,
-    reset_auction_period,
-    # AuctionAwardSwitch2ResourceTest
-    switch_verification_to_unsuccessful_2,
-    switch_payment_to_unsuccessful_2,
-    switch_active_to_unsuccessful_2,
+    reset_auction_period
 )
 
 
@@ -146,7 +148,6 @@ class AuctionAwardSwitch2ResourceTest(BaseAuctionWebTest):
         self.app.authorization = authorization
 
     test_switch_verification_to_unsuccessful_2 = snitch(switch_verification_to_unsuccessful_2)
-    test_switch_payment_to_unsuccessful_2 = snitch(switch_payment_to_unsuccessful_2)
     test_switch_active_to_unsuccessful_2 = snitch(switch_active_to_unsuccessful_2)
 
 
