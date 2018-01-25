@@ -15,6 +15,9 @@ from openprocurement.auctions.core.tests.contract import (
     AuctionContractDocumentResourceTestMixin,
     Auction2LotContractDocumentResourceTestMixin
 )
+from openprocurement.auctions.core.tests.prolongation import (
+    AuctionContractProlongationResourceTestMixin
+)
 from openprocurement.auctions.core.tests.blanks.contract_blanks import (
     # AuctionContractResourceTest
     patch_auction_contract,
@@ -24,9 +27,6 @@ from openprocurement.auctions.core.tests.blanks.contract_blanks import (
     patch_date_paid,
 )
 from openprocurement.auctions.dgf.tests import fixtures
-from openprocurement.auctions.core.plugins.contracting.v3.models import (
-    Prolongation,
-)
 
 
 class AuctionContractResourceTest(BaseAuctionWebTest, AuctionContractResourceTestMixin):
@@ -84,12 +84,15 @@ class Auction2LotContractDocumentResourceTest(
 
 class AuctionContractProlongationResourceTest(
     BaseAuctionWebTest,
+    AuctionContractProlongationResourceTestMixin
 ):
+    initial_status = 'active.auction'
+    initial_bids = test_bids
 
     def setUp(self):
         super(AuctionContractProlongationResourceTest, self).setUp()
         fixtures.create_award(self)
-        fixtures.create_contract(self)
+        self.contract_id = self.award_contract_id # use autocreated contract
         fixtures.create_prolongation(self)
 
 
@@ -125,6 +128,7 @@ def suite():
     suite.addTest(unittest.makeSuite(AuctionContractDocumentResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionContractResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionContractDocumentResourceTest))
+    suite.addTest(unittest.makeSuite(AuctionContractProlongationResourceTest))
     return suite
 
 

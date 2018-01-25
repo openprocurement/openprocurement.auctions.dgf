@@ -1,5 +1,8 @@
 from openprocurement.api.models import get_now
 from datetime import timedelta
+from openprocurement.auctions.core.plugins.contracting.v3.models import (
+    Prolongation,
+)
 
 
 PROLONGATION = {
@@ -86,6 +89,13 @@ def create_award(test_case):
         ),
         {"data": {"status": "active"}}
     )
+    get_auction_response = test_case.app.get(
+        '/auctions/{}'.format(
+            test_case.auction_id,
+        )
+    )
+    test_case.award_contract_id = get_auction_response.\
+        json['data']['contracts'][0]['id']
 
 def create_contract(test_case):
     # Create contract for award
@@ -108,7 +118,7 @@ def create_prolongation(test_case):
             test_case.auction_id,
             test_case.contract_id
         ),
-        {'data': fixtures.PROLONGATION}
+        {'data': PROLONGATION}
     )
     test_case.assertEqual(prolongation_post_response.status, '201 Created')
 
@@ -117,7 +127,8 @@ def create_prolongation(test_case):
     created_prolongation.validate() # check returned data
     test_case.assertEqual(
         created_prolongation.decisionID,
-        fixtures.PROLONGATION['decisionID'],
+        PROLONGATION['decisionID'],
         'Prolongation creation is wrong.'
     )
+    test_case.prolongation_id = created_prolongation.id
 
