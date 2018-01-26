@@ -37,17 +37,13 @@ msgstr ""
 msgid "Main responsibilities"
 msgstr "Основні задачі"
 
-#: ../../source/overview.rst:52
-msgid "Business logic"
-msgstr "Бізнес логіка"
-
 #: ../../source/overview.rst:55
 msgid "Project status"
 msgstr "Стан проекту"
 
 #: ../../source/overview.rst:57
-msgid "The project has pre alpha status."
-msgstr "Статус цього проекту - перед-альфа"
+msgid "The project has beta status."
+msgstr "Статус цього проекту - бета."
 
 #: ../../source/overview.rst:59
 msgid ""
@@ -83,15 +79,13 @@ msgstr "Стабільність API"
 
 #: ../../source/overview.rst:73
 msgid ""
-"API is highly unstable, and while API endpoints are expected to remain "
-"relatively stable the data exchange formats are expected to be changed a "
-"lot.  The changes in the API are communicated via `Open Procurement API "
+"API is relatively stable. "
+"The changes in the API are communicated via `Open Procurement API "
 "<https://groups.google.com/group/open-procurement-api>`_ maillist."
 msgstr ""
-"API є дуже нестабільним. Хоча точки входу API будуть відносно стабільними, "
-"формати обміну даними будуть часно змінюватись. Зміни в API обговорюються "
-"через `Open Procurement API <https://groups.google.com/group/open-"
-"procurement-api>`_ розсилку."
+"API є відносно стабільним. "
+"Зміни в API обговорюються через `Open Procurement API "
+"<https://groups.google.com/group/open-procurement-api>`_ розсилку."
 
 #: ../../source/overview.rst:79
 msgid "Change log"
@@ -217,10 +211,11 @@ msgstr "Є дві процедури:"
 
 #: ../../source/overview.rst:8
 msgid "dgfOtherAssets - sale of the insolvent bank property."
-msgstr "dgfOtherAssets - продаж майна банків, що ліквідуються."
+msgstr "dgfOtherAssets - оголошення аукціону з продажу майна банків."
 
 #: ../../source/overview.rst:10
 msgid "dgfFinancialAssets - sale of the creditor claim right."
+
 msgstr "dgfFinancialAssets - продаж права вимоги за кредитними договорами."
 msgstr ""
 "dgfFinancialAssets - оголошення аукціону з продажу прав вимоги за кредитами."

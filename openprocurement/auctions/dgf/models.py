@@ -26,6 +26,8 @@ from openprocurement.auctions.flash.models import (
     ProcuringEntity as BaseProcuringEntity, Question as BaseQuestion,
     get_auction, Administrator_role, view_role, enquiries_role
 )
+from schematics_flexible.schematics_flexible import FlexibleModelType
+from openprocurement.schemas.dgf.schemas_store import SchemaStore
 
 from .constants import (
     CAV_CODES,
@@ -64,6 +66,13 @@ class Item(BaseItem):
     additionalClassifications = ListType(ModelType(Classification), default=list())
     address = ModelType(Address)
     location = ModelType(Location)
+    schema_properties = FlexibleModelType(SchemaStore())
+
+    def validate_schema_properties(self, data, new_schema_properties):
+        """ Raise validation error if code in schema_properties mismatch
+            with classification id """
+        if new_schema_properties and not data['classification']['id'].startswith(new_schema_properties['code']):
+            raise ValidationError("classification id mismatch with schema_properties code")
 
 
 class Identifier(BaseIdentifier):
@@ -406,6 +415,10 @@ class Auction(BaseAuction):
             if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_DECISION_REQUIRED_FROM:
                 raise ValidationError(u'This field is required.')
 
+    def validate_merchandisingObject(self, data, merchandisingObject):
+        if data['status'] == 'pending.verification' and not merchandisingObject:
+            raise ValidationError(u'This field is required.')
+
     def validate_items(self, data, items):
         if data['status'] not in ['draft', 'pending.verification', 'invalid']:
             if not items:
@@ -530,8 +543,8 @@ class Document(Document):
         'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
         'illustration', 'financialLicense', 'virtualDataRoom',
         'auctionProtocol', 'x_dgfPublicAssetCertificate',
-        'x_presentation', 'x_nda', 'x_dgfAssetFamiliarization',
-        'x_dgfPlatformLegalDetails',
+        'x_presentation', 'x_nda',
+        'x_dgfPlatformLegalDetails', 'x_dgfAssetFamiliarization',
     ])
 
 

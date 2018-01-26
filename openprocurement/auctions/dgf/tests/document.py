@@ -730,6 +730,60 @@ class AuctionDocumentWithDSResourceTest(AuctionDocumentResourceTest):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.auction) auction status")
 
+    def test_create_auction_document_pas(self):
+        pas_url = 'http://torgi.fg.gov.ua/id_of_lot'
+        response = self.app.post_json('/auctions/{}/documents'.format(self.auction_id),
+            {'data': {
+                'title': u'PAS for auction lot',
+                'url': pas_url,
+                'documentType': 'x_dgfPublicAssetCertificate',
+            }})
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        doc_id = response.json["data"]['id']
+        self.assertIn(doc_id, response.headers['Location'])
+        self.assertEqual('PAS for auction lot', response.json["data"]["title"])
+        self.assertEqual(pas_url, response.json["data"]["url"])
+        self.assertEqual('x_dgfPublicAssetCertificate', response.json["data"]["documentType"])
+
+        auction = self.db.get(self.auction_id)
+        self.assertEqual('PAS for auction lot', auction['documents'][-1]["title"])
+        self.assertEqual(pas_url, auction['documents'][-1]["url"])
+        self.assertEqual('x_dgfPublicAssetCertificate', auction['documents'][-1]["documentType"])
+
+        response = self.app.get('/auctions/{}/documents'.format(self.auction_id))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(doc_id, response.json["data"][-1]["id"])
+        self.assertEqual('PAS for auction lot', response.json["data"][-1]["title"])
+        self.assertEqual(pas_url, response.json["data"][-1]["url"])
+        self.assertEqual('x_dgfPublicAssetCertificate', response.json["data"][-1]["documentType"])
+
+        response = self.app.get('/auctions/{}/documents/{}?download=1'.format(
+            self.auction_id, doc_id))
+        self.assertEqual(response.status, '302 Moved Temporarily')
+        self.assertEqual(pas_url, response.location)
+
+        response = self.app.get('/auctions/{}/documents/{}'.format(
+            self.auction_id, doc_id))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(doc_id, response.json["data"]["id"])
+        self.assertEqual('PAS for auction lot', response.json["data"]["title"])
+        self.assertEqual(pas_url, response.json["data"]["url"])
+        self.assertEqual('x_dgfPublicAssetCertificate', response.json["data"]["documentType"])
+
+        self.set_status('active.auction')
+
+        response = self.app.post_json('/auctions/{}/documents'.format(self.auction_id),
+            {'data': {
+                'title': u'PAS for auction lot',
+                'url': pas_url,
+                'documentType': 'x_dgfPublicAssetCertificate',
+            }}, status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'][0]["description"], "Can't add document in current (active.auction) auction status")
 
     def test_put_auction_document_pas(self):
         pas_url = 'http://torgi.fg.gov.ua/id_of_lot'

@@ -9,10 +9,12 @@ from openprocurement.api.utils import ROUTE_PREFIX
 from openprocurement.api.models import get_now, SANDBOX_MODE, TZ
 from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.dgf.models import DGFOtherAssets, DGFFinancialAssets, DGF_ID_REQUIRED_FROM
-from openprocurement.auctions.dgf.constants import ELIGIBILITY_CRITERIA
+from openprocurement.auctions.dgf.constants import DGF_ID_REQUIRED_FROM, ELIGIBILITY_CRITERIA
 from openprocurement.auctions.dgf.tests.base import (
     test_auction_data,
     test_financial_auction_data,
+    test_auction_data_with_schema,
+    test_financial_auction_data_with_schema,
     test_organization,
     test_financial_organization,
     BaseWebTest,
@@ -642,8 +644,9 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         auction = response.json['data']
-        if 'procurementMethodDetails' in auction:
-            auction.pop('procurementMethodDetails')
+        # Pop sandbox mode only keys
+        for key in ['procurementMethodDetails', 'submissionMethodDetails']:
+            auction.pop(key, None)
         self.assertEqual(set(auction), set([
             u'procurementMethodType', u'id', u'date', u'dateModified', u'auctionID', u'status', u'enquiryPeriod',
             u'tenderPeriod', u'minimalStep', u'items', u'value', u'procuringEntity', u'next_check', u'dgfID',
@@ -670,6 +673,49 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.json['errors'], [
             {u'description': u"Can't update auction in current (draft) status", u'location': u'body', u'name': u'data'}
         ])
+
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'active.tendering'}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        auction = response.json['data']
+        self.assertEqual(auction['status'], 'active.tendering')
+
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        auction = response.json['data']
+        self.assertEqual(auction['status'], 'active.tendering')
+
+    def test_create_auction_draft_with_registry(self):
+        data = self.initial_data.copy()
+        items = data.pop('items')
+        data.update({'status': 'draft', 'merchandisingObject': uuid4().hex})
+        response = self.app.post_json('/auctions', {'data': data})
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        auction = response.json['data']
+        self.assertEqual(auction['status'], 'draft')
+
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'value': {'amount': 100}}}, status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertEqual(response.json['errors'], [
+            {u'description': u"Can't update auction in current (draft) status", u'location': u'body', u'name': u'data'}
+        ])
+
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'pending.verification'}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        auction = response.json['data']
+        self.assertEqual(auction['status'], 'pending.verification')
+
+        self.app.authorization = ('Basic', ('convoy', ''))
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']),
+                                       {'data': {'items': items}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(len(response.json['data']['items']), len(items))
 
         response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'active.tendering'}})
         self.assertEqual(response.status, '200 OK')
@@ -1202,6 +1248,157 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data']['mode'], u'test')
+
+    def test_convoy_change_status(self):
+        # Check auctions list count
+        self.app.authorization = ('Basic', ('broker', ''))
+        response = self.app.get('/auctions')
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(len(response.json['data']), 0)
+
+        # Create auction without merchandisingObject
+        data = self.initial_data.copy()
+        data.update({'status': 'draft'})
+        response = self.app.post_json('/auctions', {'data': data})
+        self.assertEqual(response.status, '201 Created')
+        auction = response.json['data']
+        owner_token = response.json['access']['token']
+
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data'], auction)
+
+        # Switch auction status 'draft' -> 'pending.verification' via owner
+        # without merchandisingObject
+        response = self.app.patch_json('/auctions/{}?acc_token={}'.format(auction['id'], owner_token), {'data': {'status': 'pending.verification'}}, status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertEqual(response.json['errors'], [{u'description': u"Can't switch auction to status (pending.verification) without merchandisingObject", u'location': u'body', u'name': u'data'}])
+
+        # Create auction with items
+        data.update({'merchandisingObject': uuid4().hex})
+        response = self.app.post_json('/auctions', {'data': data})
+        self.assertEqual(response.status, '201 Created')
+        auction = response.json['data']
+        owner_token = response.json['access']['token']
+
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data'], auction)
+
+        # Switch auction status 'draft' -> 'pending.verification' via owner
+        # with items
+        response = self.app.patch_json('/auctions/{}?acc_token={}'.format(auction['id'], owner_token),
+                                       {'data': {'status': 'pending.verification'}}, status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertEqual(response.json['errors'], [
+            {u'description': u"This field is not required.",
+             u'location': u'body', u'name': u'items'}])
+
+
+        # Create auction with merchandisingObject and without items
+        data.update({'merchandisingObject': uuid4().hex})
+        items = data.pop('items')
+        response = self.app.post_json('/auctions', {'data': data})
+        self.assertEqual(response.status, '201 Created')
+        auction = response.json['data']
+        owner_token = response.json['access']['token']
+
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data'], auction)
+
+        # Switch auction status 'draft' -> 'pending.verification' via owner
+        response = self.app.patch_json('/auctions/{}?acc_token={}'.format(auction['id'], owner_token), {'data': {'status': 'pending.verification'}})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.assertEqual(auction['status'], 'pending.verification')
+
+        self.app.authorization = ('Basic', ('convoy', ''))
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data'], auction)
+
+        # Switch auction status 'pending.verification' -> 'active.tendering' via convoy without items
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'active.tendering'}}, status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertEqual(response.json['errors'], [
+            {u'description': [u"This field is required."],
+             u'location': u'body', u'name': u'items'}])
+
+        # Add items via convoy
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'items': items}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(len(response.json['data']['items']), len(items))
+
+        # Switch auction status 'pending.verification' -> 'active.tendering' via convoy
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'active.tendering'}})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.assertEqual(auction['status'], 'active.tendering')
+
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data'], auction)
+
+        # Switch auction status 'active.tendering' -> 'invalid' via convoy
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'invalid'}}, status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertEqual(response.json['errors'], [{u'description': u"Can't update auction in current (active.tendering) status", u'location': u'body', u'name': u'data'}])
+
+        # Create auction with merchandisingObject
+        self.app.authorization = ('Basic', ('broker', ''))
+        response = self.app.post_json('/auctions', {'data': data})
+        self.assertEqual(response.status, '201 Created')
+        auction = response.json['data']
+        owner_token = response.json['access']['token']
+
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data'], auction)
+
+        # Switch auction status 'draft' -> 'pending.verification' via owner
+        response = self.app.patch_json('/auctions/{}?acc_token={}'.format(auction['id'], owner_token), {'data': {'status': 'pending.verification'}})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.assertEqual(auction['status'], 'pending.verification')
+
+        self.app.authorization = ('Basic', ('convoy', ''))
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data'], auction)
+
+        # Switch auction status 'pending.verification' -> 'invalid' via convoy
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'invalid'}})
+        self.assertEqual(response.status, '200 OK')
+        auction = response.json['data']
+        self.assertEqual(auction['status'], 'invalid')
+
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data'], auction)
+
+        # Switch auction status 'invalid' -> 'active.tendering' via convoy
+        response = self.app.patch_json('/auctions/{}'.format(auction['id']), {'data': {'status': 'active.tendering'}}, status=403)
+        self.assertEqual(response.status, '403 Forbidden')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertEqual(response.json['errors'], [{u'description': u"Can't update auction in current (invalid) status", u'location': u'body', u'name': u'data'}])
+
+        response = self.app.get('/auctions/{}'.format(auction['id']))
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['data'], auction)
 
 
 class AuctionProcessTest(BaseAuctionWebTest):
@@ -1749,8 +1946,9 @@ class FinancialAuctionResourceTest(AuctionResourceTest):
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         auction = response.json['data']
-        if 'procurementMethodDetails' in auction:
-            auction.pop('procurementMethodDetails')
+        # Pop sandbox mode only keys
+        for key in ['procurementMethodDetails', 'submissionMethodDetails']:
+            auction.pop(key, None)
         self.assertEqual(set(auction), set([
             u'procurementMethodType', u'id', u'date', u'dateModified', u'auctionID', u'status', u'enquiryPeriod',
             u'tenderPeriod', u'minimalStep', u'items', u'value', u'procuringEntity', u'next_check', u'dgfID',
@@ -1771,6 +1969,45 @@ class FinancialAuctionProcessTest(AuctionProcessTest):
     initial_data = test_financial_auction_data
     initial_organization = test_financial_organization
 
+class AuctionSchemaResourceTest(AuctionResourceTest):
+    initial_data = test_auction_data_with_schema
+
+    def test_create_auction_with_bad_schemas_code(self):
+        response = self.app.get('/auctions')
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(len(response.json['data']), 0)
+        bad_initial_data = deepcopy(self.initial_data)
+        bad_initial_data['items'][0]['classification']['id'] = "42124210-6"
+        response = self.app.post_json('/auctions', {"data": bad_initial_data},
+                                      status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'],
+                         [{
+                             "location": "body",
+                             "name": "items",
+                             "description": [{
+                                 "schema_properties": ["classification id mismatch with schema_properties code"]
+                             }]
+                         }])
+
+
+class AuctionSchemaProcessTest(AuctionProcessTest):
+    initial_data = test_auction_data_with_schema
+
+
+class FinancialAuctionSchemaResourceTest(FinancialAuctionResourceTest):
+    initial_data = test_financial_auction_data_with_schema
+
+
+class FinancialAuctionSchemaProcessTest(FinancialAuctionProcessTest):
+    initial_data = test_financial_auction_data_with_schema
+
+
+class FinancialAuctionProcessTestWithRegistry(FinancialAuctionProcessTest):
+    registry = True
+
+
 
 class FinancialAuctionProcessTestWithRegistry(FinancialAuctionProcessTest):
     registry = True
@@ -1783,12 +2020,18 @@ def suite():
     suite.addTest(unittest.makeSuite(AuctionTest))
 
     suite.addTest(unittest.makeSuite(AuctionProcessTestWithRegistry))
+    suite.addTest(unittest.makeSuite(FinancialAuctionProcessTestWithRegistry))
 
     suite.addTest(unittest.makeSuite(FinancialAuctionProcessTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionResourceTest))
     suite.addTest(unittest.makeSuite(FinancialAuctionTest))
 
-    suite.addTest(unittest.makeSuite(FinancialAuctionProcessTestWithRegistry))
+    suite.addTest(unittest.makeSuite(AuctionSchemaResourceTest))
+    suite.addTest(unittest.makeSuite(AuctionSchemaProcessTest))
+  
+    suite.addTest(unittest.makeSuite(FinancialAuctionSchemaResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionSchemaProcessTest))
+  
     return suite
 
 

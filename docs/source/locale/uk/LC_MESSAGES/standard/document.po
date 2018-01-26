@@ -1,4 +1,5 @@
-#
+# Zoriana Zaiats <sorenabell@quintagroup.com>, 2016.
+# greg <greg@quintagroup.com>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: openprocurement.auctions.dgf 0.1\n"
@@ -272,7 +273,6 @@ msgstr ""
 msgid "ID of related :ref:`item`."
 msgstr "Ідентифікатор пов'язаних об'єктів :ref:`item`."
 
-
 #: ../../source/standard/document.rst:47
 msgid "`x_dgfPublicAssetCertificate` - **Public Asset Certificate**"
 msgstr "`x_dgfPublicAssetCertificate` - **Публічний Паспорт Активу**"
@@ -315,6 +315,22 @@ msgstr ""
 "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для"
 " зарахування гарантійних внесків."
 
+msgid "`tenderNotice` - **Auction notice**"
+msgstr "`tenderNotice` - **Паспорт торгів**"
+
+msgid ""
+"Detailed technical information about goods or services to be provided. This "
+"is where the public asset certificate is uploaded."
+msgstr ""
+"Детальна технічна інформація про товари або послуги, що повинні бути надані."
+" Тут завантажується публічний паспорт активу."
+
+msgid "`x_dgfAssetFamiliarization` - **Asset Familiarization**"
+msgstr ""
+
+msgid "Required for `x_dgfAssetFamiliarization` document."
+msgstr ""
+
 #: ../../source/standard/document.rst:63
 msgid "`x_dgfAssetFamiliarization` - **Asset Familiarization**"
 msgstr ""
@@ -325,8 +341,8 @@ msgid ""
 "room. Contains information on where and when a given document can be "
 "examined offline."
 msgstr ""
-"Порядок ознайомлення з майном / Порядок ознайомлення з активом у кімнаті "
-"даних. Містить інформацію про те де і коли певний документ можна переглянути"
+"Порядок ознайомлення з майном / Порядок ознайомлення з активом у кімнаті"
+" даних. Містить інформацію про те де і коли певний документ можна переглянути"
 " вживу."
 
 #~ msgid "`tenderNotice` - **Auction notice**"
@@ -350,7 +366,6 @@ msgstr ""
 #~ "Порядок ознайомлення з майном / Порядок ознайомлення з активом у кімнаті "
 #~ "даних. Містить інформацію про те де і коли певний документ можна переглянути"
 #~ " вживу."
-
 
 #~ msgid "`biddingDocuments` - **Bidding Documents**"
 #~ msgstr "`biddingDocuments` - **Документи закупівлі**"
