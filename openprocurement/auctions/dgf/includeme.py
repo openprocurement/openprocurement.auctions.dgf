@@ -8,7 +8,13 @@ from openprocurement.auctions.dgf.adapters import (
     AuctionDGFOtherAssetsConfigurator,
     AuctionDGFFinancialAssetsConfigurator
 )
-from openprocurement.api.interfaces import IContentConfigurator
+from openprocurement.auctions.core.plugins.awarding.v3.adapters import (
+    AwardingNextCheckV3
+)
+from openprocurement.api.interfaces import (
+    IContentConfigurator,
+    IAwardingNextCheck
+)
 from openprocurement.auctions.dgf.constants import (
     FINANCIAL_VIEW_LOCATIONS,
     OTHER_VIEW_LOCATIONS,
@@ -21,10 +27,16 @@ def includeme_other(config):
     for view_location in OTHER_VIEW_LOCATIONS:
         config.scan(view_location)
 
+    # Register adapters
     config.registry.registerAdapter(
         AuctionDGFOtherAssetsConfigurator,
         (IDgfAuction, IRequest),
         IContentConfigurator
+    )
+    config.registry.registerAdapter(
+        AwardingNextCheckV3,
+        (IDgfAuction, ),
+        IAwardingNextCheck
     )
 
 
@@ -34,9 +46,14 @@ def includeme_financial(config):
     for view_location in FINANCIAL_VIEW_LOCATIONS:
         config.scan(view_location)
 
+    # Register Adapters
     config.registry.registerAdapter(
         AuctionDGFFinancialAssetsConfigurator,
         (IDgfAuction, IRequest),
         IContentConfigurator
     )
-
+    config.registry.registerAdapter(
+        AwardingNextCheckV3,
+        (IDgfAuction, ),
+        IAwardingNextCheck
+    )

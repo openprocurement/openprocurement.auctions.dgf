@@ -11,6 +11,7 @@ from schematics.transforms import blacklist, whitelist
 from schematics.types.serializable import serializable
 from zope.interface import implementer
 from pyramid.security import Allow
+from openprocurement.api.interfaces import IAwardingNextCheck
 from openprocurement.api.models import (
     BooleanType,
     ListType,
@@ -24,7 +25,10 @@ from openprocurement.api.models import (
     schematics_embedded_role,
     SANDBOX_MODE
 )
-from openprocurement.api.utils import calculate_business_date
+from openprocurement.api.utils import (
+    calculate_business_date,
+    get_request_from_root
+)
 from openprocurement.auctions.core.models import (
     IAuction,
     dgfOrganization as Organization,
@@ -244,7 +248,12 @@ class Auction(BaseAuction):
                     checks.append(lot.auctionPeriod.startDate.astimezone(TZ))
                 elif now < calc_auction_end_time(lot.numberOfBids, lot.auctionPeriod.startDate).astimezone(TZ):
                     checks.append(calc_auction_end_time(lot.numberOfBids, lot.auctionPeriod.startDate).astimezone(TZ))
-        checks = next_check_awarding(self, checks)
+        # Use next_check part from awarding 2.0
+        request = get_request_from_root(self)
+        if request is not None:
+            awarding_check = request.registry.getAdapter(self, IAwardingNextCheck).add_awarding_checks(self)
+            if awarding_check is not None:
+                checks.append(awarding_check)
         if self.status.startswith('active'):
             from openprocurement.api.utils import calculate_business_date
             for complaint in self.complaints:
