@@ -64,7 +64,7 @@ class AuctionContractDocumentResourceTest(
         super(AuctionContractDocumentResourceTest, self).setUp()
         # Create award
         fixtures.create_award(self)
-        fixtures.create_contract(self)
+        fixtures.create_contract(self, 'contract_id')
 
 
 @unittest.skip("option not available")
@@ -79,7 +79,7 @@ class Auction2LotContractDocumentResourceTest(
     def setUp(self):
         super(Auction2LotContractDocumentResourceTest, self).setUp()
         fixtures.create_award(self)
-        fixtures.create_contract(self)
+        fixtures.create_contract(self, 'contract_id')
 
 
 class AuctionContractProlongationResourceTest(
@@ -93,7 +93,8 @@ class AuctionContractProlongationResourceTest(
         super(AuctionContractProlongationResourceTest, self).setUp()
         fixtures.create_award(self)
         self.contract_id = self.award_contract_id # use autocreated contract
-        fixtures.create_prolongation(self)
+        fixtures.create_prolongation(self, 'prolongation_id')
+        fixtures.create_prolongation(self, 'prolongation2_id')
 
 
 class FinancialAuctionContractResourceTest(AuctionContractResourceTest):

@@ -97,8 +97,9 @@ def create_award(test_case):
     test_case.award_contract_id = get_auction_response.\
         json['data']['contracts'][0]['id']
 
-def create_contract(test_case):
-    # Create contract for award
+def create_contract(test_case, test_case_attr):
+    """Create contract for award and place it's id into test_case arrtibute
+    """
     response = test_case.app.post_json(
         '/auctions/{}/contracts'.format(
             test_case.auction_id
@@ -110,9 +111,11 @@ def create_contract(test_case):
         }}
     )
     contract = response.json['data']
-    test_case.contract_id = contract['id']
+    setattr(test_case, test_case_attr, contract['id'])
 
-def create_prolongation(test_case):
+def create_prolongation(test_case, test_case_attr):
+    """Create prolongation and place it's id into test_case arrtibute
+    """
     prolongation_post_response = test_case.app.post_json(
         '/auctions/{0}/contracts/{1}/prolongation'.format(
             test_case.auction_id,
@@ -130,5 +133,5 @@ def create_prolongation(test_case):
         PROLONGATION['decisionID'],
         'Prolongation creation is wrong.'
     )
-    test_case.prolongation_id = created_prolongation.id
+    setattr(test_case, test_case_attr, created_prolongation.id)
 
