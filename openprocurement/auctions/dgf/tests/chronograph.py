@@ -7,8 +7,13 @@ from openprocurement.api.models import get_now
 from openprocurement.auctions.core.tests.base import snitch
 
 from openprocurement.auctions.dgf.tests.base import (
-    BaseAuctionWebTest, test_lots, test_bids, test_financial_auction_data,
-    test_financial_organization, test_financial_bids, test_organization
+    test_lots,
+    test_bids,
+    test_financial_auction_data,
+    test_financial_organization,
+    test_financial_bids,
+    test_organization,
+    BaseAuctionWebTest,
 )
 from openprocurement.auctions.core.tests.blanks.chronograph_blanks import (
     # AuctionSwitchAuctionResourceTest
@@ -24,17 +29,28 @@ from openprocurement.auctions.core.tests.blanks.chronograph_blanks import (
     # AuctionDontSwitchSuspendedAuction2ResourceTest
     switch_suspended_auction_to_auction,
 )
-from openprocurement.auctions.core.plugins.awarding.v3.tests.chronograph import (
+from openprocurement.auctions.core.plugins.\
+        awarding.v3.tests.chronograph import (
     AuctionAwardSwitchResourceTestMixin,
-    AuctionDontSwitchSuspendedAuctionResourceTestMixin
+    AuctionDontSwitchSuspendedAuctionResourceTestMixin,
 )
-from openprocurement.auctions.core.plugins.awarding.v3.tests.blanks.chronograph_blanks import (
+from openprocurement.auctions.core.tests.chronograph import (
+    AuctionContractSwitchTestMixin
+)
+from openprocurement.auctions.core.plugins.\
+        awarding.v3.tests.blanks.chronograph_blanks import (
     # AuctionAwardSwitch2ResourceTest
     switch_verification_to_unsuccessful_2,
-    switch_active_to_unsuccessful_2
+    switch_active_to_unsuccessful_2,
+)
+from openprocurement.auctions.core.plugins.\
+        contracting.v3.tests.blanks.chronograph_blanks import (
+    contract_signing_period_switch_to_unsuccessful,
 )
 
-from openprocurement.auctions.dgf.tests.blanks.chronograph_blanks import (
+from openprocurement.auctions.dgf.tests import fixtures
+from openprocurement.auctions.dgf.\
+        tests.blanks.chronograph_blanks import (
     # AuctionSwitchQualificationResourceTest
     switch_to_qualification,
     # AuctionAuctionPeriodResourceTest
@@ -309,6 +325,17 @@ class FinancialAuctionAwardComplaintSwitchResourceTest(AuctionAwardComplaintSwit
 class FinancialAuctionLotAwardComplaintSwitchResourceTest(AuctionLotAwardComplaintSwitchResourceTest):
     initial_data = test_financial_auction_data
     initial_organization = test_financial_organization
+
+class AuctionContractSwitchResourceTest(
+    BaseAuctionWebTest,
+    AuctionContractSwitchTestMixin
+):
+    initial_status = 'active.auction'
+    initial_bids = test_bids
+    def setUp(self):
+        super(AuctionContractSwitchResourceTest, self).setUp()
+        fixtures.create_award(self)
+        self.contract_id = self.award_contract_id # use autocreated contract
 
 
 def suite():
