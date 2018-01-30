@@ -117,7 +117,7 @@ def create_prolongation(test_case, test_case_attr):
     """Create prolongation and place it's id into test_case arrtibute
     """
     prolongation_post_response = test_case.app.post_json(
-        '/auctions/{0}/contracts/{1}/prolongation'.format(
+        '/auctions/{0}/contracts/{1}/prolongations'.format(
             test_case.auction_id,
             test_case.contract_id
         ),
