@@ -43,10 +43,6 @@ from openprocurement.auctions.core.plugins.\
     switch_verification_to_unsuccessful_2,
     switch_active_to_unsuccessful_2,
 )
-from openprocurement.auctions.core.plugins.\
-        contracting.v3.tests.blanks.chronograph_blanks import (
-    contract_signing_period_switch_to_unsuccessful,
-)
 
 from openprocurement.auctions.dgf.tests import fixtures
 from openprocurement.auctions.dgf.\
