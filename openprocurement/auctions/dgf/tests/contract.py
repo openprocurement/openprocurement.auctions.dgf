@@ -64,7 +64,7 @@ class AuctionContractDocumentResourceTest(
         super(AuctionContractDocumentResourceTest, self).setUp()
         # Create award
         fixtures.create_award(self)
-        fixtures.create_contract(self, 'contract_id')
+        self.contract_id = self.award_contract_id
 
 
 @unittest.skip("option not available")
@@ -79,7 +79,7 @@ class Auction2LotContractDocumentResourceTest(
     def setUp(self):
         super(Auction2LotContractDocumentResourceTest, self).setUp()
         fixtures.create_award(self)
-        fixtures.create_contract(self, 'contract_id')
+        self.contract_id = self.award_contract_id
 
 
 class AuctionContractProlongationResourceTest(
