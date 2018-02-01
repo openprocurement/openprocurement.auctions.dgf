@@ -10,6 +10,7 @@ PROLONGATION = {
     'description': 'Prolongate your contract for free!',
     'reason': 'other',
     'documents': [],
+    'datePublished': get_now().isoformat(),
 }
 
 def create_award(test_case):
