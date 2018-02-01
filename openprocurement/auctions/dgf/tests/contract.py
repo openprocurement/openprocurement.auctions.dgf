@@ -37,6 +37,7 @@ class AuctionContractResourceTest(BaseAuctionWebTest, AuctionContractResourceTes
     def setUp(self):
         super(AuctionContractResourceTest, self).setUp()
         fixtures.create_award(self)
+        self.contract_id = self.award_contract_id
 
 
 @unittest.skip("option not available")
@@ -49,6 +50,7 @@ class Auction2LotContractResourceTest(BaseAuctionWebTest):
         super(Auction2LotContractResourceTest, self).setUp()
         # Create award
         fixtures.create_award(self)
+
     test_patch_auction_contract_2_lots = snitch(patch_auction_contract_2_lots)
 
 

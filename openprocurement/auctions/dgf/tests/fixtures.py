@@ -97,22 +97,6 @@ def create_award(test_case):
     test_case.award_contract_id = get_auction_response.\
         json['data']['contracts'][0]['id']
 
-def create_contract(test_case, test_case_attr):
-    """Create contract for award and place it's id into test_case arrtibute
-    """
-    response = test_case.app.post_json(
-        '/auctions/{}/contracts'.format(
-            test_case.auction_id
-        ),
-        {'data': {
-            'title': 'contract title',
-            'description': 'contract description',
-            'awardID': test_case.award_id
-        }}
-    )
-    contract = response.json['data']
-    setattr(test_case, test_case_attr, contract['id'])
-
 def create_prolongation(test_case, test_case_attr):
     """Create prolongation and place it's id into test_case arrtibute
     """
