@@ -43,6 +43,7 @@ class AuctionAwardProcessTest(BaseAuctionWebTest, AuctionAwardProcessTestMixin):
     # initial_data = auction_data
     initial_status = 'active.auction'
     initial_bids = test_bids
+    docservice = True
 
     def upload_auction_protocol(self, award):
         award_id = award['id']
