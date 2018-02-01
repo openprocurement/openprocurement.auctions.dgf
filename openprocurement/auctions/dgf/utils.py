@@ -70,7 +70,7 @@ def check_status(request):
     for complaint in auction.complaints:
         check_complaint_status(request, complaint, now)
     for award in auction.awards:
-        check_award_status(request, award, now)
+        request.content_configurator.check_award_status(request, award, now)
         for complaint in award.complaints:
             check_complaint_status(request, complaint, now)
     if not auction.lots and auction.status == 'active.tendering' and auction.tenderPeriod.endDate <= now:
@@ -119,21 +119,6 @@ def check_status(request):
             if standStillEnd <= now:
                 check_auction_status(request)
                 return
-
-
-def check_award_status(request, award, now):
-    auction = request.validated['auction']
-    if (award.status == 'pending' and award['verificationPeriod']['endDate'] < now) or \
-            (award.status == 'active' and award['signingPeriod']['endDate'] < now):
-        if award.status == 'active':
-            auction.awardPeriod.endDate = None
-            auction.status = 'active.qualification'
-            for contract in auction.contracts:
-                if contract.awardID == award.id:
-                    contract.status = 'cancelled'
-        award.status = 'unsuccessful'
-        award.complaintPeriod.endDate = now
-        request.content_configurator.back_to_awarding()
 
 
 def invalidate_bids_under_threshold(auction):
