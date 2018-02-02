@@ -8,11 +8,19 @@ from openprocurement.api.constants import AWARDING_OF_PROCUREMENT_METHOD_TYPE
 
 from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.core.tests.blanks.migration_blanks import migrate
+from openprocurement.auctions.core.plugins.awarding.v3.tests.blanks.migration_blanks import (
+    migrate_pendingVerification_pending,
+    migrate_pendingPayment_active,
+    migrate_contract_cancelled,
+    migrate_contract_pending
+)
 
 from openprocurement.auctions.dgf.migration import (
     migrate_data, set_db_schema_version, SCHEMA_VERSION, get_db_schema_version
 )
-from openprocurement.auctions.dgf.tests.base import BaseWebTest, BaseAuctionWebTest, test_bids
+from openprocurement.auctions.dgf.tests.base import (
+    BaseWebTest, BaseAuctionWebTest, test_bids, test_lots
+)
 from openprocurement.auctions.dgf.tests.blanks.migration_blanks import (
     # MigrateTestFrom1To2InvalidBids
     migrate_one_pending_bids,
@@ -200,6 +208,29 @@ class MigrateTestFrom1To2SuspendedAuctionWithInvalidBid(BaseAuctionWebTest):
     test_migrate_one_active_suspend_bid = snitch(migrate_one_active_suspend_bid)
     test_migrate_unsuccessful_pending_suspend_bid = snitch(migrate_unsuccessful_pending_suspend_bid)
     test_migrate_unsuccessful_active_suspend_bid = snitch(migrate_unsuccessful_active_suspend_bid)
+
+
+class MigrateTestFrom2To3WithTwoBids(BaseAuctionWebTest):
+    initial_status = 'active.qualification'
+    initial_bids = test_bids
+
+    def setUp(self):
+        super(MigrateTestFrom2To3WithTwoBids, self).setUp()
+        migrate_data(self.app.app.registry)
+        set_db_schema_version(self.db, 1)
+
+    test_migrate_pendingVerification_pending = snitch(
+        migrate_pendingVerification_pending
+    )
+    test_migrate_pendingPayment_active = snitch(
+        migrate_pendingPayment_active
+    )
+    test_migrate_contract_cancelled = snitch(
+        migrate_contract_cancelled
+    )
+    test_migrate_contract_pending = snitch(
+        migrate_contract_pending
+    )
 
 
 def suite():
