@@ -2,14 +2,6 @@
 import unittest
 
 from openprocurement.auctions.core.tests.base import snitch
-from openprocurement.auctions.dgf.tests.base import (
-    BaseAuctionWebTest,
-    test_bids,
-    test_lots,
-    test_financial_auction_data,
-    test_financial_bids,
-    test_financial_organization,
-)
 from openprocurement.auctions.core.tests.contract import (
     AuctionContractResourceTestMixin,
     AuctionContractDocumentResourceTestMixin,
@@ -27,6 +19,14 @@ from openprocurement.auctions.core.tests.blanks.contract_blanks import (
     patch_date_paid,
 )
 from openprocurement.auctions.dgf.tests import fixtures
+from openprocurement.auctions.dgf.tests.base import (
+    BaseAuctionWebTest,
+    test_bids,
+    test_lots,
+    test_financial_auction_data,
+    test_financial_bids,
+    test_financial_organization,
+)
 
 
 class AuctionContractResourceTest(BaseAuctionWebTest, AuctionContractResourceTestMixin):
