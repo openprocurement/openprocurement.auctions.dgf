@@ -125,25 +125,6 @@ class AuctionAwardProcessTest(BaseAuctionWebTest, AuctionAwardProcessTestMixin):
         self.assertEqual('auctionProtocol', response.json["data"][1]["documentType"])
         self.assertEqual('auction_owner', response.json["data"][1]["author"])
 
-    def test_created_awards_have_periods_set(self):
-        awards = [self.first_award,]
-        periods = ['signingPeriod', 'verificationPeriod']
-        dates = ['startDate', 'endDate']
-
-        for count, award in enumerate(awards):
-            for period in periods:
-                for date in dates:
-                    self.assertNotEqual(
-                        award.get(period, {}).get(date),
-                        None,
-                        'Date not set in {0} award '
-                        '{1}.{2}'.format(
-                            count,
-                            period,
-                            date
-                        )
-                    )
-
 
 @unittest.skip("option not available")
 class AuctionLotAwardResourceTest(BaseAuctionWebTest, AuctionLotAwardResourceTestMixin):
