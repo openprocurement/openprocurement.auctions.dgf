@@ -34,7 +34,8 @@ from openprocurement.auctions.core.plugins.\
     AuctionAwardSwitchResourceTestMixin,
     AuctionDontSwitchSuspendedAuctionResourceTestMixin,
 )
-from openprocurement.auctions.core.tests.chronograph import (
+from openprocurement.auctions.core.plugins.\
+        contracting.v3.tests.chronograph import (
     AuctionContractSwitchTestMixin
 )
 from openprocurement.auctions.core.plugins.\
