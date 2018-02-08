@@ -7,7 +7,8 @@ from openprocurement.auctions.core.tests.contract import (
     AuctionContractDocumentResourceTestMixin,
     Auction2LotContractDocumentResourceTestMixin
 )
-from openprocurement.auctions.core.tests.prolongation import (
+from openprocurement.auctions.core.plugins.\
+        contracting.v3.tests.prolongation import (
     AuctionContractProlongationResourceTestMixin
 )
 from openprocurement.auctions.core.tests.blanks.contract_blanks import (
