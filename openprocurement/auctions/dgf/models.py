@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta, time
+from pytz import UTC
 from schematics.types import StringType, URLType, IntType, DateType
 from schematics.types.compound import ModelType
 from schematics.exceptions import ValidationError
@@ -347,9 +348,9 @@ class Auction(BaseAuction):
         if not self.tenderPeriod:
             self.tenderPeriod = type(self).tenderPeriod.model_class()
         now = get_now()
-        self.tenderPeriod.startDate = self.enquiryPeriod.startDate = now
+        self.tenderPeriod.startDate = self.enquiryPeriod.startDate = now.astimezone(TZ)
         pause_between_periods = self.auctionPeriod.startDate - (self.auctionPeriod.startDate.replace(hour=20, minute=0, second=0, microsecond=0) - timedelta(days=1))
-        self.enquiryPeriod.endDate = self.tenderPeriod.endDate = calculate_business_date(self.auctionPeriod.startDate, -pause_between_periods, self)
+        self.enquiryPeriod.endDate = self.tenderPeriod.endDate = calculate_business_date(self.auctionPeriod.startDate.astimezone(UTC), -pause_between_periods, self).astimezone(TZ)
         self.auctionPeriod.startDate = None
         self.auctionPeriod.endDate = None
         self.date = now

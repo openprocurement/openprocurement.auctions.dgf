@@ -1102,6 +1102,22 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.json['data'], auction)
         self.assertEqual(response.json['data']['dateModified'], dateModified)
 
+    def test_daylight_savings_timezone(self):
+        response = self.app.post_json('/auctions', {'data': self.initial_data})
+        tender_end_date_before = parse_date(response.json['data']['tenderPeriod']['endDate']).time()
+        now = get_now()
+        list_of_bools = []
+        # check if DST working with different time periods
+        for i in (10, 90, 180, 210):
+            self.initial_data.update({
+                "auctionPeriod": {
+                    "startDate": (now + timedelta(days=i)).isoformat(),
+                }})
+            response = self.app.post_json('/auctions', {'data': self.initial_data})
+            tender_end_date_after = parse_date(response.json['data']['tenderPeriod']['endDate']).time()
+            list_of_bools.append(tender_end_date_before != tender_end_date_after)
+        self.assertEqual(any(list_of_bools), True)
+
     def test_auction_not_found(self):
         response = self.app.get('/auctions')
         self.assertEqual(response.status, '200 OK')
