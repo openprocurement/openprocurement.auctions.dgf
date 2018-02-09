@@ -97,6 +97,7 @@ class AuctionContractProlongationResourceTest(
         self.contract_id = self.award_contract_id # use autocreated contract
         fixtures.create_prolongation(self, 'prolongation_id')
         fixtures.create_prolongation(self, 'prolongation2_id')
+        fixtures.create_prolongation(self, 'prolongation3_id')
 
 
 class FinancialAuctionContractResourceTest(AuctionContractResourceTest):
