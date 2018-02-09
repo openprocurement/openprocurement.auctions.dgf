@@ -54,10 +54,7 @@ class Auction2LotContractResourceTest(BaseAuctionWebTest):
     test_patch_auction_contract_2_lots = snitch(patch_auction_contract_2_lots)
 
 
-class AuctionContractDocumentResourceTest(
-    BaseAuctionWebTest,
-    AuctionContractDocumentResourceTestMixin
-):
+class AuctionContractDocumentResourceTest(BaseAuctionWebTest, AuctionContractDocumentResourceTestMixin):
     #initial_data = auction_data
     initial_status = 'active.auction'
     initial_bids = test_bids
@@ -84,10 +81,7 @@ class Auction2LotContractDocumentResourceTest(
         self.contract_id = self.award_contract_id
 
 
-class AuctionContractProlongationResourceTest(
-    BaseAuctionWebTest,
-    AuctionContractProlongationResourceTestMixin
-):
+class AuctionContractProlongationResourceTest(BaseAuctionWebTest, AuctionContractProlongationResourceTestMixin):
     initial_status = 'active.auction'
     initial_bids = test_bids
 
@@ -97,6 +91,7 @@ class AuctionContractProlongationResourceTest(
         self.contract_id = self.award_contract_id # use autocreated contract
         fixtures.create_prolongation(self, 'prolongation_id')
         fixtures.create_prolongation(self, 'prolongation2_id')
+        fixtures.create_prolongation(self, 'prolongation3_id')
 
 
 class FinancialAuctionContractResourceTest(AuctionContractResourceTest):
