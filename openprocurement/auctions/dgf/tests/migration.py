@@ -207,8 +207,7 @@ class MigrateTestFrom1To2SuspendedAuctionWithInvalidBid(BaseAuctionWebTest):
     test_migrate_unsuccessful_active_suspend_bid = snitch(migrate_unsuccessful_active_suspend_bid)
 
 
-class MigrateTestFrom2To3WithTwoBids(BaseAuctionWebTest,
-                                     MigrateAwardingV2toV3Mixin):
+class MigrateTestFrom2To3WithTwoBids(BaseAuctionWebTest, MigrateAwardingV2toV3Mixin):
     initial_status = 'active.qualification'
     initial_bids = test_bids
 
