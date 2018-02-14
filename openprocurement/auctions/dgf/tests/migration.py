@@ -8,11 +8,16 @@ from openprocurement.api.constants import AWARDING_OF_PROCUREMENT_METHOD_TYPE
 
 from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.core.tests.blanks.migration_blanks import migrate
+from openprocurement.auctions.core.plugins.awarding.v3.tests.migration import (
+    MigrateAwardingV2toV3Mixin
+)
 
 from openprocurement.auctions.dgf.migration import (
     migrate_data, set_db_schema_version, SCHEMA_VERSION, get_db_schema_version
 )
-from openprocurement.auctions.dgf.tests.base import BaseWebTest, BaseAuctionWebTest, test_bids
+from openprocurement.auctions.dgf.tests.base import (
+    BaseWebTest, BaseAuctionWebTest, test_bids
+)
 from openprocurement.auctions.dgf.tests.blanks.migration_blanks import (
     # MigrateTestFrom1To2InvalidBids
     migrate_one_pending_bids,
@@ -200,6 +205,20 @@ class MigrateTestFrom1To2SuspendedAuctionWithInvalidBid(BaseAuctionWebTest):
     test_migrate_one_active_suspend_bid = snitch(migrate_one_active_suspend_bid)
     test_migrate_unsuccessful_pending_suspend_bid = snitch(migrate_unsuccessful_pending_suspend_bid)
     test_migrate_unsuccessful_active_suspend_bid = snitch(migrate_unsuccessful_active_suspend_bid)
+
+
+class MigrateTestFrom2To3WithTwoBids(BaseAuctionWebTest, MigrateAwardingV2toV3Mixin):
+    initial_status = 'active.qualification'
+    initial_bids = test_bids
+
+    @staticmethod
+    def migrate_data(registry, destination=None):
+        return migrate_data(registry, destination)
+
+    def setUp(self):
+        super(MigrateTestFrom2To3WithTwoBids, self).setUp()
+        migrate_data(self.app.app.registry)
+        set_db_schema_version(self.db, 1)
 
 
 def suite():
