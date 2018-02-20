@@ -189,16 +189,16 @@ class FinancialAuctionDocumentBidderResourceTest(AuctionBidderDocumentResourceTe
 
 
 def suite():
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(AuctionBidderDocumentResourceTest))
-    suite.addTest(unittest.makeSuite(AuctionBidderDocumentWithDSResourceTest))
-    suite.addTest(unittest.makeSuite(AuctionBidderFeaturesResourceTest))
-    suite.addTest(unittest.makeSuite(AuctionBidderResourceTest))
-    suite.addTest(unittest.makeSuite(FinancialAuctionDocumentBidderResourceTest))
-    suite.addTest(unittest.makeSuite(FinancialAuctionBidderDocumentWithDSResourceTest))
-    suite.addTest(unittest.makeSuite(FinancialAuctionBidderFeaturesResourceTest))
-    suite.addTest(unittest.makeSuite(FinancialAuctionBidderResourceTest))
-    return suite
+    tests = unittest.TestSuite()
+    tests.addTest(unittest.makeSuite(AuctionBidderResourceTest))
+    tests.addTest(unittest.makeSuite(AuctionBidderFeaturesResourceTest))
+    tests.addTest(unittest.makeSuite(AuctionBidderDocumentResourceTest))
+    tests.addTest(unittest.makeSuite(AuctionBidderDocumentWithDSResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionBidderResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionBidderFeaturesResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionBidderDocumentWithDSResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionDocumentBidderResourceTest))
+    return tests
 
 
 if __name__ == '__main__':

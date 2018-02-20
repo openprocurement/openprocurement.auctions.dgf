@@ -203,14 +203,16 @@ class MigrateTestFrom1To2SuspendedAuctionWithInvalidBid(BaseAuctionWebTest):
 
 
 def suite():
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(MigrateTest))
-    suite.addTest(unittest.makeSuite(MigrateTestFrom1To2InvalidBids))
-    suite.addTest(unittest.makeSuite(MigrateTestFrom1To2InvalidBid))
-    suite.addTest(unittest.makeSuite(MigrateTestFrom1To2WithTwoBids))
-    suite.addTest(unittest.makeSuite(MigrateTestFrom1To2WithThreeBids))
-    suite.addTest(unittest.makeSuite(MigrateTestFrom1To2SuspendedAuction))
-    return suite
+    tests = unittest.TestSuite()
+    tests.addTest(unittest.makeSuite(MigrateTest))
+    tests.addTest(unittest.makeSuite(MigrateTestFrom1To2InvalidBids))
+    tests.addTest(unittest.makeSuite(MigrateTestFrom1To2InvalidBid))
+    tests.addTest(unittest.makeSuite(MigrateTestFrom1To2WithTwoBids))
+    tests.addTest(unittest.makeSuite(MigrateTestFrom1To2WithThreeBids))
+    tests.addTest(unittest.makeSuite(MigrateTestFrom1To2SuspendedAuction))
+    tests.addTest(unittest.makeSuite(MigrateTestFrom1To2SuspendedAuctionWithInvalidBids))
+    tests.addTest(unittest.makeSuite(MigrateTestFrom1To2SuspendedAuctionWithInvalidBid))
+    return tests
 
 
 if __name__ == '__main__':

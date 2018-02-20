@@ -38,12 +38,12 @@ class FinancialAuctionLotQuestionResourceTest(AuctionLotQuestionResourceTest):
 
 
 def suite():
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(AuctionQuestionResourceTest))
-    suite.addTest(unittest.makeSuite(AuctionLotQuestionResourceTest))
-    suite.addTest(unittest.makeSuite(FinancialAuctionQuestionResourceTest))
-    suite.addTest(unittest.makeSuite(FinancialAuctionLotQuestionResourceTest))
-    return suite
+    tests = unittest.TestSuite()
+    tests.addTest(unittest.makeSuite(AuctionQuestionResourceTest))
+    tests.addTest(unittest.makeSuite(AuctionLotQuestionResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionQuestionResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionLotQuestionResourceTest))
+    return tests
 
 
 if __name__ == '__main__':

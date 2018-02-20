@@ -17,10 +17,6 @@ from openprocurement.auctions.core.tests.blanks.complaint_blanks import (
 )
 
 
-class AuctionComplaintResourceTest(BaseAuctionWebTest, AuctionComplaintResourceTestMixin):
-    """Test Case for Auction Complaint resource"""
-
-
 @unittest.skip("option not available")
 class AuctionLotAwardComplaintResourceTest(BaseAuctionWebTest):
     initial_lots = test_lots
@@ -57,10 +53,18 @@ class FinancialAuctionComplaintDocumentResourceTest(BaseAuctionWebTest):
 
 
 def suite():
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(AuctionComplaintDocumentResourceTest))
-    suite.addTest(unittest.makeSuite(AuctionComplaintResourceTest))
-    return suite
+    tests = unittest.TestSuite()
+    tests.addTest(unittest.makeSuite(AuctionLotAwardComplaintResourceTest))
+    tests.addTest(unittest.makeSuite(AuctionComplaintDocumentResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionComplaintResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionLotAwardComplaint))
+    tests.addTest(unittest.makeSuite(FinancialAuctionComplaintDocumentResourceTest))
+    tests.addTest(unittest.makeSuite(AuctionComplaintResourceTest))
+    return tests
+
+
+class AuctionComplaintResourceTest(BaseAuctionWebTest, AuctionComplaintResourceTestMixin):
+    """Test Case for Auction Complaint resource"""
 
 
 if __name__ == '__main__':
