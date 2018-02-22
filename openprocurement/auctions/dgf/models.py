@@ -324,7 +324,7 @@ class Auction(BaseAuction):
             'invalid': view_role,
             'edit_pending.verification': whitelist(),
             'edit_invalid': whitelist(),
-            'convoy': whitelist('status', 'items', 'documents')
+            'convoy': whitelist('status', 'items', 'documents', 'dgfID')
         }
 
     awards = ListType(ModelType(Award), default=list())
@@ -405,7 +405,7 @@ class Auction(BaseAuction):
             raise ValidationError(u"currency should be only UAH")
 
     def validate_dgfID(self, data, dgfID):
-        if not dgfID:
+        if not dgfID and data['status'] not in ['draft', 'pending.verification', 'invalid']:
             if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_ID_REQUIRED_FROM:
                 raise ValidationError(u'This field is required.')
 

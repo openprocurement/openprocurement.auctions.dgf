@@ -1323,8 +1323,6 @@ def suite():
     suite.addTest(unittest.makeSuite(FinancialAuctionSameValueAuctionResourceTestRegistry))
     suite.addTest(unittest.makeSuite(FinancialAuctionSubmissionMethodDetailsTestWithRegistry))
 
-
-
     return suite
 
 
