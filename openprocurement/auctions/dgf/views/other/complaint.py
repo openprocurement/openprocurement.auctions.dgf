@@ -6,6 +6,9 @@ from openprocurement.api.utils import (
     set_ownership,
     APIResource,
 )
+from openprocurement.auctions.core.constants import (
+    PROCEDURE_STATUSES,
+)
 from openprocurement.auctions.core.utils import (
     apply_patch,
     check_auction_status,
@@ -74,7 +77,7 @@ class AuctionComplaintResource(APIResource):
         """Post a complaint resolution
         """
         auction = self.request.validated['auction']
-        if auction.status not in ['active.tendering', 'active.auction', 'active.qualification', 'active.awarded']:
+        if auction.status not in PROCEDURE_STATUSES[auction.procurementMethodType]['complaint_statuses']:
             self.request.errors.add('body', 'data', 'Can\'t update complaint in current ({}) auction status'.format(auction.status))
             self.request.errors.status = 403
             return

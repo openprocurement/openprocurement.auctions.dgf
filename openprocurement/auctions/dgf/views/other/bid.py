@@ -6,6 +6,9 @@ from openprocurement.api.utils import (
     APIResource,
     set_ownership,
 )
+from openprocurement.auctions.core.constants import (
+    PROCEDURE_STATUSES,
+)
 from openprocurement.auctions.core.utils import (
     save_auction,
     apply_patch,
@@ -15,7 +18,6 @@ from openprocurement.auctions.core.validation import (
     validate_bid_data,
     validate_patch_bid_data,
 )
-
 
 
 @opresource(name='dgfOtherAssets:Auction Bids',
@@ -108,7 +110,7 @@ class AuctionBidResource(APIResource):
         # See https://github.com/open-contracting/standard/issues/78#issuecomment-59830415
         # for more info upon schema
         auction = self.request.validated['auction']
-        if self.request.validated['auction_status'] != 'active.tendering':
+        if self.request.validated['auction_status'] not in PROCEDURE_STATUSES[auction.procurementMethodType]['bid_interaction_statuses']:
             self.request.errors.add('body', 'data', 'Can\'t add bid in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
@@ -169,7 +171,7 @@ class AuctionBidResource(APIResource):
 
         """
         auction = self.request.validated['auction']
-        if self.request.validated['auction_status'] in ['active.tendering', 'active.auction']:
+        if self.request.validated['auction_status'] in PROCEDURE_STATUSES[auction.procurementMethodType]['tender_period_statuses']:
             self.request.errors.add('body', 'data', 'Can\'t view bids in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
@@ -205,9 +207,10 @@ class AuctionBidResource(APIResource):
             }
 
         """
+        auction = self.request.validated['auction']
         if self.request.authenticated_role == 'bid_owner':
             return {'data': self.request.context.serialize('view')}
-        if self.request.validated['auction_status'] in ['active.tendering', 'active.auction']:
+        if self.request.validated['auction_status'] in PROCEDURE_STATUSES[auction.procurementMethodType]['tender_period_statuses']:
             self.request.errors.add('body', 'data', 'Can\'t view bid in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
@@ -251,8 +254,8 @@ class AuctionBidResource(APIResource):
             }
 
         """
-
-        if self.request.authenticated_role != 'Administrator' and self.request.validated['auction_status'] != 'active.tendering':
+        auction = self.request.validated['auction']
+        if self.request.authenticated_role != 'Administrator' and self.request.validated['auction_status'] not in PROCEDURE_STATUSES[auction.procurementMethodType]['bid_interaction_statuses']:
             self.request.errors.add('body', 'data', 'Can\'t update bid in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
@@ -311,8 +314,9 @@ class AuctionBidResource(APIResource):
             }
 
         """
+        auction = self.request.validated['auction']
         bid = self.request.context
-        if self.request.validated['auction_status'] != 'active.tendering':
+        if self.request.validated['auction_status'] not in PROCEDURE_STATUSES[auction.procurementMethodType]['bid_interaction_statuses']:
             self.request.errors.add('body', 'data', 'Can\'t delete bid in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return

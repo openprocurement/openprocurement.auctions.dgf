@@ -10,6 +10,9 @@ from openprocurement.api.validation import (
     validate_file_upload,
     validate_patch_document_data,
 )
+from openprocurement.auctions.core.constants import (
+    PROCEDURE_STATUSES,
+)
 from openprocurement.auctions.core.utils import (
     save_auction,
     apply_patch,
@@ -40,8 +43,10 @@ class AuctionDocumentResource(APIResource):
     @json_view(permission='upload_auction_documents', validators=(validate_file_upload,))
     def collection_post(self):
         """Auction Document Upload"""
+        auction = self.request.validated['auction']
         if self.request.authenticated_role != 'auction' and self.request.validated['auction_status'] != 'active.tendering' or \
-           self.request.authenticated_role == 'auction' and self.request.validated['auction_status'] not in ['active.auction', 'active.qualification']:
+           self.request.authenticated_role == 'auction' and self.request.validated['auction_status'] not in PROCEDURE_STATUSES[auction.procurementMethodType]['auction_statuses'] \
+                                                        and self.request.validated['auction_status'] != 'active.qualification':
             self.request.errors.add('body', 'data', 'Can\'t add document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
@@ -74,8 +79,10 @@ class AuctionDocumentResource(APIResource):
     @json_view(permission='upload_auction_documents', validators=(validate_file_update,))
     def put(self):
         """Auction Document Update"""
+        auction = self.request.validated['auction']
         if self.request.authenticated_role != 'auction' and self.request.validated['auction_status'] != 'active.tendering' or \
-           self.request.authenticated_role == 'auction' and self.request.validated['auction_status'] not in ['active.auction', 'active.qualification']:
+           self.request.authenticated_role == 'auction' and self.request.validated['auction_status'] not in PROCEDURE_STATUSES[auction.procurementMethodType]['auction_statuses'] \
+                                                        and self.request.validated['auction_status'] != 'active.qualification':
             self.request.errors.add('body', 'data', 'Can\'t update document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
@@ -89,8 +96,10 @@ class AuctionDocumentResource(APIResource):
     @json_view(content_type="application/json", permission='upload_auction_documents', validators=(validate_patch_document_data,))
     def patch(self):
         """Auction Document Update"""
+        auction = self.request.validated['auction']
         if self.request.authenticated_role != 'auction' and self.request.validated['auction_status'] != 'active.tendering' or \
-           self.request.authenticated_role == 'auction' and self.request.validated['auction_status'] not in ['active.auction', 'active.qualification']:
+           self.request.authenticated_role == 'auction' and self.request.validated['auction_status'] not in PROCEDURE_STATUSES[auction.procurementMethodType]['auction_statuses'] \
+                                                        and self.request.validated['auction_status'] != 'active.qualification':
             self.request.errors.add('body', 'data', 'Can\'t update document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
