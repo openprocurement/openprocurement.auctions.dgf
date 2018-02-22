@@ -10,6 +10,9 @@ entry_points = {
     ],
     'openprocurement.api.migrations': [
         'auctions = openprocurement.auctions.dgf.migration:migrate_data'
+    ],
+    'openprocurement.tests': [
+        'auctions.dgf = openprocurement.auctions.dgf.tests.main:suite'
     ]
 }
 

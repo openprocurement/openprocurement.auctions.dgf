@@ -49,12 +49,12 @@ class FinancialAuctionDocumentWithDSResourceTest(BaseAuctionWebTest, AuctionDocu
 
 
 def suite():
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(AuctionDocumentResourceTest))
-    suite.addTest(unittest.makeSuite(AuctionDocumentWithDSResourceTest))
-    suite.addTest(unittest.makeSuite(FinancialAuctionDocumentResourceTest))
-    suite.addTest(unittest.makeSuite(FinancialAuctionDocumentWithDSResourceTest))
-    return suite
+    tests = unittest.TestSuite()
+    tests.addTest(unittest.makeSuite(AuctionDocumentResourceTest))
+    tests.addTest(unittest.makeSuite(AuctionDocumentWithDSResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionDocumentResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionDocumentWithDSResourceTest))
+    return tests
 
 
 if __name__ == '__main__':

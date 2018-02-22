@@ -235,14 +235,19 @@ class FinancialAuctionFeaturesAuctionResourceTest(AuctionFeaturesAuctionResource
 
 
 def suite():
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(AuctionAuctionResourceTest))
-    suite.addTest(unittest.makeSuite(AuctionSameValueAuctionResourceTest))
-    suite.addTest(unittest.makeSuite(AuctionFeaturesAuctionResourceTest))
-    suite.addTest(unittest.makeSuite(FinancialAuctionAuctionResourceTest))
-    suite.addTest(unittest.makeSuite(FinancialAuctionSameValueAuctionResourceTest))
-    suite.addTest(unittest.makeSuite(FinancialAuctionFeaturesAuctionResourceTest))
-    return suite
+    tests = unittest.TestSuite()
+    tests.addTest(unittest.makeSuite(AuctionAuctionResourceTest))
+    tests.addTest(unittest.makeSuite(AuctionBidInvalidationAuctionResourceTest))
+    tests.addTest(unittest.makeSuite(AuctionSameValueAuctionResourceTest))
+    tests.addTest(unittest.makeSuite(AuctionLotAuctionResourceTest))
+    tests.addTest(unittest.makeSuite(AuctionMultipleLotAuctionResourceTest))
+    tests.addTest(unittest.makeSuite(AuctionFeaturesAuctionResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionAuctionResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionSameValueAuctionResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionLotAuctionResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionMultipleLotAuctionResourceTest))
+    tests.addTest(unittest.makeSuite(FinancialAuctionFeaturesAuctionResourceTest))
+    return tests
 
 
 if __name__ == '__main__':
