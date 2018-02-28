@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import unittest
 from copy import deepcopy
-from datetime import timedelta, time
+from calendar import monthrange
+from datetime import datetime, timedelta, time, date
 from uuid import uuid4
 from iso8601 import parse_date
+import pytz
 
 from openprocurement.api.utils import ROUTE_PREFIX
 from openprocurement.api.models import get_now, SANDBOX_MODE, TZ
@@ -1101,6 +1103,57 @@ class AuctionResourceTest(BaseWebTest):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data'], auction)
         self.assertEqual(response.json['data']['dateModified'], dateModified)
+
+    def test_daylight_savings_timezone(self):
+        response = self.app.post_json('/auctions', {'data': self.initial_data})
+        ua_tz = pytz.timezone('Europe/Kiev')
+        timezone_before = parse_date(response.json['data']['tenderPeriod']['endDate']).astimezone(tz=ua_tz)
+        timezone_before = timezone_before.strftime('%Z')
+        now = get_now()
+        list_of_timezone_bools = []
+        # check if DST working with different time periods
+        for i in (10, 90, 180, 210, 300):
+            self.initial_data.update({
+                "auctionPeriod": {
+                    "startDate": (now + timedelta(days=i)).isoformat(),
+                }})
+            response = self.app.post_json('/auctions', {'data': self.initial_data})
+            timezone_after = parse_date(response.json['data']['tenderPeriod']['endDate']).astimezone(tz=ua_tz)
+            timezone_after = timezone_after.strftime('%Z')
+            list_of_timezone_bools.append(timezone_before != timezone_after)
+        self.assertTrue(any(list_of_timezone_bools))
+
+        # check timezones +1 change date for next 5 years
+        for i in range(5):
+            year = datetime.now().year + i
+            day_of_week, days = monthrange(year, 03)
+            # calculate last sundays of march
+            firstmatch = (6 - day_of_week) % 7 + 1
+            last_sunday = list(xrange(firstmatch, days+1, 7))[-1]
+            self.initial_data.update({
+                "auctionPeriod": {
+                    "startDate": datetime(year, 03, last_sunday).isoformat(),
+                }})
+            response = self.app.post_json('/auctions', {'data': self.initial_data})
+            timezone_after = parse_date(response.json['data']['tenderPeriod']['endDate']).astimezone(tz=ua_tz)
+            timezone_after = timezone_after.strftime('%Z')
+            self.assertEqual(timezone_after, 'EET')
+
+        # check timezones -1 change date for next 5 years
+        for i in range(5):
+            year = datetime.now().year + i
+            day_of_week, days = monthrange(year, 10)
+            # calculate last sundays of march
+            firstmatch = (6 - day_of_week) % 7 + 1
+            last_sunday = list(xrange(firstmatch, days+1, 7))[-1]
+            self.initial_data.update({
+                "auctionPeriod": {
+                    "startDate": datetime(year, 10, last_sunday).isoformat(),
+                }})
+            response = self.app.post_json('/auctions', {'data': self.initial_data})
+            timezone_after = parse_date(response.json['data']['tenderPeriod']['endDate']).astimezone(tz=ua_tz)
+            timezone_after = timezone_after.strftime('%Z')
+            self.assertEqual(timezone_after, 'EEST')
 
     def test_auction_not_found(self):
         response = self.app.get('/auctions')
