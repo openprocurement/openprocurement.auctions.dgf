@@ -13,6 +13,9 @@ from openprocurement.api.validation import (
     validate_file_upload,
     validate_patch_document_data,
 )
+from openprocurement.auctions.core.constants import (
+    PROCEDURE_STATUSES,
+)
 from openprocurement.auctions.core.utils import (
     save_auction,
     apply_patch,
@@ -29,11 +32,11 @@ class AuctionBidDocumentResource(APIResource):
 
     def validate_bid_document(self, operation):
         auction = self.request.validated['auction']
-        if auction.status not in ['active.tendering', 'active.qualification']:
+        if self.request.validated['auction_status'] not in PROCEDURE_STATUSES[auction.procurementMethodType]['bid_doc_interaction_statuses']:
             self.request.errors.add('body', 'data', 'Can\'t {} document in current ({}) auction status'.format(operation, auction.status))
             self.request.errors.status = 403
             return
-        if auction.status == 'active.tendering' and not (auction.tenderPeriod.startDate < get_now() < auction.tenderPeriod.endDate):
+        if auction.status in PROCEDURE_STATUSES[auction.procurementMethodType]['tender_period_statuses'] and not (auction.tenderPeriod.startDate < get_now() < auction.tenderPeriod.endDate):
             self.request.errors.add('body', 'data', 'Document can be {} only during the tendering period: from ({}) to ({}).'.format('added' if operation == 'add' else 'updated', auction.tenderPeriod.startDate.isoformat(), auction.tenderPeriod.endDate.isoformat()))
             self.request.errors.status = 403
             return
@@ -46,7 +49,8 @@ class AuctionBidDocumentResource(APIResource):
     @json_view(permission='view_auction')
     def collection_get(self):
         """Auction Bid Documents List"""
-        if self.request.validated['auction_status'] in ['active.tendering', 'active.auction'] and self.request.authenticated_role != 'bid_owner':
+        auction = self.request.validated['auction']
+        if self.request.validated['auction_status'] in PROCEDURE_STATUSES[auction.procurementMethodType]['bid_doc_interaction_statuses'] and self.request.authenticated_role != 'bid_owner':
             self.request.errors.add('body', 'data', 'Can\'t view bid documents in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
@@ -80,7 +84,8 @@ class AuctionBidDocumentResource(APIResource):
     @json_view(permission='view_auction')
     def get(self):
         """Auction Bid Document Read"""
-        if self.request.validated['auction_status'] in ['active.tendering', 'active.auction'] and self.request.authenticated_role != 'bid_owner':
+        auction = self.request.validated['auction']
+        if self.request.validated['auction_status'] in PROCEDURE_STATUSES[auction.procurementMethodType]['tender_period_statuses'] and self.request.authenticated_role != 'bid_owner':
             self.request.errors.add('body', 'data', 'Can\'t view bid document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return

@@ -12,6 +12,9 @@ from openprocurement.api.validation import (
     validate_file_upload,
     validate_patch_document_data,
 )
+from openprocurement.auctions.core.constants import (
+    PROCEDURE_STATUSES,
+)
 from openprocurement.auctions.core.utils import (
     save_auction,
     apply_patch,
@@ -51,7 +54,8 @@ class AuctionComplaintDocumentResource(APIResource):
     def collection_post(self):
         """Auction Complaint Document Upload
         """
-        if self.request.validated['auction_status'] not in ['active.tendering', 'active.auction', 'active.qualification', 'active.awarded']:
+        auction = self.request.validated['auction']
+        if self.request.validated['auction_status'] not in PROCEDURE_STATUSES[auction.procurementMethodType]['complaint_statuses']:
             self.request.errors.add('body', 'data', 'Can\'t add document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
@@ -91,7 +95,8 @@ class AuctionComplaintDocumentResource(APIResource):
             self.request.errors.add('url', 'role', 'Can update document only author')
             self.request.errors.status = 403
             return
-        if self.request.validated['auction_status'] not in ['active.tendering', 'active.auction', 'active.qualification', 'active.awarded']:
+        auction = self.request.validated['auction']
+        if self.request.validated['auction_status'] not in PROCEDURE_STATUSES[auction.procurementMethodType]['complaint_statuses']:
             self.request.errors.add('body', 'data', 'Can\'t update document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
@@ -114,7 +119,8 @@ class AuctionComplaintDocumentResource(APIResource):
             self.request.errors.add('url', 'role', 'Can update document only author')
             self.request.errors.status = 403
             return
-        if self.request.validated['auction_status'] not in ['active.tendering', 'active.auction', 'active.qualification', 'active.awarded']:
+        auction = self.request.validated['auction']
+        if self.request.validated['auction_status'] not in PROCEDURE_STATUSES[auction.procurementMethodType]['complaint_statuses']:
             self.request.errors.add('body', 'data', 'Can\'t update document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return

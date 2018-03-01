@@ -16,6 +16,7 @@ from openprocurement.auctions.core.validation import (
     validate_cancellation_data,
     validate_patch_cancellation_data,
 )
+from openprocurement.auctions.core.constants import PROCEDURE_STATUSES
 
 
 @opresource(name='dgfOtherAssets:Auction Cancellations',
@@ -27,7 +28,7 @@ class AuctionCancellationResource(APIResource):
 
     def cancel_auction(self):
         auction = self.request.validated['auction']
-        if auction.status in ['active.tendering', 'active.auction']:
+        if auction.status in PROCEDURE_STATUSES[auction.procurementMethodType]['tender_period_statuses']:
             auction.bids = []
         auction.status = 'cancelled'
 
@@ -44,7 +45,7 @@ class AuctionCancellationResource(APIResource):
             auction.status = 'unsuccessful'
         elif not statuses.difference(set(['complete', 'unsuccessful', 'cancelled'])):
             auction.status = 'complete'
-        if auction.status == 'active.auction' and all([
+        if auction.status in PROCEDURE_STATUSES[auction.procurementMethodType]['auction_statuses'] and all([
             i.auctionPeriod and i.auctionPeriod.endDate
             for i in self.request.validated['auction'].lots
             if i.numberOfBids > 1 and i.status == 'active'
