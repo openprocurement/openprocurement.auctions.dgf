@@ -45,6 +45,34 @@ class AuctionAwardProcessTest(BaseAuctionWebTest, AuctionAwardProcessTestMixin):
     initial_bids = test_bids
     docservice = True
 
+    def setUp(self):
+        super(AuctionAwardProcessTest, self).setUp()
+
+        authorization = self.app.authorization
+        self.app.authorization = ('Basic', ('auction', ''))
+        now = get_now()
+        auction_result = {
+            'bids': [
+                {
+                    "id": b['id'],
+                    "date": (now - timedelta(seconds=i)).isoformat(),
+                    "value": b['value']
+                }
+                for i, b in enumerate(self.initial_bids)
+            ]
+        }
+
+        response = self.app.post_json('/auctions/{}/auction'.format(self.auction_id), {'data': auction_result})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.content_type, 'application/json')
+        auction = response.json['data']
+        self.assertEqual('active.qualification', auction["status"])
+        self.first_award = auction['awards'][0]
+        self.second_award = auction['awards'][1]
+        self.first_award_id = self.first_award['id']
+        self.second_award_id = self.second_award['id']
+        self.app.authorization = authorization
+
     def upload_auction_protocol(self, award):
         award_id = award['id']
         bid_token = self.initial_bids_tokens[award['bid_id']]
@@ -96,34 +124,6 @@ class AuctionAwardProcessTest(BaseAuctionWebTest, AuctionAwardProcessTestMixin):
         self.assertEqual('bid_owner', response.json["data"][0]["author"])
         self.assertEqual('auctionProtocol', response.json["data"][1]["documentType"])
         self.assertEqual('auction_owner', response.json["data"][1]["author"])
-
-    def setUp(self):
-        super(AuctionAwardProcessTest, self).setUp()
-
-        authorization = self.app.authorization
-        self.app.authorization = ('Basic', ('auction', ''))
-        now = get_now()
-        auction_result = {
-            'bids': [
-                {
-                    "id": b['id'],
-                    "date": (now - timedelta(seconds=i)).isoformat(),
-                    "value": b['value']
-                }
-                for i, b in enumerate(self.initial_bids)
-            ]
-        }
-
-        response = self.app.post_json('/auctions/{}/auction'.format(self.auction_id), {'data': auction_result})
-        self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
-        auction = response.json['data']
-        self.assertEqual('active.qualification', auction["status"])
-        self.first_award = auction['awards'][0]
-        self.second_award = auction['awards'][1]
-        self.first_award_id = self.first_award['id']
-        self.second_award_id = self.second_award['id']
-        self.app.authorization = authorization
 
 
 @unittest.skip("option not available")

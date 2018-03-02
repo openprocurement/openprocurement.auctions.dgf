@@ -29,24 +29,21 @@ from openprocurement.auctions.core.tests.blanks.chronograph_blanks import (
     # AuctionDontSwitchSuspendedAuction2ResourceTest
     switch_suspended_auction_to_auction,
 )
-from openprocurement.auctions.core.plugins.\
-        awarding.v3.tests.chronograph import (
+from openprocurement.auctions.core.plugins.awarding.v3.tests.chronograph import (
     AuctionAwardSwitchResourceTestMixin,
     AuctionDontSwitchSuspendedAuctionResourceTestMixin,
 )
 from openprocurement.auctions.core.tests.chronograph import (
     AuctionContractSwitchTestMixin
 )
-from openprocurement.auctions.core.plugins.\
-        awarding.v3.tests.blanks.chronograph_blanks import (
+from openprocurement.auctions.core.plugins.awarding.v3.tests.blanks.chronograph_blanks import (
     # AuctionAwardSwitch2ResourceTest
     switch_verification_to_unsuccessful_2,
     switch_active_to_unsuccessful_2,
 )
 
 from openprocurement.auctions.dgf.tests import fixtures
-from openprocurement.auctions.dgf.\
-        tests.blanks.chronograph_blanks import (
+from openprocurement.auctions.dgf.tests.blanks.chronograph_blanks import (
     # AuctionSwitchQualificationResourceTest
     switch_to_qualification,
     # AuctionAuctionPeriodResourceTest
