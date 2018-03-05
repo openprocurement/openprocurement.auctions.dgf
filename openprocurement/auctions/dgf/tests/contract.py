@@ -14,8 +14,6 @@ from openprocurement.auctions.core.plugins.contracting.v3.tests.contract import 
     AuctionContractV3ResourceTestCaseMixin
 )
 from openprocurement.auctions.core.tests.blanks.contract_blanks import (
-    # AuctionContractResourceTest
-    patch_auction_contract,
     # Auction2LotContractResourceTest
     patch_auction_contract_2_lots,
 )
