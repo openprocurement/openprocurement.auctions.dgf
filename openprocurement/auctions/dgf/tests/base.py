@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
+from uuid import uuid4
 from datetime import datetime, timedelta
 from copy import deepcopy
-from uuid import uuid4
 
 from openprocurement.api.models import SANDBOX_MODE
 from openprocurement.api.utils import apply_data_patch
@@ -271,7 +271,8 @@ class BaseAuctionWebTest(FlashBaseAuctionWebTest):
             self.auction_id = auction['id']
             authorization = self.app.authorization
             self.app.authorization = ('Basic', ('convoy', ''))
-            response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'items': items, 'status': 'active.tendering'}})
+            response = self.app.patch_json('/auctions/{}'.format(self.auction_id),
+                                           {'data': {'items': items, 'status': 'active.tendering'}})
             self.assertEqual(response.status, '200 OK')
             self.assertEqual(response.content_type, 'application/json')
             auction = response.json['data']
