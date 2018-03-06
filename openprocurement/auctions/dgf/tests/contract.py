@@ -10,13 +10,12 @@ from openprocurement.auctions.core.tests.contract import (
 from openprocurement.auctions.core.tests.prolongation import (
     AuctionContractProlongationResourceTestMixin
 )
+from openprocurement.auctions.core.plugins.contracting.v3.tests.contract import (
+    AuctionContractV3ResourceTestCaseMixin
+)
 from openprocurement.auctions.core.tests.blanks.contract_blanks import (
-    # AuctionContractResourceTest
-    patch_auction_contract,
     # Auction2LotContractResourceTest
     patch_auction_contract_2_lots,
-    patch_signing_period,
-    patch_date_paid,
 )
 from openprocurement.auctions.dgf.tests import fixtures
 from openprocurement.auctions.dgf.tests.base import (
@@ -29,7 +28,11 @@ from openprocurement.auctions.dgf.tests.base import (
 )
 
 
-class AuctionContractResourceTest(BaseAuctionWebTest, AuctionContractResourceTestMixin):
+class AuctionContractResourceTest(
+    BaseAuctionWebTest,
+    AuctionContractResourceTestMixin,
+    AuctionContractV3ResourceTestCaseMixin
+):
     #initial_data = auction_data
     initial_status = 'active.auction'
     initial_bids = test_bids
