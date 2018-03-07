@@ -120,6 +120,14 @@ cancellation = {
     }
 }
 
+prolongation = {
+    'decisionID': 'ZM-937-99-92',
+    'description': 'Prolongate your contract for free!',
+    'reason': 'other',
+    'documents': [],
+    'datePublished': get_now().isoformat(),
+}
+
 test_max_uid = uuid4().hex
 
 test_auction_maximum_data = test_auction_data.copy()
