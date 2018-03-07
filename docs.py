@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 import json
 import os
@@ -598,7 +597,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
 
         # get pending award
         response = self.app.get('/auctions/{}/awards'.format(self.auction_id))
-        award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+        award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending'][0]
 
         with open('docs/source/tutorial/bidder-auction-protocol.http', 'w') as self.app.file_obj:
             response = self.app.post_json('/auctions/{}/awards/{}/documents?acc_token={}'.format(self.auction_id, award_id, bids_access[bid2_id]),
@@ -621,10 +620,6 @@ class AuctionResourceTest(BaseAuctionWebTest):
                     "documentType": "auctionProtocol",
                 }})
             self.assertEqual(response.status, '201 Created')
-
-        with open('docs/source/tutorial/verify-protocol.http', 'w') as self.app.file_obj:
-            response = self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(self.auction_id, award_id, owner_token), {"data": {"status": "pending.payment"}})
-            self.assertEqual(response.status, '200 OK')
 
         with open('docs/source/tutorial/confirm-qualification.http', 'w') as self.app.file_obj:
             response = self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(self.auction_id, award_id, owner_token), {"data": {"status": "active"}})
@@ -786,7 +781,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
         response = self.app.get('/auctions/{}/awards'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
 
-        award = [i for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+        award = [i for i in response.json['data'] if i['status'] == 'pending'][0]
         award_id = award['id']
         bid_token = self.initial_bids_tokens[award['bid_id']]
 
@@ -816,7 +811,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.status, '200 OK')
 
         response = self.app.get('/auctions/{}/awards'.format(self.auction_id))
-        award = [i for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+        award = [i for i in response.json['data'] if i['status'] == 'pending'][0]
         award_id2 = award['id']
         bid_token = self.initial_bids_tokens[award['bid_id']]
 
