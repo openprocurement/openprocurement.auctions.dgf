@@ -84,6 +84,18 @@ Schema
     |ocdsDescription|
     The date the contract was signed. In the case of multiple signatures, the date of the last signature.
 
+:signingPeriod:
+    :ref:`Period`
+
+    |ocdsDescription|
+    The start and end date for the contract signing.
+
+:datePaid:
+    string, :ref:`date`
+
+    |ocdsDescription|
+    The date the contract was paid.
+
 :date:
     string, :ref:`date`
 

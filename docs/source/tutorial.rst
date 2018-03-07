@@ -276,14 +276,6 @@ The organizer **must** upload and confirm the auction protocol `auctionProtocol`
   :code:
 
 
-
-It is the organizer's duty to upload and confirm the protocol, although the award will not switch the status to "pending.payment" automatically.
-
-
-.. include:: tutorial/verify-protocol.http
- :code:
-
-
 Within **20 business days after becoming a candidate** he/she must provide payment and organizer has the same time to confirm the payment. Otherwise, the award will automatically become "unsuccessful":
 
 
