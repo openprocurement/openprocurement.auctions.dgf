@@ -5,12 +5,10 @@ from openprocurement.api.models import TZ
 
 FINANCIAL_VIEW_LOCATIONS = [
     "openprocurement.auctions.dgf.views.financial",
-    "openprocurement.auctions.core.plugins",
 ]
 
 OTHER_VIEW_LOCATIONS = [
     "openprocurement.auctions.dgf.views.other",
-    "openprocurement.auctions.core.plugins",
 ]
 
 DGF_PLATFORM_LEGAL_DETAILS = {
