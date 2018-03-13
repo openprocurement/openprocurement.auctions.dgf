@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/92b74c258aa344d2810c14e9946728d0/contracts/9e111647288c45b29a250028fe66b989?acc_token=0be9719321be4aa699f77ec6cff48e1a HTTP/1.0
+PATCH /api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/contracts/167820e4b4ce4684944cf83b16deaf73?acc_token=2b1b3d8fd6be4827908b19fdf46323d7 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 80
 Content-Type: application/json
@@ -7,7 +7,7 @@ Host: api-sandbox.ea.openprocurement.org
 {
   "data": {
     "status": "active", 
-    "dateSigned": "2017-06-09T15:09:03.377011+03:00"
+    "dateSigned": "2018-03-13T14:17:06.573611+02:00"
   }
 }
 
@@ -18,28 +18,80 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "status": "active", 
+    "prolongations": [
+      {
+        "status": "applied", 
+        "decisionID": "ZM-937-99-92", 
+        "description": "Prolongation description", 
+        "datePublished": "2018-03-13T14:16:55.353696+02:00", 
+        "reason": "other", 
+        "documents": [
+          {
+            "hash": "md5:00000000000000000000000000000000", 
+            "format": "application/msword", 
+            "url": "http://public.docs-sandbox.ea.openprocurement.org/get/303f2bffebde4b318c95709af5ac50a4?KeyID=e578eecc&Signature=QKrRL7aJESdNsRJNQgZmyXMgetJvtlnW%2Ff5Xz%2F%252Bh75YDVcpOxtUW7eXgnOWeweFR5J2tS2x154vmPXahjZKGBg%253D%253D", 
+            "title": "ProlongationDocument.doc", 
+            "documentOf": "tender", 
+            "datePublished": "2018-03-13T14:17:06.009999+02:00", 
+            "documentType": "prolongationProtocol", 
+            "dateModified": "2018-03-13T14:17:06.010021+02:00", 
+            "id": "17ce25dd7add4ce8aa325d125d296edc"
+          }
+        ], 
+        "dateCreated": "2018-03-13T14:16:54.838196+02:00", 
+        "id": "762193c7c2214c079849888f32cdc4dd"
+      }, 
+      {
+        "status": "applied", 
+        "decisionID": "ZM-937-99-92-2", 
+        "description": "Long prolongation description", 
+        "datePublished": "2018-03-13T14:16:55.353712+02:00", 
+        "reason": "other", 
+        "documents": [
+          {
+            "hash": "md5:00000000000000000000000000000000", 
+            "format": "application/msword", 
+            "url": "http://public.docs-sandbox.ea.openprocurement.org/get/7c5487d24abd4216a191edd76a21dea1?KeyID=e578eecc&Signature=PjJcFbyN%252BDxH3wc%252BbQJe7Y9r6koLwEM5F1LrQf9w90X8oFZZJPxSnkqCn7NJaa8v3h6rcRbWGCUNyoy63AdVDQ%253D%253D", 
+            "title": "LongProlongationDocument.doc", 
+            "documentOf": "tender", 
+            "datePublished": "2018-03-13T14:17:06.368154+02:00", 
+            "documentType": "prolongationProtocol", 
+            "dateModified": "2018-03-13T14:17:06.368174+02:00", 
+            "id": "478a3018e2604cfd97e5aed4838acabe"
+          }
+        ], 
+        "dateCreated": "2018-03-13T14:16:54.838196+02:00", 
+        "id": "9fc59363c1684e54adc3903653e55576"
+      }
+    ], 
     "documents": [
       {
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/msword", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/6985cf0500a24231a91d360cb11a7afe?KeyID=dd67d497&Signature=Ae5ogeXdj7SUw%2FLcQw3amoJNFnpr1YFgpu2X7CKUf%252Bkw5Yg3FFA%2FZEwfE%2F52sm%252B%252B7m68RR1YmOy01gdOUUN7Ag%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/22d3b8cc510d4be880b1e16cea384c31?KeyID=e578eecc&Signature=y%252BF%252BUGdh%2FLEYDdSri%2FDCYRIxHp8gf%252BpAewKgGvNuw%252BxkBdBRauis3I8G9a%2FkV0h9TjRM1IOvFMiLlyB1uvH9AQ%253D%253D", 
         "title": "contract_first_document.doc", 
         "documentOf": "tender", 
-        "datePublished": "2017-06-09T15:09:03.088387+03:00", 
-        "dateModified": "2017-06-09T15:09:03.088409+03:00", 
-        "id": "59ed3413952747e1a6ffa444272fcdc8"
+        "datePublished": "2018-03-13T14:17:05.462936+02:00", 
+        "documentType": "prolongationProtocol", 
+        "dateModified": "2018-03-13T14:17:05.462956+02:00", 
+        "id": "8e9699adc2ca412eb7c9ea74a65d3ed9"
       }, 
       {
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/msword", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/04afcab13aea451a8043099d323c80f7?KeyID=dd67d497&Signature=Juiho72YGmwjsi3Gk%2FfW95P7lyC4MP8rUCURtnwEohMrFWFRLOE3BNpjzk7O8qV94c847jsmJLwGatb6uYWoCw%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/8106c4b78aed461cbb0e7ebe76e7a655?KeyID=e578eecc&Signature=kVWCHjZFpGIzqNMQSz6XeC8rB24UnK3Ur9RsFx38Hs5coEn3ekJMC31APBRo2fzQIoB2F0bV3XweXi4dwqe%2FBQ%253D%253D", 
         "title": "contract_second_document.doc", 
         "documentOf": "tender", 
-        "datePublished": "2017-06-09T15:09:03.242460+03:00", 
-        "dateModified": "2017-06-09T15:09:03.242486+03:00", 
-        "id": "8e2700e945874a0196799f7c79d2e480"
+        "datePublished": "2018-03-13T14:17:05.600939+02:00", 
+        "documentType": "prolongationProtocol", 
+        "dateModified": "2018-03-13T14:17:05.600959+02:00", 
+        "id": "1a9b1f726af546c0a56b867fa98370df"
       }
     ], 
+    "signingPeriod": {
+      "startDate": "2018-03-13T14:17:04.704323+02:00", 
+      "endDate": "2018-07-23T14:17:04.704323+02:00"
+    }, 
     "items": [
       {
         "description": "Земля для військовослужбовців", 
@@ -55,7 +107,7 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "c3eb84d5904b4cf48a3451a12309e6b6", 
+        "id": "0e9f197b5c394f2791241ec770c6bed3", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -86,19 +138,19 @@ Content-Type: application/json; charset=UTF-8
       }
     ], 
     "period": {
-      "startDate": "2017-06-09T15:08:53.809123+03:00", 
-      "endDate": "2018-06-09T15:08:53.809123+03:00"
+      "startDate": "2018-03-13T14:16:55.353656+02:00", 
+      "endDate": "2019-03-13T14:16:55.353656+02:00"
     }, 
     "value": {
       "currency": "UAH", 
       "amount": 501.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "dateSigned": "2017-06-09T15:09:03.377011+03:00", 
-    "date": "2017-06-09T15:09:03.461080+03:00", 
-    "awardID": "24e69a35e2294e8c840a9cafe9ba366f", 
-    "id": "9e111647288c45b29a250028fe66b989", 
-    "contractID": "UA-EA-2017-06-09-000001-1"
+    "dateSigned": "2018-03-13T14:17:06.573611+02:00", 
+    "date": "2018-03-13T14:17:06.669066+02:00", 
+    "awardID": "e2afb4cd836c44c8a2fc40b48ad81b19", 
+    "id": "167820e4b4ce4684944cf83b16deaf73", 
+    "contractID": "UA-EA-2018-03-13-000001-1"
   }
 }
 

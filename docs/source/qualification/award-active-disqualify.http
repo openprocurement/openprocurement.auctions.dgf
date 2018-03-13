@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/756466a94dcb4dfb88ca93c09d373e3f/awards/dd6056b60cf0438b98aed138e7777ef1?acc_token=6ba98362c9834afc9c96506ff017cc23 HTTP/1.0
+PATCH /api/2.3/auctions/259c7703ce68422e8c436195e56505bf/awards/7d925e654ad942bd865f4bac5c6e34d1?acc_token=90b60080a3a045f2b487d17fbbccf77a HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 146
 Content-Type: application/json
@@ -20,38 +20,37 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "status": "unsuccessful", 
     "paymentPeriod": {
-      "startDate": "2017-06-09T15:08:57.871411+03:00", 
-      "endDate": "2017-06-09T15:29:04.165161+03:00"
+      "startDate": "2018-03-13T14:17:00.465960+02:00"
     }, 
     "documents": [
       {
-        "dateModified": "2017-06-09T15:08:57.990278+03:00", 
+        "dateModified": "2018-03-13T14:17:00.574662+02:00", 
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/eed3f454ffe443a49846ee7b036a243d?KeyID=bbd7ad67&Signature=Izemqj7rTAMkygermVjs4KfS3t9t72qtW3dA6MAsJeBPCM4MAV8WLztaGiEy0vxF4yO%2F8RAumsJxS%2FIQ461PDQ%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/27e90f8b3a4a44548f39c9f566a24c6f?KeyID=4a8daaf3&Signature=rQY4T5kNmZAb4sUTXeBO%252BORoWHwlrqNbV7%2FSlGprf8VdusX4zTcBDBFuWcQvGzLbiwut7lhCSQ2ZfxFZiu3lCQ%253D%253D", 
         "author": "bid_owner", 
         "documentOf": "tender", 
-        "datePublished": "2017-06-09T15:08:57.990257+03:00", 
+        "datePublished": "2018-03-13T14:17:00.574642+02:00", 
         "documentType": "auctionProtocol", 
         "title": "auction_protocol.pdf", 
-        "id": "74fbf43915ae40fbaa487e0f5000d3ea"
+        "id": "034c7a0a36aa453d8e12bf2d352b73f7"
       }, 
       {
-        "dateModified": "2017-06-09T15:08:58.086799+03:00", 
+        "dateModified": "2018-03-13T14:17:00.666701+02:00", 
         "hash": "md5:00000000000000000000000000000000", 
         "description": "Disqualification reason", 
         "author": "auction_owner", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/7056f6366521454db2357271128fd961?KeyID=bbd7ad67&Signature=pOhTvF%252BTXTfmm1a6x589YPmAsh5rlCafn86xpAoMNHgODdiYiYUTSFyrfHw9YjPao%2FKy7DhKJFA%252BhJW%2FGOI%252BBA%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/67a0367308ce4269b22fa529bd772b79?KeyID=4a8daaf3&Signature=8uduzwaCrRZAEQLjv9b3qK3M9PjBGb%2FKnbQR8bXUueGXAQGFHV50QRRPNAuhjXS6%2F1eJ6JA5EqxFaCH6VQ4GBg%253D%253D", 
         "format": "application/pdf", 
         "documentOf": "tender", 
-        "datePublished": "2017-06-09T15:08:58.086773+03:00", 
+        "datePublished": "2018-03-13T14:17:00.666680+02:00", 
         "title": "Disqualified_reason.pdf", 
-        "id": "7d75773218b648fb90e0aed6c2e012b3"
+        "id": "a98b4c463580499bb1a47c92f918485c"
       }
     ], 
     "verificationPeriod": {
-      "startDate": "2017-06-09T15:08:57.871411+03:00", 
-      "endDate": "2017-06-09T15:08:58.188531+03:00"
+      "startDate": "2018-03-13T14:17:00.465960+02:00", 
+      "endDate": "2018-03-13T14:17:00.769362+02:00"
     }, 
     "description": "Candidate didn’t sign the auction protocol in 3 business days", 
     "title": "Disqualified", 
@@ -78,20 +77,20 @@ Content-Type: application/json; charset=UTF-8
       }
     ], 
     "complaintPeriod": {
-      "startDate": "2017-06-09T15:08:57.561046+03:00", 
-      "endDate": "2017-06-09T15:08:58.188531+03:00"
+      "startDate": "2018-03-13T14:17:00.204168+02:00", 
+      "endDate": "2018-03-13T14:17:00.769362+02:00"
     }, 
-    "bid_id": "e046144b466a4607a4550bc782184615", 
+    "bid_id": "a4f299a1dcd54224bb9821e58e8d6675", 
     "value": {
       "currency": "UAH", 
       "amount": 475.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2017-06-09T15:08:58.198697+03:00", 
-    "id": "dd6056b60cf0438b98aed138e7777ef1", 
+    "date": "2018-03-13T14:17:00.780676+02:00", 
+    "id": "7d925e654ad942bd865f4bac5c6e34d1", 
     "signingPeriod": {
-      "startDate": "2017-06-09T15:08:57.871411+03:00", 
-      "endDate": "2017-06-09T15:29:04.165161+03:00"
+      "startDate": "2018-03-13T14:17:00.465960+02:00", 
+      "endDate": "2018-03-13T14:37:08.924293+02:00"
     }
   }
 }

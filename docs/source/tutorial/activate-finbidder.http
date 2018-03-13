@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/acae3ff4a40b4c859542dbb5b0cbe6e5/bids/908d170cb1c94b4980848ce6a2102b87?acc_token=b1ea0e93b02c4c498d402e238b2e3497 HTTP/1.0
+PATCH /api/2.3/auctions/72f943f337ff4470acaa2e958316ecc3/bids/75657b393358497898e6a1e531b7362e?acc_token=f1eb099213b94ce086c3241560a4fb67 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 30
 Content-Type: application/json
