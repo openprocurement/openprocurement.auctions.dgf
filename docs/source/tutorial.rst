@@ -302,6 +302,7 @@ Candidate can prolongate contract signing period by creating prolongation
 Prolongation must have documents attached to be prepared for activation
 
 .. include:: tutorial/prolongation-attach-document.http
+    :code:
 
 Created prolongation has status "draft" by default, so there is a need to set status to "applied" to make it active.
 
@@ -313,12 +314,16 @@ It is equal to 42 working days. It's also possible to apply long-term (132 days)
 just create new :ref:`Prolongation` for the already prolongated :ref:`Contract`, and apply it.
 
 .. include:: tutorial/prolongation-second-time-create.http
+    :code:
 
-.. include:: tutorial/prolongation-second-time-document-attaching.http
+.. include:: tutorial/prolongation-long-document-attach.http
+    :code:
 
-.. include:: tutorial/prolongation-long-term-apply.http
+.. include:: tutorial/prolongation-long-apply.http
+    :code:
 
 .. _Candidate_disqualification:
+    :code:
 
 Disqualification of a candidate
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

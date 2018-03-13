@@ -706,6 +706,91 @@ class AuctionResourceTest(BaseAuctionWebTest):
             )
         self.assertEqual(response.status, '201 Created')
 
+        self.prolongation_id = response.json['data']['id']
+
+
+        # Attaching document to the prolongation
+
+        with open('docs/source/tutorial/prolongation-attach-document.http', 'w') as self.app.file_obj:
+            response = self.app.post(
+                '/auctions/{auction_id}/contracts/{contract_id}/'
+                'prolongations/{prolongation_id}/documents?acc_token={token}'.format(
+                    auction_id=self.auction_id,
+                    contract_id=self.contract_id,
+                    prolongation_id=self.prolongation_id,
+                    token=owner_token
+                ),
+                upload_files=[(
+                    'file',
+                    'ProlongationDocument.doc',
+                    'content_with_prolongation_data'
+                ),]
+            )
+        self.assertEqual(response.status, '201 Created')
+
+        # Apply short prolongation
+
+        with open('docs/source/tutorial/prolongation-apply.http', 'w') as self.app.file_obj:
+            response = self.app.patch_json(
+                '/auctions/{auction_id}/contracts/{contract_id}/'
+                'prolongations/{prolongation_id}?acc_token={token}'.format(
+                    auction_id=self.auction_id,
+                    contract_id=self.contract_id,
+                    prolongation_id=self.prolongation_id,
+                    token=owner_token
+                ),
+                {'data': {'status': 'applied'}}
+            )
+        self.assertEqual(response.status, '200 OK')
+
+        # Create long prolongation
+
+        with open('docs/source/tutorial/prolongation-second-time-create.http', 'w') as self.app.file_obj:
+            response = self.app.post_json(
+                '/auctions/{0}/contracts/{1}/prolongations?acc_token={2}'.format(
+                    self.auction_id,
+                    self.contract_id,
+                    owner_token,
+                ),
+                {'data': prolongation_long},
+            )
+        self.assertEqual(response.status, '201 Created')
+
+        self.long_prolongation_id = response.json['data']['id']
+
+        # Attaching document to the long prolongation
+
+        with open('docs/source/tutorial/prolongation-long-document-attach.http', 'w') as self.app.file_obj:
+            response = self.app.post(
+                '/auctions/{auction_id}/contracts/{contract_id}/'
+                'prolongations/{prolongation_id}/documents?acc_token={token}'.format(
+                    auction_id=self.auction_id,
+                    contract_id=self.contract_id,
+                    prolongation_id=self.long_prolongation_id,
+                    token=owner_token
+                ),
+                upload_files=[(
+                    'file',
+                    'LongProlongationDocument.doc',
+                    'content_with_prolongation_data'
+                ),]
+            )
+        self.assertEqual(response.status, '201 Created')
+
+        # Apply long prolongation
+
+        with open('docs/source/tutorial/prolongation-long-apply.http', 'w') as self.app.file_obj:
+            response = self.app.patch_json(
+                '/auctions/{auction_id}/contracts/{contract_id}/'
+                'prolongations/{prolongation_id}?acc_token={token}'.format(
+                    auction_id=self.auction_id,
+                    contract_id=self.contract_id,
+                    prolongation_id=self.long_prolongation_id,
+                    token=owner_token
+                ),
+                {'data': {'status': 'applied'}}
+            )
+        self.assertEqual(response.status, '200 OK')
 
         #### Setting contract signature date and Contract signing
         #
