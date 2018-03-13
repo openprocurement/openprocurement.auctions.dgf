@@ -120,9 +120,17 @@ cancellation = {
     }
 }
 
-prolongation = {
+prolongation_short = {
     'decisionID': 'ZM-937-99-92',
-    'description': 'Prolongate your contract for free!',
+    'description': 'Prolongation description',
+    'reason': 'other',
+    'documents': [],
+    'datePublished': get_now().isoformat(),
+}
+
+prolongation_long = {
+    'decisionID': 'ZM-937-99-92-2',
+    'description': 'Long prolongation description',
     'reason': 'other',
     'documents': [],
     'datePublished': get_now().isoformat(),
@@ -683,6 +691,21 @@ class AuctionResourceTest(BaseAuctionWebTest):
             response = self.app.get('/auctions/{}/contracts/{}/documents'.format(
                 self.auction_id, self.contract_id))
         self.assertEqual(response.status, '200 OK')
+
+        # Creating prolongation
+        #
+
+        with open('docs/source/tutorial/prolongation-create.http', 'w') as self.app.file_obj:
+            response = self.app.post_json(
+                '/auctions/{0}/contracts/{1}/prolongations?acc_token={2}'.format(
+                    self.auction_id,
+                    self.contract_id,
+                    owner_token,
+                ),
+                {'data': prolongation_short},
+            )
+        self.assertEqual(response.status, '201 Created')
+
 
         #### Setting contract signature date and Contract signing
         #

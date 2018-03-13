@@ -1,0 +1,33 @@
+POST /api/2.3/auctions/48782a07f2da4ff981b8872cf86645ef/contracts/a4bb7da5abdf420c9eab4cd94ccd54a7/prolongations?acc_token=2136e26d578e4a15a8f9781ea3ef3377 HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 182
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "decisionID": "ZM-937-99-92", 
+    "reason": "other", 
+    "documents": [], 
+    "description": "Prolongate your contract for free!", 
+    "datePublished": "2018-03-13T10:06:56.130358+02:00"
+  }
+}
+
+
+201 Created
+Content-Type: application/json; charset=UTF-8
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/48782a07f2da4ff981b8872cf86645ef/contracts/a4bb7da5abdf420c9eab4cd94ccd54a7/prolongations
+
+{
+  "data": {
+    "status": "draft", 
+    "decisionID": "ZM-937-99-92", 
+    "description": "Prolongate your contract for free!", 
+    "dateCreated": "2018-03-13T10:06:55.590915+02:00", 
+    "reason": "other", 
+    "datePublished": "2018-03-13T10:06:56.130358+02:00", 
+    "id": "1714fa8d52224f43be6d9366b6b85d00"
+  }
+}
+
