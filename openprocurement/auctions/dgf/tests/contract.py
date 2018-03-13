@@ -90,6 +90,7 @@ class AuctionContractProlongationResourceTest(BaseAuctionWebTest, AuctionContrac
 
     def setUp(self):
         super(AuctionContractProlongationResourceTest, self).setUp()
+        self.app.authorization = ('Basic', ('token', ''))
         fixtures.create_award(self)
         self.contract_id = self.award_contract_id # use autocreated contract
         fixtures.create_prolongation(self, 'prolongation_id')
