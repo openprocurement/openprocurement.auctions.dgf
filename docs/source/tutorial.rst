@@ -359,7 +359,7 @@ Let's see the list of all added contract documents:
 Contract prolongation
 ~~~~~~~~~~~~~~~~~~~~~
 
-Candidate can prolongate contract signing period by creating prolongation
+Organizer can prolongate contract signing period by creating prolongation
 
 .. include:: tutorial/prolongation-create.http
     :code:
