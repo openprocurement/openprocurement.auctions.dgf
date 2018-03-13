@@ -1,0 +1,41 @@
+PATCH /api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/contracts/167820e4b4ce4684944cf83b16deaf73/prolongations/9fc59363c1684e54adc3903653e55576?acc_token=2b1b3d8fd6be4827908b19fdf46323d7 HTTP/1.0
+Authorization: Basic YnJva2VyOg==
+Content-Length: 31
+Content-Type: application/json
+Host: api-sandbox.ea.openprocurement.org
+
+{
+  "data": {
+    "status": "applied"
+  }
+}
+
+
+200 OK
+Content-Type: application/json; charset=UTF-8
+
+{
+  "data": {
+    "status": "applied", 
+    "decisionID": "ZM-937-99-92-2", 
+    "description": "Long prolongation description", 
+    "datePublished": "2018-03-13T14:16:55.353712+02:00", 
+    "reason": "other", 
+    "documents": [
+      {
+        "hash": "md5:00000000000000000000000000000000", 
+        "format": "application/msword", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/7c5487d24abd4216a191edd76a21dea1?KeyID=e578eecc&Signature=PjJcFbyN%252BDxH3wc%252BbQJe7Y9r6koLwEM5F1LrQf9w90X8oFZZJPxSnkqCn7NJaa8v3h6rcRbWGCUNyoy63AdVDQ%253D%253D", 
+        "title": "LongProlongationDocument.doc", 
+        "documentOf": "tender", 
+        "datePublished": "2018-03-13T14:17:06.368154+02:00", 
+        "documentType": "prolongationProtocol", 
+        "dateModified": "2018-03-13T14:17:06.368174+02:00", 
+        "id": "478a3018e2604cfd97e5aed4838acabe"
+      }
+    ], 
+    "dateCreated": "2018-03-13T14:16:54.838196+02:00", 
+    "id": "9fc59363c1684e54adc3903653e55576"
+  }
+}
+

@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 import json
 import os
@@ -119,6 +118,22 @@ cancellation = {
     'data': {
         'reason': 'cancellation reason'
     }
+}
+
+prolongation_short = {
+    'decisionID': 'ZM-937-99-92',
+    'description': 'Prolongation description',
+    'reason': 'other',
+    'documents': [],
+    'datePublished': get_now().isoformat(),
+}
+
+prolongation_long = {
+    'decisionID': 'ZM-937-99-92-2',
+    'description': 'Long prolongation description',
+    'reason': 'other',
+    'documents': [],
+    'datePublished': get_now().isoformat(),
 }
 
 test_max_uid = uuid4().hex
@@ -598,7 +613,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
 
         # get pending award
         response = self.app.get('/auctions/{}/awards'.format(self.auction_id))
-        award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+        award_id = [i['id'] for i in response.json['data'] if i['status'] == 'pending'][0]
 
         with open('docs/source/tutorial/bidder-auction-protocol.http', 'w') as self.app.file_obj:
             response = self.app.post_json('/auctions/{}/awards/{}/documents?acc_token={}'.format(self.auction_id, award_id, bids_access[bid2_id]),
@@ -621,10 +636,6 @@ class AuctionResourceTest(BaseAuctionWebTest):
                     "documentType": "auctionProtocol",
                 }})
             self.assertEqual(response.status, '201 Created')
-
-        with open('docs/source/tutorial/verify-protocol.http', 'w') as self.app.file_obj:
-            response = self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(self.auction_id, award_id, owner_token), {"data": {"status": "pending.payment"}})
-            self.assertEqual(response.status, '200 OK')
 
         with open('docs/source/tutorial/confirm-qualification.http', 'w') as self.app.file_obj:
             response = self.app.patch_json('/auctions/{}/awards/{}?acc_token={}'.format(self.auction_id, award_id, owner_token), {"data": {"status": "active"}})
@@ -679,6 +690,106 @@ class AuctionResourceTest(BaseAuctionWebTest):
         with open('docs/source/tutorial/auction-contract-get-documents-again.http', 'w') as self.app.file_obj:
             response = self.app.get('/auctions/{}/contracts/{}/documents'.format(
                 self.auction_id, self.contract_id))
+        self.assertEqual(response.status, '200 OK')
+
+        # Creating prolongation
+        #
+
+        with open('docs/source/tutorial/prolongation-create.http', 'w') as self.app.file_obj:
+            response = self.app.post_json(
+                '/auctions/{0}/contracts/{1}/prolongations?acc_token={2}'.format(
+                    self.auction_id,
+                    self.contract_id,
+                    owner_token,
+                ),
+                {'data': prolongation_short},
+            )
+        self.assertEqual(response.status, '201 Created')
+
+        self.prolongation_id = response.json['data']['id']
+
+
+        # Attaching document to the prolongation
+
+        with open('docs/source/tutorial/prolongation-attach-document.http', 'w') as self.app.file_obj:
+            response = self.app.post(
+                '/auctions/{auction_id}/contracts/{contract_id}/'
+                'prolongations/{prolongation_id}/documents?acc_token={token}'.format(
+                    auction_id=self.auction_id,
+                    contract_id=self.contract_id,
+                    prolongation_id=self.prolongation_id,
+                    token=owner_token
+                ),
+                upload_files=[(
+                    'file',
+                    'ProlongationDocument.doc',
+                    'content_with_prolongation_data'
+                ),]
+            )
+        self.assertEqual(response.status, '201 Created')
+
+        # Apply short prolongation
+
+        with open('docs/source/tutorial/prolongation-apply.http', 'w') as self.app.file_obj:
+            response = self.app.patch_json(
+                '/auctions/{auction_id}/contracts/{contract_id}/'
+                'prolongations/{prolongation_id}?acc_token={token}'.format(
+                    auction_id=self.auction_id,
+                    contract_id=self.contract_id,
+                    prolongation_id=self.prolongation_id,
+                    token=owner_token
+                ),
+                {'data': {'status': 'applied'}}
+            )
+        self.assertEqual(response.status, '200 OK')
+
+        # Create long prolongation
+
+        with open('docs/source/tutorial/prolongation-second-time-create.http', 'w') as self.app.file_obj:
+            response = self.app.post_json(
+                '/auctions/{0}/contracts/{1}/prolongations?acc_token={2}'.format(
+                    self.auction_id,
+                    self.contract_id,
+                    owner_token,
+                ),
+                {'data': prolongation_long},
+            )
+        self.assertEqual(response.status, '201 Created')
+
+        self.long_prolongation_id = response.json['data']['id']
+
+        # Attaching document to the long prolongation
+
+        with open('docs/source/tutorial/prolongation-long-document-attach.http', 'w') as self.app.file_obj:
+            response = self.app.post(
+                '/auctions/{auction_id}/contracts/{contract_id}/'
+                'prolongations/{prolongation_id}/documents?acc_token={token}'.format(
+                    auction_id=self.auction_id,
+                    contract_id=self.contract_id,
+                    prolongation_id=self.long_prolongation_id,
+                    token=owner_token
+                ),
+                upload_files=[(
+                    'file',
+                    'LongProlongationDocument.doc',
+                    'content_with_prolongation_data'
+                ),]
+            )
+        self.assertEqual(response.status, '201 Created')
+
+        # Apply long prolongation
+
+        with open('docs/source/tutorial/prolongation-long-apply.http', 'w') as self.app.file_obj:
+            response = self.app.patch_json(
+                '/auctions/{auction_id}/contracts/{contract_id}/'
+                'prolongations/{prolongation_id}?acc_token={token}'.format(
+                    auction_id=self.auction_id,
+                    contract_id=self.contract_id,
+                    prolongation_id=self.long_prolongation_id,
+                    token=owner_token
+                ),
+                {'data': {'status': 'applied'}}
+            )
         self.assertEqual(response.status, '200 OK')
 
         #### Setting contract signature date and Contract signing
@@ -786,7 +897,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
         response = self.app.get('/auctions/{}/awards'.format(self.auction_id))
         self.assertEqual(response.status, '200 OK')
 
-        award = [i for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+        award = [i for i in response.json['data'] if i['status'] == 'pending'][0]
         award_id = award['id']
         bid_token = self.initial_bids_tokens[award['bid_id']]
 
@@ -816,7 +927,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
         self.assertEqual(response.status, '200 OK')
 
         response = self.app.get('/auctions/{}/awards'.format(self.auction_id))
-        award = [i for i in response.json['data'] if i['status'] == 'pending.verification'][0]
+        award = [i for i in response.json['data'] if i['status'] == 'pending'][0]
         award_id2 = award['id']
         bid_token = self.initial_bids_tokens[award['bid_id']]
 

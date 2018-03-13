@@ -276,7 +276,6 @@ The organizer **must** upload and confirm the auction protocol `auctionProtocol`
   :code:
 
 
-
 It is the organizer's duty to upload and confirm the protocol, although the award will not switch the status to "pending.payment" automatically.
 
 
@@ -290,7 +289,41 @@ Within **20 business days after becoming a candidate** he/she must provide payme
 .. include:: tutorial/confirm-qualification.http
   :code:
 
+.. _Contract_prolongation:
+
+Contract prolongation
+~~~~~~~~~~~~~~~~~~~~~
+
+Candidate can prolongate contract signing period by creating prolongation
+
+.. include:: tutorial/prolongation-create.http
+    :code:
+
+Prolongation must have documents attached to be prepared for activation
+
+.. include:: tutorial/prolongation-attach-document.http
+    :code:
+
+Created prolongation has status "draft" by default, so there is a need to set status to "applied" to make it active.
+
+.. include:: tutorial/prolongation-apply.http
+    :code:
+
+When a contract has been prolongated for first time, a short prolongation period applies.
+It is equal to 42 working days. It's also possible to apply long-term (132 days) prolongation:
+just create new :ref:`Prolongation` for the already prolongated :ref:`Contract`, and apply it.
+
+.. include:: tutorial/prolongation-second-time-create.http
+    :code:
+
+.. include:: tutorial/prolongation-long-document-attach.http
+    :code:
+
+.. include:: tutorial/prolongation-long-apply.http
+    :code:
+
 .. _Candidate_disqualification:
+    :code:
 
 Disqualification of a candidate
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
