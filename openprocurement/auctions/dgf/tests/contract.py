@@ -7,7 +7,7 @@ from openprocurement.auctions.core.tests.contract import (
     AuctionContractDocumentResourceTestMixin,
     Auction2LotContractDocumentResourceTestMixin
 )
-from openprocurement.auctions.core.tests.prolongation import (
+from openprocurement.auctions.core.plugins.contracting.v3.tests.prolongation import (
     AuctionContractProlongationResourceTestMixin
 )
 from openprocurement.auctions.core.plugins.contracting.v3.tests.contract import (
@@ -90,6 +90,7 @@ class AuctionContractProlongationResourceTest(BaseAuctionWebTest, AuctionContrac
 
     def setUp(self):
         super(AuctionContractProlongationResourceTest, self).setUp()
+        self.app.authorization = ('Basic', ('token', ''))
         fixtures.create_award(self)
         self.contract_id = self.award_contract_id # use autocreated contract
         fixtures.create_prolongation(self, 'prolongation_id')

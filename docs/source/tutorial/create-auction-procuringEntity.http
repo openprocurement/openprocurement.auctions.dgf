@@ -12,7 +12,7 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2017-04-21"
+      "startDate": "2018-03-27"
     }, 
     "tenderAttempts": 1, 
     "procurementMethodType": "dgfOtherAssets", 
@@ -33,7 +33,7 @@ Host: api-sandbox.ea.openprocurement.org
           "description": "Земельні ділянки"
         }, 
         "description": "Земля для військовослужбовців", 
-        "id": "81ad8752f450486cb676d3f6e20e0cda", 
+        "id": "0bca87dbb76a4abcaf6a01315cb2d2ce", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -68,53 +68,53 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/416ef4dd4318465b8542ec9f85e7c425
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/40afbcdf2fa0418285fb46bc9313338a
 
 {
   "access": {
-    "token": "a1cfe7e1c6ca480e98d94d9830d22d89"
+    "token": "ec8005a78fd749cbb55655147ff3da2b"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2017-04-07-000002", 
+    "auctionID": "UA-EA-2018-03-13-000002", 
     "enquiryPeriod": {
-      "startDate": "2017-04-07T15:31:20.882324+03:00", 
-      "endDate": "2017-04-20T23:59:50+03:00"
+      "startDate": "2018-03-13T14:17:03.419465+02:00", 
+      "endDate": "2018-03-26T23:59:50+03:00"
     }, 
     "submissionMethod": "electronicAuction", 
     "dgfDecisionDate": "2016-11-17", 
-    "next_check": "2017-04-20T23:59:50+03:00", 
+    "next_check": "2018-03-26T23:59:50+03:00", 
     "awardCriteria": "highestCost", 
     "dgfDecisionID": "219560", 
     "owner": "broker", 
     "title_en": "Cases with state awards", 
-    "id": "416ef4dd4318465b8542ec9f85e7c425", 
+    "id": "40afbcdf2fa0418285fb46bc9313338a", 
     "documents": [
       {
         "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
         "url": "http://torgi.fg.gov.ua/prozorrosale", 
         "documentOf": "tender", 
-        "datePublished": "2017-04-07T15:31:20.882728+03:00", 
+        "datePublished": "2018-03-13T14:17:03.419765+02:00", 
         "documentType": "x_dgfPlatformLegalDetails", 
-        "dateModified": "2017-04-07T15:31:20.882760+03:00", 
-        "id": "6eadaa8ef2d940bba800a6e91e2fc895"
+        "dateModified": "2018-03-13T14:17:03.419790+02:00", 
+        "id": "ecca49e45ae1498ebd764bce5344fd3f"
       }
     ], 
     "title": "футляри до державних нагород", 
     "tenderAttempts": 1, 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2017-04-07T15:31:20.886690+03:00", 
+    "dateModified": "2018-03-13T14:17:03.422258+02:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2017-04-07T15:31:20.882324+03:00", 
-      "endDate": "2017-04-20T23:59:50+03:00"
+      "startDate": "2018-03-13T14:17:03.419465+02:00", 
+      "endDate": "2018-03-26T23:59:50+03:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2017-04-21T00:00:00+03:00"
+      "shouldStartAfter": "2018-03-27T00:00:00+03:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "dgfID": "219560", 
-    "date": "2017-04-07T15:31:20.882324+03:00", 
+    "date": "2018-03-13T14:17:03.419465+02:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -127,7 +127,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/416ef4dd431
           "name": "item"
         }, 
         "description": "Земля для військовослужбовців", 
-        "id": "81ad8752f450486cb676d3f6e20e0cda", 
+        "id": "0bca87dbb76a4abcaf6a01315cb2d2ce", 
         "classification": {
           "scheme": "CAV", 
           "description": "Земельні ділянки", 

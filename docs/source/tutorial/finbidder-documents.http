@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/d41ac9d44ffa4b27960f6cafb28a0cab/bids/7f9a666a1d6c4335b25147fbf2e66679/documents?acc_token=a6d77b97e3654b229c529a1f00a31f00 HTTP/1.0
+GET /api/2.3/auctions/72f943f337ff4470acaa2e958316ecc3/bids/75657b393358497898e6a1e531b7362e/documents?acc_token=f1eb099213b94ce086c3241560a4fb67 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -11,13 +11,13 @@ Content-Type: application/json; charset=UTF-8
     {
       "hash": "md5:00000000000000000000000000000000", 
       "format": "application/pdf", 
-      "url": "http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/d41ac9d44ffa4b27960f6cafb28a0cab/bids/7f9a666a1d6c4335b25147fbf2e66679/documents/fa7e0ab06305414ca0c878fae8a297a2?download=98b759cc32644f1299eff3b81d3bfcf6", 
+      "url": "http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/72f943f337ff4470acaa2e958316ecc3/bids/75657b393358497898e6a1e531b7362e/documents/43ef1e0dea7f4cfb9109c02810a55a1e?download=83c521a325054f42a43df4954ba6d0f4", 
       "title": "FinancialLicense.pdf", 
       "documentOf": "tender", 
-      "datePublished": "2017-04-07T15:31:19.603415+03:00", 
+      "datePublished": "2018-03-13T14:17:02.131195+02:00", 
       "documentType": "financialLicense", 
-      "dateModified": "2017-04-07T15:31:19.603449+03:00", 
-      "id": "fa7e0ab06305414ca0c878fae8a297a2"
+      "dateModified": "2018-03-13T14:17:02.131215+02:00", 
+      "id": "43ef1e0dea7f4cfb9109c02810a55a1e"
     }
   ]
 }

@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/331e9ef3d78d46cfb3df35c17b0650c7?acc_token=5303e3bebff44ed3a5a9f8f7db899743 HTTP/1.0
+PATCH /api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f?acc_token=2b1b3d8fd6be4827908b19fdf46323d7 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 75
 Content-Type: application/json
@@ -7,7 +7,7 @@ Host: api-sandbox.ea.openprocurement.org
 {
   "data": {
     "tenderPeriod": {
-      "endDate": "2017-04-22T15:31:31.008575+03:00"
+      "endDate": "2018-03-28T14:17:13.484651+02:00"
     }
   }
 }
@@ -19,44 +19,44 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2017-04-07-000001", 
+    "auctionID": "UA-EA-2018-03-13-000001", 
     "enquiryPeriod": {
-      "startDate": "2017-04-07T15:31:20.714247+03:00", 
-      "endDate": "2017-04-20T23:59:50+03:00"
+      "startDate": "2018-03-13T14:17:03.353285+02:00", 
+      "endDate": "2018-03-26T23:59:50+03:00"
     }, 
     "submissionMethod": "electronicAuction", 
     "dgfDecisionDate": "2016-11-17", 
-    "next_check": "2017-04-20T23:59:50+03:00", 
+    "next_check": "2018-03-26T23:59:50+03:00", 
     "awardCriteria": "highestCost", 
     "dgfDecisionID": "219560", 
     "owner": "broker", 
-    "id": "331e9ef3d78d46cfb3df35c17b0650c7", 
+    "id": "0bbf22e936f24d158f6d695b84b2de2f", 
     "documents": [
       {
         "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
         "url": "http://torgi.fg.gov.ua/prozorrosale", 
         "documentOf": "tender", 
-        "datePublished": "2017-04-07T15:31:20.714686+03:00", 
+        "datePublished": "2018-03-13T14:17:03.353632+02:00", 
         "documentType": "x_dgfPlatformLegalDetails", 
-        "dateModified": "2017-04-07T15:31:20.714721+03:00", 
-        "id": "345103188a104e4b9cde2d28c24afb37"
+        "dateModified": "2018-03-13T14:17:03.353673+02:00", 
+        "id": "33b3a7c855ec4b63bf221dc8bd4d3ec1"
       }
     ], 
     "title": "футляри до державних нагород", 
     "tenderAttempts": 1, 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2017-04-07T15:31:20.718580+03:00", 
+    "dateModified": "2018-03-13T14:17:03.356036+02:00", 
     "status": "active.tendering", 
     "tenderPeriod": {
-      "startDate": "2017-04-07T15:31:20.714247+03:00", 
-      "endDate": "2017-04-20T23:59:50+03:00"
+      "startDate": "2018-03-13T14:17:03.353285+02:00", 
+      "endDate": "2018-03-26T23:59:50+03:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2017-04-21T00:00:00+03:00"
+      "shouldStartAfter": "2018-03-27T00:00:00+03:00"
     }, 
     "procurementMethodType": "dgfOtherAssets", 
     "dgfID": "219560", 
-    "date": "2017-04-07T15:31:20.714247+03:00", 
+    "date": "2018-03-13T14:17:03.353285+02:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -77,7 +77,7 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "c910adfa79164d8d83b51c4bfcec1f59", 
+        "id": "0e9f197b5c394f2791241ec770c6bed3", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"

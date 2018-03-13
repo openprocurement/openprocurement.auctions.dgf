@@ -1,4 +1,4 @@
-PUT /api/2.3/auctions/d41ac9d44ffa4b27960f6cafb28a0cab/documents/155a293ea2414b90a5ee1217b1ce9352?acc_token=7b6133ada5bc473caad389a3a31b5373 HTTP/1.0
+PUT /api/2.3/auctions/72f943f337ff4470acaa2e958316ecc3/documents/0bec9452f8f94abdb7858106369b08ff?acc_token=58a3a8eb4997408aa23bfbd8c0828132 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 336
 Content-Type: application/json
@@ -6,7 +6,7 @@ Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/5aaeabd58992486b8bf974678c519afc?KeyID=00fc7a9f&Signature=fAjtySq6cqDlalFrCGJxqmXele50TmiBsH%2BBCBsa6WXzuYyzy4jpegScQIGHIk0adWfWtlZN25HVME53o60jDA%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/c52728980a45403990aef5364bb470c2?KeyID=f56b2602&Signature=HoKuGygM5xK2YBOMhrTnJfaeiEOSBj90R1JdRIgA3ETNbMjyNmXY9RrafyGyo3ECSjf%2FKtO4RCTud1Ni3SQxDA%3D%3D", 
     "title": "AwardCriteria-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -21,12 +21,12 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/5aaeabd58992486b8bf974678c519afc?KeyID=00fc7a9f&Signature=i4TKp1vTlKpYZS5CoyR2KOn2GsR2RtdbG9nz6bv5NYbsxONL0GDO7f4DSAyhpmU%2FvESt1ko3c6Veo5nP9ry2CQ%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/c52728980a45403990aef5364bb470c2?KeyID=f56b2602&Signature=4bHQVlGZpSbCWdHMlGxiJIoIdtV9gT6s2h45MMC83X4ZBc%2FPx8Kov7brp4yaZdsagUwsdwOVxboiaLlBJ9kPBw%253D%253D", 
     "title": "AwardCriteria-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2017-04-07T15:31:19.290601+03:00", 
-    "dateModified": "2017-04-07T15:31:19.355254+03:00", 
-    "id": "155a293ea2414b90a5ee1217b1ce9352"
+    "datePublished": "2018-03-13T14:17:01.893597+02:00", 
+    "dateModified": "2018-03-13T14:17:01.945397+02:00", 
+    "id": "0bec9452f8f94abdb7858106369b08ff"
   }
 }
 

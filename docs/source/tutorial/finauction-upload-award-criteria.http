@@ -1,4 +1,4 @@
-POST /api/2.3/auctions/d41ac9d44ffa4b27960f6cafb28a0cab/documents?acc_token=7b6133ada5bc473caad389a3a31b5373 HTTP/1.0
+POST /api/2.3/auctions/72f943f337ff4470acaa2e958316ecc3/documents?acc_token=58a3a8eb4997408aa23bfbd8c0828132 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 334
 Content-Type: application/json
@@ -6,7 +6,7 @@ Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/2daefd2a336b4433988d306b8fa2d777?KeyID=00fc7a9f&Signature=a5hzmdLhVgqVYph5Hxb84R1DLXY45mvf7COtXY1QmnP4P1uobzaJbr8u7r%2BxuCTrymQO9gonHWy4RqXasLxnDA%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/fe95cac4fb9245ca94952cd6dab9c1dd?KeyID=f56b2602&Signature=nL%2BRDl8iuZdIkQiUrxm1biuIC6IZJvaH20wzrV1NC9hUj%2BgG21iOcLoVooBnnQn1YI1u2FSDGshpXfEPj7PtBw%3D%3D", 
     "title": "AwardCriteria.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -16,18 +16,18 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/d41ac9d44ffa4b27960f6cafb28a0cab/documents/155a293ea2414b90a5ee1217b1ce9352
+Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/72f943f337ff4470acaa2e958316ecc3/documents/0bec9452f8f94abdb7858106369b08ff
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/2daefd2a336b4433988d306b8fa2d777?KeyID=00fc7a9f&Signature=%2FBeejoPoui2ljvJIDF2Qf9fIzchS8i71eH5gSCPS7%2FbS0HG7OSy4ZCA6%2FmRegoqy4uP6dErJYN8nTw%2FB3X%252BbCA%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/fe95cac4fb9245ca94952cd6dab9c1dd?KeyID=f56b2602&Signature=4EDae%2FYL5XeuhCjRAxWxhR7OpWNcE5eo9tD4GrdzssL3%252BT2OIJHf6gcYdVg%252Bm3R2VOsDvztgBEUL2h9VrKAXBg%253D%253D", 
     "title": "AwardCriteria.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2017-04-07T15:31:19.290601+03:00", 
-    "dateModified": "2017-04-07T15:31:19.290638+03:00", 
-    "id": "155a293ea2414b90a5ee1217b1ce9352"
+    "datePublished": "2018-03-13T14:17:01.893597+02:00", 
+    "dateModified": "2018-03-13T14:17:01.893617+02:00", 
+    "id": "0bec9452f8f94abdb7858106369b08ff"
   }
 }
 
