@@ -35,7 +35,15 @@ from openprocurement.auctions.core.models import (
     Identifier,
     dgfItem as Item,
     dgfDocument as Document,
-    dgfComplaint as Complaint
+    dgfComplaint as Complaint,
+    get_auction,
+    edit_role,
+    Administrator_role,
+    calc_auction_end_time,
+    COMPLAINT_STAND_STILL_TIME,
+    view_role,
+    enquiries_role,
+    edit_role,
 )
 from openprocurement.auctions.core.plugins.awarding.v3.models import (
     Award
@@ -54,14 +62,14 @@ from openprocurement.auctions.flash.models import (
     Bid as BaseBid,
     Cancellation as BaseCancellation,
     Lot,
-    edit_role,
-    calc_auction_end_time,
-    COMPLAINT_STAND_STILL_TIME,
     Organization as BaseOrganization,
     ProcuringEntity as BaseProcuringEntity,
     Question as BaseQuestion,
-    get_auction,
-    Administrator_role
+    Complaint as BaseComplaint,
+    Contract as BaseContract,
+    Award as BaseAward,
+    Item as BaseItem,
+    Question as BaseQuestion,
 )
 
 from .constants import (
