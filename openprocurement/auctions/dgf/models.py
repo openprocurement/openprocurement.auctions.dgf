@@ -45,6 +45,8 @@ from openprocurement.auctions.core.models import (
     enquiries_role,
     edit_role,
 )
+from openprocurement.auctions.core.constants import DGF_ELIGIBILITY_CRITERIA, DGF_PLATFORM_LEGAL_DETAILS, DGF_PLATFORM_LEGAL_DETAILS_FROM
+from openprocurement.auctions.core.utils import rounding_shouldStartAfter_after_midnigth
 from openprocurement.auctions.core.plugins.awarding.v3.models import (
     Award
 )
@@ -73,11 +75,8 @@ from openprocurement.auctions.flash.models import (
 )
 
 from .constants import (
-    ELIGIBILITY_CRITERIA,
     DGF_ID_REQUIRED_FROM,
     DGF_DECISION_REQUIRED_FROM,
-    DGF_PLATFORM_LEGAL_DETAILS,
-    DGF_PLATFORM_LEGAL_DETAILS_FROM
 )
 
 
@@ -111,14 +110,6 @@ def validate_not_available(items, *args):
         raise ValidationError(u"Option not available in this procurementMethodType")
 
 
-def rounding_shouldStartAfter(start_after, auction, use_from=datetime(2016, 6, 1, tzinfo=TZ)):
-    if (auction.enquiryPeriod and auction.enquiryPeriod.startDate or get_now()) > use_from and not (SANDBOX_MODE and auction.submissionMethodDetails and u'quick' in auction.submissionMethodDetails):
-        midnigth = datetime.combine(start_after.date(), time(0, tzinfo=start_after.tzinfo))
-        if start_after >= midnigth:
-            start_after = midnigth + timedelta(1)
-    return start_after
-
-
 class AuctionAuctionPeriod(Period):
     """The auction period."""
 
@@ -135,7 +126,7 @@ class AuctionAuctionPeriod(Period):
             start_after = auction.tenderPeriod.endDate
         else:
             return
-        return rounding_shouldStartAfter(start_after, auction).isoformat()
+        return rounding_shouldStartAfter_after_midnigth(start_after, auction).isoformat()
 
     def validate_startDate(self, data, startDate):
         auction = get_auction(data['__parent__'])
@@ -327,9 +318,9 @@ class Auction(DGFOtherAssets):
     documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
     bids = ListType(ModelType(Bid), default=list())
     procurementMethodType = StringType(default="dgfFinancialAssets")
-    eligibilityCriteria = StringType(default=ELIGIBILITY_CRITERIA['ua'])
-    eligibilityCriteria_en = StringType(default=ELIGIBILITY_CRITERIA['en'])
-    eligibilityCriteria_ru = StringType(default=ELIGIBILITY_CRITERIA['ru'])
+    eligibilityCriteria = StringType(default=DGF_ELIGIBILITY_CRITERIA['ua'])
+    eligibilityCriteria_en = StringType(default=DGF_ELIGIBILITY_CRITERIA['en'])
+    eligibilityCriteria_ru = StringType(default=DGF_ELIGIBILITY_CRITERIA['ru'])
 
 
 DGFFinancialAssets = Auction
