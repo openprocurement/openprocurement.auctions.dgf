@@ -2,7 +2,7 @@
 import unittest
 
 from openprocurement.auctions.dgf.models import DGF_PLATFORM_LEGAL_DETAILS_FROM
-from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest,  test_financial_auction_data
+from openprocurement.auctions.core.constants import DGF_PLATFORM_LEGAL_DETAILS_FROM
 
 from openprocurement.auctions.core.tests.base import snitch
 

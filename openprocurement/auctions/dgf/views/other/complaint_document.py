@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from openprocurement.api.constants import STATUS4ROLE
 from openprocurement.api.utils import (
     get_file,
     upload_file,
@@ -17,15 +18,6 @@ from openprocurement.auctions.core.utils import (
     apply_patch,
     opresource,
 )
-
-
-
-
-STATUS4ROLE = {
-    'complaint_owner': ['draft', 'answered'],
-    'reviewers': ['pending'],
-    'auction_owner': ['claim'],
-}
 
 
 @opresource(name='dgfOtherAssets:Auction Complaint Documents',

@@ -5,7 +5,7 @@ from iso8601 import parse_date
 
 from openprocurement.api.models import SANDBOX_MODE, TZ, get_now
 
-from openprocurement.auctions.dgf.constants import ELIGIBILITY_CRITERIA
+from openprocurement.auctions.core.constants import DGF_ELIGIBILITY_CRITERIA
 from openprocurement.auctions.dgf.tests.base import test_financial_organization
 
 # AuctionTest
@@ -844,6 +844,6 @@ def create_auction_generated_financial(self):
     self.assertNotEqual(data['doc_id'], auction['id'])
     self.assertNotEqual(data['auctionID'], auction['auctionID'])
 
-    self.assertEqual(auction['eligibilityCriteria'], ELIGIBILITY_CRITERIA['ua'])
-    self.assertEqual(auction['eligibilityCriteria_en'], ELIGIBILITY_CRITERIA['en'])
-    self.assertEqual(auction['eligibilityCriteria_ru'], ELIGIBILITY_CRITERIA['ru'])
+    self.assertEqual(auction['eligibilityCriteria'], DGF_ELIGIBILITY_CRITERIA['ua'])
+    self.assertEqual(auction['eligibilityCriteria_en'], DGF_ELIGIBILITY_CRITERIA['en'])
+    self.assertEqual(auction['eligibilityCriteria_ru'], DGF_ELIGIBILITY_CRITERIA['ru'])
