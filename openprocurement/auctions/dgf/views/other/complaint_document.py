@@ -11,6 +11,7 @@ from openprocurement.api.validation import (
     validate_patch_document_data
 )
 
+from openprocurement.auctions.core.constants import STATUS4ROLE
 from openprocurement.auctions.core.utils import (
     save_auction,
     apply_patch,
@@ -20,13 +21,6 @@ from openprocurement.auctions.core.validation import (
     validate_file_update,
     validate_file_upload,
 )
-
-
-STATUS4ROLE = {
-    'complaint_owner': ['draft', 'answered'],
-    'reviewers': ['pending'],
-    'auction_owner': ['claim'],
-}
 
 
 @opresource(name='dgfOtherAssets:Auction Complaint Documents',
