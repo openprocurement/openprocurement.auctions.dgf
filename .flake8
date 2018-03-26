@@ -1,0 +1,10 @@
+[flake8]
+max-line-length = 120
+exclude =
+    .git,
+    bootstrap.py,
+    bin/,
+    eggs/,
+    docs/,
+    openprocurement/auctions/dgf/tests/
+

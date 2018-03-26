@@ -17,7 +17,6 @@ from openprocurement.auctions.core.validation import (
 )
 
 
-
 @opresource(name='dgfOtherAssets:Auction Bids',
             collection_path='/auctions/{auction_id}/bids',
             path='/auctions/{auction_id}/bids/{bid_id}',
@@ -109,11 +108,26 @@ class AuctionBidResource(APIResource):
         # for more info upon schema
         auction = self.request.validated['auction']
         if self.request.validated['auction_status'] != 'active.tendering':
-            self.request.errors.add('body', 'data', 'Can\'t add bid in current ({}) auction status'.format(self.request.validated['auction_status']))
+            self.request.errors.add(
+                'body',
+                'data',
+                'Can\'t add bid in current ({}) auction status'.format(self.request.validated['auction_status'])
+            )
             self.request.errors.status = 403
             return
-        if auction.tenderPeriod.startDate and get_now() < auction.tenderPeriod.startDate or get_now() > auction.tenderPeriod.endDate:
-            self.request.errors.add('body', 'data', 'Bid can be added only during the tendering period: from ({}) to ({}).'.format(auction.tenderPeriod.startDate and auction.tenderPeriod.startDate.isoformat(), auction.tenderPeriod.endDate.isoformat()))
+        if (
+            auction.tenderPeriod.startDate and
+            get_now() < auction.tenderPeriod.startDate or
+            get_now() > auction.tenderPeriod.endDate
+        ):
+            self.request.errors.add(
+                'body',
+                'data',
+                'Bid can be added only during the tendering period: from ({}) to ({}).'.format(
+                    auction.tenderPeriod.startDate and auction.tenderPeriod.startDate.isoformat(),
+                    auction.tenderPeriod.endDate.isoformat()
+                )
+            )
             self.request.errors.status = 403
             return
         bid = self.request.validated['bid']
@@ -121,11 +135,17 @@ class AuctionBidResource(APIResource):
         auction.bids.append(bid)
         auction.modified = False
         if save_auction(self.request):
-            self.LOGGER.info('Created auction bid {}'.format(bid.id),
-                        extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_bid_create'}, {'bid_id': bid.id}))
+            self.LOGGER.info(
+                'Created auction bid {}'.format(bid.id),
+                extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_bid_create'}, {'bid_id': bid.id})
+            )
             self.request.response.status = 201
             route = self.request.matched_route.name.replace("collection_", "")
-            self.request.response.headers['Location'] = self.request.current_route_url(_route_name=route, bid_id=bid.id, _query={})
+            self.request.response.headers['Location'] = self.request.current_route_url(
+                _route_name=route,
+                bid_id=bid.id,
+                _query={}
+            )
             return {
                 'data': bid.serialize('view'),
                 'access': {
@@ -170,7 +190,13 @@ class AuctionBidResource(APIResource):
         """
         auction = self.request.validated['auction']
         if self.request.validated['auction_status'] in ['active.tendering', 'active.auction']:
-            self.request.errors.add('body', 'data', 'Can\'t view bids in current ({}) auction status'.format(self.request.validated['auction_status']))
+            self.request.errors.add(
+                'body',
+                'data',
+                'Can\'t view bids in current ({}) auction status'.format(
+                    self.request.validated['auction_status']
+                )
+            )
             self.request.errors.status = 403
             return
         return {'data': [i.serialize(self.request.validated['auction_status']) for i in auction.bids]}
@@ -208,7 +234,11 @@ class AuctionBidResource(APIResource):
         if self.request.authenticated_role == 'bid_owner':
             return {'data': self.request.context.serialize('view')}
         if self.request.validated['auction_status'] in ['active.tendering', 'active.auction']:
-            self.request.errors.add('body', 'data', 'Can\'t view bid in current ({}) auction status'.format(self.request.validated['auction_status']))
+            self.request.errors.add(
+                'body',
+                'data',
+                'Can\'t view bid in current ({}) auction status'.format(self.request.validated['auction_status'])
+            )
             self.request.errors.status = 403
             return
         return {'data': self.request.context.serialize(self.request.validated['auction_status'])}
@@ -252,13 +282,35 @@ class AuctionBidResource(APIResource):
 
         """
 
-        if self.request.authenticated_role != 'Administrator' and self.request.validated['auction_status'] != 'active.tendering':
-            self.request.errors.add('body', 'data', 'Can\'t update bid in current ({}) auction status'.format(self.request.validated['auction_status']))
+        if (
+            self.request.authenticated_role != 'Administrator' and
+            self.request.validated['auction_status'] != 'active.tendering'
+        ):
+            self.request.errors.add(
+                'body',
+                'data',
+                'Can\'t update bid in current ({}) auction status'.format(self.request.validated['auction_status'])
+            )
             self.request.errors.status = 403
             return
         auction = self.request.validated['auction']
-        if self.request.authenticated_role != 'Administrator' and (auction.tenderPeriod.startDate and get_now() < auction.tenderPeriod.startDate or get_now() > auction.tenderPeriod.endDate):
-            self.request.errors.add('body', 'data', 'Bid can be updated only during the tendering period: from ({}) to ({}).'.format(auction.tenderPeriod.startDate and auction.tenderPeriod.startDate.isoformat(), auction.tenderPeriod.endDate.isoformat()))
+        if (
+            self.request.authenticated_role != 'Administrator' and
+            (
+                auction.tenderPeriod.startDate and
+                get_now() < auction.tenderPeriod.startDate or
+                get_now() > auction.tenderPeriod.endDate
+            )
+        ):
+            self.request.errors.add(
+                'body',
+                'data',
+                'Bid can be updated only during the tendering period: from ({}) to ({}).'.format(
+                    auction.tenderPeriod.startDate and
+                    auction.tenderPeriod.startDate.isoformat(),
+                    auction.tenderPeriod.endDate.isoformat()
+                )
+            )
             self.request.errors.status = 403
             return
         if self.request.authenticated_role != 'Administrator':
@@ -273,12 +325,17 @@ class AuctionBidResource(APIResource):
         if self.request.context.lotValues:
             lotValues = dict([(i.relatedLot, i.value.amount) for i in self.request.context.lotValues])
             for lotvalue in self.request.validated['data'].get("lotValues", []):
-                if lotvalue['relatedLot'] in lotValues and lotvalue.get("value", {}).get("amount") != lotValues[lotvalue['relatedLot']]:
+                if (
+                    lotvalue['relatedLot'] in lotValues and
+                    lotvalue.get("value", {}).get("amount") != lotValues[lotvalue['relatedLot']]
+                ):
                     lotvalue['date'] = get_now().isoformat()
         self.request.validated['auction'].modified = False
         if apply_patch(self.request, src=self.request.context.serialize()):
-            self.LOGGER.info('Updated auction bid {}'.format(self.request.context.id),
-                        extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_bid_patch'}))
+            self.LOGGER.info(
+                'Updated auction bid {}'.format(self.request.context.id),
+                extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_bid_patch'})
+            )
             return {'data': self.request.context.serialize("view")}
 
     @json_view(permission='edit_bid')
@@ -313,18 +370,35 @@ class AuctionBidResource(APIResource):
         """
         bid = self.request.context
         if self.request.validated['auction_status'] != 'active.tendering':
-            self.request.errors.add('body', 'data', 'Can\'t delete bid in current ({}) auction status'.format(self.request.validated['auction_status']))
+            self.request.errors.add(
+                'body',
+                'data',
+                'Can\'t delete bid in current ({}) auction status'.format(self.request.validated['auction_status'])
+            )
             self.request.errors.status = 403
             return
         auction = self.request.validated['auction']
-        if auction.tenderPeriod.startDate and get_now() < auction.tenderPeriod.startDate or get_now() > auction.tenderPeriod.endDate:
-            self.request.errors.add('body', 'data', 'Bid can be deleted only during the tendering period: from ({}) to ({}).'.format(auction.tenderPeriod.startDate and auction.tenderPeriod.startDate.isoformat(), auction.tenderPeriod.endDate.isoformat()))
+        if (
+            auction.tenderPeriod.startDate and
+            get_now() < auction.tenderPeriod.startDate or
+            get_now() > auction.tenderPeriod.endDate
+        ):
+            self.request.errors.add(
+                'body',
+                'data',
+                'Bid can be deleted only during the tendering period: from ({}) to ({}).'.format(
+                    auction.tenderPeriod.startDate and auction.tenderPeriod.startDate.isoformat(),
+                    auction.tenderPeriod.endDate.isoformat()
+                )
+            )
             self.request.errors.status = 403
             return
         res = bid.serialize("view")
         self.request.validated['auction'].bids.remove(bid)
         self.request.validated['auction'].modified = False
         if save_auction(self.request):
-            self.LOGGER.info('Deleted auction bid {}'.format(self.request.context.id),
-                        extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_bid_delete'}))
+            self.LOGGER.info(
+                'Deleted auction bid {}'.format(self.request.context.id),
+                extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_bid_delete'})
+            )
             return {'data': res}

@@ -26,7 +26,8 @@ LOGGER = getLogger(PKG.project_name)
 
 
 def upload_file(request, blacklisted_fields=DOCUMENT_BLACKLISTED_FIELDS):
-    first_document = request.validated['documents'][0] if 'documents' in request.validated and request.validated['documents'] else None
+    first_document = request.validated['documents'][0] if \
+        'documents' in request.validated and request.validated['documents'] else None
     if 'data' in request.validated and request.validated['data']:
         document = request.validated['document']
         if document.documentType in (DOCUMENT_TYPE_URL_ONLY + DOCUMENT_TYPE_OFFLINE):
@@ -52,8 +53,17 @@ def get_file(request):
 def check_bids(request):
     auction = request.validated['auction']
     if auction.lots:
-        [setattr(i.auctionPeriod, 'startDate', None) for i in auction.lots if i.numberOfBids < 2 and i.auctionPeriod and i.auctionPeriod.startDate]
-        [setattr(i, 'status', 'unsuccessful') for i in auction.lots if i.numberOfBids < 2 and i.status == 'active']
+        [
+            setattr(i.auctionPeriod, 'startDate', None) for i in auction.lots if
+            i.numberOfBids < 2 and
+            i.auctionPeriod and
+            i.auctionPeriod.startDate
+        ]
+        [
+            setattr(i, 'status', 'unsuccessful') for i in auction.lots if
+            i.numberOfBids < 2 and
+            i.status == 'active'
+        ]
         cleanup_bids_for_cancelled_lots(auction)
         if not set([i.status for i in auction.lots]).difference(set(['unsuccessful', 'cancelled'])):
             auction.status = 'unsuccessful'

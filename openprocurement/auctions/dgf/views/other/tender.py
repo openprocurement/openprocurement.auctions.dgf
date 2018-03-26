@@ -17,10 +17,12 @@ from openprocurement.auctions.dgf.utils import (
 )
 
 
-@opresource(name='dgfOtherAssets:Auction',
-            path='/auctions/{auction_id}',
-            auctionsprocurementMethodType="dgfOtherAssets",
-            description="Open Contracting compatible data exchange format. See http://ocds.open-contracting.org/standard/r/master/#auction for more info")
+@opresource(
+    name='dgfOtherAssets:Auction',
+    path='/auctions/{auction_id}',
+    auctionsprocurementMethodType="dgfOtherAssets",
+    description="Open Contracting compatible data exchange format. ' \
+    'See http://ocds.open-contracting.org/standard/r/master/#auction for more info")
 class AuctionResource(APIResource):
 
     @json_view(permission='view_auction')
@@ -116,18 +118,12 @@ class AuctionResource(APIResource):
             auction_data = self.context.serialize(self.context.status)
         return {'data': auction_data}
 
-    #@json_view(content_type="application/json", validators=(validate_auction_data, ), permission='edit_auction')
-    #def put(self):
-        #"""Auction Edit (full)"""
-        #auction = self.request.validated['auction']
-        #if auction.status in ['complete', 'unsuccessful', 'cancelled']:
-            #self.request.errors.add('body', 'data', 'Can\'t update auction in current ({}) status'.format(auction.status))
-            #self.request.errors.status = 403
-            #return
-        #apply_patch(self.request, src=self.request.validated['auction_src'])
-        #return {'data': auction.serialize(auction.status)}
-
-    @json_view(content_type="application/json", validators=(validate_patch_auction_data, ), permission='edit_auction')
+    @json_view(
+        content_type="application/json",
+        validators=(
+            validate_patch_auction_data,
+        ),
+        permission='edit_auction')
     def patch(self):
         """Auction Edit (partial)
 
@@ -177,16 +173,29 @@ class AuctionResource(APIResource):
 
         """
         auction = self.context
-        if self.request.authenticated_role != 'Administrator' and auction.status in ['complete', 'unsuccessful', 'cancelled']:
-            self.request.errors.add('body', 'data', 'Can\'t update auction in current ({}) status'.format(auction.status))
+        if self.request.authenticated_role != 'Administrator' and auction.status in [
+                'complete', 'unsuccessful', 'cancelled']:
+            self.request.errors.add(
+                'body',
+                'data',
+                'Can\'t update auction in current ({}) status'.format(
+                    auction.status))
             self.request.errors.status = 403
             return
         if self.request.authenticated_role == 'chronograph' and not auction.suspended:
-            apply_patch(self.request, save=False, src=self.request.validated['auction_src'])
+            apply_patch(
+                self.request,
+                save=False,
+                src=self.request.validated['auction_src'])
             check_status(self.request)
             save_auction(self.request)
         else:
-            apply_patch(self.request, src=self.request.validated['auction_src'])
-        self.LOGGER.info('Updated auction {}'.format(auction.id),
-                    extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_patch'}))
+            apply_patch(
+                self.request,
+                src=self.request.validated['auction_src'])
+        self.LOGGER.info(
+            'Updated auction {}'.format(
+                auction.id), extra=context_unpack(
+                self.request, {
+                    'MESSAGE_ID': 'auction_patch'}))
         return {'data': auction.serialize(auction.status)}

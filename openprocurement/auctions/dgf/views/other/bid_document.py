@@ -20,42 +20,69 @@ from openprocurement.auctions.core.utils import (
 )
 
 
-@opresource(name='dgfOtherAssets:Auction Bid Documents',
-            collection_path='/auctions/{auction_id}/bids/{bid_id}/documents',
-            path='/auctions/{auction_id}/bids/{bid_id}/documents/{document_id}',
-            auctionsprocurementMethodType="dgfOtherAssets",
-            description="Auction bidder documents")
+@opresource(
+    name='dgfOtherAssets:Auction Bid Documents',
+    collection_path='/auctions/{auction_id}/bids/{bid_id}/documents',
+    path='/auctions/{auction_id}/bids/{bid_id}/documents/{document_id}',
+    auctionsprocurementMethodType="dgfOtherAssets",
+    description="Auction bidder documents")
 class AuctionBidDocumentResource(APIResource):
 
     def validate_bid_document(self, operation):
         auction = self.request.validated['auction']
         if auction.status not in ['active.tendering', 'active.qualification']:
-            self.request.errors.add('body', 'data', 'Can\'t {} document in current ({}) auction status'.format(operation, auction.status))
+            self.request.errors.add(
+                'body',
+                'data',
+                'Can\'t {} document in current ({}) auction status'.format(
+                    operation,
+                    auction.status))
             self.request.errors.status = 403
             return
-        if auction.status == 'active.tendering' and not (auction.tenderPeriod.startDate < get_now() < auction.tenderPeriod.endDate):
-            self.request.errors.add('body', 'data', 'Document can be {} only during the tendering period: from ({}) to ({}).'.format('added' if operation == 'add' else 'updated', auction.tenderPeriod.startDate.isoformat(), auction.tenderPeriod.endDate.isoformat()))
+        if auction.status == 'active.tendering' and not (
+                auction.tenderPeriod.startDate < get_now() < auction.tenderPeriod.endDate):
+            self.request.errors.add(
+                'body',
+                'data',
+                'Document can be {} only during the tendering period: from ({}) to ({}).'.format(
+                    'added' if operation == 'add' else 'updated',
+                    auction.tenderPeriod.startDate.isoformat(),
+                    auction.tenderPeriod.endDate.isoformat()))
             self.request.errors.status = 403
             return
-        if auction.status == 'active.qualification' and not [i for i in auction.awards if i.status == 'pending' and i.bid_id == self.request.validated['bid_id']]:
-            self.request.errors.add('body', 'data', 'Can\'t {} document because award of bid is not in pending state'.format(operation))
+        if auction.status == 'active.qualification' and not [
+                i for i in auction.awards if i.status == 'pending' and i.bid_id == self.request.validated['bid_id']]:
+            self.request.errors.add(
+                'body',
+                'data',
+                'Can\'t {} document because award of bid is not in pending state'.format(operation))
             self.request.errors.status = 403
             return
-        documentType = self.request.validated.get('data', {}).get('documentType', None)
+        documentType = self.request.validated.get(
+            'data', {}).get('documentType', None)
         if documentType and documentType in ['auctionProtocol']:
-            self.request.errors.add('body', 'data', 'Can\'t {} document with {} documentType'.format(operation, documentType))
+            self.request.errors.add(
+                'body', 'data', 'Can\'t {} document with {} documentType'.format(
+                    operation, documentType))
             self.request.errors.status = 403
         return True
 
     @json_view(permission='view_auction')
     def collection_get(self):
         """Auction Bid Documents List"""
-        if self.request.validated['auction_status'] in ['active.tendering', 'active.auction'] and self.request.authenticated_role != 'bid_owner':
-            self.request.errors.add('body', 'data', 'Can\'t view bid documents in current ({}) auction status'.format(self.request.validated['auction_status']))
+        if self.request.validated['auction_status'] in [
+            'active.tendering',
+                'active.auction'] and self.request.authenticated_role != 'bid_owner':
+            self.request.errors.add(
+                'body',
+                'data',
+                'Can\'t view bid documents in current ({}) auction status'.format(
+                    self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
         if self.request.params.get('all', ''):
-            collection_data = [i.serialize("view") for i in self.context.documents]
+            collection_data = [i.serialize("view")
+                               for i in self.context.documents]
         else:
             collection_data = sorted(dict([
                 (i.id, i.serialize("view"))
@@ -74,18 +101,30 @@ class AuctionBidDocumentResource(APIResource):
         if self.request.validated['auction_status'] == 'active.tendering':
             self.request.validated['auction'].modified = False
         if save_auction(self.request):
-            self.LOGGER.info('Created auction bid document {}'.format(document.id),
-                        extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_bid_document_create'}, {'document_id': document.id}))
+            self.LOGGER.info(
+                'Created auction bid document {}'.format(
+                    document.id), extra=context_unpack(
+                    self.request, {
+                        'MESSAGE_ID': 'auction_bid_document_create'}, {
+                        'document_id': document.id}))
             self.request.response.status = 201
-            document_route = self.request.matched_route.name.replace("collection_", "")
-            self.request.response.headers['Location'] = self.request.current_route_url(_route_name=document_route, document_id=document.id, _query={})
+            document_route = self.request.matched_route.name.replace(
+                "collection_", "")
+            self.request.response.headers['Location'] = self.request.current_route_url(
+                _route_name=document_route, document_id=document.id, _query={})
             return {'data': document.serialize("view")}
 
     @json_view(permission='view_auction')
     def get(self):
         """Auction Bid Document Read"""
-        if self.request.validated['auction_status'] in ['active.tendering', 'active.auction'] and self.request.authenticated_role != 'bid_owner':
-            self.request.errors.add('body', 'data', 'Can\'t view bid document in current ({}) auction status'.format(self.request.validated['auction_status']))
+        if self.request.validated['auction_status'] in [
+            'active.tendering',
+                'active.auction'] and self.request.authenticated_role != 'bid_owner':
+            self.request.errors.add(
+                'body',
+                'data',
+                'Can\'t view bid document in current ({}) auction status'.format(
+                    self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
         if self.request.params.get('download'):
@@ -109,11 +148,19 @@ class AuctionBidDocumentResource(APIResource):
         if self.request.validated['auction_status'] == 'active.tendering':
             self.request.validated['auction'].modified = False
         if save_auction(self.request):
-            self.LOGGER.info('Updated auction bid document {}'.format(self.request.context.id),
-                        extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_bid_document_put'}))
+            self.LOGGER.info(
+                'Updated auction bid document {}'.format(
+                    self.request.context.id), extra=context_unpack(
+                    self.request, {
+                        'MESSAGE_ID': 'auction_bid_document_put'}))
             return {'data': document.serialize("view")}
 
-    @json_view(content_type="application/json", validators=(validate_patch_document_data,), permission='edit_bid')
+    @json_view(
+        content_type="application/json",
+        validators=(
+            validate_patch_document_data,
+        ),
+        permission='edit_bid')
     def patch(self):
         """Auction Bid Document Update"""
         if not self.validate_bid_document('update'):
@@ -122,6 +169,9 @@ class AuctionBidDocumentResource(APIResource):
             self.request.validated['auction'].modified = False
         if apply_patch(self.request, src=self.request.context.serialize()):
             update_file_content_type(self.request)
-            self.LOGGER.info('Updated auction bid document {}'.format(self.request.context.id),
-                        extra=context_unpack(self.request, {'MESSAGE_ID': 'auction_bid_document_patch'}))
+            self.LOGGER.info(
+                'Updated auction bid document {}'.format(
+                    self.request.context.id), extra=context_unpack(
+                    self.request, {
+                        'MESSAGE_ID': 'auction_bid_document_patch'}))
             return {'data': self.request.context.serialize("view")}
