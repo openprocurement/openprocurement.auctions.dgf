@@ -2,18 +2,20 @@
 from openprocurement.api.utils import (
     json_view,
     context_unpack,
-    cleanup_bids_for_cancelled_lots,
     APIResource,
 )
+
 from openprocurement.auctions.core.utils import (
     save_auction,
     apply_patch,
     opresource,
+    cleanup_bids_for_cancelled_lots,
 )
-from openprocurement.auctions.dgf.utils import invalidate_bids_under_threshold
 from openprocurement.auctions.core.validation import (
     validate_auction_auction_data,
 )
+
+from openprocurement.auctions.dgf.utils import invalidate_bids_under_threshold
 
 
 @opresource(name='dgfOtherAssets:Auction Auction',
