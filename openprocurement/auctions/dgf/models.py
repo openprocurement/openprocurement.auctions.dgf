@@ -1,16 +1,21 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta, time
+from datetime import timedelta
+
+from pyramid.security import Allow
+from schematics.exceptions import ValidationError
+from schematics.transforms import blacklist, whitelist
 from schematics.types import (
     StringType,
     IntType,
     DateType
 )
 from schematics.types.compound import ModelType
-from schematics.exceptions import ValidationError
-from schematics.transforms import blacklist, whitelist
 from schematics.types.serializable import serializable
 from zope.interface import implementer
-from pyramid.security import Allow
+
+from openprocurement.api.constants import (
+    AUCTIONS_COMPLAINT_STAND_STILL_TIME
+)
 from openprocurement.api.interfaces import IAwardingNextCheck
 from openprocurement.api.models import (
     BooleanType,
@@ -22,12 +27,19 @@ from openprocurement.api.models import (
     validate_features_uniq,
     validate_lots_uniq,
     validate_items_uniq,
-    schematics_embedded_role,
-    SANDBOX_MODE
+    schematics_embedded_role
 )
 from openprocurement.api.utils import (
     calculate_business_date,
     get_request_from_root
+)
+
+from openprocurement.auctions.core.constants import DGF_ELIGIBILITY_CRITERIA, DGF_PLATFORM_LEGAL_DETAILS, DGF_PLATFORM_LEGAL_DETAILS_FROM
+from openprocurement.auctions.core.plugins.awarding.v3.models import (
+    Award
+)
+from openprocurement.auctions.core.plugins.contracting.v3.models import (
+    Contract,
 )
 from openprocurement.auctions.core.models import (
     IAuction,
@@ -37,28 +49,15 @@ from openprocurement.auctions.core.models import (
     dgfDocument as Document,
     dgfComplaint as Complaint,
     get_auction,
-    edit_role,
     Administrator_role,
     calc_auction_end_time,
-    COMPLAINT_STAND_STILL_TIME,
-    view_role,
-    enquiries_role,
     edit_role,
 )
-from openprocurement.auctions.core.constants import DGF_ELIGIBILITY_CRITERIA, DGF_PLATFORM_LEGAL_DETAILS, DGF_PLATFORM_LEGAL_DETAILS_FROM
 from openprocurement.auctions.core.utils import rounding_shouldStartAfter_after_midnigth
-from openprocurement.auctions.core.plugins.awarding.v3.models import (
-    Award
-)
-from openprocurement.auctions.core.plugins.awarding.v3.utils import (
-    next_check_awarding
-)
-from openprocurement.auctions.core.plugins.contracting.v3.models import (
-    Contract,
-)
 from openprocurement.auctions.core.validation import (
     validate_disallow_dgfPlatformLegalDetails
 )
+
 from openprocurement.auctions.flash.models import (
     Auction as BaseAuction,
     Bid as BaseBid,
@@ -66,11 +65,6 @@ from openprocurement.auctions.flash.models import (
     Lot,
     Organization as BaseOrganization,
     ProcuringEntity as BaseProcuringEntity,
-    Question as BaseQuestion,
-    Complaint as BaseComplaint,
-    Contract as BaseContract,
-    Award as BaseAward,
-    Item as BaseItem,
     Question as BaseQuestion,
 )
 
@@ -257,15 +251,15 @@ class Auction(BaseAuction):
             from openprocurement.api.utils import calculate_business_date
             for complaint in self.complaints:
                 if complaint.status == 'claim' and complaint.dateSubmitted:
-                    checks.append(calculate_business_date(complaint.dateSubmitted, COMPLAINT_STAND_STILL_TIME, self))
+                    checks.append(calculate_business_date(complaint.dateSubmitted, AUCTIONS_COMPLAINT_STAND_STILL_TIME, self))
                 elif complaint.status == 'answered' and complaint.dateAnswered:
-                    checks.append(calculate_business_date(complaint.dateAnswered, COMPLAINT_STAND_STILL_TIME, self))
+                    checks.append(calculate_business_date(complaint.dateAnswered, AUCTIONS_COMPLAINT_STAND_STILL_TIME, self))
             for award in self.awards:
                 for complaint in award.complaints:
                     if complaint.status == 'claim' and complaint.dateSubmitted:
-                        checks.append(calculate_business_date(complaint.dateSubmitted, COMPLAINT_STAND_STILL_TIME, self))
+                        checks.append(calculate_business_date(complaint.dateSubmitted, AUCTIONS_COMPLAINT_STAND_STILL_TIME, self))
                     elif complaint.status == 'answered' and complaint.dateAnswered:
-                        checks.append(calculate_business_date(complaint.dateAnswered, COMPLAINT_STAND_STILL_TIME, self))
+                        checks.append(calculate_business_date(complaint.dateAnswered, AUCTIONS_COMPLAINT_STAND_STILL_TIME, self))
         return min(checks).isoformat() if checks else None
 
 

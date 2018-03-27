@@ -3,8 +3,9 @@ import os
 from datetime import datetime, timedelta
 from copy import deepcopy
 
-from openprocurement.api.models import SANDBOX_MODE
+from openprocurement.api.constants import SANDBOX_MODE
 from openprocurement.api.utils import apply_data_patch
+
 from openprocurement.auctions.flash.tests.base import (
     BaseWebTest as FlashBaseWebTest,
     BaseAuctionWebTest as FlashBaseAuctionWebTest,
