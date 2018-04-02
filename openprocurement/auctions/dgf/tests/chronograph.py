@@ -2,7 +2,7 @@
 import unittest
 from datetime import timedelta
 
-from openprocurement.api.models.auction_models.models import get_now
+from openprocurement.api.utils import get_now
 
 from openprocurement.auctions.core.tests.base import snitch
 

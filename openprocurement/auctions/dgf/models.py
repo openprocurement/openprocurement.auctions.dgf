@@ -7,23 +7,24 @@ from schematics.transforms import blacklist, whitelist
 from schematics.types import (
     StringType,
     IntType,
-    DateType
+    DateType,
+    BooleanType
 )
 from schematics.types.compound import ModelType
 from schematics.types.serializable import serializable
 from zope.interface import implementer
 
 from openprocurement.api.constants import (
-    AUCTIONS_COMPLAINT_STAND_STILL_TIME
+    AUCTIONS_COMPLAINT_STAND_STILL_TIME,
+    TZ
+)
+from openprocurement.api.models.schematics_extender import (
+    ListType
 )
 from openprocurement.api.interfaces import IAwardingNextCheck
 from openprocurement.api.models.auction_models.models import (
-    BooleanType,
-    ListType,
     Feature,
     Period,
-    get_now,
-    TZ,
     validate_features_uniq,
     validate_lots_uniq,
     validate_items_uniq,
@@ -31,7 +32,8 @@ from openprocurement.api.models.auction_models.models import (
 )
 from openprocurement.api.utils import (
     calculate_business_date,
-    get_request_from_root
+    get_request_from_root,
+    get_now
 )
 
 from openprocurement.auctions.core.constants import DGF_ELIGIBILITY_CRITERIA, DGF_PLATFORM_LEGAL_DETAILS, DGF_PLATFORM_LEGAL_DETAILS_FROM

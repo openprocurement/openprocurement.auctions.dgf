@@ -1,4 +1,4 @@
-from openprocurement.api.models.auction_models.models import get_now
+from openprocurement.api.utils import get_now
 from datetime import timedelta
 from openprocurement.auctions.core.plugins.contracting.v3.models import (
     Prolongation,

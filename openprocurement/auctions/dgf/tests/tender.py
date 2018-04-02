@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from openprocurement.api.models.auction_models.models import get_now
+from openprocurement.api.utils import get_now
 
 from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.core.tests.tender import (

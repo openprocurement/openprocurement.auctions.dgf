@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
-from openprocurement.api.models.auction_models.models import get_now
+from openprocurement.api.utils import get_now
 from openprocurement.api.traversal import Root
 from openprocurement.auctions.core.plugins.awarding.v2.migration import (
     migrate_awarding_1_0_to_awarding_2_0
