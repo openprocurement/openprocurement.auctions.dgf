@@ -4,7 +4,7 @@ import os
 from datetime import timedelta, datetime
 from uuid import uuid4
 
-from openprocurement.api.models import get_now
+from openprocurement.api.models.auction_models.models import get_now
 import openprocurement.auctions.dgf.tests.base as base_test
 from openprocurement.auctions.flash.tests.base import PrefixedRequestClass
 from openprocurement.auctions.dgf.tests.base import test_auction_data as base_test_auction_data, test_bids, test_financial_bids

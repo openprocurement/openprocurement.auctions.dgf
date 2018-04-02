@@ -17,7 +17,7 @@ from openprocurement.api.constants import (
     AUCTIONS_COMPLAINT_STAND_STILL_TIME
 )
 from openprocurement.api.interfaces import IAwardingNextCheck
-from openprocurement.api.models import (
+from openprocurement.api.models.auction_models.models import (
     BooleanType,
     ListType,
     Feature,

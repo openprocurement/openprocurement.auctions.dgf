@@ -3,7 +3,7 @@ import unittest
 
 from datetime import timedelta
 
-from openprocurement.api.models import get_now
+from openprocurement.api.models.auction_models.models import get_now
 
 from openprocurement.auctions.core.tests.award import (
     AuctionLotAwardResourceTestMixin,
