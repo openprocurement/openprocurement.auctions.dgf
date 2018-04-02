@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from logging import getLogger
 from pkg_resources import get_distribution
-from openprocurement.api.models.auction_models.models import get_now, TZ
+from openprocurement.api.models.auction_models.models import get_now
+from openprocurement.api.constants import TZ
 from openprocurement.api.utils import (
     upload_file as base_upload_file,
     get_file as base_get_file,
