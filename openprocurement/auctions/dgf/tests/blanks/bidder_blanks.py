@@ -34,9 +34,7 @@ def create_auction_bidder_invalid(self):
     self.assertEqual(response.status, '422 Unprocessable Entity')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['status'], 'error')
-    self.assertEqual(response.json['errors'], [
-        JSON_RENDERER_ERROR
-    ])
+    self.assertEqual(response.json['errors'], [JSON_RENDERER_ERROR])
 
     response = self.app.post_json(request_path, 'data', status=422)
     self.assertEqual(response.status, '422 Unprocessable Entity')
