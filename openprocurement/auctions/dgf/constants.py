@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
-from openprocurement.api.models import TZ
+from openprocurement.api.constants import TZ
 
 
 FINANCIAL_VIEW_LOCATIONS = [
