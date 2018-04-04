@@ -1,4 +1,4 @@
-GET /api/2.3/auctions/acae3ff4a40b4c859542dbb5b0cbe6e5 HTTP/1.0
+GET /api/2.3/auctions/72f943f337ff4470acaa2e958316ecc3 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
@@ -9,47 +9,47 @@ Content-Type: application/json; charset=UTF-8
 {
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2017-06-09-000001", 
+    "auctionID": "UA-EA-2018-03-13-000001", 
     "enquiryPeriod": {
-      "startDate": "2017-06-09T15:08:59.135074+03:00", 
-      "endDate": "2017-06-22T23:59:50+03:00"
+      "startDate": "2018-03-13T14:17:01.779556+02:00", 
+      "endDate": "2018-03-26T23:59:50+03:00"
     }, 
     "submissionMethod": "electronicAuction", 
     "dgfDecisionDate": "2016-11-17", 
-    "next_check": "2017-06-22T23:59:50+03:00", 
+    "next_check": "2018-03-26T23:59:50+03:00", 
     "awardCriteria": "highestCost", 
     "dgfDecisionID": "219560", 
     "owner": "broker", 
-    "id": "acae3ff4a40b4c859542dbb5b0cbe6e5", 
-    "eligibilityCriteria_ru": "К участию допускаются только лицензированные финансовые учреждения.", 
+    "id": "72f943f337ff4470acaa2e958316ecc3", 
+    "eligibilityCriteria_ru": "Участником электронного аукциона, предметом продажи на которых являются права требования по кредитным договорам и договорам обеспечения, не может быть пользователь, являющийся заёмщиком (должником относительно банка) и\\или поручителем (имущественным поручителем) по таким кредитным договорам и/или договорам обеспечения.", 
     "documents": [
       {
         "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
         "url": "http://torgi.fg.gov.ua/prozorrosale", 
         "documentOf": "tender", 
-        "datePublished": "2017-06-09T15:08:59.135396+03:00", 
+        "datePublished": "2018-03-13T14:17:01.779958+02:00", 
         "documentType": "x_dgfPlatformLegalDetails", 
-        "dateModified": "2017-06-09T15:08:59.135421+03:00", 
-        "id": "183532e1e80440b18ab0a2d30bc42552"
+        "dateModified": "2018-03-13T14:17:01.780009+02:00", 
+        "id": "1fb6399b2dcb41cfaac9635a155aa3eb"
       }
     ], 
     "title": "футляри до державних нагород", 
     "tenderAttempts": 1, 
-    "eligibilityCriteria_en": "Only licensed financial institutions are eligible to participate.", 
+    "eligibilityCriteria_en": "The user, who is the borrower (the debtor of the bank) and/or guarantor (property guarantor) for loan agreements and/or collateral agreements, cannot be the bidder of the electronic auction, where the items for sale are the claim rights on such loan agreements and collateral agreements.", 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2017-06-09T15:08:59.139779+03:00", 
+    "dateModified": "2018-03-13T14:17:01.782162+02:00", 
     "status": "active.tendering", 
-    "eligibilityCriteria": "До участі допускаються лише ліцензовані фінансові установи.", 
+    "eligibilityCriteria": "Учасником електронного аукціону, предметом продажу на яких є права вимоги за кредитними договорами та договорами забезпечення, не може бути користувач, який є позичальником (боржником відносно банку) та/або поручителем (майновим поручителем) за такими кредитними договорами та/або договорами забезпечення.", 
     "tenderPeriod": {
-      "startDate": "2017-06-09T15:08:59.135074+03:00", 
-      "endDate": "2017-06-22T23:59:50+03:00"
+      "startDate": "2018-03-13T14:17:01.779556+02:00", 
+      "endDate": "2018-03-26T23:59:50+03:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2017-06-23T00:00:00+03:00"
+      "shouldStartAfter": "2018-03-27T00:00:00+03:00"
     }, 
     "procurementMethodType": "dgfFinancialAssets", 
     "dgfID": "219560", 
-    "date": "2017-06-09T15:08:59.135074+03:00", 
+    "date": "2018-03-13T14:17:01.779556+02:00", 
     "minimalStep": {
       "currency": "UAH", 
       "amount": 35.0, 
@@ -70,7 +70,7 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "e098f0afc4314a3786faffa69903bc1f", 
+        "id": "2a4f2e4d5626482d85fbd1118d80489a", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"

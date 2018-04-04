@@ -8,7 +8,6 @@ from openprocurement.api.utils import (
 from openprocurement.auctions.core.utils import (
     apply_patch,
     save_auction,
-    add_next_award,
     opresource,
 
 )
@@ -49,7 +48,7 @@ class AuctionCancellationResource(APIResource):
             for i in self.request.validated['auction'].lots
             if i.numberOfBids > 1 and i.status == 'active'
         ]):
-            add_next_award(self.request)
+            self.request.content_configurator.start_awarding()
 
     @json_view(content_type="application/json", validators=(validate_cancellation_data,), permission='edit_auction')
     def collection_post(self):
