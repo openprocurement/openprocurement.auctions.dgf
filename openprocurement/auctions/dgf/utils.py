@@ -17,7 +17,7 @@ from openprocurement.auctions.core.constants import (
     DOCUMENT_TYPE_URL_ONLY,
     DOCUMENT_TYPE_OFFLINE
 )
-from openprocurement.auctions.core.plugins.contracting.v3.utils.common import (
+from openprocurement.auctions.core.plugins.contracting.base.utils import (
     check_auction_status
 )
 
