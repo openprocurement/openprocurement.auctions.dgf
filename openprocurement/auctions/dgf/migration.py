@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 import logging
-from openprocurement.api.utils import get_now
-from openprocurement.api.traversal import Root
 from openprocurement.auctions.core.plugins.awarding.v2.migration import (
     migrate_awarding_1_0_to_awarding_2_0
 )
 from openprocurement.auctions.core.plugins.awarding.v3.migration import (
     migrate_awarding2_to_awarding3
 )
-
+from openprocurement.auctions.core.traversal import Root
+from openprocurement.auctions.core.utils import get_now
 
 LOGGER = logging.getLogger(__name__)
 SCHEMA_VERSION = 2

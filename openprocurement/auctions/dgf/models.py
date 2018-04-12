@@ -14,35 +14,8 @@ from schematics.types.compound import ModelType
 from schematics.types.serializable import serializable
 from zope.interface import implementer
 
-from openprocurement.api.constants import (
-    AUCTIONS_COMPLAINT_STAND_STILL_TIME,
-    TZ
-)
-from openprocurement.api.models.schematics_extender import (
-    ListType
-)
-from openprocurement.api.interfaces import IAwardingNextCheck
-from openprocurement.api.models.auction_models.models import (
-    Feature,
-    Period,
-    validate_features_uniq,
-    validate_lots_uniq,
-    validate_items_uniq,
-    schematics_embedded_role
-)
-from openprocurement.api.utils import (
-    calculate_business_date,
-    get_request_from_root,
-    get_now
-)
-
 from openprocurement.auctions.core.constants import DGF_ELIGIBILITY_CRITERIA, DGF_PLATFORM_LEGAL_DETAILS, DGF_PLATFORM_LEGAL_DETAILS_FROM
-from openprocurement.auctions.core.plugins.awarding.v3.models import (
-    Award
-)
-from openprocurement.auctions.core.plugins.contracting.v3.models import (
-    Contract,
-)
+from openprocurement.auctions.core.includeme import IAwardingNextCheck
 from openprocurement.auctions.core.models import (
     IAuction,
     dgfOrganization as Organization,
@@ -54,8 +27,28 @@ from openprocurement.auctions.core.models import (
     Administrator_role,
     calc_auction_end_time,
     edit_role,
+    ListType,
+    Feature,
+    Period,
+    validate_features_uniq,
+    validate_lots_uniq,
+    validate_items_uniq,
+    schematics_embedded_role
 )
-from openprocurement.auctions.core.utils import rounding_shouldStartAfter_after_midnigth
+from openprocurement.auctions.core.plugins.awarding.v3.models import (
+    Award
+)
+from openprocurement.auctions.core.plugins.contracting.v3.models import (
+    Contract,
+)
+from openprocurement.auctions.core.utils import (
+    rounding_shouldStartAfter_after_midnigth,
+    AUCTIONS_COMPLAINT_STAND_STILL_TIME,
+    calculate_business_date,
+    get_request_from_root,
+    get_now,
+    TZ
+)
 from openprocurement.auctions.core.validation import (
     validate_disallow_dgfPlatformLegalDetails
 )
@@ -250,7 +243,7 @@ class Auction(BaseAuction):
             if awarding_check is not None:
                 checks.append(awarding_check)
         if self.status.startswith('active'):
-            from openprocurement.api.utils import calculate_business_date
+            from openprocurement.auctions.core.utils import calculate_business_date
             for complaint in self.complaints:
                 if complaint.status == 'claim' and complaint.dateSubmitted:
                     checks.append(calculate_business_date(complaint.dateSubmitted, AUCTIONS_COMPLAINT_STAND_STILL_TIME, self))

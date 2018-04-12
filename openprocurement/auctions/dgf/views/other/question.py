@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
-from openprocurement.api.utils import get_now
-from openprocurement.api.utils import (
-    json_view,
-    context_unpack,
-    APIResource,
-)
 from openprocurement.auctions.core.utils import (
+    APIResource,
     apply_patch,
-    save_auction,
+    context_unpack,
+    get_now,
+    json_view,
     opresource,
-
+    save_auction,
 )
 from openprocurement.auctions.core.validation import (
     validate_question_data,

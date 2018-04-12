@@ -1,22 +1,17 @@
 # -*- coding: utf-8 -*-
-from openprocurement.api.utils import (
-    update_file_content_type,
-    json_view,
-    context_unpack,
-    APIResource,
-)
-from openprocurement.api.validation import (
-    validate_patch_document_data,
-)
-
 from openprocurement.auctions.core.utils import (
-    save_auction,
+    APIResource,
     apply_patch,
+    context_unpack,
+    json_view,
     opresource,
+    save_auction,
+    update_file_content_type,
 )
 from openprocurement.auctions.core.validation import (
     validate_file_update,
     validate_file_upload,
+    validate_patch_document_data,
 )
 
 from openprocurement.auctions.dgf.utils import upload_file, get_file

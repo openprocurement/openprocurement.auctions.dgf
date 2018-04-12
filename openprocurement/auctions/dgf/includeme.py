@@ -11,7 +11,7 @@ from openprocurement.auctions.dgf.adapters import (
 from openprocurement.auctions.core.plugins.awarding.v3.adapters import (
     AwardingNextCheckV3
 )
-from openprocurement.api.interfaces import (
+from openprocurement.auctions.core.includeme import (
     IContentConfigurator,
     IAwardingNextCheck
 )

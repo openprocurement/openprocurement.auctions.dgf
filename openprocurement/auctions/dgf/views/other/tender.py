@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-from openprocurement.api.utils import (
+from openprocurement.auctions.core.utils import (
+    APIResource,
+    apply_patch,
     context_unpack,
     json_view,
-    APIResource,
-)
-from openprocurement.auctions.core.utils import (
-    apply_patch,
     opresource,
     save_auction,
 )
