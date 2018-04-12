@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from copy import deepcopy
 
+from openprocurement.auctions.core.tests.base import JSON_RENDERER_ERROR
+
 from openprocurement.auctions.dgf.tests.base import test_financial_organization
-from openprocurement.api.tests.base import JSON_RENDERER_ERROR
 
 # AuctionBidderResourceTest
 

@@ -2,18 +2,14 @@
 import unittest
 from datetime import timedelta
 
-from openprocurement.api.utils import get_now
 
 from openprocurement.auctions.core.tests.base import snitch
-
-from openprocurement.auctions.dgf.tests.base import (
-    test_lots,
-    test_bids,
-    test_financial_auction_data,
-    test_financial_organization,
-    test_financial_bids,
-    test_organization,
-    BaseAuctionWebTest,
+from openprocurement.auctions.core.tests.chronograph import (
+    AuctionContractSwitchTestMixin
+)
+from openprocurement.auctions.core.plugins.awarding.v3.tests.chronograph import (
+    AuctionAwardSwitchResourceTestMixin,
+    AuctionDontSwitchSuspendedAuctionResourceTestMixin,
 )
 from openprocurement.auctions.core.tests.blanks.chronograph_blanks import (
     # AuctionSwitchAuctionResourceTest
@@ -29,17 +25,21 @@ from openprocurement.auctions.core.tests.blanks.chronograph_blanks import (
     # AuctionDontSwitchSuspendedAuction2ResourceTest
     switch_suspended_auction_to_auction,
 )
-from openprocurement.auctions.core.plugins.awarding.v3.tests.chronograph import (
-    AuctionAwardSwitchResourceTestMixin,
-    AuctionDontSwitchSuspendedAuctionResourceTestMixin,
-)
-from openprocurement.auctions.core.tests.chronograph import (
-    AuctionContractSwitchTestMixin
-)
 from openprocurement.auctions.core.plugins.awarding.v3.tests.blanks.chronograph_blanks import (
     # AuctionAwardSwitch2ResourceTest
     switch_verification_to_unsuccessful_2,
     switch_active_to_unsuccessful_2,
+)
+from openprocurement.auctions.core.utils import get_now
+
+from openprocurement.auctions.dgf.tests.base import (
+    test_lots,
+    test_bids,
+    test_financial_auction_data,
+    test_financial_organization,
+    test_financial_bids,
+    test_organization,
+    BaseAuctionWebTest,
 )
 
 from openprocurement.auctions.dgf.tests import fixtures

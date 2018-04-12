@@ -3,11 +3,10 @@ from copy import deepcopy
 from datetime import timedelta, time
 from iso8601 import parse_date
 
-from openprocurement.api.constants import SANDBOX_MODE, TZ
-from openprocurement.api.utils import get_now
-from openprocurement.api.tests.base import JSON_RENDERER_ERROR
-
 from openprocurement.auctions.core.constants import DGF_ELIGIBILITY_CRITERIA
+from openprocurement.auctions.core.tests.base import JSON_RENDERER_ERROR
+from openprocurement.auctions.core.utils import get_now, SANDBOX_MODE, TZ
+
 from openprocurement.auctions.dgf.tests.base import test_financial_organization
 
 # AuctionTest

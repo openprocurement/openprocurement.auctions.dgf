@@ -1,9 +1,9 @@
-from openprocurement.api.utils import get_now
+# -*- coding: utf-8 -*-
 from datetime import timedelta
 from openprocurement.auctions.core.plugins.contracting.v3.models import (
     Prolongation,
 )
-
+from openprocurement.auctions.core.utils import get_now
 
 PROLONGATION = {
     'decisionID': 'very_importante_documente',
