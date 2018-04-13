@@ -27,18 +27,6 @@ For a more detailed information see :ref:`award`
             label = "Awarding Process";
             color=blue
         }
-
-.. graphviz::
-
-    digraph G {
-        subgraph cluster_1 {
-            node [style=filled, color=lightgrey];
-            edge[label="**" style=solid];
-            "pending" -> "cancelled";
-            edge[label="*" style=dashed];
-            "pending" -> "active"
-            label = "Contract Workflow";
-            color=blue
     }
 
 Legend
@@ -74,6 +62,7 @@ Roles
             "pending" -> "active"
             label = "Contract Workflow";
             color=blue
+        }
     }
 
 Legend
