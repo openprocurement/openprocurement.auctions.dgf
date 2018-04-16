@@ -8,7 +8,7 @@ from webtest import TestApp
 
 from openprocurement.auctions.core.utils import get_now
 
-from openprocurement.auctions.flash.tests.base import PrefixedRequestClass
+from openprocurement.auctions.core.tests.base import PrefixedRequestClass
 
 import openprocurement.auctions.dgf.tests.base as base_test
 from openprocurement.auctions.dgf.tests.base import test_auction_data as base_test_auction_data, test_bids, test_financial_bids

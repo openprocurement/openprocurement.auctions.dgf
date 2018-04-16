@@ -8,9 +8,9 @@ from openprocurement.auctions.core.utils import (
     SANDBOX_MODE
 )
 
-from openprocurement.auctions.flash.tests.base import (
-    BaseWebTest as FlashBaseWebTest,
-    BaseAuctionWebTest as FlashBaseAuctionWebTest,
+from openprocurement.auctions.core.tests.base import (
+    BaseWebTest as CoreBaseWebTest,
+    BaseAuctionWebTest as CoreBaseAuctionWebTest
 )
 
 
@@ -212,7 +212,7 @@ for i in test_bids:
     test_financial_bids.append(bid)
 
 
-class BaseWebTest(FlashBaseWebTest):
+class BaseWebTest(CoreBaseWebTest):
 
     """Base Web Test to test openprocurement.auctions.dgf.
 
@@ -222,7 +222,7 @@ class BaseWebTest(FlashBaseWebTest):
     relative_to = os.path.dirname(__file__)
 
 
-class BaseAuctionWebTest(FlashBaseAuctionWebTest):
+class BaseAuctionWebTest(CoreBaseAuctionWebTest):
     relative_to = os.path.dirname(__file__)
     initial_data = test_auction_data
     initial_organization = test_organization

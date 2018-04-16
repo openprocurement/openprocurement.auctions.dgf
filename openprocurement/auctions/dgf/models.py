@@ -53,14 +53,17 @@ from openprocurement.auctions.core.validation import (
     validate_disallow_dgfPlatformLegalDetails
 )
 
+from openprocurement.auctions.core.models import (
+    Lot,
+    Cancellation as BaseCancellation,
+    Question as BaseQuestion,
+    flashProcuringEntity,
+    Organization as BaseOrganization,
+)
+
 from openprocurement.auctions.flash.models import (
     Auction as BaseAuction,
     Bid as BaseBid,
-    Cancellation as BaseCancellation,
-    Lot,
-    Organization as BaseOrganization,
-    ProcuringEntity as BaseProcuringEntity,
-    Question as BaseQuestion,
 )
 
 from .constants import (
@@ -69,7 +72,7 @@ from .constants import (
 )
 
 
-class ProcuringEntity(BaseProcuringEntity):
+class ProcuringEntity(flashProcuringEntity):
     identifier = ModelType(Identifier, required=True)
     additionalIdentifiers = ListType(ModelType(Identifier))
 
