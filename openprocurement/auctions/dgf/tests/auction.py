@@ -3,7 +3,7 @@ import unittest
 from datetime import timedelta
 from copy import deepcopy
 
-from openprocurement.api.models import get_now, SANDBOX_MODE
+from openprocurement.auctions.core.utils import SANDBOX_MODE
 from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.core.tests.auctions import (
     AuctionAuctionResourceTestMixin,

@@ -1,42 +1,24 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta, time
+from datetime import timedelta
+
+from pyramid.security import Allow
+from schematics.exceptions import ValidationError
+from schematics.transforms import blacklist, whitelist
 from schematics.types import (
     StringType,
     IntType,
     DateType,
-    URLType,
-    MD5Type
+    MD5Type,
+    BooleanType
 )
 from schematics.types.compound import ModelType
-from schematics.exceptions import ValidationError
-from schematics.transforms import blacklist, whitelist
 from schematics.types.serializable import serializable
 from urlparse import urlparse, parse_qs
 from string import hexdigits
 from zope.interface import implementer
-from pyramid.security import Allow
-from pytz import UTC
-from openprocurement.api.interfaces import IAwardingNextCheck
-from openprocurement.api.models import (
-    BooleanType,
-    ListType,
-    Feature,
-    Period,
-    get_now,
-    TZ,
-    validate_features_uniq,
-    validate_lots_uniq,
-    validate_items_uniq,
-    schematics_embedded_role,
-    SANDBOX_MODE,
-    ComplaintModelType,
-    Identifier as BaseIdentifier,
-    Classification, Address, Location
-)
-from openprocurement.api.utils import (
-    calculate_business_date,
-    get_request_from_root
-)
+
+from openprocurement.auctions.core.constants import DGF_ELIGIBILITY_CRITERIA, DGF_PLATFORM_LEGAL_DETAILS, DGF_PLATFORM_LEGAL_DETAILS_FROM
+from openprocurement.auctions.core.includeme import IAwardingNextCheck
 from openprocurement.auctions.core.models import (
     IAuction,
     dgfOrganization as Organization,
@@ -45,40 +27,48 @@ from openprocurement.auctions.core.models import (
     dgfDocument as Document,
     dgfComplaint as Complaint,
     get_auction,
-    edit_role,
     Administrator_role,
     calc_auction_end_time,
-    COMPLAINT_STAND_STILL_TIME,
-    view_role,
+    edit_role,
     enquiries_role,
+    view_role,
+    ListType,
+    Feature,
+    Period,
+    validate_features_uniq,
+    validate_lots_uniq,
+    validate_items_uniq,
+    schematics_embedded_role
 )
-from openprocurement.auctions.core.constants import DGF_ELIGIBILITY_CRITERIA, DGF_PLATFORM_LEGAL_DETAILS, DGF_PLATFORM_LEGAL_DETAILS_FROM
-from openprocurement.auctions.core.utils import rounding_shouldStartAfter_after_midnigth
 from openprocurement.auctions.core.plugins.awarding.v3.models import (
     Award
-)
-from openprocurement.auctions.core.plugins.awarding.v3.utils import (
-    next_check_awarding
 )
 from openprocurement.auctions.core.plugins.contracting.v3.models import (
     Contract,
 )
+from openprocurement.auctions.core.utils import (
+    rounding_shouldStartAfter_after_midnigth,
+    AUCTIONS_COMPLAINT_STAND_STILL_TIME,
+    calculate_business_date,
+    get_request_from_root,
+    get_now,
+    TZ
+)
 from openprocurement.auctions.core.validation import (
     validate_disallow_dgfPlatformLegalDetails
 )
+
+from openprocurement.auctions.core.models import (
+    Lot,
+    Cancellation as BaseCancellation,
+    Question as BaseQuestion,
+    flashProcuringEntity,
+    Organization as BaseOrganization,
+)
+
 from openprocurement.auctions.flash.models import (
     Auction as BaseAuction,
     Bid as BaseBid,
-    Cancellation as BaseCancellation,
-    Lot,
-    Organization as BaseOrganization,
-    ProcuringEntity as BaseProcuringEntity,
-    Question as BaseQuestion,
-    Complaint as BaseComplaint,
-    Contract as BaseContract,
-    Award as BaseAward,
-    Item as BaseItem,
-    Question as BaseQuestion,
 )
 from schematics_flexible.schematics_flexible import FlexibleModelType
 from openprocurement.schemas.dgf.schemas_store import SchemaStore
@@ -89,13 +79,7 @@ from .constants import (
 )
 
 
-def validate_disallow_dgfPlatformLegalDetails(docs, *args):
-    if any([i.documentType == 'x_dgfPlatformLegalDetails' for i in docs]):
-        raise ValidationError(u"Disallow documents with x_dgfPlatformLegalDetails documentType")
-
-
-
-class ProcuringEntity(BaseProcuringEntity):
+class ProcuringEntity(flashProcuringEntity):
     identifier = ModelType(Identifier, required=True)
     additionalIdentifiers = ListType(ModelType(Identifier))
 
@@ -113,12 +97,6 @@ class Bid(BaseBid):
 
 class Question(BaseQuestion):
     author = ModelType(Organization, required=True)
-
-
-class Complaint(BaseComplaint):
-    author = ModelType(Organization, required=True)
-    documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
-
 
 class Cancellation(BaseCancellation):
     documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
@@ -309,18 +287,18 @@ class Auction(BaseAuction):
             if awarding_check is not None:
                 checks.append(awarding_check)
         if self.status.startswith('active'):
-            from openprocurement.api.utils import calculate_business_date
+            from openprocurement.auctions.core.utils import calculate_business_date
             for complaint in self.complaints:
                 if complaint.status == 'claim' and complaint.dateSubmitted:
-                    checks.append(calculate_business_date(complaint.dateSubmitted, COMPLAINT_STAND_STILL_TIME, self))
+                    checks.append(calculate_business_date(complaint.dateSubmitted, AUCTIONS_COMPLAINT_STAND_STILL_TIME, self))
                 elif complaint.status == 'answered' and complaint.dateAnswered:
-                    checks.append(calculate_business_date(complaint.dateAnswered, COMPLAINT_STAND_STILL_TIME, self))
+                    checks.append(calculate_business_date(complaint.dateAnswered, AUCTIONS_COMPLAINT_STAND_STILL_TIME, self))
             for award in self.awards:
                 for complaint in award.complaints:
                     if complaint.status == 'claim' and complaint.dateSubmitted:
-                        checks.append(calculate_business_date(complaint.dateSubmitted, COMPLAINT_STAND_STILL_TIME, self))
+                        checks.append(calculate_business_date(complaint.dateSubmitted, AUCTIONS_COMPLAINT_STAND_STILL_TIME, self))
                     elif complaint.status == 'answered' and complaint.dateAnswered:
-                        checks.append(calculate_business_date(complaint.dateAnswered, COMPLAINT_STAND_STILL_TIME, self))
+                        checks.append(calculate_business_date(complaint.dateAnswered, AUCTIONS_COMPLAINT_STAND_STILL_TIME, self))
         return min(checks).isoformat() if checks else None
 
 

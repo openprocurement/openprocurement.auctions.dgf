@@ -3,9 +3,10 @@ from copy import deepcopy
 from datetime import timedelta, time
 from iso8601 import parse_date
 
-from openprocurement.api.models import SANDBOX_MODE, TZ, get_now
-
 from openprocurement.auctions.core.constants import DGF_ELIGIBILITY_CRITERIA
+from openprocurement.auctions.core.tests.base import JSON_RENDERER_ERROR
+from openprocurement.auctions.core.utils import get_now, SANDBOX_MODE, TZ
+
 from openprocurement.auctions.dgf.tests.base import test_financial_organization
 
 # AuctionTest
@@ -56,10 +57,7 @@ def create_auction_invalid(self):
     self.assertEqual(response.status, '422 Unprocessable Entity')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['status'], 'error')
-    self.assertEqual(response.json['errors'], [
-        {u'description': u'Expecting value: line 1 column 1 (char 0)',
-         u'location': u'body', u'name': u'data'}
-    ])
+    self.assertEqual(response.json['errors'], [JSON_RENDERER_ERROR])
 
     response = self.app.post_json(request_path, 'data', status=422)
     self.assertEqual(response.status, '422 Unprocessable Entity')
@@ -93,7 +91,7 @@ def create_auction_invalid(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['status'], 'error')
     self.assertEqual(response.json['errors'], [
-        {u'description': u'Not implemented', u'location': u'data', u'name': u'procurementMethodType'}
+        {u'description': u'procurementMethodType is not implemented', u'location': u'body', u'name': u'data'}
     ])
 
     response = self.app.post_json(request_path, {'data': {'invalid_field': 'invalid_value',

@@ -5,7 +5,6 @@ from datetime import timedelta, time
 from uuid import uuid4
 from iso8601 import parse_date
 
-from openprocurement.api.models import get_now
 
 from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.core.tests.tender import (
@@ -23,6 +22,7 @@ from openprocurement.auctions.core.tests.blanks.tender_blanks import (
     one_valid_bid_auction,
     one_invalid_bid_auction,
 )
+from openprocurement.auctions.core.utils import get_now
 
 from openprocurement.auctions.dgf.models import (
     DGFOtherAssets, DGFFinancialAssets, DGF_ID_REQUIRED_FROM

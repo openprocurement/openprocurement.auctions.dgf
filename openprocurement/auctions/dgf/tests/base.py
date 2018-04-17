@@ -4,11 +4,14 @@ from uuid import uuid4
 from datetime import datetime, timedelta
 from copy import deepcopy
 
-from openprocurement.api.models import SANDBOX_MODE
-from openprocurement.api.utils import apply_data_patch
-from openprocurement.auctions.flash.tests.base import (
-    BaseWebTest as FlashBaseWebTest,
-    BaseAuctionWebTest as FlashBaseAuctionWebTest,
+from openprocurement.auctions.core.utils import (
+    apply_data_patch,
+    SANDBOX_MODE
+)
+
+from openprocurement.auctions.core.tests.base import (
+    BaseWebTest as CoreBaseWebTest,
+    BaseAuctionWebTest as CoreBaseAuctionWebTest
 )
 
 
@@ -235,7 +238,7 @@ test_financial_auction_data_with_schema = deepcopy(test_financial_auction_data)
 test_financial_auction_data_with_schema['items'][0]['classification']['id'] = schema_properties['code']
 test_financial_auction_data_with_schema['items'][0]['schema_properties'] = schema_properties
 
-class BaseWebTest(FlashBaseWebTest):
+class BaseWebTest(CoreBaseWebTest):
 
     """Base Web Test to test openprocurement.auctions.dgf.
 
@@ -245,7 +248,7 @@ class BaseWebTest(FlashBaseWebTest):
     relative_to = os.path.dirname(__file__)
 
 
-class BaseAuctionWebTest(FlashBaseAuctionWebTest):
+class BaseAuctionWebTest(CoreBaseAuctionWebTest):
     relative_to = os.path.dirname(__file__)
     initial_data = test_auction_data
     initial_organization = test_organization

@@ -3,7 +3,7 @@ from copy import deepcopy
 from datetime import timedelta
 from uuid import uuid4
 
-from openprocurement.api.models import get_now
+from openprocurement.auctions.core.utils import get_now
 
 from openprocurement.auctions.dgf.migration import migrate_data
 

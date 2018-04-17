@@ -2,7 +2,7 @@
 from openprocurement.auctions.core.validation import validate_json_data, validate_data
 
 
-def validate_patch_auction_data(request):
+def validate_patch_auction_data(request, **kwargs):
     data = validate_json_data(request)
     if data is None:
         return

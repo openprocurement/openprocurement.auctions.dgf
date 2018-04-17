@@ -1,24 +1,22 @@
 # -*- coding: utf-8 -*-
 from logging import getLogger
 from pkg_resources import get_distribution
-from openprocurement.api.models import get_now, TZ
-from openprocurement.api.utils import (
-    upload_file as base_upload_file,
-    get_file as base_get_file,
-    DOCUMENT_BLACKLISTED_FIELDS,
-    context_unpack,
-    calculate_business_date
-)
-from openprocurement.auctions.core.utils import (
-    cleanup_bids_for_cancelled_lots, check_complaint_status,
-    remove_draft_bids,
-)
 from openprocurement.auctions.core.constants import (
     DOCUMENT_TYPE_URL_ONLY,
     DOCUMENT_TYPE_OFFLINE
 )
-from openprocurement.auctions.core.plugins.contracting.v3.utils.common import (
+from openprocurement.auctions.core.plugins.contracting.base.utils import (
     check_auction_status
+)
+from openprocurement.auctions.core.utils import (
+    cleanup_bids_for_cancelled_lots, check_complaint_status,
+    remove_draft_bids,
+    upload_file as base_upload_file,
+    get_file as base_get_file,
+    API_DOCUMENT_BLACKLISTED_FIELDS as DOCUMENT_BLACKLISTED_FIELDS,
+    context_unpack,
+    get_now,
+    TZ,
 )
 
 
