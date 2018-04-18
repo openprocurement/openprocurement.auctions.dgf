@@ -10,7 +10,7 @@ from openprocurement.auctions.core.traversal import Root
 from openprocurement.auctions.core.utils import get_now
 
 LOGGER = logging.getLogger(__name__)
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 SCHEMA_DOC = 'openprocurement_auctions_dgf_schema'
 
 
@@ -86,7 +86,12 @@ def from1to2(registry):
     docs = []
     for i in results:
         auction = i.doc
-        changed = migrate_awarding2_to_awarding3(auction, registry.server_id, ['dgfOtherAssets', 'dgfFinancialAssets'])
+        procurementMethodTypes = ['dgfOtherAssets', 'dgfFinancialAssets']
+        if (auction['procurementMethodType'] not in procurementMethodTypes
+                or auction['status'] not in ['active.qualification', 'active.awarded']
+                or 'awards' not in auction):
+            continue
+        changed = migrate_awarding2_to_awarding3(auction, registry.server_id, procurementMethodTypes)
         if not changed:
             continue
         model = registry.auction_procurementMethodTypes.get(auction['procurementMethodType'])
@@ -101,6 +106,59 @@ def from1to2(registry):
                 auction['dateModified'] = get_now().isoformat()
                 docs.append(auction)
         if len(docs) >= 2 ** 7:  # pragma: no cover
+            registry.db.update(docs)
+            docs = []
+    if docs:
+        registry.db.update(docs)
+
+
+def from2to3(registry):
+    class Request(object):
+        def __init__(self, registry):
+            self.registry = registry
+
+    results = registry.db.iterview('auctions/all', 2 ** 10, include_docs=True)
+
+    request = Request(registry)
+    root = Root(request)
+
+    docs = []
+    for i in results:
+        auction = i.doc
+        procurementMethodTypes = ['dgfOtherAssets', 'dgfFinancialAssets']
+
+        if auction['procurementMethodType'] not in procurementMethodTypes or auction['status'] != 'active.awarded' or 'contracts' not in auction:
+            continue
+
+        changed = False
+        contract = filter(lambda x: x['status'] == 'pending', auction['contracts'])[0]
+        award = filter(lambda x: x['id'] == contract['awardID'], auction['awards'])[0]
+        if not award['complaintPeriod'].get('endDate', False):
+            award['complaintPeriod']['endDate'] = contract['date']
+            changed = True
+
+        if not auction['awardPeriod'].get('endDate', False):
+            auction['awardPeriod']['endDate'] = contract['date']
+            changed = True
+
+        if not changed:
+            continue
+
+        auction_id = auction['_id']
+
+        model = registry.auction_procurementMethodTypes.get(auction['procurementMethodType'])
+        if model:
+            try:
+                auction = model(auction)
+                auction.__parent__ = root
+                auction = auction.to_primitive()
+            except: # pragma: no cover
+                LOGGER.error("Failed migration of auction {} to schema 3.".format(auction_id), extra={'MESSAGE_ID': 'migrate_data_failed', 'AUCTION_ID': auction_id})
+            else:
+                LOGGER.info("Auction {} migrated to schema 3.".format(auction_id), extra={'MESSAGE_ID': 'migrate_data', 'AUCTION_ID': auction_id})
+                auction['dateModified'] = get_now().isoformat()
+                docs.append(auction)
+        if len(docs) >= 2 ** 7: # pragma: no cover
             registry.db.update(docs)
             docs = []
     if docs:

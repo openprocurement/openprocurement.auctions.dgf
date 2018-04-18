@@ -5,7 +5,6 @@ from datetime import timedelta, time
 from uuid import uuid4
 from iso8601 import parse_date
 
-
 from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.core.tests.tender import (
     AuctionResourceTestMixin, DgfInsiderResourceTestMixin
