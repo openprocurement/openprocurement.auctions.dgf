@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
+
 from openprocurement.auctions.core.plugins.awarding.v2.migration import (
     migrate_awarding_1_0_to_awarding_2_0
 )
@@ -7,7 +8,7 @@ from openprocurement.auctions.core.plugins.awarding.v3.migration import (
     migrate_awarding2_to_awarding3
 )
 from openprocurement.auctions.core.traversal import Root
-from openprocurement.auctions.core.utils import get_now
+from openprocurement.auctions.core.utils import get_now, read_yaml, get_plugins
 
 LOGGER = logging.getLogger(__name__)
 SCHEMA_VERSION = 2
@@ -26,8 +27,8 @@ def set_db_schema_version(db, version):
 
 
 def migrate_data(registry, destination=None):
-    existing_plugins = (dgf in registry.settings['plugins'].split(',') for dgf in
-                        ('auctions.dgf.other', 'auctions.dgf.financial'))
+    plugins_config = read_yaml(registry.settings.get('plugins'))
+    existing_plugins = get_plugins(plugins_config)
     if registry.settings.get('plugins') and not any(existing_plugins):
         return
     cur_version = get_db_schema_version(registry.db)
@@ -82,11 +83,16 @@ def from1to2(registry):
 
     request = Request(registry)
     root = Root(request)
+    pmtConfigurator = registry.pmtConfigurator
+    procurement_method_types = [
+        pmt for pmt in pmtConfigurator
+        if pmtConfigurator[pmt] in ['dgfOtherAssets', 'dgfFinancialAssets']
+    ]
 
     docs = []
     for i in results:
         auction = i.doc
-        changed = migrate_awarding2_to_awarding3(auction, registry.server_id, ['dgfOtherAssets', 'dgfFinancialAssets'])
+        changed = migrate_awarding2_to_awarding3(auction, registry.server_id, procurement_method_types)
         if not changed:
             continue
         model = registry.auction_procurementMethodTypes.get(auction['procurementMethodType'])
