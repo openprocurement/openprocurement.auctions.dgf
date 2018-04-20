@@ -8,7 +8,9 @@ from openprocurement.auctions.core.plugins.awarding.v3.migration import (
     migrate_awarding2_to_awarding3
 )
 from openprocurement.auctions.core.traversal import Root
-from openprocurement.auctions.core.utils import get_now, read_yaml, get_plugins
+from openprocurement.auctions.core.utils import (
+    get_now, read_yaml, get_plugins, get_procurement_method_types
+)
 
 LOGGER = logging.getLogger(__name__)
 SCHEMA_VERSION = 2
@@ -83,12 +85,9 @@ def from1to2(registry):
 
     request = Request(registry)
     root = Root(request)
-    pmtConfigurator = registry.pmtConfigurator
-    procurement_method_types = [
-        pmt for pmt in pmtConfigurator
-        if pmtConfigurator[pmt] in ['dgfOtherAssets', 'dgfFinancialAssets']
-    ]
-
+    procurement_method_types = get_procurement_method_types(
+        registry, ['dgfOtherAssets', 'dgfFinancialAssets']
+    )
     docs = []
     for i in results:
         auction = i.doc
