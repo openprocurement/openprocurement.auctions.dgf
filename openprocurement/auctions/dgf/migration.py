@@ -91,7 +91,7 @@ def from1to2(registry):
     docs = []
     for i in results:
         auction = i.doc
-        if (auction['procurementMethodType'] not in procurement_method_types):
+        if (auction['procurementMethodType'] not in procurement_method_types
                 or auction['status'] not in ['active.qualification', 'active.awarded']
                 or 'awards' not in auction):
             continue
