@@ -14,6 +14,10 @@ from openprocurement.auctions.core.tests.base import (
     BaseAuctionWebTest as CoreBaseAuctionWebTest
 )
 
+from openprocurement.auctions.dgf.constants import (
+    DEFAULT_PROCUREMENT_METHOD_TYPE_OTHER,
+    DEFAULT_PROCUREMENT_METHOD_TYPE_FINANCIAL
+)
 
 now = datetime.now()
 test_organization = {
@@ -76,7 +80,7 @@ test_auction_data = {
     "auctionPeriod": {
         "startDate": (now.date() + timedelta(days=14)).isoformat()
     },
-    "procurementMethodType": "dgfOtherAssets",
+    "procurementMethodType": DEFAULT_PROCUREMENT_METHOD_TYPE_OTHER,
 }
 if SANDBOX_MODE:
     test_auction_data['procurementMethodDetails'] = 'quick, accelerator=1440'
@@ -218,7 +222,7 @@ test_features = [
 ]
 
 test_financial_auction_data = deepcopy(test_auction_data)
-test_financial_auction_data["procurementMethodType"] = "dgfFinancialAssets"
+test_financial_auction_data["procurementMethodType"] = DEFAULT_PROCUREMENT_METHOD_TYPE_FINANCIAL
 
 test_financial_organization = deepcopy(test_organization)
 test_financial_organization['additionalIdentifiers'] = [{

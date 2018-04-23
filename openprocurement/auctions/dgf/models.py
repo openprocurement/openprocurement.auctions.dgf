@@ -154,7 +154,7 @@ class Auction(BaseAuction):
             'edit_invalid': whitelist(),
             'convoy': whitelist('status', 'items', 'documents', 'dgfID')
         }
-
+    _procedure_type = "dgfOtherAssets"
     awards = ListType(ModelType(Award), default=list())
     bids = ListType(ModelType(Bid), default=list())  # A list of all the companies who entered submissions for the auction.
     cancellations = ListType(ModelType(Cancellation), default=list())
@@ -169,7 +169,7 @@ class Auction(BaseAuction):
     tenderPeriod = ModelType(Period)  # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
     tenderAttempts = IntType(choices=[1, 2, 3, 4, 5, 6, 7, 8])
     auctionPeriod = ModelType(AuctionAuctionPeriod, required=True, default={})
-    procurementMethodType = StringType(default="dgfOtherAssets")
+    procurementMethodType = StringType()
     procuringEntity = ModelType(ProcuringEntity, required=True)
     status = StringType(choices=['draft', 'pending.verification', 'invalid', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
     questions = ListType(ModelType(Question), default=list())
@@ -348,9 +348,10 @@ class Bid(Bid):
 @implementer(IAuction)
 class Auction(DGFOtherAssets):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
+    _procedure_type = "dgfFinancialAssets"
     documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
     bids = ListType(ModelType(Bid), default=list())
-    procurementMethodType = StringType(default="dgfFinancialAssets")
+    procurementMethodType = StringType()
     eligibilityCriteria = StringType(default=DGF_ELIGIBILITY_CRITERIA['ua'])
     eligibilityCriteria_en = StringType(default=DGF_ELIGIBILITY_CRITERIA['en'])
     eligibilityCriteria_ru = StringType(default=DGF_ELIGIBILITY_CRITERIA['ru'])
