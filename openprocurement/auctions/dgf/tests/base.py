@@ -88,7 +88,7 @@ if SANDBOX_MODE:
 
 schema_properties = {
     "code": "06000000-2",
-    "version": "latest",
+    "version": "001",
     "properties": {
         "region": "Вінницька область",
         "district": "м.Вінниця",
