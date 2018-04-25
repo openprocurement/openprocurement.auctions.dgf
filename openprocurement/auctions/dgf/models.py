@@ -33,7 +33,7 @@ from openprocurement.auctions.core.models import (
     IAuction,
     dgfOrganization as Organization,
     Identifier,
-    dgfItem as Item,
+    dgfItem,
     dgfDocument as Document,
     dgfComplaint as Complaint,
     get_auction,
@@ -54,7 +54,7 @@ from openprocurement.auctions.core.plugins.awarding.v3.utils import (
     next_check_awarding
 )
 from openprocurement.auctions.core.plugins.contracting.v3.models import (
-    Contract,
+    Contract as ContractV3,
 )
 from openprocurement.auctions.core.validation import (
     validate_disallow_dgfPlatformLegalDetails
@@ -68,16 +68,30 @@ from openprocurement.auctions.flash.models import (
     ProcuringEntity as BaseProcuringEntity,
     Question as BaseQuestion,
     Complaint as BaseComplaint,
-    Contract as BaseContract,
-    Award as BaseAward,
-    Item as BaseItem,
     Question as BaseQuestion,
 )
+from schematics_flexible.schematics_flexible import FlexibleModelType
+from openprocurement.schemas.dgf.schemas_store import SchemaStore
 
 from .constants import (
     DGF_ID_REQUIRED_FROM,
     DGF_DECISION_REQUIRED_FROM,
 )
+
+
+class Item(dgfItem):
+    """A good, service, or work to be contracted."""
+    schema_properties = FlexibleModelType(SchemaStore())
+
+    def validate_schema_properties(self, data, new_schema_properties):
+        """ Raise validation error if code in schema_properties mismatch
+            with classification id """
+        if new_schema_properties and not data['classification']['id'].startswith(new_schema_properties['code']):
+            raise ValidationError("classification id mismatch with schema_properties code")
+
+
+class Contract(ContractV3):
+    items = ListType(ModelType(Item))
 
 
 class ProcuringEntity(BaseProcuringEntity):

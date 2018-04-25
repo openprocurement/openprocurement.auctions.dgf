@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
+from copy import deepcopy
+
 from openprocurement.api.models import get_now
 
 from openprocurement.auctions.core.tests.base import snitch
@@ -24,7 +26,8 @@ from openprocurement.auctions.dgf.models import (
 )
 from openprocurement.auctions.dgf.tests.base import (
     test_auction_data, test_financial_auction_data, test_organization,
-    test_financial_organization, BaseWebTest, BaseAuctionWebTest
+    test_financial_organization, BaseWebTest, BaseAuctionWebTest,
+    test_financial_auction_data_with_schema, test_auction_data_with_schema
 )
 from openprocurement.auctions.dgf.tests.blanks.tender_blanks import (
     # AuctionTest
@@ -114,15 +117,58 @@ class FinancialAuctionProcessTest(AuctionProcessTest):
     initial_organization = test_financial_organization
 
 
+class AuctionSchemaResourceTest(AuctionResourceTest):
+    initial_data = test_auction_data_with_schema
+
+    def test_create_auction_with_schema(self):
+        response = self.app.post_json('/auctions', {"data": self.initial_data})
+        self.assertEqual(response.status, '201 Created')
+        self.assertEqual(response.content_type, 'application/json')
+        auction = response.json["data"]
+        self.assertIn('schema_properties', auction['items'][0])
+
+    def test_create_auction_with_bad_schemas_code(self):
+        bad_initial_data = deepcopy(self.initial_data)
+        bad_initial_data['items'][0]['classification']['id'] = "42124210-6"
+        response = self.app.post_json('/auctions', {"data": bad_initial_data},
+                                      status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['errors'],
+                         [{
+                             "location": "body",
+                             "name": "items",
+                             "description": [{
+                                 "schema_properties": ["classification id mismatch with schema_properties code"]
+                             }]
+                         }])
+
+
+class AuctionSchemaProcessTest(AuctionProcessTest):
+    initial_data = test_auction_data_with_schema
+
+
+class FinancialAuctionSchemaResourceTest(FinancialAuctionResourceTest):
+    initial_data = test_financial_auction_data_with_schema
+
+
+class FinancialAuctionSchemaProcessTest(FinancialAuctionProcessTest):
+    initial_data = test_financial_auction_data_with_schema
+
+
 def suite():
-    tests = unittest.TestSuite()
-    tests.addTest(unittest.makeSuite(AuctionTest))
-    tests.addTest(unittest.makeSuite(AuctionResourceTest))
-    tests.addTest(unittest.makeSuite(AuctionProcessTest))
-    tests.addTest(unittest.makeSuite(FinancialAuctionTest))
-    tests.addTest(unittest.makeSuite(FinancialAuctionResourceTest))
-    tests.addTest(unittest.makeSuite(FinancialAuctionProcessTest))
-    return tests
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(AuctionProcessTest))
+    suite.addTest(unittest.makeSuite(AuctionResourceTest))
+    suite.addTest(unittest.makeSuite(AuctionTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionProcessTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionTest))
+    suite.addTest(unittest.makeSuite(AuctionSchemaResourceTest))
+    suite.addTest(unittest.makeSuite(AuctionSchemaProcessTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionSchemaResourceTest))
+    suite.addTest(unittest.makeSuite(FinancialAuctionSchemaProcessTest))
+    return suite
 
 
 if __name__ == '__main__':

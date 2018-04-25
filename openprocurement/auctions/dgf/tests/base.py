@@ -76,6 +76,21 @@ test_auction_data = {
 }
 if SANDBOX_MODE:
     test_auction_data['procurementMethodDetails'] = 'quick, accelerator=1440'
+
+schema_properties = {
+        u"code": "04000000-8",
+        u"version": "001",
+        u"properties": {
+          u"totalArea": 200,
+          u"year": 1998,
+          u"floor": 3
+        }
+    }
+
+test_auction_data_with_schema = deepcopy(test_auction_data)
+test_auction_data_with_schema['items'][0]['classification']['id'] = schema_properties['code']
+test_auction_data_with_schema['items'][0]['schema_properties'] = schema_properties
+
 test_features_auction_data = test_auction_data.copy()
 test_features_item = test_features_auction_data['items'][0].copy()
 test_features_item['id'] = "1"
@@ -208,6 +223,10 @@ for i in test_bids:
     bid['tenderers'] = [test_financial_organization]
     test_financial_bids.append(bid)
 
+test_financial_auction_data = deepcopy(test_financial_auction_data)
+test_financial_auction_data_with_schema = deepcopy(test_financial_auction_data)
+test_financial_auction_data_with_schema['items'][0]['classification']['id'] = schema_properties['code']
+test_financial_auction_data_with_schema['items'][0]['schema_properties'] = schema_properties
 
 class BaseWebTest(FlashBaseWebTest):
 
