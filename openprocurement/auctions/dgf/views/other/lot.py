@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from openprocurement.auctions.core.utils import (
-    APIResource,
     apply_patch,
     context_unpack,
     get_now,
@@ -12,6 +11,7 @@ from openprocurement.auctions.core.validation import (
     validate_lot_data,
     validate_patch_lot_data,
 )
+from openprocurement.auctions.core.views.mixins import AuctionLotResource
 
 
 @opresource(name='dgfOtherAssets:Auction Lots',
@@ -19,7 +19,7 @@ from openprocurement.auctions.core.validation import (
             path='/auctions/{auction_id}/lots/{lot_id}',
             auctionsprocurementMethodType="dgfOtherAssets",
             description="Auction lots")
-class AuctionLotResource(APIResource):
+class AuctionLotResource(AuctionLotResource):
 
     @json_view(content_type="application/json", validators=(validate_lot_data,), permission='edit_auction')
     def collection_post(self):
@@ -40,18 +40,6 @@ class AuctionLotResource(APIResource):
             route = self.request.matched_route.name.replace("collection_", "")
             self.request.response.headers['Location'] = self.request.current_route_url(_route_name=route, lot_id=lot.id, _query={})
             return {'data': lot.serialize("view")}
-
-    @json_view(permission='view_auction')
-    def collection_get(self):
-        """Lots Listing
-        """
-        return {'data': [i.serialize("view") for i in self.request.validated['auction'].lots]}
-
-    @json_view(permission='view_auction')
-    def get(self):
-        """Retrieving the lot
-        """
-        return {'data': self.request.context.serialize("view")}
 
     @json_view(content_type="application/json", validators=(validate_patch_lot_data,), permission='edit_auction')
     def patch(self):

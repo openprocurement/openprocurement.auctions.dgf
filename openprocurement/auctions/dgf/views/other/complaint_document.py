@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 from openprocurement.auctions.core.constants import STATUS4ROLE
 from openprocurement.auctions.core.utils import (
-    APIResource,
     apply_patch,
     context_unpack,
-    get_file,
     json_view,
     opresource,
     save_auction,
@@ -16,6 +14,7 @@ from openprocurement.auctions.core.validation import (
     validate_file_upload,
     validate_patch_document_data,
 )
+from openprocurement.auctions.core.views.mixins import AuctionComplaintDocumentResource
 
 
 @opresource(name='dgfOtherAssets:Auction Complaint Documents',
@@ -23,19 +22,7 @@ from openprocurement.auctions.core.validation import (
             path='/auctions/{auction_id}/complaints/{complaint_id}/documents/{document_id}',
             auctionsprocurementMethodType="dgfOtherAssets",
             description="Auction complaint documents")
-class AuctionComplaintDocumentResource(APIResource):
-
-    @json_view(permission='view_auction')
-    def collection_get(self):
-        """Auction Complaint Documents List"""
-        if self.request.params.get('all', ''):
-            collection_data = [i.serialize("view") for i in self.context.documents]
-        else:
-            collection_data = sorted(dict([
-                (i.id, i.serialize("view"))
-                for i in self.context.documents
-            ]).values(), key=lambda i: i['dateModified'])
-        return {'data': collection_data}
+class AuctionComplaintDocumentResource(AuctionComplaintDocumentResource):
 
     @json_view(validators=(validate_file_upload,), permission='edit_complaint')
     def collection_post(self):
@@ -59,20 +46,6 @@ class AuctionComplaintDocumentResource(APIResource):
             document_route = self.request.matched_route.name.replace("collection_", "")
             self.request.response.headers['Location'] = self.request.current_route_url(_route_name=document_route, document_id=document.id, _query={})
             return {'data': document.serialize("view")}
-
-    @json_view(permission='view_auction')
-    def get(self):
-        """Auction Complaint Document Read"""
-        if self.request.params.get('download'):
-            return get_file(self.request)
-        document = self.request.validated['document']
-        document_data = document.serialize("view")
-        document_data['previousVersions'] = [
-            i.serialize("view")
-            for i in self.request.validated['documents']
-            if i.url != document.url
-        ]
-        return {'data': document_data}
 
     @json_view(validators=(validate_file_update,), permission='edit_complaint')
     def put(self):

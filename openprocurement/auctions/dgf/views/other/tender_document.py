@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from openprocurement.auctions.core.utils import (
-    APIResource,
     apply_patch,
     context_unpack,
     json_view,
@@ -13,6 +12,7 @@ from openprocurement.auctions.core.validation import (
     validate_file_upload,
     validate_patch_document_data,
 )
+from openprocurement.auctions.core.views.mixins import AuctionDocumentResource
 
 from openprocurement.auctions.dgf.utils import upload_file, get_file
 
@@ -22,19 +22,7 @@ from openprocurement.auctions.dgf.utils import upload_file, get_file
             path='/auctions/{auction_id}/documents/{document_id}',
             auctionsprocurementMethodType="dgfOtherAssets",
             description="Auction related binary files (PDFs, etc.)")
-class AuctionDocumentResource(APIResource):
-
-    @json_view(permission='view_auction')
-    def collection_get(self):
-        """Auction Documents List"""
-        if self.request.params.get('all', ''):
-            collection_data = [i.serialize("view") for i in self.context.documents]
-        else:
-            collection_data = sorted(dict([
-                (i.id, i.serialize("view"))
-                for i in self.context.documents
-            ]).values(), key=lambda i: i['dateModified'])
-        return {'data': collection_data}
+class AuctionDocumentResource(AuctionDocumentResource):
 
     @json_view(permission='upload_auction_documents', validators=(validate_file_upload,))
     def collection_post(self):
