@@ -126,11 +126,3 @@ def invalidate_bids_under_threshold(auction):
     for bid in auction['bids']:
         if bid['value']['amount'] < value_threshold:
             bid['status'] = 'invalid'
-
-
-def check_auction_protocol(award):
-    if award.documents:
-        for document in award.documents:
-            if document['documentType'] == 'auctionProtocol' and document['author'] == 'auction_owner':
-                return True
-    return False
