@@ -6,6 +6,8 @@ from openprocurement.auctions.core.utils import (
     opresource,
     save_auction,
     update_file_content_type,
+    dgf_get_file,
+    dgf_upload_file
 )
 from openprocurement.auctions.core.validation import (
     validate_file_update,
@@ -13,8 +15,6 @@ from openprocurement.auctions.core.validation import (
     validate_patch_document_data,
 )
 from openprocurement.auctions.core.views.mixins import AuctionDocumentResource
-
-from openprocurement.auctions.dgf.utils import upload_file, get_file
 
 
 @opresource(name='dgfOtherAssets:Auction Documents',
@@ -32,7 +32,7 @@ class AuctionDocumentResource(AuctionDocumentResource):
             self.request.errors.add('body', 'data', 'Can\'t add document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
-        document = upload_file(self.request)
+        document = dgf_upload_file(self.request)
         self.context.documents.append(document)
         if save_auction(self.request):
             self.LOGGER.info('Created auction document {}'.format(document.id),
@@ -48,7 +48,7 @@ class AuctionDocumentResource(AuctionDocumentResource):
         document = self.request.validated['document']
         offline = bool(document.get('documentType') == 'x_dgfAssetFamiliarization')
         if self.request.params.get('download') and not offline:
-            return get_file(self.request)
+            return dgf_get_file(self.request)
         document_data = document.serialize("view")
         document_data['previousVersions'] = [
             i.serialize("view")
@@ -66,7 +66,7 @@ class AuctionDocumentResource(AuctionDocumentResource):
             self.request.errors.add('body', 'data', 'Can\'t update document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
-        document = upload_file(self.request)
+        document = dgf_upload_file(self.request)
         self.request.validated['auction'].documents.append(document)
         if save_auction(self.request):
             self.LOGGER.info('Updated auction document {}'.format(self.request.context.id),
