@@ -29,11 +29,9 @@ from openprocurement.auctions.core.models import (
     Auction as BaseAuction,
     Bid as BaseBid,
     dgfCancellation as Cancellation,
-    Organization as BaseOrganization,
     dgfItem as Item,
     dgfDocument as Document,
     dgfComplaint as Complaint,
-    Identifier,
     Feature,
     Period,
     Lot,
@@ -43,7 +41,8 @@ from openprocurement.auctions.core.models import (
     validate_lots_uniq,
     validate_items_uniq,
     calc_auction_end_time,
-    validate_not_available
+    validate_not_available,
+    FinancialOrganization
 )
 from openprocurement.auctions.core.plugins.awarding.v3.models import (
     Award
@@ -224,23 +223,13 @@ DGFOtherAssets = Auction
 # DGF Financial Assets models
 
 
-def validate_ua_fin(items, *args):
-    if items and not any([i.scheme == u"UA-FIN" for i in items]):
-        raise ValidationError(u"One of additional classifications should be UA-FIN.")
-
-
-class FinantialOrganization(BaseOrganization):
-    identifier = ModelType(Identifier, required=True)
-    additionalIdentifiers = ListType(ModelType(Identifier), required=True, validators=[validate_ua_fin])
-
-
 class Bid(Bid):
     class Options:
         roles = {
             'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'qualified', 'eligible'),
         }
     documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
-    tenderers = ListType(ModelType(FinantialOrganization), required=True, min_size=1, max_size=1)
+    tenderers = ListType(ModelType(FinancialOrganization), required=True, min_size=1, max_size=1)
     eligible = BooleanType(required=True, choices=[True])
 
 
