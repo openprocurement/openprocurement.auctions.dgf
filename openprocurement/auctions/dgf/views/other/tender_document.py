@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 from openprocurement.auctions.core.utils import (
-    APIResource,
     apply_patch,
     context_unpack,
     json_view,
     opresource,
     save_auction,
     update_file_content_type,
+    dgf_get_file,
+    dgf_upload_file
 )
 from openprocurement.auctions.core.validation import (
     validate_file_update,
     validate_file_upload,
     validate_patch_document_data,
 )
-
-from openprocurement.auctions.dgf.utils import upload_file, get_file
+from openprocurement.auctions.core.views.mixins import AuctionDocumentResource
 
 
 @opresource(name='dgfOtherAssets:Auction Documents',
@@ -22,19 +22,7 @@ from openprocurement.auctions.dgf.utils import upload_file, get_file
             path='/auctions/{auction_id}/documents/{document_id}',
             auctionsprocurementMethodType="dgfOtherAssets",
             description="Auction related binary files (PDFs, etc.)")
-class AuctionDocumentResource(APIResource):
-
-    @json_view(permission='view_auction')
-    def collection_get(self):
-        """Auction Documents List"""
-        if self.request.params.get('all', ''):
-            collection_data = [i.serialize("view") for i in self.context.documents]
-        else:
-            collection_data = sorted(dict([
-                (i.id, i.serialize("view"))
-                for i in self.context.documents
-            ]).values(), key=lambda i: i['dateModified'])
-        return {'data': collection_data}
+class AuctionDocumentResource(AuctionDocumentResource):
 
     @json_view(permission='upload_auction_documents', validators=(validate_file_upload,))
     def collection_post(self):
@@ -44,7 +32,7 @@ class AuctionDocumentResource(APIResource):
             self.request.errors.add('body', 'data', 'Can\'t add document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
-        document = upload_file(self.request)
+        document = dgf_upload_file(self.request)
         self.context.documents.append(document)
         if save_auction(self.request):
             self.LOGGER.info('Created auction document {}'.format(document.id),
@@ -60,7 +48,7 @@ class AuctionDocumentResource(APIResource):
         document = self.request.validated['document']
         offline = bool(document.get('documentType') == 'x_dgfAssetFamiliarization')
         if self.request.params.get('download') and not offline:
-            return get_file(self.request)
+            return dgf_get_file(self.request)
         document_data = document.serialize("view")
         document_data['previousVersions'] = [
             i.serialize("view")
@@ -78,7 +66,7 @@ class AuctionDocumentResource(APIResource):
             self.request.errors.add('body', 'data', 'Can\'t update document in current ({}) auction status'.format(self.request.validated['auction_status']))
             self.request.errors.status = 403
             return
-        document = upload_file(self.request)
+        document = dgf_upload_file(self.request)
         self.request.validated['auction'].documents.append(document)
         if save_auction(self.request):
             self.LOGGER.info('Updated auction document {}'.format(self.request.context.id),

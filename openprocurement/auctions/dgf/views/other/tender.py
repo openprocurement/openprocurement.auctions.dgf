@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from openprocurement.auctions.core.utils import (
-    APIResource,
     apply_patch,
     context_unpack,
     json_view,
@@ -10,6 +9,8 @@ from openprocurement.auctions.core.utils import (
 from openprocurement.auctions.core.validation import (
     validate_patch_auction_data,
 )
+from openprocurement.auctions.core.views.mixins import AuctionResource
+
 from openprocurement.auctions.dgf.utils import (
     check_status,
 )
@@ -19,111 +20,7 @@ from openprocurement.auctions.dgf.utils import (
             path='/auctions/{auction_id}',
             auctionsprocurementMethodType="dgfOtherAssets",
             description="Open Contracting compatible data exchange format. See http://ocds.open-contracting.org/standard/r/master/#auction for more info")
-class AuctionResource(APIResource):
-
-    @json_view(permission='view_auction')
-    def get(self):
-        """Auction Read
-
-        Get Auction
-        ----------
-
-        Example request to get auction:
-
-        .. sourcecode:: http
-
-            GET /auctions/64e93250be76435397e8c992ed4214d1 HTTP/1.1
-            Host: example.com
-            Accept: application/json
-
-        This is what one should expect in response:
-
-        .. sourcecode:: http
-
-            HTTP/1.1 200 OK
-            Content-Type: application/json
-
-            {
-                "data": {
-                    "id": "64e93250be76435397e8c992ed4214d1",
-                    "auctionID": "UA-64e93250be76435397e8c992ed4214d1",
-                    "dateModified": "2014-10-27T08:06:58.158Z",
-                    "procuringEntity": {
-                        "id": {
-                            "name": "Державне управління справами",
-                            "scheme": "https://ns.openprocurement.org/ua/edrpou",
-                            "uid": "00037256",
-                            "uri": "http://www.dus.gov.ua/"
-                        },
-                        "address": {
-                            "countryName": "Україна",
-                            "postalCode": "01220",
-                            "region": "м. Київ",
-                            "locality": "м. Київ",
-                            "streetAddress": "вул. Банкова, 11, корпус 1"
-                        }
-                    },
-                    "value": {
-                        "amount": 500,
-                        "currency": "UAH",
-                        "valueAddedTaxIncluded": true
-                    },
-                    "itemsToBeProcured": [
-                        {
-                            "description": "футляри до державних нагород",
-                            "primaryClassification": {
-                                "scheme": "CAV",
-                                "id": "44617100-9",
-                                "description": "Cartons"
-                            },
-                            "additionalClassification": [
-                                {
-                                    "scheme": "ДКПП",
-                                    "id": "17.21.1",
-                                    "description": "папір і картон гофровані, паперова й картонна тара"
-                                }
-                            ],
-                            "unitOfMeasure": "item",
-                            "quantity": 5
-                        }
-                    ],
-                    "enquiryPeriod": {
-                        "endDate": "2014-10-31T00:00:00"
-                    },
-                    "tenderPeriod": {
-                        "startDate": "2014-11-03T00:00:00",
-                        "endDate": "2014-11-06T10:00:00"
-                    },
-                    "awardPeriod": {
-                        "endDate": "2014-11-13T00:00:00"
-                    },
-                    "deliveryDate": {
-                        "endDate": "2014-11-20T00:00:00"
-                    },
-                    "minimalStep": {
-                        "amount": 35,
-                        "currency": "UAH"
-                    }
-                }
-            }
-
-        """
-        if self.request.authenticated_role == 'chronograph':
-            auction_data = self.context.serialize('chronograph_view')
-        else:
-            auction_data = self.context.serialize(self.context.status)
-        return {'data': auction_data}
-
-    #@json_view(content_type="application/json", validators=(validate_auction_data, ), permission='edit_auction')
-    #def put(self):
-        #"""Auction Edit (full)"""
-        #auction = self.request.validated['auction']
-        #if auction.status in ['complete', 'unsuccessful', 'cancelled']:
-            #self.request.errors.add('body', 'data', 'Can\'t update auction in current ({}) status'.format(auction.status))
-            #self.request.errors.status = 403
-            #return
-        #apply_patch(self.request, src=self.request.validated['auction_src'])
-        #return {'data': auction.serialize(auction.status)}
+class AuctionResource(AuctionResource):
 
     @json_view(content_type="application/json", validators=(validate_patch_auction_data, ), permission='edit_auction')
     def patch(self):
