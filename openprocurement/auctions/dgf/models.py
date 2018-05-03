@@ -3,7 +3,7 @@ from datetime import timedelta
 
 from pyramid.security import Allow
 from schematics.exceptions import ValidationError
-from schematics.transforms import blacklist, whitelist
+from schematics.transforms import whitelist
 from schematics.types import (
     StringType,
     IntType,
@@ -17,28 +17,35 @@ from urlparse import urlparse, parse_qs
 from string import hexdigits
 from zope.interface import implementer
 
-from openprocurement.auctions.core.constants import DGF_ELIGIBILITY_CRITERIA, DGF_PLATFORM_LEGAL_DETAILS, DGF_PLATFORM_LEGAL_DETAILS_FROM
+from openprocurement.auctions.core.constants import (
+    DGF_ELIGIBILITY_CRITERIA,
+    DGF_PLATFORM_LEGAL_DETAILS,
+    DGF_PLATFORM_LEGAL_DETAILS_FROM,
+    DGF_ID_REQUIRED_FROM,
+    DGF_DECISION_REQUIRED_FROM,
+)
 from openprocurement.auctions.core.includeme import IAwardingNextCheck
 from openprocurement.auctions.core.models import (
+    ListType,
+    ComplaintModelType,
     IAuction,
-    dgfOrganization as Organization,
-    Identifier,
+    Auction as BaseAuction,
+    Bid as BaseBid,
+    dgfCancellation as Cancellation,
     dgfItem as Item,
     dgfDocument as Document,
     dgfComplaint as Complaint,
-    get_auction,
-    Administrator_role,
-    calc_auction_end_time,
-    edit_role,
-    enquiries_role,
-    view_role,
-    ListType,
     Feature,
     Period,
+    Lot,
+    dgf_auction_roles,
+    get_auction,
     validate_features_uniq,
     validate_lots_uniq,
     validate_items_uniq,
-    schematics_embedded_role
+    calc_auction_end_time,
+    validate_not_available,
+    FinancialOrganization
 )
 from openprocurement.auctions.core.plugins.awarding.v3.models import (
     Award
@@ -58,30 +65,6 @@ from openprocurement.auctions.core.validation import (
     validate_disallow_dgfPlatformLegalDetails
 )
 
-from openprocurement.auctions.core.models import (
-    Lot,
-    Cancellation as BaseCancellation,
-    Question as BaseQuestion,
-    flashProcuringEntity,
-    Organization as BaseOrganization,
-)
-
-from openprocurement.auctions.flash.models import (
-    Auction as BaseAuction,
-    Bid as BaseBid,
-)
-from schematics_flexible.schematics_flexible import FlexibleModelType
-from openprocurement.schemas.dgf.schemas_store import SchemaStore
-
-from .constants import (
-    DGF_ID_REQUIRED_FROM,
-    DGF_DECISION_REQUIRED_FROM,
-)
-
-
-class ProcuringEntity(flashProcuringEntity):
-    identifier = ModelType(Identifier, required=True)
-    additionalIdentifiers = ListType(ModelType(Identifier))
 
 class Bid(BaseBid):
     class Options:
@@ -90,21 +73,8 @@ class Bid(BaseBid):
         }
 
     status = StringType(choices=['active', 'draft', 'invalid'], default='active')
-    tenderers = ListType(ModelType(Organization), required=True, min_size=1, max_size=1)
     documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
     qualified = BooleanType(required=True, choices=[True])
-
-
-class Question(BaseQuestion):
-    author = ModelType(Organization, required=True)
-
-class Cancellation(BaseCancellation):
-    documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
-
-
-def validate_not_available(items, *args):
-    if items:
-        raise ValidationError(u"Option not available in this procurementMethodType")
 
 
 class AuctionAuctionPeriod(Period):
@@ -131,11 +101,6 @@ class AuctionAuctionPeriod(Period):
             raise ValidationError(u'This field is required.')
 
 
-create_role = (schematics_embedded_role + blacklist('owner_token', 'owner', '_attachments', 'revisions', 'date', 'dateModified', 'doc_id', 'auctionID', 'bids', 'documents', 'awards', 'questions', 'complaints', 'auctionUrl', 'status', 'enquiryPeriod', 'tenderPeriod', 'awardPeriod', 'procurementMethod', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'awardCriteria', 'submissionMethod', 'cancellations', 'numberOfBidders', 'contracts', 'suspended'))
-edit_role = (edit_role + blacklist('enquiryPeriod', 'tenderPeriod', 'value', 'auction_value', 'minimalStep', 'auction_minimalStep', 'guarantee', 'auction_guarantee', 'eligibilityCriteria', 'eligibilityCriteria_en', 'eligibilityCriteria_ru', 'awardCriteriaDetails', 'awardCriteriaDetails_en', 'awardCriteriaDetails_ru', 'procurementMethodRationale', 'procurementMethodRationale_en', 'procurementMethodRationale_ru', 'submissionMethodDetails', 'submissionMethodDetails_en', 'submissionMethodDetails_ru', 'items', 'procuringEntity', 'suspended', 'merchandisingObject'))
-Administrator_role = (whitelist('suspended', 'awards') + Administrator_role)
-
-
 class IDgfAuction(IAuction):
     """Marker interface for Dgf auctions"""
 
@@ -144,21 +109,12 @@ class IDgfAuction(IAuction):
 class Auction(BaseAuction):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
     class Options:
-        roles = {
-            'create': create_role,
-            'edit_active.tendering': edit_role,
-            'Administrator': Administrator_role,
-            'pending.verification': enquiries_role,
-            'invalid': view_role,
-            'edit_pending.verification': whitelist(),
-            'edit_invalid': whitelist(),
-            'convoy': whitelist('status', 'items', 'documents', 'dgfID')
-        }
+        roles = dgf_auction_roles
     _procedure_type = "dgfOtherAssets"
     awards = ListType(ModelType(Award), default=list())
     bids = ListType(ModelType(Bid), default=list())  # A list of all the companies who entered submissions for the auction.
     cancellations = ListType(ModelType(Cancellation), default=list())
-    complaints = ListType(ModelType(Complaint), default=list())
+    complaints = ListType(ComplaintModelType(Complaint), default=list())
     contracts = ListType(ModelType(Contract), default=list())
     dgfID = StringType()
     merchandisingObject = MD5Type()
@@ -169,10 +125,7 @@ class Auction(BaseAuction):
     tenderPeriod = ModelType(Period)  # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
     tenderAttempts = IntType(choices=[1, 2, 3, 4, 5, 6, 7, 8])
     auctionPeriod = ModelType(AuctionAuctionPeriod, required=True, default={})
-    procurementMethodType = StringType()
-    procuringEntity = ModelType(ProcuringEntity, required=True)
     status = StringType(choices=['draft', 'pending.verification', 'invalid', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
-    questions = ListType(ModelType(Question), default=list())
     features = ListType(ModelType(Feature), validators=[validate_features_uniq, validate_not_available])
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
     items = ListType(ModelType(Item), default=list(), validators=[validate_items_uniq])
@@ -224,9 +177,6 @@ class Auction(BaseAuction):
         if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_PLATFORM_LEGAL_DETAILS_FROM and \
                 (docs and docs[0].documentType != 'x_dgfPlatformLegalDetails' or any([i.documentType == 'x_dgfPlatformLegalDetails' for i in docs[1:]])):
             raise ValidationError(u"First document should be document with x_dgfPlatformLegalDetails documentType")
-
-    def validate_tenderPeriod(self, data, period):
-        pass
 
     def validate_value(self, data, value):
         if value.currency != u'UAH':
@@ -307,41 +257,13 @@ DGFOtherAssets = Auction
 # DGF Financial Assets models
 
 
-def validate_ua_fin(items, *args):
-    if items and not any([i.scheme == u"UA-FIN" for i in items]):
-        raise ValidationError(u"One of additional classifications should be UA-FIN.")
-
-
-class FinantialOrganization(BaseOrganization):
-    identifier = ModelType(Identifier, required=True)
-    additionalIdentifiers = ListType(ModelType(Identifier), required=True, validators=[validate_ua_fin])
-
-
-class Document(Document):
-    documentType = StringType(choices=[
-        'auctionNotice', 'awardNotice', 'contractNotice',
-        'notice', 'biddingDocuments', 'technicalSpecifications',
-        'evaluationCriteria', 'clarifications', 'shortlistedFirms',
-        'riskProvisions', 'billOfQuantity', 'bidders', 'conflictOfInterest',
-        'debarments', 'evaluationReports', 'winningBid', 'complaints',
-        'contractSigned', 'contractArrangements', 'contractSchedule',
-        'contractAnnexe', 'contractGuarantees', 'subContract',
-        'eligibilityCriteria', 'contractProforma', 'commercialProposal',
-        'qualificationDocuments', 'eligibilityDocuments', 'tenderNotice',
-        'illustration', 'financialLicense', 'virtualDataRoom',
-        'auctionProtocol', 'x_dgfPublicAssetCertificate',
-        'x_presentation', 'x_nda', 'x_dgfAssetFamiliarization',
-        'x_dgfPlatformLegalDetails',
-    ])
-
-
 class Bid(Bid):
     class Options:
         roles = {
             'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'qualified', 'eligible'),
         }
     documents = ListType(ModelType(Document), default=list(), validators=[validate_disallow_dgfPlatformLegalDetails])
-    tenderers = ListType(ModelType(FinantialOrganization), required=True, min_size=1, max_size=1)
+    tenderers = ListType(ModelType(FinancialOrganization), required=True, min_size=1, max_size=1)
     eligible = BooleanType(required=True, choices=[True])
 
 
@@ -349,9 +271,7 @@ class Bid(Bid):
 class Auction(DGFOtherAssets):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
     _procedure_type = "dgfFinancialAssets"
-    documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
     bids = ListType(ModelType(Bid), default=list())
-    procurementMethodType = StringType()
     eligibilityCriteria = StringType(default=DGF_ELIGIBILITY_CRITERIA['ua'])
     eligibilityCriteria_en = StringType(default=DGF_ELIGIBILITY_CRITERIA['en'])
     eligibilityCriteria_ru = StringType(default=DGF_ELIGIBILITY_CRITERIA['ru'])

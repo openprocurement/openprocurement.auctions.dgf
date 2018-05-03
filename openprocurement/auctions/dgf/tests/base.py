@@ -11,7 +11,8 @@ from openprocurement.auctions.core.utils import (
 
 from openprocurement.auctions.core.tests.base import (
     BaseWebTest as CoreBaseWebTest,
-    BaseAuctionWebTest as CoreBaseAuctionWebTest
+    BaseAuctionWebTest as CoreBaseAuctionWebTest,
+    test_organization, test_auction_data, base_test_bids
 )
 
 from openprocurement.auctions.dgf.constants import (
@@ -20,68 +21,7 @@ from openprocurement.auctions.dgf.constants import (
 )
 
 now = datetime.now()
-test_organization = {
-    "name": u"Державне управління справами",
-    "identifier": {
-        "scheme": u"UA-EDR",
-        "id": u"00037256",
-        "uri": u"http://www.dus.gov.ua/"
-    },
-    "address": {
-        "countryName": u"Україна",
-        "postalCode": u"01220",
-        "region": u"м. Київ",
-        "locality": u"м. Київ",
-        "streetAddress": u"вул. Банкова, 11, корпус 1"
-    },
-    "contactPoint": {
-        "name": u"Державне управління справами",
-        "telephone": u"0440000000"
-    }
-}
-test_procuringEntity = test_organization.copy()
-test_auction_data = {
-    "title": u"футляри до державних нагород",
-    "dgfID": u"219560",
-    "dgfDecisionDate": u"2016-11-17",
-    "dgfDecisionID": u"219560",
-    "tenderAttempts": 1,
-    "procuringEntity": test_procuringEntity,
-    "value": {
-        "amount": 100,
-        "currency": u"UAH"
-    },
-    "minimalStep": {
-        "amount": 35,
-        "currency": u"UAH"
-    },
-    "items": [
-        {
-            "description": u"Земля для військовослужбовців",
-            "classification": {
-                "scheme": u"CAV",
-                "id": u"06000000-2",
-                "description": u"Земельні ділянки"
-            },
-            "unit": {
-                "name": u"item",
-                "code": u"44617100-9"
-            },
-            "quantity": 5,
-            "address": {
-                "countryName": u"Україна",
-                "postalCode": "79000",
-                "region": u"м. Київ",
-                "locality": u"м. Київ",
-                "streetAddress": u"вул. Банкова 1"
-            }
-        }
-    ],
-    "auctionPeriod": {
-        "startDate": (now.date() + timedelta(days=14)).isoformat()
-    },
-    "procurementMethodType": DEFAULT_PROCUREMENT_METHOD_TYPE_OTHER,
-}
+test_auction_data['procurementMethodType'] = DEFAULT_PROCUREMENT_METHOD_TYPE_OTHER
 if SANDBOX_MODE:
     test_auction_data['procurementMethodDetails'] = 'quick, accelerator=1440'
     test_auction_data['submissionMethodDetails'] = 'test submissionMethodDetails'
@@ -148,28 +88,6 @@ test_features_auction_data["features"] = [
                 "title": u"Більше 5 років"
             }
         ]
-    }
-]
-base_test_bids = [
-    {
-        "tenderers": [
-            test_organization
-        ],
-        "value": {
-            "amount": 469,
-            "currency": "UAH",
-            "valueAddedTaxIncluded": True
-        }
-    },
-    {
-        "tenderers": [
-            test_organization
-        ],
-        "value": {
-            "amount": 479,
-            "currency": "UAH",
-            "valueAddedTaxIncluded": True
-        }
     }
 ]
 
@@ -241,6 +159,7 @@ test_financial_auction_data = deepcopy(test_financial_auction_data)
 test_financial_auction_data_with_schema = deepcopy(test_financial_auction_data)
 test_financial_auction_data_with_schema['items'][0]['classification']['id'] = schema_properties['code']
 test_financial_auction_data_with_schema['items'][0]['schema_properties'] = schema_properties
+
 
 class BaseWebTest(CoreBaseWebTest):
 

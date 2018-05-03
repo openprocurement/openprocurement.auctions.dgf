@@ -129,9 +129,11 @@ def from2to3(registry):
     docs = []
     for i in results:
         auction = i.doc
-        procurementMethodTypes = ['dgfOtherAssets', 'dgfFinancialAssets']
+        procurement_method_types = get_procurement_method_types(
+            registry, ['dgfOtherAssets', 'dgfFinancialAssets']
+        )
 
-        if auction['procurementMethodType'] not in procurementMethodTypes or auction['status'] != 'active.awarded' or 'contracts' not in auction:
+        if auction['procurementMethodType'] not in procurement_method_types or auction['status'] != 'active.awarded' or 'contracts' not in auction:
             continue
 
         changed = False

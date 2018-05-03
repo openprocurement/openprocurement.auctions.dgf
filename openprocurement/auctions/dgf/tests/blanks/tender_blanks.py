@@ -32,6 +32,7 @@ def edit_role(self):
     fields = set([
         'features', 'hasEnquiries', 'description', 'description_en', 'description_ru',
         'title', 'title_en', 'title_ru', 'dgfID', 'dgfDecisionDate', 'dgfDecisionID', 'tenderAttempts',
+        'merchandisingObject',
     ])
     if SANDBOX_MODE:
         fields.add('procurementMethodDetails')

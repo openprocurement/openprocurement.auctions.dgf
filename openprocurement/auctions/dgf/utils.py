@@ -1,19 +1,13 @@
 # -*- coding: utf-8 -*-
 from logging import getLogger
 from pkg_resources import get_distribution
-from openprocurement.auctions.core.constants import (
-    DOCUMENT_TYPE_URL_ONLY,
-    DOCUMENT_TYPE_OFFLINE
-)
+
 from openprocurement.auctions.core.plugins.contracting.base.utils import (
     check_auction_status
 )
 from openprocurement.auctions.core.utils import (
     cleanup_bids_for_cancelled_lots, check_complaint_status,
     remove_draft_bids,
-    upload_file as base_upload_file,
-    get_file as base_get_file,
-    API_DOCUMENT_BLACKLISTED_FIELDS as DOCUMENT_BLACKLISTED_FIELDS,
     context_unpack,
     get_now,
     TZ,
@@ -22,30 +16,6 @@ from openprocurement.auctions.core.utils import (
 
 PKG = get_distribution(__package__)
 LOGGER = getLogger(PKG.project_name)
-
-
-def upload_file(request, blacklisted_fields=DOCUMENT_BLACKLISTED_FIELDS):
-    first_document = request.validated['documents'][0] if 'documents' in request.validated and request.validated['documents'] else None
-    if 'data' in request.validated and request.validated['data']:
-        document = request.validated['document']
-        if document.documentType in (DOCUMENT_TYPE_URL_ONLY + DOCUMENT_TYPE_OFFLINE):
-            if first_document:
-                for attr_name in type(first_document)._fields:
-                    if attr_name not in blacklisted_fields:
-                        setattr(document, attr_name, getattr(first_document, attr_name))
-            if document.documentType in DOCUMENT_TYPE_OFFLINE:
-                document.format = 'offline/on-site-examination'
-            return document
-    return base_upload_file(request, blacklisted_fields)
-
-
-def get_file(request):
-    document = request.validated['document']
-    if document.documentType in DOCUMENT_TYPE_URL_ONLY:
-        request.response.status = '302 Moved Temporarily'
-        request.response.location = document.url
-        return document.url
-    return base_get_file(request)
 
 
 def check_bids(request):
@@ -125,11 +95,3 @@ def invalidate_bids_under_threshold(auction):
     for bid in auction['bids']:
         if bid['value']['amount'] < value_threshold:
             bid['status'] = 'invalid'
-
-
-def check_auction_protocol(award):
-    if award.documents:
-        for document in award.documents:
-            if document['documentType'] == 'auctionProtocol' and document['author'] == 'auction_owner':
-                return True
-    return False
