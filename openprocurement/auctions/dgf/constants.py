@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
-from openprocurement.auctions.core.utils import TZ
-
 
 FINANCIAL_VIEW_LOCATIONS = [
     "openprocurement.auctions.dgf.views.financial",

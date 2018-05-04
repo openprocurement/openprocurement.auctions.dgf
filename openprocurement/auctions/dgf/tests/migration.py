@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
-
 from uuid import uuid4
-from copy import deepcopy
-
 from openprocurement.auctions.core.utils import get_now
-
 from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.core.tests.blanks.migration_blanks import migrate
 from openprocurement.auctions.core.plugins.awarding.v3.tests.migration import (
@@ -20,10 +16,8 @@ from openprocurement.auctions.dgf.tests.base import (
 )
 from openprocurement.auctions.dgf.tests.blanks.migration_blanks import (
     # MigrateTestFrom1To2InvalidBids
-    migrate_one_pending_bids,
     migrate_one_active_bids,
     migrate_unsuccessful_pending_bids,
-    migrate_unsuccessful_active_bids,
     # MigrateTestFrom1To2InvalidBid
     migrate_one_pending_bid,
     migrate_one_active_bid,
@@ -35,7 +29,6 @@ from openprocurement.auctions.dgf.tests.blanks.migration_blanks import (
     migrate_active_to_unsuccessful,
     migrate_active_to_complete,
     migrate_cancelled_pending_to_complete,
-    migrate_unsuccessful_pending_to_complete,
     migrate_unsuccessful_active_to_complete,
     migrate_cancelled_unsuccessful_pending,
     migrate_cancelled_unsuccessful_cancelled_pending_to_unsuccessful,
@@ -47,14 +40,8 @@ from openprocurement.auctions.dgf.tests.blanks.migration_blanks import (
     migrate_pending,
     migrate_active,
     # MigrateTestFrom1To2SuspendedAuctionWithInvalidBids
-    migrate_one_pending_suspend_bids,
-    migrate_one_active_suspend_bids,
-    migrate_unsuccessful_pending_suspend_bids,
     migrate_unsuccessful_active_suspend_bids,
     # MigrateTestFrom1To2SuspendedAuctionWithInvalidBid
-    migrate_one_pending_suspend_bid,
-    migrate_one_active_suspend_bid,
-    migrate_unsuccessful_pending_suspend_bid,
     migrate_unsuccessful_active_suspend_bid
 )
 
