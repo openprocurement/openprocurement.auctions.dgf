@@ -9,7 +9,7 @@ from openprocurement.auctions.core.plugins.awarding.v3.migration import (
 )
 from openprocurement.auctions.core.traversal import Root
 from openprocurement.auctions.core.utils import (
-    get_now, read_yaml, get_plugins, get_procurement_method_types
+    get_now, get_plugins, get_procurement_method_types
 )
 
 LOGGER = logging.getLogger(__name__)
