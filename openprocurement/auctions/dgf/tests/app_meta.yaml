@@ -1,0 +1,25 @@
+---
+plugins:
+  api:
+    plugins:
+      auctions.core:
+        plugins:
+          auctions.dgf.financial:
+            plugins:
+              dgf.financial.migration:
+            aliases: []
+            use_default: true
+            migration: false
+          auctions.dgf.other:
+            plugins:
+              dgf.other.migration: 
+            aliases: []
+            use_default: true
+            migration: false
+config:
+  auth:
+    type: file
+    src: auth.ini
+  database:
+    couchdb.db_name: tests
+    couchdb.url: http://op:op@localhost:5984/
