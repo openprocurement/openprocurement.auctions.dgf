@@ -8,7 +8,8 @@ from openprocurement.auctions.dgf.models import (
 )
 from openprocurement.auctions.dgf.adapters import (
     AuctionDGFOtherAssetsConfigurator,
-    AuctionDGFFinancialAssetsConfigurator
+    AuctionDGFFinancialAssetsConfigurator,
+    AuctionDGFManagerAdapter
 )
 from openprocurement.auctions.core.plugins.awarding.v3.adapters import (
     AwardingNextCheckV3
@@ -16,6 +17,9 @@ from openprocurement.auctions.core.plugins.awarding.v3.adapters import (
 from openprocurement.auctions.core.includeme import (
     IContentConfigurator,
     IAwardingNextCheck
+)
+from openprocurement.auctions.core.interfaces import (
+    IAuctionManager
 )
 from openprocurement.auctions.dgf.constants import (
     FINANCIAL_VIEW_LOCATIONS,
@@ -77,6 +81,11 @@ def includeme_financial(config, plugin_config=None):
         AwardingNextCheckV3,
         (IDgfAuction, ),
         IAwardingNextCheck
+    )
+    config.registry.registerAdapter(
+        AuctionDGFManagerAdapter,
+        (IDgfAuction, ),
+        IAuctionManager
     )
 
     LOGGER.info("Included openprocurement.auctions.dgf.other plugin",
