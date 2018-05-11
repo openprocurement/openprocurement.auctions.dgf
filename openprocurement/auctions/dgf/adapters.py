@@ -24,7 +24,16 @@ class AuctionDGFFinancialAssetsConfigurator(AuctionConfigurator,
     model = DGFFinancialAssets
 
 
-class AuctionDGFManagerAdapter(AuctionManagerAdapter):
+class AuctionDGFOtherAssetsManagerAdapter(AuctionManagerAdapter):
+
+    def create_auction(self, request):
+        pass
+
+    def change_auction(self, request):
+        pass
+
+
+class AuctionDGFFinancialAssetsManagerAdapter(AuctionManagerAdapter):
 
     def create_auction(self, request):
         pass
