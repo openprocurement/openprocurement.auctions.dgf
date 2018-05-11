@@ -2,14 +2,16 @@ import logging
 
 from pyramid.interfaces import IRequest
 from openprocurement.auctions.dgf.models import (
-    IDgfAuction,
+    IDgfOtherAssetsAuction,
+    IDgfFinancialAssetsAuction,
     DGFOtherAssets,
     DGFFinancialAssets
 )
 from openprocurement.auctions.dgf.adapters import (
     AuctionDGFOtherAssetsConfigurator,
     AuctionDGFFinancialAssetsConfigurator,
-    AuctionDGFManagerAdapter
+    AuctionDGFOtherAssetsManagerAdapter,
+    AuctionDGFFinancialAssetsManagerAdapter
 )
 from openprocurement.auctions.core.plugins.awarding.v3.adapters import (
     AwardingNextCheckV3
@@ -45,13 +47,18 @@ def includeme_other(config, plugin_config=None):
     # Register adapters
     config.registry.registerAdapter(
         AuctionDGFOtherAssetsConfigurator,
-        (IDgfAuction, IRequest),
+        (IDgfOtherAssetsAuction, IRequest),
         IContentConfigurator
     )
     config.registry.registerAdapter(
         AwardingNextCheckV3,
-        (IDgfAuction, ),
+        (IDgfOtherAssetsAuction, ),
         IAwardingNextCheck
+    )
+    config.registry.registerAdapter(
+        AuctionDGFOtherAssetsManagerAdapter,
+        (IDgfOtherAssetsAuction, ),
+        IAuctionManager
     )
 
     LOGGER.info("Included openprocurement.auctions.dgf.financial plugin",
@@ -74,17 +81,17 @@ def includeme_financial(config, plugin_config=None):
     # Register Adapters
     config.registry.registerAdapter(
         AuctionDGFFinancialAssetsConfigurator,
-        (IDgfAuction, IRequest),
+        (IDgfFinancialAssetsAuction, IRequest),
         IContentConfigurator
     )
     config.registry.registerAdapter(
         AwardingNextCheckV3,
-        (IDgfAuction, ),
+        (IDgfFinancialAssetsAuction, ),
         IAwardingNextCheck
     )
     config.registry.registerAdapter(
-        AuctionDGFManagerAdapter,
-        (IDgfAuction, ),
+        AuctionDGFFinancialAssetsManagerAdapter,
+        (IDgfFinancialAssetsAuction, ),
         IAuctionManager
     )
 
