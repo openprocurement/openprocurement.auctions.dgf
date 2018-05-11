@@ -101,11 +101,15 @@ class AuctionAuctionPeriod(Period):
             raise ValidationError(u'This field is required.')
 
 
-class IDgfAuction(IAuction):
+class IDgfOtherAssetsAuction(IAuction):
     """Marker interface for Dgf auctions"""
 
 
-@implementer(IDgfAuction)
+class IDgfFinancialAssetsAuction(IAuction):
+    """Marker interface for Dgf auctions"""
+
+
+@implementer(IDgfOtherAssetsAuction)
 class Auction(BaseAuction):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
     class Options:
@@ -267,7 +271,7 @@ class Bid(Bid):
     eligible = BooleanType(required=True, choices=[True])
 
 
-@implementer(IAuction)
+@implementer(IDgfFinancialAssetsAuction)
 class Auction(DGFOtherAssets):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
     _procedure_type = "dgfFinancialAssets"
