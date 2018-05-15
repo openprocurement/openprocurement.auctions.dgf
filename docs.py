@@ -18,7 +18,7 @@ now = datetime.now()
 
 test_auction_data = base_test_auction_data.copy()
 test_financial_auction_data = test_auction_data.copy()
-test_financial_auction_data["procurementMethodType"] = "dgfFinancialAssets"
+test_financial_auction_data["procurementMethodType"] = "DGFFinancial"
 
 bid = {
     "data": {
@@ -715,7 +715,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
         # Attaching document to the prolongation
 
         with open('docs/source/tutorial/prolongation-attach-document.http', 'w') as self.app.file_obj:
-            response = self.app.post(
+            response = self.app.post_json(
                 '/auctions/{auction_id}/contracts/{contract_id}/'
                 'prolongations/{prolongation_id}/documents?acc_token={token}'.format(
                     auction_id=self.auction_id,
@@ -723,11 +723,14 @@ class AuctionResourceTest(BaseAuctionWebTest):
                     prolongation_id=self.prolongation_id,
                     token=owner_token
                 ),
-                upload_files=[(
-                    'file',
-                    'ProlongationDocument.doc',
-                    'content_with_prolongation_data'
-                ),]
+                {'data': {
+                    'title': u'ProlongationDocument.doc',
+                    'url': self.generate_docservice_url(),
+                    'hash': 'md5:' + '0' * 32,
+                    'format': 'application/pdf',
+                    "documentType": "prolongationProtocol",
+                    "description": "content_with_prolongation_data"
+                }}
             )
         self.assertEqual(response.status, '201 Created')
 
@@ -764,7 +767,7 @@ class AuctionResourceTest(BaseAuctionWebTest):
         # Attaching document to the long prolongation
 
         with open('docs/source/tutorial/prolongation-long-document-attach.http', 'w') as self.app.file_obj:
-            response = self.app.post(
+            response = self.app.post_json(
                 '/auctions/{auction_id}/contracts/{contract_id}/'
                 'prolongations/{prolongation_id}/documents?acc_token={token}'.format(
                     auction_id=self.auction_id,
@@ -772,11 +775,14 @@ class AuctionResourceTest(BaseAuctionWebTest):
                     prolongation_id=self.long_prolongation_id,
                     token=owner_token
                 ),
-                upload_files=[(
-                    'file',
-                    'LongProlongationDocument.doc',
-                    'content_with_prolongation_data'
-                ),]
+                {'data': {
+                    'title': u'LongProlongationDocument.doc',
+                    'url': self.generate_docservice_url(),
+                    'hash': 'md5:' + '0' * 32,
+                    'format': 'application/pdf',
+                    "documentType": "prolongationProtocol",
+                    "description": "content_with_prolongation_data"
+                }}
             )
         self.assertEqual(response.status, '201 Created')
 

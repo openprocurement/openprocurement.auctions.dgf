@@ -325,6 +325,8 @@ class AuctionContractSwitchResourceTest(
 ):
     initial_status = 'active.auction'
     initial_bids = test_bids
+    docservice = True
+
     def setUp(self):
         super(AuctionContractSwitchResourceTest, self).setUp()
         fixtures.create_award(self)

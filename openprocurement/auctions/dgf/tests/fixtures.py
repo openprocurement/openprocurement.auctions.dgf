@@ -44,13 +44,20 @@ def create_award(test_case):
     test_case.set_status('active.qualification')
 
     test_case.app.authorization = ('Basic', ('token', ''))
-    response = test_case.app.post(
+    response = test_case.app.post_json(
         '/auctions/{}/awards/{}/documents?acc_token={}'.format(
             test_case.auction_id,
             test_case.award_id,
             test_case.auction_token
         ),
-        upload_files=[('file', 'auction_protocol.pdf', 'content')]
+        {'data': {
+            'title': u'Notice.pdf',
+            'url': test_case.generate_docservice_url(),
+            'hash': 'md5:' + '0' * 32,
+            'format': 'application/pdf',
+            "documentType": "auctionProtocol",
+            "description": "specification"
+        }}
     )
     test_case.assertEqual(response.status, '201 Created')
     test_case.assertEqual(response.content_type, 'application/json')
