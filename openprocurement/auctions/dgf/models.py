@@ -66,7 +66,7 @@ from openprocurement.auctions.core.validation import (
 )
 
 
-class Bid(BaseBid):
+class DGFOtherBid(BaseBid):
     class Options:
         roles = {
             'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'qualified'),
@@ -110,13 +110,13 @@ class IDgfFinancialAssetsAuction(IAuction):
 
 
 @implementer(IDgfOtherAssetsAuction)
-class Auction(BaseAuction):
+class DGFOtherAssets(BaseAuction):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
     class Options:
         roles = dgf_auction_roles
     _procedure_type = "dgfOtherAssets"
     awards = ListType(ModelType(Award), default=list())
-    bids = ListType(ModelType(Bid), default=list())  # A list of all the companies who entered submissions for the auction.
+    bids = ListType(ModelType(DGFOtherBid), default=list())  # A list of all the companies who entered submissions for the auction.
     cancellations = ListType(ModelType(Cancellation), default=list())
     complaints = ListType(ComplaintModelType(Complaint), default=list())
     contracts = ListType(ModelType(Contract), default=list())
@@ -255,13 +255,7 @@ class Auction(BaseAuction):
                         checks.append(calculate_business_date(complaint.dateAnswered, AUCTIONS_COMPLAINT_STAND_STILL_TIME, self))
         return min(checks).isoformat() if checks else None
 
-
-DGFOtherAssets = Auction
-
-# DGF Financial Assets models
-
-
-class Bid(Bid):
+class DGFFinancialBid(DGFOtherBid):
     class Options:
         roles = {
             'create': whitelist('value', 'tenderers', 'parameters', 'lotValues', 'status', 'qualified', 'eligible'),
@@ -272,13 +266,11 @@ class Bid(Bid):
 
 
 @implementer(IDgfFinancialAssetsAuction)
-class Auction(DGFOtherAssets):
+class DGFFinancialAssets(DGFOtherAssets):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
     _procedure_type = "dgfFinancialAssets"
-    bids = ListType(ModelType(Bid), default=list())
+    bids = ListType(ModelType(DGFFinancialBid), default=list())
     eligibilityCriteria = StringType(default=DGF_ELIGIBILITY_CRITERIA['ua'])
     eligibilityCriteria_en = StringType(default=DGF_ELIGIBILITY_CRITERIA['en'])
     eligibilityCriteria_ru = StringType(default=DGF_ELIGIBILITY_CRITERIA['ru'])
 
-
-DGFFinancialAssets = Auction
