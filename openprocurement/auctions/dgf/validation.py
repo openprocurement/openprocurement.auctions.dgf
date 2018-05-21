@@ -11,7 +11,7 @@ def validate_patch_auction_data(request, **kwargs):
         request.errors.status = 403
         return
     if request.context.status not in ['draft', 'pending.verification']:
-        return validate_data(request, type(request.auction), True, data)
+        return validate_data(request, type(request.auction), data=data)
     default_status = type(request.auction).fields['status'].default
     new_status = data.get('status', '')
 
@@ -51,4 +51,4 @@ def validate_patch_auction_data(request, **kwargs):
             request.validated['data'] = {'status': new_status}
             request.context.status = new_status
 
-        return validate_data(request, type(request.auction), True, data)
+        return validate_data(request, type(request.auction), data=data)
