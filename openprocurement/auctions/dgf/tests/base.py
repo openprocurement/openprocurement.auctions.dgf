@@ -194,6 +194,7 @@ class BaseAuctionWebTest(CoreBaseAuctionWebTest):
             response = self.app.post_json('/auctions', {'data': data})
             auction = response.json['data']
             self.auction_token = response.json['access']['token']
+            self.auction_transfer = response.json['access']['transfer']
             self.auction_id = auction['id']
             authorization = self.app.authorization
             self.app.authorization = ('Basic', ('convoy', ''))
@@ -208,6 +209,7 @@ class BaseAuctionWebTest(CoreBaseAuctionWebTest):
             response = self.app.post_json('/auctions', {'data': data})
             auction = response.json['data']
             self.auction_token = response.json['access']['token']
+            self.auction_transfer = response.json['access']['transfer']
             self.auction_id = auction['id']
         status = auction['status']
         if self.initial_bids:
