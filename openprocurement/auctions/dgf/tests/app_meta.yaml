@@ -2,7 +2,9 @@
 plugins:
   api:
     plugins:
-      auctions.transferring:
+      transferring:
+        plugins:
+          auctions.transferring:
       auctions.core:
         plugins:
           auctions.dgf.financial:

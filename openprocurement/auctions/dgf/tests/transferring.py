@@ -1,5 +1,11 @@
+# -*- coding: utf-8 -*-
+import unittest
+
 from openprocurement.auctions.dgf.tests.base import BaseAuctionWebTest
-from openprocurement.auctions.core.tests.plugins.transferring.mixins import AuctionOwnershipChangeTestCaseMixin
+from openprocurement.auctions.core.tests.plugins.transferring.mixins import (
+    AuctionOwnershipChangeTestCaseMixin
+)
+
 
 class AuctionOwnershipChangeResourceTest(BaseAuctionWebTest,
                                          AuctionOwnershipChangeTestCaseMixin):
@@ -7,6 +13,7 @@ class AuctionOwnershipChangeResourceTest(BaseAuctionWebTest,
     def setUp(self):
         super(AuctionOwnershipChangeResourceTest, self).setUp()
         self.not_used_transfer = self.create_transfer()
+
 
 def suite():
     tests = unittest.TestSuite()
