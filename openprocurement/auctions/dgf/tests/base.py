@@ -20,6 +20,11 @@ from openprocurement.auctions.dgf.constants import (
     DEFAULT_PROCUREMENT_METHOD_TYPE_FINANCIAL
 )
 
+from openprocurement.auctions.dgf.tests.fixtures import PARTIAL_MOCK_CONFIG
+from openprocurement.auctions.core.tests.base import MOCK_CONFIG as BASE_MOCK_CONFIG
+from openprocurement.auctions.core.utils import connection_mock_config
+
+
 now = datetime.now()
 test_auction_data['procurementMethodType'] = DEFAULT_PROCUREMENT_METHOD_TYPE_OTHER
 if SANDBOX_MODE:
@@ -161,6 +166,12 @@ test_financial_auction_data_with_schema['items'][0]['classification']['id'] = sc
 test_financial_auction_data_with_schema['items'][0]['schema_properties'] = schema_properties
 
 
+MOCK_CONFIG = connection_mock_config(PARTIAL_MOCK_CONFIG,
+                                     base=BASE_MOCK_CONFIG,
+                                     connector=('plugins', 'api', 'plugins',
+                                                'auctions.core', 'plugins'))
+
+
 class BaseWebTest(CoreBaseWebTest):
 
     """Base Web Test to test openprocurement.auctions.dgf.
@@ -169,6 +180,7 @@ class BaseWebTest(CoreBaseWebTest):
     """
 
     relative_to = os.path.dirname(__file__)
+    mock_config = MOCK_CONFIG
 
 
 class BaseAuctionWebTest(CoreBaseAuctionWebTest):
@@ -176,6 +188,7 @@ class BaseAuctionWebTest(CoreBaseAuctionWebTest):
     initial_data = test_auction_data
     initial_organization = test_organization
     registry = False
+    mock_config = MOCK_CONFIG
 
     def create_auction(self):
         data = deepcopy(self.initial_data)
@@ -198,8 +211,7 @@ class BaseAuctionWebTest(CoreBaseAuctionWebTest):
             self.auction_id = auction['id']
             authorization = self.app.authorization
             self.app.authorization = ('Basic', ('convoy', ''))
-            response = self.app.patch_json('/auctions/{}'.format(self.auction_id),
-                                           {'data': {'items': items, 'status': 'active.tendering'}})
+            response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'items': items, 'status': 'active.tendering'}})
             self.assertEqual(response.status, '200 OK')
             self.assertEqual(response.content_type, 'application/json')
             auction = response.json['data']

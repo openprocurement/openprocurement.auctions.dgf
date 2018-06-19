@@ -5,6 +5,25 @@ from openprocurement.auctions.core.plugins.contracting.v3.models import (
 )
 from openprocurement.auctions.core.utils import get_now
 
+PARTIAL_MOCK_CONFIG = {
+        "auctions.dgf.financial":{
+            "use_default":True,
+            "plugins":{
+                "dgf.financial.migration":None
+            },
+            "migration":False,
+            "aliases":[]
+        },
+        "auctions.dgf.other":{
+            "use_default":True,
+            "plugins":{
+                "dgf.other.migration":None
+            },
+            "migration":False,
+            "aliases":[]
+        }
+}
+
 PROLONGATION = {
     'decisionID': 'very_importante_documente',
     'description': 'Prolongate your contract for free!',
