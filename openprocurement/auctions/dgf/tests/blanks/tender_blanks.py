@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import unittest
+
 from copy import deepcopy
 from datetime import timedelta, time
 from iso8601 import parse_date
@@ -846,3 +848,22 @@ def create_auction_generated_financial(self):
     self.assertEqual(auction['eligibilityCriteria'], DGF_ELIGIBILITY_CRITERIA['ua'])
     self.assertEqual(auction['eligibilityCriteria_en'], DGF_ELIGIBILITY_CRITERIA['en'])
     self.assertEqual(auction['eligibilityCriteria_ru'], DGF_ELIGIBILITY_CRITERIA['ru'])
+
+
+@unittest.skipIf(not SANDBOX_MODE, 'procurementMethodDetails is absent while SANDBOX_MODE is False')
+def delete_procurementMethodDetails(self):
+    data = deepcopy(self.initial_data)
+    data['procurementMethodDetails'] = 'some procurementMethodDetails'
+
+    response = self.app.post_json('/auctions', {'data': data})
+    self.assertEqual(response.status, '201 Created')
+    self.assertEqual(response.content_type, 'application/json')
+    self.assertEqual(response.json['data']['procurementMethodDetails'], data['procurementMethodDetails'])
+    auction = response.json['data']
+
+    self.app.authorization = ('Basic', ('administrator', ''))
+    response = self.app.patch_json(
+        '/auctions/{}'.format(auction['id']),
+        {'data': {'procurementMethodDetails': None}}
+    )
+    self.assertNotIn('procurementMethodDetails', response.json['data'])

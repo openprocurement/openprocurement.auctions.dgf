@@ -41,6 +41,7 @@ from openprocurement.auctions.dgf.tests.blanks.tender_blanks import (
     create_auction_auctionPeriod,
     create_auction_generated,
     create_auction,
+    delete_procurementMethodDetails,
     # AuctionProcessTest
     first_bid_auction,
     suspended_auction,
@@ -74,6 +75,7 @@ class AuctionResourceTest(BaseWebTest, AuctionResourceTestMixin, DgfInsiderResou
     test_auction_features_invalid = unittest.skip("option not available")(snitch(auction_features_invalid))
     test_auction_features = unittest.skip("option not available")(snitch(auction_features))
     test_patch_tender_jsonpatch = snitch(patch_tender_jsonpatch)
+    test_delete_procurementMethodDetails = snitch(delete_procurementMethodDetails)
 
 
 class AuctionProcessTest(BaseAuctionWebTest):
