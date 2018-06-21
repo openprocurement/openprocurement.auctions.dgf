@@ -867,3 +867,6 @@ def delete_procurementMethodDetails(self):
         {'data': {'procurementMethodDetails': None}}
     )
     self.assertNotIn('procurementMethodDetails', response.json['data'])
+
+    response = self.app.get('/auctions/{}'.format(auction['id']))
+    self.assertNotIn('procurementMethodDetails', response.json['data'])
