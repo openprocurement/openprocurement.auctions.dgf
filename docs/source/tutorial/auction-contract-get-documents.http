@@ -1,23 +1,23 @@
-GET /api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/contracts/167820e4b4ce4684944cf83b16deaf73/documents HTTP/1.0
+GET /api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/contracts/538cb657fbe54c93973e858feffa3dec/documents HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
 
 200 OK
-Content-Type: application/json; charset=UTF-8
+Content-Type: application/json
+X-Content-Type-Options: nosniff
 
 {
   "data": [
     {
       "hash": "md5:00000000000000000000000000000000", 
       "format": "application/msword", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/22d3b8cc510d4be880b1e16cea384c31?KeyID=e578eecc&Signature=y%252BF%252BUGdh%2FLEYDdSri%2FDCYRIxHp8gf%252BpAewKgGvNuw%252BxkBdBRauis3I8G9a%2FkV0h9TjRM1IOvFMiLlyB1uvH9AQ%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/46cb517bd7684c1a9779bc6c6b61aa3b?KeyID=172d32c8&Signature=XvKnw4LjI6hr76DvKNP0ErxWYsLQfH2zRLwnDcs056LoQkSA92m2ch1bsVlfVzGADUyXv4zaoFuwEJMtnVN%252BCQ%253D%253D", 
       "title": "contract_first_document.doc", 
       "documentOf": "tender", 
-      "datePublished": "2018-03-13T14:17:05.462936+02:00", 
-      "documentType": "prolongationProtocol", 
-      "dateModified": "2018-03-13T14:17:05.462956+02:00", 
-      "id": "8e9699adc2ca412eb7c9ea74a65d3ed9"
+      "datePublished": "2018-07-11T15:06:09.858414+03:00", 
+      "dateModified": "2018-07-11T15:06:09.858435+03:00", 
+      "id": "ed5631e083de4bb78654b925d57868b5"
     }
   ]
 }

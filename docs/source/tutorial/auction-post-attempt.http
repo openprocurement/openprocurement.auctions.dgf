@@ -1,4 +1,4 @@
-POST /api/2.3/auctions?opt_pretty=1 HTTP/1.0
+POST /api/2.5/auctions?opt_pretty=1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 4
 Content-Type: application/x-www-form-urlencoded
@@ -6,7 +6,8 @@ Host: api-sandbox.ea.openprocurement.org
 
 
 415 Unsupported Media Type
-Content-Type: application/json; charset=UTF-8
+Content-Type: application/json
+X-Content-Type-Options: nosniff
 
 {
   "status": "error", 

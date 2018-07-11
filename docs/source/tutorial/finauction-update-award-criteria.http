@@ -1,12 +1,12 @@
-PUT /api/2.3/auctions/72f943f337ff4470acaa2e958316ecc3/documents/0bec9452f8f94abdb7858106369b08ff?acc_token=58a3a8eb4997408aa23bfbd8c0828132 HTTP/1.0
+PUT /api/2.5/auctions/1bd0478dee5b4b0581e2d1bf7f47fa51/documents/6d5fced0129d424294cbd1e43f503120?acc_token=db0b1dca507d466cb1b74576d5e23c52 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 336
+Content-Length: 340
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/c52728980a45403990aef5364bb470c2?KeyID=f56b2602&Signature=HoKuGygM5xK2YBOMhrTnJfaeiEOSBj90R1JdRIgA3ETNbMjyNmXY9RrafyGyo3ECSjf%2FKtO4RCTud1Ni3SQxDA%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/99bc7df92cae458bb04ecad685229969?KeyID=172d32c8&Signature=dhhoE%2BvO%2FjEWopydn97f2T4RWqExHa1hz29WQWKsooWjHR%2BdQ7SK4gYKOo0cd1ihSMgmJDBC3d1bR17l6IefDQ%3D%3D", 
     "title": "AwardCriteria-2.pdf", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf"
@@ -15,18 +15,19 @@ Host: api-sandbox.ea.openprocurement.org
 
 
 200 OK
-Content-Type: application/json; charset=UTF-8
+Content-Type: application/json
+X-Content-Type-Options: nosniff
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/c52728980a45403990aef5364bb470c2?KeyID=f56b2602&Signature=4bHQVlGZpSbCWdHMlGxiJIoIdtV9gT6s2h45MMC83X4ZBc%2FPx8Kov7brp4yaZdsagUwsdwOVxboiaLlBJ9kPBw%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/99bc7df92cae458bb04ecad685229969?KeyID=172d32c8&Signature=pjM1Q5R59JDAuSlrirE%2FHkIkAQP84sjdKsM1Cy1HHfNdFNVI0G29wgNvyYpyhtZfJMvNMUOurSaJoaA20ip%2FBQ%253D%253D", 
     "title": "AwardCriteria-2.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2018-03-13T14:17:01.893597+02:00", 
-    "dateModified": "2018-03-13T14:17:01.945397+02:00", 
-    "id": "0bec9452f8f94abdb7858106369b08ff"
+    "datePublished": "2018-07-11T15:06:06.664005+03:00", 
+    "dateModified": "2018-07-11T15:06:06.721944+03:00", 
+    "id": "6d5fced0129d424294cbd1e43f503120"
   }
 }
 

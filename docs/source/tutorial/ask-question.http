@@ -1,4 +1,4 @@
-POST /api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/questions HTTP/1.0
+POST /api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/questions HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 1506
 Content-Type: application/json
@@ -34,13 +34,13 @@ Host: api-sandbox.ea.openprocurement.org
 
 
 201 Created
-Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/questions/3dcd13080c7b4143827630e2202ffb65
+Content-Type: application/json
+Location: http://api-sandbox.ea.openprocurement.org/api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/questions/a19723c4af2948e48995d4888b25e4a6
+X-Content-Type-Options: nosniff
 
 {
   "data": {
     "description": "Просимо додати таблицю потрібної калорійності харчування", 
-    "title": "Калорійність", 
     "author": {
       "contactPoint": {
         "email": "soleksuk@gmail.com", 
@@ -62,8 +62,9 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/0bbf22e936f
         "locality": "м. Вінниця"
       }
     }, 
-    "date": "2018-03-13T14:17:03.921741+02:00", 
-    "id": "3dcd13080c7b4143827630e2202ffb65", 
+    "title": "Калорійність", 
+    "date": "2018-07-11T15:06:08.106325+03:00", 
+    "id": "a19723c4af2948e48995d4888b25e4a6", 
     "questionOf": "tender"
   }
 }

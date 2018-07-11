@@ -1,16 +1,16 @@
-POST /api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/contracts/167820e4b4ce4684944cf83b16deaf73/prolongations/762193c7c2214c079849888f32cdc4dd/documents?acc_token=2b1b3d8fd6be4827908b19fdf46323d7 HTTP/1.0
+POST /api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/contracts/538cb657fbe54c93973e858feffa3dec/prolongations/22c7acbefec94ec6b8c4b1ad6807a078/documents?acc_token=0052e89467e54a799389e87c87910599 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 432
+Content-Length: 440
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "hash": "md5:00000000000000000000000000000000",
-    "description": "content_with_prolongation_data",
-    "title": "ProlongationDocument.doc",
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/72c58d74ad2e4b849ff873c51bef263f?KeyID=b8ee0485&Signature=osnfWg5E4ocIEfwTIJmmOZjO63YukYmJYnUTE5TeYcgHlW0vPOZj4d6xN80LacER5lDM22EG0p3bX%2BgAlRo%2FBg%3D%3D",
-    "format": "application/pdf",
+    "hash": "md5:00000000000000000000000000000000", 
+    "description": "content_with_prolongation_data", 
+    "title": "ProlongationDocument.doc", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/cd21460130854aebaa3706c137ac1d9b?KeyID=172d32c8&Signature=iBGMtFVPcxjwLQS%2B1XymFi9uNV2G1hWEFRtJ%2BYXylcEIRiYyQ9fy8ZI%2B%2FbX%2F%2FUNHwTbywemLWThl9ijrtjUjCA%3D%3D", 
+    "format": "application/pdf", 
     "documentType": "prolongationProtocol"
   }
 }
@@ -18,21 +18,21 @@ Host: api-sandbox.ea.openprocurement.org
 
 201 Created
 Content-Type: application/json
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/contracts/167820e4b4ce4684944cf83b16deaf73/prolongations/762193c7c2214c079849888f32cdc4dd/documents/17ce25dd7add4ce8aa325d125d296edc
+Location: http://api-sandbox.ea.openprocurement.org/api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/contracts/538cb657fbe54c93973e858feffa3dec/prolongations/22c7acbefec94ec6b8c4b1ad6807a078/documents/60bfda57b0844971a14ac7dabd950f4e
 X-Content-Type-Options: nosniff
 
 {
   "data": {
-    "hash": "md5:00000000000000000000000000000000",
-    "description": "content_with_prolongation_data",
-    "format": "application/pdf",
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/72c58d74ad2e4b849ff873c51bef263f?KeyID=b8ee0485&Signature=%252BGlognTweBwWWBODz0JYYOojll1kxLAfQ7fHN7nwlwol8YpCwLQeZHJVj2tQaordEF8rZo4MZEq0EK6HGWezDA%253D%253D",
-    "title": "ProlongationDocument.doc",
-    "documentOf": "tender",
-    "datePublished": "2018-03-13T14:16:54.838196+02:00",
-    "documentType": "prolongationProtocol",
-    "dateModified": "2018-03-13T14:16:54.838196+02:00",
-    "id": "17ce25dd7add4ce8aa325d125d296edc"
+    "hash": "md5:00000000000000000000000000000000", 
+    "description": "content_with_prolongation_data", 
+    "format": "application/pdf", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/cd21460130854aebaa3706c137ac1d9b?KeyID=172d32c8&Signature=O%2FzNlUmCYhxxyhquaaU61uu7KTePQJsk93f9n0mu63TPpO4J%2Fc0DPjukind8shAJcOSAf7tTgB8NT1zPbPXyDw%253D%253D", 
+    "title": "ProlongationDocument.doc", 
+    "documentOf": "tender", 
+    "datePublished": "2018-07-11T15:06:10.305330+03:00", 
+    "documentType": "prolongationProtocol", 
+    "dateModified": "2018-07-11T15:06:10.305361+03:00", 
+    "id": "60bfda57b0844971a14ac7dabd950f4e"
   }
 }
 

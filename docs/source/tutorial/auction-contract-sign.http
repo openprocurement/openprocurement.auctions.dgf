@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/contracts/167820e4b4ce4684944cf83b16deaf73?acc_token=2b1b3d8fd6be4827908b19fdf46323d7 HTTP/1.0
+PATCH /api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/contracts/538cb657fbe54c93973e858feffa3dec?acc_token=0052e89467e54a799389e87c87910599 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 80
 Content-Type: application/json
@@ -7,13 +7,14 @@ Host: api-sandbox.ea.openprocurement.org
 {
   "data": {
     "status": "active", 
-    "dateSigned": "2018-03-13T14:17:06.573611+02:00"
+    "dateSigned": "2018-07-11T15:06:10.900112+03:00"
   }
 }
 
 
 200 OK
-Content-Type: application/json; charset=UTF-8
+Content-Type: application/json
+X-Content-Type-Options: nosniff
 
 {
   "data": {
@@ -23,74 +24,74 @@ Content-Type: application/json; charset=UTF-8
         "status": "applied", 
         "decisionID": "ZM-937-99-92", 
         "description": "Prolongation description", 
-        "datePublished": "2018-03-13T14:16:55.353696+02:00", 
+        "datePublished": "2018-07-11T15:06:02.303212+03:00", 
         "reason": "other", 
         "documents": [
           {
             "hash": "md5:00000000000000000000000000000000", 
-            "format": "application/msword", 
-            "url": "http://public.docs-sandbox.ea.openprocurement.org/get/303f2bffebde4b318c95709af5ac50a4?KeyID=e578eecc&Signature=QKrRL7aJESdNsRJNQgZmyXMgetJvtlnW%2Ff5Xz%2F%252Bh75YDVcpOxtUW7eXgnOWeweFR5J2tS2x154vmPXahjZKGBg%253D%253D", 
+            "description": "content_with_prolongation_data", 
+            "format": "application/pdf", 
+            "url": "http://public.docs-sandbox.ea.openprocurement.org/get/cd21460130854aebaa3706c137ac1d9b?KeyID=172d32c8&Signature=O%2FzNlUmCYhxxyhquaaU61uu7KTePQJsk93f9n0mu63TPpO4J%2Fc0DPjukind8shAJcOSAf7tTgB8NT1zPbPXyDw%253D%253D", 
             "title": "ProlongationDocument.doc", 
             "documentOf": "tender", 
-            "datePublished": "2018-03-13T14:17:06.009999+02:00", 
+            "datePublished": "2018-07-11T15:06:10.305330+03:00", 
             "documentType": "prolongationProtocol", 
-            "dateModified": "2018-03-13T14:17:06.010021+02:00", 
-            "id": "17ce25dd7add4ce8aa325d125d296edc"
+            "dateModified": "2018-07-11T15:06:10.305361+03:00", 
+            "id": "60bfda57b0844971a14ac7dabd950f4e"
           }
         ], 
-        "dateCreated": "2018-03-13T14:16:54.838196+02:00", 
-        "id": "762193c7c2214c079849888f32cdc4dd"
+        "dateCreated": "2018-07-11T15:06:01.969656+03:00", 
+        "id": "22c7acbefec94ec6b8c4b1ad6807a078"
       }, 
       {
         "status": "applied", 
         "decisionID": "ZM-937-99-92-2", 
         "description": "Long prolongation description", 
-        "datePublished": "2018-03-13T14:16:55.353712+02:00", 
+        "datePublished": "2018-07-11T15:06:02.303227+03:00", 
         "reason": "other", 
         "documents": [
           {
             "hash": "md5:00000000000000000000000000000000", 
-            "format": "application/msword", 
-            "url": "http://public.docs-sandbox.ea.openprocurement.org/get/7c5487d24abd4216a191edd76a21dea1?KeyID=e578eecc&Signature=PjJcFbyN%252BDxH3wc%252BbQJe7Y9r6koLwEM5F1LrQf9w90X8oFZZJPxSnkqCn7NJaa8v3h6rcRbWGCUNyoy63AdVDQ%253D%253D", 
+            "description": "content_with_prolongation_data", 
+            "format": "application/pdf", 
+            "url": "http://public.docs-sandbox.ea.openprocurement.org/get/f4ad6c106f6c4184bf812be2025e438e?KeyID=172d32c8&Signature=g7WWF%2FKSpXzPjRxD2wpet8scNkNCRE%2FNxccqW7Shk4CqmN1i%252Blig00sv80Kuvl0EXTBk3UBjI2umKuFZ8jL7CQ%253D%253D", 
             "title": "LongProlongationDocument.doc", 
             "documentOf": "tender", 
-            "datePublished": "2018-03-13T14:17:06.368154+02:00", 
+            "datePublished": "2018-07-11T15:06:10.675174+03:00", 
             "documentType": "prolongationProtocol", 
-            "dateModified": "2018-03-13T14:17:06.368174+02:00", 
-            "id": "478a3018e2604cfd97e5aed4838acabe"
+            "dateModified": "2018-07-11T15:06:10.675194+03:00", 
+            "id": "4e70262362014335b439cd227e5de663"
           }
         ], 
-        "dateCreated": "2018-03-13T14:16:54.838196+02:00", 
-        "id": "9fc59363c1684e54adc3903653e55576"
+        "dateCreated": "2018-07-11T15:06:01.969656+03:00", 
+        "id": "eb7e1d4d47c041c0882cd91c00952c65"
       }
     ], 
     "documents": [
       {
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/msword", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/22d3b8cc510d4be880b1e16cea384c31?KeyID=e578eecc&Signature=y%252BF%252BUGdh%2FLEYDdSri%2FDCYRIxHp8gf%252BpAewKgGvNuw%252BxkBdBRauis3I8G9a%2FkV0h9TjRM1IOvFMiLlyB1uvH9AQ%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/46cb517bd7684c1a9779bc6c6b61aa3b?KeyID=172d32c8&Signature=XvKnw4LjI6hr76DvKNP0ErxWYsLQfH2zRLwnDcs056LoQkSA92m2ch1bsVlfVzGADUyXv4zaoFuwEJMtnVN%252BCQ%253D%253D", 
         "title": "contract_first_document.doc", 
         "documentOf": "tender", 
-        "datePublished": "2018-03-13T14:17:05.462936+02:00", 
-        "documentType": "prolongationProtocol", 
-        "dateModified": "2018-03-13T14:17:05.462956+02:00", 
-        "id": "8e9699adc2ca412eb7c9ea74a65d3ed9"
+        "datePublished": "2018-07-11T15:06:09.858414+03:00", 
+        "dateModified": "2018-07-11T15:06:09.858435+03:00", 
+        "id": "ed5631e083de4bb78654b925d57868b5"
       }, 
       {
         "hash": "md5:00000000000000000000000000000000", 
         "format": "application/msword", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/8106c4b78aed461cbb0e7ebe76e7a655?KeyID=e578eecc&Signature=kVWCHjZFpGIzqNMQSz6XeC8rB24UnK3Ur9RsFx38Hs5coEn3ekJMC31APBRo2fzQIoB2F0bV3XweXi4dwqe%2FBQ%253D%253D", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/91892b0c6fed455bb136447fb6f9e03c?KeyID=172d32c8&Signature=LNrfV4IvqjUYzlQKQB6degrvA%2FNfGIS%2FgbgbF09lzg26JZ%2FGx8kh7iwpJ7R%2Fxu5YB51EVq%2F5j7GaC2thrQXbDA%253D%253D", 
         "title": "contract_second_document.doc", 
         "documentOf": "tender", 
-        "datePublished": "2018-03-13T14:17:05.600939+02:00", 
-        "documentType": "prolongationProtocol", 
-        "dateModified": "2018-03-13T14:17:05.600959+02:00", 
-        "id": "1a9b1f726af546c0a56b867fa98370df"
+        "datePublished": "2018-07-11T15:06:10.026475+03:00", 
+        "dateModified": "2018-07-11T15:06:10.026498+03:00", 
+        "id": "bf57bef28c0548d7aac002e48b85d4a1"
       }
     ], 
     "signingPeriod": {
-      "startDate": "2018-03-13T14:17:04.704323+02:00", 
-      "endDate": "2018-07-23T14:17:04.704323+02:00"
+      "startDate": "2018-07-11T15:06:09.034064+03:00", 
+      "endDate": "2018-07-11T17:18:16.277790+03:00"
     }, 
     "items": [
       {
@@ -107,7 +108,7 @@ Content-Type: application/json; charset=UTF-8
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "0e9f197b5c394f2791241ec770c6bed3", 
+        "id": "314f1cb8d47a46009b5c9537e8974be6", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -138,19 +139,19 @@ Content-Type: application/json; charset=UTF-8
       }
     ], 
     "period": {
-      "startDate": "2018-03-13T14:16:55.353656+02:00", 
-      "endDate": "2019-03-13T14:16:55.353656+02:00"
+      "startDate": "2018-07-11T15:06:02.303178+03:00", 
+      "endDate": "2019-07-11T15:06:02.303178+03:00"
     }, 
+    "dateSigned": "2018-07-11T15:06:10.900112+03:00", 
     "value": {
       "currency": "UAH", 
       "amount": 501.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "dateSigned": "2018-03-13T14:17:06.573611+02:00", 
-    "date": "2018-03-13T14:17:06.669066+02:00", 
-    "awardID": "e2afb4cd836c44c8a2fc40b48ad81b19", 
-    "id": "167820e4b4ce4684944cf83b16deaf73", 
-    "contractID": "UA-EA-2018-03-13-000001-1"
+    "date": "2018-07-11T15:06:10.997720+03:00", 
+    "awardID": "3d052a44e86147129b0b01e3cbec1c14", 
+    "id": "538cb657fbe54c93973e858feffa3dec", 
+    "contractID": "UA-EA-2018-07-11-000002-1"
   }
 }
 

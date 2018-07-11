@@ -1,6 +1,6 @@
-POST /api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/documents?acc_token=2b1b3d8fd6be4827908b19fdf46323d7 HTTP/1.0
+POST /api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/documents?acc_token=0052e89467e54a799389e87c87910599 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 417
+Content-Length: 409
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
@@ -9,7 +9,7 @@ Host: api-sandbox.ea.openprocurement.org
     "hash": "md5:00000000000000000000000000000000", 
     "description": "document description", 
     "title": "Notice.pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/4af34c520df44c7781f6a526fdc2adb7?KeyID=e578eecc&Signature=2U7BkGETwxwi6cI%2Bfkbt2odN3kGpCtGwsvO%2B5%2FFRa%2FV0umUBzBEz1DwnYwVKHixY4lc0myZ%2FY0mXRqWjsRAaAg%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/a1cca399506447ed928a0d54f2f7be6c?KeyID=172d32c8&Signature=8dnERkLYD2IPoGGwxM8T5EEYGGxJ2OW5qIMRC7n1K2CC9QK8Wjd9%2BEqmaBfbfoKw5waUSG2AVMhaNuJ9kX37Dw%3D%3D", 
     "format": "application/pdf", 
     "documentType": "technicalSpecifications"
   }
@@ -17,21 +17,22 @@ Host: api-sandbox.ea.openprocurement.org
 
 
 201 Created
-Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/documents/96d79d45b88240f49fd044b0a9127472
+Content-Type: application/json
+Location: http://api-sandbox.ea.openprocurement.org/api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/documents/bb517ba5ca544fd7b21eaf894a63afd7
+X-Content-Type-Options: nosniff
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "description": "document description", 
     "format": "application/pdf", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/4af34c520df44c7781f6a526fdc2adb7?KeyID=e578eecc&Signature=YUkX7eiSr%252B2Z84m9kFFgCBr%2Fhyf10dc80HRbjQEhACK8Deh%2Fptc828AUsGttsQf7XPWYrRLUl9C7KdxS2r2QBg%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/a1cca399506447ed928a0d54f2f7be6c?KeyID=172d32c8&Signature=mKn74kqdS1gCIQ9BYDZNP8bHiXS%252BBKgRnCOaCo4ZsT7riQl2NEPUoJfa6wN%2Fwo2VccvpcIdRhvRrQL8NFtBsCg%253D%253D", 
     "title": "Notice.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2018-03-13T14:17:03.546774+02:00", 
+    "datePublished": "2018-07-11T15:06:07.649805+03:00", 
     "documentType": "technicalSpecifications", 
-    "dateModified": "2018-03-13T14:17:03.546793+02:00", 
-    "id": "96d79d45b88240f49fd044b0a9127472"
+    "dateModified": "2018-07-11T15:06:07.649826+03:00", 
+    "id": "bb517ba5ca544fd7b21eaf894a63afd7"
   }
 }
 

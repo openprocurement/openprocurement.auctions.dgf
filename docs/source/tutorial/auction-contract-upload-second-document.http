@@ -1,4 +1,4 @@
-POST /api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/contracts/167820e4b4ce4684944cf83b16deaf73/documents?acc_token=2b1b3d8fd6be4827908b19fdf46323d7 HTTP/1.0
+POST /api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/contracts/538cb657fbe54c93973e858feffa3dec/documents?acc_token=0052e89467e54a799389e87c87910599 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 350
 Content-Type: application/json
@@ -6,7 +6,7 @@ Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/8106c4b78aed461cbb0e7ebe76e7a655?KeyID=e578eecc&Signature=JxZqaBUWaFihBBte1%2BetJd8EYlgPLMHYB2pYSZbv7RDHmzqgwrerbOl6qTawDS%2B9GmeJudxy2Ib021NL8aKcDw%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/91892b0c6fed455bb136447fb6f9e03c?KeyID=172d32c8&Signature=oSIvQw4xaTFtxOjnX1C4fWJYZiGQ7INXf9VH1C496FsjWMZAA6UwLGpvhnOX6tW1DQ%2BmoQTpSi5wvI%2FuOGhFDw%3D%3D", 
     "title": "contract_second_document.doc", 
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/msword"
@@ -15,20 +15,20 @@ Host: api-sandbox.ea.openprocurement.org
 
 
 201 Created
-Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/contracts/167820e4b4ce4684944cf83b16deaf73/documents/1a9b1f726af546c0a56b867fa98370df
+Content-Type: application/json
+Location: http://api-sandbox.ea.openprocurement.org/api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/contracts/538cb657fbe54c93973e858feffa3dec/documents/bf57bef28c0548d7aac002e48b85d4a1
+X-Content-Type-Options: nosniff
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/msword", 
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/8106c4b78aed461cbb0e7ebe76e7a655?KeyID=e578eecc&Signature=kVWCHjZFpGIzqNMQSz6XeC8rB24UnK3Ur9RsFx38Hs5coEn3ekJMC31APBRo2fzQIoB2F0bV3XweXi4dwqe%2FBQ%253D%253D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/91892b0c6fed455bb136447fb6f9e03c?KeyID=172d32c8&Signature=LNrfV4IvqjUYzlQKQB6degrvA%2FNfGIS%2FgbgbF09lzg26JZ%2FGx8kh7iwpJ7R%2Fxu5YB51EVq%2F5j7GaC2thrQXbDA%253D%253D", 
     "title": "contract_second_document.doc", 
     "documentOf": "tender", 
-    "datePublished": "2018-03-13T14:17:05.600939+02:00", 
-    "documentType": "prolongationProtocol", 
-    "dateModified": "2018-03-13T14:17:05.600959+02:00", 
-    "id": "1a9b1f726af546c0a56b867fa98370df"
+    "datePublished": "2018-07-11T15:06:10.026475+03:00", 
+    "dateModified": "2018-07-11T15:06:10.026498+03:00", 
+    "id": "bf57bef28c0548d7aac002e48b85d4a1"
   }
 }
 

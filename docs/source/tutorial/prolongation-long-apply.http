@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/contracts/167820e4b4ce4684944cf83b16deaf73/prolongations/9fc59363c1684e54adc3903653e55576?acc_token=2b1b3d8fd6be4827908b19fdf46323d7 HTTP/1.0
+PATCH /api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/contracts/538cb657fbe54c93973e858feffa3dec/prolongations/eb7e1d4d47c041c0882cd91c00952c65?acc_token=0052e89467e54a799389e87c87910599 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 31
 Content-Type: application/json
@@ -12,30 +12,32 @@ Host: api-sandbox.ea.openprocurement.org
 
 
 200 OK
-Content-Type: application/json; charset=UTF-8
+Content-Type: application/json
+X-Content-Type-Options: nosniff
 
 {
   "data": {
     "status": "applied", 
     "decisionID": "ZM-937-99-92-2", 
     "description": "Long prolongation description", 
-    "datePublished": "2018-03-13T14:16:55.353712+02:00", 
+    "datePublished": "2018-07-11T15:06:02.303227+03:00", 
     "reason": "other", 
     "documents": [
       {
         "hash": "md5:00000000000000000000000000000000", 
-        "format": "application/msword", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/7c5487d24abd4216a191edd76a21dea1?KeyID=e578eecc&Signature=PjJcFbyN%252BDxH3wc%252BbQJe7Y9r6koLwEM5F1LrQf9w90X8oFZZJPxSnkqCn7NJaa8v3h6rcRbWGCUNyoy63AdVDQ%253D%253D", 
+        "description": "content_with_prolongation_data", 
+        "format": "application/pdf", 
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/f4ad6c106f6c4184bf812be2025e438e?KeyID=172d32c8&Signature=g7WWF%2FKSpXzPjRxD2wpet8scNkNCRE%2FNxccqW7Shk4CqmN1i%252Blig00sv80Kuvl0EXTBk3UBjI2umKuFZ8jL7CQ%253D%253D", 
         "title": "LongProlongationDocument.doc", 
         "documentOf": "tender", 
-        "datePublished": "2018-03-13T14:17:06.368154+02:00", 
+        "datePublished": "2018-07-11T15:06:10.675174+03:00", 
         "documentType": "prolongationProtocol", 
-        "dateModified": "2018-03-13T14:17:06.368174+02:00", 
-        "id": "478a3018e2604cfd97e5aed4838acabe"
+        "dateModified": "2018-07-11T15:06:10.675194+03:00", 
+        "id": "4e70262362014335b439cd227e5de663"
       }
     ], 
-    "dateCreated": "2018-03-13T14:16:54.838196+02:00", 
-    "id": "9fc59363c1684e54adc3903653e55576"
+    "dateCreated": "2018-07-11T15:06:01.969656+03:00", 
+    "id": "eb7e1d4d47c041c0882cd91c00952c65"
   }
 }
 
