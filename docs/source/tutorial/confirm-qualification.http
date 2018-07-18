@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/awards/e2afb4cd836c44c8a2fc40b48ad81b19?acc_token=2b1b3d8fd6be4827908b19fdf46323d7 HTTP/1.0
+PATCH /api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/awards/3d052a44e86147129b0b01e3cbec1c14?acc_token=0052e89467e54a799389e87c87910599 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 30
 Content-Type: application/json
@@ -12,47 +12,45 @@ Host: api-sandbox.ea.openprocurement.org
 
 
 200 OK
-Content-Type: application/json; charset=UTF-8
+Content-Type: application/json
+X-Content-Type-Options: nosniff
 
 {
   "data": {
     "status": "active", 
-    "paymentPeriod": {
-      "startDate": "2018-03-13T14:17:04.704323+02:00"
-    }, 
     "documents": [
       {
-        "dateModified": "2018-03-13T14:17:05.000105+02:00", 
         "hash": "md5:00000000000000000000000000000000", 
-        "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/e94f70ae18e6448fa02de373a5864069?KeyID=e578eecc&Signature=xJVyPKt71m7LGzlF4jr%2FtdRQh2OBgA2uC4GSaYjwuPCVNVz8%2FmBHoJnm851oS0ipR4KvrtsAmUVbDjmqL%252B1PBw%253D%253D", 
         "author": "bid_owner", 
-        "documentOf": "tender", 
-        "datePublished": "2018-03-13T14:17:05.000085+02:00", 
-        "documentType": "auctionProtocol", 
         "title": "SignedAuctionProtocol.pdf", 
-        "id": "cde8632036974fb999e03c4fb7e3da3a"
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/5c0ac2965e344548876b6d8b6d371960?KeyID=172d32c8&Signature=pngRrYy%252BznhmSUdP7PWlFLxwrL%2F7f9Q%252BZFv%252BYttuXR3x3ZFDhqsgOt6N0nT4mkQdq5ajb4Hl7sVpzW8%252BkoeDDA%253D%253D", 
+        "format": "application/pdf", 
+        "documentOf": "tender", 
+        "datePublished": "2018-07-11T15:06:09.350366+03:00", 
+        "documentType": "auctionProtocol", 
+        "dateModified": "2018-07-11T15:06:09.350387+03:00", 
+        "id": "957f127877ec4f29909a5513d284684d"
       }, 
       {
-        "dateModified": "2018-03-13T14:17:05.090952+02:00", 
         "hash": "md5:00000000000000000000000000000000", 
-        "format": "application/pdf", 
-        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/ca395f71c9154a05b2845755e6f4155d?KeyID=e578eecc&Signature=KeDdFqgnGgh0mzQyZ0yKp1bfig1%2F7JIoH2EFUQR17WWP%2FRpALfRhCcGOM3VB38EMDNm90QZdmEbsYU6cKxNxCg%253D%253D", 
         "author": "auction_owner", 
-        "documentOf": "tender", 
-        "datePublished": "2018-03-13T14:17:05.090931+02:00", 
-        "documentType": "auctionProtocol", 
         "title": "SignedAuctionProtocol.pdf", 
-        "id": "9ad7e558a05f4726a05f436135fb129c"
+        "url": "http://public.docs-sandbox.ea.openprocurement.org/get/1d4542ecb8f94fb799178dcad6566b33?KeyID=172d32c8&Signature=WyV0GfpIGAm6GwAwelvkoJkJOZTtGhNtyv%2FaydlicuYrH7bdKThOjaDVlB0Gl934zP88MgvXCu5%252BGvho17%252BQBg%253D%253D", 
+        "format": "application/pdf", 
+        "documentOf": "tender", 
+        "datePublished": "2018-07-11T15:06:09.441373+03:00", 
+        "documentType": "auctionProtocol", 
+        "dateModified": "2018-07-11T15:06:09.441400+03:00", 
+        "id": "f3fee195a9324d3ca36e7df794d9f226"
       }
     ], 
     "verificationPeriod": {
-      "startDate": "2018-03-13T14:17:04.704323+02:00", 
-      "endDate": "2018-03-13T14:17:05.189675+02:00"
+      "startDate": "2018-07-11T15:06:09.034064+03:00", 
+      "endDate": "2018-07-11T15:06:09.543619+03:00"
     }, 
-    "complaintPeriod": {
-      "startDate": "2018-03-13T14:17:04.704323+02:00", 
-      "endDate": "2018-03-13T14:17:05.189675+02:00"
+    "signingPeriod": {
+      "startDate": "2018-07-11T15:06:09.034064+03:00", 
+      "endDate": "2018-07-11T15:26:15.444480+03:00"
     }, 
     "suppliers": [
       {
@@ -76,18 +74,18 @@ Content-Type: application/json; charset=UTF-8
         }
       }
     ], 
-    "signingPeriod": {
-      "startDate": "2018-03-13T14:17:04.704323+02:00", 
-      "endDate": "2018-03-13T14:37:13.159878+02:00"
+    "complaintPeriod": {
+      "startDate": "2018-07-11T15:06:09.034064+03:00", 
+      "endDate": "2018-07-11T15:06:09.543619+03:00"
     }, 
-    "bid_id": "6742acc9246c45059d4f46aad4c65f1c", 
+    "bid_id": "e17d3f64fe214a6b846c885cdf2aaa9b", 
     "value": {
       "currency": "UAH", 
       "amount": 501.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2018-03-13T14:17:05.200075+02:00", 
-    "id": "e2afb4cd836c44c8a2fc40b48ad81b19"
+    "date": "2018-07-11T15:06:09.554614+03:00", 
+    "id": "3d052a44e86147129b0b01e3cbec1c14"
   }
 }
 

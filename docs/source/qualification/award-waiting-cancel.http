@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/awards/aa7678ac3df24b7f8d502e693633057e?acc_token=3d81a5bab08b499fa57792f94a076401 HTTP/1.0
+PATCH /api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/awards/f0b67608db9b41f6bef95fc82a62f7c1?acc_token=035a14661c204ad9a32c92d733351401 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 33
 Content-Type: application/json
@@ -12,14 +12,15 @@ Host: api-sandbox.ea.openprocurement.org
 
 
 200 OK
-Content-Type: application/json; charset=UTF-8
+Content-Type: application/json
+X-Content-Type-Options: nosniff
 
 {
   "data": {
     "status": "cancelled", 
     "complaintPeriod": {
-      "startDate": "2018-03-13T14:17:04.704323+02:00", 
-      "endDate": "2018-03-13T14:17:04.876235+02:00"
+      "startDate": "2018-07-11T15:06:09.034064+03:00", 
+      "endDate": "2018-07-11T15:06:09.218067+03:00"
     }, 
     "suppliers": [
       {
@@ -43,14 +44,14 @@ Content-Type: application/json; charset=UTF-8
         }
       }
     ], 
-    "bid_id": "be3bb6d966f34c7389a71bfdada36002", 
+    "bid_id": "33e956525782481880696efc0dc83b4a", 
     "value": {
       "currency": "UAH", 
       "amount": 500.0, 
       "valueAddedTaxIncluded": true
     }, 
-    "date": "2018-03-13T14:17:04.883288+02:00", 
-    "id": "aa7678ac3df24b7f8d502e693633057e"
+    "date": "2018-07-11T15:06:09.224192+03:00", 
+    "id": "f0b67608db9b41f6bef95fc82a62f7c1"
   }
 }
 

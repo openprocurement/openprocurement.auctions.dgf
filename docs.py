@@ -4,13 +4,10 @@ import os
 from datetime import timedelta, datetime
 from uuid import uuid4
 
-from webtest import TestApp
-
 from openprocurement.auctions.core.utils import get_now
 
-from openprocurement.auctions.core.tests.base import PrefixedRequestClass
+from openprocurement.auctions.core.tests.base import PrefixedRequestClass, snitch
 
-import openprocurement.auctions.dgf.tests.base as base_test
 from openprocurement.auctions.dgf.tests.base import test_auction_data as base_test_auction_data, test_bids, test_financial_bids
 from openprocurement.auctions.dgf.tests.tender import BaseAuctionWebTest
 
@@ -18,7 +15,7 @@ now = datetime.now()
 
 test_auction_data = base_test_auction_data.copy()
 test_financial_auction_data = test_auction_data.copy()
-test_financial_auction_data["procurementMethodType"] = "DGFFinancial"
+test_financial_auction_data["procurementMethodType"] = "DGFFinancialAssets"
 
 bid = {
     "data": {
@@ -193,38 +190,47 @@ test_complaint_data = {'data':
     }
 
 
-class DumpsTestAppwebtest(TestApp):
-    def do_request(self, req, status=None, expect_errors=None):
-        req.headers.environ["HTTP_HOST"] = "api-sandbox.ea.openprocurement.org"
-        if hasattr(self, 'file_obj') and not self.file_obj.closed:
-            self.file_obj.write(req.as_bytes(True))
-            self.file_obj.write("\n")
-            if req.body:
-                try:
-                    self.file_obj.write(
-                        '\n' + json.dumps(json.loads(req.body), indent=2, ensure_ascii=False).encode('utf8'))
-                    self.file_obj.write("\n")
-                except:
-                    pass
-            self.file_obj.write("\n")
-        resp = super(DumpsTestAppwebtest, self).do_request(req, status=status, expect_errors=expect_errors)
-        if hasattr(self, 'file_obj') and not self.file_obj.closed:
-            headers = [(n.title(), v)
-                       for n, v in resp.headerlist
-                       if n.lower() != 'content-length']
-            headers.sort()
-            self.file_obj.write(str('\n%s\n%s\n') % (
-                resp.status,
-                str('\n').join([str('%s: %s') % (n, v) for n, v in headers]),
-            ))
+# class DumpsTestAppwebtest(TestApp):
+def do_request(self, req, status=None, expect_errors=None, base_do_request=None):
+    req.headers.environ["HTTP_HOST"] = "api-sandbox.ea.openprocurement.org"
+    if hasattr(self, 'file_obj') and not self.file_obj.closed:
+        self.file_obj.write(req.as_bytes(True))
+        self.file_obj.write("\n")
+        if req.body:
+            try:
+                self.file_obj.write(
+                    '\n' + json.dumps(json.loads(req.body), indent=2, ensure_ascii=False).encode('utf8'))
+                self.file_obj.write("\n")
+            except:
+                pass
+        self.file_obj.write("\n")
+    resp = base_do_request(req, status=status, expect_errors=expect_errors)
+    if hasattr(self, 'file_obj') and not self.file_obj.closed:
+        headers = [(n.title(), v)
+                   for n, v in resp.headerlist
+                   if n.lower() != 'content-length']
+        headers.sort()
+        self.file_obj.write(str('\n%s\n%s\n') % (
+            resp.status,
+            str('\n').join([str('%s: %s') % (n, v) for n, v in headers]),
+        ))
 
-            if resp.testbody:
-                try:
-                    self.file_obj.write('\n' + json.dumps(json.loads(resp.testbody), indent=2, ensure_ascii=False).encode('utf8'))
-                except:
-                    pass
-            self.file_obj.write("\n\n")
-        return resp
+        if resp.testbody:
+            try:
+                self.file_obj.write('\n' + json.dumps(json.loads(resp.testbody), indent=2, ensure_ascii=False).encode('utf8'))
+            except:
+                pass
+        self.file_obj.write("\n\n")
+    return resp
+
+
+def write_to_file(self, func):
+
+    def wrapper(*args, **kwargs):
+        kwargs['base_do_request'] = func
+        return do_request(self, *args, **kwargs)
+
+    return wrapper
 
 
 class AuctionResourceTest(BaseAuctionWebTest):
@@ -232,9 +238,15 @@ class AuctionResourceTest(BaseAuctionWebTest):
     initial_bids = test_bids
     docservice = True
 
+
+
+    @classmethod
+    def setUpClass(cls):
+        super(AuctionResourceTest, cls).setUpClass()
+        cls.app.do_request = write_to_file(cls.app, cls.app.do_request)
+
     def setUp(self):
-        self.app = DumpsTestAppwebtest(
-            "config:tests.ini", relative_to=os.path.dirname(base_test.__file__))
+        super(AuctionResourceTest, self).setUp()
         self.app.RequestClass = PrefixedRequestClass
         self.app.authorization = ('Basic', ('broker', ''))
         self.couchdb_server = self.app.app.registry.couchdb_server
@@ -1519,4 +1531,16 @@ class AuctionResourceTest(BaseAuctionWebTest):
                 self.auction_id), {'data': test_financial_bids[1]})
             bid2_id = response.json['data']['id']
             bids_access[bid2_id] = response.json['access']['token']
+            self.assertEqual(response.status, '201 Created')
+
+    def test_create_procedure_from_lot_tutorial(self):
+        # Creating auction with merchandisingObject
+        #
+        data = test_auction_data.copy()
+        data['status'] = 'draft'
+        data['merchandisingObject'] = uuid4().hex
+
+        with open('docs/source/tutorial/auction-post-merchandisingObject.http', 'w') as self.app.file_obj:
+            response = self.app.post_json(
+                '/auctions?opt_pretty=1', {"data": data})
             self.assertEqual(response.status, '201 Created')

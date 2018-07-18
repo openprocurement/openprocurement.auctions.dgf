@@ -1,4 +1,4 @@
-PATCH /api/2.3/auctions/72f943f337ff4470acaa2e958316ecc3/bids/75657b393358497898e6a1e531b7362e?acc_token=f1eb099213b94ce086c3241560a4fb67 HTTP/1.0
+PATCH /api/2.5/auctions/1bd0478dee5b4b0581e2d1bf7f47fa51/bids/2f94ff64e9854aeb8083c26bf5a85ab0?acc_token=de594836f1544ab69b444235f3f05693 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 30
 Content-Type: application/json
@@ -12,7 +12,8 @@ Host: api-sandbox.ea.openprocurement.org
 
 
 200 OK
-Content-Type: application/json; charset=UTF-8
+Content-Type: application/json
+X-Content-Type-Options: nosniff
 
 null
 

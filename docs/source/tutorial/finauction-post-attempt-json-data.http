@@ -1,6 +1,6 @@
-POST /api/2.3/auctions?opt_pretty=1 HTTP/1.0
+POST /api/2.5/auctions?opt_pretty=1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 2032
+Content-Length: 2091
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
@@ -12,14 +12,15 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2018-03-27"
+      "startDate": "2018-07-25"
     }, 
     "tenderAttempts": 1, 
-    "procurementMethodType": "dgfFinancialAssets", 
+    "procurementMethodType": "DGFFinancialAssets", 
     "value": {
       "currency": "UAH", 
       "amount": 100
     }, 
+    "submissionMethodDetails": "test submissionMethodDetails", 
     "dgfDecisionDate": "2016-11-17", 
     "dgfID": "219560", 
     "dgfDecisionID": "219560", 
@@ -70,61 +71,59 @@ Host: api-sandbox.ea.openprocurement.org
 
 
 201 Created
-Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/72f943f337ff4470acaa2e958316ecc3
+Content-Type: application/json
+Location: http://api-sandbox.ea.openprocurement.org/api/2.5/auctions/1bd0478dee5b4b0581e2d1bf7f47fa51
+X-Content-Type-Options: nosniff
 
 {
   "access": {
-    "token": "58a3a8eb4997408aa23bfbd8c0828132"
+    "transfer": "676389c2fd3d4fdb8ac067141b935f20", 
+    "token": "db0b1dca507d466cb1b74576d5e23c52"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2018-03-13-000001", 
+    "auctionID": "UA-EA-2018-07-11-000002", 
     "enquiryPeriod": {
-      "startDate": "2018-03-13T14:17:01.779556+02:00", 
-      "endDate": "2018-03-26T23:59:50+03:00"
+      "startDate": "2018-07-11T15:06:06.538858+03:00", 
+      "endDate": "2018-07-24T23:59:50+03:00"
     }, 
     "submissionMethod": "electronicAuction", 
     "dgfDecisionDate": "2016-11-17", 
-    "next_check": "2018-03-26T23:59:50+03:00", 
+    "next_check": "2018-07-24T23:59:50+03:00", 
     "awardCriteria": "highestCost", 
     "dgfDecisionID": "219560", 
     "owner": "broker", 
-    "id": "72f943f337ff4470acaa2e958316ecc3", 
+    "id": "1bd0478dee5b4b0581e2d1bf7f47fa51", 
     "eligibilityCriteria_ru": "Участником электронного аукциона, предметом продажи на которых являются права требования по кредитным договорам и договорам обеспечения, не может быть пользователь, являющийся заёмщиком (должником относительно банка) и\\или поручителем (имущественным поручителем) по таким кредитным договорам и/или договорам обеспечения.", 
     "documents": [
       {
         "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
         "url": "http://torgi.fg.gov.ua/prozorrosale", 
         "documentOf": "tender", 
-        "datePublished": "2018-03-13T14:17:01.779958+02:00", 
+        "datePublished": "2018-07-11T15:06:06.539174+03:00", 
         "documentType": "x_dgfPlatformLegalDetails", 
-        "dateModified": "2018-03-13T14:17:01.780009+02:00", 
-        "id": "1fb6399b2dcb41cfaac9635a155aa3eb"
+        "dateModified": "2018-07-11T15:06:06.539196+03:00", 
+        "id": "556fede524934437bb9007bb38802230"
       }
     ], 
     "title": "футляри до державних нагород", 
     "tenderAttempts": 1, 
     "eligibilityCriteria_en": "The user, who is the borrower (the debtor of the bank) and/or guarantor (property guarantor) for loan agreements and/or collateral agreements, cannot be the bidder of the electronic auction, where the items for sale are the claim rights on such loan agreements and collateral agreements.", 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "dateModified": "2018-03-13T14:17:01.782162+02:00", 
+    "dateModified": "2018-07-11T15:06:06.541629+03:00", 
     "status": "active.tendering", 
     "eligibilityCriteria": "Учасником електронного аукціону, предметом продажу на яких є права вимоги за кредитними договорами та договорами забезпечення, не може бути користувач, який є позичальником (боржником відносно банку) та/або поручителем (майновим поручителем) за такими кредитними договорами та/або договорами забезпечення.", 
     "tenderPeriod": {
-      "startDate": "2018-03-13T14:17:01.779556+02:00", 
-      "endDate": "2018-03-26T23:59:50+03:00"
+      "startDate": "2018-07-11T15:06:06.538858+03:00", 
+      "endDate": "2018-07-24T23:59:50+03:00"
     }, 
     "auctionPeriod": {
-      "shouldStartAfter": "2018-03-27T00:00:00+03:00"
+      "shouldStartAfter": "2018-07-25T00:00:00+03:00"
     }, 
-    "procurementMethodType": "dgfFinancialAssets", 
+    "procurementMethodType": "DGFFinancialAssets", 
     "dgfID": "219560", 
-    "date": "2018-03-13T14:17:01.779556+02:00", 
-    "minimalStep": {
-      "currency": "UAH", 
-      "amount": 35.0, 
-      "valueAddedTaxIncluded": true
-    }, 
+    "date": "2018-07-11T15:06:06.538858+03:00", 
+    "submissionMethodDetails": "test submissionMethodDetails", 
     "items": [
       {
         "description": "Земля для військовослужбовців", 
@@ -140,7 +139,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/72f943f337f
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "2a4f2e4d5626482d85fbd1118d80489a", 
+        "id": "edca5775bbe6417b8afd6b794a9ff190", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -151,6 +150,11 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/72f943f337f
     "value": {
       "currency": "UAH", 
       "amount": 100.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "minimalStep": {
+      "currency": "UAH", 
+      "amount": 35.0, 
       "valueAddedTaxIncluded": true
     }, 
     "procuringEntity": {

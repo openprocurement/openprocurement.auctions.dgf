@@ -1,10 +1,11 @@
-GET /api/2.3/auctions/0bbf22e936f24d158f6d695b84b2de2f/documents HTTP/1.0
+GET /api/2.5/auctions/bb1795e42a4243ada1433ddb18b4f06f/documents HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.ea.openprocurement.org
 
 
 200 OK
-Content-Type: application/json; charset=UTF-8
+Content-Type: application/json
+X-Content-Type-Options: nosniff
 
 {
   "data": [
@@ -12,81 +13,81 @@ Content-Type: application/json; charset=UTF-8
       "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
       "url": "http://torgi.fg.gov.ua/prozorrosale", 
       "documentOf": "tender", 
-      "datePublished": "2018-03-13T14:17:03.353632+02:00", 
+      "datePublished": "2018-07-11T15:06:07.421619+03:00", 
       "documentType": "x_dgfPlatformLegalDetails", 
-      "dateModified": "2018-03-13T14:17:03.353673+02:00", 
-      "id": "33b3a7c855ec4b63bf221dc8bd4d3ec1"
+      "dateModified": "2018-07-11T15:06:07.421641+03:00", 
+      "id": "779f993a42c54eadadff72d66788fb23"
     }, 
     {
       "hash": "md5:00000000000000000000000000000000", 
       "description": "document description", 
       "format": "application/pdf", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/4af34c520df44c7781f6a526fdc2adb7?KeyID=e578eecc&Signature=YUkX7eiSr%252B2Z84m9kFFgCBr%2Fhyf10dc80HRbjQEhACK8Deh%2Fptc828AUsGttsQf7XPWYrRLUl9C7KdxS2r2QBg%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/a1cca399506447ed928a0d54f2f7be6c?KeyID=172d32c8&Signature=mKn74kqdS1gCIQ9BYDZNP8bHiXS%252BBKgRnCOaCo4ZsT7riQl2NEPUoJfa6wN%2Fwo2VccvpcIdRhvRrQL8NFtBsCg%253D%253D", 
       "title": "Notice.pdf", 
       "documentOf": "tender", 
-      "datePublished": "2018-03-13T14:17:03.546774+02:00", 
+      "datePublished": "2018-07-11T15:06:07.649805+03:00", 
       "documentType": "technicalSpecifications", 
-      "dateModified": "2018-03-13T14:17:03.546793+02:00", 
-      "id": "96d79d45b88240f49fd044b0a9127472"
+      "dateModified": "2018-07-11T15:06:07.649826+03:00", 
+      "id": "bb517ba5ca544fd7b21eaf894a63afd7"
     }, 
     {
       "hash": "md5:00000000000000000000000000000000", 
       "format": "application/pdf", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/cb9db16b829642f18d388d5176d5c8e2?KeyID=e578eecc&Signature=DFWXQjyz41gOggupdgTs7MuX6FD6YYMZvtKMjGGJMJHqlKYwZH0jNteL%2FQkPklEahzMrdSRHJpYPOMRH%252BZeQBA%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/1a8b26fa32cb42f3a69ba72c28d5db51?KeyID=172d32c8&Signature=y9meT2iCjfA5YdUhT1lSEZ1%252BIFYd6mMcv5sauCMDJCQAoifkdIUo4zgmMqZ%2FzGbJJlixeUdA5n5%252BFhLTkfDOCQ%253D%253D", 
       "title": "AwardCriteria-2.pdf", 
       "documentOf": "tender", 
-      "datePublished": "2018-03-13T14:17:03.589862+02:00", 
-      "dateModified": "2018-03-13T14:17:03.640224+02:00", 
-      "id": "c957cd4a71e04e20a88bade4ab8040ca"
+      "datePublished": "2018-07-11T15:06:07.703749+03:00", 
+      "dateModified": "2018-07-11T15:06:07.765929+03:00", 
+      "id": "cf91c283f3b04cb5a76d9368d69c161f"
     }, 
     {
       "index": 1, 
       "hash": "md5:00000000000000000000000000000000", 
       "description": "First illustration description", 
       "format": "image/jpeg", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/f71e2ae36b204213be734207038be98f?KeyID=e578eecc&Signature=dTDhv644zx0urZeFe8%2F5t7ZiJC3VcdFv8B%252Bf%2FLxyAK7liqrSmMNXMope3hrj9Hn4MJ%252BPmGUG65lNNUCBsBYhCA%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/da7171338cfd40daaf0a363d1da7be8c?KeyID=172d32c8&Signature=UPMVnKZTzNNA9AxDywJSZbpPjStBGoee80QWYvawEzzQnVYTxYuijJO8UMScqwMcbt5qrdjYn5jyfUyhvZzkDA%253D%253D", 
       "title": "first_illustration.jpeg", 
       "documentOf": "tender", 
-      "datePublished": "2018-03-13T14:17:03.689220+02:00", 
+      "datePublished": "2018-07-11T15:06:07.828825+03:00", 
       "documentType": "illustration", 
-      "dateModified": "2018-03-13T14:17:03.689239+02:00", 
-      "id": "f8d934e325d444c79d69e5a312d6b44d"
+      "dateModified": "2018-07-11T15:06:07.828844+03:00", 
+      "id": "dbe0ca0c582b422d84c59a2aa93eb948"
     }, 
     {
       "index": 2, 
       "hash": "md5:00000000000000000000000000000000", 
       "description": "Second illustration description", 
       "format": "image/jpeg", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/173103c9c3bc4a25b2b6bacc9e865e2c?KeyID=e578eecc&Signature=9%2Fe6BkwhMDS6bF4XIQhRDfuPoRXpKbJIFWixjkltzsi75o3G7CgvVUfcvM7K9G3xMwUSaUC5AbNqs35ZF68OCA%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/240fe6c71e5a4291a3c9e39fbfeb460e?KeyID=172d32c8&Signature=k8V7cIG6xo5fopPWo%252B%2Fl3mxaliitImmqxRxKPbsJATjwe8Fde63J7%252BzgghykfYCTn9QwuMx1aVg1G6iNu7PNDg%253D%253D", 
       "title": "second_illustration.jpeg", 
       "documentOf": "tender", 
-      "datePublished": "2018-03-13T14:17:03.739578+02:00", 
+      "datePublished": "2018-07-11T15:06:07.897398+03:00", 
       "documentType": "illustration", 
-      "dateModified": "2018-03-13T14:17:03.739603+02:00", 
-      "id": "4de8c3f245db45bdb378b07749fd28c2"
+      "dateModified": "2018-07-11T15:06:07.897419+03:00", 
+      "id": "402f115c7eb445c3a42eb624d2b45e17"
     }, 
     {
       "index": 2, 
       "hash": "md5:00000000000000000000000000000000", 
       "description": "Third illustration description", 
       "format": "image/jpeg", 
-      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/3f37699d5d5245b2a5bfdbd38ce8b6a4?KeyID=e578eecc&Signature=HchmMKL9tE6GTUR9nX2kLsyElIEwKKK4DHFFTBD445eV0MmVlY6w3Hx2IF9N7loIZQwT9cBmQ4QKCVSMYqjtBw%253D%253D", 
+      "url": "http://public.docs-sandbox.ea.openprocurement.org/get/e401fae3f2004d11ac67e9b444eb6d09?KeyID=172d32c8&Signature=h7%2FVgGCvrQZMhz5xn6tYcxZ809Rxn25ohwJIoTihWblO8DCl2FHeJwFkHE3ZGUZeHBWCQ8ANi5eQEUiyd78qAg%253D%253D", 
       "title": "third_illustration.jpeg", 
       "documentOf": "tender", 
-      "datePublished": "2018-03-13T14:17:03.782536+02:00", 
+      "datePublished": "2018-07-11T15:06:07.952905+03:00", 
       "documentType": "illustration", 
-      "dateModified": "2018-03-13T14:17:03.782568+02:00", 
-      "id": "049a1bd33dad4f0884051e12040987ed"
+      "dateModified": "2018-07-11T15:06:07.952925+03:00", 
+      "id": "feae4575ced24c718bae0f05d904c810"
     }, 
     {
       "title": "Familiarization with bank asset", 
       "format": "offline/on-site-examination", 
       "accessDetails": "Familiar with asset: days, time, address", 
       "documentOf": "tender", 
-      "datePublished": "2018-03-13T14:17:03.845246+02:00", 
+      "datePublished": "2018-07-11T15:06:08.031929+03:00", 
       "documentType": "x_dgfAssetFamiliarization", 
-      "dateModified": "2018-03-13T14:17:03.845265+02:00", 
-      "id": "4dcb4bee7c1345aa9577789ce354296d"
+      "dateModified": "2018-07-11T15:06:08.031952+03:00", 
+      "id": "af860bef04d8419191bd242fbfbd4fc6"
     }
   ]
 }

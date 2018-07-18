@@ -1,6 +1,6 @@
-POST /api/2.3/auctions?opt_pretty=1 HTTP/1.0
+POST /api/2.5/auctions?opt_pretty=1 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 2047
+Content-Length: 2106
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
@@ -13,14 +13,15 @@ Host: api-sandbox.ea.openprocurement.org
       "amount": 35
     }, 
     "auctionPeriod": {
-      "startDate": "2018-03-27"
+      "startDate": "2018-07-25"
     }, 
     "tenderAttempts": 1, 
-    "procurementMethodType": "dgfOtherAssets", 
+    "procurementMethodType": "DGFOtherAssets", 
     "value": {
       "currency": "UAH", 
       "amount": 100
     }, 
+    "submissionMethodDetails": "test submissionMethodDetails", 
     "dgfDecisionDate": "2016-11-17", 
     "dgfID": "219560", 
     "dgfDecisionID": "219560", 
@@ -71,54 +72,52 @@ Host: api-sandbox.ea.openprocurement.org
 
 
 201 Created
-Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/3a65f2a2814047f698731e25fbbfbfca
+Content-Type: application/json
+Location: http://api-sandbox.ea.openprocurement.org/api/2.5/auctions/0bdbbd8123854d20a2546494635ac16e
+X-Content-Type-Options: nosniff
 
 {
   "access": {
-    "token": "8ce904ff276848009376e2a2346fe747"
+    "transfer": "38a1fca1ffd34b99af75b6cc984a16a1", 
+    "token": "080510b507e64c099c9d8674c2686941"
   }, 
   "data": {
     "procurementMethod": "open", 
-    "auctionID": "UA-EA-2018-03-13-000001", 
+    "auctionID": "UA-EA-2018-07-11-000002", 
     "enquiryPeriod": {
-      "startDate": "2018-03-13T14:16:57.516157+02:00", 
-      "endDate": "2018-03-26T23:59:50+03:00"
+      "startDate": "2018-07-11T15:06:04.272464+03:00", 
+      "endDate": "2018-07-24T23:59:50+03:00"
     }, 
     "submissionMethod": "electronicAuction", 
     "dgfDecisionDate": "2016-11-17", 
     "awardCriteria": "highestCost", 
     "dgfDecisionID": "219560", 
     "owner": "broker", 
-    "id": "3a65f2a2814047f698731e25fbbfbfca", 
+    "id": "0bdbbd8123854d20a2546494635ac16e", 
     "documents": [
       {
         "title": "Місце та форма прийому заяв на участь в аукціоні та банківські реквізити для зарахування гарантійних внесків", 
         "url": "http://torgi.fg.gov.ua/prozorrosale", 
         "documentOf": "tender", 
-        "datePublished": "2018-03-13T14:16:57.516442+02:00", 
+        "datePublished": "2018-07-11T15:06:04.272937+03:00", 
         "documentType": "x_dgfPlatformLegalDetails", 
-        "dateModified": "2018-03-13T14:16:57.516464+02:00", 
-        "id": "e00ca1789e994e7a81fc1264c1ff7040"
+        "dateModified": "2018-07-11T15:06:04.272970+03:00", 
+        "id": "d36b463c1b4c44f58d8269e1978fdeb3"
       }
     ], 
     "title": "футляри до державних нагород", 
     "tenderAttempts": 1, 
-    "dateModified": "2018-03-13T14:16:57.518532+02:00", 
+    "dateModified": "2018-07-11T15:06:04.276341+03:00", 
     "status": "draft", 
     "tenderPeriod": {
-      "startDate": "2018-03-13T14:16:57.516157+02:00", 
-      "endDate": "2018-03-26T23:59:50+03:00"
+      "startDate": "2018-07-11T15:06:04.272464+03:00", 
+      "endDate": "2018-07-24T23:59:50+03:00"
     }, 
     "procurementMethodDetails": "quick, accelerator=1440", 
-    "procurementMethodType": "dgfOtherAssets", 
+    "procurementMethodType": "DGFOtherAssets", 
     "dgfID": "219560", 
-    "date": "2018-03-13T14:16:57.516157+02:00", 
-    "minimalStep": {
-      "currency": "UAH", 
-      "amount": 35.0, 
-      "valueAddedTaxIncluded": true
-    }, 
+    "date": "2018-07-11T15:06:04.272464+03:00", 
+    "submissionMethodDetails": "test submissionMethodDetails", 
     "items": [
       {
         "description": "Земля для військовослужбовців", 
@@ -134,7 +133,7 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/3a65f2a2814
           "region": "м. Київ", 
           "locality": "м. Київ"
         }, 
-        "id": "85ffe420bb304faeb1406cc6f0be5871", 
+        "id": "e1c679a7305f4472bb93dc175ea66a27", 
         "unit": {
           "code": "44617100-9", 
           "name": "item"
@@ -145,6 +144,11 @@ Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/3a65f2a2814
     "value": {
       "currency": "UAH", 
       "amount": 100.0, 
+      "valueAddedTaxIncluded": true
+    }, 
+    "minimalStep": {
+      "currency": "UAH", 
+      "amount": 35.0, 
       "valueAddedTaxIncluded": true
     }, 
     "procuringEntity": {

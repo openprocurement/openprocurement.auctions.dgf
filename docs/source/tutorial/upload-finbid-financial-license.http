@@ -1,12 +1,12 @@
-POST /api/2.3/auctions/72f943f337ff4470acaa2e958316ecc3/bids/75657b393358497898e6a1e531b7362e/documents?acc_token=f1eb099213b94ce086c3241560a4fb67 HTTP/1.0
+POST /api/2.5/auctions/1bd0478dee5b4b0581e2d1bf7f47fa51/bids/2f94ff64e9854aeb8083c26bf5a85ab0/documents?acc_token=de594836f1544ab69b444235f3f05693 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 371
+Content-Length: 379
 Content-Type: application/json
 Host: api-sandbox.ea.openprocurement.org
 
 {
   "data": {
-    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/83c521a325054f42a43df4954ba6d0f4?KeyID=f56b2602&Signature=78Nugq9jue%2Bceo%2FNL6brlw9vYBAJIqn04piZcS77010xKTmMNFo4%2BBMPa6MiwTUuHNusvQckyHoY8vs4l0rPAQ%3D%3D", 
+    "url": "http://public.docs-sandbox.ea.openprocurement.org/get/69a1f0170b6d46008059817aa7972bca?KeyID=172d32c8&Signature=61mkM%2Bdv2upZuuuZHz7UjAjoZZmsZTKLmik0PQ56C50uqsaTSp7afctEv%2FsbUCboQ%2B9T6R%2B1S6IYzYY7oQCsBQ%3D%3D", 
     "title": "FinancialLicense.pdf", 
     "format": "application/pdf", 
     "hash": "md5:00000000000000000000000000000000", 
@@ -16,20 +16,21 @@ Host: api-sandbox.ea.openprocurement.org
 
 
 201 Created
-Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/72f943f337ff4470acaa2e958316ecc3/bids/75657b393358497898e6a1e531b7362e/documents/43ef1e0dea7f4cfb9109c02810a55a1e
+Content-Type: application/json
+Location: http://api-sandbox.ea.openprocurement.org/api/2.5/auctions/1bd0478dee5b4b0581e2d1bf7f47fa51/bids/2f94ff64e9854aeb8083c26bf5a85ab0/documents/fd33a0a111634641bb733b0467fd4337
+X-Content-Type-Options: nosniff
 
 {
   "data": {
     "hash": "md5:00000000000000000000000000000000", 
     "format": "application/pdf", 
-    "url": "http://api-sandbox.ea.openprocurement.org/api/2.3/auctions/72f943f337ff4470acaa2e958316ecc3/bids/75657b393358497898e6a1e531b7362e/documents/43ef1e0dea7f4cfb9109c02810a55a1e?download=83c521a325054f42a43df4954ba6d0f4", 
+    "url": "http://api-sandbox.ea.openprocurement.org/api/2.5/auctions/1bd0478dee5b4b0581e2d1bf7f47fa51/bids/2f94ff64e9854aeb8083c26bf5a85ab0/documents/fd33a0a111634641bb733b0467fd4337?download=69a1f0170b6d46008059817aa7972bca", 
     "title": "FinancialLicense.pdf", 
     "documentOf": "tender", 
-    "datePublished": "2018-03-13T14:17:02.131195+02:00", 
+    "datePublished": "2018-07-11T15:06:06.919296+03:00", 
     "documentType": "financialLicense", 
-    "dateModified": "2018-03-13T14:17:02.131215+02:00", 
-    "id": "43ef1e0dea7f4cfb9109c02810a55a1e"
+    "dateModified": "2018-07-11T15:06:06.919314+03:00", 
+    "id": "fd33a0a111634641bb733b0467fd4337"
   }
 }
 

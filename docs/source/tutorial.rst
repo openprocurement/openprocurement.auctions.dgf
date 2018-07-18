@@ -76,6 +76,15 @@ Let's check what auction registry contains:
 And indeed we have 2 auctions now.
 
 
+Creating auction from the given lot
+-----------------------------------
+Let's create a procedure considering the lot created before within the registry:
+
+.. include:: tutorial/auction-post-merchandisingObject.http
+   :code:
+
+
+
 Modifying auction
 -----------------
 
