@@ -38,6 +38,7 @@ from openprocurement.auctions.dgf.tests.blanks.auction_blanks import (
     post_auction_auction_lot,
     # AuctionMultipleLotAuctionResourceTest
     post_auction_auction_2_lots,
+    koatuu_additional_classification
 )
 
 
@@ -45,6 +46,7 @@ class AuctionAuctionResourceTest(BaseAuctionWebTest, AuctionAuctionResourceTestM
     initial_status = 'active.tendering'
     initial_bids = test_bids
 
+    test_koatuu_additional_classification = snitch(koatuu_additional_classification)
     test_post_auction_auction = snitch(post_auction_auction)
 
 
@@ -292,10 +294,10 @@ def suite():
     suite.addTest(unittest.makeSuite(AuctionAuctionResourceTestWithRegistry))
     suite.addTest(unittest.makeSuite(AuctionBidInvalidationAuctionResourceTestWithRegistry))
     suite.addTest(unittest.makeSuite(AuctionSameValueAuctionResourceTestWithRegistry))
-    suite.addTest(unittest.makeSuite(AuctionSubmissionMethodDetailsTestWithRegistry))
+    #suite.addTest(unittest.makeSuite(AuctionSubmissionMethodDetailsTestWithRegistry))
 
     suite.addTest(unittest.makeSuite(FinancialAuctionAuctionResourceTestWithRegistry))
-    suite.addTest(unittest.makeSuite(FinancialAuctionSameValueAuctionResourceTestRegistry))
+    #suite.addTest(unittest.makeSuite(FinancialAuctionSameValueAuctionResourceTestRegistry))
     suite.addTest(unittest.makeSuite(FinancialAuctionSubmissionMethodDetailsTestWithRegistry))
 
     return suite
