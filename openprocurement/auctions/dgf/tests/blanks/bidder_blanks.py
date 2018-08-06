@@ -213,8 +213,11 @@ def patch_auction_bidder(self):
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     bidder = response.json['data']
-    response = self.app.patch_json('/auctions/{}/bids/{}'.format(self.auction_id, bidder['id']),
-                                   {"data": {"value": {"amount": 60}}}, status=422)
+    bid_token = response.json['access']['token']
+
+    response = self.app.patch_json('/auctions/{}/bids/{}?acc_token={}'.format(
+        self.auction_id, bidder['id'], bid_token
+    ), {"data": {"value": {"amount": 60}}}, status=422)
     self.assertEqual(response.status, '422 Unprocessable Entity')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['status'], 'error')
@@ -223,36 +226,41 @@ def patch_auction_bidder(self):
          u'name': u'value'}
     ])
 
-    response = self.app.patch_json('/auctions/{}/bids/{}'.format(self.auction_id, bidder['id']),
-                                   {"data": {'tenderers': [{"name": u"Державне управління управлінням справами"}]}})
+    response = self.app.patch_json('/auctions/{}/bids/{}?acc_token={}'.format(
+        self.auction_id, bidder['id'], bid_token
+    ), {"data": {'tenderers': [{"name": u"Державне управління управлінням справами"}]}})
     self.assertEqual(response.status, '200 OK')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['data']['date'], bidder['date'])
     self.assertNotEqual(response.json['data']['tenderers'][0]['name'], bidder['tenderers'][0]['name'])
 
-    response = self.app.patch_json('/auctions/{}/bids/{}'.format(self.auction_id, bidder['id']),
-                                   {"data": {"value": {"amount": 500}, 'tenderers': [self.initial_organization]}})
+    response = self.app.patch_json('/auctions/{}/bids/{}?acc_token={}'.format(
+        self.auction_id, bidder['id'], bid_token
+    ), {"data": {"value": {"amount": 500}, 'tenderers': [self.initial_organization]}})
     self.assertEqual(response.status, '200 OK')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['data']['date'], bidder['date'])
     self.assertEqual(response.json['data']['tenderers'][0]['name'], bidder['tenderers'][0]['name'])
 
-    response = self.app.patch_json('/auctions/{}/bids/{}'.format(self.auction_id, bidder['id']),
-                                   {"data": {"value": {"amount": 400}}})
+    response = self.app.patch_json('/auctions/{}/bids/{}?acc_token={}'.format(
+        self.auction_id, bidder['id'], bid_token
+    ), {"data": {"value": {"amount": 400}}})
     self.assertEqual(response.status, '200 OK')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['data']["value"]["amount"], 400)
     self.assertNotEqual(response.json['data']['date'], bidder['date'])
 
-    response = self.app.patch_json('/auctions/{}/bids/{}'.format(self.auction_id, bidder['id']),
-                                   {"data": {"status": "active"}})
+    response = self.app.patch_json('/auctions/{}/bids/{}?acc_token={}'.format(
+        self.auction_id, bidder['id'], bid_token
+    ), {"data": {"status": "active"}})
     self.assertEqual(response.status, '200 OK')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['data']["status"], "active")
     self.assertNotEqual(response.json['data']['date'], bidder['date'])
 
-    response = self.app.patch_json('/auctions/{}/bids/{}'.format(self.auction_id, bidder['id']),
-                                   {"data": {"status": "draft"}}, status=403)
+    response = self.app.patch_json('/auctions/{}/bids/{}?acc_token={}'.format(
+        self.auction_id, bidder['id'], bid_token
+    ), {"data": {"status": "draft"}}, status=403)
     self.assertEqual(response.status, '403 Forbidden')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"], "Can\'t update bid to (draft) status")
@@ -283,8 +291,9 @@ def patch_auction_bidder(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['data']["value"]["amount"], 400)
 
-    response = self.app.patch_json('/auctions/{}/bids/{}'.format(self.auction_id, bidder['id']),
-                                   {"data": {"value": {"amount": 400}}}, status=403)
+    response = self.app.patch_json('/auctions/{}/bids/{}?acc_token={}'.format(
+        self.auction_id, bidder['id'], bid_token
+    ), {"data": {"value": {"amount": 400}}}, status=403)
     self.assertEqual(response.status, '403 Forbidden')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"], "Can't update bid in current (complete) auction status")
@@ -344,7 +353,9 @@ def get_auction_bidder(self):
             u'url', u'name': u'auction_id'}
     ])
 
-    response = self.app.delete('/auctions/{}/bids/{}'.format(self.auction_id, bidder['id']), status=403)
+    response = self.app.delete('/auctions/{}/bids/{}?acc_token={}'.format(
+        self.auction_id, bidder['id'], bid_token
+    ), status=403)
     self.assertEqual(response.status, '403 Forbidden')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"],
@@ -364,8 +375,11 @@ def delete_auction_bidder(self):
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     bidder = response.json['data']
+    bid_token = response.json['access']['token']
 
-    response = self.app.delete('/auctions/{}/bids/{}'.format(self.auction_id, bidder['id']))
+    response = self.app.delete('/auctions/{}/bids/{}?acc_token={}'.format(
+        self.auction_id, bidder['id'], bid_token
+    ))
     self.assertEqual(response.status, '200 OK')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['data'], bidder)
@@ -520,9 +534,11 @@ def create_auction_bidder_document_nopending(self):
             {'data': {'tenderers': [self.initial_organization], "value": {"amount": 500}, 'qualified': True}})
     bid = response.json['data']
     bid_id = bid['id']
+    bid_token = response.json['access']['token']
 
-    response = self.app.post('/auctions/{}/bids/{}/documents'.format(
-        self.auction_id, bid_id), upload_files=[('file', 'name.doc', 'content')])
+    response = self.app.post('/auctions/{}/bids/{}/documents?acc_token={}'.format(
+        self.auction_id, bid_id, bid_token
+    ), upload_files=[('file', 'name.doc', 'content')])
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     doc_id = response.json["data"]['id']
@@ -530,22 +546,25 @@ def create_auction_bidder_document_nopending(self):
 
     self.set_status('active.qualification')
 
-    response = self.app.patch_json('/auctions/{}/bids/{}/documents/{}'.format(
-        self.auction_id, bid_id, doc_id), {"data": {"description": "document description"}}, status=403)
+    response = self.app.patch_json('/auctions/{}/bids/{}/documents/{}?acc_token={}'.format(
+        self.auction_id, bid_id, doc_id, bid_token
+    ), {"data": {"description": "document description"}}, status=403)
     self.assertEqual(response.status, '403 Forbidden')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"],
                      "Can't update document because award of bid is not in pending state")
 
-    response = self.app.put('/auctions/{}/bids/{}/documents/{}'.format(
-        self.auction_id, bid_id, doc_id), 'content3', content_type='application/msword', status=403)
+    response = self.app.put('/auctions/{}/bids/{}/documents/{}?acc_token={}'.format(
+        self.auction_id, bid_id, doc_id, bid_token
+    ), 'content3', content_type='application/msword', status=403)
     self.assertEqual(response.status, '403 Forbidden')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"],
                      "Can't update document because award of bid is not in pending state")
 
-    response = self.app.post('/auctions/{}/bids/{}/documents'.format(
-        self.auction_id, bid_id), upload_files=[('file', 'name.doc', 'content')], status=403)
+    response = self.app.post('/auctions/{}/bids/{}/documents?acc_token={}'.format(
+        self.auction_id, bid_id, bid_token
+    ), upload_files=[('file', 'name.doc', 'content')], status=403)
     self.assertEqual(response.status, '403 Forbidden')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"],
