@@ -114,7 +114,7 @@ class DGFOtherAssets(BaseAuction):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
     class Options:
         roles = dgf_auction_roles
-    _procedure_type = "dgfOtherAssets"
+    _internal_type = "dgfOtherAssets"
     awards = ListType(ModelType(Award), default=list())
     bids = ListType(ModelType(DGFOtherBid), default=list())  # A list of all the companies who entered submissions for the auction.
     cancellations = ListType(ModelType(Cancellation), default=list())
@@ -268,7 +268,7 @@ class DGFFinancialBid(DGFOtherBid):
 @implementer(IDgfFinancialAssetsAuction)
 class DGFFinancialAssets(DGFOtherAssets):
     """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
-    _procedure_type = "dgfFinancialAssets"
+    _internal_type = "dgfFinancialAssets"
     bids = ListType(ModelType(DGFFinancialBid), default=list())
     eligibilityCriteria = StringType(default=DGF_ELIGIBILITY_CRITERIA['ua'])
     eligibilityCriteria_en = StringType(default=DGF_ELIGIBILITY_CRITERIA['en'])

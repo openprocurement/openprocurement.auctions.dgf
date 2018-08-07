@@ -64,6 +64,8 @@ def includeme_other(config, plugin_config=None):
     LOGGER.info("Included openprocurement.auctions.dgf.financial plugin",
                 extra={'MESSAGE_ID': 'included_plugin'})
 
+    # add accreditation level
+    config.registry.accreditation['auction'][DGFOtherAssets._internal_type] = plugin_config['accreditation']
 
 def includeme_financial(config, plugin_config=None):
     procurement_method_types = plugin_config.get('aliases', [])
@@ -97,3 +99,5 @@ def includeme_financial(config, plugin_config=None):
 
     LOGGER.info("Included openprocurement.auctions.dgf.other plugin",
                 extra={'MESSAGE_ID': 'included_plugin'})
+    # add accreditation level
+    config.registry.accreditation['auction'][DGFFinancialAssets._internal_type] = plugin_config['accreditation']
