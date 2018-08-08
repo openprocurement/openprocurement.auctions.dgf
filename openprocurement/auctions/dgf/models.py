@@ -63,7 +63,7 @@ from openprocurement.auctions.core.validation import (
     validate_disallow_dgfPlatformLegalDetails
 )
 from openprocurement.auctions.dgf.constants import (
-    RECTIFICATION_PERIOD_LENGTH_DAYS,
+    RECTIFICATION_PERIOD_DURATION,
 )
 
 
@@ -197,8 +197,7 @@ class DGFOtherAssets(BaseAuction):
         if self.rectificationPeriod:
             return
         start = self.tenderPeriod.startDate
-        period_length = timedelta(days=RECTIFICATION_PERIOD_LENGTH_DAYS)
-        end = calculate_business_date(start, period_length, self, working_days=True)
+        end = calculate_business_date(start, RECTIFICATION_PERIOD_DURATION, self, working_days=True)
 
         period = RectificationPeriod()
         period.startDate = start
@@ -262,7 +261,6 @@ class DGFOtherAssets(BaseAuction):
             elif len(items) < 1:
                 raise ValidationError(u'Please provide at least 1 item.')
 
-
     @serializable(serialize_when_none=False)
     def next_check(self):
         if self.suspended:
@@ -305,6 +303,7 @@ class DGFOtherAssets(BaseAuction):
                         checks.append(calculate_business_date(complaint.dateAnswered, AUCTIONS_COMPLAINT_STAND_STILL_TIME, self))
         return min(checks).isoformat() if checks else None
 
+
 class DGFFinancialBid(DGFOtherBid):
     class Options:
         roles = {
@@ -323,4 +322,3 @@ class DGFFinancialAssets(DGFOtherAssets):
     eligibilityCriteria = StringType(default=DGF_ELIGIBILITY_CRITERIA['ua'])
     eligibilityCriteria_en = StringType(default=DGF_ELIGIBILITY_CRITERIA['en'])
     eligibilityCriteria_ru = StringType(default=DGF_ELIGIBILITY_CRITERIA['ru'])
-
