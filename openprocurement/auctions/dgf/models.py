@@ -1,51 +1,51 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta
-
 from pyramid.security import Allow
 from schematics.exceptions import ValidationError
 from schematics.transforms import whitelist
 from schematics.types import (
-    StringType,
-    IntType,
+    BooleanType,
     DateType,
+    IntType,
     MD5Type,
-    BooleanType
+    StringType,
 )
 from schematics.types.compound import ModelType
 from schematics.types.serializable import serializable
-from urlparse import urlparse, parse_qs
 from string import hexdigits
+from urlparse import urlparse, parse_qs
 from zope.interface import implementer
 
 from openprocurement.auctions.core.constants import (
+    DGF_DECISION_REQUIRED_FROM,
     DGF_ELIGIBILITY_CRITERIA,
+    DGF_ID_REQUIRED_FROM,
     DGF_PLATFORM_LEGAL_DETAILS,
     DGF_PLATFORM_LEGAL_DETAILS_FROM,
-    DGF_ID_REQUIRED_FROM,
-    DGF_DECISION_REQUIRED_FROM,
 )
 from openprocurement.auctions.core.includeme import IAwardingNextCheck
 from openprocurement.auctions.core.models import (
-    ListType,
-    ComplaintModelType,
-    IAuction,
     Auction as BaseAuction,
     Bid as BaseBid,
-    dgfCancellation as Cancellation,
-    dgfItem as Item,
-    dgfDocument as Document,
-    dgfComplaint as Complaint,
+    ComplaintModelType,
     Feature,
-    Period,
+    FinancialOrganization,
+    IAuction,
+    ListType,
     Lot,
+    Period,
+    RectificationPeriod,
+    calc_auction_end_time,
+    dgfCancellation as Cancellation,
+    dgfComplaint as Complaint,
+    dgfDocument as Document,
+    dgfItem as Item,
     dgf_auction_roles,
     get_auction,
     validate_features_uniq,
-    validate_lots_uniq,
     validate_items_uniq,
-    calc_auction_end_time,
+    validate_lots_uniq,
     validate_not_available,
-    FinancialOrganization
 )
 from openprocurement.auctions.core.plugins.awarding.v3.models import (
     Award
@@ -54,15 +54,18 @@ from openprocurement.auctions.core.plugins.contracting.v3.models import (
     Contract,
 )
 from openprocurement.auctions.core.utils import (
-    rounding_shouldStartAfter_after_midnigth,
     AUCTIONS_COMPLAINT_STAND_STILL_TIME,
+    TZ,
     calculate_business_date,
-    get_request_from_root,
     get_now,
-    TZ
+    get_request_from_root,
+    rounding_shouldStartAfter_after_midnigth,
 )
 from openprocurement.auctions.core.validation import (
     validate_disallow_dgfPlatformLegalDetails
+)
+from openprocurement.auctions.dgf.constants import (
+    RECTIFICATION_PERIOD_LENGTH_DAYS,
 )
 
 
@@ -111,7 +114,11 @@ class IDgfFinancialAssetsAuction(IAuction):
 
 @implementer(IDgfOtherAssetsAuction)
 class DGFOtherAssets(BaseAuction):
-    """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
+    """Data regarding auction process
+
+    publicly inviting prospective contractors to submit bids
+    for evaluation and selecting a winner or winners.
+    """
     class Options:
         roles = dgf_auction_roles
     _procedure_type = "dgfOtherAssets"
@@ -129,11 +136,26 @@ class DGFOtherAssets(BaseAuction):
     tenderPeriod = ModelType(Period)  # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
     tenderAttempts = IntType(choices=[1, 2, 3, 4, 5, 6, 7, 8])
     auctionPeriod = ModelType(AuctionAuctionPeriod, required=True, default={})
-    status = StringType(choices=['draft', 'pending.verification', 'invalid', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
+    status = StringType(
+        choices=[
+            'draft',
+            'pending.verification',
+            'invalid',
+            'active.tendering',
+            'active.auction',
+            'active.qualification',
+            'active.awarded',
+            'complete',
+            'cancelled',
+            'unsuccessful'
+        ],
+        default='active.tendering'
+    )
     features = ListType(ModelType(Feature), validators=[validate_features_uniq, validate_not_available])
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
     items = ListType(ModelType(Item), default=list(), validators=[validate_items_uniq])
     suspended = BooleanType()
+    rectificationPeriod = ModelType(RectificationPeriod)
 
     def __acl__(self):
         return [
@@ -153,9 +175,34 @@ class DGFOtherAssets(BaseAuction):
             role = 'auction_{}'.format(request.method.lower())
         elif request.authenticated_role == 'convoy':
             role = 'convoy'
-        else:
-            role = 'edit_{}'.format(request.context.status)
+        else:  # on PATCH of the owner
+            self.generate_rectificationPeriod()
+            now = get_now()
+            if self.status == 'active.tendering':
+                if (
+                    now >= self.rectificationPeriod.startDate
+                    and now <= self.rectificationPeriod.endDate
+                ):
+                    role = 'edit_active.tendering_during_rectificationPeriod'
+                else:
+                    role = 'edit_active.tendering_after_rectificationPeriod'
+            else:
+                role = 'edit_{0}'.format(self.status)
         return role
+
+    def generate_rectificationPeriod(self):
+        # generate period only when it not defined
+        if self.rectificationPeriod:
+            return
+        start = self.tenderPeriod.startDate
+        period_length = timedelta(days=RECTIFICATION_PERIOD_LENGTH_DAYS)
+        end = calculate_business_date(start, period_length, self, working_days=True)
+
+        period = RectificationPeriod()
+        period.startDate = start
+        period.endDate = end
+
+        self.rectificationPeriod = period
 
     def initialize(self):
         if not self.enquiryPeriod:
@@ -176,6 +223,7 @@ class DGFOtherAssets(BaseAuction):
             for lot in self.lots:
                 lot.date = now
         self.documents.append(type(self).documents.model_class(DGF_PLATFORM_LEGAL_DETAILS))
+        self.generate_rectificationPeriod()
 
     def validate_documents(self, data, docs):
         if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_PLATFORM_LEGAL_DETAILS_FROM and \

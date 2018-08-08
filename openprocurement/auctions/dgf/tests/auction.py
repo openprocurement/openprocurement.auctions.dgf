@@ -8,7 +8,8 @@ from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.core.tests.auctions import (
     AuctionAuctionResourceTestMixin,
     AuctionLotAuctionResourceTestMixin,
-    AuctionMultipleLotAuctionResourceTestMixin
+    AuctionMultipleLotAuctionResourceTestMixin,
+    AuctionRectificationPeriodTestMixin,
 )
 from openprocurement.auctions.core.tests.blanks.auction_blanks import (
     submission_method_details_no_auction,
@@ -274,6 +275,11 @@ class FinancialAuctionSameValueAuctionResourceTestWithRegistry(FinancialAuctionS
 @unittest.skipUnless(SANDBOX_MODE, u"Only in SANDBOX_MODE")
 class FinancialAuctionSubmissionMethodDetailsTestWithRegistry(FinancialAuctionSubmissionMethodDetailsTest):
     registry = True
+
+
+class OtherAssetsAuctionRectificationPeriodTest(BaseAuctionWebTest, AuctionRectificationPeriodTestMixin):
+    initial_status = 'active.tendering'
+    initial_bids = test_bids
 
 
 def suite():
