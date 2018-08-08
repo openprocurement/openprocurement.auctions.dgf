@@ -12,8 +12,6 @@ from schematics.types import (
 )
 from schematics.types.compound import ModelType
 from schematics.types.serializable import serializable
-from string import hexdigits
-from urlparse import urlparse, parse_qs
 from zope.interface import implementer
 
 from openprocurement.auctions.core.constants import (
@@ -123,7 +121,8 @@ class DGFOtherAssets(BaseAuction):
         roles = dgf_auction_roles
     _procedure_type = "dgfOtherAssets"
     awards = ListType(ModelType(Award), default=list())
-    bids = ListType(ModelType(DGFOtherBid), default=list())  # A list of all the companies who entered submissions for the auction.
+    # A list of all the companies who entered submissions for the auction.
+    bids = ListType(ModelType(DGFOtherBid), default=list())
     cancellations = ListType(ModelType(Cancellation), default=list())
     complaints = ListType(ComplaintModelType(Complaint), default=list())
     contracts = ListType(ModelType(Contract), default=list())
@@ -131,9 +130,12 @@ class DGFOtherAssets(BaseAuction):
     merchandisingObject = MD5Type()
     dgfDecisionID = StringType()
     dgfDecisionDate = DateType()
-    documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
-    enquiryPeriod = ModelType(Period)  # The period during which enquiries may be made and will be answered.
-    tenderPeriod = ModelType(Period)  # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
+    # All documents and attachments related to the auction.
+    documents = ListType(ModelType(Document), default=list())
+    # The period during which enquiries may be made and will be answered.
+    enquiryPeriod = ModelType(Period)
+    # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
+    tenderPeriod = ModelType(Period)
     tenderAttempts = IntType(choices=[1, 2, 3, 4, 5, 6, 7, 8])
     auctionPeriod = ModelType(AuctionAuctionPeriod, required=True, default={})
     status = StringType(
