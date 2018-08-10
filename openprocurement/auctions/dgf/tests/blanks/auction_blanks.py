@@ -89,7 +89,7 @@ def post_auction_auction(self):
     self.assertEqual(response.status, '403 Forbidden')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"],
-    "Can't report auction results in current (active.qualification) auction status")
+                     "Can't report auction results in current (active.qualification) auction status")
 
 # AuctionBidInvalidationAuctionResourceTest
 
@@ -423,30 +423,3 @@ def post_auction_auction_2_lots(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"],
                      "Can't report auction results in current (active.qualification) auction status")
-
-
-
-def koatuu_additional_classification(self):
-    input_classification = [{"scheme": "koatuu",
-                             "id": "0110136600",
-                             "description": "test"}]
-
-    initial_data = deepcopy(self.initial_data)
-    initial_data['items'][0]['additionalClassifications'] = input_classification
-
-    auction = self.create_auction_unit(data=initial_data)
-
-    output_classification = auction['data']['items'][0]['additionalClassifications']
-
-    self.assertEqual(input_classification, output_classification)
-
-    input_classification[0]['id'] = '01101366000'
-    response = self.create_auction_unit(data=initial_data, status=201)
-
-    input_classification[0]['id'] = '1110136600'
-    response = self.create_auction_unit(data=initial_data, status=422)
-    self.assertEqual(response['status'], 'error')
-
-    input_classification[0]['id'] = '7510136600'
-    response = self.create_auction_unit(data=initial_data, status=422)
-    self.assertEqual(response['status'], 'error')

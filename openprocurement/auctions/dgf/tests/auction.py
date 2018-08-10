@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import unittest
-from datetime import timedelta
 from copy import deepcopy
 
 from openprocurement.auctions.core.utils import SANDBOX_MODE
@@ -18,6 +17,7 @@ from openprocurement.auctions.core.tests.blanks.auction_blanks import (
     post_auction_auction_reversed,
     # AuctionFeaturesAuctionResourceTest
     get_auction_features_auction,
+    koatuu_additional_classification
 )
 
 from openprocurement.auctions.dgf.tests.base import (
@@ -38,7 +38,6 @@ from openprocurement.auctions.dgf.tests.blanks.auction_blanks import (
     post_auction_auction_lot,
     # AuctionMultipleLotAuctionResourceTest
     post_auction_auction_2_lots,
-    koatuu_additional_classification
 )
 
 
@@ -181,6 +180,7 @@ class FinancialAuctionSameValueAuctionResourceTest(AuctionSameValueAuctionResour
         for i in range(3)
     ]
 
+
 @unittest.skipUnless(SANDBOX_MODE, u"Only in SANDBOX_MODE")
 class AuctionSubmissionMethodDetailsTest(BaseAuctionWebTest):
     initial_data = deepcopy(test_auction_data)
@@ -190,10 +190,12 @@ class AuctionSubmissionMethodDetailsTest(BaseAuctionWebTest):
     test_submission_method_details_no_auction = snitch(submission_method_details_no_auction)
     test_submission_method_details_fast_forward = snitch(submission_method_details_fast_forward)
 
+
 @unittest.skipUnless(SANDBOX_MODE, u"Only in SANDBOX_MODE")
 class FinancialAuctionSubmissionMethodDetailsTest(AuctionSubmissionMethodDetailsTest):
     initial_data = deepcopy(test_financial_auction_data)
     initial_bids = test_financial_bids
+
 
 @unittest.skip("option not available")
 class FinancialAuctionLotAuctionResourceTest(AuctionLotAuctionResourceTest):
@@ -294,10 +296,8 @@ def suite():
     suite.addTest(unittest.makeSuite(AuctionAuctionResourceTestWithRegistry))
     suite.addTest(unittest.makeSuite(AuctionBidInvalidationAuctionResourceTestWithRegistry))
     suite.addTest(unittest.makeSuite(AuctionSameValueAuctionResourceTestWithRegistry))
-    #suite.addTest(unittest.makeSuite(AuctionSubmissionMethodDetailsTestWithRegistry))
 
     suite.addTest(unittest.makeSuite(FinancialAuctionAuctionResourceTestWithRegistry))
-    #suite.addTest(unittest.makeSuite(FinancialAuctionSameValueAuctionResourceTestRegistry))
     suite.addTest(unittest.makeSuite(FinancialAuctionSubmissionMethodDetailsTestWithRegistry))
 
     return suite
