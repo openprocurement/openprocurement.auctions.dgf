@@ -89,7 +89,7 @@ def post_auction_auction(self):
     self.assertEqual(response.status, '403 Forbidden')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"],
-    "Can't report auction results in current (active.qualification) auction status")
+                     "Can't report auction results in current (active.qualification) auction status")
 
 # AuctionBidInvalidationAuctionResourceTest
 
