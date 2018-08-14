@@ -22,7 +22,7 @@ from openprocurement.auctions.core.constants import (
     DGF_PLATFORM_LEGAL_DETAILS_FROM,
 )
 from openprocurement.auctions.core.includeme import IAwardingNextCheck
-from openprocurement.auctions.core.models import (
+from openprocurement.auctions.core.models.schema import (
     Auction as BaseAuction,
     Bid as BaseBid,
     ComplaintModelType,
@@ -38,12 +38,14 @@ from openprocurement.auctions.core.models import (
     dgfComplaint as Complaint,
     dgfDocument as Document,
     dgfItem as Item,
-    dgf_auction_roles,
     get_auction,
     validate_features_uniq,
     validate_items_uniq,
     validate_lots_uniq,
     validate_not_available,
+)
+from openprocurement.auctions.core.models.roles import (
+    dgf_auction_roles,
 )
 from openprocurement.auctions.core.plugins.awarding.v3.models import (
     Award
