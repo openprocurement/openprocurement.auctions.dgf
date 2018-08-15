@@ -183,10 +183,7 @@ class DGFOtherAssets(BaseAuction):
             self.generate_rectificationPeriod()
             now = get_now()
             if self.status == 'active.tendering':
-                if (
-                    now >= self.rectificationPeriod.startDate
-                    and now <= self.rectificationPeriod.endDate
-                ):
+                if now in self.rectificationPeriod:
                     role = 'edit_active.tendering_during_rectificationPeriod'
                 else:
                     role = 'edit_active.tendering_after_rectificationPeriod'
