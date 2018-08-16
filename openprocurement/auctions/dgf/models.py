@@ -64,6 +64,9 @@ from openprocurement.auctions.core.utils import (
 from openprocurement.auctions.core.validation import (
     validate_disallow_dgfPlatformLegalDetails
 )
+from openprocurement.auctions.dgf.constants import (
+    RECTIFICATION_PERIOD_DURATION,
+)
 
 
 class DGFOtherBid(BaseBid):
@@ -156,6 +159,7 @@ class DGFOtherAssets(BaseAuction):
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
     items = ListType(ModelType(Item), default=list(), validators=[validate_items_uniq])
     suspended = BooleanType()
+    rectificationPeriod = ModelType(RectificationPeriod)
 
     def __acl__(self):
         return [
@@ -175,9 +179,40 @@ class DGFOtherAssets(BaseAuction):
             role = 'auction_{}'.format(request.method.lower())
         elif request.authenticated_role == 'convoy':
             role = 'convoy'
-        else:
-            role = 'edit_{}'.format(request.context.status)
+        else:  # on PATCH of the owner
+            now = get_now()
+            if self.status == 'active.tendering':
+                if now in self.rectificationPeriod:
+                    role = 'edit_active.tendering_during_rectificationPeriod'
+                else:
+                    role = 'edit_active.tendering_after_rectificationPeriod'
+            else:
+                role = 'edit_{0}'.format(self.status)
         return role
+
+    @serializable(serialized_name='rectificationPeriod', serialize_when_none=False)
+    def generate_rectificationPeriod(self):
+        """Generate rectificationPeriod only when it not defined"""
+        # avoid period generation if
+        if (
+            # it's already generated
+            (
+                getattr(self, 'rectificationPeriod', False)
+                # and not just present, but actually holds some real value
+                and self.rectificationPeriod.startDate is not None
+            )
+            # or trere's no period on that our code is dependant
+            or getattr(self, 'tenderPeriod') is None
+        ):
+            return
+        start = self.tenderPeriod.startDate
+        end = calculate_business_date(start, RECTIFICATION_PERIOD_DURATION, self, working_days=True)
+
+        period = RectificationPeriod()
+        period.startDate = start
+        period.endDate = end
+
+        return period.serialize()
 
     def initialize(self):
         if not self.enquiryPeriod:

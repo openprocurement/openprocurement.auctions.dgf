@@ -381,6 +381,36 @@ def create_auction_generated(self):
     for key in ['procurementMethodDetails', 'submissionMethodDetails']:
         if key in auction:
             auction.pop(key)
+    self.assertEqual(
+        set(auction),
+        set([
+            u'auctionID',
+            u'auctionPeriod',
+            u'awardCriteria',
+            u'date',
+            u'dateModified',
+            u'dgfDecisionDate',
+            u'dgfDecisionID',
+            u'dgfID',
+            u'documents',
+            u'enquiryPeriod',
+            u'id',
+            u'items',
+            u'minimalStep',
+            u'next_check',
+            u'owner',
+            u'procurementMethod',
+            u'procurementMethodType',
+            u'procuringEntity',
+            u'rectificationPeriod',
+            u'status',
+            u'submissionMethod',
+            u'tenderAttempts',
+            u'tenderPeriod',
+            u'title',
+            u'value',
+        ])
+    )
     self.assertNotEqual(data['id'], auction['id'])
     self.assertNotEqual(data['doc_id'], auction['id'])
     self.assertNotEqual(data['auctionID'], auction['auctionID'])
@@ -395,8 +425,45 @@ def create_auction(self):
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     auction = response.json['data']
+    financial_auction_forbidden_fields = set([
+        u'auctionID',
+        u'awardCriteria',
+        u'date',
+        u'dateModified',
+        u'documents',
+        u'eligibilityCriteria',
+        u'eligibilityCriteria_en',
+        u'eligibilityCriteria_ru',
+        u'enquiryPeriod',
+        u'id',
+        u'next_check',
+        u'owner',
+        u'procurementMethod',
+        u'rectificationPeriod',
+        u'status',
+        u'submissionMethod',
+        u'tenderPeriod',
+    ])
+    other_auction_forbidden_fields = set([
+        u'auctionID',
+        u'awardCriteria',
+        u'date',
+        u'dateModified',
+        u'documents',
+        u'enquiryPeriod',
+        u'id',
+        u'next_check',
+        u'owner',
+        u'procurementMethod',
+        u'rectificationPeriod',
+        u'status',
+        u'submissionMethod',
+        u'tenderPeriod',
+    ])
     if self.initial_organization == test_financial_organization:
+        self.assertEqual(set(auction) - set(self.initial_data), financial_auction_forbidden_fields)
     else:
+        self.assertEqual(set(auction) - set(self.initial_data), other_auction_forbidden_fields)
     self.assertIn(auction['id'], response.headers['Location'])
 
     response = self.app.get('/auctions/{}'.format(auction['id']))
@@ -858,6 +925,39 @@ def create_auction_generated_financial(self):
     for key in ['procurementMethodDetails', 'submissionMethodDetails']:
         if key in auction:
             auction.pop(key)
+    self.assertEqual(
+        set(auction),
+        set([
+        'documents',
+        u'auctionID',
+        u'auctionPeriod',
+        u'awardCriteria',
+        u'date',
+        u'dateModified',
+        u'dgfDecisionDate',
+        u'dgfDecisionID',
+        u'dgfID',
+        u'eligibilityCriteria',
+        u'eligibilityCriteria_en',
+        u'eligibilityCriteria_ru',
+        u'enquiryPeriod',
+        u'id',
+        u'items',
+        u'minimalStep',
+        u'next_check',
+        u'owner',
+        u'procurementMethod',
+        u'rectificationPeriod',
+        u'procurementMethodType',
+        u'procuringEntity',
+        u'status',
+        u'submissionMethod',
+        u'tenderAttempts',
+        u'tenderPeriod',
+        u'title',
+        u'value',
+    ])
+    )
     self.assertNotEqual(data['id'], auction['id'])
     self.assertNotEqual(data['doc_id'], auction['id'])
     self.assertNotEqual(data['auctionID'], auction['auctionID'])
