@@ -180,7 +180,6 @@ class DGFOtherAssets(BaseAuction):
         elif request.authenticated_role == 'convoy':
             role = 'convoy'
         else:  # on PATCH of the owner
-            self.generate_rectificationPeriod()
             now = get_now()
             if self.status == 'active.tendering':
                 if now in self.rectificationPeriod:
@@ -191,9 +190,20 @@ class DGFOtherAssets(BaseAuction):
                 role = 'edit_{0}'.format(self.status)
         return role
 
+    @serializable(serialized_name='rectificationPeriod', serialize_when_none=False)
     def generate_rectificationPeriod(self):
-        # generate period only when it not defined
-        if self.rectificationPeriod:
+        """Generate rectificationPeriod only when it not defined"""
+        # avoid period generation if
+        if (
+            # it's already generated
+            (
+                getattr(self, 'rectificationPeriod', False)
+                # and not just present, but actually holds some real value
+                and self.rectificationPeriod.startDate is not None
+            )
+            # or trere's no period on that our code is dependant
+            or getattr(self, 'tenderPeriod') is None
+        ):
             return
         start = self.tenderPeriod.startDate
         end = calculate_business_date(start, RECTIFICATION_PERIOD_DURATION, self, working_days=True)
@@ -202,7 +212,7 @@ class DGFOtherAssets(BaseAuction):
         period.startDate = start
         period.endDate = end
 
-        self.rectificationPeriod = period
+        return period.serialize()
 
     def initialize(self):
         if not self.enquiryPeriod:
@@ -223,7 +233,6 @@ class DGFOtherAssets(BaseAuction):
             for lot in self.lots:
                 lot.date = now
         self.documents.append(type(self).documents.model_class(DGF_PLATFORM_LEGAL_DETAILS))
-        self.generate_rectificationPeriod()
 
     def validate_documents(self, data, docs):
         if (data.get('revisions')[0].date if data.get('revisions') else get_now()) > DGF_PLATFORM_LEGAL_DETAILS_FROM and \
