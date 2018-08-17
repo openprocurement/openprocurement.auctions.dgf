@@ -34,7 +34,7 @@ from openprocurement.auctions.dgf.tests.base import (
 
 class CreateAuctionAwardTest(BaseAuctionWebTest, CreateAuctionAwardTestMixin):
     # initial_data = auction_data
-    initial_status = 'active.qualification'
+    initial_status = 'active.auction'
     initial_bids = test_bids
 
 

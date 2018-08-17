@@ -257,13 +257,15 @@ class MigrateTestFrom2To3Schema(BaseAuctionWebTest):
         self.assertIn('endDate', auction['awards'][0]['complaintPeriod'])
         self.assertEqual(auction['status'], 'active.awarded')
 
-        response = self.app.post('/auctions/{}/contracts/{}/documents'.format(
-            self.auction_id, contract['id']), upload_files=[('file', 'name.doc', 'content')])
+        response = self.app.post('/auctions/{}/contracts/{}/documents?acc_token={}'.format(
+            self.auction_id, contract['id'], self.auction_token
+        ), upload_files=[('file', 'name.doc', 'content')])
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
 
-        response = self.app.patch_json('/auctions/{}/contracts/{}'.format(self.auction_id, auction['contracts'][0]['id']),
-                                       {"data": {"status": "active"}})
+        response = self.app.patch_json('/auctions/{}/contracts/{}?acc_token={}'.format(
+            self.auction_id, auction['contracts'][0]['id'], self.auction_token
+        ), {"data": {"status": "active"}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data']['status'], u'active')
