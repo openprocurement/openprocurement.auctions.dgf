@@ -17,6 +17,6 @@ from openprocurement.auctions.core.endpoints import ENDPOINTS
             description="Auction items")
 class AuctionLotResource(AuctionLotResource):
 
-    @json_view(content_type="application/json", permission='edit_auction')
+    @json_view(content_type="application/json", permission='edit_auction_items')
     def collection_post(self):
         pass
