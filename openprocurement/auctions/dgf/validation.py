@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-from openprocurement.auctions.core.validation import validate_json_data, validate_data
+from openprocurement.auctions.core.validation import (
+    update_logging_context,
+    validate_data,
+    validate_json_data,
+)
 
 
 def validate_patch_auction_data(request, **kwargs):
@@ -52,3 +56,10 @@ def validate_patch_auction_data(request, **kwargs):
             request.context.status = new_status
 
         return validate_data(request, type(request.auction), data=data)
+
+
+def validate_item_data(request, error_handler, **kwargs):
+    update_logging_context(request, {'item_id': '__new__'})
+    context = request.context
+    model = type(context).items.model_class
+    validate_data(request, model, "item")
