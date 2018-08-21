@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import unittest
-from copy import deepcopy
 
 from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest,
