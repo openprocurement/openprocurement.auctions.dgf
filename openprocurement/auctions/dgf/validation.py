@@ -63,3 +63,11 @@ def validate_item_data(request, error_handler, **kwargs):
     context = request.context
     model = type(context).items.model_class
     validate_data(request, model, "item")
+
+
+def validate_patch_item_data(request, error_handler, **kwargs):
+    update_logging_context(request, {'item_id': '__new__'})
+    context = request.context
+    import ipdb; ipdb.set_trace()
+    model = context.__class__
+    validate_data(request, model)

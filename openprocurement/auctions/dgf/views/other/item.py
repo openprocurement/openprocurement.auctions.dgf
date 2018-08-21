@@ -6,11 +6,13 @@ from openprocurement.auctions.core.utils import (
     json_view,
     opresource,
     save_auction,
+    update_file_content_type,
 )
 from openprocurement.auctions.core.views.mixins import AuctionLotResource
 from openprocurement.auctions.core.endpoints import ENDPOINTS
 from openprocurement.auctions.dgf.validation import (
     validate_item_data,
+    validate_patch_item_data,
 )
 
 
@@ -60,3 +62,16 @@ class AuctionLotResource(AuctionLotResource):
     def collection_get(self):
         collection_data = [i.serialize("view") for i in self.context.items]
         return {'data': collection_data}
+
+    @json_view(
+        content_type="application/json",
+        permission='edit_auction_items',
+        validators=(validate_patch_item_data))
+    def patch(self):
+        if apply_patch(self.request, src=self.request.context.serialize()):
+            update_file_content_type(self.request)
+            self.LOGGER.info(
+                'Updated lot item {}'.format(self.request.context.id),
+                extra=context_unpack(self.request, {'MESSAGE_ID': 'lot_item_patch'})
+            )
+            return {'data': self.request.context.serialize("view")}
