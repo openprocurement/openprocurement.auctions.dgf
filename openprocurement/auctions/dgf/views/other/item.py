@@ -53,3 +53,10 @@ class AuctionLotResource(AuctionLotResource):
     def get(self):
         item = self.context
         return {'data': item.serialize('view')}
+
+    @json_view(
+        content_type="application/json",
+        permission='view_auction')
+    def collection_get(self):
+        collection_data = [i.serialize("view") for i in self.context.items]
+        return {'data': collection_data}
