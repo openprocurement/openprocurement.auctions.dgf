@@ -164,7 +164,7 @@ class AuctionAwardSwitch2ResourceTest(BaseAuctionWebTest):
 class AuctionLotAuctionPeriodResourceTest(AuctionAuctionPeriodResourceTest):
     initial_lots = test_lots
 
-
+@unittest.skip("option not available")
 class AuctionComplaintSwitchResourceTest(BaseAuctionWebTest):
 
     test_switch_to_pending = snitch(switch_to_pending)

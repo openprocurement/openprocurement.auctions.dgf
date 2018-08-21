@@ -1,51 +1,51 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta
-
 from pyramid.security import Allow
 from schematics.exceptions import ValidationError
 from schematics.transforms import whitelist
 from schematics.types import (
-    StringType,
-    IntType,
+    BooleanType,
     DateType,
+    IntType,
     MD5Type,
-    BooleanType
+    StringType,
 )
 from schematics.types.compound import ModelType
 from schematics.types.serializable import serializable
-from urlparse import urlparse, parse_qs
-from string import hexdigits
 from zope.interface import implementer
 
 from openprocurement.auctions.core.constants import (
+    DGF_DECISION_REQUIRED_FROM,
     DGF_ELIGIBILITY_CRITERIA,
+    DGF_ID_REQUIRED_FROM,
     DGF_PLATFORM_LEGAL_DETAILS,
     DGF_PLATFORM_LEGAL_DETAILS_FROM,
-    DGF_ID_REQUIRED_FROM,
-    DGF_DECISION_REQUIRED_FROM,
 )
 from openprocurement.auctions.core.includeme import IAwardingNextCheck
-from openprocurement.auctions.core.models import (
-    ListType,
-    ComplaintModelType,
-    IAuction,
+from openprocurement.auctions.core.models.schema import (
     Auction as BaseAuction,
     Bid as BaseBid,
-    dgfCancellation as Cancellation,
-    dgfItem as Item,
-    dgfDocument as Document,
-    dgfComplaint as Complaint,
+    ComplaintModelType,
     Feature,
-    Period,
+    FinancialOrganization,
+    IAuction,
+    ListType,
     Lot,
-    dgf_auction_roles,
+    Period,
+    RectificationPeriod,
+    calc_auction_end_time,
+    dgfCancellation as Cancellation,
+    dgfComplaint as Complaint,
+    dgfDocument as Document,
+    dgfItem as Item,
     get_auction,
     validate_features_uniq,
-    validate_lots_uniq,
     validate_items_uniq,
-    calc_auction_end_time,
+    validate_lots_uniq,
     validate_not_available,
-    FinancialOrganization
+)
+from openprocurement.auctions.core.models.roles import (
+    dgf_auction_roles,
 )
 from openprocurement.auctions.core.plugins.awarding.v3.models import (
     Award
@@ -54,15 +54,18 @@ from openprocurement.auctions.core.plugins.contracting.v3.models import (
     Contract,
 )
 from openprocurement.auctions.core.utils import (
-    rounding_shouldStartAfter_after_midnigth,
     AUCTIONS_COMPLAINT_STAND_STILL_TIME,
+    TZ,
     calculate_business_date,
-    get_request_from_root,
     get_now,
-    TZ
+    get_request_from_root,
+    rounding_shouldStartAfter_after_midnigth,
 )
 from openprocurement.auctions.core.validation import (
     validate_disallow_dgfPlatformLegalDetails
+)
+from openprocurement.auctions.dgf.constants import (
+    RECTIFICATION_PERIOD_DURATION,
 )
 
 
@@ -111,12 +114,17 @@ class IDgfFinancialAssetsAuction(IAuction):
 
 @implementer(IDgfOtherAssetsAuction)
 class DGFOtherAssets(BaseAuction):
-    """Data regarding auction process - publicly inviting prospective contractors to submit bids for evaluation and selecting a winner or winners."""
+    """Data regarding auction process
+
+    publicly inviting prospective contractors to submit bids
+    for evaluation and selecting a winner or winners.
+    """
     class Options:
         roles = dgf_auction_roles
     _internal_type = "dgfOtherAssets"
     awards = ListType(ModelType(Award), default=list())
-    bids = ListType(ModelType(DGFOtherBid), default=list())  # A list of all the companies who entered submissions for the auction.
+    # A list of all the companies who entered submissions for the auction.
+    bids = ListType(ModelType(DGFOtherBid), default=list())
     cancellations = ListType(ModelType(Cancellation), default=list())
     complaints = ListType(ComplaintModelType(Complaint), default=list())
     contracts = ListType(ModelType(Contract), default=list())
@@ -124,16 +132,34 @@ class DGFOtherAssets(BaseAuction):
     merchandisingObject = MD5Type()
     dgfDecisionID = StringType()
     dgfDecisionDate = DateType()
-    documents = ListType(ModelType(Document), default=list())  # All documents and attachments related to the auction.
-    enquiryPeriod = ModelType(Period)  # The period during which enquiries may be made and will be answered.
-    tenderPeriod = ModelType(Period)  # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
+    # All documents and attachments related to the auction.
+    documents = ListType(ModelType(Document), default=list())
+    # The period during which enquiries may be made and will be answered.
+    enquiryPeriod = ModelType(Period)
+    # The period when the auction is open for submissions. The end date is the closing date for auction submissions.
+    tenderPeriod = ModelType(Period)
     tenderAttempts = IntType(choices=[1, 2, 3, 4, 5, 6, 7, 8])
     auctionPeriod = ModelType(AuctionAuctionPeriod, required=True, default={})
-    status = StringType(choices=['draft', 'pending.verification', 'invalid', 'active.tendering', 'active.auction', 'active.qualification', 'active.awarded', 'complete', 'cancelled', 'unsuccessful'], default='active.tendering')
+    status = StringType(
+        choices=[
+            'draft',
+            'pending.verification',
+            'invalid',
+            'active.tendering',
+            'active.auction',
+            'active.qualification',
+            'active.awarded',
+            'complete',
+            'cancelled',
+            'unsuccessful'
+        ],
+        default='active.tendering'
+    )
     features = ListType(ModelType(Feature), validators=[validate_features_uniq, validate_not_available])
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq, validate_not_available])
     items = ListType(ModelType(Item), default=list(), validators=[validate_items_uniq])
     suspended = BooleanType()
+    rectificationPeriod = ModelType(RectificationPeriod)
 
     def __acl__(self):
         return [
@@ -153,9 +179,40 @@ class DGFOtherAssets(BaseAuction):
             role = 'auction_{}'.format(request.method.lower())
         elif request.authenticated_role == 'convoy':
             role = 'convoy'
-        else:
-            role = 'edit_{}'.format(request.context.status)
+        else:  # on PATCH of the owner
+            now = get_now()
+            if self.status == 'active.tendering':
+                if now in self.rectificationPeriod:
+                    role = 'edit_active.tendering_during_rectificationPeriod'
+                else:
+                    role = 'edit_active.tendering_after_rectificationPeriod'
+            else:
+                role = 'edit_{0}'.format(self.status)
         return role
+
+    @serializable(serialized_name='rectificationPeriod', serialize_when_none=False)
+    def generate_rectificationPeriod(self):
+        """Generate rectificationPeriod only when it not defined"""
+        # avoid period generation if
+        if (
+            # it's already generated
+            (
+                getattr(self, 'rectificationPeriod', False)
+                # and not just present, but actually holds some real value
+                and self.rectificationPeriod.startDate is not None
+            )
+            # or trere's no period on that our code is dependant
+            or getattr(self, 'tenderPeriod') is None
+        ):
+            return
+        start = self.tenderPeriod.startDate
+        end = calculate_business_date(start, RECTIFICATION_PERIOD_DURATION, self, working_days=True)
+
+        period = RectificationPeriod()
+        period.startDate = start
+        period.endDate = end
+
+        return period.serialize()
 
     def initialize(self):
         if not self.enquiryPeriod:
@@ -212,7 +269,6 @@ class DGFOtherAssets(BaseAuction):
             elif len(items) < 1:
                 raise ValidationError(u'Please provide at least 1 item.')
 
-
     @serializable(serialize_when_none=False)
     def next_check(self):
         if self.suspended:
@@ -255,6 +311,7 @@ class DGFOtherAssets(BaseAuction):
                         checks.append(calculate_business_date(complaint.dateAnswered, AUCTIONS_COMPLAINT_STAND_STILL_TIME, self))
         return min(checks).isoformat() if checks else None
 
+
 class DGFFinancialBid(DGFOtherBid):
     class Options:
         roles = {
@@ -273,4 +330,3 @@ class DGFFinancialAssets(DGFOtherAssets):
     eligibilityCriteria = StringType(default=DGF_ELIGIBILITY_CRITERIA['ua'])
     eligibilityCriteria_en = StringType(default=DGF_ELIGIBILITY_CRITERIA['en'])
     eligibilityCriteria_ru = StringType(default=DGF_ELIGIBILITY_CRITERIA['ru'])
-

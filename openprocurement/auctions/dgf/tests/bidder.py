@@ -107,7 +107,9 @@ class AuctionBidderDocumentWithDSResourceTest(BaseAuctionWebTest,
             documentType = auctionProtocol
         """
         # Test POST auctionProtocol document
-        response = self.app.post_json('/auctions/{}/bids/{}/documents'.format(self.auction_id, self.bid_id), {
+        response = self.app.post_json('/auctions/{}/bids/{}/documents?acc_token={}'.format(
+            self.auction_id, self.bid_id, self.bid_token
+        ), {
             'data': {
                 'title': 'name.doc',
                 'url': self.generate_docservice_url(),
@@ -121,7 +123,9 @@ class AuctionBidderDocumentWithDSResourceTest(BaseAuctionWebTest,
         self.assertEqual(response.json['errors'][0]["description"], "Can't add document with auctionProtocol documentType")\
 
         # Test PUT auctionProtocol document
-        response = self.app.post_json('/auctions/{}/bids/{}/documents'.format(self.auction_id, self.bid_id), {
+        response = self.app.post_json('/auctions/{}/bids/{}/documents?acc_token={}'.format(
+            self.auction_id, self.bid_id, self.bid_token
+        ), {
             'data': {
                 'title': 'name.doc',
                 'url': self.generate_docservice_url(),
@@ -133,7 +137,9 @@ class AuctionBidderDocumentWithDSResourceTest(BaseAuctionWebTest,
         doc_id = response.json["data"]['id']
         self.assertIn(doc_id, response.headers['Location'])
 
-        response = self.app.put_json('/auctions/{}/bids/{}/documents/{}'.format(self.auction_id, self.bid_id, doc_id), {
+        response = self.app.put_json('/auctions/{}/bids/{}/documents/{}?acc_token={}'.format(
+            self.auction_id, self.bid_id, doc_id, self.bid_token
+        ), {
             'data': {
                 'title': 'name.doc',
                 'url': self.generate_docservice_url(),
@@ -146,7 +152,9 @@ class AuctionBidderDocumentWithDSResourceTest(BaseAuctionWebTest,
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document with auctionProtocol documentType")\
 
         # Test PATCH auctionProtocol document
-        response = self.app.patch_json('/auctions/{}/bids/{}/documents/{}'.format(self.auction_id, self.bid_id, doc_id), {
+        response = self.app.patch_json('/auctions/{}/bids/{}/documents/{}?acc_token={}'.format(
+            self.auction_id, self.bid_id, doc_id, self.bid_token
+        ), {
             'data': {
                 'documentType': 'auctionProtocol'
             }}, status=403)
