@@ -46,3 +46,10 @@ class AuctionLotResource(AuctionLotResource):
                 _query={}
             )
             return {'data': item.serialize("view")}
+
+    @json_view(
+        content_type="application/json",
+        permission='view_auction')
+    def get(self):
+        item = self.context
+        return {'data': item.serialize('view')}
