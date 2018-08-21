@@ -12,7 +12,11 @@ PARTIAL_MOCK_CONFIG = {
                 "dgf.financial.migration":None
             },
             "migration":False,
-            "aliases":[]
+            "aliases":[],
+            "accreditation": {
+                "create": [1],
+                "edit": [2]
+            }
         },
         "auctions.dgf.other":{
             "use_default":True,
@@ -20,7 +24,11 @@ PARTIAL_MOCK_CONFIG = {
                 "dgf.other.migration":None
             },
             "migration":False,
-            "aliases":[]
+            "aliases":[],
+            "accreditation": {
+                "create": [1],
+                "edit": [2]
+            }
         }
 }
 
