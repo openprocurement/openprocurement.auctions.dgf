@@ -27,7 +27,8 @@ from openprocurement.auctions.dgf.constants import (
     FINANCIAL_VIEW_LOCATIONS,
     OTHER_VIEW_LOCATIONS,
     DEFAULT_PROCUREMENT_METHOD_TYPE_OTHER,
-    DEFAULT_PROCUREMENT_METHOD_TYPE_FINANCIAL
+    DEFAULT_PROCUREMENT_METHOD_TYPE_FINANCIAL,
+    DEFAULT_LEVEL_OF_ACCREDITATION
 )
 
 LOGGER = logging.getLogger(__name__)
@@ -65,7 +66,10 @@ def includeme_other(config, plugin_config=None):
                 extra={'MESSAGE_ID': 'included_plugin'})
 
     # add accreditation level
-    config.registry.accreditation['auction'][DGFOtherAssets._internal_type] = plugin_config['accreditation']
+    if not plugin_config.get('accreditation'):
+        config.registry.accreditation['auction'][DGFOtherAssets._internal_type] = DEFAULT_LEVEL_OF_ACCREDITATION
+    else:
+        config.registry.accreditation['auction'][DGFOtherAssets._internal_type] = plugin_config['accreditation']
 
 def includeme_financial(config, plugin_config=None):
     procurement_method_types = plugin_config.get('aliases', [])
@@ -100,4 +104,7 @@ def includeme_financial(config, plugin_config=None):
     LOGGER.info("Included openprocurement.auctions.dgf.other plugin",
                 extra={'MESSAGE_ID': 'included_plugin'})
     # add accreditation level
-    config.registry.accreditation['auction'][DGFFinancialAssets._internal_type] = plugin_config['accreditation']
+    if not plugin_config.get('accreditation'):
+        config.registry.accreditation['auction'][DGFFinancialAssets._internal_type] = DEFAULT_LEVEL_OF_ACCREDITATION
+    else:
+        config.registry.accreditation['auction'][DGFFinancialAssets._internal_type] = plugin_config['accreditation']
