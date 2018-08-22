@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import unittest
 from copy import deepcopy
-from datetime import timedelta, time
-from uuid import uuid4
-from iso8601 import parse_date
 
 from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.core.tests.tender import (
-    AuctionResourceTestMixin, DgfInsiderResourceTestMixin
+    AuctionResourceTestMixin,
+    DgfInsiderResourceTestMixin,
+    ExtractCredentialsMixin
 )
 from openprocurement.auctions.core.tests.blanks.tender_blanks import (
     # AuctionTest
@@ -27,9 +26,14 @@ from openprocurement.auctions.dgf.models import (
     DGFOtherAssets, DGFFinancialAssets, DGF_ID_REQUIRED_FROM
 )
 from openprocurement.auctions.dgf.tests.base import (
-    test_auction_data, test_financial_auction_data, test_organization,
-    test_financial_organization, BaseWebTest, BaseAuctionWebTest,
-    test_auction_data_with_schema, test_financial_auction_data_with_schema
+    test_auction_data,
+    test_financial_auction_data,
+    test_organization,
+    test_financial_organization,
+    BaseWebTest,
+    BaseAuctionWebTest,
+    test_auction_data_with_schema,
+    test_financial_auction_data_with_schema
 )
 from openprocurement.auctions.dgf.tests.blanks.tender_blanks import (
     # AuctionTest
@@ -81,7 +85,7 @@ class AuctionResourceTest(BaseWebTest, AuctionResourceTestMixin, DgfInsiderResou
 class AuctionProcessTest(BaseAuctionWebTest):
     test_financial_organization = test_financial_organization
 
-    #setUp = BaseWebTest.setUp
+    # setUp = BaseWebTest.setUp
     def setUp(self):
         super(AuctionProcessTest.__bases__[0], self).setUp()
 
@@ -90,6 +94,10 @@ class AuctionProcessTest(BaseAuctionWebTest):
     # _test_one_invalid_bid_auction = snitch(one_invalid_bid_auction)
     test_first_bid_auction = snitch(first_bid_auction)
     test_suspended_auction = snitch(suspended_auction)
+
+
+class AuctionExtractCredentialsTest(AuctionResourceTest, ExtractCredentialsMixin):
+    pass
 
 
 class FinancialAuctionTest(AuctionTest):
@@ -119,6 +127,7 @@ class FinancialAuctionResourceTest(BaseWebTest, AuctionResourceTestMixin, DgfIns
 class FinancialAuctionProcessTest(AuctionProcessTest):
     initial_data = test_financial_auction_data
     initial_organization = test_financial_organization
+
 
 class AuctionSchemaResourceTest(AuctionResourceTest):
     initial_data = test_auction_data_with_schema
@@ -159,11 +168,6 @@ class FinancialAuctionProcessTestWithRegistry(FinancialAuctionProcessTest):
     registry = True
 
 
-
-class FinancialAuctionProcessTestWithRegistry(FinancialAuctionProcessTest):
-    registry = True
-
-
 def suite():
     tests = unittest.TestSuite()
     tests.addTest(unittest.makeSuite(AuctionTest))
@@ -172,6 +176,7 @@ def suite():
     tests.addTest(unittest.makeSuite(FinancialAuctionTest))
     tests.addTest(unittest.makeSuite(FinancialAuctionResourceTest))
     tests.addTest(unittest.makeSuite(FinancialAuctionProcessTest))
+    tests.addTest(unittest.makeSuite(AuctionExtractCredentialsTest))
     return tests
 
 
