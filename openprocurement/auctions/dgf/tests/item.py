@@ -3,21 +3,26 @@ import unittest
 
 from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest,
-    test_bids,
+    test_financial_auction_data,
 )
 from openprocurement.auctions.core.tests.items import (
     DgfItemsResourceTestMixin,
 )
 
 
-class DgfItemsResourceTest(BaseAuctionWebTest, DgfItemsResourceTestMixin):
+class DgfOtherItemsResourceTest(BaseAuctionWebTest, DgfItemsResourceTestMixin):
     initial_status = 'active.tendering'
-    initial_bids = test_bids
+
+
+class DgfFinancialItemsResourceTest(BaseAuctionWebTest, DgfItemsResourceTestMixin):
+    initial_status = 'active.tendering'
+    initial_data = test_financial_auction_data
 
 
 def suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(DgfItemsResourceTest))
+    suite.addTest(unittest.makeSuite(DgfOtherItemsResourceTest))
+    suite.addTest(unittest.makeSuite(DgfFinancialItemsResourceTest))
 
     return suite
 
