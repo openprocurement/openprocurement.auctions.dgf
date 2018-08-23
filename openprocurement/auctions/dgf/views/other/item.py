@@ -2,7 +2,6 @@
 from openprocurement.auctions.core.utils import (
     apply_patch,
     context_unpack,
-    get_now,
     json_view,
     opresource,
     save_auction,
