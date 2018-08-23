@@ -3,7 +3,6 @@ import unittest
 
 from openprocurement.auctions.dgf.tests.base import (
     BaseAuctionWebTest,
-    test_bids,
 )
 from openprocurement.auctions.core.tests.items import (
     DgfItemsResourceTestMixin,
@@ -12,7 +11,6 @@ from openprocurement.auctions.core.tests.items import (
 
 class DgfOtherItemsResourceTest(BaseAuctionWebTest, DgfItemsResourceTestMixin):
     initial_status = 'active.tendering'
-    initial_bids = test_bids
 
 
 def suite():
