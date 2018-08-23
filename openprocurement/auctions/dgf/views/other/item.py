@@ -29,7 +29,7 @@ class AuctionLotResource(AuctionLotResource):
 
     @json_view(
         content_type="application/json",
-        permission='edit_auction_items',
+        permission='edit_auction',
         validators=(validate_item_data))
     def collection_post(self):
         item = self.request.validated['item']
@@ -68,7 +68,7 @@ class AuctionLotResource(AuctionLotResource):
 
     @json_view(
         content_type="application/json",
-        permission='edit_auction_items',
+        permission='edit_auction',
         validators=(validate_patch_item_data, validate_rectification_period))
     def patch(self):
         if apply_patch(self.request, src=self.request.context.serialize()):

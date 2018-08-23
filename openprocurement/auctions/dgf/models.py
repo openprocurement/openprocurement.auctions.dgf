@@ -166,7 +166,6 @@ class DGFOtherAssets(BaseAuction):
             (Allow, '{}_{}'.format(self.owner, self.owner_token), 'edit_auction'),
             (Allow, '{}_{}'.format(self.owner, self.owner_token), 'edit_auction_award'),
             (Allow, '{}_{}'.format(self.owner, self.owner_token), 'upload_auction_documents'),
-            (Allow, '{}_{}'.format(self.owner, self.owner_token), 'edit_auction_items'),
         ]
 
     def get_role(self):
