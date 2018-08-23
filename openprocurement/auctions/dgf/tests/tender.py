@@ -96,7 +96,7 @@ class AuctionProcessTest(BaseAuctionWebTest):
     test_suspended_auction = snitch(suspended_auction)
 
 
-class AuctionExtractCredentialsTest(AuctionResourceTest, ExtractCredentialsMixin):
+class AuctionExtractCredentialsTest(BaseAuctionWebTest, ExtractCredentialsMixin):
     pass
 
 
