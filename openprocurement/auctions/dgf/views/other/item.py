@@ -8,7 +8,7 @@ from openprocurement.auctions.core.utils import (
     update_file_content_type,
 )
 from openprocurement.auctions.core.validation import (
-    validate_rectification_period,
+    validate_item_rectification_period,
 )
 from openprocurement.auctions.core.views.mixins import AuctionLotResource
 from openprocurement.auctions.core.endpoints import ENDPOINTS
@@ -68,7 +68,7 @@ class AuctionLotResource(AuctionLotResource):
     @json_view(
         content_type="application/json",
         permission='edit_auction',
-        validators=(validate_patch_item_data, validate_rectification_period))
+        validators=(validate_patch_item_data, validate_item_rectification_period))
     def patch(self):
         if apply_patch(self.request, src=self.request.context.serialize()):
             update_file_content_type(self.request)
