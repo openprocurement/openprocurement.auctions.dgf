@@ -10,7 +10,7 @@ from openprocurement.auctions.core.utils import (
 from openprocurement.auctions.core.validation import (
     validate_item_rectification_period,
 )
-from openprocurement.auctions.core.views.mixins import AuctionLotResource
+from openprocurement.auctions.core.utils import APIResource
 from openprocurement.auctions.core.endpoints import ENDPOINTS
 from openprocurement.auctions.dgf.validation import (
     validate_item_data,
@@ -24,7 +24,7 @@ from openprocurement.auctions.dgf.validation import (
     path=ENDPOINTS['item'],
     auctionsprocurementMethodType="dgfOtherAssets",
     description="Auction items")
-class AuctionLotResource(AuctionLotResource):
+class AuctionItemResource(APIResource):
 
     @json_view(
         content_type="application/json",
