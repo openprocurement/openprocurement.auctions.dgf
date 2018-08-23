@@ -10,14 +10,14 @@ from openprocurement.auctions.core.tests.items import (
 )
 
 
-class DgfItemsResourceTest(BaseAuctionWebTest, DgfItemsResourceTestMixin):
+class DgfOtherItemsResourceTest(BaseAuctionWebTest, DgfItemsResourceTestMixin):
     initial_status = 'active.tendering'
     initial_bids = test_bids
 
 
 def suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(DgfItemsResourceTest))
+    suite.addTest(unittest.makeSuite(DgfOtherItemsResourceTest))
 
     return suite
 
