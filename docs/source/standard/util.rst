@@ -74,7 +74,6 @@ Schema
 :changes:
     List of `Change` objects
 
-
 .. _guarantee:
 
 Guarantee
@@ -96,4 +95,3 @@ Schema
 
     |ocdsDescription|
     The currency in 3-letter ISO 4217 format.
-
