@@ -43,6 +43,8 @@ Schema
 :amount:
     float, required
 
+    Can be edited during the rectificationPeriod. Value can not be greater than value.amount.
+
     |ocdsDescription|
     Amount as a number.
 
@@ -74,7 +76,6 @@ Schema
 :changes:
     List of `Change` objects
 
-
 .. _guarantee:
 
 Guarantee
@@ -86,6 +87,8 @@ Schema
 :amount:
     float, required
 
+    Can be edited during the rectificationPeriod. Value can not be greater than value.amount.
+
     |ocdsDescription|
     Amount as a number.
 
@@ -96,4 +99,3 @@ Schema
 
     |ocdsDescription|
     The currency in 3-letter ISO 4217 format.
-
