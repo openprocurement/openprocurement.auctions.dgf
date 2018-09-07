@@ -37,6 +37,8 @@ Date/time in :ref:`date-format`.
 Value
 =====
 
+Can be edited during the rectificationPeriod. `minimalStep.amount` can not be greater than `value.amount`.
+
 Schema
 ------
 
@@ -74,11 +76,12 @@ Schema
 :changes:
     List of `Change` objects
 
-
 .. _guarantee:
 
 Guarantee
 =========
+
+Can be edited during the rectificationPeriod. `guarantee.amount` can not be greater than `value.amount`.
 
 Schema
 ------
@@ -96,4 +99,3 @@ Schema
 
     |ocdsDescription|
     The currency in 3-letter ISO 4217 format.
-
