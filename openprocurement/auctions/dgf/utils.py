@@ -88,10 +88,3 @@ def check_status(request):
             if standStillEnd <= now:
                 check_auction_status(request)
                 return
-
-
-def invalidate_bids_under_threshold(auction):
-    value_threshold = round(auction['value']['amount'] + auction['minimalStep']['amount'], 2)
-    for bid in auction['bids']:
-        if bid['value']['amount'] < value_threshold:
-            bid['status'] = 'invalid'

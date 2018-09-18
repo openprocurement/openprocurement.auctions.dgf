@@ -12,7 +12,7 @@ from openprocurement.auctions.core.validation import (
 )
 from openprocurement.auctions.core.views.mixins import AuctionAuctionResource
 
-from openprocurement.auctions.dgf.utils import invalidate_bids_under_threshold
+from openprocurement.auctions.core.plugins.awarding.base.utils import invalidate_bids_under_threshold
 
 
 @opresource(name='dgfOtherAssets:Auction Auction',
