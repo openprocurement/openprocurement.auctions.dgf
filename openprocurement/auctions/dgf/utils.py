@@ -12,6 +12,7 @@ from openprocurement.auctions.core.utils import (
     get_now,
     TZ,
 )
+from openprocurement.auctions.core.interfaces import IAuctionManager
 
 
 PKG = get_distribution(__package__)
@@ -20,17 +21,18 @@ LOGGER = getLogger(PKG.project_name)
 
 def check_bids(request):
     auction = request.validated['auction']
+    adapter = request.registry.getAdapter(auction, IAuctionManager)
     if auction.lots:
         [setattr(i.auctionPeriod, 'startDate', None) for i in auction.lots if i.numberOfBids < 2 and i.auctionPeriod and i.auctionPeriod.startDate]
         [setattr(i, 'status', 'unsuccessful') for i in auction.lots if i.numberOfBids < 2 and i.status == 'active']
         cleanup_bids_for_cancelled_lots(auction)
         if not set([i.status for i in auction.lots]).difference(set(['unsuccessful', 'cancelled'])):
-            auction.status = 'unsuccessful'
+            adapter.pendify_auction_status('unsuccessful')
     else:
         if auction.numberOfBids < 2:
             if auction.auctionPeriod and auction.auctionPeriod.startDate:
                 auction.auctionPeriod.startDate = None
-            auction.status = 'unsuccessful'
+            adapter.pendify_auction_status('unsuccessful')
 
 
 def check_status(request):
