@@ -194,6 +194,8 @@ class DGFOtherAssets(BaseAuction):
     def generate_rectificationPeriod(self):
         """Generate rectificationPeriod only when it not defined"""
         # avoid period generation if
+        if getattr(self, 'tenderPeriod') is None:
+            return
         if (
             # it's already generated
             (
@@ -201,10 +203,8 @@ class DGFOtherAssets(BaseAuction):
                 # and not just present, but actually holds some real value
                 and self.rectificationPeriod.startDate is not None
             )
-            # or trere's no period on that our code is dependant
-            or getattr(self, 'tenderPeriod') is None
         ):
-            return
+            return self.rectificationPeriod.serialize()
         start = self.tenderPeriod.startDate
         end = calculate_business_date(start, RECTIFICATION_PERIOD_DURATION, self, working_days=True)
 
