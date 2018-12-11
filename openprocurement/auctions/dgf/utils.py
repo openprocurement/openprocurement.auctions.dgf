@@ -6,11 +6,12 @@ from openprocurement.auctions.core.plugins.contracting.base.utils import (
     check_auction_status
 )
 from openprocurement.auctions.core.utils import (
-    cleanup_bids_for_cancelled_lots, check_complaint_status,
-    remove_draft_bids,
-    context_unpack,
-    get_now,
     TZ,
+    check_complaint_status,
+    cleanup_bids_for_cancelled_lots,
+    get_now,
+    remove_draft_bids,
+    log_auction_status_change
 )
 from openprocurement.auctions.core.interfaces import IAuctionManager
 
@@ -45,20 +46,18 @@ def check_status(request):
         for complaint in award.complaints:
             check_complaint_status(request, complaint, now)
     if not auction.lots and auction.status == 'active.tendering' and auction.tenderPeriod.endDate <= now:
-        LOGGER.info('Switched auction {} to {}'.format(auction['id'], 'active.auction'),
-                    extra=context_unpack(request, {'MESSAGE_ID': 'switched_auction_active.auction'}))
         auction.status = 'active.auction'
         remove_draft_bids(request)
         check_bids(request)
+        log_auction_status_change(request, auction, auction.status)
         if auction.numberOfBids < 2 and auction.auctionPeriod:
             auction.auctionPeriod.startDate = None
         return
     elif auction.lots and auction.status == 'active.tendering' and auction.tenderPeriod.endDate <= now:
-        LOGGER.info('Switched auction {} to {}'.format(auction['id'], 'active.auction'),
-                    extra=context_unpack(request, {'MESSAGE_ID': 'switched_auction_active.auction'}))
         auction.status = 'active.auction'
         remove_draft_bids(request)
         check_bids(request)
+        log_auction_status_change(request, auction, auction.status)
         [setattr(i.auctionPeriod, 'startDate', None) for i in auction.lots if i.numberOfBids < 2 and i.auctionPeriod]
         return
     elif not auction.lots and auction.status == 'active.awarded':
