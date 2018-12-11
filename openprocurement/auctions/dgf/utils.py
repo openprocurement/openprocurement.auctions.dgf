@@ -45,14 +45,15 @@ def check_status(request):
         request.content_configurator.check_award_status(request, award, now)
         for complaint in award.complaints:
             check_complaint_status(request, complaint, now)
-    if not auction.lots and auction.status == 'active.tendering' and auction.tenderPeriod.endDate <= now:
-        auction.status = 'active.auction'
-        remove_draft_bids(request)
-        check_bids(request)
-        log_auction_status_change(request, auction, auction.status)
-        if auction.numberOfBids < 2 and auction.auctionPeriod:
-            auction.auctionPeriod.startDate = None
-        return
+    if not auction.lots:
+        if auction.status == 'active.tendering' and auction.tenderPeriod.endDate <= now:
+            auction.status = 'active.auction'
+            remove_draft_bids(request)
+            check_bids(request)
+            log_auction_status_change(request, auction, auction.status)
+            if auction.numberOfBids < 2 and auction.auctionPeriod:
+                auction.auctionPeriod.startDate = None
+            return
     elif auction.lots and auction.status == 'active.tendering' and auction.tenderPeriod.endDate <= now:
         auction.status = 'active.auction'
         remove_draft_bids(request)
