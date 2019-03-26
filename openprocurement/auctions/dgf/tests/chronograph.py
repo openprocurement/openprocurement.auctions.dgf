@@ -46,9 +46,6 @@ from openprocurement.auctions.dgf.tests import fixtures
 from openprocurement.auctions.dgf.tests.blanks.chronograph_blanks import (
     # AuctionSwitchQualificationResourceTest
     switch_to_qualification,
-    # AuctionAuctionPeriodResourceTest
-    set_auction_period,
-    reset_auction_period
 )
 
 
@@ -82,13 +79,6 @@ class AuctionLotSwitchAuctionResourceTest(AuctionSwitchAuctionResourceTest):
 @unittest.skip("option not available")
 class AuctionLotSwitchUnsuccessfulResourceTest(AuctionSwitchUnsuccessfulResourceTest):
     initial_lots = test_lots
-
-
-class AuctionAuctionPeriodResourceTest(BaseAuctionWebTest):
-    initial_bids = test_bids
-
-    test_set_auction_period = snitch(set_auction_period)
-    test_reset_auction_period = snitch(reset_auction_period)
 
 
 class AuctionAwardSwitchResourceTest(BaseAuctionWebTest, AuctionAwardSwitchResourceTestMixin):
@@ -159,10 +149,6 @@ class AuctionAwardSwitch2ResourceTest(BaseAuctionWebTest):
     test_switch_verification_to_unsuccessful_2 = snitch(switch_verification_to_unsuccessful_2)
     test_switch_active_to_unsuccessful_2 = snitch(switch_active_to_unsuccessful_2)
 
-
-@unittest.skip("option not available")
-class AuctionLotAuctionPeriodResourceTest(AuctionAuctionPeriodResourceTest):
-    initial_lots = test_lots
 
 @unittest.skip("option not available")
 class AuctionComplaintSwitchResourceTest(BaseAuctionWebTest):
@@ -284,18 +270,6 @@ class FinancialAuctionLotSwitchUnsuccessfulResourceTest(AuctionLotSwitchUnsucces
     initial_organization = test_financial_organization
 
 
-class FinancialAuctionAuctionPeriodResourceTest(AuctionAuctionPeriodResourceTest):
-    initial_bids = test_financial_bids
-    initial_data = test_financial_auction_data
-    initial_organization = test_financial_organization
-
-
-@unittest.skip("option not available")
-class FinancialAuctionLotAuctionPeriodResourceTest(AuctionLotAuctionPeriodResourceTest):
-    initial_data = test_financial_auction_data
-    initial_organization = test_financial_organization
-
-
 class FinancialAuctionComplaintSwitchResourceTest(AuctionComplaintSwitchResourceTest):
     initial_data = test_financial_auction_data
     initial_organization = test_financial_organization
@@ -341,10 +315,8 @@ def suite():
     tests.addTest(unittest.makeSuite(AuctionLotSwitchQualificationResourceTest))
     tests.addTest(unittest.makeSuite(AuctionLotSwitchAuctionResourceTest))
     tests.addTest(unittest.makeSuite(AuctionLotSwitchUnsuccessfulResourceTest))
-    tests.addTest(unittest.makeSuite(AuctionAuctionPeriodResourceTest))
     tests.addTest(unittest.makeSuite(AuctionAwardSwitchResourceTest))
     tests.addTest(unittest.makeSuite(AuctionAwardSwitch2ResourceTest))
-    tests.addTest(unittest.makeSuite(AuctionLotAuctionPeriodResourceTest))
     tests.addTest(unittest.makeSuite(AuctionComplaintSwitchResourceTest))
     tests.addTest(unittest.makeSuite(AuctionLotComplaintSwitchResourceTest))
     tests.addTest(unittest.makeSuite(AuctionAwardComplaintSwitchResourceTest))
@@ -357,8 +329,6 @@ def suite():
     tests.addTest(unittest.makeSuite(FinancialAuctionLotSwitchQualificationResourceTest))
     tests.addTest(unittest.makeSuite(FinancialAuctionLotSwitchAuctionResourceTest))
     tests.addTest(unittest.makeSuite(FinancialAuctionLotSwitchUnsuccessfulResourceTest))
-    tests.addTest(unittest.makeSuite(FinancialAuctionAuctionPeriodResourceTest))
-    tests.addTest(unittest.makeSuite(FinancialAuctionLotAuctionPeriodResourceTest))
     tests.addTest(unittest.makeSuite(FinancialAuctionComplaintSwitchResourceTest))
     tests.addTest(unittest.makeSuite(FinancialAuctionLotComplaintSwitchResourceTest))
     tests.addTest(unittest.makeSuite(FinancialAuctionAwardComplaintSwitchResourceTest))
