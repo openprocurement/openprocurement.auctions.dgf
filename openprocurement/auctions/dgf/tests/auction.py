@@ -39,6 +39,10 @@ from openprocurement.auctions.dgf.tests.blanks.auction_blanks import (
     post_auction_auction_lot,
     # AuctionMultipleLotAuctionResourceTest
     post_auction_auction_2_lots,
+    # DGFAuctionBridgePeriodPatch
+    set_auction_period,
+    reset_auction_period
+
 )
 
 
@@ -286,6 +290,13 @@ class OtherAssetsAuctionRectificationPeriodTest(BaseAuctionWebTest, AuctionRecti
     initial_bids = test_bids
 
 
+class DGFAuctionBridgePeriodPatchTest(BaseAuctionWebTest):
+    initial_bids = test_bids
+
+    test_set_auction_period = snitch(set_auction_period)
+    test_reset_auction_period = snitch(reset_auction_period)
+
+
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AuctionAuctionResourceTest))
@@ -305,6 +316,8 @@ def suite():
 
     suite.addTest(unittest.makeSuite(FinancialAuctionAuctionResourceTestWithRegistry))
     suite.addTest(unittest.makeSuite(FinancialAuctionSubmissionMethodDetailsTestWithRegistry))
+
+    suite.addTest(unittest.makeSuite(DGFAuctionBridgePeriodPatchTest))
 
     return suite
 
