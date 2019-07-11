@@ -6,7 +6,8 @@ from copy import deepcopy
 
 from openprocurement.auctions.core.utils import (
     apply_data_patch,
-    SANDBOX_MODE
+    SANDBOX_MODE,
+    get_now
 )
 
 from openprocurement.auctions.core.tests.base import (
@@ -25,7 +26,7 @@ from openprocurement.auctions.core.tests.base import MOCK_CONFIG as BASE_MOCK_CO
 from openprocurement.auctions.core.utils import connection_mock_config
 
 
-now = datetime.now()
+now = get_now()
 test_auction_data['procurementMethodType'] = DEFAULT_PROCUREMENT_METHOD_TYPE_OTHER
 if SANDBOX_MODE:
     test_auction_data['procurementMethodDetails'] = 'quick, accelerator=1440'
